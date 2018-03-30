@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:context="http://www.springframework.org/schema/context"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- ===================  -->
+	<!-- MAINTENANCE GENERAL  -->
+	<!-- ===================  -->
+	<bean id="maintMainKodtaService" class="no.systema.z.main.maintenance.service.MaintMainKodtaServiceImpl"/>
+	<bean id="maintMainFirmService" class="no.systema.z.main.maintenance.service.MaintMainFirmServiceImpl"/>
+	<bean id="maintMainCundfService" class="no.systema.z.main.maintenance.service.MaintMainCundfServiceImpl"/>
+	<bean id="maintMainKofastService" class="no.systema.z.main.maintenance.service.MaintMainKofastServiceImpl"/>
+	<bean id="maintMainCundcService" class="no.systema.z.main.maintenance.service.MaintMainCundcServiceImpl"/>
+	<bean id="maintMainSyparfService" class="no.systema.z.main.maintenance.service.MaintMainSyparfServiceImpl"/>
+	<bean id="maintMainFratxtService" class="no.systema.z.main.maintenance.service.MaintMainFratxtServiceImpl"/>
+	<bean id="maintMainKodtlikService" class="no.systema.z.main.maintenance.service.MaintMainKodtlikServiceImpl"/>
+	<bean id="maintMainKodtotyService" class="no.systema.z.main.maintenance.service.MaintMainKodtotyServiceImpl"/>
+	<bean id="maintMainValufService" class="no.systema.z.main.maintenance.service.MaintMainValufServiceImpl"/>
+	<bean id="maintMainSadvareService" class="no.systema.z.main.maintenance.service.MaintMainSadvareServiceImpl"/>
+	
+	<bean id="maintMainKodtvKodtwService" class="no.systema.z.main.maintenance.service.MaintMainKodtvKodtwServiceImpl">
+		<property name="urlCgiProxyService"><ref bean="urlCgiProxyService"/></property>
+	</bean>	
+	<bean id="maintMainKodtpUtskrsService" class="no.systema.z.main.maintenance.service.MaintMainKodtpUtskrsServiceImpl"/>
+	<bean id="maintMainKodtaHodeService" class="no.systema.z.main.maintenance.service.MaintMainKodtaHodeServiceImpl"/>
+	<bean id="maintMainKodtaKodthService" class="no.systema.z.main.maintenance.service.MaintMainKodtaKodthServiceImpl"/>
+	<bean id="maintMainKodtaTellService" class="no.systema.z.main.maintenance.service.MaintMainKodtaTellServiceImpl"/>
+	<bean id="maintMainEdiiService" class="no.systema.z.main.maintenance.service.MaintMainEdiiServiceImpl"/>
+	<bean id="maintMainKodtot2Service" class="no.systema.z.main.maintenance.service.MaintMainKodtot2ServiceImpl"/>
+	<bean id="maintMainKodtsfSyparfService" class="no.systema.z.main.maintenance.service.MaintMainKodtsfSyparfServiceImpl"/>
+	<bean id="maintMainKosttService" class="no.systema.z.main.maintenance.service.MaintMainKosttServiceImpl"/>
+	<bean id="maintMainQaokp08aService" class="no.systema.z.main.maintenance.service.MaintMainQaokp08aServiceImpl"/>
+	
+	<!-- SAD external packages maintenance -->
+	<bean id="maintKodtvaService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintKodtvaServiceImpl"/>
+	<bean id="maintSadExportKodts6Service" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadExportKodts6ServiceImpl"/>
+	<bean id="maintSadExportKodts9Service" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadExportKodts9ServiceImpl"/>
+	<bean id="maintSadFellesKodtlbService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadFellesKodtlbServiceImpl"/>
+	<bean id="maintSadFellesKodtsiService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadFellesKodtsiServiceImpl"/>
+	<bean id="maintSadImportKodtlikService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodtlikServiceImpl"/>
+	<bean id="maintSadImportKodts1Service" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts1ServiceImpl"/>
+	<bean id="maintSadImportKodts4Service" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts4ServiceImpl"/>
+	<bean id="maintSadSadlService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadSadlServiceImpl"/>
+	<bean id="maintNctsExportTrkodfService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintNctsExportTrkodfServiceImpl"/>
+	
+	<!-- SAD avd maintenance -->
+	<bean id="maintMainStandiService" class="no.systema.z.main.maintenance.service.sad.MaintMainStandiServiceImpl"/>
+	<bean id="maintMainStandeService" class="no.systema.z.main.maintenance.service.sad.MaintMainStandeServiceImpl"/>
+	<bean id="maintMainTristdService" class="no.systema.z.main.maintenance.service.sad.MaintMainTristdServiceImpl"/>
+	<bean id="maintMainTrkodfService" class="no.systema.z.main.maintenance.service.sad.MaintMainTrkodfServiceImpl"/>
+	<bean id="maintMainTrustdService" class="no.systema.z.main.maintenance.service.sad.MaintMainTrustdServiceImpl"/>
+	<bean id="maintMainTrustdfvService" class="no.systema.z.main.maintenance.service.sad.MaintMainTrustdfvServiceImpl"/>
+	
+	<!-- SKAT external packages maintenance -->
+	<bean id="maintDktvkService" class="no.systema.external.skat.z.maintenance.service.MaintDktvkServiceImpl"/>
+	<bean id="maintDkxkodfService" class="no.systema.external.skat.z.maintenance.service.MaintDkxkodfServiceImpl"/>
+	
+	<!-- SKAT avd maintenance -->
+	<bean id="maintMainDkxstdService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkxstdServiceImpl"/>
+	<bean id="maintMainDkxstdfvService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkxstdfvServiceImpl"/>
+	<bean id="maintMainDknstdService" class="no.systema.z.main.maintenance.service.skat.MaintMainDknstdServiceImpl"/>
+	<bean id="maintMainDkeaService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkeaServiceImpl"/>
+	<bean id="maintMainDkiaService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkiaServiceImpl"/>
+	
+	<!-- TDS external packages maintenance -->
+	<bean id="maintSvxkodfService" class="no.systema.external.tds.z.maintenance.service.MaintSvxkodfServiceImpl"/>
+	<bean id="maintSvtvkService" class="no.systema.external.tds.z.maintenance.service.MaintSvtvkServiceImpl"/>
+	<bean id="maintSvthaService" class="no.systema.external.tds.z.maintenance.service.MaintSvthaServiceImpl"/>
+	
+	<!-- TDS avd maintenance -->
+	<bean id="maintMainSvxstdService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvxstdServiceImpl"/>
+	<bean id="maintMainSvxstdfvService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvxstdfvServiceImpl"/>
+	<bean id="maintMainSveaService" class="no.systema.z.main.maintenance.service.tds.MaintMainSveaServiceImpl"/>
+	<bean id="maintMainSviaService" class="no.systema.z.main.maintenance.service.tds.MaintMainSviaServiceImpl"/>
+	<bean id="maintMainSvnstdService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvnstdServiceImpl"/>
+	
+	
+	
+	
+</beans>
