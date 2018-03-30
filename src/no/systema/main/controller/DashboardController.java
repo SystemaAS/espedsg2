@@ -47,7 +47,7 @@ import no.systema.main.model.jsonjackson.JsonFirmLoginRecord;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.service.login.SystemaWebLoginService;
 import no.systema.main.service.FirmLoginService;
-
+import no.systema.main.util.StringManager;
 import no.systema.main.url.store.MainUrlDataStore;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.AesEncryptionDecryptionManager;
@@ -67,7 +67,7 @@ public class DashboardController {
 	private static final Logger logger = Logger.getLogger(DashboardController.class.getName());
 	private final String COMPANY_CODE_REQUIRED_FLAG_VALUE = "1";
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
-	
+	private StringManager strMgr = new StringManager();
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	@InitBinder
@@ -89,18 +89,27 @@ public class DashboardController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="logonDashboard.do", method= { RequestMethod.POST})
+	@RequestMapping(value="logonDashboard.do", method= { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView logon(@ModelAttribute (AppConstants.SYSTEMA_WEB_USER_KEY) SystemaWebUser appUser, BindingResult bindingResult, HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttr){
 		ModelAndView successView = new ModelAndView("dashboard");
 		Map model = new HashMap();
+		logger.info("Inside logon...");
+		String user = request.getParameter("ru");
+		String pwd = request.getParameter("dp");
 		
 		if(appUser==null){
 			return this.loginView;
 		
 		}else{
+			//(1) Check if the logon is from a submodule. In such a case the user && password will be coming as su & dp so we must map them
+			if(strMgr.isNotNull(user) && strMgr.isNotNull(pwd)){
+				appUser.setUser(user);
+				appUser.setPassword(pwd);
+			}
+			
+			//(1) Check if the logon is from a submodule. In such a case the password will be coming encrypted
 			String aes = request.getParameter("aes");
 			if("1".equals(aes)){
-				//(1) Check if the logon is from a submodule. In such a case the password will be coming encrypted
 				//DECRYPT
 				appUser.setPassword(this.aesManager.decrypt(appUser.getPassword()));
 			}

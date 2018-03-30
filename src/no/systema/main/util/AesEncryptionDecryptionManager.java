@@ -60,8 +60,8 @@ public class AesEncryptionDecryptionManager {
 	        Key key = generateKey();
 	        Cipher c = Cipher.getInstance(ALGO);
 	        c.init(Cipher.DECRYPT_MODE, key);
-	        byte[] decordedValue = Base64.getDecoder().decode(encryptedData);
-	        decValue = c.doFinal(decordedValue);
+	        byte[] decodedValue = Base64.getDecoder().decode(encryptedData);
+	        decValue = c.doFinal(decodedValue);
     	}catch(Exception e){
     		logger.info("ERROR decryption" + e.toString());
     	}
