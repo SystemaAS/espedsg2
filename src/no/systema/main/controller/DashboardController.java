@@ -1,6 +1,7 @@
 package no.systema.main.controller;
 
 
+import java.net.URLEncoder;
 import java.util.*;
 
 import org.apache.log4j.Logger;
@@ -94,25 +95,11 @@ public class DashboardController {
 		ModelAndView successView = new ModelAndView("dashboard");
 		Map model = new HashMap();
 		logger.info("Inside logon...");
-		String user = request.getParameter("ru");
-		String pwd = request.getParameter("dp");
 		
 		if(appUser==null){
 			return this.loginView;
 		
 		}else{
-			//(1) Check if the logon is from a submodule. In such a case the user && password will be coming as su & dp so we must map them
-			if(strMgr.isNotNull(user) && strMgr.isNotNull(pwd)){
-				appUser.setUser(user);
-				appUser.setPassword(pwd);
-			}
-			
-			//(1) Check if the logon is from a submodule. In such a case the password will be coming encrypted
-			String aes = request.getParameter("aes");
-			if("1".equals(aes)){
-				//DECRYPT
-				appUser.setPassword(this.aesManager.decrypt(appUser.getPassword()));
-			}
 			
 			//TEST from {catalina.home}..context.xml => logger.info(request.getServletContext().getInitParameter("xxx"));
 			//TEST from {catalina.home}..application.properties => logger.info(ApplicationPropertiesUtil.getProperty("http.as400.root.cgi"));
@@ -395,9 +382,15 @@ public class DashboardController {
 		//retval = hostRaw + "/espedsg/logonWRedDashboard.do";
 		
 		//We must user GET until we get Spring 4 (in order to send params on POST)
-		retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "ru=" + appUser.getUser() + "&dp=" + appUser.getPassword();
-		//logger.info("XXXXX:" + request.getContextPath());
-		
+		try{
+			
+			//String encryptedStr = this.aesManager.encrypt(appUser.getPassword());
+			//logger.info("PASS......." + appUser.getPassword());
+			//logger.info("ENCRYPTED......." + appUser.getEncryptedPassword());
+			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getPassword(), "UTF-8");
+		}catch(Exception e){
+			//logger.info("XXXXX:" + request.getContextPath());
+		}
 		return retval;
 	}
 	/**
@@ -526,7 +519,8 @@ public class DashboardController {
 	 */
 	private String getRequestUrlKeyParameters(SystemaWebUser appUser, String companyCode){
 		StringBuffer urlRequestParamsKeys = null;
-		
+		logger.info("XXXXXXXXXX_" + appUser);
+		logger.info("UUUUUUUUUU_" + appUser.getPassword());
 		if(appUser!=null){
 			if( (appUser.getUser()!=null && !"".equals(appUser.getUser())) && (appUser.getPassword()!=null && !"".equals(appUser.getPassword()))){
 				urlRequestParamsKeys = new StringBuffer();
