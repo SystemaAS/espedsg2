@@ -323,6 +323,28 @@ public class DashboardController {
 	}
 	
 	/**
+	 * This method is ONLY call from outside this WAR (from other WARs using response.sendRedirect...)
+	 * All other WAR-web application belonging to espedsg2 will always logout in order to return to the espedsg2 dashboard
+	 * 
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @return
+	 */
+	@RequestMapping(value="dashboard.do", method= { RequestMethod.POST, RequestMethod.GET})
+	public ModelAndView backToDashboard(HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		ModelAndView successView = new ModelAndView("dashboard");
+		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
+		if(appUser==null){
+			return this.loginView;
+		
+		}else{
+			return successView;
+		}
+	
+	}
+	
+	/**
 	 * Gets the java services host name from application.properties.
 	 * Needed in order to use the host name WITHOUT the port number.
 	 * 
