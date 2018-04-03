@@ -51,7 +51,7 @@ import no.systema.main.service.FirmLoginService;
 import no.systema.main.util.StringManager;
 import no.systema.main.url.store.MainUrlDataStore;
 import no.systema.main.util.AppConstants;
-import no.systema.main.util.AesEncryptionDecryptionManager;
+import no.systema.jservices.common.util.AesEncryptionDecryptionManager;
 
 
 
@@ -225,11 +225,11 @@ public class DashboardController {
 		
 		String user = request.getParameter("ru");
 		String pwd = request.getParameter("dp");
-		//create new
-		SystemaWebUser appUserLocal = new SystemaWebUser();
-		appUserLocal.setUser(user);
-		appUserLocal.setPassword(pwd);
-		
+		//set attributes since the method call do not uses those fields' names
+		appUser.setUser(user);
+		appUser.setEncryptedPassword(pwd);
+		appUser.setPassword(this.aesManager.decrypt(pwd));
+				
 		if(appUser==null){
 			return this.loginView;
 		
@@ -249,7 +249,7 @@ public class DashboardController {
 			
 			//url params
 			String firmaCode = null; //always null in this method (because of multi-firm redirection)
-			String urlRequestParamsKeys = this.getRequestUrlKeyParameters(appUserLocal, firmaCode);
+			String urlRequestParamsKeys = this.getRequestUrlKeyParameters(appUser, firmaCode);
 			
 			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 		    	logger.info("URL: " + BASE_URL);
@@ -292,9 +292,9 @@ public class DashboardController {
 					
 						return loginView;
 			    	}
-			    	//Encrypt the password so late as possible
-			    	appUser.setEncryptedPassword(this.aesManager.encrypt(appUser.getPassword()));
+			    	
 			    	session.setAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUser);
+			    	
 		    	}catch(Exception e){
 		    		String msg = "NO CONNECTION:" + e.toString();
 		    		logger.info("[ERROR Fatal] NO CONNECTION ");
@@ -378,16 +378,10 @@ public class DashboardController {
 				logger.info("HTTP host with protocol and port: " + hostRaw);
 			}
 		}
-		//POST not working (with change of port-TOTEN) - OBSOLETE 
-		//retval = hostRaw + "/espedsg/logonWRedDashboard.do";
 		
 		//We must user GET until we get Spring 4 (in order to send params on POST)
 		try{
-			
-			//String encryptedStr = this.aesManager.encrypt(appUser.getPassword());
-			//logger.info("PASS......." + appUser.getPassword());
-			//logger.info("ENCRYPTED......." + appUser.getEncryptedPassword());
-			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getPassword(), "UTF-8");
+			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getEncryptedPassword(), "UTF-8");
 		}catch(Exception e){
 			//logger.info("XXXXX:" + request.getContextPath());
 		}
@@ -426,12 +420,7 @@ public class DashboardController {
 		//user values
 		appUser.setOs(System.getProperty("os.name").toLowerCase());
 		//logger.info("OS:" + appUser.getOs());
-		if(appUser.getPassword() == null){
-			String pwd = request.getParameter("dp");
-			if(pwd !=null ){
-				appUser.setPassword(pwd.toUpperCase());
-			}
-		}
+		
 		appUser.setUser(jsonSystemaUserContainer.getUser().toUpperCase());
 		appUser.setUserName(jsonSystemaUserContainer.getUserName());
 		appUser.setCompanyCode(companyCode);//fifirm in firm
