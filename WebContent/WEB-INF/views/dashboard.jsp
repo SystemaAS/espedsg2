@@ -53,16 +53,27 @@
 										</font>
 										</li>
 										 --%>
-										 <li style="line-height:20px;">
-						 				<font class="text14">
+										<li style="line-height:20px;">
+					 					<font class="text14">
 						 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgskat/logonDashboard.do" >
 											    <input type="hidden" name="user" value="${user.user}" />
 											    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 											    <img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
-											    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">espedsgSkat</font></button>
+											    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">espedsg_Skat</font></button>
 											</form>
 										</font>
 										</li>
+										<li style="line-height:20px;">
+					 					<font class="text14">
+						 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtds/logonDashboard.do" >
+											    <input type="hidden" name="user" value="${user.user}" />
+											    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+											    <img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
+											    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">espedsg_TDS</font></button>
+											</form>
+										</font>
+										</li>
+										
 										<li style="line-height:20px;">
 						 				<font class="text14">
 							 				<a class="text14" href="aespedsg_roadmap.do" > 	
