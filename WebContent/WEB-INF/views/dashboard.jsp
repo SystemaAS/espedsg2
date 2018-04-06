@@ -359,37 +359,45 @@
 											</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-PRISKALK') }">
 						 						<font class="text14">
-									 				<a class="text14" href="fraktkalkulatorgate.do?lang=${user.usrLang}" onMouseOver="showPop('infoPRISKALK');" onMouseOut="hidePop('infoPRISKALK');" onClick="setBlockUI(this);" >
-					 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
-														<font class="text14NavyBlue">${record.prTxt}</font>
-			 										</a>
-			 										<%-- ===========================================  --%>
-									            	<%-- Here we have the info popup window Priskalk. --%>
-									            	<%-- ===========================================  --%>
-									            	<span style="position:absolute; left:720px; top:180px; width:390px; height:300px;" id="infoPRISKALK" class="popupPlain" >
-									           		<div align="center">
-									           			<table>
-									           				<tr>
-																<td align="left" class="text12" ><b>Priskalkulator</b> 
-																</td>
-															</tr>
-															<tr class="text" height="10"><td></td></tr>
-															<tr>
-																<td align="center" >
-																	<c:choose>
-							 											<c:when test="${not empty record.infoImg}">
-																			<img src="${record.infoImg}" border="0" width="350px"; height="210px">
-																		</c:when>
-																		<c:otherwise>
-																			<img src="resources/images/miniPriskalkulator.png" border="0" width="350px"; height="210px">
-																		</c:otherwise>
-																	</c:choose>
-																</td>
-															</tr>
-										           		</table>
-													</div>
-													</span>
+						 							<form onMouseOver="showPop('infoPRISKALK');" onMouseOut="hidePop('infoPRISKALK');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgpkalk/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
 												</font>
+					 							<%--	
+								 				<a class="text14" href="fraktkalkulatorgate.do?lang=${user.usrLang}" onMouseOver="showPop('infoPRISKALK');" onMouseOut="hidePop('infoPRISKALK');" onClick="setBlockUI(this);" >
+				 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													<font class="text14NavyBlue">${record.prTxt}</font>
+		 										</a>
+		 										 --%>
+		 										<%-- ===========================================  --%>
+								            	<%-- Here we have the info popup window Priskalk. --%>
+								            	<%-- ===========================================  --%>
+								            	<span style="position:absolute; left:720px; top:180px; width:390px; height:300px;" id="infoPRISKALK" class="popupPlain" >
+								           		<div align="center">
+								           			<table>
+								           				<tr>
+															<td align="left" class="text12" ><b>Priskalkulator</b> 
+															</td>
+														</tr>
+														<tr class="text" height="10"><td></td></tr>
+														<tr>
+															<td align="center" >
+																<c:choose>
+						 											<c:when test="${not empty record.infoImg}">
+																		<img src="${record.infoImg}" border="0" width="350px"; height="210px">
+																	</c:when>
+																	<c:otherwise>
+																		<img src="resources/images/miniPriskalkulator.png" border="0" width="350px"; height="210px">
+																	</c:otherwise>
+																</c:choose>
+															</td>
+														</tr>
+									           		</table>
+												</div>
+												</span>
 						 					</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-VEDLIKEHOLD') }">
 							 					<font class="text14">
