@@ -30,50 +30,8 @@
 						 			<td align="left" height="60px" class="text14">
 						 			<ol>
 						 			
-						 			<%--
-						 			<c:if test="${user.user == 'OSCAR' && fn:startsWith(user.os,'mac') }">
-						 				<li style="line-height:20px;">
-						 				<font class="text14">
-							 				<a class="text14" href="report_dashboard.do" > 	
-			 									<img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
-			 									<font class="text14NavyBlue">Analyser</font>
-	 										</a>
-										</font>
-										</li>
-						 			</c:if>
-						 			 --%> 
 						 			<c:if test="${user.user == 'OSCAR'}">
-						 				<%-- OBSOLETE ? -- Test Suites are now the norm
-						 				<li style="line-height:20px;">
-						 				<font class="text14">
-							 				<a class="text14" href="asyjservices_mainlist.do" > 	
-			 									<img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
-			 									<font class="text14NavyBlue">JavaServices</font>
-	 										</a>
-										</font>
-										</li>
-										 --%>
-										<li style="line-height:20px;">
-					 					<font class="text14">
-						 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgskat/logonDashboard.do" >
-											    <input type="hidden" name="user" value="${user.user}" />
-											    <input type="hidden" name="password" value="${user.encryptedPassword}" />
-											    <img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
-											    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">espedsg_Skat</font></button>
-											</form>
-										</font>
-										</li>
-										<li style="line-height:20px;">
-					 					<font class="text14">
-						 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtds/logonDashboard.do" >
-											    <input type="hidden" name="user" value="${user.user}" />
-											    <input type="hidden" name="password" value="${user.encryptedPassword}" />
-											    <img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
-											    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">espedsg_TDS</font></button>
-											</form>
-										</font>
-										</li>
-										
+						 				
 										<li style="line-height:20px;">
 						 				<font class="text14">
 							 				<a class="text14" href="aespedsg_roadmap.do" > 	
@@ -472,11 +430,21 @@
 											<%-- ONLY for external customers --%>
 								 			<c:if test="${fn:contains(record.prog,'-TAVGG') }">
 								 				<font class="text14">
+								 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtvinnavgg/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												<%--
+								 				<font class="text14">
 									 				<a class="text14" href="tvinnsadadmin_avggrunnlag_external.do?lang=${user.usrLang}" > 	
 					 									<img src="resources/images/bulletGreen.png" width="10px" height="10px" border="0">&nbsp;
 					 									<font class="text14NavyBlue">${record.prTxt}</font>
 			 										</a>
 												</font>
+												 --%>
 								 			</c:if>
 								 			<c:if test="${fn:contains(record.prog,'-TBRREG') }">
 				 								<a id="dialogRunKundedatakontrollLink" class="text14" style="display:block;" runat="server" href="#" onMouseOver="showPop('infoTBRREG');" onMouseOut="hidePop('infoTBRREG');" >
@@ -517,10 +485,21 @@
 
 								 			</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-TVINN') }">
+						 						<font class="text14">
+								 					<form onMouseOver="showPop('infoTVINN');" onMouseOut="hidePop('infoTVINN');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtvinnsad/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												
+												<%--
 				 								<a class="text14" href="tvinnsadgate.do" onMouseOver="showPop('infoTVINN');" onMouseOut="hidePop('infoTVINN');" onClick="setBlockUI(this);" >
 				 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
 	 												<font class="text14NavyBlue">${record.prTxt}</font>
 		 										</a>
+		 										 --%>
 				 									<%-- ===========================================  --%>
 									            	<%-- Here we have the info popup window TVINN --%>
 									            	<%-- ===========================================  --%>
@@ -550,10 +529,21 @@
 												</span>
 											</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-SKAT') }">
+						 						<font class="text14">
+								 					<form onMouseOver="showPop('infoSKAT');" onMouseOut="hidePop('infoSKAT');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgskat/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+										
+						 						<%--
 				 								<a class="text14" href="skatgate.do" onMouseOver="showPop('infoSKAT');" onMouseOut="hidePop('infoSKAT');" onClick="setBlockUI(this);" >
 				 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
 	 												<font class="text14NavyBlue">${record.prTxt}</font>
 		 										</a>
+		 										 --%>
 				 									<%-- ===========================================  --%>
 									            	<%-- Here we have the info popup window SKAT --%>
 									            	<%-- ===========================================  --%>
@@ -583,11 +573,21 @@
 												</span>
 											</c:if>
 				 							<c:if test="${fn:contains(record.prog,'-TDS') }">
+				 								<font class="text14">
+								 					<form onMouseOver="showPop('infoTDS');" onMouseOut="hidePop('infoTDS');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtds/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												
+				 								<%--
 				 								<a class="text14" href="tdsgate.do" onMouseOver="showPop('infoTDS');" onMouseOut="hidePop('infoTDS');" onClick="setBlockUI(this);" >
 				 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
 	 												<font class="text14NavyBlue">${record.prTxt}</font>
 		 										</a>
-				 								
+				 								 --%>
 				 									<%-- ===========================================  --%>
 									            	<%-- Here we have the info popup window TDS --%>
 									            	<%-- ===========================================  --%>
