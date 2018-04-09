@@ -105,7 +105,6 @@ public class JsonEspedsgTestersuiteController {
 		
 		}else{
 			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TEST_SUITES);
-			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
 			list = this.initTesterSuiteSpecification();
 			model.put(TEST_LIST,list);
 			model.put(TEST_LIST_SIZE, list.size());
@@ -114,7 +113,6 @@ public class JsonEspedsgTestersuiteController {
     		//Final successView with domain objects
     		//--------------------------------------
 			successView.addObject("model", model);
-    		logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
     		return successView;
 		    
 		}
@@ -157,7 +155,6 @@ public class JsonEspedsgTestersuiteController {
     		//Final successView with domain objects
     		//--------------------------------------
 			successView.addObject("model", model);
-    		logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
     		return successView;
 		    
 		}
@@ -175,11 +172,10 @@ public class JsonEspedsgTestersuiteController {
 		Collection<JsonTestersuiteObjectRecord> outputList = new ArrayList<JsonTestersuiteObjectRecord>();
 		
 		try{
-			String BASE_URL_UPDATE = AppConstants.HTTP_ROOT_SERVLET_JSERVICES + this.getBaseUrl(testModule);
+			String BASE_URL = AppConstants.HTTP_ROOT_SERVLET_JSERVICES + this.getBaseUrl(testModule);
 			
-			logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-			BASE_URL_UPDATE = AppConstants.HTTP_ROOT_SERVLET_JSERVICES + "/espedsgskat/sytsuite.do";
-			String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL_UPDATE,"user=" + appUser.getUser());
+			logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp < " + BASE_URL);
+			String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL,"user=" + appUser.getUser());
 			//get container
 			JsonTestersuiteObjectContainer container = this.testersuiteService.getContainer(jsonPayload);
 			logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
@@ -210,6 +206,14 @@ public class JsonEspedsgTestersuiteController {
 			retval = "/espedsgtds/sytsuite.do";
 		}else if(this.TEST_MODULE_TVINN.equalsIgnoreCase(testModule)){
 			retval = "/espedsgtvinnsad/sytsuite.do";
+		}else if(this.TEST_MODULE_AVG_GRUNNLAG.equalsIgnoreCase(testModule)){
+			retval = "/espedsgtvinnavgg/sytsuite.do";
+		}else if(this.TEST_MODULE_PRISKALK.equalsIgnoreCase(testModule)){
+			retval = "/espedsgpkalk/sytsuite.do";
+		}else if(this.TEST_MODULE_EFAKTURA.equalsIgnoreCase(testModule)){
+			retval = "/espedsgefaktura/sytsuite.do";
+		}else if(this.TEST_MODULE_UFORTOLL.equalsIgnoreCase(testModule)){
+			retval = "/espedsgoverview/sytsuite.do";
 		}
 		
 		return retval;
