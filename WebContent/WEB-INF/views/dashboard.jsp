@@ -288,39 +288,42 @@
 											</c:if>
 											
 											<c:if test="${fn:contains(record.prog,'-eFaktura') }">
-							 					<font class="text14">
-									 				<a class="text14" href="efaktura_mainlist.do?action=doFind" onMouseOver="showPop('infoEFAKTURA');" onMouseOut="hidePop('infoEFAKTURA');" onClick="setBlockUI(this);" > 	
-					 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
-					 									<font class="text14NavyBlue">${record.prTxt}</font>
-			 										</a>
-			 										<%-- ===========================================  --%>
-									            	<%-- Here we have the info popup window eFaktura --%>
-									            	<%-- ===========================================  --%>
-									            	<span style="position:absolute; left:720px; top:180px; width:390px; height:300px;" id="infoEFAKTURA" class="popupPlain"  >
-									           		<div align="center">
-									           			<table>
-									           				<tr>
-																<td align="left" class="text12" ><b>eFaktura</b> 
-																</td>
-															</tr>
-															<tr class="text" height="10"><td></td></tr>
-															<tr>
-																<td align="center" >
-																	<c:choose>
-							 											<c:when test="${not empty record.infoImg}">
-																			<img src="${record.infoImg}" border="0" width="350px"; height="210px">
-																		</c:when>
-																		<c:otherwise>
-																			<img src="resources/images/miniEfaktura.png" border="0" width="350px"; height="210px">
-																		</c:otherwise>
-																	</c:choose>	
-																</td>
-															</tr>
-										           		</table>
-													</div>
-													</span>
-			 										
+												<font class="text14">
+								 					<form onMouseOver="showPop('infoEFAKTURA');" onMouseOut="hidePop('infoEFAKTURA');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgefaktura/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
 												</font>
+							 					
+		 										<%-- ===========================================  --%>
+								            	<%-- Here we have the info popup window eFaktura --%>
+								            	<%-- ===========================================  --%>
+								            	<span style="position:absolute; left:720px; top:180px; width:390px; height:300px;" id="infoEFAKTURA" class="popupPlain"  >
+								           		<div align="center">
+								           			<table>
+								           				<tr>
+															<td align="left" class="text12" ><b>eFaktura</b> 
+															</td>
+														</tr>
+														<tr class="text" height="10"><td></td></tr>
+														<tr>
+															<td align="center" >
+																<c:choose>
+						 											<c:when test="${not empty record.infoImg}">
+																		<img src="${record.infoImg}" border="0" width="350px"; height="210px">
+																	</c:when>
+																	<c:otherwise>
+																		<img src="resources/images/miniEfaktura.png" border="0" width="350px"; height="210px">
+																	</c:otherwise>
+																</c:choose>	
+															</td>
+														</tr>
+									           		</table>
+												</div>
+												</span>
+			 									
 											</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-SPORROPP') }">
 							 					<font class="text14">
@@ -628,10 +631,20 @@
 												</span>
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-UFORTOPPD') }">
+												<font class="text14">
+								 					<form onMouseOver="showPop('infoUOpp');" onMouseOut="hidePop('infoUOpp');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgoverview/logonDashboard.do?uopp=1" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												<%--
 				 								<a class="text14" href="uoppdraggate.do?deepSubmit=do" onMouseOver="showPop('infoUOpp');" onMouseOut="hidePop('infoUOpp');" onClick="setBlockUI(this);" >
 	 												<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
 													<font class="text14NavyBlue">${record.prTxt}</font>
 													</a>
+													--%>
 				 									<%-- ======================================================  --%>
 									            	<%-- Here we have the info popup window Ufortollede Oppdrag  --%>
 									            	<%-- ======================================================  --%>
@@ -661,10 +674,20 @@
 													</span>
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-KVALITET') }">
+												<font class="text14">
+								 					<form onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgoverview/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												<%--
 				 								<a class="text14" href="sendingerlevtidgatefilter.do" >
 	 												<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
 													<font class="text14NavyBlue">${record.prTxt}</font>
 												</a>
+												 --%>
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-CUST_APP') }">
 				 								<a class="text14" href="espedsgadmin.do" >
