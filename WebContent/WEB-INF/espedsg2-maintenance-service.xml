@@ -8,12 +8,7 @@ http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
 http://www.springframework.org/schema/context
 http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 
-	<!-- =================  -->
-	<!-- TVINN SAD		    -->
-	<!-- =================  -->
-	<bean id="brregEnhetsRegisteretService" class="no.systema.tvinn.sad.kundekontroll.brreg.service.BrregEnhetsRegisteretServiceImpl"/>
 	
-
 	<!-- ===================  -->
 	<!-- MAINTENANCE GENERAL  -->
 	<!-- ===================  -->

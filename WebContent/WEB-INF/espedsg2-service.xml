@@ -29,5 +29,11 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<!-- ==============================  -->
 	<bean id="testersuiteService" class="no.systema.aespedsgtestersuite.service.TestersuiteServiceImpl"/>
 	
+	<!-- =================  -->
+	<!-- TVINN SAD		    -->
+	<!-- =================  -->
+	<bean id="brregEnhetsRegisteretService" class="no.systema.tvinn.sad.kundekontroll.brreg.service.BrregEnhetsRegisteretServiceImpl"/>
+	
+	
 	
 </beans>
