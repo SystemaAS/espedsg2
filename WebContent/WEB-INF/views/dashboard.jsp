@@ -179,17 +179,27 @@
 												</c:choose>
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-EBOOKING') }">
-							 					<font class="text14">
-							 						<a class="text14" href="ebooking_mainorderlist.do?lang=${user.usrLang}&action=doFind" onMouseOver="showPop('infoEBOOKING');" onMouseOut="hidePop('infoEBOOKING');" onClick="setBlockUI(this);" > 	
-					 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
-					 									<font class="text14NavyBlue">${record.prTxt}</font>
-			 										</a>
-			 										<c:if test="${not empty record.veiledning}">
-			 											<a class="text14" href="${record.veiledning}" target="_blank">	
-			 												<img title="Brukerveiledning" style="vertical-align:middle;" src="resources/images/pdf2.png" border="0" width="14px"; height="14px">
-			 											</a>
-			 										</c:if>
-			 										
+												<font class="text14">
+								 					<form onMouseOver="showPop('infoEBOOKING');" onMouseOut="hidePop('infoEBOOKING');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgebook/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+													    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+													</form>
+												</font>
+												<c:if test="${not empty record.veiledning}">
+		 											<a class="text14" href="${record.veiledning}" target="_blank">	
+		 												<img title="Brukerveiledning" style="vertical-align:middle;" src="resources/images/pdf2.png" border="0" width="14px"; height="14px">
+		 											</a>
+		 										</c:if>
+				 									<%--				
+								 					<font class="text14">
+								 						<a class="text14" href="ebooking_mainorderlist.do?lang=${user.usrLang}&action=doFind" onMouseOver="showPop('infoEBOOKING');" onMouseOut="hidePop('infoEBOOKING');" onClick="setBlockUI(this);" > 	
+						 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+						 									<font class="text14NavyBlue">${record.prTxt}</font>
+				 										</a>
+				 									</font>	
+				 									 --%>	
 			 										<%-- ===========================================  --%>
 									            	<%-- Here we have the info popup window eBooking --%>
 									            	<%-- ===========================================  --%>
@@ -215,7 +225,7 @@
 										           		</table>
 													</div>
 													</span>
-												</font>
+												
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-TROR') }">
 							 					<font class="text14">

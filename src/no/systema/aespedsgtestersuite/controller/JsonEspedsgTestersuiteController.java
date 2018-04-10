@@ -202,18 +202,27 @@ public class JsonEspedsgTestersuiteController {
 		String retval = "";
 		if(this.TEST_MODULE_SKAT.equalsIgnoreCase(testModule)){
 			retval = "/espedsgskat/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_TDS.equalsIgnoreCase(testModule)){
 			retval = "/espedsgtds/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_TVINN.equalsIgnoreCase(testModule)){
 			retval = "/espedsgtvinnsad/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_AVG_GRUNNLAG.equalsIgnoreCase(testModule)){
 			retval = "/espedsgtvinnavgg/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_PRISKALK.equalsIgnoreCase(testModule)){
 			retval = "/espedsgpkalk/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_EFAKTURA.equalsIgnoreCase(testModule)){
 			retval = "/espedsgefaktura/sytsuite.do";
+		
 		}else if(this.TEST_MODULE_UFORTOLL.equalsIgnoreCase(testModule)){
 			retval = "/espedsgoverview/sytsuite.do";
+		
+		}else if(this.TEST_MODULE_EBOOKING.equalsIgnoreCase(testModule)){
+			retval = "/espedsgebook/sytsuite.do";
 		}
 		
 		return retval;
