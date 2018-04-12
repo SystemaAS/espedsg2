@@ -250,11 +250,22 @@
 												
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-TROR') }">
-							 					<font class="text14">
-							 						<a class="text14" href="tror_mainorderlist.do?lang=${user.usrLang}&action=doFind&sign=${user.signatur}<c:if test="${not empty user.asavd}">&avd=${user.asavd}</c:if>" onMouseOver="showPop('infoTROR');" onMouseOut="hidePop('infoTROR');" onClick="setBlockUI(this);" > 	
-					 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
-					 									<font class="text14NavyBlue">${record.prTxt}</font>
-			 										</a>
+							 						<font class="text14">
+									 					<form onMouseOver="showPop('infoTROR');" onMouseOut="hidePop('infoTROR');" onClick="setBlockUI(this);" style="display: inline;" method="post" action="/espedsgtror/logonDashboard.do" >
+														    <input type="hidden" name="user" value="${user.user}" />
+														    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+														    <img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+														    <button style="border: 0; padding: 0; display: inline; background: none; cursor: pointer;"><font class="text14NavyBlue">${record.prTxt}</font></button>
+														</form>
+													</font>
+							 						<%--
+								 					<font class="text14">
+								 						<a class="text14" href="tror_mainorderlist.do?lang=${user.usrLang}&action=doFind&sign=${user.signatur}<c:if test="${not empty user.asavd}">&avd=${user.asavd}</c:if>" onMouseOver="showPop('infoTROR');" onMouseOut="hidePop('infoTROR');" onClick="setBlockUI(this);" > 	
+						 									<img src="${imgSrcTomcat}" width="10px" height="10px" border="0">&nbsp;
+						 									<font class="text14NavyBlue">${record.prTxt}</font>
+				 										</a>
+				 									</font>
+			 										 --%>
 			 										<%-- ====================================================  --%>
 									            	<%-- Here we have the info popup window TROR - Oppdragsreg --%>
 									            	<%-- ====================================================  --%>
@@ -281,7 +292,6 @@
 										           		</table>
 													</div>
 													</span>
-												</font>
 											</c:if>
 											
 											<c:if test="${fn:contains(record.prog,'-TESTSUITES') }">
