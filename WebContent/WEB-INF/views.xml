@@ -11,5 +11,10 @@
 	<!-- SPØRRING OPPDRAG -->
     <bean id="sporringOppdragListExcelView" class="no.systema.sporringoppdrag.view.MainListExcelBuilder" />
 	
+	<!-- WORK WITH TRIPS -->
+    <bean id="transportDispWorkflowTripListExcelView" class="no.systema.transportdisp.view.WorkflowTripListExcelBuilder" />
+    <bean id="transportDispWorkflowOpenOrdersListExcelView" class="no.systema.transportdisp.view.WorkflowOpenOrdersListExcelBuilder" />
+	<bean id="transportDispWorkflowSpecificTripContentListExcelView" class="no.systema.transportdisp.view.WorkflowSpecificTripContentListExcelBuilder" />
+	
      
 </beans>

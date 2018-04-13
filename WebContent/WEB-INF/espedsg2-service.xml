@@ -40,6 +40,20 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<bean id="sporringOppdragService" class="no.systema.sporringoppdrag.service.SporringOppdragTopicListServiceImpl"/>
 	<bean id="sporringOppdragSpecificTopicService" class="no.systema.sporringoppdrag.service.SporringOppdragSpecificTopicServiceImpl"/>
 	
+	<!-- ============================  -->
+	<!-- WORKING WITH TRIPS			  -->
+	<!-- ============================  -->
+	<bean id="transportDispWorkflowListService" class="no.systema.transportdisp.service.TransportDispWorkflowListServiceImpl"/>
+	<bean id="transportDispChildWindowService" class="no.systema.transportdisp.service.TransportDispChildWindowServiceImpl"/>
+	<bean id="transportDispWorkflowSpecificTripService" class="no.systema.transportdisp.service.TransportDispWorkflowSpecificTripServiceImpl"/>
+	<bean id="transportDispWorkflowShippingPlanningOrdersListService" class="no.systema.transportdisp.service.TransportDispWorkflowShippingPlanningOrdersListServiceImpl"/>
+	<bean id="transportDispWorkflowSpecificOrderService" class="no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderServiceImpl"/>	
+	<bean id="transportDispWorkflowBudgetService" class="no.systema.transportdisp.service.TransportDispWorkflowBudgetServiceImpl"/>	
+	<!-- WRK.WITH TRIPS - Drop down bean --> 
+    <bean id="transportDispDropDownListPopulationService" class="no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService"/>
+    <!-- Post Update service-->
+    <bean id="transportDispPostUpdateService" class="no.systema.transportdisp.service.TransportDispPostUpdateServiceImpl"/>
+   
 	
 	
 </beans>
