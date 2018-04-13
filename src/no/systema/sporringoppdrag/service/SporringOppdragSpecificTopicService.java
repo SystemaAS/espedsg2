@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package no.systema.sporringoppdrag.service;
+
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicChildDocumentContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicChildFreetextContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicChildInvoiceContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicChildFriesokeVeierContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.JsonSporringOppdragSpecificTopicChildHendelseslogContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.invoice.JsonSporringOppdragSpecificTopicSingleChildInvoiceContainer;
+import no.systema.sporringoppdrag.model.jsonjackson.topic.colli.JsonSporringOppdragSpecificTopicSingleChildColliContainer;
+/**
+ * 
+ * @author oscardelatorre
+ * @date Feb 12, 2015
+ * 
+ *
+ */
+public interface SporringOppdragSpecificTopicService {
+	public JsonSporringOppdragSpecificTopicContainer getSporringOppdragSpecificTopicContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicChildDocumentContainer getSporringOppdragSpecificTopicChildDocumentContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicChildFreetextContainer getSporringOppdragSpecificTopicChildFreetextContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicChildInvoiceContainer getSporringOppdragSpecificTopicChildInvoiceContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicChildFriesokeVeierContainer getSporringOppdragSpecificTopicChildFriesokeVeierContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicChildHendelseslogContainer getSporringOppdragSpecificTopicChildHendelseslogContainer(String utfPayload);
+	//Single children
+	public JsonSporringOppdragSpecificTopicSingleChildInvoiceContainer getSporringOppdragSpecificTopicSingleChildInvoiceContainer(String utfPayload);
+	public JsonSporringOppdragSpecificTopicSingleChildColliContainer getSporringOppdragSpecificTopicSingleChildColliContainer(String utfPayload);
+}

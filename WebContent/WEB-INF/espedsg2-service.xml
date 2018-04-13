@@ -34,6 +34,12 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<!-- =================  -->
 	<bean id="brregEnhetsRegisteretService" class="no.systema.tvinn.sad.kundekontroll.brreg.service.BrregEnhetsRegisteretServiceImpl"/>
 	
+	<!-- ============================  -->
+	<!-- SPØRRING PÅ OPPDRAG  		  -->
+	<!-- ============================  -->
+	<bean id="sporringOppdragService" class="no.systema.sporringoppdrag.service.SporringOppdragTopicListServiceImpl"/>
+	<bean id="sporringOppdragSpecificTopicService" class="no.systema.sporringoppdrag.service.SporringOppdragSpecificTopicServiceImpl"/>
+	
 	
 	
 </beans>
