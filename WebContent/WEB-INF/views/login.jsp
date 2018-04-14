@@ -9,9 +9,10 @@
 	 	<h3 class="text18">&nbsp;</h3>
 	 	<%-- <h4></h1><a href="?lang=en">en</a>|<a href="?lang=no">no</a></h4> --%>
 	</div>	
-	<table cellspacing="10" border="0" cellpadding="0">
+	<table cellspacing="25" border="0" cellpadding="0">
 		<tr>
-		<td class="loginFrame" width="100%">
+		<%-- <td class="loginFrame" width="100%"> --%>
+		<td class="loginFrameE2" width="100%">
 			<form action="logonDashboard.do" name="loginForm" id="loginForm" method="POST" >
 	 		<table border="0" cellpadding="0" cellspacing="2" >
 				<tr height="1"><td>&nbsp;</td></tr>
@@ -21,12 +22,12 @@
 				</tr>
 				<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
-					<td class="text12"><spring:message code="login.user.label.name"/>&nbsp;</td>
-					<td ><input type="text" class="inputText" name="user" id="user" size="18" /></td>
+					<td class="text14"><spring:message code="login.user.label.name"/>&nbsp;</td>
+					<td ><input type="text" class="inputText14" name="user" id="user" size="18" /></td>
 				</tr>
 				<tr>
-					<td class="text12"><spring:message code="login.user.label.password"/>&nbsp;</td>
-					<td><input type="password"  class="inputText" name="password" id="password" size="18"/></td>
+					<td class="text14"><spring:message code="login.user.label.password"/>&nbsp;</td>
+					<td><input type="password"  class="inputText14" name="password" id="password" size="18"/></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
@@ -39,7 +40,7 @@
 		</tr>
 		<%-- Validation Error section --%>
 		<tr>
-			<td colspan="5" >
+			<td colspan="5">
 			<table>
 				<spring:hasBindErrors name="user"> <%-- name must equal the command object name in the Controller --%>
 					<tr>

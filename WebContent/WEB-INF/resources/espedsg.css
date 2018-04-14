@@ -220,9 +220,15 @@ END override jQuery elements
 	border-top-right-radius: 5px;
 	border-top-left-radius: 5px;
 	padding: 2px 4px;
-	background-color:#FFFFFF;
 	outline: 0;
 	-webkit-appearance: none;
+	
+	background-color:#FCFFF0;
+	border-style: outset; 
+    border-width: 0px 1px 1px 0px; 
+    border-color:#778899;
+    
+}
 	
 }
 .dashboardFrameMain{
@@ -246,6 +252,32 @@ END override jQuery elements
 	
 }
 
+.dashboardFrameMainE2{
+	border: 0px solid #ccc;
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-webkit-border-top-right-radius: 5px;
+	-webkit-border-top-left-radius: 5px;
+	-moz-border-bottom-right-radius: 5px;
+	-moz-border-bottom-left-radius: 5px;
+	-moz-border-top-right-radius: 5px;
+	-moz-border-top-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
+	border-top-right-radius: 5px;
+	border-top-left-radius: 5px;
+	padding: 2px 4px;
+	/*background-color:#9CA998;*/
+	background-color:#FCFFF0;
+	border-style: solid; 
+    /*border-color:#484D46;*/
+   	border-color:#778899;
+	border-width: 0px 1px 1px 0px; 
+    outline: 0;
+	-webkit-appearance: none;
+	
+}
+
 .dashboardFrameHeader { 
 	border: 0px solid #ccc;
 	-webkit-border-top-right-radius: 5px;
@@ -263,7 +295,7 @@ END override jQuery elements
 }
 
 .dashboardFrame{
-	border: 1px solid #4169E1;
+	/*border: 1px solid #4169E1;*/
 	/*border: 0px solid #ccc;*/
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
@@ -272,12 +304,51 @@ END override jQuery elements
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	padding: 2px 4px;
-	background-color:#FCFFF0;
 	outline: 0;
 	-webkit-appearance: none;
+	/*
+	background-color:#FAFAFA;
 	border-style: solid; 
-    border-width: 0px 1px 1px 0px; 
-    border-color:#EEEEEE
+    border-width: 0px 2px 2px 0px; 
+    border-color:#778899
+    */
+}
+.dashboardElementsFrameE2{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 4px 7px;
+	background-color:#E0EEE0;
+	border-style: solid; 
+    /*border-width: 1px 1px 1px 1px;*/ 
+    /*border-color:#778899;*/
+    border-width: 1px 3px 3px 1px; 
+   	border-color:#84BE6A;
+   	outline: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.dashboardElementsFrameE2:hover{
+	/*background-color: #8FBC8F;*/
+	border-width: 1px 3px 3px 1px; 
+	border-color:#308014;
+}
+.dashboardElementsImgCircleE2{
+	border-radius: 50%; 
+	background-color: #FFFFFF;
+}
+.aDashboardLink{
+  display:inline;
+  height:100%;
+  width:100%;
+}
+.aDashboardLinkInForm{
+  border: 0; 
+  padding: 0; 
+  display: inline; 
+  background: none; 
+  cursor: pointer;
 }
 .grayTitanBg { 
 	background-color:#3D3D3D;
@@ -427,8 +498,18 @@ END override jQuery elements
 	background-color:#CCCCCC;
 	outline: 0;
 	-webkit-appearance: none;
-	
-	
+}
+.loginFrameE2{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 4px 7px;
+	border-style: solid; 
+    border-width: 1px 3px 3px 1px; 
+   	border-color:#84BE6A;
+	outline: 0;
+	-webkit-appearance: none;
 }
 
 .inputFormLogin{
@@ -696,6 +777,15 @@ END override jQuery elements
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	font-size: 11px;
+	padding: 4px 7px;
+	outline: 0;
+}
+.inputText14{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 }
@@ -1615,6 +1705,12 @@ END override jQuery elements
 .text16MediumBlue{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color: #000080; font-weight:normal;
 }
+.text16NavyBlue{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color: #003152; 
+}
+.text16NavyBlueBold{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color: #003152; font-weight:bold ; 
+}
 .text18{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; 
 }
@@ -2494,6 +2590,8 @@ a { cursor: pointer }
 .border {
     border: 1px solid #ddd;
 }
+
+
 
 
 a.menu:link {text-decoration: none ; font-weight: normal; border: 0px }

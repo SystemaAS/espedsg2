@@ -31,13 +31,14 @@
 	<body>
 	
  
-	<table class="dashboardFrameMain" width="1200" border="0" cellspacing="0" cellpadding="0">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0"> <!-- width="1200"  -->
 		<%--Banner --%>
 		<tr class="text" height="10"><td></td></tr>
 		<tr >
     		<td height="60" align="center" colspan="2"> 
     		
-			 <table width="1150" height="100" class="dashboardBanner" border="0" cellspacing="0" cellpadding="0" align="center"
+    		 <!-- width="1150"  -->
+			 <table width="98%" height="100" class="dashboardBanner" border="0" cellspacing="0" cellpadding="0" align="center"
 			 			<c:choose> 
 	    			 		<c:when test="${ not empty user.banner && fn:contains(user.banner, '/')}">
 	    			 			style="background-image:url('${user.banner}');background-repeat:no-repeat;" 
@@ -49,7 +50,7 @@
     			 		>
     			 
     			 		<tr height="5"><td></td></tr>
-				 	<tr>
+				 		<tr>
 				 		<td style="min-width: 300px; max-width: 300px;" class="text22Bold" align=left valign="middle" >
 				 			<c:if test="${not empty user.logo}">
 				 				<c:choose>
@@ -102,7 +103,7 @@
 		<%-- Dashboard menu --%>
 		<tr >
 			<td height="23" align="center" colspan="2"> 
-    			 <table class="dashboardFrameMain" width="1150" border="0" cellspacing="0" cellpadding="0" align="center" >
+    			 <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center" >
 				 	<tr >
 			    		<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
 	      				<td class="text11" width="50%" align="right">
@@ -127,7 +128,7 @@
 				    			<a href="logout.do">
 				    				<font class="headerMenuGreen">
 				    					<img src="resources/images/lock.gif" border="0">&nbsp;
-				    					<font class="text11User" ><spring:message code="logout.logout"/>&nbsp;</font>
+				    					<font class="text11User" ><spring:message code="logout.logout"/></font>
 				    				</font>
 			    				</a>
 			    			</td>
