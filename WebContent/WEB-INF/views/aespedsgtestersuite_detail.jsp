@@ -30,7 +30,7 @@
 						<font class="tabLink">${model.moduleChild}&nbsp;<spring:message code="systema.testersuite.module.child.suffix.label"/></font>&nbsp;
 						<%-- <img style="vertical-align: top;" src="resources/images/engines.png" height="14px" width="14px" border="0" alt="test suite"> --%>
 						<img style="vertical-align: top;" src="resources/images/leaf.png" height="16px" width="16px" border="0" alt="test module">
-						&nbsp;<font class="text11SkyBlue">(${model.listSize})</font>
+						&nbsp;<font class="text12SkyBlue">(${model.listSize})</font>
 						
 					</td>
 					
@@ -79,7 +79,7 @@
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
 				               		<a style="cursor:pointer" onClick="window.open('${record.serviceUrl}', 'testwindow', 'width=700,height=200,top=400,left=400,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,copyhistory=no,resizable=yes')" target="_blank">
-				               			<font class="text12">&nbsp;${record.serviceName}</font>
+				               			<font class="text14">&nbsp;${record.serviceName}</font>
 				               		</a>
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" ><font class="text12">&nbsp;<c:if test="${not empty record.errMsg && record.errMsg != 'null'}">${record.errMsg}</c:if></font></td>

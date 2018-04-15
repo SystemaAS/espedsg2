@@ -94,12 +94,12 @@
 	    				</td>
 			      		
 			        </tr>
-    			 		<tr height="5"><td></td></tr>
+   			 		<tr height="5"><td></td></tr>
 		     </table> 
  		</td>
 
 		</tr>
-		<tr height="2"><td></td></tr>
+		<tr height="1"><td></td></tr>
 		<%-- Dashboard menu --%>
 		<tr >
 			<td height="23" align="center" colspan="2"> 
@@ -109,31 +109,46 @@
 	      				<td class="text11" width="50%" align="right">
 	      					<font class="headerMenuGreenNoPointer">
 	      						<img title="${user.logo}" src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');">&nbsp;
-      							<font class="text11User">${user.user}&nbsp;</font>${user.usrLang}&nbsp;
+      							<font class="text12User">${user.user}&nbsp;</font>${user.usrLang}&nbsp;
       								<c:if test="${not empty user.multiUser}">
       									<img title="${user.logo}" src="resources/images/sort_down.png" width="10px" height="10px" border="0" onClick="showPop('multiUserList');">&nbsp;
+      									<div class="text11" style="position: relative; display: inline;" align="left">
+											<span style="position:absolute; left:-150px; top:5px; width:250px" id="multiUserList" class="popupWithInputText"  >
+												<p class="text12"><b>Multi user - Switch</b></p>
+												<font class="text11BlueGreen">
+													<ul>
+													<c:forEach var="record" items="${user.multiUser}" varStatus="counter" >
+														<form id="formMU_${counter.count}" onClick="setBlockUI(this);" action="logonDashboard.do" method="POST">
+														<input type="hidden" name="user" id="user" value='${record.multiID}'> 
+														<li>
+			                       	 						<span id="${counter.count}" onClick="doPostMultiUser(this);"><b>${record.multiID}</b>&nbsp;-&nbsp;${record.multiTxt}</span>
+			                       	 					</li>
+			                       	 					</form>
+													</c:forEach>
+													
+													<%--
+													<c:forEach var="record" items="${user.multiUser}" >
+			                       	 					<li><a href="logonDashboard.do?user=${record.multiID}&password=mltid">${record.multiTxt}</a></li>
+													</c:forEach>
+													--%>
+													</ul>
+								           			<p>&nbsp;<button name="specialInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('multiUserList');">Close</button></p>
+								           			
+							           			</font>
+											</span>
+										</div> 	
       								</c:if>
       							</font>
       							<font color="#FCFFF0"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
-				    			<%--
-				    			<font color="#FCFFF0"; style="font-weight: bold;" onClick="showPop('userInfo');">&nbsp;|&nbsp;</font>
-				    			<span style="position:absolute; left:750px; top:180px; width:150px; height:20px;" id="userInfo" class="popupWithInputText"  >
-						           		<div class="text11" align="left">
-						           			in order to see TDS Behörighet pw 
-						           			${user.user}@${user.pwAS400}
-						           			&nbsp;&nbsp;&nbsp;&nbsp;<button name="userInfoButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('userInfo');">Close</button> 
-						           		</div>
-						        </span>
-						         --%>
+				    			
 				    			<a href="logout.do">
 				    				<font class="headerMenuGreen">
-				    					<img src="resources/images/lock.gif" border="0">&nbsp;
-				    					<font class="text11User" ><spring:message code="logout.logout"/></font>
+				    					<img src="resources/images/lock.gif" border="0">
+				    					<font class="text12User" ><spring:message code="logout.logout"/></font>
 				    				</font>
 			    				</a>
-			    			</td>
-			    			<div class="text11" style="position: relative;" align="left">
-								<span style="position:absolute; left:1000px; top:30px; width:250px" id="specialInformationAdmin" class="popupWithInputText"  >
+			    				<div class="text11" style="position: relative;display: inline;" align="left">
+								<span style="position:absolute; left:-150px; top:3px; width:150;" id="specialInformationAdmin" class="popupWithInputText"  >
 									<font class="text11">
 										<p>Firmakode&nbsp;<b>${user.companyCode}</b></p>
 					           			<p>${activeUrlRPG}</p>
@@ -141,32 +156,10 @@
 					           			
 				           			</font>
 								</span>
-							</div> 
-							<div class="text11" style="position: relative;" align="left">
-								<span style="position:absolute; left:900px; top:25px; width:280px" id="multiUserList" class="popupWithInputText"  >
-									<p class="text12"><b>Multi user - Switch</b></p>
-									<font class="text11BlueGreen">
-										<ul>
-										<c:forEach var="record" items="${user.multiUser}" varStatus="counter" >
-											<form id="formMU_${counter.count}" action="logonDashboard.do" method="POST">
-											<input type="hidden" name="user" id="user" value='${record.multiID}'> 
-											<li>
-                       	 						<span id="${counter.count}" onClick="doPostMultiUser(this);"><b>${record.multiID}</b>&nbsp;-&nbsp;${record.multiTxt}</span>
-                       	 					</li>
-                       	 					</form>
-										</c:forEach>
-										
-										<%--
-										<c:forEach var="record" items="${user.multiUser}" >
-                       	 					<li><a href="logonDashboard.do?user=${record.multiID}&password=mltid">${record.multiTxt}</a></li>
-										</c:forEach>
-										--%>
-										</ul>
-					           			<p>&nbsp;<button name="specialInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('multiUserList');">Close</button></p>
-					           			
-				           			</font>
-								</span>
-							</div> 	
+								</div> 
+			    			</td>
+			    			
+							
 			        </tr>
 			     </table> 
 			</td>

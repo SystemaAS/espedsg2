@@ -9,18 +9,18 @@
 	.ui-datepicker { font-size:9pt;}
 	</style>
 	
- 	<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+ 	<table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 		<%-- tab container component --%>
-		<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+		<table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
 			<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
 						<font class="tabLink">&nbsp;<spring:message code="systema.testersuite.label"/></font>&nbsp;
 						<img style="vertical-align: top;" src="resources/images/testsuites.png" height="16px" width="16px" border="0" alt="general list">
-						&nbsp;<font class="text11SkyBlue">(${model.listSize})</font>
+						&nbsp;<font class="text12SkyBlue">(${model.listSize})</font>
 					</td>
 					<td width="80%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
 				</tr>
@@ -39,7 +39,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="90%" cellspacing="1" border="0" align="center">
 			    	    <tr>
-						<td class="text11">
+						<td class="text14">
 						<table width="100%" id="mainList" class="display compact cell-border" >
 							<thead>
 							<tr>
@@ -60,17 +60,17 @@
 				               		<c:choose>
 					               		<c:when test="${not empty record.serviceUrl}">
 					               			<a onClick="setBlockUI(this);" href="${record.serviceUrl}.do?tm=${record.text}" >
-					               				<font class="text12SkyBlue">&nbsp;${record.moduleName}</font>
+					               				<font class="text14SkyBlue">&nbsp;${record.moduleName}</font>
 					               			</a>
 					               		</c:when>
 					               		<c:otherwise>
-					               			<font class="text12">&nbsp;${record.moduleName}</font>
+					               			<font class="text14">&nbsp;${record.moduleName}</font>
 					               		</c:otherwise>
 				               		</c:choose>
 				               </td>
 				               	
 				               <td width="2%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="center">
-				               		<img src="resources/images/engines.png" height="16px" width="16px" border="0" alt="in process">
+				               		<img src="resources/images/engines.png" height="22px" width="22px" border="0" alt="in process">
 				               </td>
 				            </tr> 
 				            </c:forEach>

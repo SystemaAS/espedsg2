@@ -67,7 +67,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#778899;
 	color:#FFFFFF;
@@ -77,7 +77,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#FFFFFF;
 	color:#000000;
@@ -104,7 +104,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#A0A0A0;
 	color:#000000;
@@ -117,7 +117,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#BBBBBB;
 	color:#000000;
@@ -130,7 +130,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#E55B00;
 	color:#FFFFFF;
@@ -144,7 +144,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#FFC199;
 	color:#FFFFFF;
@@ -2202,14 +2202,14 @@ END override jQuery elements
 
 .tabLink{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color:#000000; 
 }
 
 .tabLinkMinor{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     color:#000000; 
 }
@@ -2217,19 +2217,19 @@ END override jQuery elements
 
 .tabLinkSign{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     color:#000000; 
 }
 
 .tabDisabledLink{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     color:#555555;    
 }
 
 .tabDisabledLinkMinor{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 14px;
     color:#555555;    
 }
 

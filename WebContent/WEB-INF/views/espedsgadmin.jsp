@@ -79,8 +79,8 @@
 				                       <tr class="tableOddRow" height="20" >
 				                   </c:otherwise>
 				               </c:choose>
-				               <td width="20%" class="tableCellFirst" nowrap ><font class="text11MediumBlue">&nbsp;${customer.name}&nbsp;</font></td>
-		                       <td width="10%" class="tableCell" nowrap ><font class="text11MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
+				               <td width="20%" class="tableCellFirst" nowrap ><font class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font></td>
+		                       <td width="10%" class="tableCell" nowrap ><font class="text14MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
 		                       <td width="20%" class="tableCell" nowrap >
 		                       	<c:choose>
 				               		<c:when test="${'DSV' == customer.name || 'DHL' == customer.name || 'Schenker NO' == customer.name}">
@@ -88,7 +88,7 @@
 		                       		</c:when>
 		                       		<c:otherwise>
 		                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.url}">
-		                       				<font class="text12MediumBlue">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>
+		                       				<font class="text14MediumBlue">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>
 		                       			</a>
 		                       		</c:otherwise>
                        			</c:choose>
@@ -111,7 +111,7 @@
 							               		<img valign="bottom" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
 							               	</c:if>
 																		               	
-							               	<font class="text11">&nbsp;${module}&nbsp;</font>
+							               	<font class="text14">&nbsp;${module}&nbsp;</font>
 						               </td>
     					               </c:when>
 					               <c:otherwise>
@@ -136,8 +136,9 @@
 			<c:if test="${not empty model.dbTomcatPortsObjectList}">
 			<tr>
 				<td width="2%">&nbsp;</td>
-				<td colspan="8" class="text14"><b>&nbsp;SaaS Tomcat [ server.xml ]</b> configuration ports</td>
+				<td colspan="8" class="text14"><b>&nbsp;SaaS TOMCAT [ server.xml ]</b> configuration ports</td>
 			</tr>
+			<tr height="5"><td>&nbsp;</td></tr>
 			<tr>
 				<td width="2%">&nbsp;</td>
 					

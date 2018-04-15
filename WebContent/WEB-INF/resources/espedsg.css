@@ -1,14 +1,4 @@
-/*-------------------------------------
-START override in jQuery UI elements
-------------------------------------- */
-/*.ui-button,  .ui-button-text .ui-button{  
-font-size: 10px !important; 
-}
-.ui-datepicker { font-size:9pt; }
-*/
-/*------------------------------
-END override jQuery elements
-/*------------------------------*/
+@import url("espedsg2.css");
 
 .ownScrollableSubWindow{    
   width: 1050px;
@@ -223,7 +213,8 @@ END override jQuery elements
 	outline: 0;
 	-webkit-appearance: none;
 	
-	background-color:#FCFFF0;
+	/*background-color:#FCFFF0;*/
+	background-color:#FFFFFF;
 	border-style: outset; 
     border-width: 0px 1px 1px 0px; 
     border-color:#778899;
@@ -252,31 +243,7 @@ END override jQuery elements
 	
 }
 
-.dashboardFrameMainE2{
-	border: 0px solid #ccc;
-	-webkit-border-bottom-right-radius: 5px;
-	-webkit-border-bottom-left-radius: 5px;
-	-webkit-border-top-right-radius: 5px;
-	-webkit-border-top-left-radius: 5px;
-	-moz-border-bottom-right-radius: 5px;
-	-moz-border-bottom-left-radius: 5px;
-	-moz-border-top-right-radius: 5px;
-	-moz-border-top-left-radius: 5px;
-	border-bottom-right-radius: 5px;
-	border-bottom-left-radius: 5px;
-	border-top-right-radius: 5px;
-	border-top-left-radius: 5px;
-	padding: 2px 4px;
-	/*background-color:#9CA998;*/
-	background-color:#FCFFF0;
-	border-style: solid; 
-    /*border-color:#484D46;*/
-   	border-color:#778899;
-	border-width: 0px 1px 1px 0px; 
-    outline: 0;
-	-webkit-appearance: none;
-	
-}
+
 
 .dashboardFrameHeader { 
 	border: 0px solid #ccc;
@@ -313,31 +280,6 @@ END override jQuery elements
     border-color:#778899
     */
 }
-.dashboardElementsFrameE2{
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding: 4px 7px;
-	background-color:#E0EEE0;
-	border-style: solid; 
-    /*border-width: 1px 1px 1px 1px;*/ 
-    /*border-color:#778899;*/
-    border-width: 1px 3px 3px 1px; 
-   	border-color:#84BE6A;
-   	outline: 0;
-	cursor: pointer;
-	-webkit-appearance: none;
-}
-.dashboardElementsFrameE2:hover{
-	/*background-color: #8FBC8F;*/
-	border-width: 1px 3px 3px 1px; 
-	border-color:#308014;
-}
-.dashboardElementsImgCircleE2{
-	border-radius: 50%; 
-	background-color: #FFFFFF;
-}
 .aDashboardLink{
   display:inline;
   height:100%;
@@ -361,7 +303,7 @@ END override jQuery elements
 .headerTdsBannerAreaBg{
 	background-color:#FCFFF0;
 	border-style: outset; 
-    border-width: 0px 1px 1px 0px; 
+    border-width: 0px 1px 0px 0px; 
     border-color:##778899
 }
 
@@ -370,7 +312,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#4169E1;
 	color:#FFFFFF;	
@@ -382,7 +324,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	padding: 2px 4px;
 	background-color:#000080;
@@ -396,7 +338,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	padding: 2px 4px;
 	background-color:#0000CD;
@@ -409,7 +351,7 @@ END override jQuery elements
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 0px solid #ccc;
-	font-size: 11px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#FF6600;
 	color:#FFFFFF;
@@ -422,7 +364,7 @@ END override jQuery elements
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 0px solid #ccc;
-	font-size: 11px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#8FBC8F;
 	color:#575757;
@@ -433,7 +375,7 @@ END override jQuery elements
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border: 0px solid #ccc;
-	font-size: 11px;
+	font-size: 14px;
 	padding: 2px 4px;
 	background-color:#8FBC8F;
 	color:#575757;
@@ -444,7 +386,7 @@ END override jQuery elements
 	-webkit-border-radius: 1em 4em 1em 4em;
 	-moz-border-radius: 1em 4em 1em 4em;
 	border-radius: 1em 4em 1em 4em;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: normal;
 	padding: 2px 4px;
 	background-color:#8FBC8F;
@@ -499,18 +441,7 @@ END override jQuery elements
 	outline: 0;
 	-webkit-appearance: none;
 }
-.loginFrameE2{
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding: 4px 7px;
-	border-style: solid; 
-    border-width: 1px 3px 3px 1px; 
-   	border-color:#84BE6A;
-	outline: 0;
-	-webkit-appearance: none;
-}
+
 
 .inputFormLogin{
 	border: 1px solid #DDDDDD;
@@ -1497,6 +1428,9 @@ END override jQuery elements
 .text12{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 12px; color:#000000;
 }
+.text12User{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 12px; color:#000000;
+}
 .text12UPPERCASE{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 12px; color:#000000;text-transform:uppercase;
 }
@@ -1770,6 +1704,7 @@ END override jQuery elements
     border-width: 1px 1px 1px 0px; 
     border-color:#4E78A0
 }
+
 .tableHeaderFieldFirst10 { 
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: 10px; 
@@ -1799,16 +1734,16 @@ END override jQuery elements
 }
 .tableHeaderField {  
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: 12px; 
+	font-size: 14px; 
 	color:#000000; 
-    background-color: #DCDCDC ;
+    background-color: #F2F5EF ;
     border-style: solid; 
     border-width: 1px 1px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
 }
 .tableHeaderFieldOmberegning {  
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: 12px; 
+	font-size: 14px; 
 	color:#FFFFFF; 
     background-color: #4E78A0;
     border-style: solid; 
@@ -1817,7 +1752,7 @@ END override jQuery elements
 }
 .tableHeaderFieldEbookingPrint {  
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: 11px; 
+	font-size: 14px; 
 	color:#FFFFFF; 
     background-color: #4E78A0;
     border-style: solid; 
@@ -1826,16 +1761,16 @@ END override jQuery elements
 }
 .tableHeaderFieldFirst { 
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: 12px; 
+	font-size: 14px; 
 	color:#000000; 
-    background-color: #DCDCDC ;
+    background-color: #F2F5EF ;
     border-style: solid; 
     border-width: 1px 1px 1px 1px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
 }
 .tableProformaAngivelseRow {  
         font-family: Verdana, Arial, Helvetica, sans-serif; 
-        font-size: 10px; 
+        font-size: 12px; 
         color: #9F6000;
     	background-color: #FEEFB3;
 }
@@ -1851,16 +1786,16 @@ END override jQuery elements
 }
 .tableCell{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 10px;
+    font-size: 14px;
     color: black; 
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
      
 }
 .tableCellGray{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 14px;
     color: black; 
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
@@ -1878,7 +1813,7 @@ END override jQuery elements
 }
 .tableCellDangerousGoods{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 10px;
+    font-size: 12px;
     color: black; 
     background-color:#EEEED1; /*#FCFFF0 tentative */
     border-style: solid; 
@@ -1894,7 +1829,7 @@ END override jQuery elements
     background-color: lightyellow;
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0  
+    border-color:#D5E0CE  
 }
 .tableCellEbookingPrint{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
@@ -1904,7 +1839,7 @@ END override jQuery elements
     background-color: lightyellow;
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0  
+    border-color:#D5E0CE  
 }
 
 .tableCellOnlyBottomBorder{  
@@ -1913,7 +1848,7 @@ END override jQuery elements
     color: black; 
     border-style: solid; 
     border-width: 0px 0px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
      
 }
 .tableCell11{  
@@ -1922,7 +1857,7 @@ END override jQuery elements
     color: black; 
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
      
 }
 .tableCell12{  
@@ -1931,7 +1866,7 @@ END override jQuery elements
     color: black; 
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
      
 }
 .tableCell14{  
@@ -1940,7 +1875,7 @@ END override jQuery elements
     color: black; 
     border-style: solid; 
     border-width: 0px 1px 1px 0px; 
-    border-color:#4E78A0
+    border-color:#D5E0CE
      
 }
 .tableCellFirst{  
@@ -1949,7 +1884,7 @@ END override jQuery elements
     color: black;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
-    border-color:#4E78A0 
+    border-color:#D5E0CE 
 }
 .tableCellFirst11{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
@@ -1957,7 +1892,7 @@ END override jQuery elements
     color: black;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
-    border-color:#4E78A0 
+    border-color:#D5E0CE 
 }
 .tableCellFirst12{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
@@ -1965,7 +1900,7 @@ END override jQuery elements
     color: black;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
-    border-color:#4E78A0 
+    border-color:#D5E0CE 
 }
 .tableCellFirst14{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
@@ -1973,7 +1908,7 @@ END override jQuery elements
     color: black;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
-    border-color:#4E78A0 
+    border-color:#D5E0CE 
 }
 
 .tabThinBorderSlateGray {  
@@ -1993,7 +1928,7 @@ END override jQuery elements
 
 .tabThinBorderGray {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:#CCCCCC;
     border-style: solid; 
@@ -2003,42 +1938,42 @@ END override jQuery elements
 
 .tabThinBorderWhite {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
 }
 
 .tabThinBorderWhiteWithTopBorder {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 1px 1px 1px 1px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
 }
 
 .tabThinBorderWhiteWithSideBorders {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 0px 1px 0px 1px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
 }
 
 .tabNoBorderSeparatorWhite {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 0px 0px 0px 0px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
 }
 .tab {
 	border: 1px solid #ccc;
@@ -2046,12 +1981,12 @@ END override jQuery elements
 	-webkit-border-radius: 2px;
 	border-radius: 5px 5px 0px 0px;
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 12px;
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 1px 1px 0px 1px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
     margin: 2px;
     padding: 2px
 }
@@ -2061,12 +1996,12 @@ END override jQuery elements
 	-webkit-border-radius: 2px;
 	border-radius: 5px 5px 0px 0px;
 	font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px; 
+    font-size: 12px; 
     color: #4E78A0; 
     background-color:#DDDDDD;
     border-style: solid; 
     border-width: 1px 1px 1px 1px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
     margin: 2px;
     padding: 2px      
 }
@@ -2077,12 +2012,12 @@ END override jQuery elements
 	-webkit-border-radius: 2px;
 	border-radius: 10px 10px 0px 0px;
 	font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px; 
+    font-size: 12px; 
     color: #4E78A0; 
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 1px 1px 0px 1px; 
-    border-color: #4E78A0; 
+    border-color: #D5E0CE; 
     margin: 2px;
     padding: 2px     
 }
@@ -2092,12 +2027,12 @@ END override jQuery elements
 	-webkit-border-radius: 2px;
 	border-radius: 10px 10px 0px 0px;
 	font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px; 
+    font-size: 12px; 
     color: #4E78A0; 
     background-color: #FFFFCC;
     border-style: solid; 
     border-width: 1px 1px 1px 1px; 
-    border-color: #4E78A0; 
+    border-color: #D5E0CE; 
     margin: 2px;
     padding: 2px   
 }
@@ -2109,7 +2044,7 @@ END override jQuery elements
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 0px 0px 1px 0px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
     margin: 2px;
     padding: 2px
 }
@@ -2119,38 +2054,38 @@ END override jQuery elements
     background-color:#FFFFFF;
     border-style: solid; 
     border-width: 0px 0px 1px 0px; 
-    border-color: #4E78A0;
+    border-color: #D5E0CE;
     margin: 1px;
     padding: 1px      
 }
 
 .tabLink{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     font-weight: bold;
     color:#000000; 
 }
 .tabLinkMinor{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 12px;
     font-weight: bold;
     color:#000000; 
 }
 
 .tabLinkSign{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     color:#000000; 
 }
 
 .tabDisabledLink{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 12px;
+    font-size: 14px;
     color:#555555;    
 }
 .tabDisabledLinkMinor{ 
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;
+    font-size: 12px;
     color:#555555;    
 }
 .tdFixSize500px {    
