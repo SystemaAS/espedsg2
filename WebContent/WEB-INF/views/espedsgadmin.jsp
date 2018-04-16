@@ -6,7 +6,7 @@
 <!-- =====================end header ==========================-->
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
-	<SCRIPT type="text/javascript" src="resources/js/skatglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
+	<SCRIPT type="text/javascript" src="resources/js/espedsgadmin.js?ver=${user.versionEspedsg}"></SCRIPT>	
 	
 	<style type = "text/css">
 	.ui-datepicker { font-size:9pt;}
@@ -58,70 +58,99 @@
 			<tr>
 				<td width="2%">&nbsp;</td>
 					
-				<td width="98%">
-				<table cellspacing="0" border="0" cellpadding="0">
+				<td width="100%">
+				<table id="containerdatatableTable" width="99%" cellspacing="1" border="0" align="left" >
 			    	    <tr>
 						<td >
-						<table cellspacing="0" border="0" cellpadding="0">
+						<table id="mainList" class="display compact cell-border" >
+							<thead style="width:100%"; >
 							<tr class="tableHeaderField" height="20" valign="left">
-			                    <td width="20%" class="tableHeaderFieldFirst" align="left" >&nbsp;CUSTOMER&nbsp;</td>
-			                    <td nowrap width="10%" class="tableHeaderField" align="left" >&nbsp;Java / TOMCAT / AS400&nbsp;</td>
-			                    <td width="20%" class="tableHeaderField" align="left" >&nbsp;URL&nbsp;</td>
-			                    <td colspan="10" class="tableHeaderField" align="center" >MODULES</td>
+			                    <th width="20%" class="text14" align="left" >&nbsp;CUSTOMER&nbsp;</th>
+			                    <th nowrap width="10%" class="text14" align="left" >&nbsp;Java / TOMCAT / AS400&nbsp;</th>
+			                    <th width="20%" class="text14" align="left" >&nbsp;URL&nbsp;</th>
+			                    <%-- NOTE: as many columns as apps in custApps.db file. --%>
+			                    <th class="text14" align="center" >1</th>
+			                    <th class="text14" align="center" >2</th>
+			                    <th class="text14" align="center" >3</th>
+			                    <th class="text14" align="center" >4</th>
+			                    <th class="text14" align="center" >5</th>
+			                    <th class="text14" align="center" >6</th>
+			                    <th class="text14" align="center" >7</th>
+			                    <th class="text14" align="center" >8</th>
+
 			                </tr>  
-			                   
-				            <c:forEach var="customer" items="${model.dbObjectList}" varStatus="counter">    
-				               <c:choose>           
-				                   <c:when test="${counter.count%2==0}">
-				                       <tr class="tableRow" height="20" >
-				                   </c:when>
-				                   <c:otherwise>   
-				                       <tr class="tableOddRow" height="20" >
-				                   </c:otherwise>
-				               </c:choose>
-				               <td width="20%" class="tableCellFirst" nowrap ><font class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font></td>
-		                       <td width="10%" class="tableCell" nowrap ><font class="text14MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
-		                       <td width="20%" class="tableCell" nowrap >
-		                       	<c:choose>
-				               		<c:when test="${'DSV' == customer.name || 'DHL' == customer.name || 'Schenker NO' == customer.name}">
-	                       				<font class="text11Gray">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>		                       			
-		                       		</c:when>
-		                       		<c:otherwise>
-		                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.url}">
-		                       				<font class="text14MediumBlue">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>
-		                       			</a>
-		                       		</c:otherwise>
-                       			</c:choose>
-                       		   </td>
-		                       <c:forEach var="module" items="${customer.applicationList}"  >    
-				               	<c:choose>
-					               <c:when test="${module!='-1'}">
-						               <td class="tableCell" nowrap >&nbsp;
-							               	<c:if test="${ fn:startsWith(module, 'SKAT')}">
-							               		<img valign="bottom" src="resources/images/countryFlags/Flag_DK.gif" height="11" border="0" alt="country">
-							               	</c:if>
-							               	<c:if test="${ fn:startsWith(module, 'TDS')}">
-							               		<img valign="bottom" src="resources/images/countryFlags/Flag_SE.gif" height="11" border="0" alt="country">
-							               	</c:if>
-							               	<c:if test="${ fn:startsWith(module, 'SAD') || fn:startsWith(module, 'UFORT') || fn:startsWith(module, 'SPØ') || fn:startsWith(module, 'AVG') }">
-							               		<img valign="bottom" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
-							               	</c:if>
-							               	<c:if test="${ fn:startsWith(module, 'PRIS') || fn:startsWith(module, 'WORK') || fn:startsWith(module, 'EFAK') || fn:startsWith(module, 'EBOOK') 
-							               		|| fn:startsWith(module, 'ANALYSE') || fn:startsWith(module, 'ALTINN')  }">
-							               		<img valign="bottom" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
-							               	</c:if>
-																		               	
-							               	<font class="text14">&nbsp;${module}&nbsp;</font>
-						               </td>
-    					               </c:when>
-					               <c:otherwise>
-					               	   <td class="tableCell" >&nbsp;&nbsp;</td>
-					               </c:otherwise>
-					             </c:choose>  
-				               </c:forEach>
-				              
-				            </tr> 
-				            </c:forEach>
+			                </thead> 
+			                
+			                <tbody> 
+				            <c:forEach var="customer" items="${model.dbObjectList}" varStatus="counter">  
+				               <c:if test="${customer != null}">   
+					               <tr height="20" >
+					               <td width="20%" class="text14" nowrap ><font class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font></td>
+			                       <td width="10%" class="text14" nowrap ><font class="text14MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
+			                       <c:choose>
+					               		<c:when test="${'DSV' == customer.name || 'DHL' == customer.name || 'Schenker NO' == customer.name}">
+					               			<td width="20%" class="text14" nowrap >
+			                       	
+		                       				<font class="text12Gray">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>	
+		                       				</td>	                       			
+			                       		</c:when>
+			                       		<c:otherwise>
+			                       			<td width="20%" class="text14" nowrap >
+			                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.url}">
+			                       				<font class="text14MediumBlue">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>
+			                       			</a>
+			                       			</td>
+			                       		</c:otherwise>
+	                       			</c:choose>
+	                       		   
+	                       		   <c:if test="${not empty customer.applicationList}"> 
+			                       <c:forEach var="module" items="${customer.applicationList}"  >
+			                        	<c:choose>
+						               		<c:when test="${not empty module }">
+						               			<c:if test="${ fn:startsWith(module, 'SKAT')}">
+								               		<td  class="text14" nowrap >&nbsp;	
+								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_DK.gif" height="11" border="0" alt="country">
+								               			<font class="text14">&nbsp;${module}&nbsp;</font>
+								               		</td>
+								               	</c:if>
+							
+								               	<c:if test="${ fn:startsWith(module, 'TDS')}">
+								               		<td  class="text14" nowrap >&nbsp;
+								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_SE.gif" height="11" border="0" alt="country">
+								               			<font class="text14">&nbsp;${module}&nbsp;</font>
+								               		</td>
+								               	</c:if>
+								      		       	
+								               	<c:if test="${ fn:startsWith(module, 'SAD') || fn:startsWith(module, 'UFORT')  || fn:startsWith(module, 'SP') || fn:startsWith(module, 'AVG')}">
+								               		<td  class="text14" nowrap >&nbsp;
+								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
+								               			<font class="text14">&nbsp;${module}&nbsp;</font>
+								               		</td>
+								               	</c:if>
+								                 
+								               	<c:if test="${ fn:startsWith(module, 'PRIS') || fn:startsWith(module, 'WORK') || fn:startsWith(module, 'EFAK') || fn:startsWith(module, 'EBOOK') 
+								               		|| fn:startsWith(module, 'ANALYSE') || fn:startsWith(module, 'ALTINN')  }">
+								               		<td  class="text14" nowrap >&nbsp;
+								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
+								               			<font class="text14">&nbsp;${module}&nbsp;</font>
+								               		</td>
+								               	</c:if>
+								               	 <c:if test="${module == '-1'}">
+								               		<td  class="text14"  ><font class="text14">&nbsp;&nbsp;</font></td>
+								               	</c:if>
+								                
+								         	</c:when>
+								         <c:otherwise>
+								         	<td class="text14" >&nbsp;QUE?&nbsp;</td>
+								         </c:otherwise>
+							         </c:choose>     	
+			                       </c:forEach>	
+			                       </c:if>			             
+					           </tr> 
+					        </c:if>
+		            	</c:forEach>
+			            </tbody>
+			            
 			            </table>
 					</td>	
 					</tr>
@@ -130,7 +159,7 @@
 			</tr>
 		    </c:if>
 		    
-	 	    <tr height="40"><td>&nbsp;</td></tr>
+	 	    <tr height="40"><td >&nbsp;</td></tr>
 	 	    
 	 	    <%-- list component --%>
 			<c:if test="${not empty model.dbTomcatPortsObjectList}">
@@ -182,8 +211,8 @@
 				</td>
 			</tr>
 		    </c:if>
-	 	    
-	 	    <tr height="20"><td>&nbsp;</td></tr>
+	 	     
+	 	    <tr height="5"><td>&nbsp;</td></tr>
 	 	    
 	 		</table>
 		</td>

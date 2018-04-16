@@ -29,7 +29,7 @@
 			 		 --%>
 			 		<tr >
 			    		<td class="text12" align="center" >
-			    			<table width="98%" align="center" class="dashboardFrameMainE2" border="0">
+			    			<table width="100%" align="center" class="dashboardFrameMainE2" border="0">
 						 		<tr >
 						 		<td class="text12" align="center" >
 			    				<input type="hidden" name="usrLang" id="usrLang" value="${user.usrLang}" />

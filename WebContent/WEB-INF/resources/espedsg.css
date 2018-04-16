@@ -211,8 +211,13 @@
 	border-top-left-radius: 5px;
 	padding: 2px 4px;
 	outline: 0;
-	-webkit-appearance: none;
 	
+	-webkit-appearance: none;
+	-webkit-background-size: cover;
+  	-moz-background-size: cover;
+  	-o-background-size: cover;
+  	background-size: cover;
+
 	/*background-color:#FCFFF0;*/
 	background-color:#FFFFFF;
 	border-style: outset; 

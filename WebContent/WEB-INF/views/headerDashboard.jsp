@@ -35,13 +35,13 @@
 		<%--Banner --%>
 		<tr class="text" height="10"><td></td></tr>
 		<tr >
-    		<td height="60" align="center" colspan="2"> 
+    		<td height="60" align="center" colspan="5"> 
     		
     		 <!-- width="1150"  -->
-			 <table width="98%" height="100" class="dashboardBanner" border="0" cellspacing="0" cellpadding="0" align="center"
+			 <table width="100%" height="100" class="dashboardBanner" border="0" cellspacing="0" cellpadding="0" align="center"
 			 			<c:choose> 
 	    			 		<c:when test="${ not empty user.banner && fn:contains(user.banner, '/')}">
-	    			 			style="background-image:url('${user.banner}');background-repeat:no-repeat;" 
+	    			 			style="background:url('${user.banner}');background-size:100%;" 
 	    			 		</c:when>  
 	    			 		<c:otherwise>
 	    			 			<%-- %>style="background-image:url('resources/images/${user.banner}');background-repeat:no-repeat;" --%> 
@@ -103,7 +103,7 @@
 		<%-- Dashboard menu --%>
 		<tr >
 			<td height="23" align="center" colspan="2"> 
-    			 <table width="98%" border="0" cellspacing="0" cellpadding="0" align="center" >
+    			 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
 				 	<tr >
 			    		<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
 	      				<td class="text11" width="50%" align="right">

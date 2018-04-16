@@ -153,7 +153,7 @@ public class FileDatabaseManager {
 				
 				for (String app : list){
 					String appName = (String)this.appMap.get(app);
-					//logger.info("APP.NAME:" + appName);
+					logger.info("APP.NAME:" + appName);
 					custAppObject.addToApplicationList(appName);
 				}
 				dbCarrierObjectList.add(custAppObject);
