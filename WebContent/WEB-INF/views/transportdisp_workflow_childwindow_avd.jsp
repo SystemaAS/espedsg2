@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department.title"/>
 			</td>
@@ -33,13 +33,13 @@
 					<td>
 						<table>
 						<tr>
-							<td class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="avd" id="avd" size="8" maxlength="8" value="${model.record.avd}"></td>
+							<td class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="avd" id="avd" size="8" maxlength="8" value="${model.record.avd}"></td>
 						
-							<td class="text11">&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department.name"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="namn" id="namn" size="20" maxlength="35" value="${model.record.namn}"></td>
+							<td class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department.name"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="namn" id="namn" size="20" maxlength="35" value="${model.record.namn}"></td>
 						
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 		           		</tr>
 		           		
@@ -76,9 +76,9 @@
 					<%-- this is the datatables grid (content)--%>
 					<table id="avdList" class="display compact cell-border">
 						<thead>
-						<tr style="background-color:#EEEEEE">
-						    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>   
-		                    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department.name"/>&nbsp;</th>
+						<tr class="tableHeaderField" height="20">
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>   
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department.name"/>&nbsp;</th>
 		                </tr> 
 		                </thead>
 		                
@@ -86,17 +86,17 @@
 		                <c:forEach var="record" items="${model.avdList}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11" >
+			                       <tr class="text14" >
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11" >
+			                       <tr class="text14" >
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="width:20%; cursor:pointer;" class="text11MediumBlue" id="avdnr_${record.avd}@status_${record.status}@dt_${counter.count}">
+			               <td style="width:20%; cursor:pointer;" class="textMediumBlue" id="avdnr_${record.avd}@status_${record.status}@dt_${counter.count}">
 			               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 			               		&nbsp;&nbsp;${record.avd}
 	               		   </td>
-			               <td class="text11">&nbsp;${record.namn}</td>
+			               <td class="text14">&nbsp;${record.namn}</td>
 			               
 			            </tr> 
 			            </c:forEach>

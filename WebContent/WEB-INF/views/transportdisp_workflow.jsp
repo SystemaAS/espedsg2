@@ -84,14 +84,14 @@
         		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
 	 	        <table style="width:99%;">
 	 	        <tr>	
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;
                 		<img onMouseOver="showPop('dpts_info');" onMouseOut="hidePop('dpts_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
                 		<span title="wssavd"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></span>
 		 				<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=150px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 					<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 		 				</a>
 	                </td>
-	                <div class="text11" style="position: relative;" align="left">
+	                <div class="text14" style="position: relative;" align="left">
 						<span style="position:absolute; left:50px; top:10px;" id="dpts_info" class="popupWithInputText"  >
  							<font class="text11">
 			           			<b>Dept</b>
@@ -110,20 +110,20 @@
 		           			</font>
 						</span>
 					</div>
-					<td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtusg"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtubiln"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtustef"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >
+					<td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtusg"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtubiln"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtustef"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >
 	                		&nbsp;&nbsp;&nbsp;<span title="wtudt/wtudt2"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/></span>
 	                		<img src="resources/images/calendar.gif" height="12px" width="12px" border="0" alt="date">
                 	</td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/></td>
-	                <td valign="bottom" class="text12" align="left" >
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/></td>
+	                <td valign="bottom" class="text14" align="left" >
 	                		&nbsp;&nbsp;&nbsp;<span title="wtudtt/wtudtt2"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/></span>
 	                		<img src="resources/images/calendar.gif" height="12px" width="12px" border="0" alt="date">
 	                </td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
 	                <td>&nbsp;</td>
 				</tr>
 				<tr>			       
@@ -150,8 +150,8 @@
 						-<input type="text" class="inputTextMediumBlue" name="wtudtt2" id="wtudtt2" size="9" maxlength="8" value='${searchFilter.wtudtt2}'>
 						
 					</td>
-					<td class="text11" align="left" >
-						<select name="wssst" id="wssst">
+					<td class="text14" align="left" >
+						<select class="inputText14" name="wssst" id="wssst">
 								<option value="" <c:if test="${searchFilter.wssst == ''}"> selected </c:if> >Åpne</option>
 								<option value="A" <c:if test="${searchFilter.wssst == 'A'}"> selected </c:if> >A-Stengde</option>
 			            		<option value="B" <c:if test="${searchFilter.wssst == 'B'}"> selected </c:if> >B-Underveis</option>
@@ -222,70 +222,70 @@
 					<%-- this is the datatables grid (content) --%>
 					<table id="workflowTrips" class="display compact cell-border" width="100%" >
 						<thead>
-						<tr style="background-color:#EEEEEE">
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
-						    <th class="text12"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
-		                    <th class="text12"><span title="Trip">
+						<tr class="tableHeaderField" height="20">
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
+						    <th class="text14"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
+		                    <th class="text14"><span title="Trip">
 		                    		<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" width="15px" height="15px" border="0" alt="lorry no.">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/>
 		                    		</span>
                     		</th>
-                    		<th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
-						    <th class="text12" nowrap><span title="postal code">
+                    		<th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
+						    <th class="text14" nowrap><span title="postal code">
 			                    	<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 			                    	<spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/>
 			                    	</span>
 			                </th>
-		                    <th class="text12">
+		                    <th class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
 	                    	</th>
-   		                    <th class="text12">
+   		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
    		            		</th> 
-		                    <th class="text12" nowrap><span title="postal code">
+		                    <th class="text14" nowrap><span title="postal code">
 	                    		<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/>
 	                    		</span>
 		                    </th>
-		                    <th class="text12">
+		                    <th class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
                     		</th>
-   		                    <th class="text12">
+   		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
 		                    
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
 		                    
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;
 	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;
 	                    	</th>
 	                    	<c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
-		                    	<th class="text12">
+		                    	<th class=text14>
 			            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>" name="currenttripsColumnHeaderButtonCloseOpen" id="currenttripsColumnHeaderButtonCloseOpen" onClick="getValidCheckis(this);">
 			                    </th>
 		                    </c:if>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
 		                </tr> 
 		                </thead>
 		                <tbody>
 		                 <c:forEach items="${list}" var="record" varStatus="counter">    
-			               <tr class="text11 tableRow" >
+			               <tr class="text14 tableRow" >
 			             
-			               <td align="center" class="text11 tableCellGray">
+			               <td align="center" class="text14 tableCellGray">
 			               		${record.tuavd}
 			               </td>
 			               <td nowrap align="left" style="width: 100px;" class="text11MediumBlue tableCellGray" id="htmlpost_${counter.count}">
@@ -314,10 +314,10 @@
 			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
 			               		</div>
 			               </td>
-			               <td class="text11 tableCellGray">&nbsp;${record.tusg}</td>
-			               <td class="text11 tableCellGray">&nbsp;${record.tubiln}</td>
-			               <td class="text11 tableCellGray">&nbsp;${record.tuopdt}</td>
-			               <td align="center" class="text11 tableCellGray" >
+			               <td class="text14 tableCellGray">&nbsp;${record.tusg}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
+			               <td align="center" class="text14 tableCellGray" >
 			               	<c:if test="${not empty record.pdaStat}">
 				               <c:choose>
 					               <c:when test="${record.pdaStat=='inWork'}">
@@ -336,33 +336,33 @@
 					           </c:choose> 
 				           </c:if>   
 			               </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tustef}</td>
-	            		   <td class="text11 tableCellGray">
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tustef}</td>
+	            		   <td class="text14 tableCellGray">
 	            		   	<c:if test="${not empty record.tudt && fn:startsWith(record.tudt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudt}" var="dateEtdDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtdDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tutm}</td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tustet}</td>
-	            		   <td class="text11 tableCellGray">
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tutm}</td>
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tustet}</td>
+	            		   <td class="text14 tableCellGray">
             		   		<c:if test="${not empty record.tudtt && fn:startsWith(record.tudtt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudtt}" var="dateEtaDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtaDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tutmt}</td>
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
 	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.turund}</td>
 	            		   
-	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.tuao}</td>
-	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.podTxt}</td>
+	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
+	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>
 	            		   
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
-	            		   <td align="center" class="text11 tableCellGray">
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
+	            		   <td align="center" class="text14 tableCellGray">
 	            		   		<c:choose>	
 		            		   		<c:when test="${record.turclose=='close'}">
 					           		<a href="transportdisp_workflow_closeOpenTrip.do?user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=A">
@@ -377,15 +377,15 @@
 		   					</c:choose>
 	            		   	</td>
 	            		   <c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
-	            		   		<td class="text11 tableCellGray" align="center"><input class="clazz_checkis_currenttrips" type="checkbox" id="checkis_currenttrips${counter.count}@user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=<c:if test="${record.turclose=='close'}">A</c:if>"></td>
+	            		   		<td class="text14 tableCellGray" align="center"><input class="clazz_checkis_currenttrips" type="checkbox" id="checkis_currenttrips${counter.count}@user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=<c:if test="${record.turclose=='close'}">A</c:if>"></td>
 	            		   </c:if>	
-	            		   <td align="center" class="text11 tableCellGray">
+	            		   <td align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=G">
     		    					<img title="Glist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Glist PDF">
 		   						</a>
 	            		   </td>
-	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.tutst1}&nbsp;</td>
-		               		<td align="center" class="text11 tableCellGray">
+	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tutst1}&nbsp;</td>
+		               		<td align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=L">
     		    					<img title="Llist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" hight="16" border="0" alt="Llist PDF">
 	   							</a>
@@ -394,7 +394,7 @@
 	            		   
 	            		   
 	            		   
-	            		   <td align="center" class="text11 tableCellGray">
+	            		   <td align="center" class="text14 tableCellGray">
 	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=210px,width=330px,scrollbars=no,status=no,location=no')">
 	            		   		 <%-- OBSOLETE --> now we use the file upload with span/div hidden form and javascrip + jquery ajax
 		            		   		 <form name="uploadFileForm_${counter.count}" id="uploadFileForm_${counter.count}" method="post" enctype="multipart/form-data">
@@ -417,16 +417,16 @@
 									</form>
 								--%>	 
 	            		   </td>
-	            		   <td align="center" class="text11 tableCellGray">
+	            		   <td align="center" class="text14 tableCellGray">
             		   			 <form name="uploadFileForm_${counter.count}" id="uploadFileForm_${counter.count}" method="post" enctype="multipart/form-data">
 	            		   		 	<input ondragenter="myFileUploadDragEnter(event,this)" ondragleave="myFileUploadDragLeave(event,this)" class="tableBorderWithRoundCornersLightYellow noFileChosenTransparent" style="height:25px;display:block;" onChange="uploadFile(this);" type="file" name="file_${counter.count}" id="file_${counter.count}" />
 	            		   		 	
 	            		   		 	<%-- everything below this line will be hidden for the end-user but not for jquery--%>
 	            		   		 	<input type="hidden" name="applicationUserUpload_${counter.count}" id="applicationUserUpload_${counter.count}" value='${user.user}'>
 									<input type="hidden" name="wstur_${counter.count}" id="wstur_${counter.count}" value='${record.tupro}'>
-									 <div class="text11" style="position: relative;" align="left">
+									 <div class="text14" style="position: relative;" align="left">
 										<span style="position:absolute; left:0px; top:0px; width:250px" id="upload_phantom" class="popupWithInputText"  >
-											<select name="wstype_${counter.count}" id="wstype_${counter.count}">
+											<select class="inputText14" name="wstype_${counter.count}" id="wstype_${counter.count}">
 												<c:forEach var="record" items="${user.arkivKodTurList}" >
 						                       	 	<option value="${record.arkKod}">${record.arkKod}</option>
 												</c:forEach> 
@@ -599,7 +599,7 @@
 					 			 <table width="98%" class="tableBorderWithRoundCornersLightGray" cellspacing="1" cellpadding="0">
 							 		<tr height="10"><td >&nbsp;</td></tr>
 								    	<tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			&nbsp;<img onMouseOver="showPop('invperiod_info');" onMouseOut="hidePop('invperiod_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
 								    			<span title="centuryYearTurccTuraar/turmnd">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.period"/><font class="text12RedBold" >*</font>
@@ -617,7 +617,7 @@
 								    			
 							    			</td>
 								    		<td>
-								    			<select class="inputTextMediumBlue11MandatoryField" name="centuryYearTurccTuraar" id="centuryYearTurccTuraar">
+								    			<select class="inputTextMediumBlueMandatoryField" name="centuryYearTurccTuraar" id="centuryYearTurccTuraar">
 							            		<option value="">-select-</option>
 							 				  	<c:forEach var="record" items="${model.yearList}" >
 						                       	 	<option value="${record}"<c:if test="${model.record.centuryYearTurccTuraar == record}"> selected </c:if> >${record}</option>
@@ -635,19 +635,19 @@
 								    	</tr>
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tubiln/tulk/tuheng/tulkh">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic"/><font class="text12RedBold" >*</font>
 								    			</span>
 							    			</td>
-								    		<td class="text11" nowrap><input type="text" class="inputTextMediumBlueUPPERCASEMandatoryField" name="tubiln" id="tubiln" size="10" maxlength="8" value="${model.record.tubiln}">
+								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASEMandatoryField" name="tubiln" id="tubiln" size="10" maxlength="8" value="${model.record.tubiln}">
 								    		<a tabindex=0 id="tubilnIdLink" >
 								    			<img id="imgTruckLicSearch" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 		 									</a>
 								    		
 								    		</td>
-								    		<td class="text11"  nowrap>
+								    		<td class="text14"  nowrap>
 								    			<select class="inputTextMediumBlueMandatoryField" name="tulk" id="tulk">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -660,8 +660,8 @@
 											</td>
 
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}"></td>
-								    		<td class="text11" nowrap>
-								    			<select name="tulkh" id="tulkh">
+								    		<td class="text14" nowrap>
+								    			<select class="inputText14" name="tulkh" id="tulkh">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkh == country.zkod}"> selected </c:if> >${country.zkod}</option>
@@ -675,7 +675,7 @@
 							    			
 								    	</tr>
 									    <tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tubilk">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.trucktype"/><font class="text12RedBold" >*</font>
@@ -687,9 +687,9 @@
 		 										</a>
 							    			</td>
 							    			
-							    			<td class="text12"><span title="tuopdt"><spring:message code="systema.transportdisp.workflow.trip.form.label.ordertype"/></span></td>
-							    			<td class="text11" colspan="2">
-								 				<select class="inputTextMediumBlue" name="tuopdt" id="tuopdt">
+							    			<td class="text14"><span title="tuopdt"><spring:message code="systema.transportdisp.workflow.trip.form.label.ordertype"/></span></td>
+							    			<td class="text14" colspan="2">
+								 				<select class="inputText14" name="tuopdt" id="tuopdt">
 								            		<option value="">-select-</option>
 								 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
 							                       	 	<option value="${record.opdTyp}"<c:if test="${model.record.tuopdt == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
@@ -717,15 +717,15 @@
 								    	</tr>
 								    	<tr height="10"><td ></td></tr>
 								    	<tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tucon1/tulkc1/tucon2/tulkc2">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/containerYellow.png" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.container.nr"/>
 								    			</span>
 							    			</td>
-								    		<td class="text11" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon1" id="tucon1" size="15" maxlength="17" value="${model.record.tucon1}"></td>
-								    		<td class="text11"  nowrap>
-								    			<select name="tulkc1" id="tulkc1">
+								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon1" id="tucon1" size="15" maxlength="17" value="${model.record.tucon1}"></td>
+								    		<td class="text14"  nowrap>
+								    			<select class="inputText14" name="tulkc1" id="tulkc1">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc1 == country.zkod}"> selected </c:if> >${country.zkod}</option>
@@ -738,8 +738,8 @@
 								    		</td>
 
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="15" maxlength="17" value="${model.record.tucon2}"></td>
-								    		<td class="text11" nowrap>
-								    			<select name="tulkc2" id="tulkc2">
+								    		<td class="text14" nowrap>
+								    			<select class="inputText14" name="tulkc2" id="tulkc2">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc2 == country.zkod}"> selected </c:if> >${country.zkod}</option>
@@ -752,7 +752,7 @@
 								    	</tr>
 								    
 								    	<tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tuknt2/tunat">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" height="16px" width="16px" border="0" alt="edit">								    				
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno"/><font class="text12RedBold" >*</font>
@@ -767,7 +767,7 @@
 								    	</tr>
 							    		<tr height="5"><td ></td></tr>
 								    	<tr>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tusja1/tusjn1">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/appUserOg.gif" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.driver1"/>
@@ -782,7 +782,7 @@
 								    		<td colspan="4"><input type="text" class="inputTextMediumBlueUPPERCASE" name="tusjn1" id="tusjn1" size="35" maxlength="30" value="${model.record.tusjn1}"></td>
 								    	</tr>
 								    	<tr>	
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<span title="tusja2/tusjn2">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/appUserOg.gif" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.driver2"/>
@@ -802,7 +802,7 @@
 					 			 <table width="98%" class="tableBorderWithRoundCornersLightGray" border="0" cellspacing="0" cellpadding="0">
 							 		<tr height="10"><td >&nbsp;</td></tr>
 								    <tr>
-								    		<td class="text12" nowrap>
+								    		<td class="text14" nowrap>
 							    				&nbsp;<img onMouseOver="showPop('etd_info');" onMouseOut="hidePop('etd_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
 							    				<span title="tudt/tutm"><spring:message code="systema.transportdisp.workflow.trip.form.label.date.departure"/></span>
 							    				<div class="text11" style="position: relative;" align="left">
@@ -843,14 +843,14 @@
 								    			</c:otherwise>
 								    			</c:choose>
 							    			</td>
-								    		<td class="text12" nowrap>&nbsp;
+								    		<td class="text14" nowrap>&nbsp;
 								    			<span title="tusonf/tustef/tusdf">
 								    				<img onMouseOver="showPop('etd_info');" onMouseOut="hidePop('etd_info');" style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.date.departure.from"/>
 								    			</span>
 							    			</td>
-								    		<td class="text12" nowrap>
-								    			<select name="tusonf" id="tusonf">
+								    		<td class="text14" nowrap>
+								    			<select class="inputText14" name="tusonf" id="tusonf">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tusonf == country.zkod}"> selected </c:if> >${country.zkod}</option>
@@ -861,7 +861,7 @@
 											</a>
 											
 							    			</td>
-								    		<td class="text11" nowrap><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="tustef" id="tustef" size="6" maxlength="5" value="${model.record.tustef}">
+								    		<td class="text14" nowrap><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="tustef" id="tustef" size="6" maxlength="5" value="${model.record.tustef}">
 								    			<a tabindex=0 id=tustefIdLink>
 								    				<img id="imgFromSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 								    			</a>
@@ -872,7 +872,7 @@
 								    		<td colspan="6"><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdf" id="tusdf" size="22" maxlength="20" value="${model.record.tusdf}"></td>
 								    	</tr>
 								    <tr>
-								    		<td class="text12" nowrap>
+								    		<td class="text14" nowrap>
 							    				&nbsp;<img onMouseOver="showPop('eta_info');" onMouseOut="hidePop('eta_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
 							    				<span title="tudtt/tutmt"><spring:message code="systema.transportdisp.workflow.trip.form.label.date.arrival"/></span>
 							    				<div class="text11" style="position: relative;" align="left">
@@ -913,14 +913,14 @@
 								    			</c:otherwise>
 								    			</c:choose>
 								    		</td>
-								    		<td class="text12" nowrap>&nbsp;
+								    		<td class="text14" nowrap>&nbsp;
 								    			<span title="tusont/tustet/tusdt">
 								    				<img onMouseOver="showPop('eta_info');" onMouseOut="hidePop('eta_info');" style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.date.arrival.to"/>
 								    			</span>
 							    			</td>
-								    		<td class="text11" nowrap>
-								    			<select name="tusont" id="tusont">
+								    		<td class="text14" nowrap>
+								    			<select class="inputText14" name="tusont" id="tusont">
 						 						<option value="">-select-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tusont == country.zkod}"> selected </c:if> >${country.zkod}</option>
@@ -942,7 +942,7 @@
 								    	</tr>
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
-								    		<td class="text12" nowrap>
+								    		<td class="text14" nowrap>
 								    			&nbsp;<img onMouseOver="showPop('agreedPrice_info');" onMouseOut="hidePop('agreedPrice_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
 								    			<span title="tutval/tutbel/tutako"><spring:message code="systema.transportdisp.workflow.trip.form.label.price.agreed"/></span>
 								    			<div class="text11" style="position: relative;" align="left">
@@ -962,7 +962,7 @@
 											</div>
 							    			</td>
 								    		<td colspan="2">
-								    			<select class="text11" id="tutval" name="tutval">
+								    			<select class="inputText14" id="tutval" name="tutval">
 							    				<option value="">-select-</option>
 						           				<c:forEach var="currency" items="${model.currencyCodeList}" >
 						 				  			<option value="${currency}"<c:if test="${model.record.tutval == currency}"> selected </c:if> >${currency}</option>
@@ -970,7 +970,7 @@
 						           			</select>
 								    			&nbsp;<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tutbel" id="tutbel" size="8" maxlength="8" value="${model.record.tutbel}">
 								    			&nbsp;
-								    			<select name="tutako" id="tutako">
+								    			<select class="inputText14" name="tutako" id="tutako">
 				            						<option value="">-select-</option>
 				 				  				<option value="A"<c:if test="${model.record.tutako == 'A'}"> selected </c:if> >A</option>
 				 				  				<option value="E"<c:if test="${model.record.tutako == 'E'}"> selected </c:if> >E</option>
@@ -1009,7 +1009,7 @@
 						 		<td valign="top" width="50%">	
 						 		<table width="100" border="0" cellspacing="1" cellpadding="0">		
 							 		<tr>
-							 			<td class="text12">
+							 			<td class="text14">
 							 				<img onMouseOver="showPop('messageNote_info');" onMouseOut="hidePop('messageNote_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<span title="messageNote"><spring:message code="systema.transportdisp.workflow.trip.form.label.messageNotes"/></span>
 							 				<div class="text11" style="position: relative;" align="left">
@@ -1030,12 +1030,12 @@
 							 		</tr>
 							 		<tr>	
 								 		<td colspan="20">
-								 			<textarea class="text11UPPERCASE" id="messageNote" name="messageNote" limit='70,12' cols="75" rows="8">${model.record.messageNote}</textarea>
+								 			<textarea class="text12UPPERCASE" id="messageNote" name="messageNote" limit='70,12' cols="75" rows="8">${model.record.messageNote}</textarea>
 								 		</td>
 							 		</tr>
 							 		<tr height="10"><td></td></tr>
 							 		<tr>
-						 				<td colspan="20" class="text12">
+						 				<td colspan="20" class="text14">
 						 					<table class="tableBorderWithRoundCorners" width="470px" >
 												<tr>
 										 			<td valign="top" class="text12">
@@ -1268,22 +1268,22 @@
 									    <td valign="middle">
 										    <table class="tableNoBorderWithRoundCorners" >
 										    <tr>
-										    		<td class="text12" title="tuao/tuts"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.ordersColli"/></td>
-										    		<td colspan="2" class="text12" title="berbud"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.estimatedTransportCost"/></td>
-										    		<td class="text12"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:right;" name="berbud" id="berbud" size="8" value="${model.record.berbud}"></td>
+										    		<td class="text14" title="tuao/tuts"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.ordersColli"/></td>
+										    		<td colspan="2" class="text14" title="berbud"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.estimatedTransportCost"/></td>
+										    		<td class="text14"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:right;" name="berbud" id="berbud" size="8" value="${model.record.berbud}"></td>
 										    	</tr>
 										    	<tr>
-										    		<td class="text12" nowrap>
+										    		<td class="text14" nowrap>
 										    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuao" id="tuao" size="6" value="${model.record.tuao}">
 										    			<b>/</b>
 										    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuts" id="tuts" size="6" value="${model.record.tuts}">
 										    		</td>
-										    		<td class="tableHeaderFieldFirst11" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.open"/></td>
-										    		<td class="tableHeaderField11" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.finished"/></td>
-										    		<td class="tableHeaderField11" align="right"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.sum"/>&nbsp;</td>
+										    		<td class="tableHeaderFieldFirst12" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.open"/></td>
+										    		<td class="tableHeaderField12" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.finished"/></td>
+										    		<td class="tableHeaderField12" align="right"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.sum"/>&nbsp;</td>
 										    	</tr>
 										    	<tr class="tableRow">	
-										    		<td class="text12" >
+										    		<td class="text14" >
 										    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									 				<span title="totiaa/totioa/totisa"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.avrgrl"/></span>
 										    			<div class="text11" style="position: relative;" align="left">
@@ -1309,7 +1309,7 @@
 									    			<td class="tableCell12" align="right"><label name="totisa" id="totisa">${model.record.totisa}&nbsp;</label></td>
 										    	</tr>
 										    	<tr class="tableRow">	
-										    		<td class="text12" >
+										    		<td class="text14" >
 										    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									 				<span title="totiag/totiog/totisg"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.ovriga"/></span>
 										    		</td>

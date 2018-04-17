@@ -128,7 +128,7 @@
 						
 					</td>
 					<td class="text11" align="left" >
-						<select name="wssst" id="wssst">
+						<select class="inputText" name="wssst" id="wssst">
 								<option value="" <c:if test="${searchFilter.wssst == ''}"> selected </c:if> >Åpne</option>
 								<option value="A" <c:if test="${searchFilter.wssst == 'A'}"> selected </c:if> >A-Stengde</option>
 			            		<option value="B" <c:if test="${searchFilter.wssst == 'B'}"> selected </c:if> >B-Underveis</option>
@@ -199,7 +199,7 @@
 					<%-- this is the datatables grid (content) --%>
 					<table id="workflowTrips" class="display compact cell-border" width="100%" >
 						<thead>
-						<tr style="background-color:#EEEEEE">
+						<tr class="tableHeaderField" height="20">
 							<th class="text12">Pluk.&nbsp;</th>
 						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
 						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>

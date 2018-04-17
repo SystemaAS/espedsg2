@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			Gyldige verdier
 			</td>
@@ -30,27 +30,27 @@
 				<table id="containerdatatableTable" cellspacing="2" align="left" width="100%" >
 					<tr height="15"><td></td></tr>
 					
-					<tr class="text12" >
+					<tr class="text14" >
 					<td class="ownScrollableSubWindowDynamicWidthHeight" width="100%" style="height:30em;">
 					<%-- this is the datatables grid (content)--%>
 					<table id="frisokveiCodesGiltighetsList" class="display compact cell-border" width="100%" >
 						<thead>
-						<tr style="background-color:#EEEEEE">
-							<th class="text11" title="kfsoko">&nbsp;Kode&nbsp;</th>
-		                    <th class="text11" title="kfsotx">&nbsp;Tekst&nbsp;</th>
+						<tr class="tableHeaderField" height="20">
+							<th class="text14" title="kfsoko">&nbsp;Kode&nbsp;</th>
+		                    <th class="text14" title="kfsotx">&nbsp;Tekst&nbsp;</th>
 		                 
 		                </tr> 
 		                </thead>
 		                
 		                <tbody>
 		                <c:forEach var="record" items="${model.frisokveiCodesGiltihetsList}" varStatus="counter">    
-			               <tr class="text11">
-				               <td style="cursor:pointer;" class="text11MediumBlue" 
+			               <tr class="text14">
+				               <td style="cursor:pointer;" class="textMediumBlue" 
 					               		id="kode${record.cofri}@text${record.cotxt}@dt_${counter.count}" >
 					               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 					               		&nbsp;&nbsp;${record.cofri}
 			               	   </td>
-			               	   <td class="text11">&nbsp;${record.cotxt}</td>
+			               	   <td class="text14">&nbsp;${record.cotxt}</td>
 			            	</tr> 
 			            </c:forEach>
 			            </tbody>

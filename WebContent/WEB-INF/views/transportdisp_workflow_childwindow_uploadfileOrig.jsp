@@ -23,7 +23,7 @@
 				<table id="containerdatatableTable" cellspacing="2" align="left">
 					<tr height="2"><td></td></tr>
 					<tr>
-						<td colspan="3" class="text14Bold">&nbsp;
+						<td colspan="3" class="text16Bold">&nbsp;
 							<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="24" height="24" alt="upload">
 							&nbsp;File Upload&nbsp;							
 						</td>
@@ -34,13 +34,13 @@
 					<td>
 						<table>
 						<tr>	
-							<td class="text11">&nbsp;File:</td>
+							<td class="text14">&nbsp;File:</td>
 								
-            					<td class="text11">
+            					<td class="text14">
             						&nbsp;<input type="file" name="file" id="file" />
         						</td>
 								 
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='Save'>
 		           		</tr>
 		           		</table>

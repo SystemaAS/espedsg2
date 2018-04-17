@@ -45,18 +45,19 @@
 	padding: 4px 7px;
 	background-color:#E1EDD9;
 	border-style: solid; 
-    /*border-width: 1px 1px 1px 1px;*/ 
-    /*border-color:#778899;*/
-    border-width: 1px 3px 3px 1px; 
-   	border-color:#84BE6A;
+    border-width: 1px 1px 1px 1px; 
+   	/*border-color:#84BE6A;*/
+   	border-color:#9DB68C;
    	outline: 0;
 	cursor: pointer;
 	-webkit-appearance: none;
 }
 .dashboardElementsFrameE2:hover{
-	background-color: #BCD7A9;
-	border-width: 1px 3px 3px 1px; 
-	border-color:#308014;
+	background-color: #C0D9AF;
+	border-width: 1px 1px 1px 1px; 
+	/*border-color:#308014;*/
+	border-color:#302013;
+	
 }
 .dashboardElementsImgCircleE2{
 	border-radius: 50%; 
@@ -70,3 +71,14 @@
     border-width: 0px 1px 1px 0px; 
     border-color:#9DB68C
 }
+
+.tableHeaderField {  
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	color:#000000; 
+    background-color: #F2F5EF ;
+    border-style: solid; 
+    border-width: 1px 1px 1px 0px; 
+    border-color:#D5E0CE
+}
+

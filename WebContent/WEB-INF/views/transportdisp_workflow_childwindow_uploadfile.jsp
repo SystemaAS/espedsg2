@@ -18,7 +18,7 @@
 				<table id="containerdatatableTable" cellspacing="2" align="left">
 					<tr height="2"><td></td></tr>
 					<tr>
-						<td colspan="3" class="text12Bold">&nbsp;
+						<td colspan="3" class="text14Bold">&nbsp;
 							<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="24" height="24" alt="upload">
 							&nbsp;File Upload&nbsp;							
 						</td>
@@ -29,8 +29,8 @@
 					<td>
 						<table>
 						<tr>
-							<td class="text11">&nbsp;Arkiv typen:</td>
-							<td class="text11">&nbsp;
+							<td class="text14">&nbsp;Arkiv typen:</td>
+							<td class="text14">&nbsp;
 								<select name="wstype" id="wstype">
 									<c:choose>
 									<c:when test="${not empty model.wstur}">
@@ -48,14 +48,14 @@
 							</td>
 						</tr>
 						<tr>	
-							<td class="text11">&nbsp;Fil:</td>
-							<td class="text11">
+							<td class="text14">&nbsp;Fil:</td>
+							<td class="text14">
            						&nbsp;<input class="tableBorderWithRoundCornersLightYellow3D" style="width:150px;height:55px;display:block;" type="file" name="file" id="file" />
        						</td>
 		           		</tr>
 		           	 	<%--
 		           		<tr>	
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 							<td valign="bottom" >&nbsp;<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='Save'>
 		           		</tr>
 		           		 --%>

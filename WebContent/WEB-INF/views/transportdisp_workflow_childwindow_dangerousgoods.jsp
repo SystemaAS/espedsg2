@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			Farlig Gods
 			</td>
@@ -34,18 +34,18 @@
 					<td>
 						<table>
 						<tr>
-							<td class="text11">&nbsp;UnNr</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="unnr" id="unnr" size="10" maxlength="10" value="${model.container.unnr}"></td>
+							<td class="text14">&nbsp;UnNr</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="unnr" id="unnr" size="10" maxlength="10" value="${model.container.unnr}"></td>
 						
 							<%--
-							<td class="text11">&nbsp;&nbsp;&nbsp;Emb.g</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="embg" id="embg" size="10" maxlength="8" value="${model.container.embg}"></td>
+							<td class="text14">&nbsp;&nbsp;&nbsp;Emb.g</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="embg" id="embg" size="10" maxlength="8" value="${model.container.embg}"></td>
 
-							<td class="text11">&nbsp;&nbsp;&nbsp;Indx</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="indx" id="indx" size="5" maxlength="1" value="${model.container.indx}"></td>
+							<td class="text14">&nbsp;&nbsp;&nbsp;Indx</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="indx" id="indx" size="5" maxlength="1" value="${model.container.indx}"></td>
 							 --%>
 							 
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 		           		</tr>
 		           		
@@ -81,16 +81,16 @@
 					<%-- this is the datatables grid (content)--%>
 					<table id="dangerousGoodsList" class="display compact cell-border" width="100%" >
 						<thead>
-						<tr style="background-color:#EEEEEE">
-							<th class="text11">&nbsp;Op&nbsp;</th>   
-		                    <th class="text11" title="adunnr">&nbsp;UnNr&nbsp;</th>
-		                    <th class="text11" title="adembg">&nbsp;Emb.g&nbsp;</th>
-		                    <th class="text11" title="adindx">&nbsp;Indx.&nbsp;</th>
-		                    <th class="text11" title="adklas">&nbsp;FareK&nbsp;</th>
-		                    <th class="text11" title="adsedd">&nbsp;Fareseddel&nbsp;</th>
-		                    <th class="text11" title="adtres">&nbsp;Tunnerllrest&nbsp;</th>
-		                    <th class="text11" title="adfakt">&nbsp;Fakt&nbsp;</th>
-		                    <th class="text11" title="adtextK">&nbsp;Beskrivelse&nbsp;</th>
+						<tr class="tableHeaderField" height="20">
+							<th class="text14">&nbsp;Op&nbsp;</th>   
+		                    <th class="text14" title="adunnr">&nbsp;UnNr&nbsp;</th>
+		                    <th class="text14" title="adembg">&nbsp;Emb.g&nbsp;</th>
+		                    <th class="text14" title="adindx">&nbsp;Indx.&nbsp;</th>
+		                    <th class="text14" title="adklas">&nbsp;FareK&nbsp;</th>
+		                    <th class="text14" title="adsedd">&nbsp;Fareseddel&nbsp;</th>
+		                    <th class="text14" title="adtres">&nbsp;Tunnerllrest&nbsp;</th>
+		                    <th class="text14" title="adfakt">&nbsp;Fakt&nbsp;</th>
+		                    <th class="text14" title="adtextK">&nbsp;Beskrivelse&nbsp;</th>
 		                </tr> 
 		                </thead>
 		                
@@ -98,17 +98,17 @@
 		                <c:forEach var="record" items="${model.dangerousGoodsList}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
 			               
-		               	   <td class="text11">&nbsp;</td>
+		               	   <td class="text14">&nbsp;</td>
 		               	   <c:choose>
 		               	   <c:when test="${not empty model.container.callerLineCounter}">
-			               	   <td nowrap style="cursor:pointer;" class="text11MediumBlue" 
+			               	   <td nowrap style="cursor:pointer;" class="textMediumBlue" 
 				               		id="unnr_${record.adunnr}@embg_${record.adembg}@indx_${record.adindx}@fakt_${record.adfakt}@dt_${counter.count}" >
 				               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 				               		&nbsp;&nbsp;${record.adunnr}
@@ -116,7 +116,7 @@
 		               	   </c:when>
 		               	   <c:otherwise>
 		               	   	   <%-- Explicit New Line --%>	
-			               	   <td nowrap style="cursor:pointer;" class="text11MediumBlue" 
+			               	   <td nowrap style="cursor:pointer;" class="textMediumBlue" 
 				               		id="unnr${record.adunnr}@embg${record.adembg}@indx${record.adindx}@fakt${record.adfakt}@dt_${counter.count}" >
 				               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 				               		&nbsp;&nbsp;${record.adunnr}
@@ -124,13 +124,13 @@
 		               	   </c:otherwise>
 		               	   </c:choose>
 		               	   
-		               	   <td class="text11">&nbsp;${record.adembg}</td>
-		               	   <td class="text11">&nbsp;${record.adindx}</td>
-		               	   <td class="text11">&nbsp;${record.adklas}</td>
-			               <td class="text11">&nbsp;${record.adsedd}</td>
-			               <td class="text11">&nbsp;${record.adtres}</td>
-			               <td class="text11">&nbsp;${record.adfakt}</td>
-			               <td class="text11">&nbsp;${record.adtextK}</td>
+		               	   <td class="text14">&nbsp;${record.adembg}</td>
+		               	   <td class="text14">&nbsp;${record.adindx}</td>
+		               	   <td class="text14">&nbsp;${record.adklas}</td>
+			               <td class="text14">&nbsp;${record.adsedd}</td>
+			               <td class="text14">&nbsp;${record.adtres}</td>
+			               <td class="text14">&nbsp;${record.adfakt}</td>
+			               <td class="text14">&nbsp;${record.adtextK}</td>
 			            </tr> 
 			            </c:forEach>
 			            </tbody>

@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			Frie søkeveier koder
 			</td>
@@ -35,22 +35,22 @@
 					<%-- this is the datatables grid (content)--%>
 					<table id="frisokveiCodesList" class="display compact cell-border" width="100%" >
 						<thead>
-						<tr style="background-color:#EEEEEE">
-							<th class="text11" title="kfsoko">&nbsp;Kode&nbsp;</th>
-		                    <th class="text11" title="kfsotx">&nbsp;Tekst&nbsp;</th>
+						<tr class="tableHeaderField" height="20">
+							<th class="text14" title="kfsoko">&nbsp;Kode&nbsp;</th>
+		                    <th class="text14" title="kfsotx">&nbsp;Tekst&nbsp;</th>
 		                 
 		                </tr> 
 		                </thead>
 		                
 		                <tbody>
 		                <c:forEach var="record" items="${model.frisokveiCodesList}" varStatus="counter">    
-			               <tr class="text11">
-				               <td style="cursor:pointer;" class="text11MediumBlue" 
+			               <tr class="text14">
+				               <td style="cursor:pointer;" class="textMediumBlue" 
 					               		id="kode${record.kfsoko}@text${record.kfsotx}@dt_${counter.count}" >
 					               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 					               		&nbsp;&nbsp;${record.kfsoko}
 			               	   </td>
-			               	   <td class="text11">&nbsp;${record.kfsotx}</td>
+			               	   <td class="text14">&nbsp;${record.kfsotx}</td>
 			            	</tr> 
 			            </c:forEach>
 			            </tbody>

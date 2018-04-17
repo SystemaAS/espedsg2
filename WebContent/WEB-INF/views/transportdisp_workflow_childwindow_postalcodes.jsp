@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.title"/>
 			</td>
@@ -36,26 +36,26 @@
 					<td>
 						<table>
 						<tr>
-							<td class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.postalcode"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="st2kod" id="st2kod" size="6" maxlength="5" value="${model.record.st2kod}"></td>
+							<td class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.postalcode"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="st2kod" id="st2kod" size="6" maxlength="5" value="${model.record.st2kod}"></td>
 							
-							<td class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.city"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="st2nvn" id="st2nvn" size="20" maxlength="35" value="${model.record.st2nvn}"></td>
+							<td class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.city"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="st2nvn" id="st2nvn" size="20" maxlength="35" value="${model.record.st2nvn}"></td>
 						
-							<td class="text11">&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.country"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="st2lk" id="st2lk" size="2" maxlength="2" value="${model.record.st2lk}"></td>
+							<td class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.country"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="st2lk" id="st2lk" size="2" maxlength="2" value="${model.record.st2lk}"></td>
 							
 							<%--
-							<td class="text11">&nbsp;</td>
-							<td class="text11">Vis kun</td>
-							<td class="text11">
+							<td class="text14">&nbsp;</td>
+							<td class="text14">Vis kun</td>
+							<td class="text14">
 								<select name="wskunpa" id="wskunpa">
 		            					<option value="">-velg-</option>
 		            					<option value="A" <c:if test="${model.record.wskunpa == 'A'}"> selected </c:if> >Alfakoder</option>
 		            					<option value="P" <c:if test="${model.record.wskunpa == 'P'}"> selected </c:if> >PostNr.</option>
 								</select>
 							</td>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 							 --%>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 		           		</tr>
@@ -79,11 +79,11 @@
 						</c:choose>
 					
 						<thead>
-						<tr style="background-color:#EEEEEE">
-						    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.postalcode"/>&nbsp;</th>   
-		                    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.city"/>&nbsp;</th>
-		                    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.country"/>&nbsp;</th>
-		                    <%--<th class="text11">&nbsp;Via&nbsp;</th> --%>
+						<tr class="tableHeaderField" height="20">
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.postalcode"/>&nbsp;</th>   
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.city"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.childwindow.postalcodes.label.country"/>&nbsp;</th>
+		                    <%--<th class="text14">&nbsp;Via&nbsp;</th> --%>
 		                </tr> 
 		                </thead>
 		                
@@ -91,19 +91,19 @@
 		                <c:forEach var="record" items="${model.postalCodeList}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                   	   <tr class="text11">
+			                   	   <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>
- 		                   		   <tr class="text11">
+ 		                   		   <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="width:20%; cursor:pointer;" class="text11MediumBlue" id="postalcode_${record.st2kod}@country_${record.st2lk}@city_${record.st2nvn}@caller_${model.record.caller}@viapnr_${record.viapnr}@dt_postalcode_${counter.count}" >
+			               <td style="width:20%; cursor:pointer;" class="textMediumBlue" id="postalcode_${record.st2kod}@country_${record.st2lk}@city_${record.st2nvn}@caller_${model.record.caller}@viapnr_${record.viapnr}@dt_postalcode_${counter.count}" >
 			               	 &nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 			               	 &nbsp;&nbsp;${record.st2kod}
 		               	  </td>
-			               <td class="text11">&nbsp;${record.st2nvn}</td>
-			               <td class="text11">&nbsp;${record.st2lk}</td>
-			               <%-- <td class="text11">&nbsp;${record.viapnr}</td> --%>
+			               <td class="text14">&nbsp;${record.st2nvn}</td>
+			               <td class="text14">&nbsp;${record.st2lk}</td>
+			               <%-- <td class="text14">&nbsp;${record.viapnr}</td> --%>
 			            </tr> 
 			            </c:forEach>
 			            </tbody>

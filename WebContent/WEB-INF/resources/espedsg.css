@@ -703,7 +703,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 }
@@ -730,7 +730,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 }
@@ -739,7 +739,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	text-align: right;
 	padding: 4px 7px;
 	outline: 0;
@@ -750,7 +750,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	text-align: right;
 	padding: 4px 7px;
@@ -762,7 +762,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	font-style: italic;
 	background-color:#DDDDDD;
 	padding: 4px 7px
@@ -858,7 +858,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #000080;
@@ -867,7 +867,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #000080;
@@ -896,7 +896,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #000080;
@@ -907,7 +907,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #000080;
@@ -1108,7 +1108,7 @@
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	padding: 2px 4px;
-	background-color:#CCCCCC;
+	background-color:#F2F5F0;
 	outline: 0;
 	-webkit-appearance: none;
 }
@@ -1194,7 +1194,7 @@
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: 12px; 
 	color:#000000; 
-    background-color: #3D3D3D
+    background-color: #9DB68C
     
 }
 .formFrameHeaderBlueWithBorder { 

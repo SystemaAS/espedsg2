@@ -12,7 +12,7 @@
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
-			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
+			<td colspan="3" class="text16Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
 			<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.title"/>
 			</td>
@@ -32,11 +32,11 @@
 					<td>
 						<table>
 						<tr>
-							<td class="text11">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.code"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="kode" id="kode" size="21" maxlength="20" value="${model.container.kode}"></td>
-							<td class="text11">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.desc"/></td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="tekst" id="tekst" size="21" maxlength="20" value="${model.container.tekst}"></td>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.code"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="kode" id="kode" size="21" maxlength="20" value="${model.container.kode}"></td>
+							<td class="text14">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.desc"/></td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="tekst" id="tekst" size="21" maxlength="20" value="${model.container.tekst}"></td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 		           		</tr>
 		           		
@@ -73,9 +73,9 @@
 					<%-- this is the datatables grid (content)--%>
 					<table id="gebyrcodeList" class="display compact cell-border" width="100%">
 						<thead>
-						<tr style="background-color:#EEEEEE">
-						    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.code"/>&nbsp;</th>   
-		                    <th class="text11">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.desc"/>&nbsp;</th>
+						<tr class="tableHeaderField" height="20">
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.code"/>&nbsp;</th>   
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.form.label.gebyrcode.desc"/>&nbsp;</th>
 		                </tr> 
 		                </thead>
 		                
@@ -83,17 +83,17 @@
 		                <c:forEach var="record" items="${model.gebyrCodeList}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="width:20%; cursor:pointer;" class="text11MediumBlue" id="code_${record.kgekod}@dt_${counter.count}">
+			               <td style="width:20%; cursor:pointer;" class="textMediumBlue" id="code_${record.kgekod}@dt_${counter.count}">
 			               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 			               		&nbsp;&nbsp;${record.kgekod}
 	               		   </td>
-			               <td class="text11">&nbsp;${record.kgenot}</td>
+			               <td class="text14">&nbsp;${record.kgenot}</td>
 			               
 			            </tr> 
 			            </c:forEach>
