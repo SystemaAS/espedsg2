@@ -37,7 +37,7 @@
 	<script type="text/javascript" src="resources/js/dataTables.fixedHeader.js"></script>
 	<script type="text/javascript" src="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.js"></script> --%>
 	
-    <table class="noBg" width="1500" border="0" cellspacing="0" cellpadding="0">
+    <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
 		
 	    <%-- Validation Error section --%>
 	    <c:if test="${errorMessage!=null}">

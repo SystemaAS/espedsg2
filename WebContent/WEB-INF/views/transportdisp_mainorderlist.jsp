@@ -209,7 +209,7 @@
 			               <td class="text14 tableCellGray">
 				           		<a id="alinkCurrentOrdersListId_${counter.count}" onClick="setBlockUI(this);" href="transportdisp_mainorder.do?hepro=${searchFilter.tur}&heavd=${record.heavd}&heopd=${record.heopd}">
 	    		    				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
-	    		    				<font class="text12MediumBlue">${record.heavd}/${record.heopd}</font>
+	    		    				<font class="textMediumBlue">${record.heavd}/${record.heopd}</font>
 			   					</a>
 				           </td>
 				           
@@ -564,8 +564,8 @@
 		               <td class="textMediumBlue">&nbsp;${record.hem3}</td>
 		               <td class="textMediumBlue">&nbsp;${record.helm}</td>
 		               <td class="textMediumBlue">&nbsp;${record.herfa}</td>
-		               <td align="center" class="text11RedBold">&nbsp;${record.hestn7}</td>
-		               <td align="center" class="tableCell11RedFont">&nbsp;${record.hepoen}</td>
+		               <td align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
+		               <td align="center" class="tableCellRedFont">&nbsp;${record.hepoen}</td>
 		               <td width="2%" align="center" class="textMediumBlue">
 		               		<c:if test="${not empty record.interninfo}">
 			               		<img onMouseOver="showPop('imText_info${counter.count}');" onMouseOut="hidePop('imText_info${counter.count}');" style="vertical-align:bottom;" src="resources/images/info4.png" width="12" height="12" border="0" alt="Internmelding">
@@ -701,12 +701,12 @@
 	           		<table align="left" class="popupFloatingWithRoundCorners3D">
 					    <tr height="10"><td></td></tr>
 					    <tr>
-				    		<td class="text12" title="tuao/tuts"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.ordersColli"/></td>
-				    		<td colspan="2" class="text11" title="berbud"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.estimatedTransportCost"/></td>
-				    		<td class="text12"><input readonly tabindex=-1 type="text10" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:right;" name="berbud" id="berbud" size="6" value="${model.record.berbud}"></td>
+				    		<td class="text14" title="tuao/tuts"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.ordersColli"/></td>
+				    		<td colspan="2" class="text14" title="berbud"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.estimatedTransportCost"/></td>
+				    		<td class="text14"><input readonly tabindex=-1 type="text10" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:right;" name="berbud" id="berbud" size="6" value="${model.record.berbud}"></td>
 				    	</tr>
 				    	<tr>
-				    		<td class="text12" nowrap>
+				    		<td class="text14" nowrap>
 				    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuao" id="tuao" size="6" value="${model.record.tuao}">
 				    			<b>/</b>
 				    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuts" id="tuts" size="4" value="${model.record.tuts}">
@@ -716,7 +716,7 @@
 				    		<td class="tableHeaderField11" align="right"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.sum"/>&nbsp;</td>
 				    	</tr>
 				    	<tr class="tableRow">	
-				    		<td class="text11" >
+				    		<td class="text14" >
 				    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 				<span title="totiaa/totioa/totisa"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.avrgrl"/></span>
 				    		</td>
@@ -725,7 +725,7 @@
 			    			<td class="tableCell" align="right"><label name="totisa" id="totisa">${model.record.totisa}&nbsp;</label></td>
 				    	</tr>
 				    	<tr class="tableRow">	
-				    		<td class="text11" >
+				    		<td class="text14" >
 				    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 				<span title="totiag/totiog/totisg"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.ovriga"/></span>
 				    		
@@ -751,7 +751,7 @@
 			    			<td class="tableCell" align="right"><label name="totisg" id="totisg">${model.record.totisg}&nbsp;</label></td>
 				    	</tr>
 				    	<tr class="tableRow">	
-				    		<td class="text11">
+				    		<td class="text14">
 				    			<img onMouseOver="showPop('totkaa_info');" onMouseOut="hidePop('totkaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 				<span title="totkaa/totkoa/totksa"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.kostnad.avrtrans"/></span>
 				    			<div class="text10" style="position: relative;" align="left">
@@ -776,7 +776,7 @@
 
 				    	</tr>
 				    	<tr class="tableRow">	
-				    		<td class="text12">
+				    		<td class="text14">
 				    			<img onMouseOver="showPop('totkao_info');" onMouseOut="hidePop('totkao_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 				<span title="totkao/totkoo/totkso"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.kostnad.ovriga"/></span>
 				    			<div class="text11" style="position: relative;" align="left">
@@ -815,7 +815,7 @@
 			    			<td class="tableCell" align="right"><label name="totkso" id="totkso">${model.record.totkso}&nbsp;</label></td>
 				    	</tr>
 				    	<tr class="tableRow">
-				    		<td class="text12Bold" title="totopn/totovf/totsum"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.sum.resultat"/></td>
+				    		<td class="text14Bold" title="totopn/totovf/totsum"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.sum.resultat"/></td>
 			    			<td class="tableCellFirst" align="right"><label name="totopn" id="totopn"><b>${model.record.totopn}&nbsp;</b></label></td>
 			    			<td class="tableCell" align="right"><label name="totovf" id="totovf"><b>${model.record.totovf}&nbsp;</b></label></td>
 			    			<td class="tableCell" align="right"><label name="totsum" id="totsum"><b>${model.record.totsum}&nbsp;</b></label></td>
@@ -830,8 +830,7 @@
 						 --%> 
 						</table>
 						</p>
-					  </div>
-					</span>  		
+					  </div>	
 				</td>
 			</tr>	
 			</c:if>
@@ -850,11 +849,11 @@
 			<div id="dialogSMS" title="Dialog">
 				 	<table>
 						<tr>
-							<td class="text12" align="left" >Send SMS med lenke til TKeventGrabber</td>
+							<td class="text14" align="left" >Send SMS med lenke til TKeventGrabber</td>
    						</tr>
    						<tr height="8"><td></td></tr>
 						<tr>
-							<td class="text12" align="left" >
+							<td class="text14" align="left" >
 								<b>SMS-nummer</b>&nbsp;<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
 							</td>
    						</tr>

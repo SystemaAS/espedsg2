@@ -764,10 +764,10 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:400,
-          maxHeight: 250,
-          width: 360,
-          height: 230,
+		  maxWidth:450,
+          maxHeight: 300,
+          width: 390,
+          height: 280,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });

@@ -877,7 +877,7 @@
 			  					jq('.clazzAvdCreateNew').css('visibility', 'collapse');
 			  					jq('.clazzOrderTripTab').css('visibility', 'visible');
 			  					jq('.ordersTripOpen').attr('href', 'transportdisp_mainorderlist.do?action=doFind&wssavd='+ data[i].tuavd + '&wstur=' + data[i].tupro);
-			  					jq('#tuproTab').text(data[i].tupro);jq('#tuproTab').addClass('text12MediumBlue');
+			  					jq('#tuproTab').text(data[i].tupro);jq('#tuproTab').addClass('text14MediumBlue');
 			  					//Info fields on EDIT
 			  					//jq('#tuavdJS').text(""); jq('#tuavdJS').text(data[i].tuavd);
 					  			jq('#tuproJS').text(""); jq('#tuproJS').text(data[i].tupro);
@@ -1157,10 +1157,10 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:400,
-          maxHeight: 250,
-          width: 360,
-          height: 230,
+		  maxWidth:450,
+          maxHeight: 300,
+          width: 380,
+          height: 290,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });

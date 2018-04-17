@@ -55,13 +55,13 @@
 				<div class="clazzOrderTripTab" <c:if test="${empty model.record.tupro}">style="visibility:collapse;"</c:if> >
 				<a style="display:block;" class="ordersTripOpen" href="transportdisp_mainorderlist.do?action=doFind&wssavd=${model.record.tuavd}&wstur=${model.record.tupro}">
 					<img title="Planning" style="vertical-align:bottom;" src="resources/images/math.png" width="16" height="16" border="0" alt="planning">
-					<font class="tabDisabledLink"><font class="text12MediumBlue"><spring:message code="systema.transportdisp.open.orderlist.trip.label"/></font></font>
+					<font class="tabDisabledLink"><font class="text14MediumBlue"><spring:message code="systema.transportdisp.open.orderlist.trip.label"/></font></font>
 					<c:choose>
 						<c:when test="${not empty model.record.tupro}">
-							&nbsp;<font id="tuproTab" class="text12MediumBlue">&nbsp;${model.record.tupro}&nbsp;</font>
+							&nbsp;<font id="tuproTab" class="text14MediumBlue">&nbsp;${model.record.tupro}&nbsp;</font>
 						</c:when>
 						<c:otherwise>
-							&nbsp;<font id="tuproTab" class="text11Gray">&nbsp;</font>
+							&nbsp;<font id="tuproTab" class="text12Gray">&nbsp;</font>
 						</c:otherwise>
 					</c:choose>
 				</a>
@@ -220,7 +220,7 @@
 					<tr>
 					<td>
 					<%-- this is the datatables grid (content) --%>
-					<table id="workflowTrips" class="display compact cell-border" width="100%" >
+					<table id="workflowTrips" class="display compact cell-border">
 						<thead>
 						<tr class="tableHeaderField" height="20">
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
@@ -288,7 +288,7 @@
 			               <td align="center" class="text14 tableCellGray">
 			               		${record.tuavd}
 			               </td>
-			               <td nowrap align="left" style="width: 100px;" class="text11MediumBlue tableCellGray" id="htmlpost_${counter.count}">
+			               <td nowrap align="left" style="width: 100px;" class="textMediumBlue tableCellGray" id="htmlpost_${counter.count}">
 			               <%--OLD before upgrade to Spring 4 OBS:remove if the above is working
 			               	<td nowrap align="left" style="width: 100px;" class="text11MediumBlue tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@statusA_${record.turclose}@${counter.count}"> 
 			               --%>
@@ -297,7 +297,7 @@
 				               		<a id="alinkTripListId_${counter.count}" onClick="setBlockUI(this);" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&wssavd=${record.tuavd}&wstur=${record.tupro}">
 										<div style="line-height: 25px;line-width: 100px;" id="dtuavd${record.tuavd}_dtupro${record.tupro}_onlistA${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" > 
 										<img title="Trip planning" src="resources/images/math.png" width="14px" height="14px" border="0" alt="planning">
-										<font class="text11MediumBlue">${record.tupro}</font>
+										<font class="textMediumBlue">${record.tupro}</font>
 										</div>
 			            	       </a>
 			            	     
@@ -1415,18 +1415,18 @@
 			<div id="dialogSMS" title="Dialog">
 				 	<table>
 						<tr>
-							<td class="text12" align="left" >Send SMS med lenke til TKeventGrabber</td>
+							<td class="text14" align="left" >Send SMS med lenke til TKeventGrabber</td>
    						</tr>
    						<tr height="8"><td></td></tr>
 						<tr>
-							<td class="text12" align="left" >
+							<td class="text14" align="left" >
 								<b>SMS-nummer</b>&nbsp;<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
 							</td>
    						</tr>
 
 						<tr height="12"><td></td></tr>
 						<tr>
-							<td class="text12MediumBlue" align="left">
+							<td class="textMediumBlue" align="left">
 								Send status:&nbsp;<label id="smsStatus"></label>
 							</td>
 						</tr>

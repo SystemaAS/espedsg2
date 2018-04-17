@@ -59,7 +59,7 @@
 			
 		<tr>
 		<td >
-		<table border="0" width="99%" align="center">
+		<table border="0" width="100%" align="center">
 			<%--	
 			<tr>
 	 			<td >		
@@ -200,8 +200,8 @@
 							</td>
 						</tr> 
 						<tr>
-							<td class="ownScrollableSubWindow" style="width:99%; height:15em;">
-								<table width="100%" cellspacing="0" border="0" cellpadding="0">
+							<td class="ownScrollableSubWindowE2">
+								<table cellspacing="0" border="0" cellpadding="0">
 									<tr class="tableHeaderField" height="20" valign="left">
 										<td align="center" class="tableHeaderFieldFirst" >&nbsp;<span title="bukdm">M&nbsp;</span></td>
 									    <td align="center" class="tableHeaderField" >&nbsp;<span title="bust">S&nbsp;</span></td>   
@@ -226,15 +226,8 @@
 					               </tr> 
 					               
 				 					  <c:forEach items="${model.list}" var="record" varStatus="counter">    
-							               <c:choose>           
-							                   <c:when test="${counter.count%2==0}">
-							                   	   <%--highlight cost lines --%>	
-							                       <tr class="tableRow" height="20" >
-							                   </c:when>
-							                   <c:otherwise> 
-							                       <tr class="tableOddRow" height="20" >
-							                   </c:otherwise>
-							               </c:choose>
+							               <tr class="tableRow" height="20" >
+							               
 							               <td align="center" class="tableCellFirst" align="center">&nbsp;${record.bukdm}</td>
 							               <td align="center" class="tableCell" >&nbsp;<b class="text11Red">${record.bust}</b></td>
 							               <td class="tableCell" >&nbsp;
@@ -355,6 +348,7 @@
 			<%-- ------------------------------------------------- --%>
            	<%-- DETAIL Section - Create Item line PRIMARY SECTION --%>
            	<%-- ------------------------------------------------- --%>
+           	<tr height="10"><td ></td></tr>
            	<tr>
 	 			<td >
 	 				<form action="transportdisp_workflow_budget_edit.do" name="transportDispInvoiceUpdateItemForm" id="transportDispInvoiceUpdateItemForm" method="post">
@@ -369,7 +363,7 @@
 				 	<%-- <input type="hidden" name="numberOfItemLinesInTopic" id="numberOfItemLinesInTopic" value="${numberOfItemLinesInTopic}" /> --%>
 				 	
 				 	<%-- Topic ITEM CREATE --%>
-	 				<table width="99%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
+	 				<table width="100%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="15">
 				 			<td class="text12White" align="left" >
 				 				<b>&nbsp;&nbsp;V<label onClick="showPop('debugPrintlnAjaxItemFetchAdmin');" >a</label>relinje&nbsp;</b>
@@ -396,7 +390,7 @@
 			 				</td>
 		 				</tr>
 	 				</table>
-					<table width="99%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
+					<table width="100%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="12"><td class="text" align="left"></td></tr>
 				 		<tr>
 					 		<td>

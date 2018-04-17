@@ -70,7 +70,7 @@
 		
 		<tr >
 			<td height="23" class="tabThinBorderLightGreenLogoutE2" width="100%" align="left" colspan="3"> 
-    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
+    			 <table id="logoutTblArea" width="100%" border="0" cellspacing="0" cellpadding="0">
 				 	<tr >
 			    		<td class="text12" width="70%" align="left" >&nbsp;&nbsp;
 			    			<%-- --------------------------- --%>

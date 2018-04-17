@@ -2697,4 +2697,26 @@
 	  	  }
 	  });
   }	
+  
+  //--------------------------------
+  //INIT elements at a global level
+  //--------------------------------
+  jq(document).ready(function() {
+	    
+    //init economy-matrix draggable poput 
+	  showDialogFileUploadDraggable();
+	    
+  });
+  
+//draggable window
+  function showDialogFileUploadDraggable(){
+	  //jq( "#dialogDraggableMatrix" ).removeClass("popup");
+	  jq( "#dialogDraggableFileUpload" ).dialog({
+		  minHeight: 310,
+		  minWidth:380,
+		  position: { my: "right top", at: "right top", of: "#topTableLocal" }
+	  }); 
+	  jq( "#dialogDraggableFileUpload" ).focus();
+  }
+  
 

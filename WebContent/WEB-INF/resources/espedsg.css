@@ -75,7 +75,7 @@
 }
 
 .popupFloatingWithRoundCorners3D {
-	position:absolute; left:15; top:5; width:150;
+	position:absolute; left:10; top:5; width:110;
 	-webkit-border-top-right-radius: 5px;
 	-webkit-border-top-left-radius: 5px;
 	-moz-border-top-right-radius: 5px;
@@ -96,7 +96,7 @@
   	color:black;
    	z-index:2;  
 	font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     
 }
 
@@ -501,7 +501,11 @@
 }
 
 .inputFormSubmitStd{
-	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px 7px;
+	font-size: 14px;
 	cursor:pointer;
  }
 .inputFormSubmit{
@@ -509,7 +513,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color---Blue:#4169E1;
 	background-color:#3F9E4D;
 	color:#FFFFFF;
@@ -552,7 +556,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color:#CCCCCC;
 	color:#000000;
 	padding: 4px 7px;
@@ -588,7 +592,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	background-color:#CCCCCC;
 	color:#000000;
@@ -601,7 +605,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: bold;
 	background-color:#CCCCCC;
 	color:red;
@@ -615,7 +619,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color:#CCCCCC;
 	color:#000000;
 	padding: 4px 7px;
@@ -881,7 +885,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #000080;
@@ -912,6 +916,34 @@
 	outline: 0;
 	color: #000080;
 	text-transform:uppercase;
+}
+
+.inputTextMediumBlueMandatoryFieldUPPERCASE{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 4px 7px;
+	outline: 0;
+	color: #000080;
+	background-color:#FFFFFF;
+	border-style: solid; 
+    border-width: 1px 2px 2px 1px; 
+    border-color: #F79F81;
+    text-transform:uppercase;
+}
+
+.inputTextMediumBlue14Bold{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: bold;
+	padding: 4px 7px;
+	outline: 0;
+	color: #000080;
 }
 
 .inputTextMediumBlue11{
@@ -1289,7 +1321,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color:#CCCCCC;
 	color:#000000;
 	padding: 1px 2px;
@@ -1316,7 +1348,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	font-weight: normal;
 	background-color:#104E8B;
 	color:#FFFFFF;
@@ -1807,6 +1839,15 @@
     border-color:#DDDDDD
      
 }
+.tableCellRedFont{  
+    font-family: verdana, Arial, Helvetica, sans-serif; 
+    font-size: 14px;
+    color: red; 
+    border-style: solid; 
+    border-width: 0px 1px 1px 0px; 
+    border-color:#DDDDDD
+     
+}
 .tableCell11RedFont{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
     font-size: 11px;
@@ -1885,7 +1926,7 @@
 }
 .tableCellFirst{  
     font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 10px; 
+    font-size: 14px; 
     color: black;
     border-style: solid; 
     border-width: 0px 1px 1px 1px; 
@@ -2209,7 +2250,7 @@
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	font-family: verdana, Arial, Helvetica, sans-serif; 
-    font-size: 11px;  
+    font-size: 12px;  
     color: #4E78A0; 
     background-color:lightyellow;
     border-style: solid; 
