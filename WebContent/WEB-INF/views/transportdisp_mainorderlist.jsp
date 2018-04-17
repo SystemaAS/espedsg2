@@ -511,62 +511,62 @@
 	                <tbody >
 		            <c:forEach items="${listOpenOrders}" var="record" varStatus="counter">  
 		            <%-- Prebooking=hestn7: should be cathegorized with another color. In this case with warning color... --%>  
-		            <tr class="tex11" <c:if test="${not empty record.hestn7}"> style="background-color:#FEEFB3; color: #9F6000;"</c:if> >
+		            <tr class="tex14" <c:if test="${not empty record.hestn7}"> style="background-color:#FEEFB3; color: #9F6000;"</c:if> >
 		               <c:if test="${not empty searchFilter.tur}">
-                   			<td class="text12MediumBlue">&nbsp;
+                   			<td class="textMediumBlue">&nbsp;
 			           			<a onClick="setBlockUI(this)" href="transportdisp_mainorderlist_add_remove_order.do?user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}">
     		    					<img title="Add" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" hight="15" border="0" alt="add">
 		   						</a>
 		   					</td>
-		   					<td class="text12MediumBlue" ><input class="clazz_checkis_openorders" type="checkbox" id="checkis_openorders${counter.count}@user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}"></td>		
+		   					<td class="textMediumBlue" ><input class="clazz_checkis_openorders" type="checkbox" id="checkis_openorders${counter.count}@user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}"></td>		
             		   </c:if>
             		   
-            		   <td class="text12MediumBlue" style="width: 110px;" >
+            		   <td class="textMediumBlue" style="width: 110px;" >
 			           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
 			           		<c:choose>
 				           		<c:when test="${empty searchFilter.tur && not empty searchFilter.opd}">
 					           		<a style="cursor:pointer;" id="hepro_${record.hepro}@heavd_${record.heavd}@heopd_${record.heopd}@alinkOpenOrdersListId_${counter.count}" onClick="goToSpecificOrder(this);">
 		    		    				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
-		    		    				<font class="text12MediumBlue">${record.heavd}/${record.heopd}</font>
+		    		    				<font class="textMediumBlue">${record.heavd}/${record.heopd}</font>
 		    		    			</a>
 	    		    			</c:when>
 	    		    			<c:otherwise>
 	    		    				<a style="cursor:pointer;" id="hepro_${searchFilter.tur}@heavd_${record.heavd}@heopd_${record.heopd}@alinkOpenOrdersListId_${counter.count}" onClick="goToSpecificOrder(this);">
 		    		    				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
-		    		    				<font class="text12MediumBlue">${record.heavd}/${record.heopd}</font>
+		    		    				<font class="textMediumBlue">${record.heavd}/${record.heopd}</font>
 		    		    			</a>
 	    		    			</c:otherwise>
     		    			</c:choose>
     		    			</div>
 			           </td>
 			           <c:if test="${empty searchFilter.tur}">
-				           <td class="text12MediumBlue">
+				           <td class="textMediumBlue">
 				           		<%-- Drag and drop handle (when being source) --%>
 			 			  		 &nbsp;<img title="Drag to target..." style="vertical-align:middle;cursor:pointer;" src="resources/images/icon_drag_drop.png" width="25px" height="25px" border="0" alt="edit" draggable="true" ondragstart="drag(event)" id="avd_${record.heavd}@opd_${record.heopd}@tripnr_@${counter.count}">
 						   </td>
 					   </c:if>							 		
-			           <td align="center" class="text12MediumBlue">&nbsp;${record.heot}</td>
-		               <td align="center" class="text12MediumBlue">&nbsp;${record.hesg}</td>
+			           <td align="center" class="textMediumBlue">&nbsp;${record.heot}</td>
+		               <td align="center" class="textMediumBlue">&nbsp;${record.hesg}</td>
 		               <c:if test="${empty searchFilter.tur && not empty searchFilter.opd}">
-							<td class="text12MediumBlue">&nbsp;${record.hepro}</td>	
+							<td class="textMediumBlue">&nbsp;${record.hepro}</td>	
 	                   </c:if>
-		               <td style="width: 110px;" class="text12MediumBlue">&nbsp;${record.henas}</td>
-		               <td style="width: 110px;" class="text12MediumBlue">&nbsp;${record.helka}-${record.heads3}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.trsdfd}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.trsdfk}</td>
-		               <td style="width: 110px;" class="text12MediumBlue">&nbsp;${record.henak}</td>
-		               <td style="width: 110px;" class="text12MediumBlue">&nbsp;${record.hetri}-${record.headk3}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.trsdtd}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.trsdtk}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.hevs1}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.hent}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.hevkt}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.hem3}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.helm}</td>
-		               <td class="text12MediumBlue">&nbsp;${record.herfa}</td>
+		               <td style="width: 110px;" class="textMediumBlue">&nbsp;${record.henas}</td>
+		               <td style="width: 110px;" class="textMediumBlue">&nbsp;${record.helka}-${record.heads3}</td>
+		               <td class="textMediumBlue">&nbsp;${record.trsdfd}</td>
+		               <td class="textMediumBlue">&nbsp;${record.trsdfk}</td>
+		               <td style="width: 110px;" class="textMediumBlue">&nbsp;${record.henak}</td>
+		               <td style="width: 110px;" class="textMediumBlue">&nbsp;${record.hetri}-${record.headk3}</td>
+		               <td class="textMediumBlue">&nbsp;${record.trsdtd}</td>
+		               <td class="textMediumBlue">&nbsp;${record.trsdtk}</td>
+		               <td class="textMediumBlue">&nbsp;${record.hevs1}</td>
+		               <td class="textMediumBlue">&nbsp;${record.hent}</td>
+		               <td class="textMediumBlue">&nbsp;${record.hevkt}</td>
+		               <td class="textMediumBlue">&nbsp;${record.hem3}</td>
+		               <td class="textMediumBlue">&nbsp;${record.helm}</td>
+		               <td class="textMediumBlue">&nbsp;${record.herfa}</td>
 		               <td align="center" class="text11RedBold">&nbsp;${record.hestn7}</td>
 		               <td align="center" class="tableCell11RedFont">&nbsp;${record.hepoen}</td>
-		               <td width="2%" align="center" class="text12MediumBlue">
+		               <td width="2%" align="center" class="textMediumBlue">
 		               		<c:if test="${not empty record.interninfo}">
 			               		<img onMouseOver="showPop('imText_info${counter.count}');" onMouseOut="hidePop('imText_info${counter.count}');" style="vertical-align:bottom;" src="resources/images/info4.png" width="12" height="12" border="0" alt="Internmelding">
 			               		
@@ -581,12 +581,12 @@
 							</c:if>
 		               </td>
 		               
-		               <td align="center" class="text12MediumBlue">
+		               <td align="center" class="textMediumBlue">
 	           		   		<a target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}&wstoll=${record.dftoll}">
   		    					<img title="Fraktbr.PDF" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Fraktbr. PDF">
    							</a>
             		   </td>
-            		   <td align="center" class="text12MediumBlue">
+            		   <td align="center" class="textMediumBlue">
             		  	 	<a sytle="cursor:pointer;" id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
 			               		<img src="resources/images/delete.gif" border="0" alt="remove">
 			               	</a>&nbsp;
@@ -594,7 +594,7 @@
 					   </td>
 					   
 					   
-					   <td align="center" class="text12MediumBlue">
+					   <td align="center" class="textMediumBlue">
 		               		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
 								<img src="resources/images/copy.png" border="0" alt="copy">
 							</a>
@@ -621,7 +621,7 @@
 							
 		               </td>
 		               
-		               <td align="center" class="text12MediumBlue">
+		               <td align="center" class="textMediumBlue">
 		               		<a title="move" class="moveLink" id="moveLink${counter.count}" runat="server" href="#">
 								<img src="resources/images/move.png" width="18" height="18" border="0" alt="move">
 							</a>
@@ -861,7 +861,7 @@
 
 						<tr height="12"><td></td></tr>
 						<tr>
-							<td class="text12MediumBlue" align="left">
+							<td class="textMediumBlue" align="left">
 								Send status:&nbsp;<label id="smsStatus"></label>
 							</td>
 						</tr>
