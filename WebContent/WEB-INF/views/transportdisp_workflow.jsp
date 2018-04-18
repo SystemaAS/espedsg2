@@ -32,11 +32,11 @@
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
 	</style>
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
 	<tr>
 	<td>
 	<%-- tab container component --%>
-	<table width="100%"  class="text11" cellspacing="0" border="0" cellpadding="0">
+	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
 			<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -308,7 +308,7 @@
 				               </c:choose>
 			               </td>
 			               	
-			               <td style="width: 50px;" align="center" nowrap style="cursor:pointer;" class="text11 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
+			               <td style="width: 50px;" align="center" nowrap style="cursor:pointer;" class="text14 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
 			               		<div style="line-height: 25px;line-width: 50px;" id="dtuavd${record.tuavd}_dtupro${record.tupro}_onlist${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
 			               		&nbsp;&nbsp;<img title="Edit trip ${record.tupro}" style="vertical-align:middle;cursor:pointer;" src="resources/images/update.gif" border="0" alt="edit">
 			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
@@ -352,7 +352,7 @@
 	            		   	</c:if>
 	            		   </td>
 	            		   <td class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
-	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.turund}</td>
+	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.turund}</td>
 	            		   
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>

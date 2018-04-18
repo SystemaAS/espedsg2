@@ -97,7 +97,7 @@
 	 				<%-- MASTER Topic header --%>
 	 				<table width="80%" align="left" class="formFrameHeaderTransparent" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="15">
-				 			<td class="text12MediumBlue">
+				 			<td class="textMediumBlue">
 				 				&nbsp;Avd./Oppd.nr:&nbsp;<b>${recordOrderTransportDisp.heavd}/${recordOrderTransportDisp.heopd}</b>
 				 				&nbsp;&nbsp;Tur.:&nbsp;<b>${model.parentTrip}</b>
 				 				<%--&nbsp;&nbsp;Prod.kode:&nbsp;<b>${Xmodel.todo}</b> --%>
@@ -113,44 +113,44 @@
 					 		<td width="45%">
 						 		<table width="100%" border="0" cellspacing="1" cellpadding="1">
 						 			<tr>
-							            <td class="text11Bold" align="left" >Selger</td>
-							            <td class="text11" align="left">Fakturapart&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.heknsf}&nbsp;${recordOrderTransportDisp.henasf}</td>
+							            <td class="text12Bold" align="left" >Selger</td>
+							            <td class="text12" align="left">Fakturapart&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.heknsf}&nbsp;${recordOrderTransportDisp.henasf}</td>
 							        </tr>
 							 		<tr>
-										<td class="text11" align="left" >&nbsp;&nbsp;</td>
-							            <td class="text11" align="left">Avt.kunr.&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.avtknrs}&nbsp;${recordOrderTransportDisp.avtknavs}</td>
+										<td class="text12" align="left" >&nbsp;&nbsp;</td>
+							            <td class="text12" align="left">Avt.kunr.&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.avtknrs}&nbsp;${recordOrderTransportDisp.avtknavs}</td>
 							        </tr>
 							        <tr>
-							        	<td class="text11Bold" align="left" >Kjøpers</td>
-							            <td class="text11" align="left">Fakturapart&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.heknkf}&nbsp;${recordOrderTransportDisp.henakf}</td>
+							        	<td class="text12Bold" align="left" >Kjøpers</td>
+							            <td class="text12" align="left">Fakturapart&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.heknkf}&nbsp;${recordOrderTransportDisp.henakf}</td>
 							        </tr>
 							       <tr>
-										<td class="text11" align="left" >&nbsp;&nbsp;</td>
-							            <td class="text11" align="left">Avt.kunr&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.avtknrk}&nbsp;${recordOrderTransportDisp.avtknavk}</td>
+										<td class="text12" align="left" >&nbsp;&nbsp;</td>
+							            <td class="text12" align="left">Avt.kunr&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.avtknrk}&nbsp;${recordOrderTransportDisp.avtknavk}</td>
 							        </tr>
 			        	        </table>
 					        </td>
 					        <td width="27%">
 						 		<table width="100%" border="0" cellspacing="1" cellpadding="0">
 							 		<tr>
-							            <td width="30%" class="text11" align="left">Sign.&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.hesg}</td>
+							            <td width="30%" class="text12" align="left">Sign.&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.hesg}</td>
 							        </tr>
 							        <tr>
-							            <td width="30%" class="text11" align="left">Dato/Per&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${XrecordTopicTODO.sinak}</td>
+							            <td width="30%" class="text12" align="left">Dato/Per&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${XrecordTopicTODO.sinak}</td>
 							        </tr>
 									<tr>
-							            <td width="30%" class="text11" align="left">Godsnr.&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${XrecordTopicTODO.siadk1}</td>
+							            <td width="30%" class="text12" align="left">Godsnr.&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${XrecordTopicTODO.siadk1}</td>
 							        </tr>
 							        <tr>
-							            <td width="30%" class="text11" align="left">Oppd.type / Frank.&nbsp;&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.heot} / ${recordOrderTransportDisp.hefr}</td>
+							            <td width="30%" class="text12" align="left">Oppd.type / Frank.&nbsp;&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.heot} / ${recordOrderTransportDisp.hefr}</td>
 							        </tr>
 							        
 			        	        </table>
@@ -158,20 +158,20 @@
 					        <td width="27%">
 						 		<table width="100%" border="0" cellspacing="1" cellpadding="0">
 						 			<tr>
-							            <td width="30%" class="text11" align="left">Avs.ref.&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.herfa}</td>
+							            <td width="30%" class="text12" align="left">Avs.ref.&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.herfa}</td>
 							        </tr>
 							        <tr>
-							            <td width="30%" class="text11" align="left">Mott.ref&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.herfk}</td>
+							            <td width="30%" class="text12" align="left">Mott.ref&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.herfk}</td>
 							        </tr>
 							 		<tr>
-							            <td width="30%" class="text11" align="left">Vekt/M3/Lm&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.hevkt}/${recordOrderTransportDisp.hem3}/${recordOrderTransportDisp.helm}</td>
+							            <td width="30%" class="text12" align="left">Vekt/M3/Lm&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.hevkt}/${recordOrderTransportDisp.hem3}/${recordOrderTransportDisp.helm}</td>
 							        </tr>
 							        <tr>
-							            <td width="30%" class="text11" align="left">Tilleggsg&nbsp;</td>
-							           	<td class="text11MediumBlue" align="left">${recordOrderTransportDisp.hestn1}${recordOrderTransportDisp.hestn2}${recordOrderTransportDisp.hestn3}${recordOrderTransportDisp.hestn4}${recordOrderTransportDisp.hestn5}
+							            <td width="30%" class="text12" align="left">Tilleggsg&nbsp;</td>
+							           	<td class="text12MediumBlue" align="left">${recordOrderTransportDisp.hestn1}${recordOrderTransportDisp.hestn2}${recordOrderTransportDisp.hestn3}${recordOrderTransportDisp.hestn4}${recordOrderTransportDisp.hestn5}
 							     			&nbsp;&nbsp;&nbsp;<c:if test="${recordOrderTransportDisp.hestn6 == 'P'}">Protected</c:if>
 							     		</td>      	
 							        </tr>
@@ -208,7 +208,7 @@
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<img onMouseOver="showPop('lineTypes_info');" onMouseOut="hidePop('lineTypes_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 											Type
-							 				<select class="text11" id="linType" name="linType">
+							 				<select class="inputTextMediumBlue" class="text12" id="linType" name="linType">
 						           				<option value="A" <c:if test="${model.container.type == 'A'}"> selected </c:if> >Alle</option>
 						           				<option value="I" <c:if test="${model.container.type == 'I'}"> selected </c:if> >Inntektslinj.</option>
 						           				<option value="O" <c:if test="${model.container.type == 'O'}"> selected </c:if> >Åpne inntektslinj.</option>
@@ -224,7 +224,7 @@
 								           			<font id="readyMarkInvoice" class="text12MediumBlue"></font>
 								           		</c:otherwise>
 							           		</c:choose>
-							           		<div class="text11" style="position: relative;" align="left">
+							           		<div class="text12" style="position: relative;" align="left">
 											<span style="position:absolute; left:0px; top:0px;" id="lineTypes_info" class="popupWithInputText"  >
 												<font class="text11">
 							           			<b>Linjetyper</b>
@@ -437,7 +437,7 @@
 							               <td class="tableCell" >&nbsp;${record.peri}</td>
 							               <td class="tableCell" >&nbsp;${record.fajour}</td>
 							               <td class="tableCell" >&nbsp;${record.faaccn}</td>
-							               <td class="tableCellOnlyBottomBorder" align="right"><font class="text11MediumBlue">${record.fakunr}</font>&nbsp;</td>
+							               <td class="tableCellOnlyBottomBorder" align="right"><font class="text12MediumBlue">${record.fakunr}</font>&nbsp;</td>
 					               		   <td class="tableCell" align="left">&nbsp;${record.knavn}</td>
 							               	
 							               <td class="tableCell" >&nbsp;${record.fabelu}</td>
@@ -569,7 +569,7 @@
 						 		<table  class="tableBorderWithRoundCornersGray" width="100%" border="0" cellspacing="0" cellpadding="0">
 						 			<tr height="5"><td class="text" align="left"></td></tr>
 						 			<tr >
-							 			<td class="text12" align="left">&nbsp;&nbsp;
+							 			<td class="text14" align="left">&nbsp;&nbsp;
 							 			<img onMouseOver="showPop('sk_info');" onMouseOut="hidePop('sk_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 			<span title="fask">SK</span>
 							           	</td>
@@ -601,12 +601,12 @@
 											</span>
 										</div>
 							           	
-							            <td class="text12" align="left"><span title="favk">&nbsp;Geb.</span>
+							            <td class="text14" align="left"><span title="favk">&nbsp;Geb.</span>
 							            	<a tabindex=-1 id="favkIdLink" >
 	 											<img id="imgGebyrCodesSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 							            </td>
-							            <td class="text12" align="left"><span title="wtnr">
+							            <td class="text14" align="left"><span title="wtnr">
 							            	<img onMouseOver="showPop('tnr_info');" onMouseOut="hidePop('tnr_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				Tnr.</span>
 							 			</td>
@@ -622,20 +622,20 @@
 											</span>
 											</div>
 							            
-							            <td class="text12" align="left"><span title="fabelv">&nbsp;Val.beløp</span></td>
-					            		<td class="text12" align="left"><span title="faval">&nbsp;Valuta</span></td>
-					            		<td class="text12" align="left"><span title="fakdm">&nbsp;MVA&nbsp;</span></td>
-						            	<td class="text12" align="left"><span title="faVT/stdVt">&nbsp;Fritekst&nbsp;</span></td>
-						            	<td class="text12" align="left"><span title="wantall">&nbsp;Antall&nbsp;</span></td>
-						            	<td class="text12" align="left"><span title="fakunr">&nbsp;Kunde</span>
+							            <td class="text14" align="left"><span title="fabelv">&nbsp;Val.beløp</span></td>
+					            		<td class="text14" align="left"><span title="faval">&nbsp;Valuta</span></td>
+					            		<td class="text14" align="left"><span title="fakdm">&nbsp;MVA&nbsp;</span></td>
+						            	<td class="text14" align="left"><span title="faVT/stdVt">&nbsp;Fritekst&nbsp;</span></td>
+						            	<td class="text14" align="left"><span title="wantall">&nbsp;Antall&nbsp;</span></td>
+						            	<td class="text14" align="left"><span title="fakunr">&nbsp;Kunde</span>
 							            	<a tabindex=-1 href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_customer.do?action=doInit&ctype=il','customerWin','top=300px,left=50px,height=800px,width=900px,scrollbars=no,status=no,location=no')">
 	 											<img id="imgAgentSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 							            </td>
 						            	
-						            	<td class="text12" align="left"><span title="wkurs">&nbsp;Kurs&nbsp;</span></td>
-						            	<td class="text12" align="left"><span title="faavdr">&nbsp;&nbsp;&nbsp;Avd(I)</span></td>
-						            	<td class="text12" align="left" ><span title="fadocnB">&nbsp;Opd(I)</span></td>
+						            	<td class="text14" align="left"><span title="wkurs">&nbsp;Kurs&nbsp;</span></td>
+						            	<td class="text14" align="left"><span title="faavdr">&nbsp;&nbsp;&nbsp;Avd(I)</span></td>
+						            	<td class="text14" align="left" ><span title="fadocnB">&nbsp;Opd(I)</span></td>
 							        </tr>
 							        <tr>
 						        		<td align="left">&nbsp;
@@ -669,10 +669,10 @@
 												</c:forEach>
 											</select>
 										</td>
-										<td class="text12" align="left">
+										<td class="text14" align="left">
 						            		<input type="text" class="inputText" name="wtnr" id="wtnr" size="5" maxlength="5" value="${model.record.wtnr}">
 							            </td>
-							            <td class="text12" align="left">
+							            <td class="text14" align="left">
 						            		<input type="text" onKeyPress="return amountKey(event)" class="inputTextMediumBlueMandatoryField" name="fabelv" id="fabelv" size="8" maxlength="8" value="${model.record.fabelv}">
 							            </td>
 										<td align="left" nowrap valign="middle">
@@ -683,7 +683,7 @@
 												</c:forEach> 
 											</select>
 										</td>
-						        		<td class="text12" align="left" valign="middle">
+						        		<td class="text14" align="left" valign="middle">
 						            		<select class="inputTextMediumBlueMandatoryField" id="fakdm" name="fakdm">
 						            			<option value="">-select-</option>
 						            			<c:choose>
@@ -698,7 +698,7 @@
 						           				</c:choose>
 							           		</select>
 						            	</td>
-							            <td class="text12" align="left" >
+							            <td class="text14" align="left" >
 							            	<input type="text" class="inputText" name="faVT" id="faVT" size="21" maxlength="20" value="${model.record.faVT}">
 							            	<%--
 							            	<input type="hidden" name="stdVt" id="stdVt" value="${model.record.stdVt}">
@@ -713,15 +713,15 @@
 							            	 --%>
 						            	</td>
 							            
-							            <td class="text12" align="left" ><input type="text" class="inputText" onKeyPress="return numberKey(event)" name="wantall" id="wantall" size="5" maxlength="5" value="${model.record.wantall}"></td>
-							            <td class="text12" align="left">
+							            <td class="text14" align="left" ><input type="text" class="inputText" onKeyPress="return numberKey(event)" name="wantall" id="wantall" size="5" maxlength="5" value="${model.record.wantall}"></td>
+							            <td class="text14" align="left">
 						            		<input type="text" class="inputText" onKeyPress="return numberKey(event)" name="fakunr" id="fakunr" size="9" maxlength="8" value="${model.record.fakunr}">
 							            </td>
-							            <td class="text12" align="left" ><input type="text" class="inputText" onKeyPress="return amount(event)" name="wkurs" id="wkurs" size="6" maxlength="8" value="${model.record.wkurs}"></td>
-							            <td class="text12">&nbsp;
+							            <td class="text14" align="left" ><input type="text" class="inputText" onKeyPress="return amount(event)" name="wkurs" id="wkurs" size="6" maxlength="8" value="${model.record.wkurs}"></td>
+							            <td class="text14">&nbsp;
 						        			<input type="text" class="inputText" name="faavdr" id="faavdr" size="5" maxlength="4" value="${model.record.faavdr}">
 						        		</td>
-						        		<td class="text12" align="left" >
+						        		<td class="text14" align="left" >
 						        			<input type="text" class="inputText" name="fadocnB" id="fadocnB" size="7" maxlength="7" value="${model.record.fadocnB}">
 						        		</td>
 						        		
@@ -729,27 +729,27 @@
 							        <tr height="12"><td class="text" align="left" colspan="20"><hr></td></tr>
 							        <tr height="3"><td class="text" align="left"></td></tr>
 							        <tr>
-							 			<td class="text12" align="left" >&nbsp;
+							 			<td class="text14" align="left" >&nbsp;
 							            	<img onMouseOver="showPop('utgift_info');" onMouseOut="hidePop('utgift_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<span title="fakduk/facu33/fabelu">Utgift</span>
 							 				
 							            </td>
-							            <td class="text12" align="left" >&nbsp;Utgift-Valuta</td>
-							            <td class="text12" align="left" >&nbsp;Utgift-Kost.beløp</td>
-							            <td class="text12" align="left"><span title="falevn">&nbsp;Leverandør</span>
+							            <td class="text14" align="left" >&nbsp;Utgift-Valuta</td>
+							            <td class="text14" align="left" >&nbsp;Utgift-Kost.beløp</td>
+							            <td class="text14" align="left"><span title="falevn">&nbsp;Leverandør</span>
 						            		<a tabindex=-1 id="falevnIdLink" >
 	 											<img id="imgSupplierSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 						            	</td>
-						            	<td class="text12" align="left" ><span title="lnavn">&nbsp;Lev.navn</span></td>
+						            	<td class="text14" align="left" ><span title="lnavn">&nbsp;Lev.navn</span></td>
 							            <td>
 							            	<table>
 							            	<tr>
-							            		<td class="text12" align="left"><span title="wkomp">&nbsp;
+							            		<td class="text14" align="left"><span title="wkomp">&nbsp;
 								            		<img onMouseOver="showPop('komp_info');" onMouseOut="hidePop('komp_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								            		Komp.</span>
 							            		</td>
-							            		<td class="text12" align="left"><span title="facd11">&nbsp;&nbsp;&nbsp;
+							            		<td class="text14" align="left"><span title="facd11">&nbsp;&nbsp;&nbsp;
 								            		<img onMouseOver="showPop('sam_info');" onMouseOut="hidePop('sam_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								            		Sam.</span>
 								            	</td>
@@ -834,8 +834,8 @@
 					            			
 							        </tr>
 							        <tr>
-							        	<td class="text12">&nbsp;
-						        			<select name="fakduk" id="fakduk">
+							        	<td class="text14">&nbsp;
+						        			<select class="inputTextMediumBlue" name="fakduk" id="fakduk">
 						 						<option value=" ">-blank-</option>
 							 				  	<option value="B" <c:if test="${model.record.fakduk == 'B'}"> selected </c:if> >B</option>
 							 				  	<option value="N" <c:if test="${model.record.fakduk == 'N'}"> selected </c:if> >N</option>
@@ -844,30 +844,30 @@
 							 				  	<option value="H" <c:if test="${model.record.fakduk == 'H'}"> selected </c:if> >H</option>
 											</select>
 										</td>
-										<td class="text12">	
-						        			<select name="facu33" id="facu33">
+										<td class="text14">	
+						        			<select class="inputTextMediumBlue" name="facu33" id="facu33">
 						 						<option value="">-valuta-</option>
 							 				  	<c:forEach var="currency" items="${model.currencyCodeList}" >
 							 				  		<option value="${currency}"<c:if test="${model.record.facu33 == currency || (empty model.record.facu33 && currency=='NOK')}"> selected </c:if> >${currency}</option>
 												</c:forEach> 
 											</select>
 										</td>
-										<td class="text12">	
+										<td class="text14">	
 						        			<input type="text" class="inputText" onKeyPress="return amountKey(event)" name="fabelu" id="fabelu" size="15" maxlength="14" value="${model.record.fabelu}">
 										</td>
-										<td class="text12" align="left" >
+										<td class="text14" align="left" >
 											<input type="text" class="inputText" name="falevn" id="falevn" size="9" maxlength="8" value="${model.record.falevn}">
 										</td>
-							            <td class="text12" align="left" >
+							            <td class="text14" align="left" >
 											<input type="text" class="inputText" name="lnavn" id="lnavn" size="20" maxlength="35" value="${model.record.lnavn}">
 										</td>
 							            <td>
 							            	<table>
 							            	<tr>
-												<td class="text12" align="left" nowrap>
+												<td class="text14" align="left" nowrap>
 									            	<input type="text" class="inputText" name="wkomp" id="wkomp" size="5" maxlength="5" value="${model.record.wkomp}">
 												</td>
-								        		<td class="text12" align="left">
+								        		<td class="text14" align="left">
 								            		<input type="text" class="inputText" name="facd11" id="facd11" size="5" maxlength="5" value="${model.record.facd11}">
 								            	</td>
 					            			</tr>

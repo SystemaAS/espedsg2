@@ -192,11 +192,11 @@
            	<%-- DETAIL Section - Create Item line PRIMARY SECTION --%>
            	<%-- ------------------------------------------------- --%>
            	<tr>
-	 			<td class="text12" align="left" >
+	 			<td class="text14" align="left" >
 					<input tabindex=-1  class="inputFormSubmitStd" type="button" name="newRecordButton" id="newRecordButton" value='Lage ny'>
 				</td>
 			</tr>
-			<tr height="5"><td class="text12" align="left" ></td></tr>
+			<tr height="5"><td class="text14" align="left" ></td></tr>
            	<tr>
 	 			<td >
 	 				<form action="transportdisp_workflow_frisokvei_edit.do" name="transportDispInvoiceUpdateItemForm" id="transportDispInvoiceUpdateItemForm" method="post">
@@ -215,7 +215,7 @@
 	 				<table width="90%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 	 					
 				 		<tr height="15">
-				 			<td class="text12White" align="left" >
+				 			<td class="text14White" align="left" >
 				 				<b>&nbsp;&nbsp;Varelinje&nbsp;</b>
  								<img onClick="showPop('updateInfo');" src="resources/images/update.gif" border="0" alt="edit">&nbsp;&nbsp;<font id="editLineNr"></font>
 			 				</td>
@@ -229,17 +229,17 @@
 						 			<tr height="5"><td class="text" align="left"></td></tr>
 						 			<tr >
 						 				
-						            	<td class="text12" align="left">&nbsp;<font class="text14RedBold" >*</font><span title="fskode">&nbsp;Kode</span>
+						            	<td class="text14" align="left">&nbsp;<font class="text14RedBold" >*</font><span title="fskode">&nbsp;Kode</span>
 							            	<a tabindex=-1 id="fskodeIdLink">
 	 											<img id="imgFrisokveiCodesSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 							            </td>
-							            <td class="text12" align="left">&nbsp;<font class="text14RedBold" >*</font><span title="fssok">&nbsp;Søketekst/Verdi</span>
+							            <td class="text14" align="left">&nbsp;<font class="text14RedBold" >*</font><span title="fssok">&nbsp;Søketekst/Verdi</span>
 							            	<a tabindex=-1 id="fsverdiIdLink">
 	 											<img id="imgFrisokveiDocCodesGiltighetslistSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 							            </td>
-					            		<td class="text12" align="left">&nbsp;<span title="fsdokk">&nbsp;Dok.kode</span>
+					            		<td class="text14" align="left">&nbsp;<span title="fsdokk">&nbsp;Dok.kode</span>
 					            			<a tabindex=-1 id="fsdokkIdLink">
 	 											<img id="imgFrisokveiDocCodesSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
@@ -247,11 +247,11 @@
 					            		
 							        </tr>
 							        <tr>
-						        		<td class="text12" align="left" >&nbsp;<input type="text" class="inputTextMediumBlueMandatoryField" name="fskode" id="fskode" size="4" maxlength="3" value="${model.record.fskode}"></td>
-							            <td class="text12" align="left" >
+						        		<td class="text14" align="left" >&nbsp;<input type="text" class="inputTextMediumBlueMandatoryField" name="fskode" id="fskode" size="4" maxlength="3" value="${model.record.fskode}"></td>
+							            <td class="text14" align="left" >
 						        			&nbsp;<input type="text" class="inputTextMediumBlueMandatoryField" name="fssok" id="fssok" size="36" maxlength="35" value="${model.record.fssok}">
 						        		</td>
-						        		<td class="text12" align="left" >&nbsp;<input type="text" class="inputTextMediumBlue" name="fsdokk" id="fsdokk" size="11" maxlength="10" value="${model.record.fsdokk}"></td>
+						        		<td class="text14" align="left" >&nbsp;<input type="text" class="inputTextMediumBlue" name="fsdokk" id="fsdokk" size="11" maxlength="10" value="${model.record.fsdokk}"></td>
 							            
 							        </tr>
 							        

@@ -20,11 +20,11 @@
 	</style>
 	
 
-<table width="100%"  class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 	<tr>
 	<td>
 	<%-- tab container component --%>
-	<table width="100%"  class="text11" cellspacing="0" border="0" cellpadding="0">
+	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
 			<c:choose>
@@ -218,7 +218,7 @@
 					           		<c:choose>
 					           		<c:when test="${record.ttstat=='Levert' || record.ttstat=='Urørt' || record.ttstat=='Hentet' }">
 						           		<c:if test="${record.ttstat=='Levert'}" >   
-						           			<td align="center" class="text11 tableCellGray" >
+						           			<td align="center" class="text14 tableCellGray" >
 							           			<font class="inputText11" style="background-color: #DFF2BF;color: #4F8A10;" onMouseOver="showPop('delivered_info${counter.count}');" onMouseOut="hidePop('delivered_info${counter.count}');">${record.ttstat}</font>
 							           			<div class="text11" style="position: relative;" align="left">
 													<span style="position:absolute; left:15px; top:2px;" id="delivered_info${counter.count}" class="popupWithInputText"  >

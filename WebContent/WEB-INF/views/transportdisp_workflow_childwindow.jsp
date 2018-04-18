@@ -30,11 +30,11 @@
 	
 	</style>
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
 	<tr>
 	<td>
 	<%-- tab container component --%>
-	<table width="100%"  class="text11" cellspacing="0" border="0" cellpadding="0">
+	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -61,7 +61,7 @@
         		
 	 	        <table style="width:99%;">
 	 	        <tr>	
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;
                 		<img onMouseOver="showPop('dpts_info');" onMouseOut="hidePop('dpts_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
                 		<span title="wssavd"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></span>
 		 				<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=150px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
@@ -87,20 +87,20 @@
 		           			</font>
 						</span>
 					</div>
-					<td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtusg"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtubiln"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtustef"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/></span></td>
-	                <td valign="bottom" class="text12" align="left" >
+					<td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtusg"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtubiln"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtustef"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >
 	                		&nbsp;&nbsp;&nbsp;<span title="wtudt/wtudt2"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/></span>
 	                		<img src="resources/images/calendar.gif" height="12px" width="12px" border="0" alt="date">
                 	</td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/></td>
-	                <td valign="bottom" class="text12" align="left" >
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/></td>
+	                <td valign="bottom" class="text14" align="left" >
 	                		&nbsp;&nbsp;&nbsp;<span title="wtudtt/wtudtt2"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/></span>
 	                		<img src="resources/images/calendar.gif" height="12px" width="12px" border="0" alt="date">
 	                </td>
-	                <td valign="bottom" class="text12" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
+	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
 	                <td>&nbsp;</td>
 				</tr>
 				<tr>			       
@@ -127,8 +127,8 @@
 						-<input type="text" class="inputTextMediumBlue" name="wtudtt2" id="wtudtt2" size="9" maxlength="8" value='${searchFilter.wtudtt2}'>
 						
 					</td>
-					<td class="text11" align="left" >
-						<select class="inputText" name="wssst" id="wssst">
+					<td class="text14" align="left" >
+						<select class="inputTextMediumBlue"  name="wssst" id="wssst">
 								<option value="" <c:if test="${searchFilter.wssst == ''}"> selected </c:if> >Åpne</option>
 								<option value="A" <c:if test="${searchFilter.wssst == 'A'}"> selected </c:if> >A-Stengde</option>
 			            		<option value="B" <c:if test="${searchFilter.wssst == 'B'}"> selected </c:if> >B-Underveis</option>
@@ -200,52 +200,52 @@
 					<table id="workflowTrips" class="display compact cell-border" width="100%" >
 						<thead>
 						<tr class="tableHeaderField" height="20">
-							<th class="text12">Pluk.&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
-		                    <th class="text12"><span title="Trip">
+							<th class="text14">Pluk.&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
+		                    <th class="text14"><span title="Trip">
 		                    		<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" width="15px" height="15px" border="0" alt="lorry no.">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/>
 		                    		</span>
                     		</th>
-                    		<th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
-						    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
-						    <th class="text12" nowrap><span title="postal code">
+                    		<th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
+						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
+						    <th class="text14" nowrap><span title="postal code">
 			                    	<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 			                    	<spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/>
 			                    	</span>
 			                </th>
-		                    <th class="text12">
+		                    <th class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
 	                    	</th>
-   		                    <th class="text12">
+   		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
    		            		</th> 
-		                    <th class="text12" nowrap><span title="postal code">
+		                    <th class="text14" nowrap><span title="postal code">
 	                    		<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/>
 	                    		</span>
 		                    </th>
-		                    <th class="text12">
+		                    <th class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
                     		</th>
-   		                    <th class="text12">
+   		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;Status&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;Status&nbsp;</th>
 		                    <!-- 
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
-		                    <th class="text12">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
 		                     -->
 		                </tr> 
 		                </thead>
@@ -253,14 +253,14 @@
 		                 <c:forEach items="${list}" var="record" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11 tableRow" >
+			                       <tr class="text14 tableRow" >
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11 tableRow" >
+			                       <tr class="text14 tableRow" >
 			                   </c:otherwise>
 			               </c:choose>
 			               
-			               <td align="center" class="text11 tableCellGray">
+			               <td align="center" class="text14 tableCellGray">
 			               		<c:choose>
 				               <c:when test="${record.turclose=='close'}">  
 			        		       <a id="alinkTripListId_tupro${record.tupro}_avd${record.tuavd}_opd${model.opd}" onClick="setTripOnOrder(this);" style="display:block;" >
@@ -273,12 +273,12 @@
 				               </c:choose>
 			               </td>
 			               
-			               <td align="center" class="text11 tableCellGray">${record.tuavd}</td>
-			               <td align="center" style="width: 100px;" class="text11MediumBlue tableCellGray"><font class="text11MediumBlue">${record.tupro}</font></td>	
-			               <td class="text11 tableCellGray">&nbsp;${record.tusg}</td>
-			               <td class="text11 tableCellGray">&nbsp;${record.tubiln}</td>
-			               <td class="text11 tableCellGray">&nbsp;${record.tuopdt}</td>
-			               <td align="center" class="text11 tableCellGray" >
+			               <td align="center" class="text14 tableCellGray">${record.tuavd}</td>
+			               <td align="center" style="width: 100px;" class="textMediumBlue tableCellGray"><font class="textMediumBlue">${record.tupro}</font></td>	
+			               <td class="text14 tableCellGray">&nbsp;${record.tusg}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
+			               <td align="center" class="text14 tableCellGray" >
 			               	<c:if test="${not empty record.pdaStat}">
 				               <c:choose>
 					               <c:when test="${record.pdaStat=='inWork'}">
@@ -297,29 +297,29 @@
 					           </c:choose> 
 				           </c:if>   
 			               </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tustef}</td>
-	            		   <td class="text11 tableCellGray">
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tustef}</td>
+	            		   <td class="text14 tableCellGray">
 	            		   	<c:if test="${not empty record.tudt && fn:startsWith(record.tudt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudt}" var="dateEtdDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtdDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tutm}</td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tustet}</td>
-	            		   <td class="text11 tableCellGray">
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tutm}</td>
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tustet}</td>
+	            		   <td class="text14 tableCellGray">
             		   		<c:if test="${not empty record.tudtt && fn:startsWith(record.tudtt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudtt}" var="dateEtaDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtaDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text11 tableCellGray">&nbsp;${record.tutmt}</td>
-	            		   <td align="center" class="text11 tableCellGray">&nbsp;${record.turund}</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
-	            		   <td align="right" class="text11 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
-	            		   <td align="center" class="text11 tableCellGray">
+	            		   <td class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
+	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.turund}</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
+	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
+	            		   <td align="center" class="text14 tableCellGray">
             		   		<c:choose>	
 	            		   		<c:when test="${record.turclose=='close'}">
 	            		   			<%--meaning this is open and could be closed --%>
@@ -354,7 +354,7 @@
 		<spring:hasBindErrors name="record"> <%-- name must equal the command object name in the Controller --%>
 		<tr>
 			<td>
-	           	<table class="text12" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+	           	<table class="text14" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
 	           	<tr>
 				<td class="textError">					
 		            <ul>

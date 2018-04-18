@@ -65,6 +65,10 @@
 			<td width="18%" valign="bottom" class="tab" align="center" nowrap>
 				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
 				<font class="tabLink">&nbsp;<spring:message code="systema.transportdisp.update.ourref.tab"/><font class="text14MediumBlue">&nbsp;${model.record.heavd}/${model.record.heopd}</font></font>
+				&nbsp;&nbsp;
+				<div title="FileUpload" style="display:inline-block; cursor:pointer;" onClick="showDialogFileUploadDraggable();" >
+					<font class="text14OrangeBold">e</font>
+				</div>	
 			</td>
 			<c:if test="${not empty model.record.heopd}">
 				<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -208,7 +212,7 @@
 											<tr>
 												<td class="text11">&nbsp;Arkiv typen:</td>
 												<td class="text11">&nbsp;
-													<select tabindex=-1 name="wstype" id="wstype">
+													<select class="inputTextMediumBlue" tabindex=-1 name="wstype" id="wstype">
 														<c:forEach var="record" items="${user.arkivKodOpdList}" >
 								                       	 	<option value="${record.arkKod}">${record.arkKod}-${record.arkTxt}</option>
 														</c:forEach> 

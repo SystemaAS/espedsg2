@@ -66,7 +66,7 @@
 	 				<%-- MASTER Topic header 
 	 				<table width="80%" align="left" class="formFrameHeaderTransparent" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="15">
-				 			<td class="text12MediumBlue">
+				 			<td class="text14MediumBlue">
 				 				&nbsp;Avd./Oppd.nr:&nbsp;<b>${XrecordOrderTransportDisp.heavd}/${XrecordOrderTransportDisp.heopd}</b>
 				 				&nbsp;&nbsp;Tur.:&nbsp;<b>${Xmodel.parentTrip}</b>
 				 				<%--&nbsp;&nbsp;Prod.kode:&nbsp;<b>${Xmodel.todo}</b> 
@@ -166,8 +166,8 @@
 							<form name="createNewItemLine" id="createNewItemLine" method="post" action="TODO.do">
 								<table width="80%" cellspacing="0" border="0" cellpadding="0">
 									<tr>
-										<td class="text12">
-											<b>&nbsp;Antall varelinjer&nbsp;&nbsp;</b><font class="text12MediumBlue"><b>${Xmodel.container.totalNumberOfItemLines}</b></font>
+										<td class="text14">
+											<b>&nbsp;Antall varelinjer&nbsp;&nbsp;</b><font class="textMediumBlue"><b>${Xmodel.container.totalNumberOfItemLines}</b></font>
 											<%--
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											<img onMouseOver="showPop('lineTypes_info');" onMouseOut="hidePop('lineTypes_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
@@ -201,7 +201,7 @@
 						</tr> 
 						<tr>
 							<td class="ownScrollableSubWindowE2">
-								<table cellspacing="0" border="0" cellpadding="0">
+								<table width="100%" cellspacing="0" border="0" cellpadding="0">
 									<tr class="tableHeaderField" height="20" valign="left">
 										<td align="center" class="tableHeaderFieldFirst" >&nbsp;<span title="bukdm">M&nbsp;</span></td>
 									    <td align="center" class="tableHeaderField" >&nbsp;<span title="bust">S&nbsp;</span></td>   
@@ -229,11 +229,11 @@
 							               <tr class="tableRow" height="20" >
 							               
 							               <td align="center" class="tableCellFirst" align="center">&nbsp;${record.bukdm}</td>
-							               <td align="center" class="tableCell" >&nbsp;<b class="text11Red">${record.bust}</b></td>
+							               <td align="center" class="tableCell" >&nbsp;<b class="text14Red">${record.bust}</b></td>
 							               <td class="tableCell" >&nbsp;
 							               	<c:choose>           
 							                   <c:when test="${record.bust=='S'}">
-								               		<font class="text11MediumBlue">${record.bubnr}</font>
+								               		<font class="textMediumBlue">${record.bubnr}</font>
 						               			</c:when>
 						               			<c:otherwise>
 						               				<a id="recordUpdate_${record.bubnr}" href="#" onClick="getBudgetItemData(this);">${record.bubnr}
@@ -247,7 +247,7 @@
 							               <td class="tableCell" >&nbsp;${record.buval}</td>
 							               <td class="tableCell" >&nbsp;
 							               	 <c:if test="${not empty record.levNavn}">
-							               		<font class="text11MediumBlue">${record.levNavn}</font>&nbsp;[${record.bulnr}]
+							               		<font class="textMediumBlue">${record.levNavn}</font>&nbsp;[${record.bulnr}]
 							               	</c:if>	
 					               			</td>
 							               <td class="tableCell" >&nbsp;${record.butype}</td>
@@ -277,7 +277,7 @@
 						               		</td>
 							               <td class="tableCell" >&nbsp;
 							               	  <c:if test="${not empty record.traNavn}">	
-							               		<font class="text11MediumBlue">${record.traNavn}</font>&nbsp;[${record.butnr}]
+							               		<font class="textMediumBlue">${record.traNavn}</font>&nbsp;[${record.butnr}]
 							               	  </c:if>	
 					               			</td>
 							               <td class="tableCell" >&nbsp;${record.bupMn}/${record.bupCc}${record.bupAr}</td>
@@ -365,7 +365,7 @@
 				 	<%-- Topic ITEM CREATE --%>
 	 				<table width="100%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="15">
-				 			<td class="text12White" align="left" >
+				 			<td class="White" align="left" >
 				 				<b>&nbsp;&nbsp;V<label onClick="showPop('debugPrintlnAjaxItemFetchAdmin');" >a</label>relinje&nbsp;</b>
 				 				
 		 									<span style="position:absolute; left:150px; top:200px; width:800px; height:400px;" id="debugPrintlnAjaxItemFetchAdmin" class="popupWithInputText"  >
@@ -382,7 +382,7 @@
 				 				
 				 				<img onClick="showPop('updateInfo');" src="resources/images/update.gif" border="0" alt="edit">&nbsp;&nbsp;<font id="editLineNr"></font>
 				 				<span style="position:absolute; left:150px; top:200px; width:800px; height:400px;" id="updateInfo" class="popupWithInputText"  >
-		           		   			<div class="text12" align="left" style="display:block;width:700px;word-break:break-all;">
+		           		   			<div class="text14" align="left" style="display:block;width:700px;word-break:break-all;">
 		           		   				${XactiveUrlRPGUpdate_TvinnSad}<br/><br/>
 		           		   				<button name="updateInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('updateInfo');">Close</button> 
 		           		   			</div>
@@ -397,7 +397,7 @@
 						 		<table  class="tableBorderWithRoundCornersGray" width="100%" border="0" cellspacing="0" cellpadding="0">
 						 			<tr height="5"><td class="text" align="left"></td></tr>
 						 			<tr >
-						 				<td class="text12" align="left"><span title="bubnr">&nbsp;
+						 				<td class="text14" align="left"><span title="bubnr">&nbsp;
 							            	<img onMouseOver="showPop('rekvnr_info');" onMouseOut="hidePop('rekvnr_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				Rekvnr.</span>
 							 			</td>
@@ -412,22 +412,22 @@
 						           			</font>
 											</span>
 											</div>
-							            <td class="text12" align="left"><span title="bukdm">&nbsp;MVA&nbsp;</span></td>
-						            	<td class="text12" align="left"><span title="buvk">&nbsp;Geb.</span>
+							            <td class="text14" align="left"><span title="bukdm">&nbsp;MVA&nbsp;</span></td>
+						            	<td class="text14" align="left"><span title="buvk">&nbsp;Geb.</span>
 							            	<a tabindex=-1 id="buvkIdLink">
 	 											<img id="imgGebyrCodesSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 							            </td>
 							            
-							            <td class="text12" align="left"><span title="bubl">&nbsp;Beløp</span></td>
-					            		<td class="text12" align="left"><span title="buval">&nbsp;Valuta</span></td>
-					            		<td class="text12" align="left"><span title="bulnr">&nbsp;Leverandør</span>
+							            <td class="text14" align="left"><span title="bubl">&nbsp;Beløp</span></td>
+					            		<td class="text14" align="left"><span title="buval">&nbsp;Valuta</span></td>
+					            		<td class="text14" align="left"><span title="bulnr">&nbsp;Leverandør</span>
 						            		<a tabindex=-1 id="bulnrIdLink">
 	 											<img id="imgSupplierSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 	 										</a>
 						            	</td>
-						            	<td class="text12" align="left"><span title="levNavn">&nbsp;Lev.navn</span></td>
-						            	<td class="text12" align="left"><span title="butype">&nbsp;
+						            	<td class="text14" align="left"><span title="levNavn">&nbsp;Lev.navn</span></td>
+						            	<td class="text14" align="left"><span title="butype">&nbsp;
 						            		<img onMouseOver="showPop('typekost_info');" onMouseOut="hidePop('typekost_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            		Type&nbsp;</span>
 						            	</td>
@@ -448,7 +448,7 @@
 						           			</font>
 											</span>
 											</div>
-						            	<td class="text12" align="left"><span title="bublst">&nbsp;
+						            	<td class="text14" align="left"><span title="bublst">&nbsp;
 						            		<img onMouseOver="showPop('bls_info');" onMouseOut="hidePop('bls_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            		Bls&nbsp;</span>
 						            	</td>
@@ -474,16 +474,16 @@
 						           			</font>
 											</span>
 											</div>
-						            	<td class="text12" align="left"><span title="busg">&nbsp;Sign&nbsp;</span></td>
-						            	<td class="text12" align="left" ><span title="butunr">&nbsp;Turnr</span></td>
-						            	<td class="text12" align="left"><span title="buoavd">&nbsp;&nbsp;&nbsp;Avd</span></td>
-						            	<td class="text12" align="left" ><span title="buopd">&nbsp;Oppd.</span></td>
+						            	<td class="text14" align="left"><span title="busg">&nbsp;Sign&nbsp;</span></td>
+						            	<td class="text14" align="left" ><span title="butunr">&nbsp;Turnr</span></td>
+						            	<td class="text14" align="left"><span title="buoavd">&nbsp;&nbsp;&nbsp;Avd</span></td>
+						            	<td class="text14" align="left" ><span title="buopd">&nbsp;Oppd.</span></td>
 							        </tr>
 							        <tr>
-						        		<td class="text12" align="left">&nbsp;
+						        		<td class="text14" align="left">&nbsp;
 						            		<input readonly type="text" class="inputTextReadOnly" name="bubnr" id="bubnr" size="8" maxlength="8" value="${model.record.bubnr}">
 							            </td>
-							            <td class="text12" align="left" valign="middle">
+							            <td class="text14" align="left" valign="middle">
 						            		<select class="inputTextMediumBlueField" id="bukdm" name="bukdm">
 						            			<option value="">-blank-</option>
 						            			<option value="J" <c:if test="${model.record.bukdm == 'J'}"> selected </c:if> >J</option>
@@ -498,7 +498,7 @@
 												</c:forEach>
 											</select>
 										</td>
-										<td class="text12" align="left">
+										<td class="text14" align="left">
 						            		<input type="text" onKeyPress="return amountKey(event)" class="inputTextMediumBlueMandatoryField" name="bubl" id="bubl" size="8" maxlength="8" value="${model.record.bubl}">
 							            </td>
 										<td align="left" nowrap valign="middle">
@@ -509,11 +509,11 @@
 												</c:forEach> 
 											</select>
 										</td>
-						        		<td class="text12" align="left" ><input type="text" class="inputText" name="bulnr" id="bulnr" size="9" maxlength="8" value="${model.record.bulnr}"></td>
-							            <td class="text12" align="left">&nbsp;
+						        		<td class="text14" align="left" ><input type="text" class="inputText" name="bulnr" id="bulnr" size="9" maxlength="8" value="${model.record.bulnr}"></td>
+							            <td class="text14" align="left">&nbsp;
 						            		<input readonly tabindex=-1 class="inputTextReadOnly" name="levNavn" id="levNavn" size="20" maxlength="35" value="${model.record.levNavn}">
 							            </td>
-							            <td class="text12" align="left" >
+							            <td class="text14" align="left" >
 							            	<select class="inputTextMediumBlueMandatoryField" name="butype" id="butype">
 						 						<option value="">-select-</option>
 						 						<c:choose>
@@ -530,7 +530,7 @@
 				           						</c:choose>						 						
 					           				</select>
 						            	</td>
-							            <td class="text12" align="left" >
+							            <td class="text14" align="left" >
 							            	<select class="inputTextMediumBlueMandatoryField" name="bublst" id="bublst">
 						 						<option value="">-select-</option>
 						 						<c:choose>
@@ -568,12 +568,12 @@
 				           						</c:choose>
 					           				</select>
 						            	</td>
-							            <td class="text12" align="left" ><input type="text" class="inputText" name="busg" id="busg" size="3" maxlength="3" value="${user.signatur}"></td>
+							            <td class="text14" align="left" ><input type="text" class="inputText" name="busg" id="busg" size="3" maxlength="3" value="${user.signatur}"></td>
 							            
-						        		<td class="text12" align="left" >
+						        		<td class="text14" align="left" >
 						        			<input type="text" class="inputText" name="butunr" id="butunr" size="8" maxlength="10" value="${model.container.tur}">
 						        		</td>
-						        		<td class="text12">&nbsp;
+						        		<td class="text14">&nbsp;
 						        			<c:choose>
 												<c:when test="${not empty model.record.buoavd}">
 							        				<input type="text" class="inputText" name="buoavd" id="buoavd" size="5" maxlength="4" value="${model.record.buoavd}">
@@ -590,7 +590,7 @@
 							        			</c:otherwise>
 						        			</c:choose>
 						        		</td>
-						        		<td class="text12" align="left" >
+						        		<td class="text14" align="left" >
 						        			<c:choose>
 												<c:when test="${not empty model.record.buopd}">
 							        				<input type="text" class="inputText" name="buopd" id="buopd" size="8" maxlength="7" value="${model.record.buopd}">
@@ -612,25 +612,25 @@
 							        <tr height="12"><td class="text" align="left" colspan="20"><hr></td></tr>
 							        <tr height="3"><td class="text" align="left"></td></tr>
 							        <tr>
-							 			<td colspan="2" class="text12" align="left" >&nbsp;&nbsp;<span title="butxt">Fritekst</span></td>
-							            <td class="text12" align="left" >&nbsp;<span title="bubiln">Bilnr.</td>
-							            <td class="text12" align="left" >&nbsp;<span title="bufedt">Dato</td>
-							            <td class="text12" align="left" >&nbsp;<span title="todoKo">Ko</td>
-							            <td class="text12" align="left" >&nbsp;<span title="butnr">Transp.
+							 			<td colspan="2" class="text14" align="left" >&nbsp;&nbsp;<span title="butxt">Fritekst</span></td>
+							            <td class="text14" align="left" >&nbsp;<span title="bubiln">Bilnr.</td>
+							            <td class="text14" align="left" >&nbsp;<span title="bufedt">Dato</td>
+							            <td class="text14" align="left" >&nbsp;<span title="todoKo">Ko</td>
+							            <td class="text14" align="left" >&nbsp;<span title="butnr">Transp.
 							            	<a tabindex=-1 id="butnrIdLink">
 		 										<img id="imgTruckersNrSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
 		 									</a>
 							            </td>
-							            <td class="text12" align="left"><span title="traNavn">&nbsp;Transp.navn</span></td>
-							            <td class="text12" align="left" >&nbsp;<span title="bupMn">Periode</td>
-							            <td class="text12" align="left" >&nbsp;<span title="bupAr">År</td>
-					            		<td class="text12" align="left" >&nbsp;<span title="bubilk">Bilkode</td>	
+							            <td class="text14" align="left"><span title="traNavn">&nbsp;Transp.navn</span></td>
+							            <td class="text14" align="left" >&nbsp;<span title="bupMn">Periode</td>
+							            <td class="text14" align="left" >&nbsp;<span title="bupAr">År</td>
+					            		<td class="text14" align="left" >&nbsp;<span title="bubilk">Bilkode</td>	
 							        </tr>
 							        <tr>
-							        	<td colspan="2" class="text12">&nbsp;	
+							        	<td colspan="2" class="text14">&nbsp;	
 						        			<input type="text" class="inputText" name="butxt" id="butxt" size="35" maxlength="35" value="${model.record.butxt}">
 										</td>
-										<td class="text12">
+										<td class="text14">
 											<c:choose>
 											<c:when test="${not empty model.record.bubiln}">	
 						        				<input type="text" class="inputText" name="bubiln" id="bubiln" size="10" maxlength="8" value="${model.record.bubiln}">
@@ -640,7 +640,7 @@
 						        			</c:otherwise>
 						        			</c:choose>
 										</td>
-										<td class="text12">	
+										<td class="text14">	
 											<c:choose>
 											<c:when test="${not empty model.record.bufedt}">
 						        				<input type="text" class="inputText" name="bufedt" id="bufedt" size="9" maxlength="8" value="${model.record.bufedt}">
@@ -650,13 +650,13 @@
 						        			</c:otherwise>
 						        			</c:choose>
 										</td>
-										<td class="text12">	
+										<td class="text14">	
 						        			<select class="inputTextMediumBlueField" name="todoKo" id="todoKo">
 						 						<option value="">-select-</option>
 							            		<option value="B" <c:if test="${Xmodel.record.todo == 'B'}"> selected </c:if> >?</option>
 					           				</select>
 										</td>
-										<td class="text12">	
+										<td class="text14">	
 											<c:choose>
 											<c:when test="${not empty model.record.butnr}">
 						        				<input onKeyPress="return numberKey(event)" type="text" class="inputText" name="butnr" id="butnr" size="9" maxlength="8" value="${model.record.butnr}">
@@ -666,10 +666,10 @@
 						        			</c:otherwise>
 						        			</c:choose>
 										</td>
-										<td class="text12" align="left">&nbsp;
+										<td class="text14" align="left">&nbsp;
 						            		<input tabindex=-1 readonly class="inputTextReadOnly" name="traNavn" id="traNavn" size="20" maxlength="35" value="${model.record.traNavn}">
 							            </td>
-										<td class="text12">	
+										<td class="text14">	
 											<c:choose>
 											<c:when test="${not empty model.record.bupMn}">
 						        				<input onKeyPress="return numberKey(event)" type="text" class="inputText" name="bupMn" id="bupMn" size="2" maxlength="2" value="${model.record.bupMn}">
@@ -679,7 +679,7 @@
 						        			</c:otherwise>
 						        			</c:choose>
 										</td>
-										<td class="text12">	
+										<td class="text14">	
 											<c:choose>
 											<c:when test="${not empty model.record.bupAr}">
 						        				<input onKeyPress="return numberKey(event)" type="text" class="inputText" name="bupAr" id="bupAr" size="4" maxlength="4" value="${model.record.bupCc}${model.record.bupAr}">
@@ -689,7 +689,7 @@
 						        			</c:otherwise>
 						        			</c:choose>
 										</td>
-										<td class="text12">&nbsp;
+										<td class="text14">&nbsp;
 											<c:choose>
 											<c:when test="${not empty model.record.bubilk}">	
 						        				<input onKeyPress="return numberKey(event)" type="text" class="inputText" name="bubilk" id="bubilk" size="3" maxlength="3" value="${model.record.bubilk}">
