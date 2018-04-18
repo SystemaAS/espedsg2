@@ -356,60 +356,7 @@
 				 						
 			 						</td>
 			 						
-			 						<%--
-			 						<td valign="top" >
-											<table align="left" class="popupFloatingWithRoundCorners3D">
-												    <tr height="2"><td></td></tr>
-											    	<tr>
-													<td valign="top">
-													<form name="uploadFileForm" id="uploadFileForm" method="post" enctype="multipart/form-data">
-														<input type="hidden" name="applicationUserUpload" id="applicationUserUpload" value='${user.user}'>
-														<input type="hidden" name="wsavd" id="wsavd" value='${model.record.heavd}'>
-														<input type="hidden" name="wsopd" id="wsopd" value='${model.record.heopd}'>
-														<input type="hidden" name="userDate" id="userDate" value=''>
-														<input type="hidden" name="userTime" id="userTime" value=''>
-														
-															<table id="containerdatatableTable" cellspacing="2" align="left">
-																<tr>
-																	<td colspan="3" class="text14Bold">&nbsp;
-																		<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="20" height="20" alt="upload">
-																		&nbsp;File Upload&nbsp;							
-																	</td>
-																</tr>
-																<tr>
-																<tr height="5"><td></td></tr>
-																<tr>
-																<td>
-																	<table>
-																	
-																	<tr>
-																		<td class="text12">&nbsp;Arkiv typen:</td>
-																		<td class="text12">&nbsp;
-																			<select tabindex=-1 name="wstype" id="wstype">
-																				<c:forEach var="record" items="${user.arkivKodOpdList}" >
-														                       	 	<option value="${record.arkKod}">${record.arkKod}-${record.arkTxt}</option>
-																				</c:forEach> 
-																			</select>	
-																		</td>
-																	</tr>
-																	<tr>	
-																		<td class="text12">&nbsp;Fil:</td>
-																		<td class="text12">
-											           						&nbsp;<input ondragenter="myFileUploadDragEnter(event)" ondragleave="myFileUploadDragLeave(event)" tabindex=-1 class="tableBorderWithRoundCornersLightYellow3D noFileChosenTransparent" style="width:220px;height:90px;display:block;" type="file" name="file" id="file" />
-											       						</td>
-													           		</tr>
-													           		</table>
-																</td>
-																</tr>
-																<tr height="5"><td></td></tr>
-											       			</table>
-													</form>	
-													</td>
-													</tr>
-												</table>
-											 		
-										</td>
-										 --%>
+			 		
 				 				</tr>
 				 				<tr>
 				 					
