@@ -308,29 +308,29 @@
 																    </tr>
 																    <tr height="5"><td></td></tr>
 																    <tr>
-															    		<td class="tableHeaderFieldFirst12" title="fask">SK</td>
-															    		<td class="tableHeaderField12" title="favk">Geb</td>
-															    		<td class="tableHeaderField12" title="todo">Tnr.</td>
-															    		<td class="tableHeaderField12" title="faval">Valuta</td>
-															    		<td class="tableHeaderField12" title="fabelv">Val.beløp</td>
-															    		<td class="tableHeaderField12" title="fabeln">Beløp NOK</td>
-															    		<td class="tableHeaderField12" title="fakdm">MVA</td>
-															    		<td class="tableHeaderField12" title="faVT/stdVt">Friteskt / Gebyrtekst</td>
-															    		<td class="tableHeaderField12" title="fakduk/facu33/fabelu">Utgift</td>
+															    		<td class="tableHeaderFieldFirst" title="fask">SK</td>
+															    		<td class="tableHeaderField" title="favk">Geb</td>
+															    		<td class="tableHeaderField" title="todo">Tnr.</td>
+															    		<td class="tableHeaderField" title="faval">Valuta</td>
+															    		<td class="tableHeaderField" title="fabelv">Val.beløp</td>
+															    		<td class="tableHeaderField" title="fabeln">Beløp NOK</td>
+															    		<td class="tableHeaderField" title="fakdm">MVA</td>
+															    		<td class="tableHeaderField" title="faVT/stdVt">Friteskt / Gebyrtekst</td>
+															    		<td class="tableHeaderField" title="fakduk/facu33/fabelu">Utgift</td>
 															    		
 															    	</tr>
 															    	<tr class="tableRow" <c:if test="${record.fakda == 'K'}"> style="background-color:#FFBABA;" </c:if>>
-															    		<td class="tableCellFirst14" >&nbsp;${record.fask}</td>
-															    		<td class="tableCell14" >&nbsp;${record.favk}</td>
-															    		<td class="tableCell14" >&nbsp;${Xrecord.todo}</td>
-															    		<td class="tableCell14" >&nbsp;${record.faval}</td>
-															    		<td class="tableCell14" <c:if test="${record.fakda == 'K' }"> style="color:#D8000C;" </c:if>>&nbsp;${record.fabelv}</td>
-															    		<td class="tableCell14" <c:if test="${record.fakda == 'K' }"> style="color:#D8000C;" </c:if>>&nbsp;${record.fabeln}</td>
-															    		<td class="tableCell14" >&nbsp;${record.fakdm}</td>
-															    		<td class="tableCell14" >&nbsp;${record.stdVt}
+															    		<td class="tableCellFirst" >&nbsp;${record.fask}</td>
+															    		<td class="tableCell" >&nbsp;${record.favk}</td>
+															    		<td class="tableCell" >&nbsp;${Xrecord.todo}</td>
+															    		<td class="tableCell" >&nbsp;${record.faval}</td>
+															    		<td class="tableCell" <c:if test="${record.fakda == 'K' }"> style="color:#D8000C;" </c:if>>&nbsp;${record.fabelv}</td>
+															    		<td class="tableCell" <c:if test="${record.fakda == 'K' }"> style="color:#D8000C;" </c:if>>&nbsp;${record.fabeln}</td>
+															    		<td class="tableCell" >&nbsp;${record.fakdm}</td>
+															    		<td class="tableCell" >&nbsp;${record.stdVt}
 														               		<c:if test="${not empty record.faVT}">&nbsp;/&nbsp;${record.faVT}</c:if>
 														               	</td>
-													               		<td class="tableCell14" >&nbsp;${record.fakduk}&nbsp;${record.facu33}&nbsp;${record.fabelu}</td>
+													               		<td class="tableCell" >&nbsp;${record.fakduk}&nbsp;${record.facu33}&nbsp;${record.fabelu}</td>
 															    		
 															    	</tr>
 															    	<tr height="10"><td></td></tr>
@@ -339,46 +339,46 @@
 																    	<table> 
 																	    	<tr>	
 																	    		<td class="text14" ><span title="falevn">Leverandør</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;" align="left"><label name="v_falevn" id="v_falevn">&nbsp;${record.falevn}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;" align="left"><label name="v_falevn" id="v_falevn">&nbsp;${record.falevn}&nbsp;</label></td>
 																    			<td colspan="2" class="tableCell14" style="background-color:#FFFFFF;" align="left"><label name="v_lnavn" id="v_lnavn">&nbsp;${record.lnavn}&nbsp;</label></td>
 																    			
 																    			<td class="text14" ><span title="fakunr/knavn">&nbsp;&nbsp;Kunde</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fakunr" id="v_fakunr">&nbsp;${record.fakunr}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fakunr" id="v_fakunr">&nbsp;${record.fakunr}&nbsp;</label></td>
 																    			<td colspan="2" class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_knavn" id="v_knavn">&nbsp;${record.knavn}&nbsp;</label></td>
 																	    	</tr>
 																	    	<tr>	
 																    			<td class="text14" align="left"><span title="faopko">Status</span></td>
-															    				<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_faopko" id="v_faopko">&nbsp;${record.faopko}&nbsp;</label></td>
+															    				<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_faopko" id="v_faopko">&nbsp;${record.faopko}&nbsp;</label></td>
 															    				<td class="text14" align="left"><span title="facd11">&nbsp;&nbsp;Samm.</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_facd11" id="v_facd11">&nbsp;${record.facd11}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_facd11" id="v_facd11">&nbsp;${record.facd11}&nbsp;</label></td>
 																	    		<td class="text14" ><span title="peri">&nbsp;&nbsp;Periode</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_peri" id="v_peri">&nbsp;${record.peri}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_peri" id="v_peri">&nbsp;${record.peri}&nbsp;</label></td>
 																	    	</tr>
 																	    	<tr height="15"><td></td></tr>
 																	    	<tr>	
 																	    		<td class="text14" ><span title="fafakt">Faktnr/Bilg.nr.</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fafakt" id="v_fafakt">&nbsp;${record.fafakt}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fafakt" id="v_fafakt">&nbsp;${record.fafakt}&nbsp;</label></td>
 																    			<td class="text14" ><pan title="fadato">&nbsp;&nbsp;Faktdato</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fadato" id="v_fadato">&nbsp;${record.fadato}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fadato" id="v_fadato">&nbsp;${record.fadato}&nbsp;</label></td>
 																    			<td class="text14" ><span title="fadaff">&nbsp;&nbsp;Forfallsdato</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fadaff" id="v_fadaff">&nbsp;${record.fadaff}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fadaff" id="v_fadaff">&nbsp;${record.fadaff}&nbsp;</label></td>
 																    			<td class="text14" ><span title="todo">&nbsp;&nbsp;Kurs</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_todo" id="v_todo">&nbsp;${Xrecord.todo}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_todo" id="v_todo">&nbsp;${Xrecord.todo}&nbsp;</label></td>
 																	    	</tr>
 																	    	<tr>	
 																	    		<td class="text14" ><span title="fajour">Journal</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fajour" id="v_fajour">&nbsp;${record.fajour}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fajour" id="v_fajour">&nbsp;${record.fajour}&nbsp;</label></td>
 																    			<td class="text14" ><span title="fafrbn">&nbsp;&nbsp;Fraktbrev.</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_fafrbn" id="v_fafrbn">&nbsp;${record.fafrbn}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_fafrbn" id="v_fafrbn">&nbsp;${record.fafrbn}&nbsp;</label></td>
 																    			<td class="text14" ><span title="faaccn/faavdr">&nbsp;&nbsp;Kto</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_faavdr" id="v_faavdr">&nbsp;${record.faaccn}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_faavdr" id="v_faavdr">&nbsp;${record.faaccn}&nbsp;</label></td>
 																    			<td class="text14" ><span title="faaccn/faavdr">&nbsp;&nbsp;Kst</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_faavdr" id="v_faavdr">&nbsp;${record.faavdr}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_faavdr" id="v_faavdr">&nbsp;${record.faavdr}&nbsp;</label></td>
 																    			
 																	    	</tr>
 																	    	<tr>
 																	    		<td class="text14" ><span title="fabær">Bærer</span></td>
-																    			<td class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_todo" id="v_fabær">&nbsp;${record.fabær}&nbsp;</label></td>
+																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_todo" id="v_fabær">&nbsp;${record.fabær}&nbsp;</label></td>
 															    			</tr>
 																    	<tr height="10"><td></td></tr>
 																    	</table>
