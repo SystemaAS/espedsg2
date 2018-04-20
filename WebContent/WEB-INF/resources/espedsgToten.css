@@ -1,3 +1,4 @@
+@import url("espedsg2Toten.css");
 /*-------------------------------------
 START override in jQuery UI elements
 ------------------------------------- */
@@ -280,29 +281,6 @@ END override jQuery elements
 	border-style: solid; 
     border-width: 0px 2px 2px 0px; 
     border-color:#e52320;
-}
-
-.dashboardElementsFrameE2{
-	border: 1px solid #ccc;
-	border-radius: 5px;
-	-moz-border-radius: 5px;
-	-webkit-border-radius: 5px;
-	padding: 4px 7px;
-	background-color:#FFFFFF;
-	border-style: solid; 
-    border-width: 1px 2px 2px 1px; 
-   	border-color:#84BE6A;
-	outline: 0;
-	cursor: pointer;
-	-webkit-appearance: none;
-}
-.dashboardElementsFrameE2:hover{
-	background-color: #E0EEE0;
-}
-.aDashboardLink{
-  display:block;
-  height:100%;
-  width:100%;
 }
 .grayTitanBg { 
 	background-color:#3D3D3D;
