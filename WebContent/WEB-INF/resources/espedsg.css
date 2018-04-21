@@ -476,13 +476,20 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	background-color:#3F9E4D;
 	color:#FFFFFF;
-	padding: 4px 7px;
+	padding: 7px 10px;
 	outline: 0;
 	cursor:pointer;
 	-webkit-appearance: none;
+}
+.inputFormLoginSubmitGreen:hover{
+	background-color: #C0D9AF;
+	border-width: 1px 1px 1px 1px; 
+	/*border-color:#308014;*/
+	border-color:#302013;
+	color:#000000;
 }
 
 .inputForm{

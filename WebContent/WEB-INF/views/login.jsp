@@ -3,7 +3,7 @@
 <!-- ================== special login header ==================-->
 <jsp:include page="/WEB-INF/views/headerLogin.jsp" />
 <!-- =====================end header ==========================-->
-<SCRIPT type="text/javascript" src="resources/js/login.js"></SCRIPT>	
+<SCRIPT type="text/javascript" src="resources/js/login.js?ver=12"></SCRIPT>	
  
 	<div>
 	 	<h3 class="text18">&nbsp;</h3>
@@ -13,7 +13,7 @@
 		<tr>
 		<%-- <td class="loginFrame" width="100%"> --%>
 		<td class="loginFrameE2" width="100%">
-			<form action="logonDashboard.do" name="loginForm" id="loginForm" method="POST" >
+			<form name="loginForm" id="loginForm" action="logonDashboard.do" onClick="setBlockUI(this)" method="POST" >
 	 		<table border="0" cellpadding="0" cellspacing="2" >
 				<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
@@ -31,7 +31,7 @@
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td align="right"><input class="inputFormLoginSubmitGreen" type="submit" value="<spring:message code="login.user.submit"/>" /></td>
+					<td align="right"><input class="inputFormLoginSubmitGreen" name="submit" id="submit" type="submit" value="<spring:message code="login.user.submit"/>" /></td>
 				</tr>
 				<tr height="1"><td>&nbsp;</td></tr>
 			</table>
