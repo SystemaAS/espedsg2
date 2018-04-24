@@ -5,33 +5,33 @@
 <!-- =====================end header ==========================-->
 <SCRIPT type="text/javascript" src="resources/js/login.js?ver=12"></SCRIPT>	
  
-	<div>
+	<div style="height: 100px;">
 	 	<h3 class="text18">&nbsp;</h3>
 	 	<%-- <h4></h1><a href="?lang=en">en</a>|<a href="?lang=no">no</a></h4> --%>
 	</div>	
-	<table cellspacing="25" border="0" cellpadding="0">
+	<table align="center" width="500px" border="0" cellpadding="0">
 		<tr>
 		<%-- <td class="loginFrame" width="100%"> --%>
 		<td class="loginFrameE2" width="100%">
-			<form name="loginForm" id="loginForm" action="logonDashboard.do" onClick="setBlockUI(this)" method="POST" >
-	 		<table border="0" cellpadding="0" cellspacing="2" >
+			<form name="loginForm" id="loginForm" action="logonDashboard.do" method="POST" >
+	 		<table align="center" border="0" cellpadding="1" cellspacing="1" >
 				<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
-					<td class="text14"><spring:message code="login.title"/>&nbsp;</td>
-					<td >&nbsp;</td>
+					<td align="center" colspan="2" class="text28Bold">eSpedsg</td>
+					
 				</tr>
-				<tr height="1"><td>&nbsp;</td></tr>
+				<tr height="3"><td>&nbsp;</td></tr>
 				<tr>
-					<td class="text14"><spring:message code="login.user.label.name"/>&nbsp;</td>
-					<td ><input type="text" class="inputText14" name="user" id="user" size="18" /></td>
+					<td align="right" class="text18"><spring:message code="login.user.label.name"/>&nbsp;</td>
+					<td ><input type="text" class="inputText16" name="user" id="user" size="18" /></td>
 				</tr>
 				<tr>
-					<td class="text14"><spring:message code="login.user.label.password"/>&nbsp;</td>
-					<td><input type="password"  class="inputText14" name="password" id="password" size="18"/></td>
+					<td align="right" class="text18"><spring:message code="login.user.label.password"/>&nbsp;</td>
+					<td><input type="password"  class="inputText16" name="password" id="password" size="18"/></td>
 				</tr>
 				<tr>
 					<td>&nbsp;</td>
-					<td align="right"><input class="inputFormLoginSubmitGreen" name="submit" id="submit" type="submit" value="<spring:message code="login.user.submit"/>" /></td>
+					<td align="right"><input onClick="setBlockUI(this)" class="inputFormLoginSubmitGreen" name="submit" id="submit" type="submit" value="<spring:message code="login.user.submit"/>" /></td>
 				</tr>
 				<tr height="1"><td>&nbsp;</td></tr>
 			</table>

@@ -221,7 +221,7 @@
 	/*background-color:#FCFFF0;*/
 	background-color:#FFFFFF;
 	border-style: outset; 
-    border-width: 0px 1px 1px 0px; 
+    border-width: 0px 1px 0px 0px; 
     border-color:#778899;
     
 }
@@ -476,7 +476,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 14px;
+	font-size: 16px;
 	background-color:#3F9E4D;
 	color:#FFFFFF;
 	padding: 7px 10px;
@@ -733,6 +733,15 @@
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	font-size: 14px;
+	padding: 4px 7px;
+	outline: 0;
+}
+.inputText16{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 16px;
 	padding: 4px 7px;
 	outline: 0;
 }
@@ -1730,6 +1739,9 @@
 .text18Bold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color:#000000; font-weight:bold ; 
 }
+.text18NavyBlue{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color: #003152; 
+}
 
 .text22WhiteBold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 22px; color:#FFFFFF; font-weight:bold; 
@@ -1745,6 +1757,18 @@
 }
 .text22OrangeBold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 22px; color:#FF6600;font-weight:bold ;
+}
+.text24{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 24px; color:#000000; 
+}
+.text24Bold{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 24px; color:#000000; font-weight:bold;
+}
+.text26Bold{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 26px; color:#000000; font-weight:bold;
+}
+.text28Bold{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 28px; color:#000000; font-weight:bold;
 }
 .text32Bold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 32px; color:#000000; font-weight:bold; 

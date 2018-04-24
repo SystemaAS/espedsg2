@@ -102,7 +102,7 @@
 		<tr height="1"><td></td></tr>
 		<%-- Dashboard menu --%>
 		<tr >
-			<td height="23" align="center" colspan="2"> 
+			<td class="tabThinBorderLightGreenLogoutE2" height="23" align="center" colspan="2"> 
     			 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
 				 	<tr >
 			    		<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>

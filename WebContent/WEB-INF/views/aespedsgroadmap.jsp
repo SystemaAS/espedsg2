@@ -63,14 +63,16 @@
 			    	    <tr>
 						<td >
 						<table cellspacing="0" border="0" cellpadding="0">
+							<thead>
 							<tr class="tableHeaderField" height="20" valign="left">
-								<td class="tableHeaderFieldFirst" align="center" >&nbsp;ID&nbsp;</td>
-			                    <td width="20%" class="tableHeaderField" align="left" >&nbsp;ISSUE&nbsp;</td>
-			                    <td class="tableHeaderField" align="left" >&nbsp;RESOURCE&nbsp;</td>
-			                    <td class="tableHeaderField" align="center" >&nbsp;DESCRIPTION&nbsp;</td>
-			                    <td class="tableHeaderField" align="center" >&nbsp;STATUS&nbsp;</td>
+								<th class="tableHeaderFieldFirst" align="center" >&nbsp;ID&nbsp;</th>
+			                    <th width="20%" class="tableHeaderField" align="left" >&nbsp;ISSUE&nbsp;</th>
+			                    <th class="tableHeaderField" align="left" >&nbsp;RESOURCE&nbsp;</th>
+			                    <th class="tableHeaderField" align="center" >&nbsp;DESCRIPTION&nbsp;</th>
+			                    <th class="tableHeaderField" align="center" >&nbsp;STATUS&nbsp;</th>
 			                </tr>  
-			                   
+			                 </thead>
+			                 <tbody>  
 				            <c:forEach var="record" items="${model.list}" varStatus="counter">    
 				               <c:choose>           
 				                   <c:when test="${counter.count%2==0}">
@@ -80,10 +82,10 @@
 				                       <tr class="tableOddRow" height="20" >
 				                   </c:otherwise>
 				               </c:choose>
-				               <td class="tableCellFirst" align="center" ><font class="text12MediumBlue">&nbsp;${record.id}&nbsp;</font></td>
-				               <td width="20%" class="tableCell" nowrap ><font class="text12MediumBlue">&nbsp;${record.subject}&nbsp;</font></td>
-		                       <td class="tableCell" nowrap ><font class="text12MediumBlue">&nbsp;${record.text}&nbsp;</font></td>
-		                       <td class="tableCell" ><font class="text12MediumBlue">&nbsp;${record.description}&nbsp;</font></td>
+				               <td class="tableCellFirst" align="center" ><font class="text14MediumBlue">&nbsp;${record.id}&nbsp;</font></td>
+				               <td width="20%" class="tableCell" nowrap ><font class="text14MediumBlue">&nbsp;${record.subject}&nbsp;</font></td>
+		                       <td class="tableCell" nowrap ><font class="text14MediumBlue">&nbsp;${record.text}&nbsp;</font></td>
+		                       <td class="tableCell" ><font class="text14MediumBlue">&nbsp;${record.description}&nbsp;</font></td>
 		                       
 		                       <td class="tableCell" align="center">
 		                       		<c:if test="${record.status == 'G'}">
@@ -100,6 +102,7 @@
 				              
 				            </tr> 
 				            </c:forEach>
+				            </tbody>
 			            </table>
 					</td>	
 					</tr>

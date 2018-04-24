@@ -81,8 +81,9 @@
     		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_StatsTrafikk").bind("click",function() {
-    		jq("#dashForm_StatsTrafikk").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		//to be developed TODO --->FM/JOVO
+    		//jq("#dashForm_StatsTrafikk").submit();
+    		//jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_StatsFortolling").bind("click",function() {
     		jq("#dashForm_StatsFortolling").submit();

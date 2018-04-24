@@ -51,7 +51,7 @@
 					 							<td id="dashItem_StatsFortolling" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_StatsFortolling" method="post" action="/espedsgstats/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -67,12 +67,12 @@
 					 							<td id="dashItem_StatsTrafikk" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
-								 					<form id="dashForm_StatsTrafikk" method="post" action="/espedsgstats/logonDashboard.do?trafikk=1" >
+				 									<font class="text18">${record.prTxt}</font>
+				 									<form id="dashForm_StatsTrafikk" method="post" action="/espedsgstats/logonDashboard.do?trafikk=1" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
-												</font>
+													</font>
 												</td>												
 		 										<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -86,7 +86,7 @@
 							 								<td id="dashItem_Transpdisp" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 							 									<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 							 									<br/>
-							 									<font class="text16NavyBlue">${record.prTxt}</font>
+							 									<font class="text18">${record.prTxt}</font>
 															</td>
 														</c:when>
 														<c:otherwise>
@@ -115,7 +115,7 @@
 												<td id="dashItem_Ebooking" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 				 									<c:if test="${not empty record.veiledning}">
 														<span style="white-space: nowrap;">
 			 											<a href="${record.veiledning}" target="_blank">
@@ -138,7 +138,7 @@
 												<td id="dashItem_Tror" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tror" method="post" action="/espedsgtror/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -154,7 +154,7 @@
 												<td id="dashItem_Testsuites" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -166,7 +166,7 @@
 												<td id="dashItem_Efaktura" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Efaktura" method="post" action="/espedsgefaktura/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -181,7 +181,7 @@
 						 						<td id="dashItem_Sporroppdrag" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -192,7 +192,7 @@
 												<td id="dashItem_Priskalk" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Priskalk" method="post" action="/espedsgpkalk/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -207,7 +207,7 @@
 						 						<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -219,7 +219,7 @@
 								 				<td id="dashItem_Tvinnavgg" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 								 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinnavgg" method="post" action="/espedsgtvinnavgg/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -236,7 +236,7 @@
 								 				<td id="dialogRunKundedatakontrollLink" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 								 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 				 								</td>
 				 								<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -247,7 +247,7 @@
 						 						<td id="dashItem_Tvinn" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinn"  method="post" action="/espedsgtvinnsad/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -263,7 +263,7 @@
 						 						<td id="dashItem_Skat" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Skat" method="post" action="/espedsgskat/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -281,7 +281,7 @@
 				 								<td id="dashItem_Tds" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 				 									<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tds" method="post" action="/espedsgtds/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -298,7 +298,7 @@
 												<td id="dashItem_Ufortollede" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Ufortollede" method="post" action="/espedsgoverview/logonDashboard.do?uopp=1" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -313,7 +313,7 @@
 												<td id="dashItem_Kvalitet" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 													<%-- Use a form disguised as a-link --%>
 													<form id="dashForm_Kvalitet"  method="post" action="/espedsgoverview/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
@@ -329,7 +329,7 @@
 												<td id="dashItem_custMatrix" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text16NavyBlue">${record.prTxt}</font>
+				 									<font class="text18">${record.prTxt}</font>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
@@ -347,7 +347,7 @@
 							 				<td id="dashItem_roadmap" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 							 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 								<br/>
-				 								<font class="text16NavyBlue">eSpedsg Roadmap</font>
+				 								<font class="text18">eSpedsg Roadmap</font>
 							 				</td>
 							 			</c:if>
 						 			</tr>
