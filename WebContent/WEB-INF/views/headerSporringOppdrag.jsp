@@ -37,12 +37,12 @@
 	<%--<script type="text/javascript" src="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.js"></script> --%>
 	
 	
-    <table class="noBg" width="1100" border="0" cellspacing="0" cellpadding="0">
+    <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
 		<%--Banner --%>
 	 	<tr>
 	 		 <%-- class="grayTitanBg" --%>
     		<td height="60" class="headerTdsBannerAreaBg" width="100%" align="left" colspan="3"> 
-    			 <table width="1100" border="0" cellspacing="0" cellpadding="0">
+    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     			 	<tr>
 			        	<td>&nbsp;</td>
 			        	<td>&nbsp;</td>
@@ -103,10 +103,10 @@
 		</tr>
 		
 		<tr >
-			<td height="23" class="tabThinBorderLightSlateGray" width="100%" align="left" colspan="3"> 
-    			 <table width="1100" border="0" cellspacing="0" cellpadding="0">
+			<td height="23" class="tabThinBorderLightGreenLogoutE2" width="100%" align="left" colspan="3"> 
+    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 				 	<tr >
-			    		<td class="text11" width="70%" align="left" >&nbsp;&nbsp;
+			    		<td class="text14" width="70%" align="left" >&nbsp;&nbsp;
 			    			<%-- --------------------------- --%>
 			    			<%-- Spørring på Oppdrag MENU    --%>
 			    			<%-- --------------------------- 
@@ -126,7 +126,7 @@
 			    			</a>
 			    			
 	      				</td>		      				
-	      				<td class="text11" width="50%" align="right" valign="middle">
+	      				<td class="text14" width="50%" align="right" valign="middle">
 	      					<c:if test="${ empty user.usrLang || user.usrLang == 'NO'}">
 			               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country">
 			               	</c:if>
@@ -150,11 +150,11 @@
 						           			<button name="specialInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('specialInformationAdmin');">Close</button> 
 						           		</div>
 						        </span>   		
-			    				<font class="text11User" >${user.user}&nbsp;</font>${user.usrLang}</font>
+			    				<font class="text14User" >${user.user}&nbsp;</font>${user.usrLang}</font>
 			    				<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;|&nbsp;&nbsp;</font>
 				    			<a tabindex=-1 href="logoutSporringOppdrag.do">
 				    				<font class="headerMenuGreen"><img src="resources/images/home.gif" border="0">&nbsp;
-				    					<font class="text11User" ><spring:message code="dashboard.menu.button"/>&nbsp;</font>
+				    					<font class="text14User" ><spring:message code="dashboard.menu.button"/>&nbsp;</font>
 				    				</font>
 				    			</a>
 				    			<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;&nbsp;|&nbsp;</font>

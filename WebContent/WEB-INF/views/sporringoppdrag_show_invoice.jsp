@@ -50,7 +50,7 @@
 				<a style="display:block;" id="showOppdrag" href="sporringoppdrag_show.do?action=doShow&knavn=${searchFilter.knavn}&heavd=${searchFilter.heavd}&heopd=${searchFilter.heopd}">
 					<font class="tabDisabledLink">
 						&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.showOppdrag.tab"/>
-						&nbsp;[<font class="text12MediumBlue" style="font-style:italic;">${searchFilter.heopd}</font>]
+						&nbsp;[<font class="text14MediumBlue" style="font-style:italic;">${searchFilter.heopd}</font>]
 					</font>
 				</a>
 			</td>
@@ -79,15 +79,15 @@
 				    		</tr>
 				    		<tr height="15"><td></td></tr>
 				    		<tr>
-				    			<td colspan="10" class="text12MediumBlue">&nbsp;
+				    			<td colspan="10" class="text14MediumBlue">&nbsp;
 				 				<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.label.avdOpp"/></b>&nbsp;${searchFilter.heavd} / ${searchFilter.heopd}
 				 			</td>
 			 			</tr>
 			 			<tr>
-				 			<td class="text12MediumBlue">&nbsp;
+				 			<td class="text14MediumBlue">&nbsp;
 				 				<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.label.invoiceNr"/></b>&nbsp;${searchFilter.docnr}
 				 			</td>
-				 			<td align="right" class="text12MediumBlue">&nbsp;
+				 			<td align="right" class="text14MediumBlue">&nbsp;
 				 				<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.label.invoiceDate"/></b>
 				 				<c:if test="${not empty model.container.fakdt}">
 			    						<%-- Convert the raw strings to a date primitive --%>
@@ -96,7 +96,7 @@
 			    					</c:if>
 				 				
 				 			</td>
-				 			<td align="right" class="text12MediumBlue">&nbsp;
+				 			<td align="right" class="text14MediumBlue">&nbsp;
 				 				<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.label.dueDate"/></b>
 				 				<c:if test="${not empty model.container.fakdtff}">
 			    						<%-- Convert the raw strings to a date primitive --%>
@@ -113,7 +113,7 @@
 				<td width="99%" valign="top">
 					<table align="center" style="width:85%" cellspacing="1" cellpadding="0">
 			 			<tr>
-				 			<td class="text12">
+				 			<td class="text14">
 				 				<img style="vertical-align: bottom" src="resources/images/invoice.png" width="20" height="20" border="0" alt="show log">
 				 				&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.label"/></b>
 				 			</td>
@@ -122,12 +122,15 @@
        						<tr>
 							<td>
 								<table width="100%" cellspacing="0" border="0" cellpadding="0">
+									<thead>
 									<tr class="tableHeaderField" height="20" valign="left">
 					                    <td class="tableHeaderFieldFirst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.column.label.itemDescription"/>&nbsp;</td> 
 					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.column.label.net"/>&nbsp;</td>
 					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.column.label.vat"/>&nbsp;</td>
 					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.invoice.column.label.gross"/>&nbsp;</td> 
 					               	</tr> 
+					               	</thead>
+					               	<tbody>
 					               	<c:forEach var="record" items="${model.container.invlindet}" varStatus="counter">    
 						               <c:choose>           
 						                   <c:when test="${counter.count%2==0}">
@@ -158,7 +161,7 @@
 						               	</tr>
 								 		<tr height="25"><td></td></tr>
 								 		<tr>
-								 			<td colspan="10" class="text12">
+								 			<td colspan="10" class="text14">
 								 			<img style="vertical-align: middle" src="resources/images/bulletGreen.png" width="8" hight="8" border="0" alt="show log">
 								 			&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.external.trackAndTrace.links"/></b></td>
 								    		</tr>
@@ -168,9 +171,9 @@
 										 		<tr height="5"><td></td></tr>
 										 		<c:forEach var="record" items="${model.friesokeVeierList}" >
 									 			<tr>
-											    		<td class="text12">&nbsp;${record.kfsotx}</td>
+											    		<td class="text14">&nbsp;${record.kfsotx}</td>
 											    		
-											    		<td class="text12">
+											    		<td class="text14">
 											    			<div class="inputTextForShowLabel" style="width:80%">
 											    				<label>
 											    					<c:choose>
@@ -193,6 +196,7 @@
 							 				</td>
 										</tr>
 					               	</c:if>
+					               	</tbody>
 					            </table>
 							</td>
 							</tr>

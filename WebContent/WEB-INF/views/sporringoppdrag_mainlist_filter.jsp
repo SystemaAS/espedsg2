@@ -23,11 +23,11 @@
 	.ui-datepicker { font-size:9pt;}
 	</style>
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
 	<tr>
 	<td>
 	<%-- tab container component --%>
-	<table width="100%"  class="text11" cellspacing="0" border="0" cellpadding="0">
+	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
 			<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -67,7 +67,7 @@
 		       		<td>
 		       		<table style="width:95%;" align="left" class="formFrameHeader" cellspacing="0" cellpadding="0">
 			 		<tr height="15">
-			 			<td class="text12White">
+			 			<td class="text14White">
 							&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.title"/>&nbsp;
 							<img valign="bottom" src="resources/images/find.png" width="12px" height="12px" border="0" alt="edit">
 		 				</td>
@@ -89,42 +89,42 @@
 					 		
 					 		
 						    <tr>
-						    		<td class="text11" title="wsdtf">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.fromDate"/></td>
-						    		<td class="text11" ><input type="text" class="inputTextMediumBlue" name="wsdtf" id="wsdtf" size="9" maxlength="8" value="${searchFilter.wsdtf}"></td>
-						    		<td class="text11" title="wsdtt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.toDate"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsdtt" id="wsdtt" size="9" maxlength="8" value="${searchFilter.wsdtt}"></td>
+						    		<td class="text14" title="wsdtf">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.fromDate"/></td>
+						    		<td class="text14" ><input type="text" class="inputTextMediumBlue" name="wsdtf" id="wsdtf" size="9" maxlength="8" value="${searchFilter.wsdtf}"></td>
+						    		<td class="text14" title="wsdtt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.toDate"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsdtt" id="wsdtt" size="9" maxlength="8" value="${searchFilter.wsdtt}"></td>
 						    	</tr>
 									    	
 						    <tr>
-						    		<td class="text11" title="wsrfa">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppGivRef"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsrfa" id="wsrfa" size="15" maxlength="15" value="${searchFilter.wsrfa}"></td>
+						    		<td class="text14" title="wsrfa">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppGivRef"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsrfa" id="wsrfa" size="15" maxlength="15" value="${searchFilter.wsrfa}"></td>
 						    	</tr>
 						    	<tr>	
-						    		<td class="text11" title="wsavd/wsopd">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppRef.avdOppNr"/></td>
-						    		<td class="text11">
+						    		<td class="text14" title="wsavd/wsopd">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppRef.avdOppNr"/></td>
+						    		<td class="text14">
 						    			<input type="text" class="inputTextMediumBlue" name="wsavd" id="wsavd" size="5" maxlength="4" value="${searchFilter.wsavd}">
 						    			&nbsp;<input type="text" class="inputTextMediumBlue" name="wsopd" id="wsopd" size="7" maxlength="7" value="${searchFilter.wsopd}">
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" title="wsfn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.fakturaNr"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsfn" id="wsfn" size="8" maxlength="7" value="${searchFilter.wsfn}"></td>
-						    		<td class="text11" title="wsgn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.godsNr"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsgn" id="wsgn" size="15" maxlength="15" value="${searchFilter.wsgn}"></td>
+						    		<td class="text14" title="wsfn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.fakturaNr"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsfn" id="wsfn" size="8" maxlength="7" value="${searchFilter.wsfn}"></td>
+						    		<td class="text14" title="wsgn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.godsNr"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsgn" id="wsgn" size="15" maxlength="15" value="${searchFilter.wsgn}"></td>
 						    	</tr>
 						    <tr>
-						    		<td class="text11" title="wsawbn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.awbNr"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsawbn" id="wsawbn" size="15" maxlength="15" value="${searchFilter.wsawbn}"></td>
+						    		<td class="text14" title="wsawbn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.awbNr"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsawbn" id="wsawbn" size="15" maxlength="15" value="${searchFilter.wsawbn}"></td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" title="wshawb">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.hawbNr"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wshawb" id="wshawb" size="9" maxlength="9" value="${searchFilter.wshawb}"></td>
-						    		<td class="text11" title="wsdthawb">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.hawbNr.date"/></td>
-						    		<td class="text11"><input type="text" class="inputTextMediumBlue" name="wsdthawb" id="wsdthawb" size="9" maxlength="8" value="${searchFilter.wsdthawb}"></td>
+						    		<td class="text14" title="wshawb">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.hawbNr"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wshawb" id="wshawb" size="9" maxlength="9" value="${searchFilter.wshawb}"></td>
+						    		<td class="text14" title="wsdthawb">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.hawbNr.date"/></td>
+						    		<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsdthawb" id="wsdthawb" size="9" maxlength="8" value="${searchFilter.wsdthawb}"></td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" title="wsot">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppType"/></td>
-						    		<td class="text11" >
+						    		<td class="text14" title="wsot">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppType"/></td>
+						    		<td class="text14" >
 						    			<select name="wsot" id="wsot">
 			            					<option value="">-velg-</option>
 			 				  			<c:forEach var="record" items="${model.TODOList}" >
@@ -132,8 +132,8 @@
 										</c:forEach> 
 									</select>
 					    			</td>
-					    			<td class="text11" nowrap title="wsdtot">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppDate"/></td>
-						    		<td class="text11" ><input type="text" class="inputTextMediumBlue" name="wsdtot" id="wsdtot" size="9" maxlength="8" value="${searchFilter.wsdtot}"></td>
+					    			<td class="text14" nowrap title="wsdtot">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.oppDate"/></td>
+						    		<td class="text14" ><input type="text" class="inputTextMediumBlue" name="wsdtot" id="wsdtot" size="9" maxlength="8" value="${searchFilter.wsdtot}"></td>
 						    	</tr>
 						    	
 						    	<tr height="5"><td ></td></tr>
@@ -144,13 +144,13 @@
 					 		<tr height="5"><td></td></tr>
 						    
 						    <tr>
-						    		<td class="text11" nowrap title="wsmrk1">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.godsmarke"/></td>
-						    		<td class="text11" colspan="3"><input type="text" class="inputTextMediumBlue" name="wsmrk1" id="wsmrk1" size="35" maxlength="35" value="${searchFilter.wsmrk1}"></td>
+						    		<td class="text14" nowrap title="wsmrk1">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.godsmarke"/></td>
+						    		<td class="text14" colspan="3"><input type="text" class="inputTextMediumBlue" name="wsmrk1" id="wsmrk1" size="35" maxlength="35" value="${searchFilter.wsmrk1}"></td>
 						    	</tr>
 						    	
 					    		<tr>
-						    		<td class="text11" nowrap title="fscd/wsfri2">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.andreRef"/></td>
-						    		<td class="text11" colspan="2">
+						    		<td class="text14" nowrap title="fscd/wsfri2">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.andreRef"/></td>
+						    		<td class="text14" colspan="2">
 						    		<%-- 
 					    			<select name="fscd" id="fscd">
 			            					<option value="">-velg-</option>
@@ -168,26 +168,26 @@
 					    			</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" nowrap>&nbsp;</td>
-						    		<td class="text11" colspan="2"><input type="text" class="inputTextMediumBlue" name="wsfri2" id="wsfri2" size="35" maxlength="35" value="${searchFilter.wsfri2}"></td>
+						    		<td class="text14" nowrap>&nbsp;</td>
+						    		<td class="text14" colspan="2"><input type="text" class="inputTextMediumBlue" name="wsfri2" id="wsfri2" size="35" maxlength="35" value="${searchFilter.wsfri2}"></td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" nowrap title="wsdtfs/wsdtfst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.andreRef.date"/></td>
-						    		<td class="text11" colspan="2">
+						    		<td class="text14" nowrap title="wsdtfs/wsdtfst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.andreRef.date"/></td>
+						    		<td class="text14" colspan="2">
 						    			<input type="text" class="inputTextMediumBlue" name="wsdtfs" id="wsdtfs" size="9" maxlength="8" value="${searchFilter.wsdtfs}">
 						    			&nbsp;<input type="text" class="inputTextMediumBlue" name="wsdtfst" id="wsdtfst" size="9" maxlength="8" value="${searchFilter.wsdtfst}">
 						    		</td>
 						    	</tr>
 						    	
 					    		<tr>
-						    		<td class="text11" nowrap title="wsblnr">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.blnr"/></td>
-						    		<td class="text11" colspan="2">
+						    		<td class="text14" nowrap title="wsblnr">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.blnr"/></td>
+						    		<td class="text14" colspan="2">
 						    			<input type="text" class="inputTextMediumBlue" name="wsblnr" id="wsblnr" size="16" maxlength="16" value="${searchFilter.wsblnr}">
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text11" nowrap title="wsblcn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.containerNr"/></td>
-						    		<td class="text11" colspan="2">
+						    		<td class="text14" nowrap title="wsblcn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.form.search.label.containerNr"/></td>
+						    		<td class="text14" colspan="2">
 						    			<input type="text" class="inputTextMediumBlue" name="wsblcn" id="wsblcn" size="17" maxlength="17" value="${searchFilter.wsblcn}">
 						    		</td>
 						    	</tr>

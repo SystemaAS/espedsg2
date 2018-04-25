@@ -50,7 +50,7 @@
 			<td width="20%" valign="bottom" class="tab" align="center" nowrap>
 				<font class="tabLink">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.showOppdrag.tab"/>&nbsp;
 					<font style="font-style:normal;font-weight:normal;">[</font>
-			  		<font class="text12MediumBlue" style="font-style:italic;font-weight:normal;">${model.record.heopd}</font>
+			  		<font class="text14MediumBlue" style="font-style:italic;font-weight:normal;">${model.record.heopd}</font>
 					<font style="font-style:normal;font-weight:normal;">]</font>
 				</font>
 			</td>
@@ -69,7 +69,7 @@
 				<td>
 		       		<table style="width:85%;" align="center" class="formFrameHeader" cellspacing="0" cellpadding="0">
 			 		<tr height="15">
-			 			<td class="text12White">
+			 			<td class="text14White">
 							&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.showOppdrag.tab"/>&nbsp;<img valign="bottom" src="resources/images/textContent.gif" width="14" height="15" border="0" alt="edit">
 		 				</td>
 						</tr>
@@ -107,36 +107,36 @@
 					 				<table class="tableBorderWithRoundCorners">
 					 				<tr>
 								    		<td class="text14MediumBlue" title="henas"><spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.avsender"/></td>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<div>
 								    				<label>
 								    					<b>${model.record.henas}</b>&nbsp;
 								    				</label>
 								    			</div>
 								    		</td>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<div>
 								    				<label>
 								    					&nbsp;<img style="vertical-align: bottom" src="resources/images/addressIcon.png" width="12" hight="12" border="0" alt="address">
-						 							<font class="text12" style="color:#666666;">[${model.record.heads1}&nbsp;&nbsp;${model.record.heads2}&nbsp;&nbsp;${model.record.heads3}]</font>
+						 							<font class="text14" style="color:#666666;">[${model.record.heads1}&nbsp;&nbsp;${model.record.heads2}&nbsp;&nbsp;${model.record.heads3}]</font>
 								    				</label>
 								    			</div>
 								    		</td>
 								    	</tr>
 							    		<tr>
 								    		<td class="text14MediumBlue" title="henak"><spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.mottaker"/></td>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<div>
 								    				<label>
 								    					<b>${model.record.henak}</b>&nbsp;
 								    				</label>
 								    			</div>
 						    				</td>
-								    		<td class="text12">
+								    		<td class="text14">
 								    			<div>
 								    				<label>
 								    					&nbsp;<img style="vertical-align: bottom" src="resources/images/addressIcon.png" width="12" hight="12" border="0" alt="address">
-						 							<font class="text12" style="color:#666666;">[${model.record.headk1}&nbsp;&nbsp;${model.record.headk2}&nbsp;&nbsp;${model.record.headk3}]</font>
+						 							<font class="text14" style="color:#666666;">[${model.record.headk1}&nbsp;&nbsp;${model.record.headk2}&nbsp;&nbsp;${model.record.headk3}]</font>
 								    				</label>
 								    			</div>
 						    				</td>
@@ -146,16 +146,16 @@
 								</tr>							    	
 							    <tr height="5"><td >&nbsp;</td></tr>
 					 			<tr>
-						 			<td class="text12" title="heavd/heopd/hesg">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.orderNr"/></td>
-							    		<td class="text12">
+						 			<td class="text14" title="heavd/heopd/hesg">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.orderNr"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					&nbsp;<b>${model.record.heavd}</b> / <b>${model.record.heopd}</b> / ${model.record.hesg}
 							    				</label>	
 							    			</div>
 						    			</td>
-						 			<td class="text12" title="hedtop">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.orderDate"/></td>
-							    		<td class="text12">
+						 			<td class="text14" title="hedtop">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.orderDate"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												<c:if test="${not empty model.record.hedtop}">
@@ -172,8 +172,8 @@
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="hepro">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.tripNr"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hepro">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.orderRef.tripNr"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												&nbsp;${model.record.hepro}
@@ -182,8 +182,8 @@
 							    		</td>
 						    		</tr>
 						    		<tr>
-						    			<td class="text12" title="wsetd">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.etd"/></td>
-							    		<td class="text12">
+						    			<td class="text14" title="wsetd">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.etd"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					<c:if test="${not empty model.record.wsetd}">
@@ -200,8 +200,8 @@
 							    				</label>	
 							    			</div>
 						    			</td>
-							    		<td class="text12" title="wseta">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.eta"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="wseta">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.eta"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					<c:if test="${not empty model.record.wseta}">
@@ -218,8 +218,8 @@
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="wsata">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.ata"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="wsata">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.etdEtaAta.ata"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					<c:if test="${not empty model.record.wsata}">
@@ -239,8 +239,8 @@
 						    		</tr>
 						    		<tr height="5"><td >&nbsp;</td></tr>
 						    		<tr>
-						    			<td class="text12" title="hegn or herfa">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.awbNr"/></td>
-							    		<td class="text12">
+						    			<td class="text14" title="hegn or herfa">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.awbNr"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					<c:choose>
@@ -265,8 +265,8 @@
 							    				</label>	
 							    			</div>
 						    			</td>
-							    		<td class="text12" title="hegn or herfa">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.godsNr"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hegn or herfa">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.godsNr"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 							    					<c:choose>
@@ -291,8 +291,8 @@
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="hehawb">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.hawb"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hehawb">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.hawb"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hehawb}
@@ -302,8 +302,8 @@
 							    		</td>
 							    	</tr>
 							    	<tr>	
-							    		<td class="text12" title="hetrcn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.container"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hetrcn">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.awbNr.container"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hetrcn}
@@ -314,8 +314,8 @@
 						    		</tr>	
 						    		<tr height="5"><td >&nbsp;</td></tr>
 						    		<tr>
-						    			<td class="text12" title="hesdff-hesdf">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fraTilSted.from"/></td>
-							    		<td class="text12">
+						    			<td class="text14" title="hesdff-hesdf">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fraTilSted.from"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 						    						${model.record.hesdff}-${model.record.hesdf}
@@ -323,8 +323,8 @@
 							    				</label>	
 							    			</div>
 						    			</td>
-							    		<td class="text12" title="hesdt-hesdvt">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fraTilSted.to"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hesdt-hesdvt">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fraTilSted.to"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hesdt}-${model.record.hesdvt}
@@ -335,16 +335,16 @@
 						    		</tr>
 						    		
 						    		<tr>
-						    			<td class="text12" title="hent">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.antall"/></td>
-							    		<td class="text12">
+						    			<td class="text14" title="hent">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.antall"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hent}&nbsp;
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="hevs1">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.godsbesk"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hevs1">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.godsbesk"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hevs1}&nbsp;
@@ -353,16 +353,16 @@
 							    		</td>
 						    		</tr>
 						    		<tr>
-						    			<td class="text12" title="hevkt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.vekt"/></td>
-							    		<td class="text12">
+						    			<td class="text14" title="hevkt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.vekt"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hevkt}&nbsp;kg
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="hefbv">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.frVekt"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hefbv">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.frVekt"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hefbv}&nbsp;kg
@@ -371,16 +371,16 @@
 							    		</td>
 							    	</tr>
 							    	<tr>	
-							    		<td class="text12" title="hem3">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.m3"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="hem3">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.m3"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.hem3}&nbsp;
 							    				</label>
 							    			</div>
 							    		</td>
-							    		<td class="text12" title="helm">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.lm"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="helm">&nbsp;&nbsp;&nbsp;&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.lm"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												${model.record.helm}&nbsp;
@@ -390,8 +390,8 @@
 							    		
 						    		</tr>
 						    		<tr>
-							    		<td class="text12" title="clis">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.colliId"/></td>
-							    		<td class="text12">
+							    		<td class="text14" title="clis">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.antalVekt.colliId"/></td>
+							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
 												<c:if test="${not empty model.record.clis}">
@@ -416,9 +416,9 @@
 			 			 	<table align="center" style="width:85%" class="tableBorderWithRoundCorners" cellspacing="1" cellpadding="0">
 					 		<tr height="5"><td></td></tr>
 						    	<tr>
-						    		<td class="text12" title="hegm1/hegm2">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.godsmerking"/></td>
-						    		<td class="text12" width="120px">&nbsp;</td>
-						    		<td align="center" class="text12">
+						    		<td class="text14" title="hegm1/hegm2">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.godsmerking"/></td>
+						    		<td class="text14" width="120px">&nbsp;</td>
+						    		<td align="center" class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%">
 						    				<div align="left">
 						    					&nbsp;${model.record.hegm1}
@@ -430,9 +430,9 @@
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text12" title="hesgm/hedtmo">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.kvitMottat"/></td>
-						    		<td class="text12" width="120px">&nbsp;</td>
-						    		<td align="center" class="text12">
+						    		<td class="text14" title="hesgm/hedtmo">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.kvitMottat"/></td>
+						    		<td class="text14" width="120px">&nbsp;</td>
+						    		<td align="center" class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%">
 						    				<div align="left">
 						    					&nbsp;${model.record.hesgm}
@@ -444,9 +444,9 @@
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text12" title="doclnk">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.doc"/></td>
-						    		<td class="text12" width="120px">&nbsp;</td>
-						    		<td align="center" class="text12">
+						    		<td class="text14" title="doclnk">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.doc"/></td>
+						    		<td class="text14" width="120px">&nbsp;</td>
+						    		<td align="center" class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%">
 						    				<div align="left">
 						    					<c:forEach var="record" items="${model.docList}" >
@@ -460,9 +460,9 @@
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text12" title="frttxt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fritekst"/></td>
-						    		<td class="text12" width="120px">&nbsp;</td>
-						    		<td align="center" class="text12">
+						    		<td class="text14" title="frttxt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fritekst"/></td>
+						    		<td class="text14" width="120px">&nbsp;</td>
+						    		<td align="center" class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%;">
 						    				<div align="left">
 						    					<c:forEach var="record" items="${model.freeTextList}" >
@@ -474,9 +474,9 @@
 						    		</td>
 						    	</tr>
 						    	<tr>
-						    		<td class="text12" title="fafakt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fakturaNr"/></td>
-						    		<td class="text12" width="120px">&nbsp;</td>
-						    		<td align="center" class="text12">
+						    		<td class="text14" title="fafakt">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.fakturaNr"/></td>
+						    		<td class="text14" width="120px">&nbsp;</td>
+						    		<td align="center" class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%">
 						    				<div align="left">
 						    					<c:forEach var="record" items="${model.invoiceList}" >
@@ -497,7 +497,7 @@
 						<td width="99%" valign="top">
 							<table align="center" style="width:85%" cellspacing="1" cellpadding="0">
 					 			<tr>
-						 			<td colspan="2" class="text12">
+						 			<td colspan="2" class="text14">
 						 			<img style="vertical-align: middle" src="resources/images/bulletGreen.png" width="8" hight="8" border="0" alt="show log">
 						 			&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.label.external.trackAndTrace.links"/></b></td>
 						    		</tr>
@@ -510,8 +510,8 @@
 					 		<tr height="5"><td></td></tr>
 					 		<c:forEach var="record" items="${model.friesokeVeierList}" >
 				 			<tr>
-						    		<td class="text12">&nbsp;${record.kfsotx}</td>
-						    		<td class="text12">
+						    		<td class="text14">&nbsp;${record.kfsotx}</td>
+						    		<td class="text14">
 						    			<div class="inputTextForShowLabel" style="width:80%">
 						    				<div>
 						    					<c:choose>
@@ -538,7 +538,7 @@
 						<td width="99%" valign="top">
 							<table align="center" style="width:85%" cellspacing="1" cellpadding="0">
 					 			<tr>
-						 			<td class="text12">
+						 			<td class="text14">
 						 				<img style="vertical-align: bottom" src="resources/images/log-iconLOG.png" width="21" hight="23" border="0" alt="show log">
 						 				&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg"/></b>
 						 			</td>
@@ -547,14 +547,16 @@
 	        						<tr>
 									<td>
 										<table width="100%" cellspacing="0" border="0" cellpadding="0">
+											<thead>
 											<tr class="tableHeaderField" height="20" valign="left">
-							                    <td class="tableHeaderFieldFirst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.date"/>&nbsp;</td> 
-							                    <td class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.time"/>&nbsp;</td>
-							                    <td class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.type"/>&nbsp;</td>
-							                    <td class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.signatur"/>&nbsp;</td> 
-							                    <td class="tableHeaderField">&nbsp;&nbsp;</td> 
+							                    <th class="tableHeaderFieldFirst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.date"/>&nbsp;</th> 
+							                    <th class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.time"/>&nbsp;</th>
+							                    <th class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.type"/>&nbsp;</th>
+							                    <th class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.hendelseslogg.column.label.signatur"/>&nbsp;</th> 
+							                    <th class="tableHeaderField">&nbsp;&nbsp;</th> 
 							               </tr> 
-							              
+							               </thead>
+							               <tbody>
 							               	<c:forEach var="record" items="${model.hendelseslogList}" varStatus="counter">    
 								               <c:choose>           
 								                   <c:when test="${counter.count%2==0}">
@@ -604,7 +606,7 @@
 								               </td>
 								            </tr> 
 								            </c:forEach>
-								             
+								            </tbody> 
 							            </table>
 									</td>
 									</tr>

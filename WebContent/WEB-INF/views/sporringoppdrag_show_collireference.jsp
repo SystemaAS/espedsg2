@@ -50,7 +50,7 @@
 				<a style="display:block;" id="showOppdrag" href="sporringoppdrag_show.do?action=doShow&knavn=${searchFilter.knavn}&heavd=${searchFilter.heavd}&heopd=${searchFilter.heopd}">
 					<font class="tabDisabledLink">
 						&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.showOppdrag.tab"/>
-						&nbsp;[<font class="text12MediumBlue" style="font-style:italic;">${searchFilter.heopd}</font>]
+						&nbsp;[<font class="text14MediumBlue" style="font-style:italic;">${searchFilter.heopd}</font>]
 					</font>
 				</a>
 			</td>
@@ -79,7 +79,7 @@
 				    		</tr>
 				    		<tr height="15"><td></td></tr>
 				    		<tr>
-				    			<td colspan="10" class="text12MediumBlue">
+				    			<td colspan="10" class="text14MediumBlue">
 				 				&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.avdOpp"/></b>&nbsp;${searchFilter.heavd} / ${searchFilter.heopd}
 				 			</td>
 			 			</tr>
@@ -91,7 +91,7 @@
 				<td width="99%" valign="top">
 					<table align="center" style="width:85%" cellspacing="1" cellpadding="0">
 			 			<tr>
-				 			<td class="text12">
+				 			<td class="text14">
 				 				&nbsp;<b><spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label"/></b>
 				 			</td>
 				    		</tr>
@@ -99,19 +99,21 @@
        						<tr>
 							<td>
 								<table width="100%" cellspacing="0" border="0" cellpadding="0">
+									<thead>
 									<tr class="tableHeaderField" height="20" valign="left">
-					                    <td class="tableHeaderFieldFirst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.colliId"/>&nbsp;</td>
-					                    <td class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.in"/>&nbsp;</td>
-					                    <td class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.out"/>&nbsp;</td> 
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.length"/>&nbsp;</td>
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.width"/>&nbsp;</td>
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.height"/>&nbsp;</td> 
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.m3"/>&nbsp;</td>
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.lm"/>&nbsp;</td>
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.fvekt"/>&nbsp;</td> 
-					                    <td align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.pic"/>&nbsp;</td> 
+					                    <th class="tableHeaderFieldFirst">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.colliId"/>&nbsp;</th>
+					                    <th class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.in"/>&nbsp;</th>
+					                    <th class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.out"/>&nbsp;</th> 
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.length"/>&nbsp;</th>
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.width"/>&nbsp;</th>
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.height"/>&nbsp;</th> 
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.m3"/>&nbsp;</th>
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.lm"/>&nbsp;</th>
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.fvekt"/>&nbsp;</th> 
+					                    <th align="right" class="tableHeaderField">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.topic.header.colliref.label.pic"/>&nbsp;</th> 
 					               	</tr> 
-					               	
+					               	</thead>
+					               	<tbody>
 						           	<c:forEach var="record" items="${model.container.dspcolli}" varStatus="counter">  
 						           	<c:if test="${not empty record.koid}">  
 							               <c:choose>           
@@ -175,6 +177,7 @@
 							            </tr> 
 						            </c:if>
 						            </c:forEach>
+						            
 						            <c:if test="${myCounter>=1}">
 							            <tr class="tableHeaderField" height="20" valign="left">
 						                    <td class="tableHeaderFieldFirst">&nbsp;TOTALER&nbsp;</td> 
@@ -189,6 +192,7 @@
 						                    <td align="right" class="tableHeaderField">&nbsp;&nbsp;</td> 
 						               	</tr>
 					               	</c:if>
+					               	</tbody>
 					            </table>
 							</td>
 							</tr>
