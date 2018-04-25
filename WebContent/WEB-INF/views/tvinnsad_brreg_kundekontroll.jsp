@@ -70,17 +70,17 @@
 						<%-- this is the datatables grid (content) --%>
 							<table id="invalideKunderList" class="display compact cell-border" border="0">
 								<thead>
-								<tr style="background-color:#EEEEEE">
-								    <th class="text12">Kundnr</th>   
-				                    <th class="text12">Kundenavn</th>
-				                    <th class="text12">Org.nr</th>
-				                    <th class="text12">HovedEnhet</th>
-				                    <th class="text12">UnderEnhet</th>
-				                    <th class="text12">HovedEnhets Org.nr</th>
-				                    <th class="text12">Konkurs</th>
-				                    <th class="text12">Merverdi</th>
-				                    <th class="text12">Under avvikling</th>
-				                    <th class="text12">Under tvangsavvikling</th>
+								<tr class="tableHeaderField">
+								    <th class="text14">Kundnr</th>   
+				                    <th class="text14">Kundenavn</th>
+				                    <th class="text14">Org.nr</th>
+				                    <th class="text14">HovedEnhet</th>
+				                    <th class="text14">UnderEnhet</th>
+				                    <th class="text14">HovedEnhets Org.nr</th>
+				                    <th class="text14">Konkurs</th>
+				                    <th class="text14">Merverdi</th>
+				                    <th class="text14">Under avvikling</th>
+				                    <th class="text14">Under tvangsavvikling</th>
 				                </tr> 
 				                </thead>
 				                
@@ -95,34 +95,34 @@
 					                   </c:otherwise>
 					               </c:choose>
 			
-			        		       <td class="text11">&nbsp;${record.kundenr}</td>
-			            		   <td class="text11">&nbsp;${record.kundenavn}</td>
-			            		   <td class="text11">&nbsp;${record.orgnr}</td>
-			            		   <td class="text11">&nbsp;${record.existsashovedenhet}</td>
-			            		   <td class="text11">&nbsp;${record.existsasunderenhet}</td>
-			            		   <td class="text11">&nbsp;${record.overordnetenhetorgnr}</td>
-			            		   <td class="text11">&nbsp;${record.konkurs}</td>
-					               <td class="text11">&nbsp;${record.registrertimvaregisteret}</td>
-			            		   <td class="text11">&nbsp;${record.underavvikling}</td>
-					               <td class="text11">&nbsp;${record.undertvangsavviklingellertvangsopplosning}</td>
+			        		       <td class="text14">&nbsp;${record.kundenr}</td>
+			            		   <td class="text14">&nbsp;${record.kundenavn}</td>
+			            		   <td class="text14">&nbsp;${record.orgnr}</td>
+			            		   <td class="text14">&nbsp;${record.existsashovedenhet}</td>
+			            		   <td class="text14">&nbsp;${record.existsasunderenhet}</td>
+			            		   <td class="text14">&nbsp;${record.overordnetenhetorgnr}</td>
+			            		   <td class="text14">&nbsp;${record.konkurs}</td>
+					               <td class="text14">&nbsp;${record.registrertimvaregisteret}</td>
+			            		   <td class="text14">&nbsp;${record.underavvikling}</td>
+					               <td class="text14">&nbsp;${record.undertvangsavviklingellertvangsopplosning}</td>
 					               
 					            </tr> 
 					            </c:forEach>
 					            <tfoot>
-								<tr style="background-color:#EEEEEE">
+								<tr class="tableHeaderField">
 									<c:if test="${not empty cw}">
-										<th width="5%" class="text12">Hente Ordre</th>
+										<th width="5%" class="text14">Hente Ordre</th>
 									</c:if>
-								    <th class="text12">Kundnr</th>   
-				                    <th class="text12">Kundenavn</th>
-				                    <th class="text12">Org.nr</th>
-				                    <th class="text12">HovedEnhet</th>
-				                    <th class="text12">UnderEnhet</th>
-				                    <th class="text12">HovedEnhets Org.nr</th>
-				                    <th class="text12">Konkurs</th>
-				                    <th class="text12">Merverdi</th>
-				                    <th class="text12">Under avvikling</th>
-				                    <th class="text12">Under tvangsavvikling</th>
+								    <th class="text14">Kundnr</th>   
+				                    <th class="text14">Kundenavn</th>
+				                    <th class="text14">Org.nr</th>
+				                    <th class="text14">HovedEnhet</th>
+				                    <th class="text14">UnderEnhet</th>
+				                    <th class="text14">HovedEnhets Org.nr</th>
+				                    <th class="text14">Konkurs</th>
+				                    <th class="text14">Merverdi</th>
+				                    <th class="text14">Under avvikling</th>
+				                    <th class="text14">Under tvangsavvikling</th>
 				                </tr> 
 				                </tfoot>
 					            </tbody>
@@ -130,13 +130,13 @@
 				        </td>
 		            </tr>
 	           		<tr>
-	            		<td colspan="4" class="text12">
+	            		<td colspan="4" class="text14">
 		            		<table align="left" class="tabThinBorderWhite">
 						    <tr>
 								<td>	
 									<a href="invalidaKunderMainListExcelView.do" target="_new">
 				                			<img valign="bottom" id="mainListExcel" src="resources/images/excel.gif" width="14" height="14" border="0" alt="excel">
-				                			<font class="text12MediumBlue">&nbsp;Excel</font>
+				                			<font class="text14MediumBlue">&nbsp;Excel</font>
 				 	        		</a>
 				 	        		&nbsp;
 			 	        		</td>

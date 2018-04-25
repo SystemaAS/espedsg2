@@ -416,7 +416,7 @@
 			<td>
 				<div id="dialogRunKundedatakontroll" title="Dialog">
 					<form  action="tvinnsad_brreg_kundekontroll.do" name="runKundedatakontrollForm" id="runKundedatakontrollForm" method="post">
-						<p class="text12">
+						<p class="text14">
 							Utførelse av denne funksjonen kan ta litt tid.
 						</p>
 					</form>

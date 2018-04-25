@@ -33,12 +33,12 @@
 	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
 	<input type="hidden" name="language" id=language value="${user.usrLang}">
 	
-    <table class="noBg" width="1100" border="0" cellspacing="0" cellpadding="0">
+    <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
 		<%--Banner --%>
 	 	<tr>
 	 		 <%-- class="grayTitanBg" --%>
     		<td height="60" class="headerTdsBannerAreaBg" width="100%" align="left" colspan="3"> 
-    			 <table width="1100" border="0" cellspacing="0" cellpadding="0">
+    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     			 	<tr>
 			        	<td>&nbsp;</td>
 			        	<td>&nbsp;</td>
@@ -46,7 +46,7 @@
 			        </tr>
 				 	<tr>
 				 		<td class="text12white" width="10%" align=left valign="bottom" >&nbsp;</td>
-				 		<td class="text22Bold" width="80%" align="middle" valign="middle" style="color:#778899;" >
+				 		<td class="text32Bold" width="100%" align="middle" valign="middle" style="color:#778899;" >
 				 			eSped<font style="color:#003300;">sg</font> - Kundedata kontroll
 				 			
 				 		</td>
@@ -65,22 +65,12 @@
 		</tr>
 		
 		<tr >
-			<td height="23" class="tabThinBorderLightSlateGray" width="100%" align="left" colspan="3"> 
-    			 <table width="1100" border="0" cellspacing="0" cellpadding="0">
+			<td height="23" class="tabThinBorderLightGreenLogoutE2" width="100%" align="left" colspan="3"> 
+    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 				 	<tr >
 			    		<td class="text11" width="70%" align="left" >&nbsp;&nbsp;
 			    			<a tabindex=-1 href="tvinnsad_brreg_kundekontroll.do?action=doFind" onClick="setBlockUI(this);">
-			    				&nbsp;<font 
-			    				<c:choose>           
-		                   			<c:when test="${user.activeMenu=='BRREG_KUNDE_KONTROLL'}">
-		                       			class="headerMenuMediumGreen"
-		                   			</c:when>
-		                   			<c:otherwise>   
-		                       			class="headerMenuLightGreen"
-		                   			</c:otherwise>
-		               			</c:choose>
-			    				
-			    				>&nbsp;Kundedata kontroll&nbsp;</font>
+			    				&nbsp;<font class="headerMenuLightGreen">&nbsp;Kundedata kontroll&nbsp;</font>
 			    			</a>
 			    			
 	      				</td>		      				
@@ -103,13 +93,15 @@
 	      					
 		      				<font class="headerMenuGreen">
 			    				<img src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');" > 
-						        <span style="position:absolute; left:100px; top:150px; width:1000px; height:400px;" id="specialInformationAdmin" class="popupWithInputText"  >
-						           		<div class="text11" align="left">
-						           			${activeUrlRPG_SporringOppdrag}
-						           			<br/><br/>
-						           			<button name="specialInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('specialInformationAdmin');">Close</button> 
-						           		</div>
-						        </span>   		
+							        <div class="text11" style="position: relative;display: inline;" align="left">
+										<span style="position:absolute; left:-150px; top:3px; width:150;" id="specialInformationAdmin" class="popupWithInputText"  >
+							           		<div class="text11" align="left">
+							           			${activeUrlRPG_SporringOppdrag}
+							           			<br/><br/>
+							           			<button name="specialInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('specialInformationAdmin');">Close</button> 
+							           		</div>
+							        	</span> 
+							        </div>  		
 			    				<font style="color:#000000" >${user.user}&nbsp;</font>${user.usrLang}</font>
 			    				<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;|&nbsp;&nbsp;</font>
 				    			<a tabindex=-1 href="logoutBrregKontroll.do">
@@ -119,7 +111,8 @@
 				    			</a>
 				    			<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;&nbsp;|&nbsp;</font>
 				    			<font class="text12LightGreen" style="cursor:pointer;" onClick="showPop('versionInfo');">${user.versionSpring}&nbsp;</font>
-			    				    <span style="position:absolute; left:800px; top:105px; width:150px; height:100px;" id="versionInfo" class="popupWithInputText"  >
+			    				    <div class="text11" style="position: relative;display: inline;" align="left">
+										<span style="position:absolute; left:-150px; top:3px; width:150;" id="versionInfo" class="popupWithInputText"  >
 						           		<div class="text11" align="left">
 						           			&nbsp;<b>${user.versionEspedsg}</b>
 						           			<br/><br/>
@@ -127,8 +120,8 @@
 						           			<br/><br/><br/>
 						           			<button name="versionInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('versionInfo');">Close</button> 
 						           		</div>
-						        </span> 
-						        
+						       		 </span> 
+						        	</div>
 				    		</td>
 	      				
 			        </tr>
