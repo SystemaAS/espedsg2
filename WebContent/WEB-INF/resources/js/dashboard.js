@@ -6,79 +6,79 @@
     var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
     
     function setBlockUI(element){
-  	  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+  	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     }
   	
     jq(function() { 
     	jq("td#dashItem_roadmap").bind("click",function() {
     		window.location = "aespedsg_roadmap.do";
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_custMatrix").bind("click",function() {
     		window.location = "espedsgadmin.do";
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Vedlikehold").bind("click",function() {
     		window.location = "mainmaintenancegate.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Sporroppdrag").bind("click",function() {
     		window.location = "sporringoppdraggate.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Testsuites").bind("click",function() {
     		window.location = "aespedsgtestersuite.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Transpdisp").bind("click",function() {
     		window.location = "transportdisp_mainorderlist.do?lang=" + jq("#usrLang").val() + "&action=doFind";
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Kvalitet").bind("click",function() {
     		jq("#dashForm_Kvalitet").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Ufortollede").bind("click",function() {
     		jq("#dashForm_Ufortollede").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Tds").bind("click",function() {
     		jq("#dashForm_Tds").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Skat").bind("click",function() {
     		jq("#dashForm_Skat").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     		
 	    });
     	jq("td#dashItem_Tvinn").bind("click",function() {
     		jq("#dashForm_Tvinn").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Tvinnavgg").bind("click",function() {
     		jq("#dashForm_Tvinnavgg").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Priskalk").bind("click",function() {
     		jq("#dashForm_Priskalk").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Efaktura").bind("click",function() {
     		jq("#dashForm_Efaktura").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Tror").bind("click",function() {
     		jq("#dashForm_Tror").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_Ebooking").bind("click",function() {
     		jq("#dashForm_Ebooking").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	jq("td#dashItem_StatsTrafikk").bind("click",function() {
     		//to be developed TODO --->FM/JOVO
@@ -87,7 +87,7 @@
 	    });
     	jq("td#dashItem_StatsFortolling").bind("click",function() {
     		jq("#dashForm_StatsFortolling").submit();
-    		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	    });
     	
     	
@@ -138,7 +138,7 @@
 					 click: function(){
 						 		jq('#runKundedatakontrollForm').submit();
 						 		jq( this ).dialog( "close" );
-						 		jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+						 		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 					 		}
 				 	 },
 		 	 		{
