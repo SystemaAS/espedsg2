@@ -36,7 +36,7 @@
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="15%" valign="bottom" class="tab" align="center">
-						<font class="tabLink">&nbsp;Generella avd.</font>&nbsp;
+						<font class="tabLink">&nbsp;Generelle avd.</font>&nbsp;
 						<img style="vertical-align: middle;"  src="resources/images/list.gif" border="0" alt="avd. general list">
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>

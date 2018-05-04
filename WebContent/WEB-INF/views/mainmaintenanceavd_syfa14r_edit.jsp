@@ -39,7 +39,7 @@
 							<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 							<td width="14%" valign="bottom" class="tabDisabled" align="center">
 								<a id="alinkMainMaintAvdSyfa14r" onClick="setBlockUI(this);" href="mainmaintenanceavd_syfa14r.do">
-									<font class="tabDisabledLink">&nbsp;Generella avd.</font>&nbsp;
+									<font class="tabDisabledLink">&nbsp;Generelle avd.</font>&nbsp;
 									<img style="vertical-align: middle;"  src="resources/images/list.gif" border="0" alt="avd. general list">
 								</a>
 							</td>
