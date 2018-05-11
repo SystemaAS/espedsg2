@@ -13,12 +13,12 @@
 	</style>
 
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 		<%-- tab container component --%>
-		<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+		<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 			<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<c:choose>
@@ -54,7 +54,7 @@
 								<font class="tabLink">&nbsp;
 									<spring:message code="systema.main.maintenance.arkiv.documents"/>	
 								</font>&nbsp;
-								<font class="text11MediumBlue">(${model.record.artype})</font>
+								<font class="text14MediumBlue">(${model.record.artype})</font>
 							</td>
 							
 							<td width="40%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -116,7 +116,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -138,7 +138,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -160,7 +160,7 @@
 								<td> <!-- First row -->
 									<table>
 										<tr>
-											<td class="text12" title="ARTYPE">&nbsp;<font class="text14RedBold" >*</font>
+											<td class="text14" title="ARTYPE">&nbsp;<font class="text14RedBold" >*</font>
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.artype"/>:	
 											</td>
 											<td >
@@ -173,14 +173,14 @@
 													</c:otherwise>
 												</c:choose>
 											</td>
-											<td class="text12" title="ARTXT">&nbsp;<font class="text14RedBold" >*</font>
+											<td class="text14" title="ARTXT">&nbsp;<font class="text14RedBold" >*</font>
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.artxt"/>:	
 											</td>
 											<td ><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField"  name="artxt" id="artxt" size="20" maxlength="15" value='${model.record.artxt}'></td>
-											<td class="text12" title="ARKJN">&nbsp;
+											<td class="text14" title="ARKJN">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.arkjn"/>:	
 											</td>
-											<td class="text12" >
+											<td class="text14" >
 												<select name="arkjn" id="arkjn" class="inputTextMediumBlue">
 								  					<option value="">-<spring:message code="systema.choose"/>-</option>
 								  					<option value="J"<c:if test="${ model.record.arkjn == 'J'}"> selected </c:if> ><spring:message code="systema.yes"/></option>
@@ -188,10 +188,10 @@
 								  					
 											  	</select>
 											</td>
-											<td class="text12" title="ARKSND">&nbsp;
+											<td class="text14" title="ARKSND">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.arksnd"/>:	
 											</td>
-											<td class="text12" >
+											<td class="text14" >
 												<select name="arksnd" id="arksnd" class="inputTextMediumBlue">
 								  					<option value="">-<spring:message code="systema.choose"/>-</option>
 								  					<option value="J"<c:if test="${ model.record.arksnd == 'J'}"> selected </c:if> ><spring:message code="systema.yes"/></option>
@@ -199,7 +199,7 @@
 								  					
 											  	</select>
 											</td>
-											<td class="text12" title="ARKLAG">&nbsp;
+											<td class="text14" title="ARKLAG">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.arklag"/>:	
 											</td>
 											<td><input type="text" class="inputTextMediumBlue"  name="arklag" id="arklag" size="2" maxlength="2" value='${model.record.arklag}'>
@@ -208,7 +208,7 @@
 												</a>
 											</td>
 											<td><input readonly type="text" class="inputTextReadOnly" name="arklagDesc" id="arklagDesc" size="10" maxlength="10" value='${model.record.arklagDesc}'></td>
-											<td class="text12" title="ARKDAG">&nbsp;
+											<td class="text14" title="ARKDAG">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.arkdag"/>:	
 											</td>
 											<td><input type="text" onKeyPress="return amountKey(event)" class="inputTextMediumBlue"  name="arkdag" id="arkdag" size="5" maxlength="5" value='${model.record.arkdag}'></td>
@@ -221,7 +221,7 @@
 								<td>&nbsp; <!-- Second row -->
 									<table class="formFrameHeaderPeachWithBorder" width="100%" 	cellspacing="0" border="0" align="center">
 										<tr>
-											<td class="text12Bold">&nbsp;
+											<td class="text14Bold">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.header.vedlegg"/>
 											</td>
 											<td align="right">&nbsp;
@@ -239,7 +239,7 @@
 											<td>
 												<table>
 													<tr>
-														<td class="text12" title="arkved">&nbsp;
+														<td class="text14" title="arkved">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arkved"/>:
 														</td>
 														<td><input type="text" class="inputTextMediumBlue" name="arkved1" id="arkved1" size="2" maxlength="2" value='${model.record.arkved1}'></td>
@@ -259,7 +259,7 @@
 														<td><input type="text" class="inputTextMediumBlue" name="arkved15" id="arkved15" size="2" maxlength="2" value='${model.record.arkved15}'></td>
 													</tr>
 													<tr>
-														<td class="text12" title="arkved">&nbsp;
+														<td class="text14" title="arkved">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arkved"/>:
 														</td>
 														<td><input type="text" class="inputTextMediumBlue" name="arkved16" id="arkved16" size="2" maxlength="2" value='${model.record.arkved16}'></td>
@@ -279,11 +279,11 @@
 														<td><input type="text" class="inputTextMediumBlue" name="arkved30" id="arkved30" size="2" maxlength="2" value='${model.record.arkved30}'></td>
 													</tr>
 													<tr>
-														<td class="text12" title="arvedl">&nbsp;
+														<td class="text14" title="arvedl">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arkvedl"/>:
 														</td>													
 														<td colspan="8"><input type="text" class="inputTextMediumBlue" name="arvedl" id="arvedl" size="45" maxlength="40" value='${model.record.arvedl}'></td>
-														<td colspan="3" class="text12" title="armrg">&nbsp;
+														<td colspan="3" class="text14" title="armrg">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.armrg"/>:
 														</td>
 														<td colspan="2">
@@ -308,7 +308,7 @@
 								<td>&nbsp;  <!--  Third row --> 					
 									<table class="formFrameHeaderPeachWithBorder" width="100%" 	cellspacing="0" border="0" align="center">
 										<tr>
-											<td class="text12Bold">&nbsp;
+											<td class="text14Bold">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancearc007.header.scanning"/>
 											</td>
 										</tr>
@@ -318,7 +318,7 @@
 											<td>
 												<table>
 													<tr>
-														<td class="text12" title="arsban">&nbsp;
+														<td class="text14" title="arsban">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsban"/>:
 														</td>													
 														<td colspan="8"><input type="text" class="inputTextMediumBlue" name="arsban" id="arsban" size="55" maxlength="50" value='${model.record.arsban}'>
@@ -326,7 +326,7 @@
 																<img style="cursor:pointer;vertical-align:middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 															</a>													
 														</td>
-														<td  class="text12" title="arsfsk">&nbsp;
+														<td  class="text14" title="arsfsk">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsfsk"/>:
 														</td>
 														<td>
@@ -336,7 +336,7 @@
 											  					<option value="N"<c:if test="${model.record.arsfsk == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
 											  				</select>
 														</td>
-														<td  class="text12" title="arscts">&nbsp;
+														<td  class="text14" title="arscts">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arscts"/>:
 														</td>
 														<td>
@@ -346,7 +346,7 @@
 											  					<option value="N"<c:if test="${model.record.arscts == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
 											  				</select>
 														</td>
-														<td  class="text12" title="arslab">&nbsp;
+														<td  class="text14" title="arslab">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arslab"/>:
 														</td>
 														<td>
@@ -358,24 +358,24 @@
 														</td>
 													</tr>
 													<tr>
-														<td  class="text12Gray">&nbsp;
+														<td  class="text14Gray">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.specialrules"/>
 														</td>												
 													</tr>
 													<tr>
-														<td colspan="3" class="text12" title="arsrle">&nbsp;
+														<td colspan="3" class="text14" title="arsrle">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsrle"/>:
 														</td>													
 														<td><input type="text" class="inputTextMediumBlue" name="arsrle" id="arsrle" size="5" maxlength="2" value='${model.record.arsrle}'></td>
-														<td class="text12" title="arsrpa">&nbsp;&nbsp;
+														<td class="text14" title="arsrpa">&nbsp;&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsrpa"/>:
 														</td>													
 														<td><input type="text" class="inputTextMediumBlue" name="arsrpa" id="arsrpa" size="7" maxlength="2" value='${model.record.arsrpa}'></td>
-														<td class="text12" title="arsrst">&nbsp;&nbsp;
+														<td class="text14" title="arsrst">&nbsp;&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsrst"/>:
 														</td>													
 														<td><input type="text" class="inputTextMediumBlue" name="arsrst" id="arsrst" size="5" maxlength="2" value='${model.record.arsrst}'></td>
-														<td  class="text12" title="arsrno">&nbsp;
+														<td  class="text14" title="arsrno">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancearc007.arsrno"/>:
 														</td>
 														<td>

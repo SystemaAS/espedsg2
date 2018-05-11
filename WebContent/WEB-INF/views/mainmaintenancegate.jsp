@@ -39,7 +39,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="90%" cellspacing="1" border="0" align="center">
 			    	    <tr>
-						<td class="text11">
+						<td class="text14">
 						<table width="100%" id="mainList" class="display compact cell-border" >
 							<thead>
 							<tr>
@@ -74,11 +74,11 @@
 				               		<c:choose>
 					               		<c:when test="${(record.status == 'G' || record.status == 'Y') && not empty record.code}">
 					               			<a id="alinkRecordDesc_${counter.count}" onClick="setBlockUI(this);" href="${record.code}<c:if test="${(record.status == 'G' || record.status == 'Y') && not empty record.pgm}">_${record.pgm}</c:if>.do?id=${record.dbTable}">
-		               							<font class="text12SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+		               							<font class="text14SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 		               						</a>
 					               		</c:when>
 					               		<c:otherwise>
-					               			<font class="text12">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+					               			<font class="text14">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 					               		</c:otherwise>
 				               		</c:choose>
 				               </td>

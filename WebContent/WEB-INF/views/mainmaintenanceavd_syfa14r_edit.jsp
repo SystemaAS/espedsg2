@@ -132,7 +132,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -154,7 +154,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -175,10 +175,10 @@
 						<input type="hidden" name="action" id=action value="${model.action}">
 						<table cellspacing="1" border="0" align="left">
 				    	    <tr>
-								<td class="text12" title="KOAAVD">&nbsp;<font class="text14RedBold" >*</font>Avd.</td>
-								<td class="text12" title="KOANVN">&nbsp;<font class="text14RedBold" >*</font>Avd.navn</td>
-								<td class="text12" title="KOAFIR">&nbsp;<font class="text14RedBold" >*</font>Firma</td>
-								<td class="text12" title="KOAKNR">&nbsp;<font class="text14RedBold" >*</font>Kundenr.</td>
+								<td class="text14" title="KOAAVD">&nbsp;<font class="text14RedBold" >*</font>Avd.</td>
+								<td class="text14" title="KOANVN">&nbsp;<font class="text14RedBold" >*</font>Avd.navn</td>
+								<td class="text14" title="KOAFIR">&nbsp;<font class="text14RedBold" >*</font>Firma</td>
+								<td class="text14" title="KOAKNR">&nbsp;<font class="text14RedBold" >*</font>Kundenr.</td>
 							</tr>
 							<tr>
 								
@@ -202,85 +202,97 @@
 								</td>
 							</tr>
 							<tr height="3"><td>&nbsp;</td></tr>
-						</table>
-						<table width="60%" 	cellspacing="1" border="0" align="left">
-				    	    <tr>
-								<td class="text12" title="KOABÆR">&nbsp;Bærer</td>
-								<td class="text12" title="KOAKON">&nbsp;Sted</td>
-								<td class="text12" title="KOAIAT">&nbsp;IATA kode</td>
-								<td class="text12" title="KOAIA2">&nbsp;IATA kode 2</td>
-								<td class="text12" title="KOAPOS">&nbsp;Pnr.fraktb.</td>
-								<td class="text12" title="KOAIE">&nbsp;Imp/Eks.</td>
-								<td class="text12" title="KOALK">&nbsp;Kun land</td>
-								<td class="text12" title="NAVSG">&nbsp;Attesterer</td>
-
-							</tr>
 							<tr>
-								<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koabaer" id="koabaer" size="5" maxlength="4" value='${model.record.koabaer}'></td>
-								<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koakon" id="koakon" size="5" maxlength="4" value='${model.record.koakon}'></td>
-								<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koaiat" id="koaiat" size="8" maxlength="7" value='${model.record.koaiat}'></td>
-								<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koaia2" id="koaia2" size="5" maxlength="4" value='${model.record.koaia2}'></td>
-								
-								<td ><input type="text" class="inputTextMediumBlue" name="koapos" id="koapos" size="2" maxlength="1" value='${model.record.koapos}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="koaie" id="koaie" size="2" maxlength="1" value='${model.record.koaie}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="koalk" id="koalk" size="3" maxlength="2" value='${model.record.koalk}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="navsg" id="navsg" size="4" maxlength="3" value='${model.record.navsg}'></td>
-								<td>
-									<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='Lagre'/>
+								<td colspan="20">
+								<table width="100%" 	cellspacing="1" border="0" align="left">
+					    	    <tr>
+									<td class="text14" title="KOABÆR">&nbsp;Bærer</td>
+									<td class="text14" title="KOAKON">&nbsp;Sted</td>
+									<td class="text14" title="KOAIAT">&nbsp;IATA kode</td>
+									<td class="text14" title="KOAIA2">&nbsp;IATA kode 2</td>
+									<td class="text14" title="KOAPOS">&nbsp;Pnr.fraktb.</td>
+									<td class="text14" title="KOAIE">&nbsp;Imp/Eks.</td>
+									<td class="text14" title="KOALK">&nbsp;Kun land</td>
+									<td class="text14" title="NAVSG">&nbsp;Attesterer</td>
+	
+								</tr>
+								<tr>
+									<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koabaer" id="koabaer" size="5" maxlength="4" value='${model.record.koabaer}'></td>
+									<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koakon" id="koakon" size="5" maxlength="4" value='${model.record.koakon}'></td>
+									<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koaiat" id="koaiat" size="8" maxlength="7" value='${model.record.koaiat}'></td>
+									<td ><input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="koaia2" id="koaia2" size="5" maxlength="4" value='${model.record.koaia2}'></td>
+									
+									<td ><input type="text" class="inputTextMediumBlue" name="koapos" id="koapos" size="2" maxlength="1" value='${model.record.koapos}'></td>
+									<td ><input type="text" class="inputTextMediumBlue" name="koaie" id="koaie" size="2" maxlength="1" value='${model.record.koaie}'></td>
+									<td ><input type="text" class="inputTextMediumBlue" name="koalk" id="koalk" size="3" maxlength="2" value='${model.record.koalk}'></td>
+									<td ><input type="text" class="inputTextMediumBlue" name="navsg" id="navsg" size="4" maxlength="3" value='${model.record.navsg}'></td>
+									<td>
+										<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='Lagre'/>
+									</td>
+								</tr>
+								<tr height="5"><td >&nbsp;</td></tr>
+								</table>
 								</td>
 							</tr>
-							<tr height="5"><td >&nbsp;</td></tr>
-						</table>
-						<table class="formFrameHeader" width="60%" 	cellspacing="1" border="0" align="left">
-							<tr><td colspan="15" class="text12White" >&nbsp;Brukere som skal motta melding om overførte "DUP"-oppdrag(tr.modul)</td></tr>
-						</table>
-						<table class="formFrame" width="60%" cellspacing="1" border="0" align="left">	
-				    	    <tr>
-								<td class="text12" title="KODUS1">&nbsp;Brukere1</td>
-								<td class="text12" title="KODUS2">&nbsp;Brukere2</td>
-								<td class="text12" title="KODUS3">&nbsp;Brukere3</td>
-								<td class="text12" title="KODUS4">&nbsp;Brukere4</td>
-								<td class="text12" title="KODUS5">&nbsp;Brukere5</td>
-								<td class="text12" title="KODUS6">&nbsp;Brukere6</td>
+							
+							<tr>
+								<td colspan="20">
+								<table class="formFrameHeader" width="100%" cellspacing="1" border="0" align="left">
+									<tr><td class="text14White" >&nbsp;Brukere som skal motta melding om overførte "DUP"-oppdrag(tr.modul)</td></tr>
+								</table>
+								</td>
 							</tr>
 							<tr>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus1" id="kodus1" size="13" maxlength="10" value='${model.record.kodus1}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus2" id="kodus2" size="13" maxlength="10" value='${model.record.kodus2}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus3" id="kodus3" size="13" maxlength="10" value='${model.record.kodus3}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus4" id="kodus4" size="13" maxlength="10" value='${model.record.kodus4}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus5" id="kodus5" size="13" maxlength="10" value='${model.record.kodus5}'></td>
-								<td ><input type="text" class="inputTextMediumBlue" name="kodus6" id="kodus6" size="13" maxlength="10" value='${model.record.kodus6}'></td>
+								<td colspan="20">
+								<table class="formFrame" width="100%" cellspacing="1" border="0" align="left">	
+						    	    <tr>
+										<td class="text14" title="KODUS1">&nbsp;Brukere1</td>
+										<td class="text14" title="KODUS2">&nbsp;Brukere2</td>
+										<td class="text14" title="KODUS3">&nbsp;Brukere3</td>
+										<td class="text14" title="KODUS4">&nbsp;Brukere4</td>
+										<td class="text14" title="KODUS5">&nbsp;Brukere5</td>
+										<td class="text14" title="KODUS6">&nbsp;Brukere6</td>
+									</tr>
+									<tr>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus1" id="kodus1" size="13" maxlength="10" value='${model.record.kodus1}'></td>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus2" id="kodus2" size="13" maxlength="10" value='${model.record.kodus2}'></td>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus3" id="kodus3" size="13" maxlength="10" value='${model.record.kodus3}'></td>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus4" id="kodus4" size="13" maxlength="10" value='${model.record.kodus4}'></td>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus5" id="kodus5" size="13" maxlength="10" value='${model.record.kodus5}'></td>
+										<td ><input type="text" class="inputTextMediumBlue" name="kodus6" id="kodus6" size="13" maxlength="10" value='${model.record.kodus6}'></td>
+									</tr>									
+								</table>
+								</td>
 							</tr>
-							
+
 						</table>
-						
 						
 						<table width="95%" cellspacing="1" border="0" align="left">
 							<tr height="25"><td></td></tr>
 						</table>
 						<table class="formFrameHeader" width="95%" 	cellspacing="1" border="0" align="left">
-							<tr><td colspan="15" class="text12White" >&nbsp;Listehode</td></tr>
+							<tr><td colspan="15" class="text14White" >&nbsp;Listehode</td></tr>
 						</table>
 						<table class="formFrame"  width="95%" cellspacing="1" border="0" align="left">
 							<tr>
-								<td class="text12" align="left"><span title="kohfak">&nbsp;Faktura</span></td>
-								<td class="text12" align="left"><span title="kohlas">&nbsp;Lasteliste</span></td>
-								<td class="text12" align="left"><span title="kohgod">&nbsp;Godsliste</span></td>
-								<td class="text12" align="center"><span title="kohbou">Bourderau</span></td>
-								<td class="text12" align="center"><span title="kohkk">Kjørekvit.</span></td>
-								<td class="text12" align="center"><span title="kohlos">Losselista</span></td>
-								<td class="text12" align="center"><span title="kohman">Manifest</span></td>
-								<td class="text12" align="center"><span title="kohls1">A4 L/S</span></td>
-								<td class="text12" align="center"><span title="koh421">421</span></td>
-								<td class="text12" align="center"><span title="kohls2">Godsliste</span></td>
-								<td class="text12" align="center"><span title="koh422">422</span></td>
-								<td class="text12" align="center"><span title="kohls3">Losselista</span></td>
-								<td class="text12" align="center"><span title="koh423">423</span></td>
+								<td class="text14" align="left"><span title="kohfak">&nbsp;Faktura</span></td>
+								<td class="text14" align="left"><span title="kohlas">&nbsp;Lasteliste</span></td>
+								<td class="text14" align="left"><span title="kohgod">&nbsp;Godsliste</span></td>
+								<td class="text14" align="left"><span title="kohbou">&nbsp;Bourderau</span></td>
+								<td class="text14" align="left"><span title="kohkk">&nbsp;Kjørekvit.</span></td>
+								<td class="text14" align="left"><span title="kohlos">&nbsp;Losselista</span></td>
+								<td class="text14" align="left"><span title="kohman">&nbsp;Manifest</span></td>
+								<td class="text14" align="left"><span title="kohls1">&nbsp;A4 L/S</span></td>
+								<td class="text14" align="left"><span title="koh421">&nbsp;421</span></td>
+								<td class="text14" align="left"><span title="kohls2">&nbsp;Godsliste</span></td>
+								<td class="text14" align="left"><span title="koh422">&nbsp;422</span></td>
+								<td class="text14" align="left"><span title="kohls3">&nbsp;Losselista</span></td>
+								<td class="text14" align="left"><span title="koh423">&nbsp;423</span></td>
 								
 							</tr>		
 	 	    				<tr>
 								<input type="hidden" name="kohavd" id="kohavd" value='${model.record.listeHodeRecord.kohavd}'>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohfak" id="kohfak" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohfak == 'J'}"> selected </c:if> >Ja</option>
@@ -288,7 +300,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohlas" id="kohlas" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohlas == 'J'}"> selected </c:if> >Ja</option>
@@ -296,7 +308,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohgod" id="kohgod" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohgod == 'J'}"> selected </c:if> >Ja</option>
@@ -304,7 +316,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohbou" id="kohbou" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohbou == 'J'}"> selected </c:if> >Ja</option>
@@ -312,7 +324,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohkk" id="kohkk" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohkk == 'J'}"> selected </c:if> >Ja</option>
@@ -320,7 +332,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohlos" id="kohlos" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohlos == 'J'}"> selected </c:if> >Ja</option>
@@ -328,7 +340,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohman" id="kohman" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.kohman == 'J'}"> selected </c:if> >Ja</option>
@@ -336,7 +348,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohls1" id="kohls1" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="L"<c:if test="${ model.record.listeHodeRecord.kohls1 == 'L'}"> selected </c:if> >L</option>
@@ -344,7 +356,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="koh421" id="koh421" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.koh421 == 'J'}"> selected </c:if> >Ja</option>
@@ -352,7 +364,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohls2" id="kohls2" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="L"<c:if test="${ model.record.listeHodeRecord.kohls2 == 'L'}"> selected </c:if> >L</option>
@@ -360,7 +372,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="koh422" id="koh422" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.koh422 == 'J'}"> selected </c:if> >Ja</option>
@@ -368,7 +380,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="kohls3" id="kohls3" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="L"<c:if test="${ model.record.listeHodeRecord.kohls3 == 'L'}"> selected </c:if> >L</option>
@@ -376,7 +388,7 @@
 					  					
 								  	</select>
 								</td>
-								<td class="text12" >
+								<td class="text14" >
 									<select name="koh423" id="koh423" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.listeHodeRecord.koh423 == 'J'}"> selected </c:if> >Ja</option>
@@ -395,7 +407,7 @@
 						<tr>
 							<td>
 							<table class="formFrameHeader" width="100%" cellspacing="0" border="0" align="left">
-								<tr><td class="text12White" >&nbsp;Oppdragsnr. og tur</td></tr>
+								<tr><td class="text14White" >&nbsp;Oppdragsnr. og tur</td></tr>
 							</table>
 							</td>
 						</tr>
@@ -403,19 +415,19 @@
 							<td>
 							<table class="formFrame" width="100%" cellspacing="0" border="0" align="left">
 								<tr>
-									<td class="text12" ><font class="text14RedBold" >*</font><span title="teopdn">&nbsp;Oppnr.</span></td>
-									<td class="text12" ><font class="text14RedBold" >*</font><span title="teturn">&nbsp;Turnr.</span></td>
-									<td class="text12" ><span title="tetmin">&nbsp;Minim.turnr.</span></td>
+									<td class="text14" ><font class="text14RedBold" >*</font><span title="teopdn">&nbsp;Oppnr.</span></td>
+									<td class="text14" ><font class="text14RedBold" >*</font><span title="teturn">&nbsp;Turnr.</span></td>
+									<td class="text14" ><span title="tetmin">&nbsp;Minim.turnr.</span></td>
 								</tr>		
 		 	    				<tr>
 									<input type="hidden" name="teavd" id="teavd" value='${model.record.oppnrTurRecord.teavd}'>
-									<td class="text12" >
+									<td class="text14" >
 										<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="teopdn" id="teopdn" size="10" maxlength="7" value='${model.record.oppnrTurRecord.teopdn}'>
 									</td>
-									<td class="text12" >
+									<td class="text14" >
 										<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="teturn" id="teturn" size="10" maxlength="8" value='${model.record.oppnrTurRecord.teturn}'>
 									</td>
-									<td class="text12" >
+									<td class="text14" >
 										<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="tetmin" id="tetmin" size="10" maxlength="8" value='${model.record.oppnrTurRecord.tetmin}'>
 									</td>								
 				    	    	</tr>

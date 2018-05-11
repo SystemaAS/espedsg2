@@ -176,7 +176,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -198,7 +198,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -221,27 +221,27 @@
 						
 						<tr height="20"><td></td></tr>
 						<tr>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="koaavd">Avd.&nbsp;</span></td>
-							<td class="text12" align="center"><span title="kohfak">Faktura</span></td>
-							<td class="text12" align="center"><span title="kohlas">Lasteliste</span></td>
-							<td class="text12" align="center"><span title="kohgod">Godsliste</span></td>
-							<td class="text12" align="center"><span title="kohbou">Bourderau</span></td>
-							<td class="text12" align="center"><span title="kohkk">Kjørekvit.</span></td>
-							<td class="text12" align="center"><span title="kohlos">Losselista</span></td>
-							<td class="text12" align="center"><span title="kohman">Manifest</span></td>
-							<td class="text12" align="center"><span title="kohls1">A4 L/S</span></td>
-							<td class="text12" align="center"><span title="koh421">421</span></td>
-							<td class="text12" align="center"><span title="kohls2">Godsliste</span></td>
-							<td class="text12" align="center"><span title="koh422">422</span></td>
-							<td class="text12" align="center"><span title="kohls3">Losselista</span></td>
-							<td class="text12" align="center"><span title="koh423">423</span></td>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="koaavd">Avd.&nbsp;</span></td>
+							<td class="text14" align="center"><span title="kohfak">Faktura</span></td>
+							<td class="text14" align="center"><span title="kohlas">Lasteliste</span></td>
+							<td class="text14" align="center"><span title="kohgod">Godsliste</span></td>
+							<td class="text14" align="center"><span title="kohbou">Bourderau</span></td>
+							<td class="text14" align="center"><span title="kohkk">Kjørekvit.</span></td>
+							<td class="text14" align="center"><span title="kohlos">Losselista</span></td>
+							<td class="text14" align="center"><span title="kohman">Manifest</span></td>
+							<td class="text14" align="center"><span title="kohls1">A4 L/S</span></td>
+							<td class="text14" align="center"><span title="koh421">421</span></td>
+							<td class="text14" align="center"><span title="kohls2">Godsliste</span></td>
+							<td class="text14" align="center"><span title="koh422">422</span></td>
+							<td class="text14" align="center"><span title="kohls3">Losselista</span></td>
+							<td class="text14" align="center"><span title="koh423">423</span></td>
 							
 						</tr>		
  	    				<tr>
-							<td class="text12" >
+							<td class="text14" >
 								<input readonly type="text" class="inputTextReadOnly" name="kohavd" id="kohavd" size="5" maxlength="4" value='${model.avd}'>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohfak" id="kohfak" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohfak == 'J'}"> selected </c:if> >Ja</option>
@@ -249,7 +249,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohlas" id="kohlas" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohlas == 'J'}"> selected </c:if> >Ja</option>
@@ -257,7 +257,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohgod" id="kohgod" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohgod == 'J'}"> selected </c:if> >Ja</option>
@@ -265,7 +265,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohbou" id="kohbou" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohbou == 'J'}"> selected </c:if> >Ja</option>
@@ -273,7 +273,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohkk" id="kohkk" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohkk == 'J'}"> selected </c:if> >Ja</option>
@@ -281,7 +281,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohlos" id="kohlos" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohlos == 'J'}"> selected </c:if> >Ja</option>
@@ -289,7 +289,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohman" id="kohman" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.kohman == 'J'}"> selected </c:if> >Ja</option>
@@ -297,7 +297,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohls1" id="kohls1" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="L"<c:if test="${ model.record.kohls1 == 'L'}"> selected </c:if> >L</option>
@@ -305,7 +305,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="koh421" id="koh421" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.koh421 == 'J'}"> selected </c:if> >Ja</option>
@@ -313,7 +313,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohls2" id="kohls2" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="L"<c:if test="${ model.record.kohls2 == 'L'}"> selected </c:if> >L</option>
@@ -321,7 +321,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="koh422" id="koh422" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.koh422 == 'J'}"> selected </c:if> >Ja</option>
@@ -329,7 +329,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="kohls3" id="kohls3" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="L"<c:if test="${ model.record.kohls3 == 'L'}"> selected </c:if> >L</option>
@@ -337,7 +337,7 @@
 				  					
 							  	</select>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<select name="koh423" id="koh423" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.koh423 == 'J'}"> selected </c:if> >Ja</option>
@@ -348,7 +348,7 @@
 		    	    	</tr>
 		    	    	
 		    	    	<tr>
-							<td class="text12" >
+							<td class="text14" >
 		    	    			<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='Lagre' onClick="setBlockUI(this);"/>
 							</td>
 						</tr>

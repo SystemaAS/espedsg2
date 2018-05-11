@@ -171,7 +171,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -193,7 +193,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -221,7 +221,7 @@
 						<tr height="20"><td></td></tr>
 						
 						<tr>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="koaavd">Avd.&nbsp;</span>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="koaavd">Avd.&nbsp;</span>
 								<input readonly type="text" class="inputTextReadOnly" name="koaavd" id="koaavd" size="5" maxlength="4" value='${model.avd}'>
 							
 								&nbsp;&nbsp;<font class="text14RedBold" >*</font><span title="honet">Språk&nbsp;</span>
@@ -242,60 +242,60 @@
 		    	    	
 						<tr height="10"><td></td></tr>
 						<tr>
-	 	    			<td class="text12" title="hoht1-hoht7">Topptekster</td>
+	 	    			<td class="text14" title="hoht1-hoht7">Topptekster</td>
 	 	    			</tr>
 			    	    <tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht1" id="hoht1" size="85" maxlength="79" value="${model.record.hoht1}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht2" id="hoht2" size="85" maxlength="79" value="${model.record.hoht2}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht3" id="hoht3" size="85" maxlength="79" value="${model.record.hoht3}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht4" id="hoht4" size="85" maxlength="79" value="${model.record.hoht4}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht5" id="hoht5" size="85" maxlength="79" value="${model.record.hoht5}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht6" id="hoht6" size="85" maxlength="79" value="${model.record.hoht6}">
 							</td>
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hoht7" id="hoht7" size="85" maxlength="79" value="${model.record.hoht7}">
 							</td>
 						</tr>
 						
 						<tr height="5"><td></td></tr>
 						<tr>
-		 	    			<td class="text12" title="hobt1-hobt3">Bunntekst på faktura</td>
+		 	    			<td class="text14" title="hobt1-hobt3">Bunntekst på faktura</td>
 		 	    		</tr>
 		 	    		<tr>		
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hobt1" id="hobt1" size="85" maxlength="79" value="${model.record.hobt1}">
 							</td>
 						</tr>
 						<tr>	
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hobt2" id="hobt2" size="85" maxlength="79" value="${model.record.hobt2}">
 							</td>
 						</tr>
 						<tr>	
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="hobt3" id="hobt3" size="85" maxlength="79" value="${model.record.hobt3}">
 							</td>
 						</tr>

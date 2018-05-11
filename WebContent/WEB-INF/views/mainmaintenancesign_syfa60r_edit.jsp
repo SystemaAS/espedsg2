@@ -13,12 +13,12 @@
 	</style>
 
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 		<%-- tab container component --%>
-		<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+		<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 			<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -58,7 +58,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="99%" cellspacing="1" border="0" align="left">
 			    	    <tr>
-						<td class="text11">
+						<td class="text12">
 						<table id="mainList" class="display compact cell-border" >
 							<thead>
 							<tr>
@@ -112,7 +112,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -134,7 +134,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -159,11 +159,11 @@
 					<table width="95%" cellspacing="1" border="0" align="left">
 						<tr height="5"><td></td></tr>
 						<tr >
-							<td><button name="newRecordButton" id="newRecordButton" class="inputFormSubmitStd" type="button" ><spring:message code="systema.new"/></button></td>
+							<td class="text14" ><button name="newRecordButton" id="newRecordButton" class="inputFormSubmitStd" type="button" ><spring:message code="systema.new"/></button></td>
 						</tr>
 						<tr height="20"><td></td></tr>
 						<tr>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="kosfsi"><spring:message code="systema.main.maintenance.mainmaintenancesyfa60.signature"/>&nbsp;</span>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="kosfsi"><spring:message code="systema.main.maintenance.mainmaintenancesyfa60.signature"/>&nbsp;</span>
 								<c:choose>
 									<c:when test="${not empty model.updateId}">
 										<input readonly type="text" class="inputTextReadOnly"  name="kosfsi" id="kosfsi" size="5" maxlength="3" value='${model.record.kosfsi}'>

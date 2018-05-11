@@ -12,12 +12,12 @@
 	.ui-datepicker { font-size:9pt;}
 	</style>
 
-<table id="parentTab" width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table id="parentTab" width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 			<%-- tab container component --%>
-			<table id="tabContainer"  width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+			<table id="tabContainer"  width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 				<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -45,7 +45,7 @@
 								<font class="tabLink">&nbsp;
 									<spring:message code="systema.main.maintenance.customer"/>
 								</font>&nbsp;
-								<font class="text11MediumBlue">[${tab_knavn_display}]</font>
+								<font class="text14MediumBlue">[${tab_knavn_display}]</font>
 							</td>
 							<td width="55%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 						</c:when>
@@ -124,16 +124,16 @@
  	   	 	<tr> 
  	   	 		<td>&nbsp;</td>
  	   	 	    <td>
- 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:1000px" cellspacing="0" border="0" cellpadding="0">
+ 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:100%" cellspacing="0" border="0" cellpadding="0">
 						<tr height="20"> 
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKundeGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_kunde_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer"/>
 									</font>
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKontaktGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_kontaktpersoner_list.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.contacts"/>
@@ -141,21 +141,21 @@
 								</a>
 							</td>
 							
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintFritextGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_fritekst_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.text"/>
 									</font>&nbsp;						
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintParamsGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_params_list.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.params"/>
 									</font>&nbsp;						
 								</a>
 							</td>							
-							<td width="110" valign="bottom" class="tabSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabSub" align="center" nowrap>
 									<font class="tabLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.vareregister"/>
 									</font>&nbsp;						
@@ -174,7 +174,7 @@
 <!-- 
 							<td width="50" class="tabDisabledTrailingEnd"></td>
  -->
-						 	<td width="540" class="tabFantomSpace" align="center" nowrap></td>
+						 	<td width="590" class="tabFantomSpace" align="center" nowrap></td>
 						</tr>
 					</table>
 				</td>
@@ -183,18 +183,18 @@
 	   	 	<tr> 
  	   	 		<td>&nbsp;</td>
  	   	 	    <td>
- 					<table id= "thirdTabRow" class=formFrameHeaderTransparentThirdTabRow style="width:1000px" cellspacing="0" border="0" cellpadding="0">
+ 					<table id= "thirdTabRow" class=formFrameHeaderTransparentThirdTabRow style="width:100%" cellspacing="0" border="0" cellpadding="0">
  					   <tr height="20"><td>&nbsp;</td>
  					   </tr>
 					  <tr height="20"> 
-							<td width="100" valign="bottom" class="tabSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabSub" align="center" nowrap>
 									<font class="tabLinkMinor">&nbsp;
 									   <spring:message code="systema.main.maintenance.customer.vareregister.exp.no"/>
 									</font>
 							</td>
 	
 							<c:if test="${kundeSessionParams.importNo == true}">
-								<td width="100" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 									<a id="alinkMainMaintVareImpNoGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareimp_no.do">
 											<font class="tabDisabledLinkMinor">&nbsp;
 												  <spring:message code="systema.main.maintenance.customer.vareregister.imp.no"/>
@@ -203,7 +203,7 @@
 								</td>
 							</c:if>
 							<c:if test="${kundeSessionParams.exportDk == true}">
-								<td width="100" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<!-- 	<a id="alinkMainMaintParamsGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareexp_dk_edit.do">  -->
 										<font class="tabDisabledLinkMinor">&nbsp;
 											 <spring:message code="systema.main.maintenance.customer.vareregister.exp.dk"/>
@@ -212,7 +212,7 @@
 								</td>							
 							</c:if>
 							<c:if test="${kundeSessionParams.importDk == true}">
-								<td width="100" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<!--  	<a id="alinkMainMaintFritextGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareimp_dk_edit.do"> -->
 										<font class="tabDisabledLinkMinor">&nbsp;
 											 <spring:message code="systema.main.maintenance.customer.vareregister.imp.dk"/>
@@ -221,7 +221,7 @@
 								</td>
 							</c:if>
 							<c:if test="${kundeSessionParams.exportSe == true}">
-								<td width="100" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 									<a id="alinkMainMaintVareExpSeGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareexp_se.do"> 
 											<font class="tabDisabledLinkMinor">&nbsp;
 												 <spring:message code="systema.main.maintenance.customer.vareregister.exp.se"/>
@@ -277,18 +277,18 @@
 						               <td id="recordUpdate_${record.slalfa}_${record.slknr}" onClick="getRecord(this);" align="center" width="2%" class="tableCellFirst" style="cursor:pointer; border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;">
 				               				<img src="resources/images/update.gif" border="0" alt="edit">
 						               </td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text12">&nbsp;${record.slalfa}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.sltxt}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.r31}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.sloppl}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.sltanr}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.sltn}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.pref}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.slvekt}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.slpva}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.slsats}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.mf}&nbsp;</font></td>
-						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.slkdae}&nbsp;${record.slkdse}</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text14">&nbsp;${record.slalfa}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.sltxt}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.r31}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.sloppl}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.sltanr}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.sltn}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.pref}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.slvekt}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.slpva}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.slsats}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.mf}&nbsp;</font></td>
+						               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.slkdae}&nbsp;${record.slkdse}</font></td>
 						               
 						               <td align="center" width="2%" class="tableCell" style="cursor:pointer; border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;">
 				               				<a onclick="javascript:return confirm('Er du sikker på at du vil slette denne?')" tabindex=-1 href="mainmaintenancecundf_vareexp_no_edit.do?action=doDelete&id=${model.dbTable}&slalfa=${record.slalfa}&slknr=${record.slknr}">
@@ -322,7 +322,7 @@
 												<table align="left" border="0" cellspacing="0" cellpadding="0">
 													<tr>
 														<td>
-															<ul class="isa_error text12">
+															<ul class="isa_error text14">
 																<c:forEach var="error" items="${errors.allErrors}">
 																	<li><spring:message code="${error.code}"
 																			text="${error.defaultMessage}" />&nbsp;&nbsp;</li>
@@ -340,7 +340,7 @@
 								           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 										 		<tr>
 										 			<td >
-										 				<ul class="isa_error text12" >
+										 				<ul class="isa_error text14" >
 								                                  <li>${model.errorMessage}</li>                                    
 								                              </ul>
 										 			</td>
@@ -363,7 +363,7 @@
 										<td>
 											<table class="formFrameHeaderPeachWithBorder" width="100%" 	cellspacing="0" border="0" align="left">
 												<tr>
-													<td class="text12Bold">&nbsp;
+													<td class="text14Bold">&nbsp;
 														Artikelinfo
 													</td>
 												</tr>
@@ -373,17 +373,17 @@
 													<td width="50%" >
 														<table border="0">
 															<tr>
-																<td class="text12" title="slalfa">
+																<td class="text14" title="slalfa">
 																	<font class="text14RedBold" >*</font>&nbsp;Varenr:
 																</td>
 																<td><input type="text"required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="slalfa" id="slalfa" size="30" maxlength="28" value='${model.record.slalfa}'></td>
-																<td class="text12" title="sltxt">
+																<td class="text14" title="sltxt">
 																	<font class="text14RedBold" >*</font>&nbsp;Beskrivelse:
 																</td>
 																<td><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="sltxt" id="sltxt" size="20" maxlength="20" value='${model.record.sltxt}'></td>
 															</tr>
 															<tr>
-																<td class="text12" title="r31">&nbsp;
+																<td class="text14" title="r31">&nbsp;
 																	R31:
 																</td>
 																<td>
@@ -393,30 +393,30 @@
 													  					<option value="N"<c:if test="${ model.record.r31 == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
 													  				</select>
 																</td>
-																<td class="text12" title="sloppl">
+																<td class="text14" title="sloppl">
 																	<font class="text14RedBold" >*</font>&nbsp;L/F:
 																</td>
 																<td><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="sloppl" id="sloppl" size="3" maxlength="2" value='${model.record.sloppl}'></td>
 															</tr>
 															<tr>
-																<td class="text12" title="sltanr">
+																<td class="text14" title="sltanr">
 																	<font class="text14RedBold" >*</font>&nbsp;Tariffnr:
 																</td>
 																<td>
 																	<input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="sltanr" id="sltanr" size="10" maxlength="8" value='${model.record.sltanr}'>
 																</td>
-																<td class="text12" title="sltn">&nbsp;
+																<td class="text14" title="sltn">&nbsp;
 																	Tn:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="sltn" id="sltn" size="10" maxlength="7" value='${model.record.sltn}'></td>
 					
 															</tr>
 															<tr>
-																<td class="text12" title="SLTO">&nbsp;
+																<td class="text14" title="SLTO">&nbsp;
 																	Till.Opplysn.:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="slto" id="slto" size="30" maxlength="45" value='${model.record.slto}'></td>
-																<td class="text12" title="SLCREF">&nbsp;
+																<td class="text14" title="SLCREF">&nbsp;
 																	Ref.:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="slcref" id="slcref" size="4" maxlength="3" value='${model.record.slcref}'></td>
@@ -426,7 +426,7 @@
 													<td width="50%" valign="top">
 														<table border="0">
 															<tr>
-																<td class="text12" title="pref">
+																<td class="text14" title="pref">
 																	Pref:
 																</td>
 																<td>
@@ -437,24 +437,24 @@
 																		</c:forEach>  
 																	</select>						
 																</td>
-																<td class="text12" title="slvekt">&nbsp;
+																<td class="text14" title="slvekt">&nbsp;
 																	Vekt:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="slvekt" id="slvekt" size="15" maxlength="12" value='${model.record.slvekt}'>
 																</td>
 															</tr>
 															<tr>
-																<td class="text12" title="slpva">
+																<td class="text14" title="slpva">
 																	PVA:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="slpva" id="slpva" size="2" maxlength="1" value='${model.record.slpva}'></td>
-																<td class="text12" title="slsats">&nbsp;
+																<td class="text14" title="slsats">&nbsp;
 																	Tollsats:
 																</td>
 																<td><input type="text" class="inputTextMediumBlue" name="slsats" id="slsats" size="8" maxlength="7" value='${model.record.slsats}'></td>
 															</tr>
 															<tr>
-																<td class="text12" title="mf">
+																<td class="text14" title="mf">
 																	MF:
 																</td>
 																<td>
@@ -463,7 +463,7 @@
 								 					  					<option value="F"<c:if test="${model.record.mf == 'F'}"> selected </c:if>>F</option>
 													  				</select>
 																</td>
-																<td class="text12" title="slkdae/slkdse:">&nbsp;
+																<td class="text14" title="slkdae/slkdse:">&nbsp;
 																	Avgift(kode/sekv):
 																</td>
 																<td>

@@ -12,12 +12,12 @@
 	.ui-datepicker { font-size:9pt;}
 	</style>
 
-<table id="parentTab" width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table id="parentTab" width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 			<%-- tab container component --%>
-			<table id="tabContainer"  width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+			<table id="tabContainer"  width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 				<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -45,7 +45,7 @@
 								<font class="tabLink">&nbsp;
 									<spring:message code="systema.main.maintenance.customer"/>
 								</font>&nbsp;
-								<font class="text11MediumBlue">[${tab_knavn_display}]</font>
+								<font class="text12MediumBlue">[${tab_knavn_display}]</font>
 							</td>
 							<td width="55%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 						</c:when>
@@ -124,35 +124,35 @@
  	   	 	<tr> 
  	   	 		<td>&nbsp;</td>
  	   	 	    <td>
- 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:1000px" cellspacing="0" border="0" cellpadding="0">
+ 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:100%" cellspacing="0" border="0" cellpadding="0">
 						<tr height="20"> 
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKundeGate" href="mainmaintenancecundf_kunde_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer"/>
 									</font>
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKontaktGate" href="mainmaintenancecundf_kontaktpersoner_list.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.contacts"/>
 									</font>&nbsp;						
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabSub" align="center" nowrap>
 								<font class="tabLinkMinor">&nbsp;
 									<spring:message code="systema.main.maintenance.customer.text"/>
 								</font>&nbsp;						
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintParamsGate" href="mainmaintenancecundf_params_list.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.params"/>
 									</font>&nbsp;						
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintVareRegGate" href="mainmaintenancecundf_vareregister.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.vareregister"/>
@@ -173,7 +173,7 @@
 <!-- 
 							<td width="50" class="tabDisabledTrailingEnd"></td>
  -->
-						 	<td width="540" class="tabFantomSpace" align="center" nowrap></td>
+						 	<td width="590" class="tabFantomSpace" align="center" nowrap></td>
 						</tr>
 					</table>
 				</td>
@@ -192,7 +192,7 @@
 			 	    </tr>
 			 	    <tr>
 			 	    	<td>&nbsp;</td>
-						<td width="7%" class="text12">
+						<td width="7%" class="text14">
 							<span title="searchKfkod"><spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.delsystem"/></span>
 						</td>
 						<td>
@@ -211,22 +211,22 @@
 					
 					<tr>
 						<td>&nbsp;</td>
-				 		<td class="text12" valign="top"><spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.text"/> </td>  
-				 		<td class="text11">
+				 		<td class="text14" valign="top"><spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.text"/> </td>  
+				 		<td class="text14">
 					 		<form action="mainmaintenancecundf_fritekst_edit.do" name="formRecord" id="formRecord" method="POST" >
 					 		<input type="hidden" name="action" id="action" value="doUpdate">
 					 		<input type="hidden" name="searchKfkod" id="searchKfkod" value="${model.searchKfkod}">
 						 	  <table width="90%" cellspacing="0" border="0" align="left">
 				 				 <tr>
 									<td>
-						 				<textarea class="text11UPPERCASE" style="resize: none;overflow-y: scroll;" id="fxtxt" name="fxtxt" cols="80" rows="30">${model.fxtxt}</textarea> 
+						 				<textarea class="text14UPPERCASE" style="resize: none;overflow-y: scroll;" id="fxtxt" name="fxtxt" cols="80" rows="30">${model.fxtxt}</textarea> 
 										<div><span id="linesUsed"></span> <spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.rows"/></div>
 				 				   </td>
 				 				   
-				 				   <td class="text12" valign="top">&nbsp;<spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.changelog"/>
+				 				   <td class="text14" valign="top">&nbsp;<spring:message code="systema.main.maintenance.mainmaintenancecundf.fratxt.changelog"/>
 				 				   		<img onMouseOver="showPop('log_info');" onMouseOut="hidePop('log_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-						 				<div class="text11"  style="position: relative;" align="left">
-							 				<span style="position:absolute; width:150px; right:240px" id="log_info" class="popupWithInputText text11" >
+						 				<div class="text12"  style="position: relative;" align="left">
+							 				<span style="position:absolute; width:150px; right:240px" id="log_info" class="popupWithInputText text12" >
 						 						<c:forEach var="changelog" items="${model.changelogList}">
 							 				  		${changelog.fxusr} - ${changelog.fxdt}</br>
 												</c:forEach>

@@ -124,16 +124,16 @@
  	   	 	<tr> 
  	   	 		<td>&nbsp;</td>
  	   	 	    <td>
- 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:1000px" cellspacing="0" border="0" cellpadding="0">
+ 					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:100%" cellspacing="0" border="0" cellpadding="0">
 						<tr height="20"> 
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKundeGate" href="mainmaintenancecundf_kunde_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer"/>
 									</font>
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintKontaktGate" href="mainmaintenancecundf_kontaktpersoner_list.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.contacts"/>
@@ -141,19 +141,19 @@
 								</a>
 							</td>
 							
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 								<a id="alinkMainMaintFritextGate" href="mainmaintenancecundf_fritekst_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.text"/>
 									</font>&nbsp;						
 								</a>
 							</td>
-							<td width="110" valign="bottom" class="tabSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabSub" align="center" nowrap>
 									<font class="tabLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.params"/>
 									</font>&nbsp;						
 							</td>
-							<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
+							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 									<a id="alinkMainMaintVareRegGate" href="mainmaintenancecundf_vareregister.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
 											<spring:message code="systema.main.maintenance.customer.vareregister"/>
@@ -173,7 +173,7 @@
 <!-- 
 							<td width="50" class="tabDisabledTrailingEnd"></td>
  -->
-						 	<td width="540" class="tabFantomSpace" align="center" nowrap></td>
+						 	<td width="590" class="tabFantomSpace" align="center" nowrap></td>
 						</tr>
 					</table>
 				</td>
@@ -219,11 +219,11 @@
 					               <td id="recordUpdate_${record.sykunr}_${record.syrecn}" onClick="getRecord(this);" align="center" width="5%" class="tableCellFirst" style="cursor:pointer; border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;">
 			               				<img src="resources/images/update.gif" border="0" alt="edit">
 					               </td>
-					               <td width="5%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text12">&nbsp;${record.sypaid}&nbsp;</font></td>
-					               <td width="25%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text12">&nbsp;${record.sypaidDesc}&nbsp;</font></td>
-					               <td width="5%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.sysort}&nbsp;</font></td>
-					               <td width="15%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.syvrdn}&nbsp;</font></td>
-					               <td width="40%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text12">&nbsp;${record.syvrda}&nbsp;</font></td>
+					               <td width="5%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text14">&nbsp;${record.sypaid}&nbsp;</font></td>
+					               <td width="25%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;"><font class="text14">&nbsp;${record.sypaidDesc}&nbsp;</font></td>
+					               <td width="5%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.sysort}&nbsp;</font></td>
+					               <td width="15%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.syvrdn}&nbsp;</font></td>
+					               <td width="40%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" ><font class="text14">&nbsp;${record.syvrda}&nbsp;</font></td>
 			                       <td align="center" width="5%" class="tableCell" style="cursor:pointer; border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;">
 			               				<a onclick="javascript:return confirm('<spring:message code="systema.delete.confirm"/>')" tabindex=-1 href="mainmaintenancecundf_params_edit.do?action=doDelete&sykunr=${record.sykunr}&syrecn=${record.syrecn}">
 						               		<img valign="bottom" src="resources/images/delete.gif" border="0" width="15px" height="15px" alt="remove">
@@ -256,7 +256,7 @@
 												<table align="left" border="0" cellspacing="0" cellpadding="0">
 													<tr>
 														<td>
-															<ul class="isa_error text12">
+															<ul class="isa_error text14">
 																<c:forEach var="error" items="${errors.allErrors}">
 																	<li><spring:message code="${error.code}"
 																			text="${error.defaultMessage}" />&nbsp;&nbsp;</li>
@@ -274,7 +274,7 @@
 								           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 										 		<tr>
 										 			<td >
-										 				<ul class="isa_error text12" >
+										 				<ul class="isa_error text14" >
 								                                  <li>${model.errorMessage}</li>                                    
 								                              </ul>
 										 			</td>
@@ -297,7 +297,7 @@
 										<td>
 											<table class="formFrameHeaderPeachWithBorder" width="100%" 	cellspacing="0" border="0" align="left">
 												<tr>
-													<td class="text12Bold">&nbsp;
+													<td class="text14Bold">&nbsp;
 														<spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.param"/>
 													</td>
 												</tr>
@@ -305,18 +305,18 @@
 
 											<table class="formFramePeachGrayRoundBottom"  width="100%" cellspacing="0" border="0" align="center">
 												<tr> 
-													<td class="text12" title="sypaid">&nbsp;<font class="text14RedBold" >*</font>
+													<td class="text14" title="sypaid">&nbsp;<font class="text14RedBold" >*</font>
 														<spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.sypaid"/>:
 													</td>
 													<td><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="sypaid" id="sypaid" size="10" maxlength="5" value='${model.record.sypaid}'></td>
-													<td class="text12" title="sypaid">
+													<td class="text14" title="sypaid">
 														<a tabindex="-1" id="sypaidIdLink">
 															<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 														</a>
 													</td>
-													<td class="text12" title="sypaidDesc">&nbsp;
+													<td class="text14" title="sypaidDesc">&nbsp;
 														<spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.sypaidDesc"/>:&nbsp;&nbsp;</td>
-													<td class="text12">
+													<td class="text14">
 														<input type="text" readonly class="inputTextReadOnly" name="sypaidDesc" id="sypaidDesc" size="50" maxlength="50" value='${model.record.sypaidDesc}'>
 														&nbsp;&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.syvrdn"/>:
 														<input type="text" onKeyPress="return amountKey(event)" required oninvalid="setCustomValidity('Obligatoriskt')" oninput="setCustomValidity('')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField"  name="syvrdn" id="syvrdn" size="20" maxlength="15" value='${model.record.syvrdn}'>
@@ -324,12 +324,12 @@
 													</td>
 												</tr>
 												<tr>
-													<td class="text12" title="sysort">&nbsp;
+													<td class="text14" title="sysort">&nbsp;
 														<spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.sysort"/>:
 													</td>
 													<td><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue"  name="sysort" id="sysort" size="10" maxlength="3" value='${model.record.sysort}'>
 													</td>
-													<td colspan="2" class="text12" title="syvrda">&nbsp;<font class="text14RedBold" >*</font>
+													<td colspan="2" class="text14" title="syvrda">&nbsp;<font class="text14RedBold" >*</font>
 														<spring:message code="systema.main.maintenance.mainmaintenancecundf.syparf.syvrda"/>:
 													</td>
 													<td colspan="2">

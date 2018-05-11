@@ -150,7 +150,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -172,7 +172,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -195,26 +195,26 @@
 						
 						<tr height="20"><td></td></tr>
 						<tr>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="teavd">&nbsp;Avd.</span></td>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="teopdn">&nbsp;Oppnr.</span></td>
-							<td class="text12" ><font class="text14RedBold" >*</font><span title="teturn">&nbsp;Turnr.</span></td>
-							<td class="text12" ><span title="tetmin">&nbsp;Minim.turnr.</span></td>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="teavd">&nbsp;Avd.</span></td>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="teopdn">&nbsp;Oppnr.</span></td>
+							<td class="text14" ><font class="text14RedBold" >*</font><span title="teturn">&nbsp;Turnr.</span></td>
+							<td class="text14" ><span title="tetmin">&nbsp;Minim.turnr.</span></td>
 							
 						</tr>		
  	    				<tr>
-							<td class="text12" >
+							<td class="text14" >
 								<input readonly type="text" class="inputTextReadOnly" name="teavd" id="teavd" size="5" maxlength="4" value='${model.avd}'>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="teopdn" id="teopdn" size="10" maxlength="7" value='${model.record.teopdn}'>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="teturn" id="teturn" size="10" maxlength="8" value='${model.record.teturn}'>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 								<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="tetmin" id="tetmin" size="10" maxlength="8" value='${model.record.tetmin}'>
 							</td>
-							<td class="text12" >
+							<td class="text14" >
 		    	    			<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='Lagre' onClick="setBlockUI(this);"/>
 							</td>
 		    	    	</tr>

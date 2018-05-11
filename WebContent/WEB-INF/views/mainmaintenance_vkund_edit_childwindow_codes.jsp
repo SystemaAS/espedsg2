@@ -22,22 +22,22 @@
 				<tr height="10">
 					<td></td>
 				</tr>
-				<tr class="text12">
+				<tr class="text14">
 					<td class="ownScrollableSubWindowDynamicWidthHeight" width="100%" style="height: 30em;">
 						<table id="codeList" class="display compact cell-border">	
 							<thead>
 								<tr style="background-color: #EEEEEE">
-									<th class="text11">&nbsp;${model.labelCode}&nbsp;</th>
-									<th class="text11">&nbsp;${model.labelDesc}&nbsp;</th>
+									<th class="text14">&nbsp;${model.labelCode}&nbsp;</th>
+									<th class="text14">&nbsp;${model.labelDesc}&nbsp;</th>
 								</tr>
 							</thead>
 							<tbody>
 								<c:forEach var="record" items="${model.codeList}" varStatus="counter">
-									<tr class="text11">
-										<td nowrap style="cursor: pointer;" class="text11MediumBlue" id="code${record.code}@caller${model.caller}">&nbsp;
+									<tr class="text14">
+										<td nowrap style="cursor: pointer;" class="text14MediumBlue" id="code${record.code}@caller${model.caller}">&nbsp;
 											<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">&nbsp;&nbsp;${record.code}
 										</td>
-										<td class="text11">&nbsp;${record.description}</td>
+										<td class="text14">&nbsp;${record.description}</td>
 									</tr>
 								</c:forEach>
 							</tbody>

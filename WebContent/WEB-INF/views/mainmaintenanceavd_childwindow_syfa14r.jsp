@@ -13,7 +13,7 @@
 		<tr>
 			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
 			<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
-			Søk Avdeling &nbsp;<font class="text12" >(kun avd som er tilgjengelige)</font>
+			Søk Avdeling &nbsp;<font class="text14" >(kun avd som er tilgjengelige)</font>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +49,7 @@
 													           		
 	           		<tr height="10"><td></td></tr>
 					
-					<tr class="text12" >
+					<tr class="text14" >
 					<td class="ownScrollableSubWindowDynamicWidthHeight" width="100%" style="height:30em;">
 					<%-- this is the datatables grid (content)--%>
 					<table id="mainList" class="display compact cell-border" width="100%" >
@@ -67,18 +67,18 @@
 		                <c:forEach var="record" items="${model.list}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="cursor:pointer;" class="text11MediumBlue" id="avd${record.koaavd}@ctype${model.ctype}" >
+			               <td style="cursor:pointer;" class="text14MediumBlue" id="avd${record.koaavd}@ctype${model.ctype}" >
 			               		<img title="select" style="vertical-align:top;" src="resources/images/bebullet.gif" border="0" alt="edit">&nbsp;${record.koaavd}
 			               	</td>
-		               	   <td class="text11">&nbsp;${record.koanvn}</td>
-		               	   <td class="text11">&nbsp;${record.koafir}</td>
-		               	   <td class="text11">&nbsp;${record.koaknr}</td>
+		               	   <td class="text14">&nbsp;${record.koanvn}</td>
+		               	   <td class="text14">&nbsp;${record.koafir}</td>
+		               	   <td class="text14">&nbsp;${record.koaknr}</td>
 		               	    
 			            </tr> 
 			            </c:forEach>

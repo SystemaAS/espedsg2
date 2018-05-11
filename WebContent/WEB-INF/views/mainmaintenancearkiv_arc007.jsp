@@ -13,12 +13,12 @@
 	</style>
 
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 		<%-- tab container component --%>
-		<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+		<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 			<tr height="2"><td></td></tr>
 				<tr height="25"> 
 					<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -68,10 +68,10 @@
 	 	    <%-- search --%>
 	 	    <tr >
 	 	    	<td width="5%">&nbsp;</td>
-				<td width="100%" class="text12">
+				<td width="100%" class="text14">
 					<form action="mainmaintenancearkiv_arc007.do?" name="formRecord" id="formRecord" method="POST" >
 						<input tabindex=-1 type="checkbox" name="showUpload" id="showUpload" value="J" <c:if test="${model.showUpload == 'J'}"> checked </c:if> >
-						<font class="text11"><spring:message code="systema.main.maintenance.arkiv.document.onlyscanning"/></font>&nbsp;&nbsp;						
+						<font class="text12"><spring:message code="systema.main.maintenance.arkiv.document.onlyscanning"/></font>&nbsp;&nbsp;						
 						&nbsp;&nbsp;<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submitSearch" id="submitSearch" value='<spring:message code="systema.main.maintenance.search"/>'/>
 					</form>
 				</td>
@@ -83,7 +83,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="99%" cellspacing="1" border="0" align="left">
 			    	    <tr>
-						<td class="text11">
+						<td class="text12">
 						<table id="mainList" class="display compact cell-border" >
 							<thead>
 							<tr>
@@ -110,18 +110,18 @@
 				               <td width="10%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;">&nbsp;${record.artxt}&nbsp;</td>
 		                       <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" >
 			    					<c:if test="${record.arkjn=='J'}">
-		                       			<font class="text12">&nbsp;&nbsp;&nbsp;<spring:message code="systema.yes"/>&nbsp;</font>
+		                       			<font class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.yes"/>&nbsp;</font>
 		                       		</c:if>
 			    					<c:if test="${record.arkjn=='N'}">
-		                       			<font class="text12">&nbsp;&nbsp;&nbsp;<spring:message code="systema.no"/>&nbsp;</font>
+		                       			<font class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.no"/>&nbsp;</font>
 		                       		</c:if>
 		                       </td>
 		                       <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" >
 			    					<c:if test="${record.arksnd=='J'}">
-		                       			<font class="text12">&nbsp;&nbsp;&nbsp;<spring:message code="systema.yes"/>&nbsp;</font>
+		                       			<font class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.yes"/>&nbsp;</font>
 		                       		</c:if>
 			    					<c:if test="${record.arksnd=='N'}">
-		                       			<font class="text12">&nbsp;&nbsp;&nbsp;<spring:message code="systema.no"/>&nbsp;</font>
+		                       			<font class="text14">&nbsp;&nbsp;&nbsp;<spring:message code="systema.no"/>&nbsp;</font>
 		                       		</c:if>
 		                       </td>				               
 		                       <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" >&nbsp;${record.arklag}&nbsp;</td>

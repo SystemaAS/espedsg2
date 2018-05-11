@@ -29,14 +29,14 @@
 						<input type="hidden" name="ctype" id="ctype" value="${model.ctype}">
 						
 						<tr>
-							<td class="text11">&nbsp;Kod</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="tkkode" id="tkkode" size="10" maxlength="10" value="${model.id}"></td>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;Kod</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="tkkode" id="tkkode" size="10" maxlength="10" value="${model.id}"></td>
+							<td class="text14">&nbsp;</td>
 							<%--
-							<td class="text11">&nbsp;Text</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="tktxtn" id="tktxtn" size="30" maxlength="50" value="${model.text}"></td>
+							<td class="text14">&nbsp;Text</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="tktxtn" id="tktxtn" size="30" maxlength="50" value="${model.text}"></td>
 							 --%>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.main.maintenance.search"/>'></td>
 		           		</tr>
 		           		</form>
@@ -53,8 +53,8 @@
 					<table id="mainList" class="display compact cell-border" width="100%" >
 						<thead>
 						<tr style="background-color:#EEEEEE">
-							<th class="text11" >&nbsp;Kod&nbsp;</th>
-		                    <th class="text11" >&nbsp;Text&nbsp;</th>
+							<th class="text14" >&nbsp;Kod&nbsp;</th>
+		                    <th class="text14" >&nbsp;Text&nbsp;</th>
 		                    
 		                </tr> 
 		                </thead>
@@ -63,16 +63,16 @@
 		                <c:forEach var="record" items="${model.list}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="cursor:pointer;" class="text11MediumBlue" id="tkkode${record.tkkode}@ctype${model.ctype}" >
+			               <td style="cursor:pointer;" class="text14MediumBlue" id="tkkode${record.tkkode}@ctype${model.ctype}" >
 			               		<img title="select" style="vertical-align:top;" src="resources/images/bebullet.gif" border="0" alt="edit">&nbsp;${record.tkkode}
 			               	</td>
-		               	   <td class="text11">&nbsp;${record.tktxtn}</td>
+		               	   <td class="text14">&nbsp;${record.tktxtn}</td>
 		               	    
 			            </tr> 
 			            </c:forEach>

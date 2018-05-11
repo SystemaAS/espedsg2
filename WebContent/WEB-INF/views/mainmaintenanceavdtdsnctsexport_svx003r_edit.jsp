@@ -91,7 +91,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -113,7 +113,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
                             	     <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
                               	</ul>
 				 			</td>
@@ -148,12 +148,12 @@
 					    	    		<input type="hidden" name="thavd" id="thavd" value="${model.avd}">
 					    	    	</c:when>
 					    	    	<c:otherwise>
-					    	    		<td class="text12" title="thavd"><font class="text12RedBold" >*</font>Avdeling
+					    	    		<td class="text14" title="thavd"><font class="text14RedBold" >*</font>Avdeling
 					    	    			<a tabindex="-1" id="thavdIdLink">
 												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 											</a>
 					    	    		</td>
-										<td class="text12" >
+										<td class="text14" >
 										<select name="thavd" id="thavd" class="inputTextMediumBlueMandatoryField">
 						  					<option value="">-välj-</option>
 						  					<c:forEach var="record" items="${model.avdGeneralList}" >
@@ -164,16 +164,16 @@
 					    	    	</c:otherwise>
 				    	    	</c:choose>
 				    	    	
-				    	    	<td class="text12" title="thnttd"><font class="text12RedBold" >*</font>Antal exemplar följesedel</td>
-								<td class="text12" >
+				    	    	<td class="text14" title="thnttd"><font class="text14RedBold" >*</font>Antal exemplar följesedel</td>
+								<td class="text14" >
 									<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="thnttd" id="thnttd" size="2" maxlength="1" value='${model.record.thnttd}'>
 								</td>
-								<td class="text12" title="thntll"><font class="text12RedBold" >*</font>Antal exemplar lastlista</td>
-								<td class="text12" >
+								<td class="text14" title="thntll"><font class="text14RedBold" >*</font>Antal exemplar lastlista</td>
+								<td class="text14" >
 									<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="thntll" id="thntll" size="2" maxlength="1" value='${model.record.thntll}'>
 								</td>
-								<td class="text12" title="thfmll"><font class="text12RedBold" >*</font>Tryck för formulär till lastlista</td>
-								<td class="text12" >
+								<td class="text14" title="thfmll"><font class="text14RedBold" >*</font>Tryck för formulär till lastlista</td>
+								<td class="text14" >
 									<select name="thfmll" id="thfmll" class="inputTextMediumBlueMandatoryField">
 					  					<option value="J"<c:if test="${ model.record.thfmll == 'J' || empty model.record.thfmll}"> selected </c:if> >Ja</option>
 					  					<option value="N"<c:if test="${ model.record.thfmll == 'N'}"> selected </c:if> >Nei</option>
@@ -181,15 +181,15 @@
 								</td>
 							</tr>
 							<tr>	
-								<td class="text12" title="thenkl"><font class="text12RedBold" >*</font>Procedur</td>
-								<td class="text12" >
+								<td class="text14" title="thenkl"><font class="text14RedBold" >*</font>Procedur</td>
+								<td class="text14" >
 									<select name="thenkl" id="thenkl" class="inputTextMediumBlueMandatoryField">
 					  					<option value="J"<c:if test="${ model.record.thenkl == 'J' || empty model.record.thenkl}"> selected </c:if> >Forenklet</option>
 					  					<option value="N"<c:if test="${ model.record.thenkl == 'N'}"> selected </c:if> >Normal</option>
 								  	</select>
 								</td>
-								<td class="text12" title="thtdn">&nbsp;&nbsp;<font class="text12RedBold" >*</font>Sist använda internnr.</td>
-								<td class="text12" >
+								<td class="text14" title="thtdn">&nbsp;&nbsp;<font class="text14RedBold" >*</font>Sist använda internnr.</td>
+								<td class="text14" >
 									<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="thtdn" id="thtdn" size="10" maxlength="7" value='${model.record.thtdn}'>
 								</td>
 							
@@ -204,43 +204,43 @@
 				<td width="100%">
 					
 					<table width="95%" class="formFrameTitaniumWhite" cellspacing="1" border="0" align="left">
-						<tr><td colspan="2" class="text12"><b>Kommunikation </b><font class="text11" >&nbsp;</font></td></tr>
+						<tr><td colspan="2" class="text14"><b>Kommunikation </b><font class="text11" >&nbsp;</font></td></tr>
 						<tr height="5"><td></td></tr>
 			    	    
 						<tr>
-							<td class="text12" title="s0004"><font class="text12RedBold" >*</font>UtväxlingsId Avdelning 
+							<td class="text14" title="s0004"><font class="text14RedBold" >*</font>UtväxlingsId Avdelning 
 								<a tabindex="-1" id="s0004IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0004" id="s0004" size="20" maxlength="35" value='${model.record.s0004}'>
 							</td>
 						
-							<td class="text12" title="s0010"><font class="text12RedBold" >*</font>UtväxlingsId Tullverket 
+							<td class="text14" title="s0010"><font class="text14RedBold" >*</font>UtväxlingsId Tullverket 
 								<a tabindex="-1" id="s0010IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0010" id="s0010" size="20" maxlength="35" value='${model.record.s0010}'>
 							</td>
 						</tr>
 						<tr>	
 							
-							<td class="text12" title="s0026">&nbsp;&nbsp;Applikationsreference</td>
-							<td class="text12">
+							<td class="text14" title="s0026">&nbsp;&nbsp;Applikationsreference</td>
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="s0026" id="s0026" size="11" maxlength="10" value='${model.record.s0026}'>
 							</td>
-							<td class="text12" title="s0035">Testindikator</td>
-							<td class="text12">
+							<td class="text14" title="s0035">Testindikator</td>
+							<td class="text14">
 								<select name="s0035" id="s0035" class="inputTextMediumBlue">
 				  					<option value="1"<c:if test="${ model.record.s0035 == '1'}"> selected </c:if> >Test</option>
 				  					<option value=""<c:if test="${ empty model.record.s0035}"> selected </c:if> >Prod</option>
 							  	</select>
 							</td>
-							<td class="text12" title="thekst">Importeras extern data</td>
-							<td class="text12">
+							<td class="text14" title="thekst">Importeras extern data</td>
+							<td class="text14">
 								<select name="thekst" id="thekst" class="inputTextMediumBlue">
 				  					<option value="">-välj-</option>
 				  					<option value="J"<c:if test="${ model.record.thekst == 'J'}"> selected </c:if> >Ja</option>
@@ -258,7 +258,7 @@
 			
 			<tr>
 				<td width="5%">&nbsp;</td>
-	 			<td class="text12" title="thdk">&nbsp;&nbsp;Dekl&nbsp;
+	 			<td class="text14" title="thdk">&nbsp;&nbsp;Dekl&nbsp;
 	 				<select name="thdk" id="thdk" class="inputTextMediumBlue" TABINDEX=1>
 	 				  <option value="">-välj-</option>
 	 				  	<c:forEach var="code" items="${Xmodel.deklarasjonsTypeCodeList}" >
@@ -284,7 +284,7 @@
 					 				<%-- SENDER --%>
 					 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 								 		<tr height="15">
-								 			<td class="text12White">
+								 			<td class="text14White">
 												&nbsp;<img onMouseOver="showPop('2_info');" onMouseOut="hidePop('2_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									 			<b>&nbsp;2.</b>Avsändare&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 								 				<div class="text11" style="position: relative;" align="left">
@@ -321,22 +321,22 @@
 											        	<input type="hidden" name="orig_thsks" id="orig_thsks" value='${XXmodel.record.thsks}'>
 											        	
 											        	
-											            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thkns">Kundnummer</span></td>
-											            <td class="text12" align="left" >&nbsp;<span title="thnas">Namn&nbsp;</span>
+											            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thkns">Kundnummer</span></td>
+											            <td class="text14" align="left" >&nbsp;<span title="thnas">Namn&nbsp;</span>
 											            	<a tabindex="-1" id="thnasIdLink">
 																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 															</a>
 											            </td>
 											        </tr>
 											        <tr>
-											            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue" name="thkns" id="thkns" size="8" maxlength="8" value="${model.record.thkns}"></td>
-											            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue" name="thnas" id="thnas" size="30" maxlength="35" value="${model.record.thnas}"></td>
+											            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue" name="thkns" id="thkns" size="8" maxlength="8" value="${model.record.thkns}"></td>
+											            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue" name="thnas" id="thnas" size="30" maxlength="35" value="${model.record.thnas}"></td>
 											            
 											        </tr>
 											        
 											        <tr>
-											            <td class="text12" align="left" >&nbsp;<span title="thtins">TIN</span></td>
-											            <td class="text12" align="left" >&nbsp;&nbsp;</td>
+											            <td class="text14" align="left" >&nbsp;<span title="thtins">TIN</span></td>
+											            <td class="text14" align="left" >&nbsp;&nbsp;</td>
 											        </tr>
 											        <tr>
 											            <td align="left"><input type="text" class="inputTextMediumBlue" name="thtins" id="thtins" size="20" maxlength="17" value="${model.record.thtins}"></td>
@@ -344,8 +344,8 @@
 											        </tr>
 											        <tr height="4"><td>&nbsp;</td></tr>
 											        <tr>
-											            <td class="text12" align="left" >&nbsp;<span title="thads1">Adress</span></td>
-											            <td class="text12" align="left" >&nbsp;<span title="thsks">Språkkod</span>
+											            <td class="text14" align="left" >&nbsp;<span title="thads1">Adress</span></td>
+											            <td class="text14" align="left" >&nbsp;<span title="thsks">Språkkod</span>
 											            </td>
 											        </tr>
 											        <tr>
@@ -359,7 +359,7 @@
 											        		<td>
 												        		<table>
 												        		<tr>
-												            		<td class="text12" align="left" >&nbsp;<span title="thpss">Postadress</span></td>
+												            		<td class="text14" align="left" >&nbsp;<span title="thpss">Postadress</span></td>
 												            		<td align="left">&nbsp;</td>
 												            	</tr>
 												        		<tr>
@@ -373,8 +373,8 @@
 											            <td >
 												            	<table>
 												        		<tr>
-												        			<td class="text12" align="left" >&nbsp;<span title="thpns">Postnummer</span></td>
-												            		<td class="text12" align="left" >&nbsp;<span title="thlks">Land</span>
+												        			<td class="text14" align="left" >&nbsp;<span title="thpns">Postnummer</span></td>
+												            		<td class="text14" align="left" >&nbsp;<span title="thlks">Land</span>
 												            		
 												            		</td>
 												            	</tr>
@@ -389,7 +389,7 @@
 											            </td>
 										            	</tr>
 											        <tr height="15">
-											            <td class="text12Bold" align="left" >&nbsp;</td> 
+											            <td class="text14Bold" align="left" >&nbsp;</td> 
 											        </tr>
 										        </table>
 									        </td>
@@ -404,7 +404,7 @@
 				            <td >		
 				 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 							 		<tr height="15">
-							 			<td class="text12White">
+							 			<td class="text14White">
 							 				&nbsp;<img onMouseOver="showPop('8_info');" onMouseOut="hidePop('8_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<b>8.</b>Mottagare&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 							 				<div class="text11" style="position: relative;" align="left">
@@ -443,8 +443,8 @@
 										        	<input type="hidden" name="orig_thlkk" id="orig_thlkk" value='${XXmodel.record.thlkk}'>
 										        	<input type="hidden" name="orig_thskk" id="orig_thskk" value='${XXmodel.record.thskk}'>
 										        	
-										            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thknk">Kundnummer</span></td>
-										            <td class="text12" align="left" >&nbsp;<span title="thnak">Namn&nbsp;</span>
+										            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thknk">Kundnummer</span></td>
+										            <td class="text14" align="left" >&nbsp;<span title="thnak">Namn&nbsp;</span>
 										            	<a tabindex="-1" id="thnakIdLink">
 															<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 														</a>
@@ -456,8 +456,8 @@
 										        </tr>
 			
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thtink">EORI</span></td>
-										            <td class="text12" align="left" >&nbsp;&nbsp;</td>
+										            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thtink">EORI</span></td>
+										            <td class="text14" align="left" >&nbsp;&nbsp;</td>
 										        </tr>
 										        <tr>
 										            <td align="left"><input type="text" class="inputTextMediumBlue" name="thtink" id="thtink" size="20" maxlength="17" value="${model.record.thtink}"></td>
@@ -465,14 +465,14 @@
 										        </tr>
 										        <tr height="4"><td>&nbsp;</td></tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;<span title="thadk1">Adress</span></td>
-										            <td class="text12" align="left" >&nbsp;<span title="thskk">Språkkod</span>
+										            <td class="text14" align="left" >&nbsp;<span title="thadk1">Adress</span></td>
+										            <td class="text14" align="left" >&nbsp;<span title="thskk">Språkkod</span>
 									            		
 										            </td>
 										        </tr>
 										        <tr>
 										            <td align="left"><input type="text" class="inputTextMediumBlue" name="thadk1" id="thadk1" size="30" maxlength="35" value="${model.record.thadk1}"></td>
-										            <td class="text12" align="left" >&nbsp;
+										            <td class="text14" align="left" >&nbsp;
 										            	<input type="text" class="inputTextMediumBlue" name="thskk" id="thskk" size="3" maxlength="2" value="${model.record.thskk}">
 										            
 													</td>
@@ -481,7 +481,7 @@
 										        		<td>
 											        		<table>
 											        		<tr>
-											            		<td class="text12" align="left" >&nbsp;<span title="thpsk">Postadress</span></td>
+											            		<td class="text14" align="left" >&nbsp;<span title="thpsk">Postadress</span></td>
 											            		<td align="left">&nbsp;</td>
 											            	</tr>
 											        		<tr>
@@ -495,8 +495,8 @@
 										            <td >
 											            	<table>
 											        		<tr>
-											        			<td class="text12" align="left" >&nbsp;<span title="thpnk">Postnummer</span></td>
-											            		<td class="text12" align="left" >&nbsp;<span title="thlkk">Land</span>
+											        			<td class="text14" align="left" >&nbsp;<span title="thpnk">Postnummer</span></td>
+											            		<td class="text14" align="left" >&nbsp;<span title="thlkk">Land</span>
 											            		
 											            		</td>
 											            	</tr>
@@ -512,7 +512,7 @@
 									            	</tr>
 										        
 										        <tr height="15">
-										            <td class="text12Bold" align="left" >&nbsp;</td> 
+										            <td class="text14Bold" align="left" >&nbsp;</td> 
 										        </tr>
 									        </table>
 								        </td>
@@ -527,7 +527,7 @@
 									<%-- Special section --%>
 									<table align="left" class="formFrameHeader" width="95%" border="0" cellspacing="0" cellpadding="0">
 								 		<tr height="15">
-								 			<td class="text12White">
+								 			<td class="text14White">
 								 				&nbsp;Särskilda upplysningar kring resplan och garanti&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 							 				</td>
 						 				</tr>
@@ -542,12 +542,12 @@
 									 		<td>
 										 		<table align="left" border="0" cellspacing="0" cellpadding="0">
 											 		<tr height="15">
-											            <td class="text12Bold" align="left" >&nbsp;</td> 
-											            <td class="text12Bold" align="left" >&nbsp;</td> 
+											            <td class="text14Bold" align="left" >&nbsp;</td> 
+											            <td class="text14Bold" align="left" >&nbsp;</td> 
 											            
 											        </tr>
 											        <tr>
-											        	<td class="text12" align="left" >
+											        	<td class="text14" align="left" >
 											        	&nbsp;<img onMouseOver="showPop('51_info');" onMouseOut="hidePop('51_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 											        
 											        	<b>51.</b><span title="thtsd1/thtsd2...">Planerade transittullkontor - i ruttordning&nbsp;</span>
@@ -571,7 +571,7 @@
 														</span>	
 														</div>	
 											        	</td>
-											            <td class="text12" align="left" >&nbsp;</td>
+											            <td class="text14" align="left" >&nbsp;</td>
 											        </tr>
 											        
 											        <tr>
@@ -659,7 +659,7 @@
 											        	<td>&nbsp;&nbsp;
 											        	<table align="left" border="0" cellspacing="0" cellpadding="0">
 												        	<tr>
-												        	<td class="text12" align="left" >
+												        	<td class="text14" align="left" >
 												        	
 												        	&nbsp;<img onMouseOver="showPop('53_info');" onMouseOut="hidePop('53_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 												        	<b>53.</b><span title="thtsb">Bestämmelsetullkontor</span>&nbsp;
@@ -698,7 +698,7 @@
 											            	<table width="90%" class="tableBorderWithRoundCornersGray" align="left" border="0" cellspacing="2" cellpadding="0">
 											            		<tr height="2"><td ></td></tr>
 													        	<tr>
-														        	<td  colspan="3" class="text12" align="left" >
+														        	<td  colspan="3" class="text14" align="left" >
 														        	&nbsp;<img onMouseOver="showPop('52_info');" onMouseOut="hidePop('52_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 														        	<b>52.</b><b>Säkerhet - Garantikoder</b>&nbsp;
 														        	
@@ -736,9 +736,9 @@
 													        	</tr>
 													        	<tr height="5"><td></td></tr>
 											            		<tr>
-											            			<td class="text12">&nbsp;<span title="thgkd">Kod</span></td>
-											            			<td class="text12">&nbsp;<span title="thgft1">Garantinummer</span></td>
-											            			<td class="text12">&nbsp;<span title="thgadk">Åtkomstkod</span></td>
+											            			<td class="text14">&nbsp;<span title="thgkd">Kod</span></td>
+											            			<td class="text14">&nbsp;<span title="thgft1">Garantinummer</span></td>
+											            			<td class="text14">&nbsp;<span title="thgadk">Åtkomstkod</span></td>
 											            		</tr>
 											            		<tr>
 											            			<td>
@@ -759,8 +759,8 @@
 											            		</tr>
 											            		<tr>
 											            			
-											            			<td class="text12">&nbsp;<span title="thgbgi">Begränsning inom EF</span></td>
-											            			<td class="text12">&nbsp;<span title="thgbgu">Begränsning utanför [landkod]</span></td>
+											            			<td class="text14">&nbsp;<span title="thgbgi">Begränsning inom EF</span></td>
+											            			<td class="text14">&nbsp;<span title="thgbgu">Begränsning utanför [landkod]</span></td>
 											            			<td>&nbsp;</td>
 											            		</tr>
 											            		<tr>
@@ -778,7 +778,7 @@
 											            		</tr>
 											            		<tr height="5"><td></td></tr>
 											            		<tr>
-											            			<td colspan="3" class="text12">&nbsp;<span title="thgft2">Annan garanti</span></td>
+											            			<td colspan="3" class="text14">&nbsp;<span title="thgft2">Annan garanti</span></td>
 											            		</tr>
 											            		<tr>
 											            			<td colspan="3"><input type="text" class="inputTextMediumBlue" name="thgft2" id="thgft2" size="35" maxlength="35" value="${model.record.thgft2}"></td>
@@ -794,16 +794,16 @@
 											            <td colspan="2">
 											                <table align="left" border="0" cellspacing="0" cellpadding="0">
 														 		<tr>
-														 			<td class="text12"><b><span title="thgpr">Garanti %&nbsp;</span></b></td>
+														 			<td class="text14"><b><span title="thgpr">Garanti %&nbsp;</span></b></td>
 														 			<td align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="thgpr" id="thgpr" size="6" maxlength="5" value="${model.record.thgpr}"></td>
-														 			<td class="text12"><b>&nbsp;<span title="thgbl">Garantibelopp&nbsp;</span></b></td>
+														 			<td class="text14"><b>&nbsp;<span title="thgbl">Garantibelopp&nbsp;</span></b></td>
 														 			<td align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="thgbl" id="thgbl" size="20" maxlength="20" value="${model.record.thgbl}"></td>
 														 			
 												 				</tr>
 												 				
 												 				<tr>
-												 					<td class="text12">&nbsp;<span title="thgvk">Valuta</span></td>
-												 					<td class="text12">
+												 					<td class="text14">&nbsp;<span title="thgvk">Valuta</span></td>
+												 					<td class="text14">
 														 				<%-- Note: onChange event in jQuery for this currency list --%>
 														 				<select name="thgvk" id="thgvk" >
 														 				  <option value="">-välj-</option>	
@@ -812,8 +812,8 @@
 																			</c:forEach> 
 																		</select>
 													 				</td>
-													 				<td class="text12">&nbsp;Kurs&nbsp;</td>
-														 			<td class="text12" align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="sveh_vaku" id="sveh_vaku" size="20" maxlength="20" value='${vaku}'></td>
+													 				<td class="text14">&nbsp;Kurs&nbsp;</td>
+														 			<td class="text14" align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="sveh_vaku" id="sveh_vaku" size="20" maxlength="20" value='${vaku}'></td>
 														 			
 												 				</tr>
 												 				 
@@ -824,8 +824,8 @@
 													</tr>
 													
 											        <tr height="10">
-											            <td class="text12Bold" align="left" >&nbsp;</td> 
-											            <td class="text12Bold" align="left" >&nbsp;</td> 
+											            <td class="text14Bold" align="left" >&nbsp;</td> 
+											            <td class="text14Bold" align="left" >&nbsp;</td> 
 											        </tr>
 												</table>
 											</td>
@@ -845,7 +845,7 @@
 							 		<td>
 							 			<table border="0" cellspacing="2" cellpadding="0">
 							 				<tr>
-							 				<td class="text12" align="left" >
+							 				<td class="text14" align="left" >
 									            <img onMouseOver="showPop('15_info');" onMouseOut="hidePop('15_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 					<b>15.</b><span title="thalk">Avsändnings-/Utf.land&nbsp;</span>
 							 					<div class="text11" style="position: relative;" align="left">
@@ -866,7 +866,7 @@
 							 				</tr>
 							 				
 							 				<tr>
-									            <td class="text12" align="left" >
+									            <td class="text14" align="left" >
 									            <img onMouseOver="showPop('17_info');" onMouseOut="hidePop('17_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									            <b>17.</b><span title="thblk">Bestämmelseland, kod&nbsp;</span>
 									            <div class="text11" style="position: relative;" align="left">
@@ -888,7 +888,7 @@
 			 								<tr height="5"><td class="text">&nbsp;</td> </tr>
 								            
 							 				<tr>
-									            <td class="text12" align="left" >
+									            <td class="text14" align="left" >
 									            <img onMouseOver="showPop('18_info');" onMouseOut="hidePop('18_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									            <b>18.</b><span title="thtaid">Trans.medlets id. och nationalitet vid avgången</span>
 									            <div class="text11" style="position: relative;" align="left">
@@ -915,12 +915,12 @@
 								            	</td>
 					        				</tr>
 					        				<tr>
-								            	<td class="text12" align="left">
+								            	<td class="text14" align="left">
 								            		&nbsp;<span title="thtalk">Nationalitet</span>
 								            		<input type="text" class="inputTextMediumBlue" name="thtalk" id="thtalk" size="3" maxlength="2" value="${model.record.thtalk}">
 								            	
 												</td>
-												<td class="text12">	
+												<td class="text14">	
 													<span title="thtask">Språk</span>
 													<input type="text" class="inputTextMediumBlue" name="thtask" id="thtask" size="3" maxlength="2" value="${model.record.thtask}">
 													
@@ -929,7 +929,7 @@
 					        				<tr height="5"><td class="text">&nbsp;</td> </tr>
 
 					        				<tr>
-									            <td class="text12" align="left">
+									            <td class="text14" align="left">
 									            <img onMouseOver="showPop('21_info');" onMouseOut="hidePop('21_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 									            <b>21.</b><span title="thtgid">Trans.medlets id och nationalitet vid gränspassagen</span>
 									            <div class="text11" style="position: relative;" align="left">
@@ -956,12 +956,12 @@
 								            	</td>
 					        				</tr>
 					        				<tr>
-								            	<td class="text12" align="left">
+								            	<td class="text14" align="left">
 								            		&nbsp;<span title="thtglk">Nationalitet</span>
 								            		<input type="text" class="inputTextMediumBlue" name="thtglk" id="thtglk" size="3" maxlength="2" value="${model.record.thtglk}">
 								            		
 												</td>
-												<td class="text12">	
+												<td class="text14">	
 													<span title="thtgsk">Språk</span>
 													<input type="text" class="inputTextMediumBlue" name="thtgsk" id="thtgsk" size="3" maxlength="2" value="${model.record.thtgsk}">
 										            
@@ -971,11 +971,11 @@
 			 								<tr height="5"><td class="text">&nbsp;</td> </tr>
 								            
 				 		       				<tr>
-								            	<td class="text12">
+								            	<td class="text14">
 								            		<img onMouseOver="showPop('thtrm_info');" onMouseOut="hidePop('thtrm_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            				<b>25.</b><span title="thtrm">Transportsätt vid gränsen&nbsp;</span>
 						            			</td>
-						            			<td class="text12">	
+						            			<td class="text14">	
 								            		<select class="inputTextMediumBlue" name="thtrm" id="thtrm">
 							 						<option value="">-välj-</option>
 								 				  	<c:forEach var="code" items="${Xmodel.transportmaterCodeList}" >
@@ -999,7 +999,7 @@
 												</td>
 											</tr>
 											<tr>
-								 				<td class="text12">
+								 				<td class="text14">
 								 				<img onMouseOver="showPop('19_info');" onMouseOut="hidePop('19_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								 				<b>19.</b>&nbsp;<span title="thkdc">Container&nbsp;&nbsp;</span>
 								 				<div class="text11" style="position: relative;" align="left">
@@ -1016,7 +1016,7 @@
 									           	</span>
 									           	</div>
 									           	</td>
-								 				<td class="text12" >
+								 				<td class="text14" >
 						 							<select class="inputTextMediumBlue" name="thkdc" id="thkdc">
 								 						<option value="0"<c:if test="${model.record.thkdc == 0}"> selected </c:if> >0</option>
 												  		<option value="1"<c:if test="${model.record.thkdc == 1}"> selected </c:if> >1</option>
@@ -1025,7 +1025,7 @@
 											</tr>
 											
 											<tr>
-								            <td class="text12" align="left" >
+								            <td class="text14" align="left" >
 								            <img onMouseOver="showPop('lastplats_info');" onMouseOut="hidePop('lastplats_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 								            <b>27.</b>&nbsp;<span title="thlsd">Lastningsplats</span>
 								            
@@ -1038,13 +1038,13 @@
 											</span>
 											</div>
 											</td>
-											<td class="text12" >
+											<td class="text14" >
 										    	<input type="text" class="inputTextMediumBlue" name="thlsd" id="thlsd" size="17" maxlength="17" value="${model.record.thlsd}">
 										    </td>
 										</tr>
 				        				<tr height="10"><td class="text">&nbsp;</td> </tr>
 					 					<tr>
-								            <td class="text12" align="left">
+								            <td class="text14" align="left">
 								            <img onMouseOver="showPop('tullkontor_info');" onMouseOut="hidePop('tullkontor_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 								            <b>C.</b><span title="thcats">Avgångstullkontor&nbsp;</span>
 								            <div class="text11" style="position: relative;" align="left">
@@ -1069,7 +1069,7 @@
 								        </tr>
 								        <tr height="2"><td>&nbsp;</td></tr>
 								        <tr>
-								            <td class="text12" align="left">
+								            <td class="text14" align="left">
 								            <img onMouseOver="showPop('sprakkod_foljedok_info');" onMouseOut="hidePop('sprakkod_foljedok_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 								            <span title="thskfd">Språkkod följedok.&nbsp;</span>
 								            <div class="text11" style="position: relative;" align="left">
@@ -1089,8 +1089,8 @@
 										<tr height="2"><td>&nbsp;</td></tr>
 										
 								        <tr>
-								            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thtrdt">Transiteringsdatum</span></td>
-								            <td class="text12" >
+								            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thtrdt">Transiteringsdatum</span></td>
+								            <td class="text14" >
 								            	<input readonly type="text" class="inputTextReadOnly" name="thtrdt" id="thtrdt" size="8" value="${model.record.thtrdt}">
 								            	&nbsp;
 								            </td>
@@ -1099,7 +1099,7 @@
 		 								<tr height="5"><td class="text">&nbsp;</td> </tr>
 								            						
 										<tr>
-								            <td class="text12" align="left" >
+								            <td class="text14" align="left" >
 								            <img onMouseOver="showPop('deklarantplats_info');" onMouseOut="hidePop('deklarantplats_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 								            <span title="thdst">Deklarantens plats</span>
 								            <div class="text11" style="position: relative;" align="left">
@@ -1110,15 +1110,15 @@
 											</div>
 											</td>
 								            
-								            <td class="text12">
+								            <td class="text14">
 								            	<input type="text" class="inputTextMediumBlue" name="thdst" id="thdst" size="16" maxlength="15" value="${model.record.thdst}">
 								            </td>
 								         </tr>
 								         <tr>
-								            <td class="text12" >
+								            <td class="text14" >
 								            	&nbsp;&nbsp;<span title="thdsk">Dekl.språk</span>
 								            </td>
-								            <td class="text12" >
+								            <td class="text14" >
 								            	<input type="text" class="inputTextMediumBlue" name="thdsk" id="thdsk" size="3" maxlength="2" value="${model.record.thdsk}">	
 								            	
 								            </td>
@@ -1127,7 +1127,7 @@
 										
 										
 										<tr>
-									            <td class="text12" align="left" >
+									            <td class="text14" align="left" >
 									            <img onMouseOver="showPop('6_info');" onMouseOut="hidePop('6_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 									            <b>6.&nbsp;</b><span title="thntk">Antal Kolli</span>
 									            <div class="text11" style="position: relative;" align="left">
@@ -1144,7 +1144,7 @@
 									            <td ><input readonly onKeyPress="return numberKey(event)" style="text-align: right" type="text" class="inputTextReadOnly" name="thntk" id="thntk" size="8" maxlength="7" value="${model.record.thntk}"></td>
 									        </tr>
 								            <tr>
-									            <td class="text12" align="left" >
+									            <td class="text14" align="left" >
 									            <img onMouseOver="showPop('bruttovikt_info');" onMouseOut="hidePop('bruttovikt_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 									            <span title="thvkb">Bruttovikt</span>
 									            <div class="text11" style="position: relative;" align="left">
@@ -1164,7 +1164,7 @@
 									        <%--
 									     	<tr height="10"><td>&nbsp;</td></tr>
 						     	            	<tr>
-									            <td class="text12" align="left">
+									            <td class="text14" align="left">
 									            <img onMouseOver="showPop('kontrollresultat_info');" onMouseOut="hidePop('kontrollresultat_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 				 								<b>D.</b>&nbsp;<span title="thdkr">Kontrollresultat.&nbsp;</span>
 				 								<div class="text11" style="position: relative;" align="left">
@@ -1193,7 +1193,7 @@
 												</span>
 												</div>
 												</td>
-									           	<td class="text12" align="left">
+									           	<td class="text14" align="left">
 									           		
 									           		<select name="thdkr" id="thdkr" >
 									           			<option value="">-välj-</option>
@@ -1207,7 +1207,7 @@
 									           	</td>
 								           	</tr>
 								           	<tr>
-									            <td class="text12" align="left">
+									            <td class="text14" align="left">
 									            <img onMouseOver="showPop('frist_info');" onMouseOut="hidePop('frist_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 				 								<b>D.</b>&nbsp;<span title="thddt">Frist&nbsp;</span>
 				 								<div class="text11" style="position: relative;" align="left">
@@ -1226,14 +1226,14 @@
 												</span>
 												</div>
 												</td>
-									           	<td class="text12" align="left">
+									           	<td class="text14" align="left">
 									           		<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="thddt" id="thddt" size="8" maxlength="6" value="${Xmodel.record.thddt}">
 									           		&nbsp;
 									           	</td>
 								           	</tr>
 								           	 --%>
 								           	<tr>
-									            <td class="text12" align="left">&nbsp;</td>
+									            <td class="text14" align="left">&nbsp;</td>
 												<td class="text9BlueGreen" valign="bottom"  >
 					 				    			<input tabindex=-1 class="inputFormSubmit" type="submit" name="submit" id="submit" value='Spare' onClick="setBlockUI(this);"/>
 					 							</td>								           	
@@ -1306,7 +1306,7 @@
 					 				<%-- ANSVARIG --%>
 					 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 								 		<tr height="18px">
-								 			<td class="text12White">
+								 			<td class="text14White">
 								 				&nbsp;
 								 				<img onMouseOver="showPop('14_info');" onMouseOut="hidePop('14_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						 						
@@ -1346,7 +1346,7 @@
 									 		<td>
 										 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 											 		<tr height="15">
-											            <td class="text12" align="left">&nbsp;</td> 
+											            <td class="text14" align="left">&nbsp;</td> 
 											        </tr>
 											        <tr>
 											        	<%-- ================================================================================== --%>
@@ -1362,8 +1362,8 @@
 											        	<input type="hidden" name="orig_thpsa" id="orig_thpsa" value='${XXmodel.record.thpsa}'>
 											        	<input type="hidden" name="orig_thlka" id="orig_thlka" value='${XXmodel.record.thlka}'>
 											        	<input type="hidden" name="orig_thska" id="orig_thska" value='${XXmodel.record.thska}'>
-									        				<td class="text12" align="left" >&nbsp;&nbsp;<span title="thtina">TIN</span></td>
-											            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thnaa">Namn</span>
+									        				<td class="text14" align="left" >&nbsp;&nbsp;<span title="thtina">TIN</span></td>
+											            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thnaa">Namn</span>
 											            	<a tabindex="-1" id="thnaaIdLink">
 																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 															</a>
@@ -1378,14 +1378,14 @@
 		
 											        <tr height="4"><td>&nbsp;</td></tr>
 											        <tr>
-											            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thada1">Adress</span></td>
-											            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thska">Språkkod</span>
+											            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thada1">Adress</span></td>
+											            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thska">Språkkod</span>
 										            		
 											            </td>
 											        </tr>
 											        <tr>
 											            <td align="left"><input type="text" class="inputTextMediumBlue" name="thada1" id="thada1" size="30" maxlength="35" value="${model.record.thada1}"></td>
-											            <td class="text12" align="left" >&nbsp;
+											            <td class="text14" align="left" >&nbsp;
 											            	<input type="text" class="inputTextMediumBlue" name="thska" id="thska" size="3" maxlength="2" value="${model.record.thska}">
 											            	
 														</td>
@@ -1394,7 +1394,7 @@
 											        		<td>
 												        		<table>
 												        		<tr>
-												            		<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpsa">Postadress</span></td>
+												            		<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpsa">Postadress</span></td>
 												            		<td align="left">&nbsp;</td>
 												            	</tr>
 												        		<tr>
@@ -1408,8 +1408,8 @@
 											            <td >
 												            	<table>
 												        		<tr>
-												        			<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpna">Postnummer</span></td>
-												            		<td class="text12" align="left" >&nbsp;<span title="thlka">Land</span>
+												        			<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpna">Postnummer</span></td>
+												            		<td class="text14" align="left" >&nbsp;<span title="thlka">Land</span>
 												            		
 												            		</td>
 												            	</tr>
@@ -1425,8 +1425,8 @@
 										            	</tr>
 											        
 											        <tr height="15">
-									            		<td class="text12Bold" align="left" >&nbsp;</td>
-									            		<td class="text12Bold" align="left" >&nbsp;</td> 
+									            		<td class="text14Bold" align="left" >&nbsp;</td>
+									            		<td class="text14Bold" align="left" >&nbsp;</td> 
 											        </tr>  
 											        
 										        </table>
@@ -1448,10 +1448,10 @@
 									<td valign="top">
 							 			<table border="0" cellspacing="0" cellpadding="0">
 					                		<tr>
-								 			<td class="text12" >
+								 			<td class="text14" >
 								 				<table align="left" border="0" cellspacing="2" cellpadding="0">
 								 					<tr>
-											            <td class="text12" align="left">
+											            <td class="text14" align="left">
 											            <img onMouseOver="showPop('forsegling_info');" onMouseOut="hidePop('forsegling_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						 								&nbsp;<span title="thdfkd">Plomberingsid&nbsp;</span>
 						 								<div class="text11" style="position: relative;" align="left">
@@ -1462,30 +1462,30 @@
 														</span>
 														</div>
 														</td>
-											           	<td class="text12" align="left">
+											           	<td class="text14" align="left">
 											           		<input type="text" class="inputTextMediumBlue" name="thdfkd" id="thdfkd" size="20" maxlength="20" value="${model.record.thdfkd}">
 											           	</td>
 										           	</tr>
 										           	<tr>
-											            <td class="text12" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											            <td class="text14" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											            		<span title="thdant">Plomberingsantal&nbsp;</span>
 											            </td>
-						 								<td class="text12" align="left">
+						 								<td class="text14" align="left">
 											           		<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="thdant" id="thdant" size="4" maxlength="4" value="${model.record.thdant}">
 											           	</td>
 										           	</tr>
 										           	<tr>
-											            <td class="text12" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											            <td class="text14" align="left">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 											            		<span title="thdfsk">Plomberingsspråkkod</span>
 										            		</td>
-						 								<td class="text12" align="left">
+						 								<td class="text14" align="left">
 						 									<input type="text" class="inputTextMediumBlue" name="thdfsk" id="thdfsk" size="3" maxlength="2" value="${model.record.thdfsk}">
 											           		&nbsp;
 											           	</td>
 										           	</tr>
 													<tr height="20"><td></td></tr>						 				
 									 				<tr>
-											            <td class="text12" align="left">
+											            <td class="text14" align="left">
 											            <img onMouseOver="showPop('kontrolltullplats_info');" onMouseOut="hidePop('kontrolltullplats_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						 								&nbsp;<span title="thdats/thddtk">Kontroll toldsted og dato&nbsp;</span>
 						 								<div class="text11" style="position: relative;" align="left">
@@ -1501,16 +1501,16 @@
 														</div>
 														</td>
 														
-											           	<td class="text12" align="left">
+											           	<td class="text14" align="left">
 											           		<input readonly type="text" class="inputTextReadOnly" name="thdats" id="thdats" size="20" maxlength="8" value="${Xmodel.record.thdats}">
 											           	</td>
-											           	<td class="text12" align="left">	
+											           	<td class="text14" align="left">	
 											           		<input readonly type="text" class="inputTextReadOnly" name="thddtk" id="thddtk" size="20" maxlength="8" value="${Xmodel.record.thddtk}">
 											           		&nbsp;
 											           	</td>
 										           	</tr>
 									 				<tr>
-										 				<td nowrap class="text12">
+										 				<td nowrap class="text14">
 										 				<img onMouseOver="showPop('returadress_info');" onMouseOut="hidePop('returadress_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 											 			<b>&nbsp;9.</b>&nbsp;<span title="thtsn1/thtsn2/thtslk">Returadresse&nbsp;</span>
 										 				<div class="text11" style="position: relative;" align="left">
@@ -1520,16 +1520,16 @@
 														</div>
 														</td>
 								 			
-										 				<td class="text12">
+										 				<td class="text14">
 										 					<input readonly type="text" class="inputTextReadOnly" name="thtsn1" id="thtsn1" size="20" maxlength="35" value="${Xmodel.record.thtsn1}">
 										 				</td>
-										 				<td class="text12">
+										 				<td class="text14">
 										 					<input readonly type="text" class="inputTextReadOnly" name="thtsn2" id="thtsn2" size="20" maxlength="35" value="${Xmodel.record.thtsn2}">
 										 				</td>
 									 				</tr>
 									 				<tr>
-										 				<td nowrap class="text12">&nbsp;</td>
-							 							<td class="text12">
+										 				<td nowrap class="text14">&nbsp;</td>
+							 							<td class="text14">
 										 					<input readonly type="text" class="inputTextReadOnly" name="thtslk" id="thtslk" size="2" maxlength="2" value="${Xmodel.record.thtslk}">
 										 				</td>
 									 				</tr>
@@ -1549,7 +1549,7 @@
 						<td colspan="2">&nbsp;&nbsp;
 				            	<table width="98%" align="center" class="tableBorderWithRoundCornersDarkRed" border="0" cellspacing="2" cellpadding="0">
 				            		<tr>
-									<td width="50%" align="left" valign="top" class="text12" align="left" >
+									<td width="50%" align="left" valign="top" class="text14" align="left" >
 										<table width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
 									 		<tr height="18px">
 									 			<td class="text14">
@@ -1564,7 +1564,7 @@
 							 				</tr>
 							 				<tr>
 							 					
-							            			<td class="text12">&nbsp;<span title="thsik">
+							            			<td class="text14">&nbsp;<span title="thsik">
 							            				<img onMouseOver="showPop('sikkerhetIndicator_info');" onMouseOut="hidePop('sikkerhetIndicator_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							            				Säkerhetsindikator</span>&nbsp;
 							            				<div class="text11" style="position: relative;" align="left">
@@ -1582,26 +1582,26 @@
 												</td>
 							            		</tr>
 							            		<tr>
-							            			<td class="text12">&nbsp;<span title="thkref">Kommersiellt ref.nr</span></td>
+							            			<td class="text14">&nbsp;<span title="thkref">Kommersiellt ref.nr</span></td>
 							            		</tr>
 							            		<tr>
 							            			<td><input type="text" class="inputTextMediumBlue" name="thkref" id="thkref" size="70" maxlength="70" value="${model.record.sakerhetChildRecord.thkref}"></td>
 							            		</tr>
 							            		<tr>
-							            			<td class="text12">&nbsp;<span title="thtref">Transportör ref.nr</span></td>
+							            			<td class="text14">&nbsp;<span title="thtref">Transportör ref.nr</span></td>
 							            		</tr>
 							            		<tr>
 												<td><input type="text" class="inputTextMediumBlue" name="thtref" id="thtref" size="70" maxlength="35" value="${model.record.sakerhetChildRecord.thtref}"></td>
 							            		</tr>
 							        		</table>
 							        </td>
-						            <td width="50%" align="left" valign="top" class="text12" align="left" >   
+						            <td width="50%" align="left" valign="top" class="text14" align="left" >   
 						            		<table width="99%" align="left" border="0" cellspacing="0" cellpadding="0">
 						            			<tr height="18px">
-							            			<td class="text12">&nbsp;</td>
+							            			<td class="text14">&nbsp;</td>
 							            		</tr>
 				            					<tr>
-							            			<td class="text12">
+							            			<td class="text14">
 							            				<img onMouseOver="showPop('spesOmstand_info');" onMouseOut="hidePop('spesOmstand_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							            				<span title="thspom">Särskilda omständigheter</span>&nbsp;
 							            				<select name="thspom" id="thspom">
@@ -1620,7 +1620,7 @@
 														</span>
 													</div>
 						            				</td>
-							            			<td class="text12" nowrap>
+							            			<td class="text14" nowrap>
 							            				<img onMouseOver="showPop('betalmade_info');" onMouseOut="hidePop('betalmade_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							            				<span title="thtkbm">Transp.kost/Betal.sätt</span>&nbsp;
 							            				<select name="thtkbm" id="thtkbm">
@@ -1641,19 +1641,19 @@
 							            			</td>
 							            		</tr>
 							            		<tr>
-							            			<td class="text12" nowrap>&nbsp;&nbsp;<span title="thlosd">Lossplats</span>
+							            			<td class="text14" nowrap>&nbsp;&nbsp;<span title="thlosd">Lossplats</span>
 							            				<input type="text" class="inputTextMediumBlue" name="thlosd" id="thlosd" size="30" maxlength="35" value="${model.record.sakerhetChildRecord.thlosd}">
 							            			</td>
-							            			<td class="text12">&nbsp;&nbsp;<span title="thlosdsk">Lossplats språkkod</span>
+							            			<td class="text14">&nbsp;&nbsp;<span title="thlosdsk">Lossplats språkkod</span>
 							            				<input type="text" class="inputTextMediumBlue" name="thlosdsk" id="thlosdsk" size="3" maxlength="2" value="${model.record.sakerhetChildRecord.thlosdsk}">
 							            				
 							            			</td>
 							            		</tr>
 							            		<tr>
-							            			<td class="text12">&nbsp;
+							            			<td class="text14">&nbsp;
 							            				<table>
 							            				<tr>
-							            					<td colspan="4" class="text12">&nbsp;
+							            					<td colspan="4" class="text14">&nbsp;
 							            					<span title="thlkr1-8">Landkod for reseplan</span>
 							            					
 							            					</td>
@@ -1697,7 +1697,7 @@
 						        		<td width="50%" align="center" valign="top">
 										<table width="99%" align="center" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 									 		<tr height="18px">
-									 			<td class="text12White">
+									 			<td class="text14White">
 									 				&nbsp;
 							 						&nbsp;Avsändare - Säkerhet&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 								 				</td>
@@ -1727,11 +1727,11 @@
 															        	<input type="hidden" name="orig_thskss" id="orig_thskss" value='${XXmodel.record.thskss}'>
 															        	
 															        	<tr height="10">
-															            <td class="text12" align="left">&nbsp;</td> 
+															            <td class="text14" align="left">&nbsp;</td> 
 															        </tr>
 															 		<tr height="15">
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thknss">Kundnummer</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thnass">Namn</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thknss">Kundnummer</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thnass">Namn</span>
 															            	<a tabindex="-1" id="thnassIdLink">
 																				<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 																			</a>
@@ -1742,7 +1742,7 @@
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thnass" id="thnass" size="30" maxlength="35" value="${model.record.sakerhetChildRecord.thnass}"></td>
 															        </tr>
 															        <tr>
-													        				<td class="text12" align="left" >&nbsp;&nbsp;<span title="thtinss">TIN</span></td>
+													        				<td class="text14" align="left" >&nbsp;&nbsp;<span title="thtinss">TIN</span></td>
 															        </tr>
 															        <tr>
 															        		<td align="left"><input type="text" class="inputTextMediumBlue" name="thtinss" id="thtinss" size="20" maxlength="17" value="${model.record.sakerhetChildRecord.thtinss}"></td>
@@ -1750,14 +1750,14 @@
 						
 															        <tr height="4"><td>&nbsp;</td></tr>
 															        <tr>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thadss1">Adress</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thskss">Språkkod</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thadss1">Adress</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thskss">Språkkod</span>
 														            		
 															            </td>
 															        </tr>
 															        <tr>
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thadss1" id="thadss1" size="30" maxlength="30" value="${model.record.sakerhetChildRecord.thadss1}"></td>
-															            <td class="text12" align="left" >&nbsp;
+															            <td class="text14" align="left" >&nbsp;
 														            		<input type="text" class="inputTextMediumBlue" name="thskss" id="thskss" size="3" maxlength="2" value="${model.record.sakerhetChildRecord.thskss}">
 																		</td>
 															        </tr>
@@ -1765,7 +1765,7 @@
 															        		<td>
 																        		<table>
 																        		<tr>
-																            		<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpsss">Postadress</span></td>
+																            		<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpsss">Postadress</span></td>
 																            		<td align="left">&nbsp;</td>
 																            	</tr>
 																        		<tr>
@@ -1779,8 +1779,8 @@
 															            <td >
 																            	<table>
 																        		<tr>
-																        			<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpnss">Postnummer</span></td>
-																            		<td class="text12" align="left" >&nbsp;<span title="thlkss">Land</span>
+																        			<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpnss">Postnummer</span></td>
+																            		<td class="text14" align="left" >&nbsp;<span title="thlkss">Land</span>
 																            		
 																            		</td>
 																            	</tr>
@@ -1795,8 +1795,8 @@
 														            	</tr>
 															        
 															        <tr height="15">
-													            		<td class="text12Bold" align="left" >&nbsp;</td>
-													            		<td class="text12Bold" align="left" >&nbsp;</td> 
+													            		<td class="text14Bold" align="left" >&nbsp;</td>
+													            		<td class="text14Bold" align="left" >&nbsp;</td> 
 															        </tr>  
 															        
 														        </table>
@@ -1811,7 +1811,7 @@
 					 					</table>	
 										<table width="99%" align="center" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 									 		<tr height="18px">
-									 			<td class="text12White">
+									 			<td class="text14White">
 									 				&nbsp;
 							 						&nbsp;Transportör - Säkerhet&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 								 				</td>
@@ -1841,11 +1841,11 @@
 															        	<input type="hidden" name="orig_thskt" id="orig_thskt" value='${XXmodel.record.thskt}'>
 															        	
 															        	<tr height="10">
-															            <td class="text12" align="left">&nbsp;</td> 
+															            <td class="text14" align="left">&nbsp;</td> 
 															        </tr>
 															 		<tr height="15">
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thknt">Kundnummer</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thnat">Namn</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thknt">Kundnummer</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thnat">Namn</span>
 															            	<a tabindex="-1" id="thnatIdLink">
 																				<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 																			</a>
@@ -1856,7 +1856,7 @@
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thnat" id="thnat" size="30" maxlength="35" value="${model.record.sakerhetChildRecord.thnat}"></td>
 															        </tr>
 															        <tr>
-													        				<td class="text12" align="left" >&nbsp;&nbsp;<span title="thtint">EORI</span></td>
+													        				<td class="text14" align="left" >&nbsp;&nbsp;<span title="thtint">EORI</span></td>
 															        </tr>
 															        <tr>
 															        		<td align="left"><input type="text" class="inputTextMediumBlue" name="thtint" id="thtint" size="20" maxlength="17" value="${model.record.sakerhetChildRecord.thtint}"></td>
@@ -1864,14 +1864,14 @@
 						
 															        <tr height="4"><td>&nbsp;</td></tr>
 															        <tr>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thadt1">Adress</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thskt">Språkkod</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thadt1">Adress</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thskt">Språkkod</span>
 														            		
 															            </td>
 															        </tr>
 															        <tr>
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thadt1" id="thadt1" size="30" maxlength="30" value="${model.record.sakerhetChildRecord.thadt1}"></td>
-															            <td class="text12" align="left" >&nbsp;
+															            <td class="text14" align="left" >&nbsp;
 															            	<input type="text" class="inputTextMediumBlue" name="thskt" id="thskt" size="3" maxlength="2" value="${model.record.sakerhetChildRecord.thskt}">
 																		</td>
 															        </tr>
@@ -1879,7 +1879,7 @@
 															        		<td>
 																        		<table>
 																        		<tr>
-																            		<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpst">Postadress</span></td>
+																            		<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpst">Postadress</span></td>
 																            		<td align="left">&nbsp;</td>
 																            	</tr>
 																        		<tr>
@@ -1893,8 +1893,8 @@
 															            <td >
 																            	<table>
 																        		<tr>
-																        			<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpnt">Postnummer</span></td>
-																            		<td class="text12" align="left" >&nbsp;<span title="thlkt">Land</span>
+																        			<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpnt">Postnummer</span></td>
+																            		<td class="text14" align="left" >&nbsp;<span title="thlkt">Land</span>
 																            		
 																            		</td>
 																            	</tr>
@@ -1909,8 +1909,8 @@
 														            	</tr>
 															        
 															        <tr height="15">
-													            		<td class="text12Bold" align="left" >&nbsp;</td>
-													            		<td class="text12Bold" align="left" >&nbsp;</td> 
+													            		<td class="text14Bold" align="left" >&nbsp;</td>
+													            		<td class="text14Bold" align="left" >&nbsp;</td> 
 															        </tr>  
 															        
 														        </table>
@@ -1924,7 +1924,7 @@
 					        			<td width="50%" align="center" valign="top">
 										<table width="99%" align="center" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 									 		<tr height="18px">
-									 			<td class="text12White">
+									 			<td class="text14White">
 									 				&nbsp;
 							 						&nbsp;Mottagare - Säkerhet&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 								 				</td>
@@ -1953,11 +1953,11 @@
 															        	<input type="hidden" name="orig_thlkks" id="orig_thlkks" value='${XXmodel.record.thlkks}'>
 															        	<input type="hidden" name="orig_thskks" id="orig_thskks" value='${XXmodel.record.thskks}'>
 															 		<tr height="10">
-															            <td class="text12" align="left">&nbsp;</td> 
+															            <td class="text14" align="left">&nbsp;</td> 
 															        </tr>
 															        <tr height="15">
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thknks">Kundnummer</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thnaks">Namn</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thknks">Kundnummer</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thnaks">Namn</span>
 															            	<a tabindex="-1" id="thnaksIdLink">
 																				<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 																			</a>	
@@ -1968,7 +1968,7 @@
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thnaks" id="thnaks" size="30" maxlength="35" value="${model.record.sakerhetChildRecord.thnaks}"></td>
 															        </tr>
 															        <tr>
-													        				<td class="text12" align="left" >&nbsp;&nbsp;<span title="thtinks">EORI</span></td>
+													        				<td class="text14" align="left" >&nbsp;&nbsp;<span title="thtinks">EORI</span></td>
 															        </tr>
 															        <tr>
 															        		<td align="left"><input type="text" class="inputTextMediumBlue" name="thtinks" id="thtinks" size="20" maxlength="17" value="${model.record.sakerhetChildRecord.thtinks}"></td>
@@ -1976,14 +1976,14 @@
 						
 															        <tr height="4"><td>&nbsp;</td></tr>
 															        <tr>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thadks1">Adress</span></td>
-															            <td class="text12" align="left" >&nbsp;&nbsp;<span title="thskks">Språkkod</span>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thadks1">Adress</span></td>
+															            <td class="text14" align="left" >&nbsp;&nbsp;<span title="thskks">Språkkod</span>
 														            		
 															            </td>
 															        </tr>
 															        <tr>
 															            <td align="left"><input type="text" class="inputTextMediumBlue" name="thadks1" id="thadks1" size="30" maxlength="30" value="${model.record.sakerhetChildRecord.thadks1}"></td>
-															            <td class="text12" align="left" >&nbsp;
+															            <td class="text14" align="left" >&nbsp;
 															            	<input type="text" class="inputTextMediumBlue" name="thskks" id="thskks" size="3" maxlength="2" value="${model.record.sakerhetChildRecord.thskks}">
 																		</td>
 															        </tr>
@@ -1991,7 +1991,7 @@
 															        		<td>
 																        		<table>
 																        		<tr>
-																            		<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpsks">Postadress</span></td>
+																            		<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpsks">Postadress</span></td>
 																            		<td align="left">&nbsp;</td>
 																            	</tr>
 																        		<tr>
@@ -2005,8 +2005,8 @@
 															            <td >
 																            	<table>
 																        		<tr>
-																        			<td class="text12" align="left" >&nbsp;&nbsp;<span title="thpnks">Postnummer</span></td>
-																            		<td class="text12" align="left" >&nbsp;<span title="thlkks">Land</span>
+																        			<td class="text14" align="left" >&nbsp;&nbsp;<span title="thpnks">Postnummer</span></td>
+																            		<td class="text14" align="left" >&nbsp;<span title="thlkks">Land</span>
 																            		
 																            		</td>
 																            	</tr>
@@ -2021,8 +2021,8 @@
 														            	</tr>
 															        
 															        <tr height="15">
-													            		<td class="text12Bold" align="left" >&nbsp;</td>
-													            		<td class="text12Bold" align="left" >&nbsp;</td> 
+													            		<td class="text14Bold" align="left" >&nbsp;</td>
+													            		<td class="text14Bold" align="left" >&nbsp;</td> 
 															        </tr>  
 														        </table>
 													        </td>

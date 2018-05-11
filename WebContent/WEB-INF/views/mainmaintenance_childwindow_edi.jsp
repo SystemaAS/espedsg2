@@ -29,13 +29,13 @@
 						<input type="hidden" name="ctype" id="ctype" value="${model.ctype}">
 						
 						<tr>
-							<td class="text11">&nbsp;UtvekslingsId</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="id" id="id" size="25" maxlength="35" value="${model.id}"></td>
-							<td class="text11">&nbsp;</td>
-							<td class="text11">&nbsp;Navn</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="navn" id="navn" size="30" maxlength="50" value="${model.navn}"></td>
+							<td class="text14">&nbsp;UtvekslingsId</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="id" id="id" size="25" maxlength="35" value="${model.id}"></td>
+							<td class="text14">&nbsp;</td>
+							<td class="text14">&nbsp;Navn</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="navn" id="navn" size="30" maxlength="50" value="${model.navn}"></td>
 							
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.main.maintenance.search"/>'></td>
 		           		</tr>
 		           		</form>
@@ -52,10 +52,10 @@
 					<table id="mainList" class="display compact cell-border" width="100%" >
 						<thead>
 						<tr style="background-color:#EEEEEE">
-							<th class="text11" >&nbsp;UtvekslingsId.&nbsp;</th>
-		                    <th class="text11" >&nbsp;Navn&nbsp;</th>
-		                    <th class="text11" >&nbsp;Network&nbsp;</th>
-		                    <th class="text11" >&nbsp;Internal / External&nbsp;</th>
+							<th class="text14" >&nbsp;UtvekslingsId.&nbsp;</th>
+		                    <th class="text14" >&nbsp;Navn&nbsp;</th>
+		                    <th class="text14" >&nbsp;Network&nbsp;</th>
+		                    <th class="text14" >&nbsp;Internal / External&nbsp;</th>
 		                    
 		                </tr> 
 		                </thead>
@@ -64,18 +64,18 @@
 		                <c:forEach var="record" items="${model.list}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="cursor:pointer;" class="text11MediumBlue" id="inid${record.inid}@inna${record.inna}@ctype${model.ctype}" >
+			               <td style="cursor:pointer;" class="text14MediumBlue" id="inid${record.inid}@inna${record.inna}@ctype${model.ctype}" >
 			               		<img title="select" style="vertical-align:top;" src="resources/images/bebullet.gif" border="0" alt="edit">&nbsp;${record.inid}
 			               	</td>
-		               	   <td class="text11">&nbsp;${record.inna}</td>
-		               	   <td class="text11">&nbsp;${record.innetw}</td>
-		               	   <td class="text11">&nbsp;${record.inex}</td>
+		               	   <td class="text14">&nbsp;${record.inna}</td>
+		               	   <td class="text14">&nbsp;${record.innetw}</td>
+		               	   <td class="text14">&nbsp;${record.inex}</td>
 		               	    
 			            </tr> 
 			            </c:forEach>

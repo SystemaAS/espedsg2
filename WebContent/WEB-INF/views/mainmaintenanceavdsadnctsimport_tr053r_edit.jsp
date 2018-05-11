@@ -79,7 +79,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -101,7 +101,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -131,12 +131,12 @@
 					    	    		<input type="hidden" name="tiavd" id="tiavd" value="${model.avd}">
 					    	    	</c:when>
 					    	    	<c:otherwise>
-					    	    		<td class="text12" title="tiavd"><font class="text12RedBold" >*</font>Avdeling
+					    	    		<td class="text14" title="tiavd"><font class="text14RedBold" >*</font>Avdeling
 					    	    			<a tabindex="-1" id="tiavdIdLink">
 												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 											</a>
 					    	    		</td>
-										<td class="text12" >
+										<td class="text14" >
 										<select name="tiavd" id="tiavd" class="inputTextMediumBlueMandatoryField">
 						  					<option value="">-velg-</option>
 						  					<c:forEach var="record" items="${model.avdGeneralList}" >
@@ -148,15 +148,15 @@
 				    	    	</c:choose>
 				    	    	
 				    	    	
-								<td class="text12" title="tienkl"><font class="text12RedBold" >*</font>Prosedyre</td>
-								<td class="text12" >
+								<td class="text14" title="tienkl"><font class="text14RedBold" >*</font>Prosedyre</td>
+								<td class="text14" >
 									<select name="tienkl" id="tienkl" class="inputTextMediumBlueMandatoryField">
 					  					<option value="J"<c:if test="${ model.record.tienkl == 'J' || empty model.record.tienkl}"> selected </c:if> >Forenklet</option>
 					  					<option value="N"<c:if test="${ model.record.tienkl == 'N'}"> selected </c:if> >Normal</option>
 								  	</select>
 								</td>
-								<td class="text12" title="titdn">&nbsp;&nbsp;<font class="text12RedBold" >*</font>Nr.teller intern ref.</td>
-								<td class="text12" >
+								<td class="text14" title="titdn">&nbsp;&nbsp;<font class="text14RedBold" >*</font>Nr.teller intern ref.</td>
+								<td class="text14" >
 									<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="titdn" id="titdn" size="10" maxlength="7" value='${model.record.titdn}'>
 								</td>
 							
@@ -171,36 +171,36 @@
 				<td width="100%">
 					
 					<table width="95%" class="formFrameTitaniumWhite" cellspacing="1" border="0" align="left">
-						<tr><td colspan="2" class="text12"><b>Kommunikasjon </b><font class="text11" >&nbsp;</font></td></tr>
+						<tr><td colspan="2" class="text14"><b>Kommunikasjon </b><font class="text11" >&nbsp;</font></td></tr>
 						<tr height="5"><td></td></tr>
 			    	    
 						<tr>
-							<td class="text12" title="s0004"><font class="text12RedBold" >*</font>UtvekslingsId Avdeling 
+							<td class="text14" title="s0004"><font class="text14RedBold" >*</font>UtvekslingsId Avdeling 
 								<a tabindex="-1" id="s0004IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0004" id="s0004" size="20" maxlength="35" value='${model.record.s0004}'>
 							</td>
 						
-							<td class="text12" title="s0010"><font class="text12RedBold" >*</font>UtvekslingsId Tollvesenet 
+							<td class="text14" title="s0010"><font class="text14RedBold" >*</font>UtvekslingsId Tollvesenet 
 								<a tabindex="-1" id="s0010IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0010" id="s0010" size="20" maxlength="35" value='${model.record.s0010}'>
 							</td>
 						</tr>
 						<tr>	
 							
-							<td class="text12" title="s0026">&nbsp;&nbsp;Applikasjonsreferanse</td>
-							<td class="text12">
+							<td class="text14" title="s0026">&nbsp;&nbsp;Applikasjonsreferanse</td>
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="s0026" id="s0026" size="11" maxlength="10" value='${model.record.s0026}'>
 							</td>
-							<td class="text12" title="s0035">Testindikator</td>
-							<td class="text12">
+							<td class="text14" title="s0035">Testindikator</td>
+							<td class="text14">
 								<select name="s0035" id="s0035" class="inputTextMediumBlue">
 				  					<option value="">-velg-</option>
 				  					<option value="1"<c:if test="${ model.record.s0035 == '1'}"> selected </c:if> >1</option>
@@ -228,7 +228,7 @@
 				 				<%-- SENDER ---%>
 				 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 							 		<tr height="15">
-							 			<td class="text12White">
+							 			<td class="text14White">
 											&nbsp;<img onMouseOver="showPop('nliv_info');" onMouseOut="hidePop('nliv_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								 			<b>&nbsp;</b>&nbsp;Næringsliv / Ansvarlig&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 							 				<div class="text11" style="position: relative;" align="left">
@@ -258,54 +258,54 @@
 								 		<td width="100%">
 									 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 										 		<tr >
-										 			<td class="text12">&nbsp;<span title="tikn">Kundenr</span></td>
-										 			<td class="text12">&nbsp;</td>
+										 			<td class="text14">&nbsp;<span title="tikn">Kundenr</span></td>
+										 			<td class="text14">&nbsp;</td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="tikn" id="tikn" size="8" maxlength="8" value="${model.record.tikn}"></td>
-										 			<td class="text12">&nbsp;</td>
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="tikn" id="tikn" size="8" maxlength="8" value="${model.record.tikn}"></td>
+										 			<td class="text14">&nbsp;</td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12">&nbsp;<span title="titin">TIN</span></td>
-										 			<td class="text12">&nbsp;<span title="tina">Navn</span>
+										 			<td class="text14">&nbsp;<span title="titin">TIN</span></td>
+										 			<td class="text14">&nbsp;<span title="tina">Navn</span>
 											            <a tabindex="-1" id="tinaIdLink">
 															<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 														</a>
 										 			</td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="titin" id="titin" size="17" maxlength="17" value="${model.record.titin}"></td>
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="tina" id="tina" size="30" maxlength="30" value="${model.record.tina}"></td>
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="titin" id="titin" size="17" maxlength="17" value="${model.record.titin}"></td>
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="tina" id="tina" size="30" maxlength="30" value="${model.record.tina}"></td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12">&nbsp;<span title="tiad1">Adresse</span></td>
-										 			<td class="text12">&nbsp;<span title="tisk">Språkkode</span></td>
+										 			<td class="text14">&nbsp;<span title="tiad1">Adresse</span></td>
+										 			<td class="text14">&nbsp;<span title="tisk">Språkkode</span></td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="tiad1" id="tiad1" size="30" maxlength="30" value="${model.record.tiad1}"></td>
-										 			<td class="text12">
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="tiad1" id="tiad1" size="30" maxlength="30" value="${model.record.tiad1}"></td>
+										 			<td class="text14">
 										 				<input type="text" class="inputText" name="tisk" id="tisk" size="3" maxlength="2" value="${model.record.tisk}">
 										 			</td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12">&nbsp;<span title="tips">Postadresse</span></td>
-										 			<td class="text12">&nbsp;<span title="tipn">Postnr</span></td>
+										 			<td class="text14">&nbsp;<span title="tips">Postadresse</span></td>
+										 			<td class="text14">&nbsp;<span title="tipn">Postnr</span></td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="tips" id="tips" size="24" maxlength="24" value="${model.record.tips}"></td>
-										 			<td class="text12"><input type="text" class="inputTextMediumBlue" name="tipn" id="tipn" size="9" maxlength="9" value="${model.record.tipn}"></td>
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="tips" id="tips" size="24" maxlength="24" value="${model.record.tips}"></td>
+										 			<td class="text14"><input type="text" class="inputTextMediumBlue" name="tipn" id="tipn" size="9" maxlength="9" value="${model.record.tipn}"></td>
 								 				</tr>
 								 				<tr >
-										 			<td class="text12">&nbsp;<span title="tilk">Landkode</span>
+										 			<td class="text14">&nbsp;<span title="tilk">Landkode</span>
 										 			
 										 			</td>
-										 			<td class="text12">&nbsp</td>
+										 			<td class="text14">&nbsp</td>
 								 				</tr>
 								 				<tr >
 										 			<td>
 										 				<input type="text" class="inputTextMediumBlue" name="tilk" id="tilk" size="3" maxlength="2" value="${model.record.tilk}">
 									 				</td>
-										 			<td class="text12">
+										 			<td class="text14">
 										 				&nbsp;
 										 			</td>
 								 				</tr>
@@ -328,7 +328,7 @@
 								<table border="0" cellspacing="1" cellpadding="0">
 								<tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" >
+						            <td class="text14" >
 						            	<img onMouseOver="showPop('tign_info');" onMouseOut="hidePop('tign_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            	<span title="tign">Godsnr</span>
 						            	<div class="text11" style="position: relative;" align="left">
@@ -352,14 +352,14 @@
 					            </tr>
 								<tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" >&nbsp;&nbsp;<span title="tignsk">Språkkode</span>&nbsp;</td>
+						            <td class="text14" >&nbsp;&nbsp;<span title="tignsk">Språkkode</span>&nbsp;</td>
 						            <td >
 							             <input type="text" class="inputText" name="tignsk" id="tignsk" size="3" maxlength="2" value="${model.record.tignsk}">
 						            </td>
 					            </tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" >
+						            <td class="text14" >
 						            	<img onMouseOver="showPop('titrnr_info');" onMouseOut="hidePop('titrnr_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            	<span title="titrnr">MRN-nr</span>
 						            	<div class="text11" style="position: relative;" align="left">
@@ -379,7 +379,7 @@
 					            </tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" >&nbsp;&nbsp;<span title="tialk">Avs.land</span>&nbsp;</td>
+						            <td class="text14" >&nbsp;&nbsp;<span title="tialk">Avs.land</span>&nbsp;</td>
 						            <td >
 							            <input type="text" class="inputText" name="tialk" id="tialk" size="3" maxlength="2" value="${model.record.tialk}">
 						            </td>
@@ -387,7 +387,7 @@
 					            <tr height="2"><td>&nbsp;</td></tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" ><img onMouseOver="showPop('titsb_info');" onMouseOut="hidePop('titsb_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						            <td class="text14" ><img onMouseOver="showPop('titsb_info');" onMouseOut="hidePop('titsb_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            <span title="titsb">Freml.tollsted</span>
 						            <div class="text11" style="position: relative;" align="left">
 					 					<span style="position:absolute; top:2px; width:250px;" id="titsb_info" class="popupWithInputText text11"  >
@@ -406,7 +406,7 @@
 											<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 										</a>
 							        </td>
-						            <td class="text12" ><span title="tiskb">Språkkode</span>&nbsp;</td>
+						            <td class="text14" ><span title="tiskb">Språkkode</span>&nbsp;</td>
 						            <td >
 							            <input type="text" class="inputText" name="tiskb" id="tiskb" size="3" maxlength="2" value="${model.record.tiskb}">
 						            </td>
@@ -415,7 +415,7 @@
 					            <tr height="10"><td>&nbsp;</td></tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" ><img onMouseOver="showPop('tialsk_info');" onMouseOut="hidePop('tialsk_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						            <td class="text14" ><img onMouseOver="showPop('tialsk_info');" onMouseOut="hidePop('tialsk_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            <span title="tialsk">Avt.lagringssted (kode)</span>
 						            <div class="text11" style="position: relative;" align="left">
 					 					<span style="position:absolute; top:2px; width:250px;" id="tialsk_info" class="popupWithInputText text11"  >
@@ -424,20 +424,20 @@
 						            </div>
 						            </td>
 						            <td ><input type="text" class="inputText" name="tialsk" id="tialsk" size="17" maxlength="17" value="${model.record.tialsk}"></td>
-						            <td class="text12" ><span title="tialss">Språkkode</span>&nbsp;</td>
+						            <td class="text14" ><span title="tialss">Språkkode</span>&nbsp;</td>
 						            <td >
 						            	<input type="text" class="inputText" name="tialss" id="tialss" size="3" maxlength="2" value="${model.record.tialss}">
 						            </td>
 					            </tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" >&nbsp;&nbsp;<span title="tials">Avt.lagringssted</span></td>
+						            <td class="text14" >&nbsp;&nbsp;<span title="tials">Avt.lagringssted</span></td>
 						            <td ><input type="text" class="inputText" name="tials" id="tials" size="20" maxlength="35" value="${model.record.tials}"></td>
 					            </tr>
 					            <tr height="2"><td>&nbsp;</td></tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" ><img onMouseOver="showPop('tiglsk_info');" onMouseOut="hidePop('tiglsk_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						            <td class="text14" ><img onMouseOver="showPop('tiglsk_info');" onMouseOut="hidePop('tiglsk_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            <span title="tiglsk">Godk.lagringssted (kode)</span>
 						            <div class="text11" style="position: relative;" align="left">
 					 					<span style="position:absolute; top:2px; width:250px;" id="tiglsk_info" class="popupWithInputText text11"  >
@@ -450,7 +450,7 @@
 					            </tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" ><img onMouseOver="showPop('tiacts_info');" onMouseOut="hidePop('tiacts_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						            <td class="text14" ><img onMouseOver="showPop('tiacts_info');" onMouseOut="hidePop('tiacts_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						            <span title="tiacts">Contr.sted (kode)</span>
 						            <div class="text11" style="position: relative;" align="left">
 					 					<span style="position:absolute; top:2px; width:250px;" id="tiacts_info" class="popupWithInputText text11"  >
@@ -465,7 +465,7 @@
 					            </tr>
 					            <tr>
 						            <td >&nbsp;</td>
-						            <td class="text12" ><span title="tidt">Registreringsdato</span></td>
+						            <td class="text14" ><span title="tidt">Registreringsdato</span></td>
 						            <td ><input readonly type="text" class="inputTextReadOnly" name="tidt" id="tidt" size="8" maxlength="6" value="${model.record.tidtNO}"></td>
 					            </tr>
 					            <tr height="2"><td>&nbsp;</td></tr>

@@ -79,7 +79,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -101,7 +101,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>
@@ -131,12 +131,12 @@
 					    	    		<input type="hidden" name="seavd" id=seavd value="${model.avd}">
 					    	    	</c:when>
 					    	    	<c:otherwise>
-					    	    		<td class="text12" title="seavd"><font class="text12RedBold" >*</font>Avdeling
+					    	    		<td class="text14" title="seavd"><font class="text14RedBold" >*</font>Avdeling
 					    	    			<a tabindex="-1" id="seavdIdLink">
 												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 											</a>
 					    	    		</td>
-										<td class="text12" >
+										<td class="text14" >
 										<select name="seavd" id="seavd" class="inputTextMediumBlueMandatoryField">
 						  					<option value="">-velg-</option>
 						  					<c:forEach var="record" items="${model.avdGeneralList}" >
@@ -150,8 +150,8 @@
 				    	    	</c:choose>
 				    	    	
 				    	    	
-								<td class="text12" title="sedl"><font class="text12RedBold" >*</font>Bruk dataliste</td>
-								<td class="text12" >
+								<td class="text14" title="sedl"><font class="text14RedBold" >*</font>Bruk dataliste</td>
+								<td class="text14" >
 									<select name="sedl" id="sedl" class="inputTextMediumBlueMandatoryField">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.sedl == 'J'}"> selected </c:if> >Ja</option>
@@ -159,21 +159,21 @@
 					  					<option value="1"<c:if test="${ model.record.sedl == '1'}"> selected </c:if> >1</option>
 								  	</select>
 								</td>
-								<td class="text12" title="sea4">&nbsp;&nbsp;Format A4</td>
-								<td class="text12" >
+								<td class="text14" title="sea4">&nbsp;&nbsp;Format A4</td>
+								<td class="text14" >
 									<select name="sea4" id="sea4" class="inputTextMediumBlue">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.sea4 == 'J'}"> selected </c:if> >Ja</option>
 					  					<option value="N"<c:if test="${ model.record.sea4 == 'N'}"> selected </c:if> >Nei</option>
 								  	</select>
 								</td>	
-								<td class="text12" title="setdn">&nbsp;&nbsp;<font class="text12RedBold" >*</font>Nrt.teller intern ref.</td>
-								<td class="text12" >
+								<td class="text14" title="setdn">&nbsp;&nbsp;<font class="text14RedBold" >*</font>Nrt.teller intern ref.</td>
+								<td class="text14" >
 									<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" name="setdn" id="setdn" size="10" maxlength="7" value='${model.record.setdn}'>
 								</td>
 								
-								<td class="text12" title="seekst">&nbsp;&nbsp;Importere eksterne data</td>
-								<td class="text12" >
+								<td class="text14" title="seekst">&nbsp;&nbsp;Importere eksterne data</td>
+								<td class="text14" >
 									<select name="seekst" id="seekst" class="inputTextMediumBlue">
 					  					<option value="">-velg-</option>
 					  					<option value="J"<c:if test="${ model.record.seekst == 'J'}"> selected </c:if> >Ja</option>
@@ -183,8 +183,8 @@
 								</td>
 							</tr>
 							<tr>
-								<td class="text12" title="setolk"><font class="text12RedBold" >*</font>Bruk kommunikasjon</td>
-								<td class="text12" >
+								<td class="text14" title="setolk"><font class="text14RedBold" >*</font>Bruk kommunikasjon</td>
+								<td class="text14" >
 									<select name="setolk" id="setolk" class="inputTextMediumBlueMandatoryField">
 					  					<option value="J"<c:if test="${ model.record.setolk == 'J'}"> selected </c:if> >Ja</option>
 					  					<option value="N"<c:if test="${ model.record.setolk == 'N' || empty model.record.setolk}"> selected </c:if> >Nei</option>
@@ -201,12 +201,12 @@
 				<td width="100%">
 					
 					<table width="95%" class="formFrameTitaniumWhite" cellspacing="1" border="0" align="left">
-						<tr><td colspan="2" class="text12"><b>Kommunikasjon </b><font class="text11" >&nbsp;( Kun hvis kommunikasjonen er valgt )</font></td></tr>
+						<tr><td colspan="2" class="text14"><b>Kommunikasjon </b><font class="text11" >&nbsp;( Kun hvis kommunikasjonen er valgt )</font></td></tr>
 						<tr height="5"><td></td></tr>
 			    	    <tr>
 			    	    	<%-- OBSOLETE ? AS400 SCREEN ... ta en titt
-							<td class="text12" title="todo">Vente med å skrive ut melding </td>
-							<td class="text12">
+							<td class="text14" title="todo">Vente med å skrive ut melding </td>
+							<td class="text14">
 								<select name="todo" id="todo" class="inputTextMediumBlue">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ XXmodel.record.X == 'J'}"> selected </c:if> >Ja</option>
@@ -214,30 +214,30 @@
 							  	</select>
 							</td>
 							 --%>
-							<td class="text12" title="s3039e"><font class="text12RedBold" >*</font>Til ekspedisjonsenhet</td>
-							<td class="text12">
+							<td class="text14" title="s3039e"><font class="text14RedBold" >*</font>Til ekspedisjonsenhet</td>
+							<td class="text14">
 								<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlueMandatoryField" name="s3039e" id="s3039e" size="6" maxlength="6" value='${model.record.s3039e}'>
 							</td>	
-							<td class="text12" title="s3039eo1">Statistisk Oppretting:</td>
-							<td class="text12">
+							<td class="text14" title="s3039eo1">Statistisk Oppretting:</td>
+							<td class="text14">
 								<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="s3039eo1" id="s3039eo1" size="6" maxlength="6" value='${model.record.s3039eo1}'>
 							</td>
-							<td class="text12" title="s3039eo2">Etterberegning/Refusjon:</td>
-							<td class="text12">
+							<td class="text14" title="s3039eo2">Etterberegning/Refusjon:</td>
+							<td class="text14">
 								<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="s3039eo2" id="s3039eo2" size="6" maxlength="6" value='${model.record.s3039eo2}'>
 							</td>
 						</tr>
 						<tr>	
-							<td class="text12" title="syrg"><font class="text12RedBold" >*</font>Foretaksnummer</td>
-							<td class="text12">
+							<td class="text14" title="syrg"><font class="text14RedBold" >*</font>Foretaksnummer</td>
+							<td class="text14">
 								<input readonly type="text" class="inputTextReadOnly" name="syrg" id="syrg" size="11" maxlength="10" value='${model.record.syrg}'>
 							</td>
-							<td class="text12" title="s0026">Applikasjonsreferanse</td>
-							<td class="text12">
+							<td class="text14" title="s0026">Applikasjonsreferanse</td>
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlue" name="s0026" id="s0026" size="11" maxlength="10" value='${model.record.s0026}'>
 							</td>
-							<td class="text12" title="s0035">Testindikator</td>
-							<td class="text12">
+							<td class="text14" title="s0035">Testindikator</td>
+							<td class="text14">
 								<select name="s0035" id="s0035" class="inputTextMediumBlue">
 				  					<option value="">-velg-</option>
 				  					<option value="1"<c:if test="${ model.record.s0035 == '1'}"> selected </c:if> >1</option>
@@ -246,26 +246,26 @@
 							</td>
 						</tr>
 						<tr>
-							<td class="text12" title="s0004"><font class="text12RedBold" >*</font>UtvekslingsId Avdeling 
+							<td class="text14" title="s0004"><font class="text14RedBold" >*</font>UtvekslingsId Avdeling 
 								<a tabindex="-1" id="s0004IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0004" id="s0004" size="20" maxlength="35" value='${model.record.s0004}'>
 							</td>
 						
-							<td class="text12" title="s0010"><font class="text12RedBold" >*</font>UtvekslingsId Tollvesenet 
+							<td class="text14" title="s0010"><font class="text14RedBold" >*</font>UtvekslingsId Tollvesenet 
 								<a tabindex="-1" id="s0010IdLink">
 									<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
 								</a>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" class="inputTextMediumBlueMandatoryField" name="s0010" id="s0010" size="20" maxlength="35" value='${model.record.s0010}'>
 							</td>
 						
-							<td colspan="2" class="text12" title="silv2"><font class="text12RedBold" >*</font>Skriv tollkvittering ved utleveringsattest</td>
-							<td class="text12">
+							<td colspan="2" class="text14" title="silv2"><font class="text14RedBold" >*</font>Skriv tollkvittering ved utleveringsattest</td>
+							<td class="text14">
 								<select name="selv2" id="selv2" class="inputTextMediumBlueMandatoryField">
 				  					<option value="">-velg-</option>
 				  					<option value="J"<c:if test="${ model.record.selv2 == 'J'}"> selected </c:if> >Ja</option>
@@ -284,11 +284,11 @@
 				<td>
 				<table width="45%" cellspacing="1" border="0" align="left">
 				<tr>
-	 				<td class="text12" >
+	 				<td class="text14" >
 	 				<img onMouseOver="showPop('1_1_info');" onMouseOut="hidePop('1_1_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
  					<b>1.1</b><span title="sedty">Dekl.type&nbsp;</span>
  					</td>
- 					<td class="text12" >
+ 					<td class="text14" >
  					<select class="inputTextMediumBlue" name="sedty" id="sedty" >
 		 				  <option value="">-velg-</option>
 						  <option value="EU"<c:if test="${model.record.sedty == 'EU'}"> selected </c:if> >EU</option>
@@ -309,7 +309,7 @@
 	 				
 	 				</td>
 	 				
-	 				<td class="text12">
+	 				<td class="text14">
 		 				<img onMouseOver="showPop('prosedyr_info');" onMouseOut="hidePop('prosedyr_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 		 				<b>1.2</b><span title="sedp">&nbsp;Eksped.type</span>
 		 			</td>
@@ -332,10 +332,10 @@
 	 				</td>
 	 			</tr>
  				<tr>
- 					<td class="text12">&nbsp;&nbsp;&nbsp;
+ 					<td class="text14">&nbsp;&nbsp;&nbsp;
 		 				<span title="seski" id="v_seski" class="validation">Toll/Mva</span>
 		 			</td>
-		 			<td class="text12" >	
+		 			<td class="text14" >	
 		 				<select name="seski" id="seski" class="inputTextMediumBlue">
 	 						<option value="">-velg-</option>
 					  		<option value="S"<c:if test="${ model.record.seski == 'S'}"> selected </c:if> >S</option>
@@ -357,11 +357,11 @@
 						</div>
 					</td>
  				
-	 				<td class="text12" >
+	 				<td class="text14" >
 	 					<img onMouseOver="showPop('ens_flag_info');" onMouseOut="hidePop('ens_flag_info'); "style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 	 					<span title="sekddk">&nbsp;Dagsopp./Kontant</span>
 	 				</td>
-	 				<td class="text12" >	
+	 				<td class="text14" >	
 		 				<select name="sekddk" id="sekddk" >
 		 				  <option selected value="">-velg-</option>
 						  <option value="D"<c:if test="${model.record.sekddk == 'D'}"> selected </c:if> >D</option>
@@ -399,7 +399,7 @@
 				 				<%-- SENDER --%>
 				 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 							 		<tr height="15">
-							 			<td class="text12White">
+							 			<td class="text14White">
 											&nbsp;<img onMouseOver="showPop('2_info');" onMouseOut="hidePop('2_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								 			<b>&nbsp;2.</b>&nbsp;Avsender / Eksportør&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 							 				<div class="text11" style="position: relative;" align="left">
@@ -440,11 +440,11 @@
 										        	<input type="hidden" name="orig_siads2" id="orig_siads2" value='${XXmodel.record.siads2}'>
 										        	<input type="hidden" name="orig_siads3" id="orig_siads3" value='${XXmodel.record.siads3}'>
 										        	
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 											            <span title="sekns">Kundenummer</span>
 											       
 										            </td>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="senak" id="v_senak" class="validation">Navn&nbsp;</span>
 										            	<a tabindex="-1" id="senakIdLink">
 															<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
@@ -452,11 +452,11 @@
 										            </td>
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue" name="seknk" id="seknk" size="9" maxlength="8" value="${model.record.seknk}"></td>
-										            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue"  name="senak" id="senak" size="31" maxlength="30" value="${model.record.senak}"></td>
+										            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue" name="seknk" id="seknk" size="9" maxlength="8" value="${model.record.seknk}"></td>
+										            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="senak" id="senak" size="31" maxlength="30" value="${model.record.senak}"></td>
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="serg" id="v_serg" class="validation">Regnr.</span></td>
 										            <td>&nbsp;</td>
 										        </tr>
@@ -466,7 +466,7 @@
 										        </tr>
 										        <tr height="4"><td>&nbsp;</td></tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seadk1" id="v_siadk1" class="validation">Adresse-1</span></td>
 										            <td>&nbsp;</td>
 										        </tr>
@@ -475,7 +475,7 @@
 			    							            
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seadk2" id="v_seadk2" class="validation">Adresse-2</span></td>
 			    							            <td>&nbsp;</td>
 										        </tr>
@@ -484,7 +484,7 @@
 			   							            
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seadk3" id="v_seadk3" class="validation">Adresse-3</span></td>
 			   							            <td>&nbsp;</td>							            
 										        </tr>
@@ -492,7 +492,7 @@
 										            <td colspan="2" align="left"><input type="text" class="inputTextMediumBlue" name="seadk3" id="seadk3" size="40" maxlength="30" value="${model.record.seadk3}"></td>
 			   							        </tr>
 										        <tr height="15">
-										            <td class="text12Bold" align="left" >&nbsp;</td> 
+										            <td class="text14Bold" align="left" >&nbsp;</td> 
 			   							            <td>&nbsp;</td>							            
 										        </tr>
 									        </table>
@@ -508,7 +508,7 @@
 				 			<td >		
 				 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 							 		<tr height="15">
-							 			<td class="text12White">
+							 			<td class="text14White">
 							 				&nbsp;<img onMouseOver="showPop('8_info');" onMouseOut="hidePop('8_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<b>&nbsp;8.</b>&nbsp;Mottaker&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 							 				<div class="text11" style="position: relative;" align="left">
@@ -551,11 +551,11 @@
 										        	<input type="hidden" name="orig_siadk2" id="orig_siadk2" value='${XXmodel.record.siadk2}'>
 										        	<input type="hidden" name="orig_siadk3" id="orig_siadk3" value='${XXmodel.record.siadk3}'>
 										        	
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="sekns">Kundenummer</span>
 										            	
 										            </td>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="senas" id="v_senas" class="validation">Navn&nbsp;</span>
 										            	<a tabindex="-1" id="senasIdLink">
 															<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="16px" height="16px" border="0" alt="search" >
@@ -563,13 +563,13 @@
 										            </td>
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue" name="sekns" id="sekns" size="9" maxlength="8" value="${model.record.sekns}"></td>
-										            <td class="text12" align="left"><input type="text" class="inputTextMediumBlue"  name="senas" id="senas" size="31" maxlength="30" value="${model.record.senas}"></td>
+										            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue" name="sekns" id="sekns" size="9" maxlength="8" value="${model.record.sekns}"></td>
+										            <td class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="senas" id="senas" size="31" maxlength="30" value="${model.record.senas}"></td>
 										        </tr>
 										        <tr height="10"><td></td></tr>
 										        
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seads1" id="v_seads1" class="validation">Adresse-1</span></td>
 										            <td>&nbsp;</td>
 										        </tr>
@@ -578,7 +578,7 @@
 			    							            
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seads2" id="v_seads2" class="validation">Adresse-2</span></td>
 			    							            <td>&nbsp;</td>
 										        </tr>
@@ -587,7 +587,7 @@
 			   							            
 										        </tr>
 										        <tr>
-										            <td class="text12" align="left" >&nbsp;&nbsp;
+										            <td class="text14" align="left" >&nbsp;&nbsp;
 										            <span title="seads3" id="v_seads3" class="validation">Adresse-3</span></td>
 			   							            <td>&nbsp;</td>							            
 										        </tr>
@@ -595,7 +595,7 @@
 										            <td colspan="2" align="left"><input type="text" class="inputTextMediumBlue" name="seads3" id="seads3" size="40" maxlength="30" value="${model.record.seads3}"></td>
 			   							        </tr>
 										        <tr height="15">
-										            <td class="text12Bold" align="left" >&nbsp;</td> 
+										            <td class="text14Bold" align="left" >&nbsp;</td> 
 			   							            <td>&nbsp;</td>							            
 										        </tr>
 									        </table>
@@ -611,7 +611,7 @@
 			            <td >		
 			 				<table width="95%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 						 		<tr height="18px">
-						 			<td class="text12White">
+						 			<td class="text14White">
 						 				&nbsp;<img onMouseOver="showPop('14_b_info');" onMouseOut="hidePop('14_b_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 				 						<b>&nbsp;14.</b>&nbsp;Deklarant&nbsp;<img valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 						 				<div class="text11" style="position: relative;" align="left">
@@ -637,9 +637,9 @@
 								 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 									 		<tr height="5"><td></td></tr>
 									        <tr>
-									            <td class="text12" align="left" >&nbsp;&nbsp;
+									            <td class="text14" align="left" >&nbsp;&nbsp;
 									            <span title="senad">Navn</span></td>
-									            <td class="text12" align="left" >&nbsp;&nbsp;
+									            <td class="text14" align="left" >&nbsp;&nbsp;
 									            <span title="setlf">Telefon</span></td>
 									        </tr>
 									        <tr>
@@ -648,9 +648,9 @@
 									        </tr>
 									        <tr height="10"><td></td></tr>
 									        <tr>
-									            <td class="text12" align="left" >&nbsp;&nbsp;
+									            <td class="text14" align="left" >&nbsp;&nbsp;
 									            <span title="sedst">Sted</span></td>
-									            <td class="text12" align="left" >&nbsp;&nbsp;
+									            <td class="text14" align="left" >&nbsp;&nbsp;
 									            <span title="sedt">Reg.dato</span></td>
 									        </tr>
 									        <tr>
@@ -672,14 +672,14 @@
 				            <td >
 				                <table width="95%" align="left" border="0" cellspacing="0" cellpadding="0">
 							 		<tr>
-							 			<td class="text12">
+							 			<td class="text14">
 							 				<b>&nbsp;22.</b>
 							 				<span title="sebel1" id="v_sebel1" class="validation">Fakturasum&nbsp;</span>
 							 			</td>
 							 			<td align="left" >
 							 				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue"  name="sebel1" id="sebel1" size="20" maxlength="13" value="${model.record.sebel1NO}">				 				
 							 			</td>
-							 			<td class="text12" align="left">
+							 			<td class="text14" align="left">
 							 				&nbsp;
 							 				<span title="seval1" id="v_seval1" class="validation">Valuta</span>
 							 				<%-- Note: onChange event in jQuery for this currency list --%>
@@ -697,12 +697,12 @@
 						 				</td>
 					 				</tr>
 					 				<tr>
-						 				<td class="text12">
+						 				<td class="text14">
 						 					<b>&nbsp;23.</b><span title="sevku">Kurs&nbsp;</span>
 							 			</td>
-							 			<td class="text12" align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue"  name="sevku" id="sevku" size="10" maxlength="7" value="${model.record.sevkuNO}"></td>
+							 			<td class="text14" align="left" ><input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue"  name="sevku" id="sevku" size="10" maxlength="7" value="${model.record.sevkuNO}"></td>
 							 			
-							 			<td class="text12" align="left" >&nbsp;
+							 			<td class="text14" align="left" >&nbsp;
 							 				<img onMouseOver="showPop('24_info');" onMouseOut="hidePop('24_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<b>24.</b><span title="setst">Tr.type</span>
 							 				<select class="inputTextMediumBlueMandatoryField" name="sitst" id="sitst" >
@@ -734,11 +734,11 @@
 					 				</tr>
 					 				<tr height="5"><td></td></tr>
 					 				<tr>
-						 				<td class="text12">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+						 				<td class="text14">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 						 					<span title="factor">Faktor&nbsp;</span>
 							 			</td>
 							 			<%-- this field is only used via Ajax since there is no database field. It is used to disclosed a factor when changing the currency --%>
-							 			<td class="text12Grey" align="left" ><input readonly type="text" class="inputTextReadOnly" name="factor" id="factor" size="6" value=""></td>
+							 			<td class="text14Grey" align="left" ><input readonly type="text" class="inputTextReadOnly" name="factor" id="factor" size="6" value=""></td>
 						 			</tr>
 									<tr height="5"><td></td></tr>
 								</table>
@@ -761,16 +761,16 @@
 							<td >
 				                <table width="95%" align="left" border="0" cellspacing="0" cellpadding="0">
 							 		<tr>
-							 			<td class="text12"><b>&nbsp;31.</b><span title="seft1/seft2" >Fritekst&nbsp;</span></td>
+							 			<td class="text14"><b>&nbsp;31.</b><span title="seft1/seft2" >Fritekst&nbsp;</span></td>
 							 			<td align="left" ><input type="text" class="inputTextMediumBlue"  name="seft1" id="seft1" size="40" maxlength="45" value="${model.record.seft1}"></td>
 						 			</tr>
 						 			<tr>
-							 			<td class="text12"><span title="seft2" >&nbsp;</span></td>
+							 			<td class="text14"><span title="seft2" >&nbsp;</span></td>
 							 			<td align="left" ><input type="text" class="inputTextMediumBlue"  name="seft2" id="seft2" size="40" maxlength="45" value="${model.record.seft2}"></td>
 						 			</tr>
 						 			<tr height="3"><td></td></tr>
 						 			<tr>
-							 			<td class="text12"><b>&nbsp;44.</b><span title="seft3" >Fritekst&nbsp;</span></td>
+							 			<td class="text14"><b>&nbsp;44.</b><span title="seft3" >Fritekst&nbsp;</span></td>
 							 			<td align="left" ><input type="text" class="inputTextMediumBlue"  name="seft3" id="seft3" size="40" maxlength="45" value="${model.record.seft3}"></td>
 						 			</tr>
 					
@@ -786,7 +786,7 @@
 						<td width="50%" valign="top">
 						<table width="100%" cellspacing="1" border="0" align="left">
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('15_info');" onMouseOut="hidePop('15_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 					<b>15.</b>&nbsp;<span title="selka">Avs/utf.land</span>&nbsp;
 					            <div class="text11" style="position: relative;" align="left">
@@ -804,7 +804,7 @@
 								</td>
 							</tr>
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('17_info');" onMouseOut="hidePop('17_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 					<b>17.</b>&nbsp;<span title="selkb">Best.land</span>&nbsp;
 					            <div class="text11" style="position: relative;" align="left">
@@ -831,7 +831,7 @@
 							<tr height="8"><td class="text"></td> </tr>
 							
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('19_info');" onMouseOut="hidePop('19_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 					            <b>19.</b><span title="sekdc" id="v_sekdc" class="validation">Container&nbsp;</span>
 					            
@@ -851,7 +851,7 @@
 								</div>
 								</td>
 									
-					            <td class="text12" >
+					            <td class="text14" >
 			           				<select name="sekdc" id="sekdc">
 				 						<option value="0" <c:if test="${model.record.sekdc == '0'}"> selected </c:if> >0</option>
 				 						<option value="1" <c:if test="${model.record.sekdc == '1'}"> selected </c:if> >1</option>								 				  	  
@@ -861,7 +861,7 @@
 							<tr height="10"><td class="text"></td> </tr>
 							
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('21_1_info');" onMouseOut="hidePop('21_1_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 					<b>21.1</b><span title="setrid" id="v_setrid" class="validation">Transp.ID</span>
 			 					<div class="text11" style="position: relative;" align="left">
@@ -882,7 +882,7 @@
 							
 							
 							<tr>
-					            <td class="text12" align="left">
+					            <td class="text14" align="left">
 					            <img onMouseOver="showPop('21_2_info');" onMouseOut="hidePop('21_2_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 					            <b>21.2</b>
 					            <span title="selkt">Aktive transp. nasjonalitet&nbsp;</span>
@@ -905,7 +905,7 @@
 							
 							
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('25_info');" onMouseOut="hidePop('25_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 					            <b>25.</b>
 					            <span title="setrm" id="v_setrm" class="validation">Transportmåte ved grensen</span>
@@ -925,7 +925,7 @@
 								</div>
 								
 								</td>	
-					            <td class="text12" >
+					            <td class="text14" >
 					            	<select class="inputTextMediumBlue" name="setrm" id="setrm">
 			 						<option value="">-velg-</option>
 				 				  	<c:forEach var="code" items="${model.transportmaterCodeList}" >
@@ -938,7 +938,7 @@
 							
 							
 							<tr>
-								<td class="text12" align="left" >
+								<td class="text14" align="left" >
 					            <img onMouseOver="showPop('49_info');" onMouseOut="hidePop('49_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 					            <b>49.&nbsp;</b><span title="segn">Godsnr</span>
 					            &nbsp;<input type="text" class="inputTextMediumBlue"  name="segn" id="segn" size="20" maxlength="15" value="${model.record.segn}">
@@ -961,16 +961,16 @@
 								</div>
 								
 								</td>
-								<td class="text12" align="left" ><span title="sepos">Posisjon</span>
+								<td class="text14" align="left" ><span title="sepos">Posisjon</span>
 					            	&nbsp;<input type="text" class="inputTextMediumBlue" name="sepos" id="sepos" size="15" maxlength="8" value="${model.record.sepos}">
 					            </td>
 					        </tr>
 							<tr height="5"><td class="text"></td></tr>
 							<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('29_info');" onMouseOut="hidePop('29_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 					            <b>29.</b>
-					            <span title="sekdh/sekdft" id="v_sekdh" class="validation"><font class="text12">Utpass.sted&nbsp;</font></span>
+					            <span title="sekdh/sekdft" id="v_sekdh" class="validation"><font class="text14">Utpass.sted&nbsp;</font></span>
 					            <div class="text11" style="position: relative;" align="left">
 					            <span style="position:absolute;top:2px; width:250px;" id="29_info" class="popupWithInputText text11"  >
 					           			<b>29. Utpasseringsted</b>
@@ -980,7 +980,7 @@
 								</span>
 								</div>
 								</td>		
-					            <td class="text12" >
+					            <td class="text14" >
 					            	<input onKeyPress="return numberKey(event)" type="text" class="inputText" name="sekdh" id="sekdh" size="5" maxlength="4" value="${model.record.sekdh}">
 			           				<%--
 			           				<select class="inputTextMediumBlue" name="sekdh" id="sekdh">
@@ -1005,7 +1005,7 @@
 							<tr height="5"><td class="text"></td></tr>
 							
 							<tr>
-				            <td class="text12" align="left" >
+				            <td class="text14" align="left" >
 				            <img onMouseOver="showPop('20_1_info');" onMouseOut="hidePop('20_1_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 		 					<b>20.1</b><span title="selv">Leveringksvilkår kode</span>
 				            <div class="text11" style="position: relative;" align="left">
@@ -1034,7 +1034,7 @@
 							</tr>
 			 			
 			 				<tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('20_2_info');" onMouseOut="hidePop('20_2_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			 					<b>20.2</b>
 			 					<span title="selvt">Leveringksvilkår sted</span>&nbsp;
@@ -1057,7 +1057,7 @@
 							<tr height="1"><td colspan="2" style="border-bottom:1px solid;border-color:#DDDDDD;" class="text">&nbsp;</td> </tr>
 			 				<tr height="5"><td class="text">&nbsp;</td> </tr>
 			 				<tr>
-			            		<td class="text12" align="left" >
+			            		<td class="text14" align="left" >
 					            <img onMouseOver="showPop('30_1_info');" onMouseOut="hidePop('30_1_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 					            <b>30.1&nbsp;</b><span title="sekdls">Lagringssted kode</span></td>
 					            <td >
@@ -1076,7 +1076,7 @@
         					</tr>
 	        					
         					<tr>
-			            		<td class="text12" align="left" >
+			            		<td class="text14" align="left" >
 			            		<img onMouseOver="showPop('30_2_info');" onMouseOut="hidePop('30_2_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 					            <b>30.2&nbsp;</b><span title="sels">Lagringssted tekst</span>
 					            <div class="text11" style="position: relative;" align="left">
@@ -1095,7 +1095,7 @@
 							
 							
 					        <tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('brut_info');" onMouseOut="hidePop('brut_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 					            <span title="sevkb">Bruttovekt</span>
 					            <div class="text11" style="position: relative;" align="left">
@@ -1109,7 +1109,7 @@
 					            </td>
 					        </tr>
 				            <tr>
-					            <td class="text12" align="left" >
+					            <td class="text14" align="left" >
 					            <img onMouseOver="showPop('6_info');" onMouseOut="hidePop('6_info');"style="vertical-align:top;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">	
 					            <b>&nbsp;6.&nbsp;</b><span title="sentk">Antall Kolli</span>
 					            <div class="text11" style="position: relative;" align="left">
@@ -1127,8 +1127,8 @@
 					        </tr>
    					        <tr height="15"><td class="text">&nbsp;</td> </tr>
 							<tr>
-							<td class="text12">&nbsp;</td>
-							<td class="text12" >
+							<td class="text14">&nbsp;</td>
+							<td class="text14" >
 		    	    			<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='Lagre' onClick="setBlockUI(this);"/>
 							</td>
 							</tr>

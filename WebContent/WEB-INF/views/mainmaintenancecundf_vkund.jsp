@@ -13,12 +13,12 @@
 	</style>
 
 
-<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
 		<td>
 		<%-- tab container component --%>
-		<table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
+		<table width="100%" class="text12" cellspacing="0" border="0" cellpadding="0">
 			<tr height="2"><td></td></tr>
 			<tr height="25"> 
 				<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
@@ -53,7 +53,7 @@
 	 	    
 	 	    <tr >
 	 	    	<td width="5%">&nbsp;</td>
-				<td width="100%" class="text12">
+				<td width="100%" class="text14">
 					<form action="mainmaintenancecundf_vkund.do?id=${model.dbTable}" name="formRecord" id="formRecord" method="POST" >
 					<input type="hidden" name="firma" id="firma" value="${user.companyCode}">
 					<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>&nbsp;
@@ -75,7 +75,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="99%" cellspacing="1" border="0" align="left">
 			    	    <tr>
-						<td class="text11">
+						<td class="text12">
 						<table id="mainList" class="display compact cell-border" > 
 							<thead>
 								<tr>

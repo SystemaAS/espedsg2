@@ -35,10 +35,10 @@
 						<table id="codeList" class="display compact cell-border" width="100%">
 							<thead>
 								<tr style="background-color: #EEEEEE">
-									<th class="text11">&nbsp;
+									<th class="text14">&nbsp;
 										<spring:message code="systema.main.maintenance.main.gate.code"/>
 									&nbsp;</th>
-									<th class="text11">&nbsp;
+									<th class="text14">&nbsp;
 										<spring:message code="systema.main.maintenance.main.gate.description"/>
 									&nbsp;</th>
 								</tr>
@@ -48,20 +48,20 @@
 									varStatus="counter">
 									<c:choose>
 										<c:when test="${counter.count%2==0}">
-											<tr class="text11">
+											<tr class="text14">
 										</c:when>
 										<c:otherwise>
-											<tr class="text11">
+											<tr class="text14">
 										</c:otherwise>
 									</c:choose>
 
-									<td nowrap style="cursor: pointer;" class="text11MediumBlue"
+									<td nowrap style="cursor: pointer;" class="text14MediumBlue"
 										id="code${record.code}@description${record.description}@caller${model.caller}">&nbsp;<img
 										title="select" valign="bottom"
 										src="resources/images/update.gif" border="0" alt="edit">
 										&nbsp;&nbsp;${record.code}
 									</td>
-									<td class="text11">&nbsp;${record.description}</td>
+									<td class="text14">&nbsp;${record.description}</td>
 								</c:forEach>
 							</tbody>
 						</table>

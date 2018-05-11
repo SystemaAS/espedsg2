@@ -29,14 +29,14 @@
 						<input type="hidden" name="ctype" id="ctype" value="${model.ctype}">
 						
 						<tr>
-							<td class="text11">&nbsp;Kode</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="id" id="id" size="10" maxlength="10" value="${model.id}"></td>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;Kode</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="id" id="id" size="10" maxlength="10" value="${model.id}"></td>
+							<td class="text14">&nbsp;</td>
 							<%-- 
-							<td class="text11">&nbsp;Tekst</td>
-							<td class="text11">&nbsp;<input type="text" class="inputText" name="text" id="text" size="30" maxlength="50" value="${model.text}"></td>
+							<td class="text14">&nbsp;Tekst</td>
+							<td class="text14">&nbsp;<input type="text" class="inputText" name="text" id="text" size="30" maxlength="50" value="${model.text}"></td>
 							--%>
-							<td class="text11">&nbsp;</td>
+							<td class="text14">&nbsp;</td>
 	           				<td align="right">&nbsp;<input class="inputFormSubmit" type="submit" name="submit" value='<spring:message code="systema.main.maintenance.search"/>'></td>
 		           		</tr>
 		           		</form>
@@ -53,36 +53,36 @@
 					<table id="mainList" class="display compact cell-border" width="100%" >
 						<thead>
 						<tr style="background-color:#EEEEEE">
-							<th class="text11" >&nbsp;Kode.&nbsp;</th>
-							<th class="text11" >&nbsp;Tekst&nbsp;</th>
-							<th class="text11" >&nbsp;Fr.brev&nbsp;</th>
-		                    <th class="text11" >&nbsp;Forp.SAD&nbsp;</th>
-		                    <th class="text11" >&nbsp;Kj.kvitt.&nbsp;</th>
-		                    <th class="text11" >&nbsp;Toll.Imp&nbsp;</th>
-		                    <th class="text11" >&nbsp;Fr.brev Imp&nbsp;</th>
-		                    <th class="text11" >&nbsp;Toll.Eksp.&nbsp;</th>
-		                    <th class="text11" >&nbsp;B.of land.&nbsp;</th>
-		                    <th class="text11" >&nbsp;CMR&nbsp;</th>
+							<th class="text14" >&nbsp;Kode.&nbsp;</th>
+							<th class="text14" >&nbsp;Tekst&nbsp;</th>
+							<th class="text14" >&nbsp;Fr.brev&nbsp;</th>
+		                    <th class="text14" >&nbsp;Forp.SAD&nbsp;</th>
+		                    <th class="text14" >&nbsp;Kj.kvitt.&nbsp;</th>
+		                    <th class="text14" >&nbsp;Toll.Imp&nbsp;</th>
+		                    <th class="text14" >&nbsp;Fr.brev Imp&nbsp;</th>
+		                    <th class="text14" >&nbsp;Toll.Eksp.&nbsp;</th>
+		                    <th class="text14" >&nbsp;B.of land.&nbsp;</th>
+		                    <th class="text14" >&nbsp;CMR&nbsp;</th>
 		                    
 		                </tr> 
 		                </thead>
 		                
 		                <tbody>
 		                <c:forEach var="record" items="${model.list}" varStatus="counter">    
-			               <tr class="text11">
-				               <td style="cursor:pointer;" class="text11MediumBlue" id="id${record.ko2kod}@ctype${model.ctype}" >
+			               <tr class="text14">
+				               <td style="cursor:pointer;" class="text14MediumBlue" id="id${record.ko2kod}@ctype${model.ctype}" >
 				               		<img title="select" style="vertical-align:top;" src="resources/images/bebullet.gif" border="0" alt="edit">&nbsp;${record.ko2kod}
 				               	</td>
-			               	   <td class="text11">&nbsp;${record.ko2ntx}</td>
+			               	   <td class="text14">&nbsp;${record.ko2ntx}</td>
 			               	   
-			               	   <td class="text11">&nbsp;${record.ko2fb}</td>
-			               	   <td class="text11">&nbsp;${record.ko2fps}</td>
-			               	   <td class="text11">&nbsp;${record.ko2kk}</td>
-			               	   <td class="text11">&nbsp;${record.ko2ti}</td>
-			               	   <td class="text11">&nbsp;${record.ko2fi}</td>
-			               	   <td class="text11">&nbsp;${record.ko2te}</td>
-			               	   <td class="text11">&nbsp;${record.ko2bi}</td>
-			               	   <td class="text11">&nbsp;${record.ko2cm}</td>
+			               	   <td class="text14">&nbsp;${record.ko2fb}</td>
+			               	   <td class="text14">&nbsp;${record.ko2fps}</td>
+			               	   <td class="text14">&nbsp;${record.ko2kk}</td>
+			               	   <td class="text14">&nbsp;${record.ko2ti}</td>
+			               	   <td class="text14">&nbsp;${record.ko2fi}</td>
+			               	   <td class="text14">&nbsp;${record.ko2te}</td>
+			               	   <td class="text14">&nbsp;${record.ko2bi}</td>
+			               	   <td class="text14">&nbsp;${record.ko2cm}</td>
 			               	   
 			               </tr> 
 			            </c:forEach>

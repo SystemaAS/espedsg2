@@ -80,7 +80,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 		           	<tr >
 		           	<td >					
-			            <ul class="isa_error text12" >
+			            <ul class="isa_error text14" >
 			            <c:forEach var="error" items="${errors.allErrors}">
 			                <li >
 			                	<spring:message code="${error.code}" text="${error.defaultMessage}"/>&nbsp;&nbsp;
@@ -102,7 +102,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
                             	     <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
                               	</ul>
 				 			</td>
@@ -132,19 +132,19 @@
 					    	    		<td colspan="4" class="text14MediumBlue" title="avdReadOnly">Avd&nbsp;&nbsp;&nbsp;
 											<input readonly type="text" class="inputTextReadOnly" id="avdReadOnly" name="avdReadOnly" size="4" value="${model.avd}">
 										</td>
-										<td class="text12" title="opdReadOnly">&nbsp;&nbsp;&nbsp;Ärendenr.</td>
-										<td class="text12" >
+										<td class="text14" title="opdReadOnly">&nbsp;&nbsp;&nbsp;Ärendenr.</td>
+										<td class="text14" >
 											<input readonly type="text" class="inputTextReadOnly" name="opdReadOnly" id="opdReadOnly" size="10" value='${model.record.svia_syop}'>
 										</td>
 					    	    		
 					    	    	</c:when>
 					    	    	<c:otherwise>
-					    	    		<td class="text12" title="svia_syav"><font class="text12RedBold" >*</font>Avdelning
+					    	    		<td class="text14" title="svia_syav"><font class="text14RedBold" >*</font>Avdelning
 					    	    			<a tabindex="-1" id="avdIdLink">
 												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 											</a>
 					    	    		</td>
-										<td class="text12" >
+										<td class="text14" >
 										<select name="svia_syav" id="svia_syav" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField">
 						  					<option value="">-Välj-</option>
 						  					<c:forEach var="record" items="${model.avdGeneralList}" >
@@ -153,8 +153,8 @@
 											</select>
 										</td>
 										
-										<td class="text12" title="svia_syop">&nbsp;&nbsp;&nbsp;<font class="text12RedBold" >*</font>Ärendenr.</td>
-										<td class="text12" >
+										<td class="text14" title="svia_syop">&nbsp;&nbsp;&nbsp;<font class="text14RedBold" >*</font>Ärendenr.</td>
+										<td class="text14" >
 											<input onKeyPress="return numberKey(event)" type="text" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="svia_syop" id="svia_syop" size="10" maxlength="7" value='${model.record.svia_syop}'>
 										</td>
 										
@@ -171,31 +171,31 @@
 				<td width="100%">
 					
 					<table width="95%" class="formFrameTitaniumWhite" cellspacing="1" border="0" align="left">
-						<tr><td class="text12"></td></tr>
+						<tr><td class="text14"></td></tr>
 						<tr height="5"><td></td></tr>
 			    	    
 						<tr>
-							<td class="text12" title="svia_omeo"><font class="text12RedBold" >*</font>EORI</td>
-							<td class="text12" title="svia_omty"><font class="text12RedBold" >*</font>Typ</td>
-							<td class="text12" title="svia_omha"><font class="text12RedBold" >*</font>Handläggare</td>
-							<td class="text12" title="svia_omtl"><font class="text12RedBold" >*</font>Telefon</td>
-							<td class="text12" title="svia_0035"><font class="text12RedBold" >*</font>Testindikator</td>
+							<td class="text14" title="svia_omeo"><font class="text14RedBold" >*</font>EORI</td>
+							<td class="text14" title="svia_omty"><font class="text14RedBold" >*</font>Typ</td>
+							<td class="text14" title="svia_omha"><font class="text14RedBold" >*</font>Handläggare</td>
+							<td class="text14" title="svia_omtl"><font class="text14RedBold" >*</font>Telefon</td>
+							<td class="text14" title="svia_0035"><font class="text14RedBold" >*</font>Testindikator</td>
 							
 						</tr>
 						<tr>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="svia_omeo" id="svia_omeo" size="18" maxlength="17" value='${model.record.svia_omeo}'>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="svia_omty" id="svia_omty" size="2" maxlength="1" value='${model.record.svia_omty}'>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="svia_omha" id="svia_omha" size="36" maxlength="35" value='${model.record.svia_omha}'>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<input type="text" required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="svia_omtl" id="svia_omtl" size="26" maxlength="25" value='${model.record.svia_omtl}'>
 							</td>
-							<td class="text12">
+							<td class="text14">
 								<select name="svia_0035" id="svia_0035" class="inputTextMediumBlueMandatoryField">
 				  					<option value="1"<c:if test="${ model.record.svia_0035 == '1'}"> selected </c:if> >Test</option>
 				  					<option value=""<c:if test="${ empty model.record.svia_0035 }"> selected </c:if> >Prod</option>
@@ -226,7 +226,7 @@
 							 			<table border="0" cellspacing="2" cellpadding="0">
 							 				
 					        				<tr>
-									            <td class="text12" align="left">&nbsp;</td>
+									            <td class="text14" align="left">&nbsp;</td>
 												<td class="text9BlueGreen" valign="bottom"  >
 					 				    			<input tabindex=-1 class="inputFormSubmit" type="submit" name="submit" id="submit" value='Spara' />
 					 							</td>								           	

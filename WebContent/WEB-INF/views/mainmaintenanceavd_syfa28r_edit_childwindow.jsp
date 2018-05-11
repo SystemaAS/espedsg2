@@ -30,12 +30,12 @@
 					<input type="hidden" name="updateId" id="updateId" value="${model.updateId}">
 					<input type="hidden" name="action" id=action value="${model.action}">
 					<tr>
-						<td class="text12" title="koplnr">&nbsp;Utskriftnr.</td>
-						<td class="text12" title="utptxt">&nbsp;Beskrivelse</td>
-						<td class="text12" title="kopty">&nbsp;Papirtype</td>
-						<td class="text12" title="kopnvn">&nbsp;Printernavn</td>
-						<td class="text12" title="kophea">&nbsp;Hode på dok.</td>
-						<td class="text12" >
+						<td class="text14" title="koplnr">&nbsp;Utskriftnr.</td>
+						<td class="text14" title="utptxt">&nbsp;Beskrivelse</td>
+						<td class="text14" title="kopty">&nbsp;Papirtype</td>
+						<td class="text14" title="kopnvn">&nbsp;Printernavn</td>
+						<td class="text14" title="kophea">&nbsp;Hode på dok.</td>
+						<td class="text14" >
 							<img onMouseOver="showPop('koplas_info');" onMouseOut="hidePop('koplas_info');" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							<span title="koplas"></span>Laser
 							<div class="text11" style="position: relative;" align="left">
@@ -48,7 +48,7 @@
 							</span>
 							</div>
 						</td>
-						<td class="text12" title="koplpi">&nbsp;
+						<td class="text14" title="koplpi">&nbsp;
 							<img onMouseOver="showPop('koplpi_info');" onMouseOut="hidePop('koplpi_info');" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							<span title="koplpi">8</span>
 							<div class="text11" style="position: relative;" align="left">
@@ -85,11 +85,11 @@
 	           		</tr>
 	           		
 	           		<tr>
-						<td class="text12" title="kopfm">&nbsp;Stringk.</td>
-						<td class="text12" title="kopdraw/kopoutb">&nbsp;Skuff I/U</td>
-						<td class="text12" title="kopcopi">&nbsp;Kopier</td>
-						<td class="text12" title="kopfov1">&nbsp;Ovl.</td>
-						<td colspan="2" class="text12">&nbsp;</td>
+						<td class="text14" title="kopfm">&nbsp;Stringk.</td>
+						<td class="text14" title="kopdraw/kopoutb">&nbsp;Skuff I/U</td>
+						<td class="text14" title="kopcopi">&nbsp;Kopier</td>
+						<td class="text14" title="kopfov1">&nbsp;Ovl.</td>
+						<td colspan="2" class="text14">&nbsp;</td>
 	           		</tr>
 	           		<tr>
 						<td ><input type="text" class="inputTextMediumBlue" name="kopfm" id="kopfm" size="6" maxlength="5" value='${model.record.kopfm}'></td>
@@ -116,7 +116,7 @@
 		           	<table align="left" border="0" cellspacing="0" cellpadding="0">
 				 		<tr>
 				 			<td >
-				 				<ul class="isa_error text12" >
+				 				<ul class="isa_error text14" >
 		                                  <li>[ERROR on Update] - Server return code: ${model.errorMessage}</li>                                    
 		                              </ul>
 				 			</td>

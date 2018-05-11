@@ -31,9 +31,9 @@
 					<table id="mainList" class="display compact cell-border" width="100%" >
 						<thead>
 						<tr style="background-color:#EEEEEE">
-							<th width="2%" class="text11" >&nbsp;Signatur&nbsp;</th>
-		                    <th class="text11" >&nbsp;Navn&nbsp;</th>
-		                    <th class="text11" >&nbsp;Userid&nbsp;</th>
+							<th width="2%" class="text14" >&nbsp;Signatur&nbsp;</th>
+		                    <th class="text14" >&nbsp;Navn&nbsp;</th>
+		                    <th class="text14" >&nbsp;Userid&nbsp;</th>
 		                </tr> 
 		                </thead>
 		                
@@ -41,17 +41,17 @@
 		                <c:forEach var="record" items="${model.list}" varStatus="counter">    
 			               <c:choose>           
 			                   <c:when test="${counter.count%2==0}">
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:when>
 			                   <c:otherwise>   
-			                       <tr class="text11">
+			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="cursor:pointer;" class="text11MediumBlue" id="kosfsi${record.kosfsi}@kosfnv${record.kosfnv}@syuser${record.syuser}@ctype${model.ctype}" >
+			               <td style="cursor:pointer;" class="text14MediumBlue" id="kosfsi${record.kosfsi}@kosfnv${record.kosfnv}@syuser${record.syuser}@ctype${model.ctype}" >
 			               		<img title="select" style="vertical-align:top;" src="resources/images/bebullet.gif" border="0" alt="edit">&nbsp;${record.kosfsi}
 			               	</td>
-		               	   <td class="text11">&nbsp;${record.kosfnv}</td>
-		               	   <td class="text11">&nbsp;${record.syuser}</td>
+		               	   <td class="text14">&nbsp;${record.kosfnv}</td>
+		               	   <td class="text14">&nbsp;${record.syuser}</td>
 		               	    
 			            </tr> 
 			            </c:forEach>

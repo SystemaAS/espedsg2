@@ -63,7 +63,7 @@
 				<td width="100%">
 				<table id="containerdatatableTable" width="99%" cellspacing="1" border="0" align="left">
 			    	    <tr>
-						<td class="text11">
+						<td class="text14">
 						<table id="mainList" class="display compact cell-border" >
 							<thead>
 							<tr>
