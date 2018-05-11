@@ -349,6 +349,17 @@
 				 								<br/>
 				 								<font class="text18">eSpedsg Roadmap</font>
 							 				</td>
+
+				 							<td id="dashItem_VismaInt" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+												<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+			 									<br/>
+			 									<font class="text18">Visma Integrasjon</font>
+							 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
+												    <input type="hidden" name="user" value="${user.user}" />
+												    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+												</form>
+	 										</td>
+
 							 			</c:if>
 						 			</tr>
 						 			</table>

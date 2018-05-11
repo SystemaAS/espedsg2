@@ -10,6 +10,10 @@
     }
   	
     jq(function() { 
+    	jq("td#dashItem_VismaInt").bind("click",function() {
+    		jq("#dashForm_VismaInt").submit();
+    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	    });
     	jq("td#dashItem_roadmap").bind("click",function() {
     		window.location = "aespedsg_roadmap.do";
     		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
