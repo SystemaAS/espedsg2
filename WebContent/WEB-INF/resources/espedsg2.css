@@ -65,7 +65,7 @@
 .tabThinBorderLightGreenLogoutE2 {  
     font-family: verdana, Arial, Helvetica, sans-serif; 
     background-color:#D5E0CE; 
-    border-style: ridge; 
+    border-style: inset; 
     border-width: 0px 1px 1px 0px; 
     border-color:#9DB68C
 }

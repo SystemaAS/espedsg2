@@ -105,17 +105,17 @@
 			<td class="tabThinBorderLightGreenLogoutE2" height="23" align="center" colspan="2"> 
     			 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
 				 	<tr >
-			    		<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
-	      				<td class="text11" width="50%" align="right">
+			    		<td class="text14" width="50%" align="left" >&nbsp;&nbsp;</td>
+	      				<td class="text14" width="50%" align="right">
 	      					<font class="headerMenuGreenNoPointer">
 	      						<img title="${user.logo}" src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');">&nbsp;
       							<font class="text14">${user.user}&nbsp;</font>${user.usrLang}&nbsp;
       								<c:if test="${not empty user.multiUser}">
       									<img title="${user.logo}" src="resources/images/sort_down.png" width="10px" height="10px" border="0" onClick="showPop('multiUserList');">&nbsp;
-      									<div class="text11" style="position: relative; display: inline;" align="left">
+      									<div class="text14" style="position: relative; display: inline;" align="left">
 											<span style="position:absolute; left:-150px; top:5px; width:250px" id="multiUserList" class="popupWithInputText"  >
-												<p class="text12"><b>Multi user - Switch</b></p>
-												<font class="text11BlueGreen">
+												<p class="text14"><b>Multi user - Switch</b></p>
+												<font class="text14BlueGreen">
 													<ul>
 													<c:forEach var="record" items="${user.multiUser}" varStatus="counter" >
 														<form id="formMU_${counter.count}" onClick="setBlockUI(this);" action="logonDashboard.do" method="POST">

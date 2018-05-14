@@ -234,7 +234,6 @@
 							</td>
 							</tr>
 						</table>
-						</p>
 					  </div>	
 				</td>
 			</tr>
