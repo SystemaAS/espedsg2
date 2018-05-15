@@ -1847,6 +1847,9 @@ END override jQuery elements
 .text16{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color:#000000;
 }
+.text16SkyBlue{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color: #4E78A0; 
+}
 .text16Bold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 16px; color:#000000; font-weight:bold; 
 }

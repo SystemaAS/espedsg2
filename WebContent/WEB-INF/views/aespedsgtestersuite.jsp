@@ -60,11 +60,11 @@
 				               		<c:choose>
 					               		<c:when test="${not empty record.serviceUrl}">
 					               			<a onClick="setBlockUI(this);" href="${record.serviceUrl}.do?tm=${record.text}" >
-					               				<font class="text14SkyBlue">&nbsp;${record.moduleName}</font>
+					               				<font class="text16SkyBlue">&nbsp;${record.moduleName}</font>
 					               			</a>
 					               		</c:when>
 					               		<c:otherwise>
-					               			<font class="text14">&nbsp;${record.moduleName}</font>
+					               			<font class="text16">&nbsp;${record.moduleName}</font>
 					               		</c:otherwise>
 				               		</c:choose>
 				               </td>

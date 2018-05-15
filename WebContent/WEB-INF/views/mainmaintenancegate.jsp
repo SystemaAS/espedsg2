@@ -57,7 +57,7 @@
 				            <c:forEach var="record" items="${model.list}" varStatus="counter">   
 				               <tr class="tableRow" height="20" >
 				              
-				               <td width="2%" class="tableCellFirst" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;" align="center" ><font class="text12">&nbsp;${record.id}&nbsp;</font></td>
+				               <td width="2%" class="tableCellFirst" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;" align="center" ><font class="text16">&nbsp;${record.id}&nbsp;</font></td>
 				               <td width="2%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="center">
 				               	<c:choose>
 				               		<c:when test="${(record.status == 'G' || record.status == 'Y') && not empty record.code}">
@@ -74,11 +74,11 @@
 				               		<c:choose>
 					               		<c:when test="${(record.status == 'G' || record.status == 'Y') && not empty record.code}">
 					               			<a id="alinkRecordDesc_${counter.count}" onClick="setBlockUI(this);" href="${record.code}<c:if test="${(record.status == 'G' || record.status == 'Y') && not empty record.pgm}">_${record.pgm}</c:if>.do?id=${record.dbTable}">
-		               							<font class="text14SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+		               							<font class="text16SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 		               						</a>
 					               		</c:when>
 					               		<c:otherwise>
-					               			<font class="text14">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+					               			<font class="text16">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 					               		</c:otherwise>
 				               		</c:choose>
 				               </td>

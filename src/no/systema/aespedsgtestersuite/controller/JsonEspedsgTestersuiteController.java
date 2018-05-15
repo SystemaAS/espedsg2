@@ -68,6 +68,8 @@ public class JsonEspedsgTestersuiteController {
 	private final String TEST_MODULE_UFORTOLL = "ufortoll";
 	private final String TEST_MODULE_SPORROPPD = "sporroppd";
 	private final String TEST_MODULE_ALTINN = "altinn";
+	private final String TEST_MODULE_STATS = "stats";
+	
 	//
 	private final String TEST_LIST = "list";
 	private final String TEST_LIST_SIZE = "listSize";
@@ -223,7 +225,20 @@ public class JsonEspedsgTestersuiteController {
 		
 		}else if(this.TEST_MODULE_EBOOKING.equalsIgnoreCase(testModule)){
 			retval = "/espedsgebook/sytsuite.do";
+			
+		}else if(this.TEST_MODULE_LASTETORG.equalsIgnoreCase(testModule)){
+			retval = "/espedsg2/sytsuite_transpDisp.do";
+			
+		}else if(this.TEST_MODULE_SPORROPPD.equalsIgnoreCase(testModule)){
+			retval = "/espedsg2/sytsuite_sporroppd.do";
+			
+		}else if(this.TEST_MODULE_OPPDREG.equalsIgnoreCase(testModule)){
+			retval = "/espedsgtror/sytsuite.do";
+			
+		}else if(this.TEST_MODULE_STATS.equalsIgnoreCase(testModule)){
+			retval = "/espedsgstats/sytsuite.do";
 		}
+		
 		
 		return retval;
 	}
@@ -324,6 +339,12 @@ public class JsonEspedsgTestersuiteController {
 		obj.setText(this.TEST_MODULE_UFORTOLL);
 		list.add(obj);
 		//
+		obj = new JsonTestersuiteObjectRecord();
+		obj.setId("s");obj.setModuleName("Stats");
+		obj.setStatus(GREEN_STATUS);
+		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+		obj.setText(this.TEST_MODULE_STATS);
+		list.add(obj);
 		
 		return list;
 	}

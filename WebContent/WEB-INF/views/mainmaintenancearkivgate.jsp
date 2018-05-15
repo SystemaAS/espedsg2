@@ -86,11 +86,11 @@
 				               		<c:choose>
 					               		<c:when test="${record.status == 'G' || record.status == 'Y'}">
 					               			<a id="alinkRecordDesc_${counter.count}" onClick="setBlockUI(this);" href="${record.code}_${record.pgm}.do?id=${record.dbTable}">
-		               							<font class="text14SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+		               							<font class="text16SkyBlue">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 					               			</a>
 					               		</c:when>
 					               		<c:otherwise>
-					               			<font class="text14">&nbsp;&nbsp;${record.subject}&nbsp;</font>
+					               			<font class="text16">&nbsp;&nbsp;${record.subject}&nbsp;</font>
 					               		</c:otherwise>
 				               		</c:choose>
 				               </td>
