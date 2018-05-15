@@ -54,7 +54,7 @@
 				              
 				               <td width="2%" class="tableCellFirst" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;" align="center" >
 				               		<%-- <font class="text12">&nbsp;${record.id}&nbsp;</font>  --%>
-				               		<img src="resources/images/leaf.png" height="16px" width="16px" border="0" alt="test module">
+				               		<img src="resources/images/leaf.png" height="18px" width="18px" border="0" alt="test module">
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
 				               		<c:choose>
