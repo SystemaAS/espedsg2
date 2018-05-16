@@ -3,7 +3,7 @@
 <!-- ================== special login header ==================-->
 <jsp:include page="/WEB-INF/views/headerLogin.jsp" />
 <!-- =====================end header ==========================-->
-<SCRIPT type="text/javascript" src="resources/js/login.js?ver=12"></SCRIPT>	
+<SCRIPT type="text/javascript" src="resources/js/login.js?ver=<%= new java.util.Date().getTime()/1000 %>"></SCRIPT>	
  
 	<div style="height: 100px;">
 	 	<h3 class="text18">&nbsp;</h3>
@@ -13,12 +13,13 @@
 		<tr>
 		<%-- <td class="loginFrame" width="100%"> --%>
 		<td class="loginFrameE2" width="100%">
-			<form name="loginForm" id="loginForm" action="logonDashboard.do" method="POST" >
+			
 	 		<table align="center" border="0" cellpadding="1" cellspacing="1" >
+	 			<form name="loginForm" id="loginForm" action="logonDashboard.do" method="POST" >
+	 				
 				<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
 					<td align="center" colspan="2" class="text28Bold">eSpedsg</td>
-					
 				</tr>
 				<tr height="3"><td>&nbsp;</td></tr>
 				<tr>
@@ -29,18 +30,51 @@
 					<td align="right" class="text18"><spring:message code="login.user.label.password"/>&nbsp;</td>
 					<td><input type="password"  class="inputText16" name="password" id="password" size="18"/></td>
 				</tr>
+				
 				<tr>
 					<td>&nbsp;</td>
-					<td align="right"><input onClick="setBlockUI(this)" class="inputFormLoginSubmitGreen" name="submit" id="submit" type="submit" value="<spring:message code="login.user.submit"/>" /></td>
+					<td align="right">
+					<button type="button" id="changePwdButton" name="changePwdButton">Endre passord</button>
+					<input onClick="setBlockUI(this);" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
 				</tr>
+				</form>
 				<tr height="1"><td>&nbsp;</td></tr>
+				
+				<tr >
+					<td colspan="2">
+						<div id="changePwdArea" style="display: none">
+						<form name="loginFormChgPwd" id="loginFormChgPwd" action="doChgPwd.do" method="POST" >
+						<input type="hidden" name="validUser" id="validUser" value="">
+				
+						<table>
+							<tr>
+								<td align="right" class="text14"><spring:message code="login.user.label.password.new"/>&nbsp;</td>
+								<td><input type="password"  class="inputText" style="background-color:#EEEEEE;" name="passwordNew" id="passwordNew" size="11" maxlength="10" /></td>
+							</tr>
+							<tr>
+								<td align="right" class="text14"><spring:message code="login.user.label.password.confirm"/>&nbsp;</td>
+								<td><input type="password"  class="inputText" style="background-color:#EEEEEE;" name="passwordConfirm" id="passwordConfirm" size="11" maxlength="10" /></td>
+							</tr>
+							<tr>
+								<td align="right" class="text14">&nbsp;</td>
+								<td><button type="button" name="executeNewPwdButton" id="executeNewPwdButton" class="inputFormLoginSubmitGreen">Endre</button></td>
+							</tr>
+							<tr>
+								<td align="right" class="text14">&nbsp;</td>
+								<td><label class="textError" id="validationLabelMessage"></label></td>
+							</tr>
+						</table>
+						</form>
+						</div>
+					</td>
+				</tr>
 			</table>
-			</form>
+			
 		</td>
 		</tr>
 		<%-- Validation Error section --%>
 		<tr>
-			<td colspan="5">
+			<td colspan="5" id="backendError">
 			<table>
 				<spring:hasBindErrors name="user"> <%-- name must equal the command object name in the Controller --%>
 					<tr>

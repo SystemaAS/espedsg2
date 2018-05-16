@@ -119,7 +119,7 @@ public class DashboardController {
 			    	return loginView;
 	
 		    }else{
-		    	//get the company code for the comming user
+		    	//get the company code for the coming user
 		    	//this routine was triggered by Totens upgrade (Jan-2017 V12). Ref. JOVOs requirement
 		    	String companyCode = null;
 		    	if(COMPANY_CODE_REQUIRED_FLAG_VALUE.equals(AppConstants.LOGIN_FIRMA_CODE_REQUIRED)){
@@ -508,8 +508,8 @@ public class DashboardController {
 	 */
 	private String getRequestUrlKeyParameters(SystemaWebUser appUser, String companyCode){
 		StringBuffer urlRequestParamsKeys = null;
-		logger.info("XXXXXXXXXX_" + appUser);
-		logger.info("UUUUUUUUUU_" + appUser.getPassword());
+		//logger.info("XXXXXXXXXX_" + appUser);
+		//logger.info("UUUUUUUUUU_" + appUser.getPassword());
 		if(appUser!=null){
 			if( (appUser.getUser()!=null && !"".equals(appUser.getUser())) && (appUser.getPassword()!=null && !"".equals(appUser.getPassword()))){
 				urlRequestParamsKeys = new StringBuffer();

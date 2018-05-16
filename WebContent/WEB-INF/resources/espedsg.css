@@ -172,7 +172,7 @@
    color:black;
    font-family:verdana;
    font-weight:normal;
-   font-size:11pt;
+   font-size:14pt;
    z-index:2;
    visibility:hidden;
    cursor:pointer;
@@ -1126,7 +1126,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	color: #CCCCCC;
@@ -1137,7 +1137,7 @@
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	font-size: 12px;
+	font-size: 14px;
 	padding: 4px 7px;
 	outline: 0;
 	font-weight: bold;

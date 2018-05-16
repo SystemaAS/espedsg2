@@ -8,29 +8,43 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import no.systema.main.service.FirmLoginService;
 //
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.service.general.UploadFileToArchiveService;
+import no.systema.main.model.SystemaWebUser;
+import no.systema.main.model.jsonjackson.JsonFirmLoginContainer;
+import no.systema.main.model.jsonjackson.JsonFirmLoginRecord;
+import no.systema.main.model.jsonjackson.JsonSystemaUserContainer;
 import no.systema.main.model.jsonjackson.general.JsonFileUploadToArchiveValidationContainer;
 
 import no.systema.main.service.general.notisblock.NotisblockService;
+import no.systema.main.service.login.SystemaWebLoginService;
 import no.systema.main.model.jsonjackson.general.notisblock.JsonNotisblockContainer;
 import no.systema.main.model.jsonjackson.general.notisblock.JsonNotisblockRecord;
 import no.systema.main.url.store.MainUrlDataStore;
 import no.systema.main.util.AppConstants;
+import no.systema.main.validator.UserValidator;
 /**
  * This Ajax handler is the class handling ajax request general in the whole Application. 
  * It will usually be called from within a jQuery function or other javascript alike... 
@@ -42,6 +56,63 @@ import no.systema.main.util.AppConstants;
 @Controller
 public class ApplicationAjaxHandlerController {
 	private static final Logger logger = Logger.getLogger(ApplicationAjaxHandlerController.class.getName());
+	private final String COMPANY_CODE_REQUIRED_FLAG_VALUE = "1";
+	
+	/**
+	 * Use only when changing password in the login form
+	 * 
+	 * @param request
+	 * @return
+	 */
+	
+	@RequestMapping(value = "logonDashboardThin.do", method = RequestMethod.POST)
+	public @ResponseBody String logonDashboardThin(MultipartHttpServletRequest request) {
+		String result = null;
+		logger.info("Inside: logonDashboardThin.do");
+		
+		String companyCode = null;
+    	if(COMPANY_CODE_REQUIRED_FLAG_VALUE.equals(AppConstants.LOGIN_FIRMA_CODE_REQUIRED)){
+    		companyCode = this.getCompanyCodeForLogin();
+    	}
+		
+		//---------------------------
+		//get BASE URL = RPG-PROGRAM
+        //---------------------------
+    	String user = request.getParameter("user");
+    	String pwd = request.getParameter("password");
+    	
+		String BASE_URL = MainUrlDataStore.SYSTEMA_WEB_LOGIN_URL;
+		String urlRequestParamsKeys = this.getRequestUrlKeyParameters(user, pwd,  companyCode);
+		logger.info(BASE_URL);
+		logger.info(urlRequestParamsKeys);
+		
+    	try{
+	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+	    	//Debug --> 
+	    	//System.out.println(jsonPayload);
+	    	logger.info(jsonPayload);
+	    	//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp " + new StringBuilder(credentailsPwd).reverse().toString() + "carebum");
+	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp ");
+	    	if(jsonPayload!=null){ 
+	    		JsonSystemaUserContainer jsonSystemaUserContainer = this.systemaWebLoginService.getSystemaUserContainer(jsonPayload);
+	    		//check for errors
+	    		if(jsonSystemaUserContainer!=null){
+	    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
+	    				result = null;
+	    			}else{
+	    				result = user;
+	    			}
+	    		}
+	    	}
+    	}catch(Exception e){
+    		String msg = "NO CONNECTION:" + e.toString();
+    		logger.info("[ERROR Fatal] NO CONNECTION ");
+    	}
+    	
+    	return result;
+			    	
+	}
+	
 	
 	
 	/**
@@ -273,6 +344,50 @@ public class ApplicationAjaxHandlerController {
 		  }
 		  return sb.toString();
 	  }
+	  
+	  /**
+	   * 
+	   * @param user
+	   * @param pwd
+	   * @param companyCode
+	   * @return
+	   */
+	  private String getRequestUrlKeyParameters(String user, String pwd,  String companyCode){
+			StringBuffer urlRequestParamsKeys = null;
+			//logger.info("XXXXXXXXXX_" + appUser);
+			//logger.info("UUUUUUUUUU_" + appUser.getPassword());
+			if(user!=null){
+				if( (user!=null && !"".equals(user)) && (pwd!=null && !"".equals(pwd))){
+					urlRequestParamsKeys = new StringBuffer();
+					urlRequestParamsKeys.append("user=" + user);
+					urlRequestParamsKeys.append(AppConstants.URL_CHAR_DELIMETER_FOR_PARAMS_WITH_HTML_REQUEST + "pwd=" + pwd);
+					if(companyCode!=null){
+						urlRequestParamsKeys.append(AppConstants.URL_CHAR_DELIMETER_FOR_PARAMS_WITH_HTML_REQUEST + "firma=" + companyCode);
+					}
+				}
+			}
+			return urlRequestParamsKeys.toString();
+		}
+	  
+	  /**
+	   * 
+	   * @return
+	   */
+	  private String getCompanyCodeForLogin(){
+			String companyCode = null;
+			
+			String FIRM_URL = MainUrlDataStore.SYSTEMA_WEB_FIRMLOGIN_URL;
+	    	String jsonFirmPayload = this.urlCgiProxyService.getJsonContent(FIRM_URL);
+	    	logger.info(FIRM_URL);
+	    	logger.info(jsonFirmPayload);
+	    	JsonFirmLoginContainer firmContainer = this.firmLoginService.getContainer(jsonFirmPayload);
+	    	for(JsonFirmLoginRecord record : firmContainer.getList()){
+	    		companyCode = record.getFifirm();
+	    	}
+	    	logger.info(companyCode);
+		
+	    	return companyCode;
+		}
 
 	  //SERVICES
 	  @Qualifier ("urlCgiProxyService")
@@ -296,6 +411,19 @@ public class ApplicationAjaxHandlerController {
 	  public UploadFileToArchiveService getUploadFileToArchiveService(){return this.uploadFileToArchiveService;}
 	
 	  
-	  
+	  	@Qualifier ("firmLoginService")
+		private FirmLoginService firmLoginService;
+		@Autowired
+		@Required
+		public void setFirmLoginService (FirmLoginService value){ this.firmLoginService = value; }
+		public FirmLoginService getFirmLoginService(){ return this.firmLoginService; }
+		
+		@Qualifier ("systemaWebLoginService")
+		private SystemaWebLoginService systemaWebLoginService;
+		@Autowired
+		@Required
+		public void setSystemaWebLoginService (SystemaWebLoginService value){ this.systemaWebLoginService = value; }
+		public SystemaWebLoginService getSystemaWebLoginService(){ return this.systemaWebLoginService; }
+		
 		
 }

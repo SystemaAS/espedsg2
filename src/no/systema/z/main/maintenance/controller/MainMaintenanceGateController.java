@@ -159,6 +159,14 @@ public class MainMaintenanceGateController {
 		object.setStatus("G");
 		listObject.add(object);		
 		
+		object = new  MainMaintenanceMainListObject();
+		object.setId("6");
+		object.setSubject(messageSourceHelper.getMessage("systema.main.maintenance.pwd.webuser", null));
+		object.setCode("mainmaintenancepwd_webuser");
+		object.setText("PWD / WEBUSER,...");
+		object.setStatus("G");
+		object.setDbTable("BRIDF");
+		listObject.add(object);		
 		
 		return listObject;
 	}
