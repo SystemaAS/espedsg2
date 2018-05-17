@@ -64,7 +64,7 @@ public class ApplicationAjaxHandlerController {
 	 * @param request
 	 * @return
 	 */
-	
+	/* OBSOLETE 17.Maj.2018 ? Wait 1 month ...
 	@RequestMapping(value = "logonDashboardThin.do", method = RequestMethod.POST)
 	public @ResponseBody String logonDashboardThin(MultipartHttpServletRequest request) {
 		String result = null;
@@ -112,7 +112,7 @@ public class ApplicationAjaxHandlerController {
     	return result;
 			    	
 	}
-	
+	*/
 	
 	
 	/**

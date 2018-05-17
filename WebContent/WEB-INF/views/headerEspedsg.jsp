@@ -62,10 +62,11 @@
 			<td height="23" class="tabThinBorderLightGreenLogoutE2" width="100%" align="left" colspan="3"> 
 	    			 <table width="100%" border="0" cellspacing="1" cellpadding="1">
 					 	<tr >
-				    		<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
+				    	<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
 	      				<td class="text11" width="50%" align="right">
+	      					
 	      					<font class="headerMenuGreen">
-				    				<img src="resources/images/appUser.gif" border="0" > 
+			    				<img src="resources/images/appUser.gif" border="0" > 
 								<font class="text12User" >${user.user}&nbsp;</font>${user.usrLang}</font>
 				    			<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
 				    			<a tabindex=-1 href="logout_espedsgAdmin.do">

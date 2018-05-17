@@ -34,40 +34,11 @@
 				<tr>
 					<td>&nbsp;</td>
 					<td align="right">
-					<button type="button" id="changePwdButton" name="changePwdButton">Endre passord</button>
 					<input onClick="setBlockUI(this);" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
 				</tr>
 				</form>
 				<tr height="1"><td>&nbsp;</td></tr>
-				
-				<tr >
-					<td colspan="2">
-						<div id="changePwdArea" style="display: none">
-						<form name="loginFormChgPwd" id="loginFormChgPwd" action="doChgPwd.do" method="POST" >
-						<input type="hidden" name="validUser" id="validUser" value="">
-				
-						<table>
-							<tr>
-								<td align="right" class="text14"><spring:message code="login.user.label.password.new"/>&nbsp;</td>
-								<td><input type="password"  class="inputText" style="background-color:#EEEEEE;" name="passwordNew" id="passwordNew" size="11" maxlength="10" /></td>
-							</tr>
-							<tr>
-								<td align="right" class="text14"><spring:message code="login.user.label.password.confirm"/>&nbsp;</td>
-								<td><input type="password"  class="inputText" style="background-color:#EEEEEE;" name="passwordConfirm" id="passwordConfirm" size="11" maxlength="10" /></td>
-							</tr>
-							<tr>
-								<td align="right" class="text14">&nbsp;</td>
-								<td><button type="button" name="executeNewPwdButton" id="executeNewPwdButton" class="inputFormLoginSubmitGreen">Endre</button></td>
-							</tr>
-							<tr>
-								<td align="right" class="text14">&nbsp;</td>
-								<td><label class="textError" id="validationLabelMessage"></label></td>
-							</tr>
-						</table>
-						</form>
-						</div>
-					</td>
-				</tr>
+
 			</table>
 			
 		</td>

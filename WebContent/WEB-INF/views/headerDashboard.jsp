@@ -107,6 +107,11 @@
 				 	<tr >
 			    		<td class="text14" width="50%" align="left" >&nbsp;&nbsp;</td>
 	      				<td class="text14" width="50%" align="right">
+	      					<font id="changePwdButton" class="headerMenuGreen">
+		    					<img src="resources/images/bulletGreen.png" width="8px" height="8px" border="0">
+		    					<font class="text14" ><spring:message code="systema.main.maintenance.mainmaintenance.webuser.update"/>&nbsp;<spring:message code="systema.main.maintenance.mainmaintenance.webuser.pwd"/></font>
+		    				</font>
+		    				<font color="#FCFFF0"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
 	      					<font class="headerMenuGreenNoPointer">
 	      						<img title="${user.logo}" src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');">&nbsp;
       							<font class="text14">${user.user}&nbsp;</font>${user.usrLang}&nbsp;

@@ -4,6 +4,13 @@
 <!-- ================== special login header ==================-->
 <jsp:include page="/WEB-INF/views/headerDashboard.jsp" />
 <!-- =====================end header ==========================-->
+	<style type = "text/css">
+	/*.ui-dialog{font-size:11pt;}*/
+	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
+	.main-dialog-class .ui-widget-header{ background-image: none; background-color:#CCCCCC } 
+	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
+
+	</style>
 
 		<%-- Applications' menu --%>
 		<tr height="400" >
@@ -427,12 +434,41 @@
 			<td>
 				<div id="dialogRunKundedatakontroll" title="Dialog">
 					<form  action="tvinnsad_brreg_kundekontroll.do" name="runKundedatakontrollForm" id="runKundedatakontrollForm" method="post">
-						<p class="text14">
+						<p class="text16">
 							Utførelse av denne funksjonen kan ta litt tid.
 						</p>
 					</form>
 				</div>
 			</td>
+		</tr>
+		
+		<%-- --------------------- --%>
+		<%-- DIALOG CHG PASSWORD   --%>
+		<%-- --------------------- --%>
+		<tr>
+		<td>
+			<div id="dialogChangePwd" title="Dialog">
+					<form name="loginFormChgPwd" id="loginFormChgPwd" action="doChgPwd.do" method="POST" >
+					<input type="hidden" name="validUser" id="validUser" value="${user.user}">
+				 	<table>
+							<tr>
+								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.new"/>&nbsp;</td>
+								<td><input type="password"  class="inputTextMediumBlue"  name="passwordNew" id="passwordNew" size="11" maxlength="10" /></td>
+							</tr>
+							<tr>
+								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.confirm"/>&nbsp;</td>
+								<td><input type="password"  class="inputTextMediumBlue"  name="passwordConfirm" id="passwordConfirm" size="11" maxlength="10" /></td>
+							</tr>
+							
+							<tr>
+								<td align="right" class="text14">&nbsp;</td>
+								<td><label class="textError" id="validationLabelMessage"></label></td>
+							</tr>
+							
+					</table>
+					</form>
+			</div>
+		</td>
 		</tr>
 		
 		<tr class="text" height="30"><td></td></tr>	

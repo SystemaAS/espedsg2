@@ -8,81 +8,84 @@
     function setBlockUI(element){
   	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
     }
+    function setBlockUI(){
+    	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+     }
   	
     jq(function() { 
     	jq("td#dashItem_VismaInt").bind("click",function() {
     		jq("#dashForm_VismaInt").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_roadmap").bind("click",function() {
     		window.location = "aespedsg_roadmap.do";
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_custMatrix").bind("click",function() {
     		window.location = "espedsgadmin.do";
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Vedlikehold").bind("click",function() {
     		window.location = "mainmaintenancegate.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Sporroppdrag").bind("click",function() {
     		window.location = "sporringoppdraggate.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Testsuites").bind("click",function() {
     		window.location = "aespedsgtestersuite.do?lang=" + jq("#usrLang").val();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Transpdisp").bind("click",function() {
     		window.location = "transportdisp_mainorderlist.do?lang=" + jq("#usrLang").val() + "&action=doFind";
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Kvalitet").bind("click",function() {
     		jq("#dashForm_Kvalitet").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Ufortollede").bind("click",function() {
     		jq("#dashForm_Ufortollede").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Tds").bind("click",function() {
     		jq("#dashForm_Tds").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Skat").bind("click",function() {
     		jq("#dashForm_Skat").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
     		
 	    });
     	jq("td#dashItem_Tvinn").bind("click",function() {
     		jq("#dashForm_Tvinn").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Tvinnavgg").bind("click",function() {
     		jq("#dashForm_Tvinnavgg").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Priskalk").bind("click",function() {
     		jq("#dashForm_Priskalk").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Efaktura").bind("click",function() {
     		jq("#dashForm_Efaktura").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Tror").bind("click",function() {
     		jq("#dashForm_Tror").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_Ebooking").bind("click",function() {
     		jq("#dashForm_Ebooking").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	jq("td#dashItem_StatsTrafikk").bind("click",function() {
     		//to be developed TODO --->FM/JOVO
@@ -91,7 +94,7 @@
 	    });
     	jq("td#dashItem_StatsFortolling").bind("click",function() {
     		jq("#dashForm_StatsFortolling").submit();
-    		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+    		setBlockUI();
 	    });
     	
     	
@@ -124,7 +127,8 @@
 	          maxHeight: 220,
 	          width: 400,
 	          height: 220,
-			  modal: true
+			  modal: true,
+			  dialogClass: 'main-dialog-class'
 		  });
 	  });
 	
@@ -156,4 +160,81 @@
 			  jq('#dialogRunKundedatakontroll').dialog('open');
 		  });
 	  });
+	  
+	  //-------------------------------------
+	  //START Model dialog: "Change Password"
+	  //-------------------------------------
+	  //Initialize <div> here
+	  jq(function() { 
+		  jq("#dialogChangePwd").dialog({
+			  autoOpen: false,
+			  maxWidth:400,
+	          maxHeight: 300,
+	          width: 380,
+	          height: 250,
+			  modal: true,
+			  dialogClass: 'main-dialog-class'
+		  });
+	  });
 
+	  jq(function() {
+		  jq("#changePwdButton").click(function() {
+			  presentChangePwdDialog();
+		  });
+	  });
+
+	  //------------------------------
+	  //PRESENT CHANGE PASSWORD DIALOG
+	  //------------------------------
+	  function presentChangePwdDialog(){
+		//setters (add more if needed)
+		  jq('#dialogChangePwd').dialog( "option", "title", "Endre Passord" );
+		  //deal with buttons for this modal window
+		  jq('#dialogChangePwd').dialog({
+			 buttons: [ 
+	            {
+				 id: "dialogSaveTU",	
+				 text: "Endre",
+					 click: function(){
+						  if(jq('#passwordNew').val()!='' && jq('#passwordConfirm').val()!='' ){
+							  if(jq('#passwordNew').val() == jq('#passwordConfirm').val()){
+								  jq("#validationLabelMessage").text("");
+								  //cosmetics
+								  jq('#passwordNew').removeClass('isa_error');
+				 				  jq('#passwordConfirm').removeClass('isa_error');
+								  //Submit
+				 				  setBlockUI();
+				 				  jq("#loginFormChgPwd").submit();
+				 				  
+							  }else{
+								  jq("#validationLabelMessage").text("Passordene er forskjellige");
+								  jq('#passwordNew').addClass('isa_error');
+				 				  jq('#passwordConfirm').addClass('isa_error');
+							  }
+						  }else{
+			 				  jq("#validationLabelMessage").text("Alla felt må fylles ut");
+			 				  jq('#passwordNew').addClass('isa_error');
+			 				  jq('#passwordConfirm').addClass('isa_error');
+			 			  }
+					 }	
+			 	 },
+	  			{
+			 	 id: "dialogCancelTU",
+			 	 text: "Lukk", 
+				 click: function(){
+					 		//back to initial state of form elements on modal dialog
+					 		jq("#validationLabelMessage").text("");
+					 		jq("#passwordNew").val("");
+					 		jq("#passwordConfirm").text("");
+					 		jq('#passwordNew').removeClass('isa_error');
+					 		jq('#passwordConfirm').removeClass('isa_error');
+					 		jq.unblockUI();
+					 		  
+			  				jq( this ).dialog( "close" ); 
+				 		} 
+	 	 		 } ] 
+		  });
+		  //open now
+		  jq('#dialogChangePwd').dialog('open');
+	  }
+	  
