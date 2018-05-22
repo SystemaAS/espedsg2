@@ -77,7 +77,8 @@
 			                    <th class="text14" align="center" >6</th>
 			                    <th class="text14" align="center" >7</th>
 			                    <th class="text14" align="center" >8</th>
-
+			                    <th class="text14" align="center" >9</th>
+								<th class="text14" align="center" >10</th>
 			                </tr>  
 			                </thead> 
 			                
