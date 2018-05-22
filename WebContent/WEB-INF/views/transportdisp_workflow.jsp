@@ -625,7 +625,7 @@
 											</select>	
 								    		</td>
 								    		<td>
-								    			<select class="inputTextMediumBlue11MandatoryField" name="turmnd" id="turmnd">
+								    			<select class="inputTextMediumBlueMandatoryField" name="turmnd" id="turmnd">
 							            		<option value="">-select-</option>
 							 				  	<c:forEach var="record" items="${model.monthList}" >
 						                       	 	<option value="${record}"<c:if test="${model.record.turmnd == record}"> selected </c:if> >${record}</option>
