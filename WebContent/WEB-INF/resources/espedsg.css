@@ -1742,7 +1742,9 @@
 .text18NavyBlue{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color: #003152; 
 }
-
+.text18SlateGray{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color: #778899; 
+}
 .text22WhiteBold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 22px; color:#FFFFFF; font-weight:bold; 
 }

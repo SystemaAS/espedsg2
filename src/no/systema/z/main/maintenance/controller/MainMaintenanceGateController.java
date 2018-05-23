@@ -159,6 +159,7 @@ public class MainMaintenanceGateController {
 		object.setStatus("G");
 		listObject.add(object);		
 		
+		/* underhåll of BRIDF TODO
 		object = new  MainMaintenanceMainListObject();
 		object.setId("6");
 		object.setSubject(messageSourceHelper.getMessage("systema.main.maintenance.pwd.webuser", null));
@@ -167,7 +168,7 @@ public class MainMaintenanceGateController {
 		object.setStatus("G");
 		object.setDbTable("BRIDF");
 		listObject.add(object);		
-		
+		*/
 		return listObject;
 	}
 	

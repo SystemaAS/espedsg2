@@ -1625,7 +1625,9 @@ END override jQuery elements
 .text18Bold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color:#000000; font-weight:bold ; 
 }
-
+.text18SlateGray{  
+    font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 18px; color: #778899; 
+}
 .text22WhiteBold{  
     font-family: Helvetica Neue, verdana, Arial, sans-serif; font-size: 22px; color:#FFFFFF; font-weight:bold; 
 }

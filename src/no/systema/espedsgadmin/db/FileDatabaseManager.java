@@ -20,7 +20,7 @@ import no.systema.espedsgadmin.model.TomcatAspApplicationObject;
  * 
  */
 public class FileDatabaseManager {
-	private static final Logger logger = Logger.getLogger(CustomerApplicationController.class.getName());
+	private static final Logger logger = Logger.getLogger(FileDatabaseManager.class.getName());
 	
 	static final String RESOURCE_FILES_PATH_DEFAULT = "/WEB-INF/resources/files/customersDb/";
 	static final String UTF_8 = "UTF-8";
@@ -137,7 +137,7 @@ public class FileDatabaseManager {
 				String customerName = (String)this.customerMap.get(id[0]);
 				if(customerName!=null){
 					if(customerName.contains("@")){
-						logger.info("CUSTOMER RAW:" + customerName);
+						//logger.info("CUSTOMER RAW:" + customerName);
 						String[] customerRecord = customerName.split("@");
 						custAppObject.setName(customerRecord[0]);
 						if(customerRecord.length>1){
@@ -153,7 +153,7 @@ public class FileDatabaseManager {
 				
 				for (String app : list){
 					String appName = (String)this.appMap.get(app);
-					logger.info("APP.NAME:" + appName);
+					//logger.info("APP.NAME:" + appName);
 					custAppObject.addToApplicationList(appName);
 				}
 				dbCarrierObjectList.add(custAppObject);

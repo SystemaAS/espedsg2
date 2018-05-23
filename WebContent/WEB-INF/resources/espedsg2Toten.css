@@ -57,6 +57,28 @@
 	border: 2px solid rgba(105, 105, 105, 1);
 	
 }
+.dashboardElementsFrameE2_OldApps{
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	padding: 4px 7px;
+	/*background-color:#E1EDD9;*/
+	background-color:#FFFFFF;
+	border-style: solid; 
+    border-width: 1px 1px 1px 1px; 
+   	border-color:#DDDDDD;
+   	outline: 0;
+	cursor: pointer;
+	-webkit-appearance: none;
+}
+.dashboardElementsFrameE2_OldApps:hover{
+	/*border-width: 1px 1px 1px 1px; 
+	border-color:#302013;*/
+	box-shadow: 0 0 5px rgba(204, 204, 204, 1);
+	border: 2px solid rgba(204, 204, 204, 1);
+	
+}
 .dashboardElementsImgCircleE2{
 	border-radius: 50%; 
 	/*background-color: #F2F5F0;*/

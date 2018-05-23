@@ -369,6 +369,33 @@
 
 							 			</c:if>
 						 			</tr>
+						 			    
+								 		<tr >
+								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
+											 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
+								    		<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
+								    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
+				 								<br/>
+				 								<font class="text18">
+								    			<c:choose>
+						 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
+							 							<a class="text14" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
+															<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
+			 												<font class="text18SlateGray">${record.prTxt}</font>
+			 											</a>	
+						 							</c:when>
+						 							<c:otherwise>
+							 							<img src="${imgSrcNoneTomcat}" width="10px" height="10px" border="0">&nbsp;
+			 											<font class="text14GrayInactiveLinkOnDashbord">${record.prTxt}</font>
+						 							</c:otherwise>
+					 							</c:choose>
+					 							</font>
+					 						</td>
+					 						</c:if>
+					 						</c:forEach>
+				 						</tr>	
+					 					<tr class="text" height="50"><td></td></tr>
+								    
 						 			</table>
 						 			</td>	
 				 				</tr>
