@@ -833,6 +833,54 @@ END override jQuery elements
 	color:red;
 	padding: 2px 5px
 }
+.inputText12BlueBoldReadOnly{
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+	color:#000080;
+	background-color:#DDDDDD;
+	padding: 2px 5px
+}
+
+.inputText14BlueBoldReadOnly{
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+	color:#000080;
+	background-color:#DDDDDD;
+	padding: 2px 5px
+}
+
+.inputText12RedBoldReadOnly{
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	font-style: italic;
+	font-weight: bold;
+	color:red;
+	padding: 2px 5px
+}
+.inputText14RedBoldReadOnly{
+	border: 1px solid #CCCCCC;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-style: italic;
+	font-weight: bold;
+	color:red;
+	padding: 2px 5px
+}
 
 .inputTextMediumBlue{
 	border: 1px solid #DDDDDD;
