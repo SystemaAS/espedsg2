@@ -377,7 +377,7 @@
 								    			<c:choose>
 						 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
 						 							<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
-										    			<a class="text14" style="display:block;" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
+										    			<a class="text14" style="display:block; width: 100%; text-align: center;" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
 											    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
 							 								<br/>
 							 								<font class="text18">
