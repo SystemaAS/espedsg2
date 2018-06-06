@@ -373,6 +373,35 @@
 								 		<tr >
 								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
 											 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
+								    		
+								    			<c:choose>
+						 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
+						 							<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
+										    			<a class="text14" style="display:block;" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
+											    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
+							 								<br/>
+							 								<font class="text18">
+								 								<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
+				 												<font class="text18SlateGray">${record.prTxt}</font>
+				 											</font>
+			 											</a>
+			 										</td>		
+			 										
+						 							</c:when>
+						 							<c:otherwise>
+						 								<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
+										    				<img src="${imgSrcNoneTomcat}" width="10px" height="10px" border="0">&nbsp;
+			 												<font class="text14GrayInactiveLinkOnDashbord">${record.prTxt}</font>
+			 											</td>
+						 							</c:otherwise>
+					 							</c:choose>
+					 						</c:if>
+					 						</c:forEach>
+				 						</tr>
+				 						<%-- ORIGINAL
+				 						<tr >
+								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
+											 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
 								    		<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
 								    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
 				 								<br/>
@@ -394,6 +423,7 @@
 					 						</c:if>
 					 						</c:forEach>
 				 						</tr>	
+				 						 --%>
 					 					<tr class="text" height="50"><td></td></tr>
 								    
 						 			</table>

@@ -462,6 +462,9 @@ public class DashboardController {
 		if(jsonSystemaUserContainer.getMultiUser()!=null){
 			appUser.setMultiUser(jsonSystemaUserContainer.getMultiUser());
 		}
+		if(jsonSystemaUserContainer.getMenuList()!=null){
+			appUser.setMenuList(jsonSystemaUserContainer.getMenuList());
+		}
 		
 		//This host parameter below is used for reaching external resources since images or other static resources
 		//might be available either for internal ip-addresses or external but not both.

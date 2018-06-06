@@ -28,6 +28,7 @@ import no.systema.main.util.AppConstants;
 import no.systema.main.util.JsonDebugger;
 import no.systema.main.util.StringManager;
 import no.systema.main.model.SystemaWebUser;
+import no.systema.main.model.jsonjackson.JsonSystemaUserRecord;
 
 import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectContainer;
 import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectRecord;
@@ -99,15 +100,15 @@ public class JsonEspedsgTestersuiteController {
 		Map model = new HashMap();
 		
 		ModelAndView successView = new ModelAndView("aespedsgtestersuite");
-		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
-		
+		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
+		logger.info("appUser:" + appUser.getMenuList());
 		//check user (should be in session already)
 		if(appUser==null){
 			return loginView;
 		
 		}else{
 			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TEST_SUITES);
-			list = this.initTesterSuiteSpecification();
+			list = this.initTesterSuiteSpecificationStrict(appUser);
 			model.put(TEST_LIST,list);
 			model.put(TEST_LIST_SIZE, list.size());
 			
@@ -244,14 +245,16 @@ public class JsonEspedsgTestersuiteController {
 	}
 	
 
+	
 	/**
 	 * Since there is no data layer...
+	 * @param appUser
 	 * @return
 	 */
-	private List initTesterSuiteSpecification(){
+	private List initTesterSuiteSpecification(SystemaWebUser appUser){
 		List list = new ArrayList();
 		JsonTestersuiteObjectRecord obj =null;
-		
+		//ALTINN
 		obj = new JsonTestersuiteObjectRecord();
 		obj.setId("s");obj.setModuleName("Altinn-proxy");
 		obj.setStatus(GREEN_STATUS);
@@ -260,96 +263,239 @@ public class JsonEspedsgTestersuiteController {
 		//logger.info(obj.getServiceUrl());
 		list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("eBooking");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_EBOOKING);
-		list.add(obj);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("eBooking");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_EBOOKING);
+			list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("eFaktura Log - N");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_EFAKTURA);
-		list.add(obj);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("eFaktura Log - N");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_EFAKTURA);
+			list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Fortolling - Avgiftsgrunnlag NO");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_AVG_GRUNNLAG);
-		list.add(obj);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - Avgiftsgrunnlag NO");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_AVG_GRUNNLAG);
+			list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Fortolling - TVINN og Kundedatakontroll mot Brønnyøsund - NO");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_TVINN);
-		list.add(obj);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - TVINN og Kundedatakontroll mot Brønnyøsund - NO");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_TVINN);
+			list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Fortolling - TDS");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_TDS);
-		list.add(obj);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - TDS");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_TDS);
+			list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Fortolling - SKAT");
-		obj.setStatus(GREEN_STATUS);
-		//obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - SKAT");
+			obj.setStatus(GREEN_STATUS);
+			//obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_SKAT);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Lastetorg");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(TEST_MODULE_LASTETORG);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Oppdragsregistrering");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_OPPDREG);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Priskalkulator");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_PRISKALK);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Spørring på Oppdrag");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_SPORROPPD);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Ufortollede oppdrag");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_UFORTOLL);
+			list.add(obj);
+		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Stats");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_STATS);
+			list.add(obj);
 			
-		obj.setText(this.TEST_MODULE_SKAT);
+			return list;
+	}
+	/**
+	 * 
+	 * @param appUser
+	 * @return
+	 */
+	private List initTesterSuiteSpecificationStrict(SystemaWebUser appUser){
+		List list = new ArrayList();
+		JsonTestersuiteObjectRecord obj =null;
+		//ALTINN
+		obj = new JsonTestersuiteObjectRecord();
+		obj.setId("s");obj.setModuleName("Altinn-proxy");
+		obj.setStatus(GREEN_STATUS);
+		obj.setServiceUrl("aespedsgtestersuite_altinnproxy");
+		obj.setText(this.TEST_MODULE_ALTINN);
+		//logger.info(obj.getServiceUrl());
 		list.add(obj);
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Lastetorg");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(TEST_MODULE_LASTETORG);
-		list.add(obj);
+		if(this.moduleExists("EBOOKING", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("eBooking");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_EBOOKING);
+			list.add(obj);
+		}
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Oppdragsregistrering");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_OPPDREG);
-		list.add(obj);
+		if(this.moduleExists("EFAKTURA", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("eFaktura Log - N");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_EFAKTURA);
+			list.add(obj);
+		}
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Priskalkulator");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_PRISKALK);
-		list.add(obj);
+		if(this.moduleExists("TAVGG", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - Avgiftsgrunnlag NO");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_AVG_GRUNNLAG);
+			list.add(obj);
+		}
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Spørring på Oppdrag");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_SPORROPPD);
-		list.add(obj);
+		if(this.moduleExists("TVINN", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - TVINN og Kundedatakontroll mot Brønnyøsund - NO");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_TVINN);
+			list.add(obj);
+		}
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Ufortollede oppdrag");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_UFORTOLL);
-		list.add(obj);
+		if(this.moduleExists("TDS", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - TDS");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_TDS);
+			list.add(obj);
+		}
 		//
-		obj = new JsonTestersuiteObjectRecord();
-		obj.setId("s");obj.setModuleName("Stats");
-		obj.setStatus(GREEN_STATUS);
-		obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-		obj.setText(this.TEST_MODULE_STATS);
-		list.add(obj);
-		
+		if(this.moduleExists("SKAT", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Fortolling - SKAT");
+			obj.setStatus(GREEN_STATUS);
+			//obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_SKAT);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("WRKTRIPS", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Lastetorg");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(TEST_MODULE_LASTETORG);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("TROR", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Oppdragsregistrering");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_OPPDREG);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("PRISKALK", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Priskalkulator");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_PRISKALK);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("SPORROPP", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Spørring på Oppdrag");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_SPORROPPD);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("UFORTOPPD", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Ufortollede oppdrag");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_UFORTOLL);
+			list.add(obj);
+		}
+		//
+		if(this.moduleExists("RAPPORTER", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Stats");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_STATS);
+			list.add(obj);
+		}
 		return list;
 	}
-	
-	
+	/**
+	 * 
+	 * @param moduleSignature
+	 * @param appUser
+	 * @return
+	 */
+	private boolean moduleExists(String moduleSignature, SystemaWebUser appUser){
+		boolean retval = false;
+		
+		for(JsonSystemaUserRecord module: appUser.getMenuList()){
+			if(strMgr.isNotNull(moduleSignature)){
+				if(module.getProg().toUpperCase().contains(moduleSignature.toUpperCase())){
+					retval = true;
+				}
+			}
+		}
+		
+		return retval;
+	}
 	//SERVICES
 	@Qualifier ("urlCgiProxyService")
 	private UrlCgiProxyService urlCgiProxyService;
