@@ -108,38 +108,38 @@
 			                       <c:forEach var="module" items="${customer.applicationList}"  >
 			                        	<c:choose>
 						               		<c:when test="${not empty module }">
-						               			<c:if test="${ fn:startsWith(module, 'SKAT')}">
-								               		<td  class="text14" nowrap >&nbsp;	
-								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_DK.gif" height="11" border="0" alt="country">
-								               			<font class="text14">&nbsp;${module}&nbsp;</font>
-								               		</td>
-								               	</c:if>
-							
-								               	<c:if test="${ fn:startsWith(module, 'TDS')}">
-								               		<td  class="text14" nowrap >&nbsp;
-								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_SE.gif" height="11" border="0" alt="country">
-								               			<font class="text14">&nbsp;${module}&nbsp;</font>
-								               		</td>
-								               	</c:if>
-								      		       	
-								               	<c:if test="${ fn:startsWith(module, 'SAD') || fn:startsWith(module, 'UFORT')  || fn:startsWith(module, 'SP') || fn:startsWith(module, 'AVG')}">
-								               		<td  class="text14" nowrap >&nbsp;
-								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
-								               			<font class="text14">&nbsp;${module}&nbsp;</font>
-								               		</td>
-								               	</c:if>
-								                 
-								               	<c:if test="${ fn:startsWith(module, 'PRIS') || fn:startsWith(module, 'WORK') || fn:startsWith(module, 'EFAK') || fn:startsWith(module, 'EBOOK') 
-								               		|| fn:startsWith(module, 'ANALYSE') || fn:startsWith(module, 'ALTINN')  }">
-								               		<td  class="text14" nowrap >&nbsp;
-								               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
-								               			<font class="text14">&nbsp;${module}&nbsp;</font>
-								               		</td>
-								               	</c:if>
-								               	 <c:if test="${module == '-1'}">
-								               		<td  class="text14"  ><font class="text14">&nbsp;&nbsp;</font></td>
-								               	</c:if>
-								                
+						               			<c:choose>
+							               			<c:when test="${ fn:startsWith(module, 'SKAT') || fn:startsWith(module, 'TDS')}">
+							               				<c:choose>
+								               				<c:when test="${ fn:startsWith(module, 'SKAT')}">
+											               		<td  class="text14" nowrap >&nbsp;	
+											               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_DK.gif" height="11" border="0" alt="country">
+											               			<font class="text14">&nbsp;${module}&nbsp;</font>
+											               		</td>
+										               		</c:when>
+										               		<c:otherwise>
+										               			<td  class="text14" nowrap >&nbsp;	
+											               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_SE.gif" height="11" border="0" alt="country">
+											               			<font class="text14">&nbsp;${module}&nbsp;</font>
+											               		</td>
+										               		</c:otherwise>
+									               		</c:choose>
+									               	</c:when>
+									               	<c:otherwise>
+									               		<c:choose>
+									               			<c:when test="${module == '-1'}">
+											               		<td  class="text14"  ><font class="text14">&nbsp;&nbsp;</font></td>
+										               		</c:when>
+										               		<c:otherwise>
+										               			<td  class="text14" nowrap >&nbsp;
+											               			<img style="vertical-align: text-baseline;" src="resources/images/countryFlags/Flag_NO.gif" height="11" border="0" alt="country">
+											               			<font class="text14">&nbsp;${module}&nbsp;</font>
+											               		</td>
+										               		</c:otherwise>
+									               		</c:choose>
+									               	</c:otherwise>
+								               	</c:choose>
+								               	 
 								         	</c:when>
 								         <c:otherwise>
 								         	<td class="text14" >&nbsp;QUE?&nbsp;</td>
@@ -195,12 +195,12 @@
 				                       <tr class="tableOddRow" height="20" >
 				                   </c:otherwise>
 				               </c:choose>
-				               <td class="tableCellFirst"  ><font class="text12MediumBlue">&nbsp;${record.aspCustomerName}&nbsp;</font></td>
-		                       <td class="tableCell"  ><font class="text12MediumBlue">&nbsp;${record.connectorPort}&nbsp;</font></td>
-		                       <td class="tableCell"  ><font class="text12MediumBlue">&nbsp;${record.shutdownPort}&nbsp;</font></td>
-		                       <td class="tableCell"  ><font class="text12MediumBlue">&nbsp;${record.sslPort}&nbsp;</font></td>
-		                       <td class="tableCell"  ><font class="text12MediumBlue">&nbsp;${record.ajpPort}&nbsp;</font></td>
-		                       <td class="tableCell" align="right" ><font class="text12MediumBlue" style="color:green">&nbsp;<b>${record.systemaHttpPort}&nbsp;</b></font></td>
+				               <td class="tableCellFirst"  ><font class="text14MediumBlue">&nbsp;${record.aspCustomerName}&nbsp;</font></td>
+		                       <td class="tableCell"  ><font class="text14MediumBlue">&nbsp;${record.connectorPort}&nbsp;</font></td>
+		                       <td class="tableCell"  ><font class="text14MediumBlue">&nbsp;${record.shutdownPort}&nbsp;</font></td>
+		                       <td class="tableCell"  ><font class="text14MediumBlue">&nbsp;${record.sslPort}&nbsp;</font></td>
+		                       <td class="tableCell"  ><font class="text14MediumBlue">&nbsp;${record.ajpPort}&nbsp;</font></td>
+		                       <td class="tableCell" align="right" ><font class="text14MediumBlue" style="color:green">&nbsp;<b>${record.systemaHttpPort}&nbsp;</b></font></td>
 		                       
 		                       
 				            </tr> 
