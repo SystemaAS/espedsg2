@@ -484,7 +484,7 @@
 						            		<input readonly type="text" class="inputTextReadOnly" name="bubnr" id="bubnr" size="8" maxlength="8" value="${model.record.bubnr}">
 							            </td>
 							            <td class="text14" align="left" valign="middle">
-						            		<select class="inputTextMediumBlueField" id="bukdm" name="bukdm">
+						            		<select class="selectMediumBlueE2" id="bukdm" name="bukdm">
 						            			<option value="">-blank-</option>
 						            			<option value="J" <c:if test="${model.record.bukdm == 'J'}"> selected </c:if> >J</option>
 						           				<option value="N" <c:if test="${model.record.bukdm == 'N'}"> selected </c:if> >N</option>
@@ -651,7 +651,7 @@
 						        			</c:choose>
 										</td>
 										<td class="text14">	
-						        			<select class="inputTextMediumBlueField" name="todoKo" id="todoKo">
+						        			<select class="selectMediumBlueE2" name="todoKo" id="todoKo">
 						 						<option value="">-select-</option>
 							            		<option value="B" <c:if test="${Xmodel.record.todo == 'B'}"> selected </c:if> >?</option>
 					           				</select>

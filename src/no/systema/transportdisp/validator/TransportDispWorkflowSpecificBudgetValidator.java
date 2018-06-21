@@ -7,6 +7,7 @@ import org.springframework.validation.ValidationUtils;
 import no.systema.transportdisp.model.jsonjackson.workflow.budget.JsonTransportDispWorkflowSpecificBudgetRecord;
 import no.systema.main.validator.DateValidator;
 import no.systema.main.util.NumberFormatterLocaleAware;
+import no.systema.main.util.StringManager;
 
 /**
  * 
@@ -19,6 +20,7 @@ public class TransportDispWorkflowSpecificBudgetValidator implements Validator {
 	private DateValidator dateValidator = new DateValidator();
 	private static Logger logger = Logger.getLogger(TransportDispWorkflowSpecificBudgetValidator.class.getName());
 	private NumberFormatterLocaleAware formatter = new NumberFormatterLocaleAware();
+	private StringManager strMgr = new StringManager();
 	
 	/**
 	 * 
@@ -49,6 +51,12 @@ public class TransportDispWorkflowSpecificBudgetValidator implements Validator {
 				//If the budget record belongs to the Order-Use Case then this fields are mandatory
 				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "buoavd", "systema.transportdisp.budget.form.error.null.type.buoavd"); 
 				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "buopd", "systema.transportdisp.budget.form.error.null.type.buopd"); 
+			}
+			
+			if(strMgr.isNotNull(record.getBufedt())){
+				if(!dateValidator.validateDate(record.getBufedt(), DateValidator.DATE_MASK_ISO)){
+					errors.rejectValue("bufedt", "systema.transportdisp.budget.form.error.rule.date.invalid"); 
+				}
 			}
 		}	
 	}

@@ -85,38 +85,52 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 					errors.rejectValue("wsetak", "systema.transportdisp.orders.form.error.null.date.etak.wsetak");
 				}
 			}
-			if(!this.dateValidator.validateDateIso203_YYYYMMDD(record.getHebodt())){
-				errors.rejectValue("hebodt", "systema.transportdisp.orders.form.error.rule.date.hebodt.invalid");
+			
+			//------
+			//dates 
+			//------
+			if(strMgr.isNotNull(record.getHebodt())){
+				if(!dateValidator.validateDate(record.getHebodt(), DateValidator.DATE_MASK_ISO)){
+					errors.rejectValue("hebodt", "systema.transportdisp.orders.form.error.rule.date.hebodt.invalid"); 
+				}
 			}
 			if(!"".equals(record.getWsbotm())){
 				if(!this.dateValidator.validateTimeHHmm(record.getWsbotm())){
 					errors.rejectValue("wsbotm", "systema.transportdisp.orders.form.error.rule.time.wsbotm.invalid");
 				}
 			}
-			
-			
+
 		}
 		//Dates ETD/ETA
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "wsetdd", "systema.transportdisp.orders.form.error.null.etd.datetime");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "wsetad", "systema.transportdisp.orders.form.error.null.eta.datetime");
 		if(record!=null){
-			//Dates and times (regex)
-			if(!this.dateValidator.validateDateIso203_YYYYMMDD(record.getWsetdd())){
-				errors.rejectValue("wsetdd", "systema.transportdisp.orders.form.error.rule.date.etd.invalid");
+			
+			//------
+			//dates 
+			//------
+			if(strMgr.isNotNull(record.getWsetdd())){
+				if(!dateValidator.validateDate(record.getWsetdd(), DateValidator.DATE_MASK_ISO)){
+					errors.rejectValue("wsetdd", "systema.transportdisp.orders.form.error.rule.date.etd.invalid");
+				}
 			}
-			if(!this.dateValidator.validateDateIso203_YYYYMMDD(record.getWsetad())){
-				errors.rejectValue("wsetad", "systema.transportdisp.orders.form.error.rule.date.eta.invalid");
+			if(strMgr.isNotNull(record.getWsetad())){
+				if(!dateValidator.validateDate(record.getWsetad(), DateValidator.DATE_MASK_ISO)){
+					errors.rejectValue("wsetad", "systema.transportdisp.orders.form.error.rule.date.eta.invalid");
+				}
 			}
-			if(!"".equals(record.getWsatdd())){
-				if(!this.dateValidator.validateDateIso203_YYYYMMDD(record.getWsatdd())){
+			
+			if(strMgr.isNotNull(record.getWsatdd())){
+				if(!dateValidator.validateDate(record.getWsatdd(), DateValidator.DATE_MASK_ISO)){
 					errors.rejectValue("wsatdd", "systema.transportdisp.orders.form.error.rule.date.atd.invalid");
 				}
 			}
-			if(!"".equals(record.getWsatad())){
-				if(!this.dateValidator.validateDateIso203_YYYYMMDD(record.getWsatad())){
+			if(strMgr.isNotNull(record.getWsatad())){
+				if(!dateValidator.validateDate(record.getWsatad(), DateValidator.DATE_MASK_ISO)){
 					errors.rejectValue("wsatad", "systema.transportdisp.orders.form.error.rule.date.ata.invalid");
 				}
 			}
+			
 		}
 		//Time ETD/ETA
 		if(record!=null){
