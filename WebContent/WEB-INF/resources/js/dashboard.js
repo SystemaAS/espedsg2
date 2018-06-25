@@ -97,6 +97,11 @@
     		setBlockUI();
 	    });
     	
+    	jq("td#dashItem_GodsReg").bind("click",function() {
+    		jq("#dashForm_GodsReg").submit();
+    		setBlockUI();
+	    });
+    	
     	
     });
   	

@@ -168,6 +168,21 @@
 		 										 <tr>
 		 										</c:if> 
 											</c:if>
+											<c:if test="${fn:contains(record.prog,'-GODSREGNO') }">
+												<td id="dashItem_GodsReg" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="Godsreg. module">
+				 									<br/>
+				 									<font class="text18">${record.prTxt}</font>
+				 									<form id="dashForm_GodsReg" method="post" action="/espedsggodsno/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													</form>
+												</td>
+												<c:if test="${counterTOMCATAPPS%5==0}">
+		 										 </tr>
+		 										 <tr>
+		 										</c:if> 
+											</c:if>
 											
 											<c:if test="${fn:contains(record.prog,'-eFaktura') }">
 												<td id="dashItem_Efaktura" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
