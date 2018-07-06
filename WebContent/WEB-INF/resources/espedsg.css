@@ -2168,8 +2168,9 @@
     color: #4E78A0; 
     background-color:#DDDDDD;
     border-style: solid; 
-    border-width: 1px 1px 1px 1px; 
-    border-color: #D5E0CE;
+    border-width: 1px 1px 0px 1px; 
+    /*border-color: #D5E0CE;*/
+    border-color: #9DB68C;
     margin: 2px;
     padding: 2px      
 }
