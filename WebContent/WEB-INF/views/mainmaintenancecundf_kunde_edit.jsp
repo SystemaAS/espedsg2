@@ -418,9 +418,6 @@
 														</td>
 														<td colspan="3">
 															<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="fmot" id="fmot" size="10" maxlength="8" value='${model.record.fmot}'>
-
-TODO
-
 															<a tabindex="-1" id="fmotIdLink">
 																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 															</a>&nbsp;	
