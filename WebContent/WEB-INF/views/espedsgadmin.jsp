@@ -10,6 +10,9 @@
 	
 	<style type = "text/css">
 	.ui-datepicker { font-size:9pt;}
+	
+	.dataTables_wrapper .custMatrixFilter .dataTables_filter{float:left}
+
 	</style>
 
 
