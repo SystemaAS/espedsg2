@@ -63,7 +63,20 @@
 	    			 <table width="100%" border="0" cellspacing="1" cellpadding="1">
 					 	<tr >
 				    	<td class="text11" width="50%" align="left" >&nbsp;&nbsp;</td>
-	      				<td class="text11" width="50%" align="right">
+	      				<td class="text11" width="50%" align="right" valign="middle">
+	      					<c:if test="${ empty user.usrLang || user.usrLang == 'NO'}">
+			               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'DA'}">
+			               		<img src="resources/images/countryFlags/Flag_DK.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'SV'}">
+			               		<img src="resources/images/countryFlags/Flag_SE.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'EN'}">
+			               		<img src="resources/images/countryFlags/Flag_UK.gif" height="12" border="0" alt="country">
+			               	</c:if>
+		      				&nbsp;
 	      					
 	      					<font class="headerMenuGreen">
 			    				<img src="resources/images/appUser.gif" border="0" > 

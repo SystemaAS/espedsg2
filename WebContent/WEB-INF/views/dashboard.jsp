@@ -133,6 +133,7 @@
 								 					<form id="dashForm_Ebooking" method="post" action="/espedsgebook/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
 													
 		 										</td>
@@ -149,6 +150,7 @@
 								 					<form id="dashForm_Tror" method="post" action="/espedsgtror/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
 							 					</td>
 							 					<c:if test="${counterTOMCATAPPS%5==0}">
@@ -176,6 +178,7 @@
 				 									<form id="dashForm_GodsReg" method="post" action="/espedsggodsno/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
@@ -192,6 +195,7 @@
 								 					<form id="dashForm_Efaktura" method="post" action="/espedsgefaktura/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
@@ -218,6 +222,7 @@
 						 							<form id="dashForm_Priskalk" method="post" action="/espedsgpkalk/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
 												</td>
 					 							<c:if test="${counterTOMCATAPPS%5==0}">

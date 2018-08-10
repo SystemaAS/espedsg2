@@ -106,10 +106,24 @@
     			 <table width="100%" border="0" cellspacing="0" cellpadding="0" align="center" >
 				 	<tr >
 			    		<td class="text14" width="50%" align="left" >&nbsp;&nbsp;</td>
-	      				<td class="text14" width="50%" align="right">
+	      				<td class="text14" width="50%" align="right" valign="middle">
+	      					<c:if test="${ empty user.usrLang || user.usrLang == 'NO'}">
+			               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'DA'}">
+			               		<img src="resources/images/countryFlags/Flag_DK.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'SV'}">
+			               		<img src="resources/images/countryFlags/Flag_SE.gif" height="12" border="0" alt="country">
+			               	</c:if>
+			               	<c:if test="${ user.usrLang == 'EN'}">
+			               		<img src="resources/images/countryFlags/Flag_UK.gif" height="12" border="0" alt="country">
+			               	</c:if>
+		      				&nbsp;
+		      				
 	      					<font id="changePwdButton" class="headerMenuGreen">
 		    					<img src="resources/images/bulletGreen.png" width="8px" height="8px" border="0">
-		    					<font class="text14" ><spring:message code="systema.main.maintenance.mainmaintenance.webuser.update"/>&nbsp;<spring:message code="systema.main.maintenance.mainmaintenance.webuser.pwd"/></font>
+		    					<font class="text14" ><spring:message code="dashboard.menu.change.password"/></font>
 		    				</font>
 		    				<font color="#FCFFF0"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
 	      					<font class="headerMenuGreenNoPointer">

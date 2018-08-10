@@ -17,7 +17,7 @@ C315;Komplett AS@http://10.13.3.22:8989/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>
 C400;Nortrail@http://193.69.249.50:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>
 C420;Panalpina - A40@http://gw.systema.no:8585/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>
 C500;Postnord@http://192.108.100.247:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>
-C510;Schenker NO@http://193.182.220.117:8080/espedsg@7.0 / 8.0 / V11
+C510;Schenker NO@http://193.182.220.117:8080/espedsg@7.0 / 8.0 / V12
 C520;Speditøren - A12@http://10.13.3.22:8484/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>
 C530;Systema AS - ASS@http://gw.systema.no:8787/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>
 C600;Toten Trans.@http://cust.toten.as:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>
