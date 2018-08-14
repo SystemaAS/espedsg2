@@ -11,6 +11,7 @@
 	<style type = "text/css">
 	.ui-datepicker { font-size:9pt;}
 	
+	/* this line will align the datatable search field in the left */
 	.dataTables_wrapper .custMatrixFilter .dataTables_filter{float:left}
 
 	</style>

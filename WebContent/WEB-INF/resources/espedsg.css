@@ -727,6 +727,16 @@
 	padding: 4px 7px;
 	outline: 0;
 }
+.inputText12LightYellow{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	background-color: #FFFFF9;
+	padding: 4px 7px;
+	outline: 0;
+}
 .inputText14{
 	border: 1px solid #DDDDDD;
 	-moz-border-radius: 5px;

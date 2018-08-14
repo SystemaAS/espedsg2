@@ -437,13 +437,16 @@
 	jq('#currentOrders').dataTable( {
 	  //"autoWidth":true,	
 	  "jQueryUI": false,
-	  "dom": '<"top"fli>rt<"bottom"p><"clear">',
+	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "350px",
 	  "scrollX":true,
 	  "scrollCollapse": false,
 	  //"autoWidth": false, //for optimization purposes when initializing the table
 	  "lengthMenu": [ 50, 75, 100]
 	} );
+	//css styling
+    jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    
     //event on input field for search
     jq('input.currentOrders_filter').on( 'keyup click', function () {
     		filtersInit();
@@ -452,13 +455,14 @@
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#openOrders').dataTable( {
 	  "jQueryUI": false,
-	  "dom": '<"top"fli>rt<"bottom"p><"clear">',
+	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",
 	  "scrollCollapse": false,
 	  //"autoWidth": false, //for optimization purposes when initializing the table
 	  "lengthMenu": [ 50, 75, 100]
-	  
 	} );
+	//css styling
+    jq('.dataTables_filter input').addClass("inputText12LightYellow");
 	
     //event on input field for search
     jq('input.openOrders_filter').on( 'keyup click', function () {

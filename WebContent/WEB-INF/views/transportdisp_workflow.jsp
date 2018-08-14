@@ -30,6 +30,9 @@
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	/*.main-dialog-class .ui-widget-header{ background-color:#DAC8BA } */
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
+	
+	/* this line will align the datatable search field in the left */
+	.dataTables_wrapper .transpDispWorkflowFilter .dataTables_filter{float:left}
 	</style>
 
 <table width="100%" class="text14" cellspacing="0" border="0" cellpadding="0">
@@ -82,7 +85,7 @@
         		<td>
         		<form name="searchForm" id="searchForm" action="transportdisp_workflow.do?action=doFind" method="post" >
         		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
-	 	        <table style="width:99%;">
+	 	        <table style="width:90%;">
 	 	        <tr>	
 	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;
                 		<img onMouseOver="showPop('dpts_info');" onMouseOut="hidePop('dpts_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
@@ -168,11 +171,12 @@
 				</form>
 				</td>
 			</tr>
-			<tr height="5"><td></td></tr>
 			<%-- -------------------------- --%>
 			<%-- Validation errors on model --%>
 			<%-- -------------------------- --%>
 			<c:if test="${not empty model.errorMessage}">
+				<tr height="2"><td></td></tr>
+			
 				<tr>
 				<td>
 		           	<table class="tabThinBorderWhiteWithSideBorders" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
@@ -185,11 +189,10 @@
 					</tr>
 					</table>
 				</td>
-				</tr>		
+				</tr>	
+				<tr height="5"><td></td></tr>
 			</c:if>
-			<tr height="5"><td></td></tr>
-			
-	            
+
 		</table>		
 	</td>
 	</tr>
@@ -198,7 +201,7 @@
 		<td>
 			<%-- this table wrapper is necessary to apply the css class with the thin border --%>
 			<table style="width:100%;" id="wrapperTable" class="tabThinBorderWhite" cellspacing="1">
-			<tr height="10"><td></td></tr> 
+			<tr height="2"><td></td></tr> 
 			<%-- -------------------- --%>
 			<%-- Datatables component --%>
 			<%-- -------------------- --%>
@@ -210,7 +213,7 @@
 						<img style="vertical-align:bottom;" src="resources/images/redFlag.png" width="16" height="16" border="0" alt="Warning">
 						${model.containerTripList.maxWarning}</td>
 					</tr>
-					<tr height="2"><td></td></tr>
+					<tr height="5"><td></td></tr>
 				</c:if>
 				<tr>
 					<td>
@@ -225,7 +228,7 @@
 						<tr class="tableHeaderField" height="20">
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
-						    <th class="text14"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></th>
+						    <th class="text14" width="2%">&nbsp;</th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
 		                    <th class="text14"><span title="Trip">
 		                    		<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" width="15px" height="15px" border="0" alt="lorry no.">
@@ -235,7 +238,6 @@
                     		<th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
 						    <th class="text14" nowrap><span title="postal code">
-			                    	<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 			                    	<spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/>
 			                    	</span>
 			                </th>
@@ -246,7 +248,6 @@
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
    		            		</th> 
 		                    <th class="text14" nowrap><span title="postal code">
-	                    		<img style="vertical-align: bottom;" src="resources/images/addressIcon.png" width="11px" height="11px" border="0" alt="address">
 	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/>
 	                    		</span>
 		                    </th>
@@ -303,14 +304,14 @@
 			            	     
 				               </c:when>
 				               <c:otherwise>
-				               		&nbsp;${record.tupro}
+				               		<span title="record.turclose is not = close...">&nbsp;${record.tupro}</span>
 				               </c:otherwise>
 				               </c:choose>
 			               </td>
 			               	
-			               <td style="width: 50px;" align="center" nowrap style="cursor:pointer;" class="text14 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
+			               <td width="3%" align="center" nowrap style="cursor:pointer;" class="text14 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
 			               		<div style="line-height: 25px;line-width: 50px;" id="dtuavd${record.tuavd}_dtupro${record.tupro}_onlist${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
-			               		&nbsp;&nbsp;<img title="Edit trip ${record.tupro}" style="vertical-align:middle;cursor:pointer;" src="resources/images/update.gif" border="0" alt="edit">
+			               		&nbsp;<img title="Edit trip ${record.tupro}" style="vertical-align:middle;cursor:pointer;" src="resources/images/update.gif" border="0" alt="edit">&nbsp;
 			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
 			               		</div>
 			               </td>

@@ -17,6 +17,9 @@
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	/*.main-dialog-class .ui-widget-header{ background-color:#DAC8BA } */
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
+	
+	/* this line will align the datatable search field in the left */
+	.dataTables_wrapper .transpDispMainOrderListFilter .dataTables_filter{float:left}
 	</style>
 	
 
@@ -354,7 +357,7 @@
 			        	<td>	
 			        		&nbsp;<font title="opd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
 			        		<%-- release 2 BRING (punkt (17)) and delete the above space with the link --%>
-			        		<a href="javascript:void(0);" onClick="window.open('sporringoppdraggate.do?lang=NO&cw=true','opdWin','top=100px,left=300px,height=900px,width=1200px,scrollbars=no,status=no,location=no')">
+			        		<a href="javascript:void(0);" onClick="window.open('sporringoppdraggate.do?lang=NO&cw=true','opdWin','top=100px,left=200px,height=900px,width=1500px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgOpdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
 		 					</a>
 				        </td>
@@ -458,7 +461,7 @@
 					</tr>
 				</c:if>
 				
-				<tr height="2"><td></td></tr>
+				<tr height="5"><td></td></tr>
 				<tr>
 				<td >
 				<table style="width:100%;" id="openOrders" class="display compact cell-border" cellspacing="0" >

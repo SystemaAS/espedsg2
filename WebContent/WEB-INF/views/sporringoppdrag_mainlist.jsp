@@ -285,7 +285,7 @@
 					<thead>
 					<tr class="tableHeaderField">
 						<c:if test="${not empty cw}">
-							<th width="5%" class="text14">Hente Ordre</th>
+							<th width="5%" class="text14"><spring:message code="systema.sporringoppdrag.mainlist.column.label.chooseOppdr"/></th>
 						</c:if>
 					    <th class="text14">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.column.label.avdOppdr"/>&nbsp;</th>   
 	                    <th class="text14">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.column.label.turNr"/>&nbsp;</th>
@@ -320,7 +320,7 @@
 		               </c:choose>
 		               <c:if test="${not empty cw}">
             		   		<td align="center" id="cw${topic.heavd}_${topic.heopd}" class="text14" style="cursor:pointer;" >
-            		   			<img title="Add" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" height="15" border="0" alt="add">
+            		   			<img title="<spring:message code="systema.sporringoppdrag.mainlist.column.label.chooseOppdr"/>" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" height="15" border="0" alt="add">
             		   		</td>
             		   </c:if>
 		               <td class="text14">
@@ -344,10 +344,11 @@
 	                    </c:if>
 		            </tr> 
 		            </c:forEach>
+		            <%--
 		            <tfoot>
 					<tr class="tableHeaderField">
 						<c:if test="${not empty cw}">
-							<th width="5%" class="text14">Hente Ordre</th>
+							<th width="5%" class="text14">Plukk</th>
 						</c:if>
 					    <th class="text14">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.column.label.avdOppdr"/>&nbsp;</th>   
 	                    <th class="text14">&nbsp;<spring:message code="systema.sporringoppdrag.mainlist.column.label.turNr"/>&nbsp;</th>
@@ -369,6 +370,7 @@
 	                    </c:if>
 	                </tr> 
 	                </tfoot>
+	                 --%>
 		            </tbody>
 	            </table>
 	            </td>
