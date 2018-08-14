@@ -282,7 +282,7 @@ public class TransportDispMainOrderController {
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
-		logger.info("#TotalNrOfLines:" + recordToValidate.getTotalNumberOfLines());
+		
 		
 		String parentTrip = recordToValidate.getHepro();
 		//fallback (usually when validating a create new order scenario
@@ -597,8 +597,6 @@ public class TransportDispMainOrderController {
     				this.populateFraktbrev(appUser, record);
     				//populate archive docs
     				this.populateArchiveDocs(appUser, record);
-    				//adjust record order lines totals
-    				this.adjustOrderLineTotals(request, record);
     				//update order totals on back-end (required)
     				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, record, model);
     				//set domain objects
@@ -1152,30 +1150,7 @@ public class TransportDispMainOrderController {
 		recordToValidate.setWsetak(this.dateTimeManager.adjustUserTimeToHHmm(recordToValidate.getWsetak()));
 		
 	}
-	/**
-	 * 
-	 * @param request
-	 * @param recordToValidate
-	 */
-	private void adjustOrderLineTotals(HttpServletRequest request, JsonTransportDispWorkflowSpecificOrderRecord record){
-		//set some header values
-		String hent = request.getParameter("hent");
-		String hevkt = request.getParameter("hevkt");
-		String hem3 = request.getParameter("hem3");
-		String helm = request.getParameter("helm");
-		String helmla = request.getParameter("helmla");
-		String hepoen = request.getParameter("hepoen");
-		String hestl4 = request.getParameter("hestl4");
-		
-		//lend to
-		record.setHent(hent);
-		record.setHevkt(hevkt);
-		record.setHem3(hem3);
-		record.setHelm(helm);
-		record.setHelmla(helmla);
-		record.setHepoen(hepoen);
-		record.setHestl4(hestl4);
-	}
+	
 	/**
 	 * 
 	 * @param recordToValidate
@@ -1333,15 +1308,32 @@ public class TransportDispMainOrderController {
 		    if(jsonPayload!=null){
 	    		JsonTransportDispWorkflowSpecificOrderFraktbrevContainer container = this.transportDispWorkflowSpecificOrderService.getFraktbrevContainer(jsonPayload);
 				if(container!=null){
+					Integer totHent = 0;
+					Integer totHevkt = 0;
+					Double totHem3 = 0.00;
+					Double totHelm = 0.00;
+					Double totHelmla = 0.00;
+					
 		    		for (JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord: container.getAwblinelist()){
 						fraktbrevList.add(fraktbrevRecord);
+						//calculate TOTALS 
+						totHent = totHent + Integer.parseInt(strMgr.adjustNullStringToIntegerForDbUpdate(fraktbrevRecord.getFvant()));
+						totHevkt = totHevkt + Integer.parseInt(strMgr.adjustNullStringToIntegerForDbUpdate(fraktbrevRecord.getFvvkt()));
+						totHem3 = totHem3 + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvvol()));
+						totHelm = totHelm + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm()));
+						totHelmla = totHelmla + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm2()));
 					}
-					//Ensures that the array ALWAYS shows the required 4 lines (with value or empty)
-		    		this.populateEmptyFraktbrevList(fraktbrevList);
+		    		//set TOTALS
+		    		orderRecord.setHent(String.valueOf(totHent));
+		    		orderRecord.setHevkt(String.valueOf(totHevkt));
+		    		orderRecord.setHem3(String.valueOf(totHem3));
+		    		orderRecord.setHelm(String.valueOf(totHelm));
+		    		orderRecord.setHelmla(String.valueOf(totHelmla));
+		    		
+					
 				}
 	    	}
-    	}else{
-    		this.populateEmptyFraktbrevList(fraktbrevList);
+    	
     	}
     	logger.info(Calendar.getInstance().getTime() + " CGI-stop timestamp");
     	

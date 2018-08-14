@@ -2039,17 +2039,20 @@
 	  var id = element.id;
 	  var record = id.split('_');
 	  var counter = record[1]; 
-	  var r = confirm("Are you sure you want to remove this order line?");
+	  var r = confirm("Are you sure you want to remove this order line?"+ counter);
 	  if (r == true){
-		  updateOrderLineTotalsBeforeDelete(counter);
+		  //updateOrderLineTotalsBeforeDelete(counter);
 		  var params = "heavd=" + jq('#heavd').val() + "&heopd=" + jq('#heopd').val() + 
-						"&lin=" + jq('#fvlinr_' + counter).val() + "&hent=" + jq('#hent').val() + "&hevkt=" + jq('#hevkt').val() + 
-						"&hem3=" + jq('#hem3').val() + "&helm=" + jq('#helm').val() + "&helmla=" + jq('#helmla').val() + "&hepoen=" + jq('#hepoen').val();
+						"&lin=" + counter + "&hent=" + jq('#hent').val() + "&hevkt=" + jq('#hevkt').val() + 
+						"&hem3=" + jq('#hem3').val() + "&helm=" + jq('#helm').val() + "&helmla=" + jq('#helmla').val();
+		  				/*+ "&hepoen=" + jq('#hepoen').val();
 		  				//append the protect checkbox value (if applicable)
 						if(jq('#hestl4').prop('checked')){ params += "&hestl4=" + jq('#hestl4').val();}
-						else{ params += "&hestl4="; }
+						else{ params += "&hestl4="; } */
+						
 						//shoot now to the controller!
-						window.location = "transportdisp_mainorder_delete_order_line.do?" + params;
+		  				//console.log(params);
+		  				window.location = "transportdisp_mainorder_delete_order_line.do?" + params;
 	  }else{
 		  //nothing
 	  }
@@ -2702,10 +2705,22 @@
   //INIT elements at a global level
   //--------------------------------
   jq(document).ready(function() {
-	    
-    //init economy-matrix draggable poput 
+	  //init economy-matrix draggable poput 
 	  showDialogFileUploadDraggable();
-	    
+	  
+	  //Init item lines table
+	  jq('#tblItemLines').dataTable( {
+		  //"autoWidth":true,	
+		  "jQueryUI": false,
+		  "dom": '<"top">t<"bottom"><"clear">',
+		  "scrollY":    "130px",
+  		  "scrollCollapse":  true
+		  //"scrollCollapse": false,
+		  //"autoWidth": false, //for optimization purposes when initializing the table
+		  //"lengthMenu": [ 50, 75, 100]
+	  });
+			
+	  
   });
   
 //draggable window
