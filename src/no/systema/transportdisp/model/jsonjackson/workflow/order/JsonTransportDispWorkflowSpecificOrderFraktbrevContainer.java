@@ -54,6 +54,11 @@ public class JsonTransportDispWorkflowSpecificOrderFraktbrevContainer {
 	private Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> awblineValidate;
 	public void setAwblineValidate(Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> value){ this.awblineValidate = value; }
 	public Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> getAwblineValidate(){ return awblineValidate; }
+	
+	private Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> awblineGet;
+	public void setAwblineGet(Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> value){ this.awblineGet = value; }
+	public Collection<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> getAwblineGet(){ return awblineGet; }
+	
 	//used in validation (awblineValidate)
 	private String fvlinr = null;
 	public void setFvlinr(String value) {  this.fvlinr = value; }

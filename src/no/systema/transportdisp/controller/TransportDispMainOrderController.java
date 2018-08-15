@@ -527,6 +527,7 @@ public class TransportDispMainOrderController {
 	@RequestMapping(value="transportdisp_mainorder_delete_order_line.do",  method={RequestMethod.GET} )
 	public ModelAndView doDeleteOrderLine(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		this.context = TdsAppContext.getApplicationContext();
+		logger.info("Inside delete orde line...");
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
@@ -1281,6 +1282,12 @@ public class TransportDispMainOrderController {
 	 * @param record
 	 */
 	private void populateFraktbrev(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord orderRecord){
+		Integer totHent = 0;
+		Integer totHevkt = 0;
+		Double totHem3 = 0.00;
+		Double totHelm = 0.00;
+		Double totHelmla = 0.00;
+		
 		//---------------------------
 		//get BASE URL = RPG-PROGRAM
         //---------------------------
@@ -1291,7 +1298,7 @@ public class TransportDispMainOrderController {
 		urlRequestParamsKeys.append("&avd=" + orderRecord.getHeavd());
 		urlRequestParamsKeys.append("&opd=" + orderRecord.getHeopd());
 		urlRequestParamsKeys.append("&fbn=1");
-		
+		logger.info("populating fraktbrev records...");
 		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
     	List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> fraktbrevList = new ArrayList<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
 	    
@@ -1308,11 +1315,6 @@ public class TransportDispMainOrderController {
 		    if(jsonPayload!=null){
 	    		JsonTransportDispWorkflowSpecificOrderFraktbrevContainer container = this.transportDispWorkflowSpecificOrderService.getFraktbrevContainer(jsonPayload);
 				if(container!=null){
-					Integer totHent = 0;
-					Integer totHevkt = 0;
-					Double totHem3 = 0.00;
-					Double totHelm = 0.00;
-					Double totHelmla = 0.00;
 					
 		    		for (JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord: container.getAwblinelist()){
 						fraktbrevList.add(fraktbrevRecord);
@@ -1329,8 +1331,6 @@ public class TransportDispMainOrderController {
 		    		orderRecord.setHem3(String.valueOf(totHem3));
 		    		orderRecord.setHelm(String.valueOf(totHelm));
 		    		orderRecord.setHelmla(String.valueOf(totHelmla));
-		    		
-					
 				}
 	    	}
     	

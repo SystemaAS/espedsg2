@@ -129,6 +129,46 @@
   		window.open('transportdisp_workflow_frisokvei.do?avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val() + "&tur=" + jq('#tripNr').val(), 'frisokveiWin','top=120px,left=100px,height=600px,width=900px,scrollbars=no,status=no,location=no');
   	});
   });
+  
+  
+  
+  //fetch specific fraktbrev line
+  jq(function() {
+	  
+	  jq('#tblItemLines').on('click', 'td', function(){
+		      var id = this.id;
+			  var record = id.split('@');
+			  var lin = record[0];
+			  var fbn = record[1];
+			  lin = lin.replace("lin_","");
+			  fbn = fbn.replace("fbn_","");
+			  //DEBUG --> 
+			  //alert("avd:" + avd + "trip:" + trip + "appUser:" + jq('#applicationUser').val());
+			  jq.ajax({
+			  	  type: 'GET',
+			  	  url: 'fetchFraktbrevLine_TransportDisp.do',
+			  	  data: { applicationUser : jq('#applicationUser').val(), 
+			  		  	  requestString : "&avd=" +  jq('#wsavd').val() + "&opd=" +  jq('#wsopd').val() + "&fbn=" +  fbn + "&lin=" +  lin },
+			  	  dataType: 'json',
+			  	  cache: false,
+			  	  contentType: 'application/json',
+			  	  success: function(data) {
+			  		var len = data.length;
+			  		for ( var i = 0; i < len; i++) {
+			  			jq('#fvlinr').text(data[i].fvlinr);
+			  			jq('#fvvt').val(data[i].fvvt);
+			  			
+			  		}
+			  	  },
+			  	  error: function() {
+			  	    alert('Error loading ... tblItemLines onClick');
+			  	  }
+			  });
+	  });
+	  
+  });
+			  		
+  
   //-------------------------------------------------------------
   //START Detect Form changes on input fields (including selects)
   //this function will detect if any changes in the input fields

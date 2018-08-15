@@ -229,6 +229,45 @@ public class TransportDispAjaxHandlerController {
 		 return result;
 	}
 	
+	/**
+	 * 
+	 * @param applicationUser
+	 * @param requestString
+	 * @return
+	 */
+	@RequestMapping(value = "fetchFraktbrevLine_TransportDisp.do", method = RequestMethod.GET)
+    public @ResponseBody Set<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> fetchFraktbrevLine
+	  						(@RequestParam String applicationUser, @RequestParam String requestString){
+		 logger.info("Inside: fetchFraktbrevLine");
+		 RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
+		 
+		 Set<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> result = new HashSet<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
+		 //logger.info(requestString);
+		 if(requestString!=null && !"".equals(requestString)){
+		 	 final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_LINE_MAIN_ORDER_FRAKTBREV_URL;
+			 //add URL-parameters
+			 String urlRequestParams = "user=" + applicationUser + requestString;
+			 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+			 logger.info("URL: " + BASE_URL);
+			 logger.info("URL PARAMS: " + urlRequestParams);
+			 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
+			 
+			 JsonTransportDispWorkflowSpecificOrderFraktbrevRecord placeHolderObj = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
+			 JsonTransportDispWorkflowSpecificOrderFraktbrevContainer container = this.transportDispWorkflowSpecificOrderService.getFraktbrevContainer(jsonPayload);	
+			 //Debug --> 
+			 logger.info(jsonPayload);
+			 //we must evaluate a return RPG code in order to know if the Update was OK or not
+			 if(container!=null){
+				 for(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord rec : container.getAwblineGet()){
+					 placeHolderObj = rec;
+				 }
+				 logger.info("Linjenr: " + placeHolderObj.getFvlinr());
+			 }
+			 result.add(placeHolderObj);
+		 }
+		 return result;
+	}
+	
 	
 	/**
 	 * Creates a new line in the specific Order

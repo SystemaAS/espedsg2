@@ -1768,6 +1768,7 @@
 								<table id="tblItemLines" class="display compact cell-border" >
 						 		<thead>
 						 		<tr class="tableHeaderField" >
+						 			<th width="2%" align="left" valign="bottom" class="text14">&nbsp;</th>
 							 		<th width="2%" align="left" valign="bottom" class="text14"><span title="fvlinr">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.linenr"/></span></th>
 							 		<th width="5%" align="left" valign="bottom" class="text14"><span title="fmmrk1/hegm1(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.marks"/></span></th>
 						 			<th width="5%" align="right" valign="bottom" class="text14"><span title="fvant/hent(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.antal"/>&nbsp;</span></th>
@@ -1801,6 +1802,9 @@
 							 		<input type="hidden" name="fvlinr_${counter.count}" id="fvlinr_${counter.count}" value="${fraktbrevRecord.fvlinr}" >
 							 		
 							 		<tr class="tableRow" >
+							 			<td title="Endre" width="2%" align="center" class="tableCell" style="cursor:pointer;" id="lin_${fraktbrevRecord.fvlinr}@fbn_${fraktbrevRecord.fvfbnr}@counter_${counter.count}">
+							 				<img style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="edit">
+							 			</td>
 							 			<td width="2%" align="center" class="tableCell" >${counter.count}</td>
 					               		<td width="5%" align="left" class="tableCell" >${fraktbrevRecord.fmmrk1}</td>
 						 				<td width="5%" align="right" class="tableCell" >${fraktbrevRecord.fvant}</td>
@@ -1839,7 +1843,7 @@
 					 			<tfoot >
 					 				
 					 				<tr class="tableHeaderField">	
-									
+									<td width="2%" align="left" class="text14">&nbsp;</td>
 									<td width="2%" align="left" class="text14">
 										<%--this hidden field is crucial for ADD NEW line functionality. We will send the new line = upperCurrentItemlineNr + 1 --%>
 										<input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}">
@@ -1903,7 +1907,8 @@
 								<td colspan="2" style="padding: 3px;">
 									<table width="100%" border="0" style="background-color:#778899">
 									<tr class="tableHeaderField" >	
-							 			<td align="center" valign="bottom" class="tableHeaderFieldFirst"><span title="fmmrk1">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.marks"/></span></td>
+										<td align="center" valign="bottom" class="tableHeaderFieldFirst"><span title="fvlinr"><spring:message code="systema.transportdisp.orders.form.detail.update.label.linenr"/></span></td>
+							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fmmrk1">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.marks"/></span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvant/hent(Tot)">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.antal"/>&nbsp;</span></td>
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvpakn">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.forpak"/></span></td>
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvvt">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.goodsDesc"/></span></td>
@@ -1922,7 +1927,8 @@
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
 							 			
 							 		</tr>
-							 		<tr >	
+							 		<tr >
+							 			<td align="center" class="text14"><label style="color:yellow; font-weight:bold" id="fvlinr" name="fvlinr"></label></td>	
 							 			<td align="center" class="text14" nowrap>
 						 					<input type="text" class="inputTextMediumBlue" name="fmmrk1" id="fmmrk1" size="10" maxlength="35" value="">
 						 				</td>
