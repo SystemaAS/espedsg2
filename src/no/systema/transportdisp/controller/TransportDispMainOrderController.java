@@ -444,51 +444,54 @@ public class TransportDispMainOrderController {
 				    			//Validation [3] Back-end-Order line
 				    			//------------------------------------------------
 					    		
-					    			
-					    			//Validate order line in BACK-END only with line-update
-					    			if(recordToValidate.getFraktbrevRecord()!=null && strMgr.isNotNull(recordToValidate.getFraktbrevRecord().getFvlinr()) ){
-						    			//[3.1] Execute back end validation for order lines (now that the order has been created)
-							    		this.specificOrderValidatorBackend.validateOrderLine(appUser, recordToValidate);
+					    		//Validate order line in BACK-END only with line-update
+				    			if(recordToValidate.getFraktbrevRecord()!=null && strMgr.isNotNull(recordToValidate.getFraktbrevRecord().getFvlinr()) ){
+					    			//[3.1] Execute back end validation for order lines (now that the order has been created)
+						    		this.specificOrderValidatorBackend.validateOrderLine(appUser, recordToValidate);
+						    		
+						    		//update with the return values of the back-end (if any). 
+					    			//OBSOLETE ? this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(recordToValidate, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
+					    			//OBSOLETE ? recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
+					    			if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
+						    			
+						    			validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
+							    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
+							    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
+							    		//logger.info(" size:" + validationOutputContainer.getErrMsgListFromValidationBackend().size());
+							    		model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
+							    		//restore percentage GUI-formatted
+							    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
 							    		
-							    		//update with the return values of the back-end (if any). 
-						    			//OBSOLETE ? this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(recordToValidate, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
-						    			//OBSOLETE ? recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
-						    			if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
-							    			
-							    			validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
-								    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
-								    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
-								    		//logger.info(" size:" + validationOutputContainer.getErrMsgListFromValidationBackend().size());
-								    		model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
-								    		//restore percentage GUI-formatted
-								    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
-								    		
-								    		//populate children
-											this.populateChildren(appUser, recordToValidate);
-											
-								    		//set domain objects
-								    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
-											returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
-											
-											return returnView;
-							    			 
-						    			}else{
-						    				logger.info("[START]: processOrderLine (Update)...");
-						    				//Update the order lines
-							    			//OBSOLETE this.processOrderLines(recordToValidate, appUser);
-						    				this.processOrderLine(request, recordToValidate, appUser);
-							    			//postUpdate events on back-end
-							    			this.processPostUpdateEvents(recordToValidate, appUser);
-							    			logger.info("[END]: processOrderLine (Update)");
-						    			}
+							    		//populate children
+										this.populateChildren(appUser, recordToValidate);
+										
+							    		//set domain objects
+							    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
+										returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+										
+										return returnView;
+						    			 
 					    			}else{
-					    				logger.info("[START]: processOrderLine (Create new)...");
-					    				//process the order line
-						    			this.processOrderLine(request, recordToValidate, appUser);
+					    				logger.info("[START]: processOrderLine (Update)...");
+					    				//Update the order lines
+						    			//OBSOLETE this.processOrderLines(recordToValidate, appUser);
+					    				this.processOrderLine(request, recordToValidate, appUser);
+					    				logger.info("[END]: processOrderLine (Update)");
 						    			//postUpdate events on back-end
 						    			this.processPostUpdateEvents(recordToValidate, appUser);
-						    			logger.info("[END]: processOrderLine (Create new)");
+						    			
 					    			}
+				    			}else{
+				    				
+				    				if(recordToValidate.getFraktbrevRecord()!=null){
+				    					logger.info("[START]: processOrderLine (Create new)...");
+					    				this.processOrderLine(request, recordToValidate, appUser);
+				    					logger.info("[END]: processOrderLine (Create new)");
+				    				}
+					    			//postUpdate events on back-end
+					    			this.processPostUpdateEvents(recordToValidate, appUser);
+					    			
+				    			}
 				    		}	
 			    		}
 		    		}
@@ -561,8 +564,6 @@ public class TransportDispMainOrderController {
 		
 		if(strMgr.isNotNull(ant) && strMgr.isNotNull(vkt) && strMgr.isNotNull(desc) ){
 			retval = true;
-		}else{
-			
 		}
 		return retval;
 	}
