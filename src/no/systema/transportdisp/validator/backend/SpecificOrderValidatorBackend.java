@@ -15,7 +15,7 @@ import org.apache.log4j.Logger;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.JsonDebugger;
-
+import no.systema.main.util.StringManager;
 //import no.systema.tvinn.sad.model.external.url.UrlTvinnSadTolltariffenObject;
 import no.systema.transportdisp.mapper.url.request.UrlRequestParameterMapper;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevContainer;
@@ -47,7 +47,7 @@ public class SpecificOrderValidatorBackend {
 	private UrlCgiProxyService urlCgiProxyService;
 	private TransportDispWorkflowSpecificOrderService transportDispWorkflowSpecificOrderService;
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
-	
+	private StringManager strMgr = new StringManager();
 	
 	
 	//required constructor
@@ -285,6 +285,72 @@ public class SpecificOrderValidatorBackend {
 		this.validationOutputContainer.setInfoMsgListFromValidationBackend(this.validationOutputInfoMsgList);
 		
 	}
+	
+	/**
+	 * 
+	 * @param appUser
+	 * @param recordToValidate
+	 * @param fraktbrevRecord
+	 * @param request
+	 */
+	public void  validateOrderLine(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate){
+		String RECORD_SEPARATOR_CHARACTER_RAW = "§";
+		String RECORD_SEPARATOR_CHARACTER_REPLACE = " ; ";
+		
+		logger.info("Inside:validateOrderLine");
+
+			//only valid fields (check requirements)
+			if(this.validMandatoryFieldsFraktbrev(recordToValidate.getFraktbrevRecord())){
+				 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_VALIDATE_LINE_MAIN_ORDER_FRAKTBREV_URL;
+				 //add URL-parameters
+				 StringBuffer urlRequestParamsKeys = new StringBuffer();
+				 urlRequestParamsKeys.append("user=" + appUser.getUser());
+				 urlRequestParamsKeys.append("&avd=" + recordToValidate.getHeavd());
+				 urlRequestParamsKeys.append("&opd=" + recordToValidate.getHeopd());
+				 String urlRequestParamsOrderLine = this.getFvUrlRequestParams(recordToValidate.getFraktbrevRecord());
+				 String urlRequestParams = urlRequestParamsKeys.toString() + urlRequestParamsOrderLine;
+				 
+				 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+				 logger.info("URL: " + BASE_URL);
+				 logger.info("URL PARAMS: " + urlRequestParams);
+				 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
+				 
+				 if(jsonPayload!=null){ 
+					JsonTransportDispWorkflowSpecificOrderFraktbrevContainer fraktbrevContainer = this.transportDispWorkflowSpecificOrderService.getFraktbrevContainer(jsonPayload);
+					
+					if(fraktbrevContainer!=null){
+						if(fraktbrevContainer.getAwblineValidate()!=null){
+							for (JsonTransportDispWorkflowSpecificOrderFraktbrevRecord record : fraktbrevContainer.getAwblineValidate()){
+								logger.info("ORDER LINE output [fvlinr]:" + record.getFvlinr());
+								logger.info("ORDER LINE output [fvlm]:" + record.getFvlm());
+								//record.setFvlinr(lineNr);
+								this.validationOutputOderLinesList.add(record);
+							}
+						}
+						
+						if( !"".equals(fraktbrevContainer.getErrMsg()) && fraktbrevContainer.getErrMsg()!=null){
+							//Debug
+							logger.info("[ERROR] order line:" + fraktbrevContainer.getErrMsg());
+							String linjePrefix = "";
+							if(!fraktbrevContainer.getErrMsg().contains("Lin.")){ linjePrefix = "Linjenr [" + recordToValidate.getFraktbrevRecord().getFvlinr() +"] "; }
+							this.validationOutputErrMsgList.add(linjePrefix + fraktbrevContainer.getErrMsg().replaceAll(RECORD_SEPARATOR_CHARACTER_RAW, RECORD_SEPARATOR_CHARACTER_REPLACE));
+						}
+						if( !"".equals(fraktbrevContainer.getInfoMsg()) && fraktbrevContainer.getInfoMsg()!=null){
+							logger.info("[INFO] order line:" + fraktbrevContainer.getInfoMsg());
+							String linjePrefix = "";
+							if(!fraktbrevContainer.getInfoMsg().contains("Lin.")){ linjePrefix = "Linjenr [" + recordToValidate.getFraktbrevRecord().getFvlinr() +"] "; }
+							this.validationOutputInfoMsgList.add(linjePrefix + fraktbrevContainer.getInfoMsg().replaceAll(RECORD_SEPARATOR_CHARACTER_RAW, RECORD_SEPARATOR_CHARACTER_REPLACE));
+						}
+					}else{
+						logger.info("[ERROR FATAL***] < order line container == NULL after return on AS400 service call ... ?>");
+					}
+				 }
+			}
+		//
+		this.validationOutputContainer.setErrMsgListFromValidationBackend(this.validationOutputErrMsgList);
+		this.validationOutputContainer.setInfoMsgListFromValidationBackend(this.validationOutputInfoMsgList);
+		
+	}
 	/**
 	 * 
 	 * @param request
@@ -303,6 +369,25 @@ public class SpecificOrderValidatorBackend {
 			
 			retval = true;
 			
+		}
+		return retval;
+	}
+	
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private boolean validMandatoryFieldsFraktbrev(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord record){
+		boolean retval = false;
+		
+		if(record!=null){
+			//only validate existent records(MODE=U) and not a new line (MODE=A)
+			if(strMgr.isNotNull(record.getFvlinr()) ){
+				if( strMgr.isNotNull(record.getFvant())  && strMgr.isNotNull(record.getFvvkt()) && strMgr.isNotNull(record.getFvvt()) ){
+					retval = true;
+				}
+			}
 		}
 		return retval;
 	}
@@ -343,6 +428,38 @@ public class SpecificOrderValidatorBackend {
 		fraktbrevRecord.setFfantk(request.getParameter("ffantk_" + counter));
 		fraktbrevRecord.setFfante(request.getParameter("ffante_" + counter));
 		fraktbrevRecord.setFfenh(request.getParameter("ffenh_" + counter));
+		
+		urlRequestParams.append("&fvlinr=" + fraktbrevRecord.getFvlinr());
+		urlRequestParams.append("&fmmrk1=" + fraktbrevRecord.getFmmrk1());
+		urlRequestParams.append("&fvant=" + fraktbrevRecord.getFvant());
+		urlRequestParams.append("&fvpakn=" + fraktbrevRecord.getFvpakn());
+		urlRequestParams.append("&fvvt=" + fraktbrevRecord.getFvvt());
+		urlRequestParams.append("&fvvkt=" + fraktbrevRecord.getFvvkt());
+		urlRequestParams.append("&fvvol=" + fraktbrevRecord.getFvvol());
+		urlRequestParams.append("&fvlm=" + fraktbrevRecord.getFvlm());
+		urlRequestParams.append("&fvlm2=" + fraktbrevRecord.getFvlm2());
+		urlRequestParams.append("&fvlen=" + fraktbrevRecord.getFvlen());
+		urlRequestParams.append("&fvbrd=" + fraktbrevRecord.getFvbrd());
+		urlRequestParams.append("&fvhoy=" + fraktbrevRecord.getFvhoy());
+		//farlig goods
+		urlRequestParams.append("&ffunnr=" + fraktbrevRecord.getFfunnr());
+		urlRequestParams.append("&ffembg=" + fraktbrevRecord.getFfembg());
+		urlRequestParams.append("&ffindx=" + fraktbrevRecord.getFfindx());
+		
+		urlRequestParams.append("&ffantk=" + fraktbrevRecord.getFfantk());
+		urlRequestParams.append("&ffante=" + fraktbrevRecord.getFfante());
+		urlRequestParams.append("&ffenh=" + fraktbrevRecord.getFfenh());
+		
+		return urlRequestParams.toString();
+	}
+	
+	/**
+	 * 
+	 * @param fraktbrevRecord
+	 * @return
+	 */
+	private String getFvUrlRequestParams(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord){
+		StringBuffer urlRequestParams = new StringBuffer();
 		
 		urlRequestParams.append("&fvlinr=" + fraktbrevRecord.getFvlinr());
 		urlRequestParams.append("&fmmrk1=" + fraktbrevRecord.getFmmrk1());

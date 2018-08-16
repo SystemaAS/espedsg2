@@ -487,7 +487,19 @@ END override jQuery elements
 }
 
 .inputFormSubmitStd{
-	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px 7px;
+	font-size: 14px;
+	cursor:pointer;
+ }
+ .inputFormSubmitStd11{
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	padding: 4px 7px;
+	font-size: 11px;
 	cursor:pointer;
  }
 .inputFormSubmit{
@@ -697,6 +709,26 @@ END override jQuery elements
 	padding: 4px 7px;
 	outline: 0;
 }
+.inputText12LightYellow{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	background-color: #FFFFF9;
+	padding: 4px 7px;
+	outline: 0;
+}
+.inputText14{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	padding: 4px 7px;
+	outline: 0;
+}
+
 .inputText16{
 	border: 1px solid #DDDDDD;
 	-moz-border-radius: 5px;

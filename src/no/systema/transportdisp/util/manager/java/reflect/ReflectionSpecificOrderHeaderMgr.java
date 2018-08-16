@@ -162,6 +162,61 @@ public class ReflectionSpecificOrderHeaderMgr {
 			logger.info(errors);
 		}
 	}
+	
+	public void updateOriginalAttributesOnTargetFraktbrevLine(JsonTransportDispWorkflowSpecificOrderRecord targetRecord, List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> sourceList){
+		List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> targetList = new ArrayList<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
+		if(targetRecord!=null){ 
+			targetList = targetRecord.getFraktbrevList(); 
+			//init
+			this.targetFraktbrevListUpdated = new ArrayList<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
+		}
+		//logger.info("*****SOURCE LIST:" + sourceList);
+		try{
+			Class<?> sourceRecordClazz = null;
+			Method  theMethod = null;
+			Class<?> returnType = null;
+			//A convertion from List to map must be done in order not to iterate a list within another list... could risk double iterations...
+			Map<String, JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>mapSourceList = new HashMap();
+			this.convertSourceListToMap(mapSourceList, sourceList);
+			//Now iterate through target record and update if needed
+			for(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord record : targetList){
+				String fvlinrId = record.getFvlinr();
+				JsonTransportDispWorkflowSpecificOrderFraktbrevRecord sourceRecord = (JsonTransportDispWorkflowSpecificOrderFraktbrevRecord)mapSourceList.get(fvlinrId);
+				if(sourceRecord!=null){
+					if(sourceRecord.getFvlinr().equals(record.getFvlinr())){
+						sourceRecordClazz = sourceRecord.getClass();
+						theMethod = null;
+						returnType = null;
+						for(Method method : sourceRecordClazz.getDeclaredMethods()){
+							//only getters
+							String getter = method.getName();
+							if(getter.startsWith("get")){
+								theMethod= sourceRecordClazz.getDeclaredMethod(method.getName());
+								returnType = theMethod.getReturnType();
+								if(returnType.equals(String.class)){
+									String value = (String)theMethod.invoke(sourceRecord);
+									//we are interested of those that are not null
+									if(value!=null && !"".equals(value)){
+										logger.info(jsonDebugger.debugJsonPayloadWithLog4J(method.getName() + " Value:" + value));
+										//System.out.println(method.getName() + " Value:" + value);
+										String setter = getter.replace("get", "set");
+										//now update target record
+										this.updateTargetRecordProperty(record, setter, value);
+									}
+								}
+							}
+						}
+					}
+				}
+				
+				this.targetFraktbrevListUpdated.add(record);
+			}
+		}catch(Exception e){
+			StringWriter errors = new StringWriter();
+			e.printStackTrace(new PrintWriter(errors));
+			logger.info(errors);
+		}
+	}
 	/**
 	 * 
 	 * @param sourceListMap

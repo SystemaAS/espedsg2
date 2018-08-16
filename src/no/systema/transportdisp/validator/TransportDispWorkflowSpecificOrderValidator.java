@@ -219,47 +219,53 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 				
 				
 				//Check that at least one order line exists
+				/*
 				if(record.getFraktbrevList()!=null && record.getFraktbrevList().size()<1){
 					logger.info("fraktbrevList=null ?");
 					errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.zero.orderlines.invalid");
 				}else{
-					boolean atLeastOneLineExists = false;
-					//iterate and check that at least one line has mandatory fields (least required fields)
-					for ( JsonTransportDispWorkflowSpecificOrderFraktbrevRecord lineRecord : record.getFraktbrevList()){
-						//DEBUG logger.info("AAAAAA:" + lineRecord.getFvlinr());
-						if(lineRecord.getFvlinr()!=null && !"".equals(lineRecord.getFvlinr())){
-							atLeastOneLineExists = true;
-							if(!this.isValidOrderLine(lineRecord)){
-								//DEBUG logger.info("BBBBBB:" + lineRecord.getFvlinr());
-								errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
-								break;
-							}
-							
-						}else{
-							if( (lineRecord.getFvant()!=null && lineRecord.getFvant()!="") && 
-								(lineRecord.getFvvt()!=null && lineRecord.getFvvt()!="")&& 
-								(lineRecord.getFvvkt()!=null && lineRecord.getFvvkt()!="") ) {
-									//DEBUG logger.info("ZZZZZZ:" + lineRecord.getFvlinr());
-									atLeastOneLineExists = true;
-									break;
-							}else{
+					
+					if(record!=null && record.getFraktbrevList()!=null ){
+						boolean atLeastOneLineExists = false;
+						//iterate and check that at least one line has mandatory fields (least required fields)
+						for ( JsonTransportDispWorkflowSpecificOrderFraktbrevRecord lineRecord : record.getFraktbrevList()){
+							//DEBUG logger.info("AAAAAA:" + lineRecord.getFvlinr());
+							if(lineRecord.getFvlinr()!=null && !"".equals(lineRecord.getFvlinr())){
+								atLeastOneLineExists = true;
 								if(!this.isValidOrderLine(lineRecord)){
-									//DEBUG logger.info("CCCCCCC:" + lineRecord.getFvlinr());
+									//DEBUG logger.info("BBBBBB:" + lineRecord.getFvlinr());
 									errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
 									break;
 								}
+								
+							}else{
+								if( (lineRecord.getFvant()!=null && lineRecord.getFvant()!="") && 
+									(lineRecord.getFvvt()!=null && lineRecord.getFvvt()!="")&& 
+									(lineRecord.getFvvkt()!=null && lineRecord.getFvvkt()!="") ) {
+										//DEBUG logger.info("ZZZZZZ:" + lineRecord.getFvlinr());
+										atLeastOneLineExists = true;
+										break;
+								}else{
+									if(!this.isValidOrderLine(lineRecord)){
+										//DEBUG logger.info("CCCCCCC:" + lineRecord.getFvlinr());
+										errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
+										break;
+									}
+								}
 							}
 						}
-					}
-					if(!atLeastOneLineExists){ 
-						logger.info("atLeastOneLineExists=false ?");
-						errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.zero.orderlines.invalid"); 
+						if(!atLeastOneLineExists){ 
+							logger.info("atLeastOneLineExists=false ?");
+							errors.rejectValue("heopd", "systema.transportdisp.orders.form.error.rule.zero.orderlines.invalid"); 
+						}	
 					}
 				}
+				
+				*/
 				//TOTALS
-				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hent", "systema.transportdisp.orders.form.error.null.colli.hent");
-				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevs1", "systema.transportdisp.orders.form.error.null.goodsdescription.hevs1");
-				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevkt", "systema.transportdisp.orders.form.error.null.weight.hevkt");
+				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hent", "systema.transportdisp.orders.form.error.null.colli.hent");
+				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevs1", "systema.transportdisp.orders.form.error.null.goodsdescription.hevs1");
+				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevkt", "systema.transportdisp.orders.form.error.null.weight.hevkt");
 				
 				//DUP validation
 				if(strMgr.isNotNull(record.getHelks()) &&  strMgr.isNotNull(record.getHesdff()) ){

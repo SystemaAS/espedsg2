@@ -282,7 +282,12 @@ public class TransportDispMainOrderController {
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
+		logger.info("updateLinNr:" + request.getParameter("updateLinNr"));
 		
+		//populate the order line in order to be able to handle all errors and present the order line values
+		if(this.fraktbrevLineExists(request)){
+			this.setFraktbrevRecord(request, recordToValidate);
+		}
 		
 		String parentTrip = recordToValidate.getHepro();
 		//fallback (usually when validating a create new order scenario
@@ -316,7 +321,8 @@ public class TransportDispMainOrderController {
 			//adjust percentage
 			recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToBackEndOnSpecificOrder(recordToValidate.getHevalp()));
 			//populate all order lines with end-user input in order to validate that at least one line exists.
-			this.populateOrderLineRecordsWithUserInput(request, recordToValidate);
+			//OBSOLETE this.populateOrderLineRecordsWithUserInput(request, recordToValidate);
+			
 			//validate
 			validator.validate(recordToValidate, bindingResult);
 		    
@@ -328,6 +334,10 @@ public class TransportDispMainOrderController {
 	    		//restore percentage GUI-formatted
 	    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
 	    		logger.info("FFAVD:" + recordToValidate.getFfavd());
+	    		
+	    		//populate children
+				this.populateChildren(appUser, recordToValidate);
+				
 	    		//set domain objects
 	    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 				returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
@@ -356,6 +366,10 @@ public class TransportDispMainOrderController {
 		    		//restore percentage GUI-formatted
 		    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
 				
+		    		//populate children
+					this.populateChildren(appUser, recordToValidate);
+					
+					
 		    		//set domain objects
 		    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 					returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
@@ -375,6 +389,9 @@ public class TransportDispMainOrderController {
 			    		//restore percentage GUI-formatted
 			    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
 					
+			    		//populate children
+						this.populateChildren(appUser, recordToValidate);
+						
 			    		//set domain objects
 			    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 						returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
@@ -421,39 +438,57 @@ public class TransportDispMainOrderController {
 					    	}else{
 					    		//Update successfully done!
 					    		logger.info("[INFO] Record successfully updated, OK ");
-					    		//Update the message notes (2 steps: 1.Delete the original ones, 2.Create the new ones)
-					    		this.processNewMessageNotes(recordToValidate, appUser);
 					    		
 					    		//-------------------------------------------------------
-					    		//START ITEM LINES UPDATE
-				    			//Validation [3] Back-end-Order lines
+					    		//START ITEM LINE UPDATE
+				    			//Validation [3] Back-end-Order line
 				    			//------------------------------------------------
-				    			//Validate order lines
-				    			//[3.1] Execute back end validation for order lines (now that the order has been created)
-					    		this.specificOrderValidatorBackend.validateOrderLines(appUser, recordToValidate, request);
-					    		//update with the return values of the back-end (if any). 
-				    			this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(recordToValidate, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
-				    			recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
-				    			if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
-						    		validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
-						    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
-						    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
-						    		//logger.info(" size:" + validationOutputContainer.getErrMsgListFromValidationBackend().size());
-						    		model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
-						    		//restore percentage GUI-formatted
-						    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
-						    		//set domain objects
-						    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
-									returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
-									return returnView;
-				    			}else{
-				    				logger.info("[START]: processOrderLines...");
-				    				//Update the order lines
-					    			this.processOrderLines(recordToValidate, appUser);
-					    			//postUpdate events on back-end
-					    			this.processPostUpdateEvents(recordToValidate, appUser);
-					    			logger.info("[END]: processOrderLines");
-				    			}
+					    		
+					    			
+					    			//Validate order line in BACK-END only with line-update
+					    			if(recordToValidate.getFraktbrevRecord()!=null && strMgr.isNotNull(recordToValidate.getFraktbrevRecord().getFvlinr()) ){
+						    			//[3.1] Execute back end validation for order lines (now that the order has been created)
+							    		this.specificOrderValidatorBackend.validateOrderLine(appUser, recordToValidate);
+							    		
+							    		//update with the return values of the back-end (if any). 
+						    			//OBSOLETE ? this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(recordToValidate, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
+						    			//OBSOLETE ? recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
+						    			if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
+							    			
+							    			validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
+								    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
+								    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
+								    		//logger.info(" size:" + validationOutputContainer.getErrMsgListFromValidationBackend().size());
+								    		model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
+								    		//restore percentage GUI-formatted
+								    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
+								    		
+								    		//populate children
+											this.populateChildren(appUser, recordToValidate);
+											
+								    		//set domain objects
+								    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
+											returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+											
+											return returnView;
+							    			 
+						    			}else{
+						    				logger.info("[START]: processOrderLine (Update)...");
+						    				//Update the order lines
+							    			//OBSOLETE this.processOrderLines(recordToValidate, appUser);
+						    				this.processOrderLine(request, recordToValidate, appUser);
+							    			//postUpdate events on back-end
+							    			this.processPostUpdateEvents(recordToValidate, appUser);
+							    			logger.info("[END]: processOrderLine (Update)");
+						    			}
+					    			}else{
+					    				logger.info("[START]: processOrderLine (Create new)...");
+					    				//process the order line
+						    			this.processOrderLine(request, recordToValidate, appUser);
+						    			//postUpdate events on back-end
+						    			this.processPostUpdateEvents(recordToValidate, appUser);
+						    			logger.info("[END]: processOrderLine (Create new)");
+					    			}
 				    		}	
 			    		}
 		    		}
@@ -482,21 +517,19 @@ public class TransportDispMainOrderController {
 	    			for (JsonTransportDispWorkflowSpecificOrderRecord record: container.getDspoppdrag()){
 	    				//adjust percentage
 	    				//record.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(record.getHevalp()));
-	    				//populate all message notes
-	    				this.populateMessageNotes(appUser, record);
-	    				//populate fraktbrev lines
-	    				this.populateFraktbrev( appUser, record);
-	    				//populate archive docs
-	    				this.populateArchiveDocs(appUser, record);
+	    				
 	    				//update the order in session since we might go to Invoice tab directly after this
 	    				session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
 	    				
 	    				if(isCreateNewTransaction){
 	    					this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(record, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
-			    			recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
+			    			record.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
 			    		}
 	    				//TODO (Run validation and reflexion and sum TOTALS)
 	    				//ONLY when isCreateNewTransaction ?
+	    				
+	    				//populate children
+	    				this.populateChildren(appUser, record);
 	    				
 	    				//set domain objects
 	    				this.setDomainObjectsInView(model, record);
@@ -513,6 +546,39 @@ public class TransportDispMainOrderController {
 		    }
 			return returnView;
 		}
+	}
+	/**
+	 * 
+	 * @param request
+	 * @return
+	 */
+	private boolean fraktbrevLineExists(HttpServletRequest request){
+		boolean retval = false;
+		
+		String ant = request.getParameter("fvant");
+		String vkt = request.getParameter("fvvkt");
+		String desc = request.getParameter("fvvt");
+		
+		if(strMgr.isNotNull(ant) && strMgr.isNotNull(vkt) && strMgr.isNotNull(desc) ){
+			retval = true;
+		}else{
+			
+		}
+		return retval;
+	}
+	
+	
+	/**
+	 */
+	private void populateChildren(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate ){
+		//populate all message notes
+		this.populateMessageNotes(appUser, recordToValidate);
+		//populate fraktbrev lines
+		this.populateFraktbrev(appUser, recordToValidate);
+		//populate archive docs
+		this.populateArchiveDocs(appUser, recordToValidate);
+		//populate track and trace
+		this.populateTrackAndTrace(appUser, recordToValidate);
 	}
 	
 	/**
@@ -690,23 +756,44 @@ public class TransportDispMainOrderController {
 		
 	}
 	
-	/* DEPRECATED ...
-	private void processOrderLinesOrig(HttpServletRequest request, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, SystemaWebUser appUser){
-		logger.info("Inside:processOrderLines");
-		int totalNumberOfLines = this.getTotalNumberOfLines(recordToValidate);
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param appUser
+	 * @return
+	 */
+	private List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> processOrderLine(HttpServletRequest request, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, SystemaWebUser appUser){
+		logger.info("Inside:processOrderLine");
+		//check the total number of lines in order to input a new linenr
+		String upperCurrentItemlineNr = request.getParameter("upperCurrentItemlineNr");
 		
-		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord = null; 
-		for(int i=1;i<=totalNumberOfLines;i++){
-			String lineNr = request.getParameter("fvlinr_" + i);
-			fraktbrevRecord = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
+		List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> errorList = new ArrayList<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
+		//check the total number of lines in order to input a new linenr
+		
+		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord = recordToValidate.getFraktbrevRecord();
+			String lineNr = fraktbrevRecord.getFvlinr();
+			/* Debug
+		 	logger.info("RETURN RECORD fvli:" + fraktbrevRecord.getFvlinr());
+			logger.info("RETURN RECORD desc:" + fraktbrevRecord.getFvvt());
+			logger.info("RETURN RECORD ant:" + fraktbrevRecord.getFvant());
+			logger.info("RETURN RECORD brd:" + fraktbrevRecord.getFvbrd());
+			logger.info("RETURN RECORD lm:" + fraktbrevRecord.getFvlm());
+			*/
 			String mode = TransportDispConstants.MODE_ADD;
 			if(lineNr!=null && !"".equals(lineNr) ){ 
 				mode = TransportDispConstants.MODE_UPDATE; }
 			else{
-				lineNr = request.getParameter("lineNr_" + i);
+				//this line is new!
+				if(upperCurrentItemlineNr!=null && !"".equals(upperCurrentItemlineNr)){
+					int lastLineNr = Integer.parseInt(upperCurrentItemlineNr);
+					lineNr = String.valueOf(++lastLineNr);
+					logger.info("lineNr (new):" + lineNr);
+				}else{
+					logger.info("lineNr start from scratch:" + lineNr);
+					lineNr = "1";
+				}
 			}
-			//only valid fields (check requirements)
-			if(this.validMandatoryFieldsFraktbrev(request, i)){
+			if(this.validMandatoryFieldsFraktbrev(fraktbrevRecord)){
 				//Start with the update (mode=(A)dd,(D)elete,(U)pdate)
 				String BASE_URL_UPDATE = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_UPDATE_LINE_MAIN_ORDER_FRAKTBREV_URL;
 				//------------------
@@ -718,15 +805,15 @@ public class TransportDispMainOrderController {
 				urlRequestParamsKeysBuffer.append("&opd=" + recordToValidate.getHeopd());
 				urlRequestParamsKeysBuffer.append("&fbn=1");
 				urlRequestParamsKeysBuffer.append("&lin=" + lineNr);
-				urlRequestParamsKeysBuffer.append(this.getFvUrlRequestParamsForUpdate(request, i, fraktbrevRecord));
 				urlRequestParamsKeysBuffer.append("&mode=" + mode);
+				urlRequestParamsKeysBuffer.append(this.getFvUrlRequestParamsForUpdate(fraktbrevRecord));
 				
 				String urlRequestParams = urlRequestParamsKeysBuffer.toString();
 				logger.info("URL: " + BASE_URL_UPDATE);
 				logger.info("PARAMS: " + urlRequestParams);
 				//logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
 				String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL_UPDATE, urlRequestParams);
-				logger.info(jsonPayload);
+				//logger.info(jsonPayload);
 				//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 				if(jsonPayload!=null){ 
 					JsonTransportDispWorkflowSpecificOrderFraktbrevContainer fraktbrevContainer = this.transportDispWorkflowSpecificOrderService.getFraktbrevContainer(jsonPayload);
@@ -736,13 +823,16 @@ public class TransportDispMainOrderController {
 						if( !"".equals(fraktbrevContainer.getErrMsg()) ){
 							//Debug
 							logger.info("[ERROR]:" + fraktbrevContainer.getErrMsg());
+							fraktbrevRecord.setErrMsg(fraktbrevContainer.getErrMsg());
+							errorList.add(fraktbrevRecord);
 						}
 					}
 				}
 			}
-		}
+
+		return errorList;
+		
 	}
-	*/
 	
 	/**
 	 * This method is used for new orders.
@@ -1688,41 +1778,36 @@ public class TransportDispMainOrderController {
 	 * @param fraktbrevRecord
 	 * @return
 	 */
-	private void populateOrderLineRecordsWithUserInput(HttpServletRequest request, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate){
-		int totalNumberOfLines = this.getTotalNumberOfLines(recordToValidate);
-		List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord>();
-		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord = null;
+	private void setFraktbrevRecord(HttpServletRequest request, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate){
+		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
 		
-		for(int counter=1;counter<=totalNumberOfLines;counter++){
-			fraktbrevRecord = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
-			String lineNr = request.getParameter("fvlinr_" + counter);
-			if(lineNr!=null && !"".equals(lineNr)){
-				fraktbrevRecord.setFvlinr(lineNr);
-			}
-			fraktbrevRecord.setFmmrk1(request.getParameter("fmmrk1_" + counter));
-			fraktbrevRecord.setFvant(request.getParameter("fvant_" + counter));
-			fraktbrevRecord.setFvpakn(request.getParameter("fvpakn_" + counter));
-			fraktbrevRecord.setFvvt(request.getParameter("fvvt_" + counter));
-			fraktbrevRecord.setFvvkt(request.getParameter("fvvkt_" + counter));
-			fraktbrevRecord.setFvvol(request.getParameter("fvvol_" + counter));
-			fraktbrevRecord.setFvlm(request.getParameter("fvlm_" + counter));
-			fraktbrevRecord.setFvlm2(request.getParameter("fvlm2_" + counter));
-			fraktbrevRecord.setFvlen(request.getParameter("fvlen_" + counter));
-			fraktbrevRecord.setFvbrd(request.getParameter("fvbrd_" + counter));
-			fraktbrevRecord.setFvhoy(request.getParameter("fvhoy_" + counter));
-			//farlig goods
-			fraktbrevRecord.setFfunnr(request.getParameter("ffunnr_" + counter));
-			fraktbrevRecord.setFfembg(request.getParameter("ffembg_" + counter));
-			fraktbrevRecord.setFfindx(request.getParameter("ffindx_" + counter));
-			
-			fraktbrevRecord.setFfantk(request.getParameter("ffantk_" + counter));
-			fraktbrevRecord.setFfante(request.getParameter("ffante_" + counter));
-			fraktbrevRecord.setFfenh(request.getParameter("ffenh_" + counter));
-			list.add(fraktbrevRecord);
-			
+		
+		String lineNr = request.getParameter("updateLinNr");
+		
+		if(lineNr!=null && !"".equals(lineNr)){
+			fraktbrevRecord.setFvlinr(lineNr);
 		}
-		logger.info("********** order lines list, SIZE:" + list.size());
-		recordToValidate.setFraktbrevList(list);
+		fraktbrevRecord.setFmmrk1(request.getParameter("fmmrk1"));
+		fraktbrevRecord.setFvant(request.getParameter("fvant"));
+		fraktbrevRecord.setFvpakn(request.getParameter("fvpakn"));
+		fraktbrevRecord.setFvvt(request.getParameter("fvvt"));
+		fraktbrevRecord.setFvvkt(request.getParameter("fvvkt"));
+		fraktbrevRecord.setFvvol(request.getParameter("fvvol"));
+		fraktbrevRecord.setFvlm(request.getParameter("fvlm"));
+		fraktbrevRecord.setFvlm2(request.getParameter("fvlm2"));
+		fraktbrevRecord.setFvlen(request.getParameter("fvlen"));
+		fraktbrevRecord.setFvbrd(request.getParameter("fvbrd"));
+		fraktbrevRecord.setFvhoy(request.getParameter("fvhoy"));
+		//farlig goods
+		fraktbrevRecord.setFfunnr(request.getParameter("ffunnr"));
+		fraktbrevRecord.setFfembg(request.getParameter("ffembg"));
+		fraktbrevRecord.setFfindx(request.getParameter("ffindx"));
+		
+		fraktbrevRecord.setFfantk(request.getParameter("ffantk"));
+		fraktbrevRecord.setFfante(request.getParameter("ffante"));
+		fraktbrevRecord.setFfenh(request.getParameter("ffenh"));
+
+		recordToValidate.setFraktbrevRecord(fraktbrevRecord);
 		
 	}
 	

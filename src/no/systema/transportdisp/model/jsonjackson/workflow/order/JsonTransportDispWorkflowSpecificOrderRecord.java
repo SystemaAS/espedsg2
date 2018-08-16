@@ -1123,6 +1123,10 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	public void setFraktbrevList(List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> value) {  this.fraktbrevList = value; }
 	public List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> getFraktbrevList() {return this.fraktbrevList;}
 	
+	private JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord = null;
+	public void setFraktbrevRecord(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord value) {  this.fraktbrevRecord = value; }
+	public JsonTransportDispWorkflowSpecificOrderFraktbrevRecord getFraktbrevRecord() {return this.fraktbrevRecord;}
+	
 	private String singleLine = "N";
 	public String getSingleLine() {
 		if(this.fraktbrevList!=null){

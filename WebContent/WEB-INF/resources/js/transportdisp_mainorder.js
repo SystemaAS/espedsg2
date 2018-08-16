@@ -131,16 +131,36 @@
   });
   
   
-  
+  function clearItemLineValues(){
+	  jq('#updateLinNr').val("");
+		jq('#linNr').text("");
+		
+		jq('#fmmrk1').val("");
+		jq('#fvant').val("");
+		jq('#fvpakn').val("");
+		jq('#fvvt').val("");
+		jq('#fvvkt').val("");
+		jq('#fvlen').val("");
+		jq('#fvbrd').val("");
+		jq('#fvhoy').val("");
+		jq('#fvvol').val("");
+		jq('#fvlm').val("");
+		jq('#fvlm2').val("");
+		jq('#ffunnr').val("");
+		jq('#ffembg').val("");
+		jq('#ffindx').val("");
+		jq('#ffantk').val("");
+		jq('#ffante').val("");
+		jq('#ffenh').val("");
+  }
   //fetch specific fraktbrev line
   jq(function() {
-	  
 	  jq('#tblItemLines').on('click', 'td', function(){
 		      var id = this.id;
 			  var record = id.split('@');
-			  var lin = record[0];
+			  var fvlinr = record[0];
 			  var fbn = record[1];
-			  lin = lin.replace("lin_","");
+			  fvlinr = fvlinr.replace("fvlinr_","");
 			  fbn = fbn.replace("fbn_","");
 			  //DEBUG --> 
 			  //alert("avd:" + avd + "trip:" + trip + "appUser:" + jq('#applicationUser').val());
@@ -148,15 +168,33 @@
 			  	  type: 'GET',
 			  	  url: 'fetchFraktbrevLine_TransportDisp.do',
 			  	  data: { applicationUser : jq('#applicationUser').val(), 
-			  		  	  requestString : "&avd=" +  jq('#wsavd').val() + "&opd=" +  jq('#wsopd').val() + "&fbn=" +  fbn + "&lin=" +  lin },
+			  		  	  requestString : "&avd=" +  jq('#wsavd').val() + "&opd=" +  jq('#wsopd').val() + "&fbn=" +  fbn + "&lin=" +  fvlinr },
 			  	  dataType: 'json',
 			  	  cache: false,
 			  	  contentType: 'application/json',
 			  	  success: function(data) {
 			  		var len = data.length;
 			  		for ( var i = 0; i < len; i++) {
-			  			jq('#fvlinr').text(data[i].fvlinr);
+			  			jq('#updateLinNr').val(data[i].fvlinr);
+			  			jq('#linNr').text(data[i].fvlinr);
+			  			
+			  			jq('#fmmrk1').val(data[i].fmmrk1);
+			  			jq('#fvant').val(data[i].fvant);
+			  			jq('#fvpakn').val(data[i].fvpakn);
 			  			jq('#fvvt').val(data[i].fvvt);
+			  			jq('#fvvkt').val(data[i].fvvkt);
+			  			jq('#fvlen').val(data[i].fvlen);
+			  			jq('#fvbrd').val(data[i].fvbrd);
+			  			jq('#fvhoy').val(data[i].fvhoy);
+			  			jq('#fvvol').val(data[i].fvvol);
+			  			jq('#fvlm').val(data[i].fvlm);
+			  			jq('#fvlm2').val(data[i].fvlm2);
+			  			jq('#ffunnr').val(data[i].ffunnr);
+			  			jq('#ffembg').val(data[i].ffembg);
+			  			jq('#ffindx').val(data[i].ffindx);
+			  			jq('#ffantk').val(data[i].ffantk);
+			  			jq('#ffante').val(data[i].ffante);
+			  			jq('#ffenh').val(data[i].ffenh);
 			  			
 			  		}
 			  	  },
@@ -164,11 +202,9 @@
 			  	    alert('Error loading ... tblItemLines onClick');
 			  	  }
 			  });
-	  });
-	  
+	  	});
   });
 			  		
-  
   //-------------------------------------------------------------
   //START Detect Form changes on input fields (including selects)
   //this function will detect if any changes in the input fields

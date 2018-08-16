@@ -1758,9 +1758,14 @@
             		</td>
             </tr>
             <tr height="2"><td></td></tr>
-            <tr>
+            
+            <%-- only with update order mode --%>
+            <c:if test="${not empty model.record.heopd}">
+            	<tr>
             		<td>
 	        			<table width="99%" align="left" class="tableBorderWithRoundCornersGray" border="0" cellspacing="0" cellpadding="0">
+	        			<input type="hidden" name="updateMode" id="updateMode" value="1" >   
+							 		
 				 		<tr height="6"><td></td></tr>
 				 		<%-- UPDATE LINEs SECTION --%>
 				 		<tr>
@@ -1796,16 +1801,15 @@
 						 		<c:forEach items="${model.record.fraktbrevList}" var="fraktbrevRecord" varStatus="counter">
 						 			<c:if test="${not empty fraktbrevRecord.fvlinr}">
 						 				<c:set var="upperCurrentItemlineNr" scope="request" value="${fraktbrevRecord.fvlinr}"/>
-						 					
 						 			</c:if>
 						 			<input type="hidden" name="lineNr_${counter.count}" id="lineNr_${counter.count}" value="${counter.count}" >   
 							 		<input type="hidden" name="fvlinr_${counter.count}" id="fvlinr_${counter.count}" value="${fraktbrevRecord.fvlinr}" >
 							 		
 							 		<tr class="tableRow" >
-							 			<td title="Endre" width="2%" align="center" class="tableCell" style="cursor:pointer;" id="lin_${fraktbrevRecord.fvlinr}@fbn_${fraktbrevRecord.fvfbnr}@counter_${counter.count}">
+							 			<td title="Endre" width="2%" align="center" class="tableCell" style="cursor:pointer;" id="fvlinr_${fraktbrevRecord.fvlinr}@fbn_${fraktbrevRecord.fvfbnr}@counter_${counter.count}">
 							 				<img style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="edit">
 							 			</td>
-							 			<td width="2%" align="center" class="tableCell" >${counter.count}</td>
+							 			<td width="2%" align="center" class="tableCell" >${fraktbrevRecord.fvlinr}</td>
 					               		<td width="5%" align="left" class="tableCell" >${fraktbrevRecord.fmmrk1}</td>
 						 				<td width="5%" align="right" class="tableCell" >${fraktbrevRecord.fvant}</td>
 						 				<td width="7%" align="left" class="tableCell" >${fraktbrevRecord.fvpakn}</td>
@@ -1902,12 +1906,12 @@
 						 
 						
 				 			<tr height="10"><td ></td></tr>
-					 		<%-- CREATE NEW LINE SECTION --%> 
+					 		<%-- Create new Line / Update Line SECTION --%> 
 					 		<tr>
 								<td colspan="2" style="padding: 3px;">
 									<table width="100%" border="0" style="background-color:#778899">
 									<tr class="tableHeaderField" >	
-										<td align="center" valign="bottom" class="tableHeaderFieldFirst"><span title="fvlinr"><spring:message code="systema.transportdisp.orders.form.detail.update.label.linenr"/></span></td>
+										<td align="center" valign="bottom" class="tableHeaderFieldFirst"><span title="linNr"><spring:message code="systema.transportdisp.orders.form.detail.update.label.linenr"/></span></td>
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fmmrk1">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.marks"/></span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvant/hent(Tot)">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.antal"/>&nbsp;</span></td>
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvpakn">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.forpak"/></span></td>
@@ -1928,72 +1932,76 @@
 							 			
 							 		</tr>
 							 		<tr >
-							 			<td align="center" class="text14"><label style="color:yellow; font-weight:bold" id="fvlinr" name="fvlinr"></label></td>	
+							 			<td align="center" class="text14">
+							 				<input type="hidden" id="updateLinNr" name="updateLinNr" value="${model.record.fraktbrevRecord.fvlinr}">
+							 				<label style="color:yellow; font-weight:bold" id="linNr" >${model.record.fraktbrevRecord.fvlinr}</label>
+							 			</td>	
 							 			<td align="center" class="text14" nowrap>
-						 					<input type="text" class="inputTextMediumBlue" name="fmmrk1" id="fmmrk1" size="10" maxlength="35" value="">
+						 					<input type="text" class="inputTextMediumBlue" name="fmmrk1" id="fmmrk1" size="15" maxlength="35" value="${model.record.fraktbrevRecord.fmmrk1}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvant" id="fvant" size="7" maxlength="7" value="">
+							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvant" id="fvant" size="7" maxlength="7" value="${model.record.fraktbrevRecord.fvant}">
 						 				</td>
 						 				<td align="center" class="text14" nowrap>
-							 				<input type="text" onBlur="searchPackingCodesNewLineOnBlur(this);" class="inputTextMediumBlue" name="fvpakn" id="fvpakn" size="8" maxlength="7" value="">
+							 				<input type="text" onBlur="searchPackingCodesNewLineOnBlur(this);" class="inputTextMediumBlue" name="fvpakn" id="fvpakn" size="8" maxlength="7" value="${model.record.fraktbrevRecord.fvpakn}">
 							 				<a tabindex=0 id="fvpaknIdLinkNewLine" onClick="searchPackingCodesNewLine(this);">
 	 											<img id="imgfvpaknSearch" align="bottom" style="cursor:pointer;" src="resources/images/find2.png" height="11px" width="11px" border="0" alt="search">
 	 										</a>
 						 				</td>
 						 				<td align="center" class="text14" nowrap>
-							 				<input type="text" class="inputTextMediumBlueMandatoryField" name="fvvt" id="fvvt" size="10" maxlength="35" value="">
+							 				<input type="text" class="inputTextMediumBlueMandatoryField" name="fvvt" id="fvvt" size="20" maxlength="35" value="${model.record.fraktbrevRecord.fvvt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="7" maxlength="9" value="">
+							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="7" maxlength="9" value="${model.record.fraktbrevRecord.fvvkt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="">
+							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="">
+							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvbrd}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvhoy" id="fvhoy" size="4" maxlength="4" value="">
+							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvhoy" id="fvhoy" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvhoy}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onFocus="calculateVolume(this);" onBlur="checkVolumeNewLine(this);" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvvol" id="fvvol" size="6" maxlength="8" value="">
+							 				<input onFocus="calculateVolume(this);" onBlur="checkVolumeNewLine(this);" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvvol" id="fvvol" size="6" maxlength="8" value="${model.record.fraktbrevRecord.fvvol}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="checkLmNewLine(this);validateNewItemLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlm" id="fvlm" size="4" maxlength="5" value="">
+							 				<input onBlur="checkLmNewLine(this);validateNewItemLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlm" id="fvlm" size="4" maxlength="5" value="${model.record.fraktbrevRecord.fvlm}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="checkLm2NewLine(this);validateNewItemLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlm2" id="fvlm2" size="4" maxlength="5" value="">
+							 				<input onBlur="checkLm2NewLine(this);validateNewItemLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlm2" id="fvlm2" size="4" maxlength="5" value="${model.record.fraktbrevRecord.fvlm2}">
 						 				</td>
 						 				<td align="center" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();"  type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffunnr" id="ffunnr" size="5" maxlength="4" value="">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();"  type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffunnr" id="ffunnr" size="5" maxlength="4" value="${model.record.fraktbrevRecord.ffunnr}">
 							 				<a tabindex=0 id="ffunnrIdLinkNewLine" onClick="searchDangerousGoodsNewLine(this);">
 	 											<img id="imgUnnrSearch" align="bottom" style="cursor:pointer;" src="resources/images/find2.png" height="11px" width="11px" border="0" alt="search">
 	 										</a>
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffembg" id="ffembg" size="5" maxlength="3" value="">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffembg" id="ffembg" size="5" maxlength="3" value="${model.record.fraktbrevRecord.ffembg}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffindx" id="ffindx" size="2" maxlength="2" value="">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffindx" id="ffindx" size="2" maxlength="2" value="${model.record.fraktbrevRecord.ffindx}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffantk" id="ffantk" size="5" maxlength="5" value="">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffantk" id="ffantk" size="5" maxlength="5" value="${model.record.fraktbrevRecord.ffantk}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffante" id="ffante" size="9" maxlength="11" value="">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffante" id="ffante" size="9" maxlength="11" value="${model.record.fraktbrevRecord.ffante}">
 						 				</td>
 						 				<input type="hidden" id="ownAdrFaktNewLine" name="ownAdrFaktNewLine" value="">
 						 				<td align="right" class="text14" nowrap>
 							 				<select class="inputTextMediumBlue" onChange="validateDangerousGoodsUnnrNewLine();" name="ffenh" id="ffenh">
 					 							<option value="">?</option>
-					 							<option value="KG">KG</option>
-					 							<option value="LTR">LTR</option>
-					 							<option value="GR">GR</option>
+					 							<option value="KG" <c:if test="${model.record.fraktbrevRecord.ffenh == 'KG'}"> selected </c:if> >KG</option>
+					 							<option value="LTR" <c:if test="${model.record.fraktbrevRecord.ffenh == 'LTR'}"> selected </c:if> >LTR</option>
+					 							<option value="GR" <c:if test="${model.record.fraktbrevRecord.ffenh == 'GR'}"> selected </c:if> >GR</option>
 					 							
 											</select>
 						 				</td>
-						 				<td align="center"><input onClick="addItemLine();" class="inputFormSubmit11Slim" type="button" value='<spring:message code="systema.transportdisp.orders.form.detail.update.createNewLine"/>'></td>
+						 				
+						 				<td align="center"><input onClick="clearItemLineValues();" class="inputFormSubmitStd11" type="button" value='<spring:message code="systema.transportdisp.orders.form.detail.update.removeItemLineValues"/>'></td>
 						 			</tr>
 						 			<tr></tr>
 						 			</table>
@@ -2034,7 +2042,9 @@
 							
 	 				</table>
             		</td>
-            </tr>
+            	</tr>
+            </c:if>
+            
             <tr height="2"><td></td></tr>
             
             <tr>
