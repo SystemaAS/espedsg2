@@ -352,6 +352,21 @@
 		 										 <tr>
 		 										</c:if> 
 											</c:if>
+											<c:if test="${fn:contains(record.prog,'-VISMA-INT') }">
+					 							<td id="dashItem_VismaInt" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+				 									<br/>
+				 									<font class="text18">${record.prTxt}</font>
+								 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													</form>
+		 										</td>
+												<c:if test="${counterTOMCATAPPS%5==0}">
+		 										 </tr>
+		 										 <tr>
+		 										</c:if> 
+											</c:if>
 											<c:if test="${fn:contains(record.prog,'-CUST_APP') }">
 												<td id="dashItem_custMatrix" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
@@ -376,17 +391,6 @@
 				 								<br/>
 				 								<font class="text18">eSpedsg Roadmap</font>
 							 				</td>
-
-				 							<td id="dashItem_VismaInt" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-												<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
-			 									<br/>
-			 									<font class="text18">Visma Integrasjon</font>
-							 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
-												    <input type="hidden" name="user" value="${user.user}" />
-												    <input type="hidden" name="password" value="${user.encryptedPassword}" />
-												</form>
-	 										</td>
-
 							 			</c:if>
 						 			</tr>
 						 			    
