@@ -1767,6 +1767,7 @@
 	        			<input type="hidden" name="updateMode" id="updateMode" value="1" >   
 							 		
 				 		<tr height="6"><td></td></tr>
+				 		<c:if test="${not empty model.record.fraktbrevList}" >
 				 		<%-- UPDATE LINEs SECTION --%>
 				 		<tr>
 							<td colspan="2" valign="top" style="width:100%;" >
@@ -1832,21 +1833,26 @@
 						 				<td width="2%" align="right" class="tableCellDangerousGoods" >${fraktbrevRecord.ffpoen}</td>
 					 					<td width="2%" align="left" class="tableCell" >
 						               		<c:if test="${not empty fraktbrevRecord.fvlinr}">
+						               			<%--
 						               			<c:if test="${ model.record.singleLine == 'N' }">
 							               			<a id="deleteLine_${counter.count}" onClick="deleteOrderLine(this);">
 							               				<img valign="bottom" src="resources/images/delete.gif" border="0" alt="remove">
 								               		</a>
 							               		</c:if>
+							               		--%>
+							               		<a id="deleteLine_${counter.count}" onClick="deleteOrderLine(this);">
+						               				<img valign="bottom" src="resources/images/delete.gif" border="0" alt="remove">
+							               		</a>
 						               		</c:if> 	
 							 			</td>
 						 			</tr>
 						 			
 					 			</c:forEach>
 					 			</tbody>
-					 			
-					 			<tfoot >
-					 				
-					 				<tr class="tableHeaderField">	
+				 			
+				 			
+				 				
+					 				<tr class="tableHeaderField" style="background-color: #F2F5EF ;border-width: 0px 0px 0px 0px;">	
 									<td width="2%" align="left" class="text14">&nbsp;</td>
 									<td width="2%" align="left" class="text14">
 										<%--this hidden field is crucial for ADD NEW line functionality. We will send the new line = upperCurrentItemlineNr + 1 --%>
@@ -1858,10 +1864,16 @@
 										<input type="hidden" id="helmla" name="helmla" value="${model.record.helmla}">
 										<b>TOT</b>
 									</td>
-									<td width="5%" align="left" class="text14"><b>${model.record.hegm1}</b></td>
+									
+						<td>
+						<input type="text" name="kuk" id="kuk" value="">
+						</td>
+						
 						 			<td width="5%" align="right" class="text14"><b>${model.record.hent}</b></td>
 						 			<td width="7%" align="left" class="text14">&nbsp;</td>
-						 			<td width="7%" align="left" class="text14"><b>${model.record.hevs1}</b></td>
+						 			<td width="7%" align="left" class="text14">
+						 				<input type="text" name="pito" id="pito" value="">
+						 			</td>
 						 			<td width="7%" align="right" class="text14"><b>${model.record.hevkt}</b></td>
 						 			<td width="5%" align="left" class="text14">&nbsp;</td>
 						 			<td width="5%" align="left" class="text14">&nbsp;</td>
@@ -1896,11 +1908,16 @@
 						 			</td>
 						 			 --%> 
 						 		</tr>
-					 			</tfoot>
+					 			
 						 		</table>
 						 		
 							</td>
 						</tr>
+						
+						</c:if>
+						
+						
+						
 						<tr height="1"><td ></td></tr>
 						
 						 
@@ -2016,21 +2033,23 @@
 								<table border="0">
 							 		<tr height="2"><td ></td></tr>
 							 		<tr>
+							 			<td class="text14" width="20px">&nbsp;</td>
 							 			<td class="text14" nowrap>&nbsp;&nbsp;<span title="hegm2"><spring:message code="systema.transportdisp.orders.form.update.label.marks2"/></span></td>
-							 			<td class="text14" width="180px">&nbsp;</td>
+							 			<td class="text14" width="200px">&nbsp;</td>
 							 			<td class="text14" nowrap>&nbsp;&nbsp;&nbsp;<span title="hevs2"><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc2"/></span></td>
-							 			<td class="text14" width="70px">&nbsp;</td>
+							 			<td class="text14" width="50px">&nbsp;</td>
 							 			<td class="text14" nowrap>&nbsp;&nbsp;<span title="hefbv"><spring:message code="systema.transportdisp.orders.form.update.label.fraktberakningsVekt"/></span></td>
 							 		</tr>
 							 		<tr>
+							 			<td class="text14" width="20px">&nbsp;</td>
 							 			<td class="text14" >&nbsp;	
-							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="12" maxlength="10" value="${model.record.hegm2}">					 				
+							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="15" maxlength="10" value="${model.record.hegm2}">					 				
 						 				</td>
-						 				<td class="text14" width="100px">&nbsp;</td>
+						 				<td class="text14" width="200px">&nbsp;</td>
 						 				<td class="text14">
-							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="12" maxlength="10" value="${model.record.hevs2}">
+							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="15" maxlength="10" value="${model.record.hevs2}">
 						 				</td>
-						 				<td class="text14" width="70px">&nbsp;</td>
+						 				<td class="text14" width="50px">&nbsp;</td>
 						 				<td class="text14">
 						 					<input readonly type="text" class="inputTextReadOnly tableCell" size="10" value="${model.record.hefbv}">
 						 				</td>

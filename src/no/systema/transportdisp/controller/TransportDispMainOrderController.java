@@ -141,6 +141,7 @@ public class TransportDispMainOrderController {
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
+		logger.info("#hevs1:" + recordToValidate.getHevs1());
 		String parentTrip = recordToValidate.getHepro();
 		String orderLineTotalsString = request.getParameter("oltotals");
 		logger.info("ORDER TOTALS STRING:" +  orderLineTotalsString);
@@ -283,6 +284,11 @@ public class TransportDispMainOrderController {
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
 		logger.info("updateLinNr:" + request.getParameter("updateLinNr"));
+		//logger.info("#hevs1:" + recordToValidate.getHevs1());
+		//logger.info("#hegm1:" + recordToValidate.getHegm1());
+		logger.info("#kuk:" + request.getParameter("kuk"));
+		logger.info("#culo:" + request.getParameter("culo"));
+		logger.info("#pito:" + request.getParameter("pito"));
 		
 		//populate the order line in order to be able to handle all errors and present the order line values
 		if(this.fraktbrevLineExists(request)){
@@ -487,10 +493,10 @@ public class TransportDispMainOrderController {
 				    					logger.info("[START]: processOrderLine (Create new)...");
 					    				this.processOrderLine(request, recordToValidate, appUser);
 				    					logger.info("[END]: processOrderLine (Create new)");
+				    				
+				    					//postUpdate events on back-end
+				    					this.processPostUpdateEvents(recordToValidate, appUser);
 				    				}
-					    			//postUpdate events on back-end
-					    			this.processPostUpdateEvents(recordToValidate, appUser);
-					    			
 				    			}
 				    		}	
 			    		}

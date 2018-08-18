@@ -949,9 +949,9 @@
 			  targetStr = fvpakn + " " + fvvt;
 		  }
 		  if(!jq('#hestl4').prop('checked')){
-			  if(jq('#hevs1').val()==''){
+			  /*if(jq('#hevs1').val()==''){
 				  jq('#hevs1').val(targetStr);
-			  }
+			  }*/
 		  }
 	  }
   }
@@ -2388,10 +2388,12 @@
 	  
 	  //check Vareslag
 	  if(private_isSingleOrderLine()){
+		  /*
 		  if(jq("#hevs1").val()==''){
 			  var hevs1 = jq("#fvpakn_1").val()  + " " +  jq("#fvvt_1").val();
 			  jq("#hevs1").val(hevs1);
 		  }
+		  */
 	  }
 	  
 	  //Weight
