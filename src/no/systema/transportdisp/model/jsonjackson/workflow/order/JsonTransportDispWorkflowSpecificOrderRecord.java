@@ -866,6 +866,7 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	public void setHelmla(String value) {  this.helmla = value; }
 	public String getHelmla() {return this.helmla;}
 
+
 	private String hepoen = null;
 	public void setHepoen(String value) {  this.hepoen = value; }
 	public String getHepoen() {return this.hepoen;}
@@ -980,6 +981,7 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	public void setHent(String value) {  this.hent = value; }
 	public String getHent() {return this.hent;}
 	
+	
 	private String hedtmo = null;
 	public void setHedtmo(String value) {  this.hedtmo = value; }
 	public String getHedtmo() {return this.hedtmo;}
@@ -987,6 +989,7 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	private String hevkt = null;
 	public void setHevkt(String value) {  this.hevkt = value; }
 	public String getHevkt() {return this.hevkt;}
+	
 	
 	private String hefbv = null;
 	public void setHefbv(String value) {  this.hefbv = value; }

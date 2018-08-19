@@ -918,6 +918,7 @@
   //------------
   //SUM fields
   //------------
+  /*
   function sumAntal(element) {
 	  //element.id;
 	  var sum = 0;
@@ -934,7 +935,7 @@
 		  jq('#hent').val(sum.toLocaleString('de-DE', { useGrouping: false }));
 	  }
   }
-  
+ 
   function sumVareslag(element){
 	  var id = element.id;
 	  var counter = id.replace("fvvt_","");
@@ -951,11 +952,11 @@
 		  if(!jq('#hestl4').prop('checked')){
 			  /*if(jq('#hevs1').val()==''){
 				  jq('#hevs1').val(targetStr);
-			  }*/
+			  }
 		  }
 	  }
-  }
-	  
+  } 
+  
   function sumWeight(element) {
 	  //element.id;
 	  var sum = 0;
@@ -972,7 +973,7 @@
 		  jq('#hevkt').val(sum.toLocaleString('de-DE', { useGrouping: false }));
 	  }
   }
-
+  
   function sumVolume(element) {
 	  //element.id;
 	  var MAX_VALUE = 9999.99;
@@ -1073,7 +1074,7 @@
 	  }
 	  
   }
-  
+  */
   //ADR
   function private_sumAdr() {
 	  //element.id;
@@ -1513,6 +1514,7 @@
   //--------------------------
   //Add Item line (in Order)
   //--------------------------
+  /*
   function addItemLine() {
 	  //[1] Validate new line first
 	  //if(private_validateNewItemLine()){
@@ -1589,7 +1591,7 @@
 	  //}
 	  
   }
-  
+  */
   //----------------------------------
   //Add Item line (in existent Order)
   //----------------------------------
@@ -2136,6 +2138,7 @@
   //--------------------------------
   // UPDATE before DELETE ORDER LINE
   //--------------------------------
+  /*
   function updateOrderLineTotalsBeforeDelete(counter_delete) { 
       //Antall
 	  var sum = 0;
@@ -2223,11 +2226,12 @@
 	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
 	  
   }
-  
+  */
   
   //-----------------------------
   //UPDATE before ADD ORDER LINE
   //-----------------------------
+  /*
   function updateOrderLineTotalsBeforeAdd() { 
       //Antall
 	  var sum = 0;
@@ -2328,7 +2332,7 @@
 		  unit = parseInt(unitStr);
 		  fakt = parseInt(faktStr);
 		  sum += (unit*fakt);
-	  }*/
+	  }
 	  var unitStr = jq('#ffante').val();
 	  var faktStr = jq('#ownAdrFaktNewLine').val();
 	  if(unitStr!='' && faktStr!=''){
@@ -2343,7 +2347,7 @@
 	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
 	  
   }
-  
+  */
   //UPDATE before SUBMIT Vareslag - TOT
   //Usually if the field hasn't been populated earlier by other jQuery functions on Vareslag
   function private_isSingleOrderLine() {
@@ -2370,6 +2374,7 @@
   //-----------------------------
   //UPDATE before SUBMIT (Save)
   //-----------------------------
+  /*
   function private_updateOrderLineTotalsBeforeSubmit() { 
       //Antall
 	  var sum = 0;
@@ -2393,7 +2398,7 @@
 			  var hevs1 = jq("#fvpakn_1").val()  + " " +  jq("#fvvt_1").val();
 			  jq("#hevs1").val(hevs1);
 		  }
-		  */
+		  
 	  }
 	  
 	  //Weight
@@ -2468,7 +2473,7 @@
 	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
 	  
   }
- 
+ */
   
   
 //-----------------------------

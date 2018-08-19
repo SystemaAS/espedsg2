@@ -58,6 +58,10 @@ public class RpgReturnResponseHandler {
 	public void setNewhesg(String value){ this.newhesg=value;  }
 	public String getNewhesg(){ return this.newhesg;  }
 	
+	private String hefbv = null;
+	public void setHefbv(String value){ this.hefbv=value;  }
+	public String getHefbv(){ return this.hefbv;  }
+	
 	/**
 	 * Sets the error message code after an RPG-call been made by an HTML-POST request on a trip update
 	 * 
@@ -172,6 +176,9 @@ public class RpgReturnResponseHandler {
 					}else if(keyValuePair[0].trim().equalsIgnoreCase("heopd")){
 						//this.tupro = keyValuePair[0] + ":" + keyValuePair[1]+ ",";
 						this.heopd = keyValuePair[1].trim();
+					}else if(keyValuePair[0].trim().equalsIgnoreCase("heopd")){
+						//this.tupro = keyValuePair[0] + ":" + keyValuePair[1]+ ",";
+						this.hefbv = keyValuePair[1].trim();
 					}
 				}
 			}
@@ -292,6 +299,8 @@ public class RpgReturnResponseHandler {
 						this.heopd = keyValuePair[1].trim();
 					}else if(keyValuePair[0].trim().equalsIgnoreCase("heavd")){
 						this.heavd = keyValuePair[1].trim();
+					}else if(keyValuePair[0].trim().equalsIgnoreCase("hefbv")){
+						this.hefbv = keyValuePair[1].trim();
 					}
 				}
 			}

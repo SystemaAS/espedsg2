@@ -141,7 +141,6 @@ public class TransportDispMainOrderController {
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
-		logger.info("#hevs1:" + recordToValidate.getHevs1());
 		String parentTrip = recordToValidate.getHepro();
 		String orderLineTotalsString = request.getParameter("oltotals");
 		logger.info("ORDER TOTALS STRING:" +  orderLineTotalsString);
@@ -268,6 +267,21 @@ public class TransportDispMainOrderController {
 	
 	/**
 	 * 
+	 * @param request
+	 * @param recordToValidate
+	 */
+	private void adjustFraktbrevDecimalTotalsBeforeOrderUpdate(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate){
+		
+		//adjust TOTALS
+		recordToValidate.setHem3(strMgr.adjustDecimalPointToString(recordToValidate.getHem3()));
+		recordToValidate.setHelm(strMgr.adjustDecimalPointToString(recordToValidate.getHelm()));
+		recordToValidate.setHelmla(strMgr.adjustDecimalPointToString(recordToValidate.getHelmla()));
+		
+	}
+	
+	
+	/**
+	 * 
 	 * @param recordToValidate
 	 * @param bindingResult
 	 * @param session
@@ -283,13 +297,10 @@ public class TransportDispMainOrderController {
 		logger.info("#AVD:" + recordToValidate.getHeavd());
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
+		logger.info("#hevs1:" + recordToValidate.getHevs1());
+		logger.info("#hegm1:" + recordToValidate.getHegm1());
 		logger.info("updateLinNr:" + request.getParameter("updateLinNr"));
-		//logger.info("#hevs1:" + recordToValidate.getHevs1());
-		//logger.info("#hegm1:" + recordToValidate.getHegm1());
-		logger.info("#kuk:" + request.getParameter("kuk"));
-		logger.info("#culo:" + request.getParameter("culo"));
-		logger.info("#pito:" + request.getParameter("pito"));
-		
+		logger.info("##################### HEVKT:" + recordToValidate.getHevkt());
 		//populate the order line in order to be able to handle all errors and present the order line values
 		if(this.fraktbrevLineExists(request)){
 			this.setFraktbrevRecord(request, recordToValidate);
@@ -344,12 +355,16 @@ public class TransportDispMainOrderController {
 	    		//populate children
 				this.populateChildren(appUser, recordToValidate);
 				
+				//reset total values
+				//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
+				
 	    		//set domain objects
 	    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 				returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 				return returnView;
 	    			
 		    }else{
+		    	
 		    	//-----------------------------------------------------
 				//Validation [2] Back-end ORDER-HEADER
 		    	//Note: only if it validates we proceed to the UPDATE
@@ -375,6 +390,8 @@ public class TransportDispMainOrderController {
 		    		//populate children
 					this.populateChildren(appUser, recordToValidate);
 					
+					//reset total values
+					//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
 					
 		    		//set domain objects
 		    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
@@ -397,6 +414,9 @@ public class TransportDispMainOrderController {
 					
 			    		//populate children
 						this.populateChildren(appUser, recordToValidate);
+						
+						//reset total values
+						//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
 						
 			    		//set domain objects
 			    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
@@ -440,6 +460,10 @@ public class TransportDispMainOrderController {
 					    	if(rpgReturnResponseHandler.getErrorMessage()!=null && !"".equals(rpgReturnResponseHandler.getErrorMessage())){
 					    		rpgReturnResponseHandler.setErrorMessage("[ERROR] FATAL on UPDATE: " + rpgReturnResponseHandler.getErrorMessage());
 					    		this.setFatalError(model, rpgReturnResponseHandler, recordToValidate);
+					    		
+					    		//reset total values
+								//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
+								
 					    		//isValidCreatedRecordTransactionOnRPG = false;
 					    	}else{
 					    		//Update successfully done!
@@ -471,6 +495,10 @@ public class TransportDispMainOrderController {
 							    		//populate children
 										this.populateChildren(appUser, recordToValidate);
 										
+										//reset total values
+										//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
+										
+							    		
 							    		//set domain objects
 							    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 										returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
@@ -483,7 +511,14 @@ public class TransportDispMainOrderController {
 						    			//OBSOLETE this.processOrderLines(recordToValidate, appUser);
 					    				this.processOrderLine(request, recordToValidate, appUser);
 					    				logger.info("[END]: processOrderLine (Update)");
-						    			//postUpdate events on back-end
+					    				
+					    				//[2] Get the new the totals and execute the update of order in order to get the Fb.vekt
+					    				//Fb.vekt is related to the order line totals and therefore related to the new 
+					    				this.populateFraktbrev(appUser, recordToValidate);
+					    				this.adjustFraktbrevDecimalTotalsBeforeOrderUpdate(recordToValidate);
+					    				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, recordToValidate, model);
+						    			
+					    				//postUpdate events on back-end
 						    			this.processPostUpdateEvents(recordToValidate, appUser);
 						    			
 					    			}
@@ -493,6 +528,11 @@ public class TransportDispMainOrderController {
 				    					logger.info("[START]: processOrderLine (Create new)...");
 					    				this.processOrderLine(request, recordToValidate, appUser);
 				    					logger.info("[END]: processOrderLine (Create new)");
+				    					//[2] Get the new the totals and execute the update of order
+					    				this.populateFraktbrev(appUser, recordToValidate);
+					    				this.adjustFraktbrevDecimalTotalsBeforeOrderUpdate(recordToValidate);
+					    				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, recordToValidate, model);
+						    			
 				    				
 				    					//postUpdate events on back-end
 				    					this.processPostUpdateEvents(recordToValidate, appUser);
@@ -672,7 +712,9 @@ public class TransportDispMainOrderController {
     				//populate archive docs
     				this.populateArchiveDocs(appUser, record);
     				//update order totals on back-end (required)
+    				this.adjustFraktbrevDecimalTotalsBeforeOrderUpdate(record);
     				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, record, model);
+	    			
     				//set domain objects
     				this.setDomainObjectsInView(model, record);
     				this.setCodeDropDownMgr(appUser, model);
@@ -1854,6 +1896,7 @@ public class TransportDispMainOrderController {
 	    	}else{
 	    		//Update successfully done!
 	    		logger.info("[INFO] Record successfully updated, OK ");
+	    		record.setHefbv(rpgReturnResponseHandler.getHefbv());
 	    		//update order record in session)
 	    		session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
 	    	}

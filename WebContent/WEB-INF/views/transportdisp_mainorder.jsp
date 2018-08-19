@@ -1787,14 +1787,14 @@
 						 			<th width="5%" align="right" valign="bottom" class="text14"><span title="fvvol/hem3(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.m3"/>&nbsp;</span></th>
 						 			<th width="5%" align="right" valign="bottom" class="text14"><span title="fvlm/helm(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.fa"/>&nbsp;</span></th>
 						 			<th width="5%" align="right" valign="bottom" class="text14"><span title="fvlm2/helmla(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.la"/>&nbsp;</span></th>
-						 			<th width="6%" align="left" valign="bottom" class="text14"><span title="ffunnr">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unNr"/>&nbsp;</span></th>
-						 			<th width="4%" align="right" valign="bottom" class="text14"><span title="ffembg">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg"/>&nbsp;</span></th>
-						 			<th width="4%" align="right" valign="bottom" class="text14"><span title="ffindx">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg.index"/>&nbsp;</span></th>
+						 			<th width="6%" align="left" valign="bottom" class="text12"><span title="ffunnr">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unNr"/>&nbsp;</span></th>
+						 			<th width="4%" align="right" valign="bottom" class="text12"><span title="ffembg">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg"/>&nbsp;</span></th>
+						 			<th width="4%" align="right" valign="bottom" class="text12"><span title="ffindx">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg.index"/>&nbsp;</span></th>
 						 			
-						 			<th width="2%"  align="right" valign="bottom" class="text14"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></th>
-						 			<th width="2%" align="right" valign="bottom" class="text14"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></th>
-						 			<th width="2%" align="right" valign="bottom" class="text14"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></th>
-						 			<th width="2%" align="right" valign="bottom" class="text14"><span title="ffpoen/hepoen(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.adr"/>&nbsp;</span></th>
+						 			<th width="2%"  align="right" valign="bottom" class="text12"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></th>
+						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></th>
+						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></th>
+						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffpoen/hepoen(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.adr"/>&nbsp;</span></th>
 						 			<th width="2%" align="left" valign="bottom" class="text14"><span title=""><spring:message code="systema.transportdisp.orders.form.detail.update.label.remove"/></span></th>										 			
 						 		</tr>
 						 		</thead>
@@ -1850,11 +1850,9 @@
 					 			</c:forEach>
 					 			</tbody>
 				 			
-				 			
-				 				
-					 				<tr class="tableHeaderField" style="background-color: #F2F5EF ;border-width: 0px 0px 0px 0px;">	
-									<td width="2%" align="left" class="text14">&nbsp;</td>
-									<td width="2%" align="left" class="text14">
+			 					<tr class="tableHeaderField" style="background-color: #F2F5EF ;border-width: 0px 0px 0px 0px;">	
+									<td width="2%" align="left" class="tableCell">&nbsp;</td>
+									<td width="2%" align="left" class="tableCell">
 										<%--this hidden field is crucial for ADD NEW line functionality. We will send the new line = upperCurrentItemlineNr + 1 --%>
 										<input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}">
 										<input type="hidden" id="hent" name="hent" value="${model.record.hent}">
@@ -1862,34 +1860,35 @@
 										<input type="hidden" id="hem3" name="hem3" value="${model.record.hem3}">
 										<input type="hidden" id="helm" name="helm" value="${model.record.helm}">
 										<input type="hidden" id="helmla" name="helmla" value="${model.record.helmla}">
+										
 										<b>TOT</b>
 									</td>
 									
-						<td>
-						<input type="text" name="kuk" id="kuk" value="">
-						</td>
+									<td  width="7%" align="left" class="tableCell">
+										<input class="inputTextMediumBlue" style="font-weight:bold;"type="text" name="hegm1" id="hegm1" value="${model.record.hegm1}"> 
+									</td>
 						
-						 			<td width="5%" align="right" class="text14"><b>${model.record.hent}</b></td>
-						 			<td width="7%" align="left" class="text14">&nbsp;</td>
-						 			<td width="7%" align="left" class="text14">
-						 				<input type="text" name="pito" id="pito" value="">
+						 			<td width="5%" align="right" class="tableCell"><b>${model.record.hent}</b></td>
+						 			<td width="7%" align="left" class="tableCell">&nbsp;</td>
+						 			<td width="7%" align="left" class="tableCell">
+						 				<input class="inputTextMediumBlue" style="font-weight:bold;" type="text" name="hevs1" id="hevs1" value="${model.record.hevs1}">
 						 			</td>
-						 			<td width="7%" align="right" class="text14"><b>${model.record.hevkt}</b></td>
-						 			<td width="5%" align="left" class="text14">&nbsp;</td>
-						 			<td width="5%" align="left" class="text14">&nbsp;</td>
-						 			<td width="5%" align="left" class="text14">&nbsp;</td>
-						 			<td width="5%" align="right" class="text14"><span title="hem3"><b>${fn:replace(model.record.hem3,'.',',')}</b></span></td>
-						 			<td width="5%" align="right" class="text14"><span title="helm"><b>${fn:replace(model.record.helm,'.',',')}</b></span></td>
-						 			<td width="5%" align="right" class="text14"><span title="helmla"><b>${fn:replace(model.record.helmla,'.',',')}</b></span></td>
-						 			<td width="6%" align="right" class="text14">&nbsp;</td>
-						 			<td width="4%" align="right" class="text14">&nbsp;</td>
-						 			<td width="4%" align="right" class="text14">&nbsp;</td>
-						 			<td width="2%" align="right" class="text14">&nbsp;</td>
-						 			<td width="2%" align="right" class="text14">&nbsp;</td>
-						 			<td width="2%" align="right" class="text14">&nbsp;</td>
-						 			<td width="2%" align="right" class="text14"><span title="hepoen"><b>${model.record.hepoen}</b></span></td>
+						 			<td width="7%" align="right" class="tableCell"><b>${model.record.hevkt}</b></td>
+						 			<td width="5%" align="left" class="tableCell">&nbsp;</td>
+						 			<td width="5%" align="left" class="tableCell">&nbsp;</td>
+						 			<td width="5%" align="left" class="tableCell">&nbsp;</td>
+						 			<td width="5%" align="right" class="tableCell"><span title="hem3"><b>${fn:replace(model.record.hem3,'.',',')}</b></span></td>
+						 			<td width="5%" align="right" class="tableCell"><span title="helm"><b>${fn:replace(model.record.helm,'.',',')}</b></span></td>
+						 			<td width="5%" align="right" class="tableCell"><span title="helmla"><b>${fn:replace(model.record.helmla,'.',',')}</b></span></td>
+						 			<td width="6%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="4%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="4%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="2%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="2%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="2%" align="right" class="tableCellDangerousGoods">&nbsp;</td>
+						 			<td width="2%" align="right" class="tableCellDangerousGoods"><span title="hepoen"><b>${model.record.hepoen}</b></span></td>
 						 			
-						 			<td width="2%" align="left" class="text14">${model.record.hestl4}</td>
+						 			<td width="2%" align="left" class="tableCell">${model.record.hestl4}</td>
 						 			<%--
 						 				<img onMouseOver="showPop('psum_info');" onMouseOut="hidePop('psum_info');" style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 						 				<span title="hestl4">P</span>
@@ -1940,12 +1939,12 @@
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvvol/hem3(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.m3"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvlm/helm(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.fa"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvlm2/helmla(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.la"/>&nbsp;</span></td>
-							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="ffunnr">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unNr"/>&nbsp;</span></td>
-							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffembg">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg"/>&nbsp;</span></td>
-							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffindx">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg.index"/>&nbsp;</span></td>
-							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></td>
-							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></td>
-							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
+							 			<td align="center" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffunnr">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unNr"/>&nbsp;</span></td>
+							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffembg">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg"/>&nbsp;</span></td>
+							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffindx">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.emg.index"/>&nbsp;</span></td>
+							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></td>
+							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></td>
+							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
 							 			
 							 		</tr>
 							 		<tr >
@@ -2041,15 +2040,15 @@
 							 			<td class="text14" nowrap>&nbsp;&nbsp;<span title="hefbv"><spring:message code="systema.transportdisp.orders.form.update.label.fraktberakningsVekt"/></span></td>
 							 		</tr>
 							 		<tr>
-							 			<td class="text14" width="20px">&nbsp;</td>
+							 			<td class="text14" width="40px">&nbsp;</td>
 							 			<td class="text14" >&nbsp;	
 							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="15" maxlength="10" value="${model.record.hegm2}">					 				
 						 				</td>
-						 				<td class="text14" width="200px">&nbsp;</td>
+						 				<td class="text14" width="240px">&nbsp;</td>
 						 				<td class="text14">
 							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="15" maxlength="10" value="${model.record.hevs2}">
 						 				</td>
-						 				<td class="text14" width="50px">&nbsp;</td>
+						 				<td class="text14" width="70px">&nbsp;</td>
 						 				<td class="text14">
 						 					<input readonly type="text" class="inputTextReadOnly tableCell" size="10" value="${model.record.hefbv}">
 						 				</td>
