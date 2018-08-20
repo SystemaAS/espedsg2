@@ -1850,10 +1850,11 @@
 					 			</c:forEach>
 					 			</tbody>
 				 			
+				 				<%--
 			 					<tr class="tableHeaderField" style="background-color: #F2F5EF ;border-width: 0px 0px 0px 0px;">	
 									<td width="2%" align="left" class="tableCell">&nbsp;</td>
 									<td width="2%" align="left" class="tableCell">
-										<%--this hidden field is crucial for ADD NEW line functionality. We will send the new line = upperCurrentItemlineNr + 1 --%>
+										<%--this hidden field is crucial for ADD NEW line functionality. We will send the new line = upperCurrentItemlineNr + 1 
 										<input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}">
 										<input type="hidden" id="hent" name="hent" value="${model.record.hent}">
 										<input type="hidden" id="hevkt" name="hevkt" value="${model.record.hevkt}">
@@ -1905,9 +1906,11 @@
 											</span>
 										</div>
 						 			</td>
-						 			 --%> 
+						 			  
 						 		</tr>
-					 			
+					 			 --%>
+					 			 
+					 			 
 						 		</table>
 						 		
 							</td>
@@ -1968,7 +1971,7 @@
 							 				<input type="text" class="inputTextMediumBlueMandatoryField" name="fvvt" id="fvvt" size="20" maxlength="35" value="${model.record.fraktbrevRecord.fvvt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="7" maxlength="9" value="${model.record.fraktbrevRecord.fvvkt}">
+							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="9" maxlength="9" value="${model.record.fraktbrevRecord.fvvkt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
 							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
@@ -1989,13 +1992,13 @@
 							 				<input onBlur="checkLm2NewLine(this);validateNewItemLine();" onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlm2" id="fvlm2" size="4" maxlength="5" value="${model.record.fraktbrevRecord.fvlm2}">
 						 				</td>
 						 				<td align="center" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();"  type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffunnr" id="ffunnr" size="5" maxlength="4" value="${model.record.fraktbrevRecord.ffunnr}">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();"  type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffunnr" id="ffunnr" size="4" maxlength="4" value="${model.record.fraktbrevRecord.ffunnr}">
 							 				<a tabindex=0 id="ffunnrIdLinkNewLine" onClick="searchDangerousGoodsNewLine(this);">
 	 											<img id="imgUnnrSearch" align="bottom" style="cursor:pointer;" src="resources/images/find2.png" height="11px" width="11px" border="0" alt="search">
 	 										</a>
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffembg" id="ffembg" size="5" maxlength="3" value="${model.record.fraktbrevRecord.ffembg}">
+							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffembg" id="ffembg" size="3" maxlength="3" value="${model.record.fraktbrevRecord.ffembg}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
 							 				<input onBlur="validateDangerousGoodsUnnrNewLine();" type="text" class="inputTextMediumBlue" style="text-align:right;" name="ffindx" id="ffindx" size="2" maxlength="2" value="${model.record.fraktbrevRecord.ffindx}">
@@ -2030,27 +2033,67 @@
 						<tr>
 							<td colspan="2" valign="top" style="width:100%;">
 								<table border="0">
-							 		<tr height="2"><td ></td></tr>
-							 		<tr>
-							 			<td class="text14" width="20px">&nbsp;</td>
-							 			<td class="text14" nowrap>&nbsp;&nbsp;<span title="hegm2"><spring:message code="systema.transportdisp.orders.form.update.label.marks2"/></span></td>
-							 			<td class="text14" width="200px">&nbsp;</td>
-							 			<td class="text14" nowrap>&nbsp;&nbsp;&nbsp;<span title="hevs2"><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc2"/></span></td>
-							 			<td class="text14" width="50px">&nbsp;</td>
-							 			<td class="text14" nowrap>&nbsp;&nbsp;<span title="hefbv"><spring:message code="systema.transportdisp.orders.form.update.label.fraktberakningsVekt"/></span></td>
-							 		</tr>
-							 		<tr>
-							 			<td class="text14" width="40px">&nbsp;</td>
-							 			<td class="text14" >&nbsp;	
-							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="15" maxlength="10" value="${model.record.hegm2}">					 				
+							 		<tr height="2"><td ><input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}"></td></tr>
+							 		
+							 		<tr >
+							 			<td class="text14" ><b>Oppd.TOTAL:</b></td>
+							 			<%-- separator --%>
+						 				<td class="text14" width="2px">&nbsp;</td>
+						 				
+							 			<td class="text14"><span title="hegm1/hegm2"><spring:message code="systema.transportdisp.orders.form.update.label.marks"/>1/2</span></td>
+							 			<td class="text14" >	
+							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm1" id="hegm1" size="20" maxlength="35" value="${model.record.hegm1}">
+							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="10" maxlength="10" value="${model.record.hegm2}">					 				
 						 				</td>
-						 				<td class="text14" width="240px">&nbsp;</td>
+						 				
+						 				<td class="text14"><span title="hevs1/hevs2"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc"/>1/2</span></td>
 						 				<td class="text14">
-							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="15" maxlength="10" value="${model.record.hevs2}">
+						 					<input type="text" class="inputTextMediumBlueMandatoryFieldUPPERCASE" name="hevs1" id="hevs1" size="20" maxlength="25" value="${model.record.hevs1}">
+							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="10" maxlength="10" value="${model.record.hevs2}">
 						 				</td>
-						 				<td class="text14" width="70px">&nbsp;</td>
+						 				<%-- separator --%>
+						 				<td class="text14" width="5px">&nbsp;</td>
+						 				
+						 				<td class="text14"><span title="hent"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.antal"/></span></td>
 						 				<td class="text14">
-						 					<input readonly type="text" class="inputTextReadOnly tableCell" size="10" value="${model.record.hefbv}">
+						 					<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlueMandatoryField" name="hent" id="hent" size="7" maxlength="7" value="${model.record.hent}">
+						 				</td>
+						 				<td class="text14"><span title="hent"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.weight"/></span></td>
+						 				<td class="text14">
+						 					<input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlueMandatoryField" name="hevkt" id="hevkt" size="9" maxlength="9" value="${model.record.hevkt}">
+						 				</td>
+						 				<td class="text14"><span title="hem3"><spring:message code="systema.transportdisp.orders.form.detail.update.label.m3"/></span></td>
+						 				<td class="text14">
+						 					<input type="text" onBlur="checkHem3(this);" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="hem3" id="hem3" size="7" maxlength="8" value="${fn:replace(model.record.hem3,'.',',')}">						 					
+						 				</td>
+						 				<td class="text14"><span title="helm"><spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.fa"/></span></td>
+						 				<td class="text14">
+						 					<input type="text" onBlur="checkHelm(this);" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="helm" id="helm" size="5" maxlength="5" value="${fn:replace(model.record.helm,'.',',')}">						 					
+						 				</td>
+						 				<td class="text14"><span title="helm"><spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.la"/></span></td>
+						 				<td class="text14">
+						 					<input type="text" onBlur="checkHelmla(this);" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="helmla" id="helmla" size="5" maxlength="5" value="${fn:replace(model.record.helmla,'.',',')}">						 					
+						 				</td>							 			
+						 				<td class="text14"><span title="hefbv"><spring:message code="systema.transportdisp.orders.form.update.label.fraktberakningsVekt"/></span></td>
+						 				<td class="text14">
+						 					<input readonly type="text" class="inputTextReadOnly" size="10" value="${model.record.hefbv}">
+						 				</td>
+						 				
+						 				<td align="left" class="text14" style="white-space: nowrap;" >
+						 					<input type="checkbox" id="hestl4" name="hestl4" value="P" <c:if test="${model.record.hestl4 == 'P'}"> checked </c:if>>
+							 				<span title="hestl4"><b>P</b></span>
+							 				<img onMouseOver="showPop('psum_info');" onMouseOut="hidePop('psum_info');" style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+							 				<div class="text11" style="position: relative; display:inline;" align="left">
+												<span style="position:absolute; left:-80px; top:2px;" id="psum_info" class="popupWithInputText"  >
+													<font class="text11">
+								           			<b>P(Protect)</b>
+								           			<div>
+								           			<p> Protect sumlinje<br/> 
+													</p>
+								           			</div>
+							           			</font>
+												</span>
+											</div>
 						 				</td>
 						 			</tr>
 						 		</table>

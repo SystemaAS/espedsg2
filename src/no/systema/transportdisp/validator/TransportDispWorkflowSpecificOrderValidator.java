@@ -263,9 +263,9 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 				
 				*/
 				//TOTALS
-				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hent", "systema.transportdisp.orders.form.error.null.colli.hent");
-				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevs1", "systema.transportdisp.orders.form.error.null.goodsdescription.hevs1");
-				//ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevkt", "systema.transportdisp.orders.form.error.null.weight.hevkt");
+				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hent", "systema.transportdisp.orders.form.error.null.colli.hent");
+				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevs1", "systema.transportdisp.orders.form.error.null.goodsdescription.hevs1");
+				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hevkt", "systema.transportdisp.orders.form.error.null.weight.hevkt");
 				
 				//DUP validation
 				if(strMgr.isNotNull(record.getHelks()) &&  strMgr.isNotNull(record.getHesdff()) ){

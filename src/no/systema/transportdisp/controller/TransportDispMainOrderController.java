@@ -143,7 +143,7 @@ public class TransportDispMainOrderController {
 		logger.info("#TUR:" + recordToValidate.getHepro());
 		String parentTrip = recordToValidate.getHepro();
 		String orderLineTotalsString = request.getParameter("oltotals");
-		logger.info("ORDER TOTALS STRING:" +  orderLineTotalsString);
+		//logger.info("ORDER TOTALS STRING:" +  orderLineTotalsString);
 		
 		Map model = new HashMap();
 		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
@@ -300,7 +300,7 @@ public class TransportDispMainOrderController {
 		logger.info("#hevs1:" + recordToValidate.getHevs1());
 		logger.info("#hegm1:" + recordToValidate.getHegm1());
 		logger.info("updateLinNr:" + request.getParameter("updateLinNr"));
-		logger.info("##################### HEVKT:" + recordToValidate.getHevkt());
+		logger.info("##################### HESTL4:" + recordToValidate.getHestl4());
 		//populate the order line in order to be able to handle all errors and present the order line values
 		if(this.fraktbrevLineExists(request)){
 			this.setFraktbrevRecord(request, recordToValidate);
@@ -645,7 +645,7 @@ public class TransportDispMainOrderController {
 		logger.info("#OPD:" + recordToValidate.getHeopd());
 		logger.info("#TUR:" + recordToValidate.getHepro());
 		String parentTrip = recordToValidate.getHepro();
-		//logger.info("#HESTL4:" + recordToValidate.getHestl4());
+		logger.info("#HESTL4:" + recordToValidate.getHestl4());
 		//set the order line nr in a place-holder
 		recordToValidate.setOrderLineToDelete(request.getParameter("lin"));
 		
@@ -1464,12 +1464,14 @@ public class TransportDispMainOrderController {
 						totHelm = totHelm + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm()));
 						totHelmla = totHelmla + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm2()));
 					}
-		    		//set TOTALS
-		    		orderRecord.setHent(String.valueOf(totHent));
-		    		orderRecord.setHevkt(String.valueOf(totHevkt));
-		    		orderRecord.setHem3(String.valueOf(totHem3));
-		    		orderRecord.setHelm(String.valueOf(totHelm));
-		    		orderRecord.setHelmla(String.valueOf(totHelmla));
+		    		//set TOTALS only if applicable
+		    		if(!"P".equals(orderRecord.getHestl4())){
+			    		orderRecord.setHent(String.valueOf(totHent));
+			    		orderRecord.setHevkt(String.valueOf(totHevkt));
+			    		orderRecord.setHem3(String.valueOf(totHem3));
+			    		orderRecord.setHelm(String.valueOf(totHelm));
+			    		orderRecord.setHelmla(String.valueOf(totHelmla));
+					}
 				}
 	    	}
     	

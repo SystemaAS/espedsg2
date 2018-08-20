@@ -1671,7 +1671,13 @@
 	  }else{
 		  var fvlinrExists = jq('#fvlinr_' + i).val(); 
 		  if(fvlinrExists!='' || (ant!='' || weight!='' || description !='')  ){
-			  alert("[Linje ERROR] Antall, Vareslag, Vekt er obligatoriske");
+			  //alert("[Linje ERROR] Antall, Vareslag, Vekt er obligatoriske");
+			 
+			  jq.alert({
+				    title: 'Line ERROR',
+				    content: 'Antall, Vareslag, Vekt er obligatoriske',
+			  });
+			  
 			  if(ant==''){
 				  jq('#fvant_' + i).focus();  
 			  }else if (description==''){
@@ -1740,7 +1746,8 @@
 		  	  }
 		  });
 	  }else{
-		  alert("[ERROR] missing mandatory fields for new line...");
+		  alert("Missing mandatory fields for new line...");
+		  
 		  if(ant==''){
 			  jq('#fvant').focus();  
 		  }else if (weight==''){
