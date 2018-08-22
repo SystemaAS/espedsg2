@@ -2033,7 +2033,12 @@
 						<tr>
 							<td colspan="2" valign="top" style="width:100%;">
 								<table border="0">
-							 		<tr height="2"><td ><input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}"></td></tr>
+							 		<tr height="2">
+							 		<td >
+							 			<input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}">
+							 			<input type="hidden" id="upperCurrentItemlineNr" name="upperCurrentItemlineNr" value="${upperCurrentItemlineNr}">
+							 		</td>
+							 		</tr>
 							 		
 							 		<tr >
 							 			<td class="text14" ><b>Oppd.TOTAL:</b></td>
@@ -2049,7 +2054,7 @@
 						 				<td class="text14"><span title="hevs1/hevs2"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc"/>1/2</span></td>
 						 				<td class="text14">
 						 					<input type="text" class="inputTextMediumBlueMandatoryFieldUPPERCASE" name="hevs1" id="hevs1" size="20" maxlength="25" value="${model.record.hevs1}">
-							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hevs2" id="hevs2" size="10" maxlength="10" value="${model.record.hevs2}">
+							 				
 						 				</td>
 						 				<%-- separator --%>
 						 				<td class="text14" width="5px">&nbsp;</td>
@@ -2076,7 +2081,9 @@
 						 				</td>							 			
 						 				<td class="text14"><span title="hefbv"><spring:message code="systema.transportdisp.orders.form.update.label.fraktberakningsVekt"/></span></td>
 						 				<td class="text14">
-						 					<input readonly type="text" class="inputTextReadOnly" size="10" value="${model.record.hefbv}">
+						 					<%-- <input readonly type="text" class="inputTextReadOnly" size="10" value="${model.record.hefbv}">  --%>
+						 					
+						 					<label>${model.record.hefbv}</label>
 						 				</td>
 						 				
 						 				<td align="left" class="text14" style="white-space: nowrap;" >

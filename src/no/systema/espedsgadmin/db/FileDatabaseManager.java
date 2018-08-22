@@ -69,10 +69,12 @@ public class FileDatabaseManager {
 	private void setCustomerMap(){
 		
 		logger.info("CUSTOMERS FILE: " + RESOURCE_FILES_PATH_DEFAULT + sourceFileCustomers);
+		
 		TextFileReaderService textFileReaderServiceCustomers = new TextFileReaderService();
 		List<String> payloadCustomers = textFileReaderServiceCustomers.getFileLines(TdsServletContext.getTdsServletContext().getResourceAsStream(RESOURCE_FILES_PATH_DEFAULT + this.sourceFileCustomers), this.UTF_8);
 		for(String record : payloadCustomers){
 			if(!record.contains("META")){
+				
 				String[] fields = record.split(";");
 				//System.out.println ("CUST: " + record);
 				if(fields!=null && fields.length>1){
@@ -143,6 +145,9 @@ public class FileDatabaseManager {
 						if(customerRecord.length>1){
 							custAppObject.setUrl(customerRecord[1]);
 							custAppObject.setVersion(customerRecord[2]);
+							if(customerRecord.length>= 4){
+								custAppObject.setUrlHttps(customerRecord[3]);
+							}
 						}
 					}else{
 						custAppObject.setName(customerName);
@@ -174,6 +179,7 @@ public class FileDatabaseManager {
 		
 		for(String record : payload){
 			if(!record.contains("META")){
+				
 				String[] fields = record.split(";");
 				//System.out.println ("CUST: " + id[0]);
 				List<String> list = null;

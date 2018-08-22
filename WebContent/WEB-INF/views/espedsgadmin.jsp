@@ -71,7 +71,8 @@
 							<tr class="tableHeaderField" height="20" valign="left">
 			                    <th width="20%" class="text14" align="left" >&nbsp;CUSTOMER&nbsp;</th>
 			                    <th nowrap width="10%" class="text14" align="left" >&nbsp;Java / TOMCAT / AS400&nbsp;</th>
-			                    <th width="20%" class="text14" align="left" >&nbsp;URL&nbsp;</th>
+			                    <th width="10%" class="text14" align="left" >&nbsp;URL&nbsp;</th>
+			                    <th width="10%" class="text14" align="left" >&nbsp;URL - HTTPS&nbsp;</th>
 			                    <%-- NOTE: as many columns as apps in custApps.db file. --%>
 			                    <th class="text14" align="center" >1</th>
 			                    <th class="text14" align="center" >2</th>
@@ -94,16 +95,28 @@
 			                       <td width="10%" class="text14" nowrap ><font class="text14MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
 			                       <c:choose>
 					               		<c:when test="${'DSV' == customer.name || 'DHL' == customer.name || 'Schenker NO' == customer.name}">
-					               			<td width="20%" class="text14" nowrap >
+					               			<td width="10%" class="text14" nowrap >
 			                       	
-		                       				<font class="text12Gray">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>	
+		                       					<font class="text12Gray">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>	
+		                       				</td>
+		                       				<td width="10%" class="text14" nowrap >
+		                       					<c:if test="${not empty customer.urlHttps}">
+			                       				<font class="text12Gray">&nbsp;&nbsp;${customer.urlHttps}&nbsp;&nbsp;</font>
+			                       				</c:if>	
 		                       				</td>	                       			
 			                       		</c:when>
 			                       		<c:otherwise>
-			                       			<td width="20%" class="text14" nowrap >
-			                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.url}">
-			                       				<font class="text14MediumBlue">&nbsp;&nbsp;${customer.url}&nbsp;&nbsp;</font>
-			                       			</a>
+			                       			<td width="10%" class="text14" nowrap >
+				                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.url}">
+				                       				<font class="text14MediumBlue">&nbsp;${customer.url}&nbsp;</font>
+				                       			</a>
+			                       			</td>
+			                       			<td width="10%" class="text14" nowrap >
+			                       				<c:if test="${not empty customer.urlHttps}">
+				                       			<a tabindex="-1" class="text14" target="_blank" href="${customer.urlHttps}">
+				                       				<font class="text14MediumBlue" style="color:green">&nbsp;${customer.urlHttps}&nbsp;</font>
+				                       			</a>
+				                       			</c:if>
 			                       			</td>
 			                       		</c:otherwise>
 	                       			</c:choose>

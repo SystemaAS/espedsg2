@@ -23,6 +23,10 @@ public class CustomerApplicationObject {
 	public void setUrl(String value) {  this.url = value; }
 	public String getUrl() { return this.url;}
 	
+	private String urlHttps = null; 
+	public void setUrlHttps(String value) {  this.urlHttps = value; }
+	public String getUrlHttps() { return this.urlHttps;}
+	
 	
 	private List<String> applicationList = new ArrayList<String>(); 
 	public void addToApplicationList( String value) {  this.applicationList.add(value); }
