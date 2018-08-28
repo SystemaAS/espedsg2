@@ -1,6 +1,6 @@
 META;ID;NAME
 C25;Accelerator@http://192.168.70.16:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
-C26;Atlas Spedisjon - A49@http://gw.systema.no:8686/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
+C26;Atlas Spedisjon - A49@http://gw.systema.no:8686/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@http://a49sg.systema.no
 C30;Bring@http://139.114.151.52:8080/espedsg@<b>8.0</b> / 8.0 / V11@
 C35;Collicare@http://217.65.230.10:8080/espedsg@<b>8.0</b> / 8.0 / V11@
 C100;DHL@http://165.72.19.220:8443/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
@@ -14,6 +14,7 @@ C250;ISOLA AS@http://10.13.3.22:8888/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http
 C300;Kingsrød DK@http://10.20.4.2:8383/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C301;Kingsrød NO@http://10.20.4.2:8282/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C315;Komplett AS@http://10.13.3.22:8989/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
+C350;Martin Bencher@http://10.13.3.22:9090/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a52sg.systema.no
 C400;Nortrail@http://193.69.249.50:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C420;Panalpina - A40@http://gw.systema.no:8585/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C500;Postnord@http://192.108.100.247:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
