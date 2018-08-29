@@ -27,7 +27,7 @@
 					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
 						<font class="tabLink">&nbsp;Customer matrix</font>
 						<img valign="bottom" src="resources/images/list.gif" border="0" alt="general list">
-						
+						<input type="hidden" name="language" id="language" value='${user.usrLang}'>
 					</td>
 					<%--
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>

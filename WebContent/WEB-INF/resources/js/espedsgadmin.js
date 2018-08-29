@@ -18,12 +18,19 @@
     		).draw();
     } 
   	jq(document).ready(function() {
+  		var lang = jq('#language').val();
   	    //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
         jq('#mainList').dataTable( {
       	  "dom": '<"custMatrixFilter"f>t<"bottom"li><"clear">', //look at custMatrixFilter on JSP SCRIPT-tag
       	  "scrollY": "800px",
       	  "scrollCollapse":  true,
-      	  "lengthMenu": [100]
+      	  "lengthMenu": [100],
+	      	"language": {
+	  		  "url": getLanguage(lang)
+	        },
+	  	  "fnDrawCallback": function( oSettings ) {
+	      	jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      	}
       	  });
         //css styling
         jq('.dataTables_filter input').addClass("inputText12LightYellow");
