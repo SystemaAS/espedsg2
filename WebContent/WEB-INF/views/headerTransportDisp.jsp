@@ -171,7 +171,7 @@
 			    				<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;|&nbsp;&nbsp;</font>
 				    			<a tabindex=-1 href="logoutTransportDisp.do">
 				    				<font class="headerMenuGreen"><img src="resources/images/home.gif" border="0">&nbsp;
-				    					<font style="color:#000000;" ><spring:message code="dashboard.menu.button"/>&nbsp;</font>
+				    					<font class="text14User" onMouseOver="style='color:lemonchiffon;'" onMouseOut="style='color:black;'"><spring:message code="dashboard.menu.button"/>&nbsp;</font>
 				    				</font>
 				    			</a>
 				    			<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;&nbsp;|&nbsp;</font>
