@@ -50,8 +50,8 @@
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
 						<img title="Planning" style="vertical-align:bottom;" src="resources/images/math.png" width="16" height="16" border="0" alt="planning">
-						<font class="tabLink"><spring:message code="systema.transportdisp.open.orderlist.trip.label"/><font class="text12MediumBlue">&nbsp;${searchFilter.tur}</font></font>
-						&nbsp;&nbsp;
+						<font class="tabLink"><spring:message code="systema.transportdisp.open.orderlist.trip.label"/><font class="text14MediumBlue">&nbsp;&nbsp;${searchFilter.tur}</font></font>
+						&nbsp;
 						<div title="Økonomi" style="display:inline-block; cursor:pointer;" onClick="showDialogMatrixDraggable();" >
 							<font class="text14OrangeBold">e</font>
 						</div>	           	

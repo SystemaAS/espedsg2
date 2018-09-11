@@ -3,16 +3,23 @@
   var counterIndex = 0;
   var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
   
-  /* avoid this if you can ... Bring likes the default ...
-  jq('#transportdispForm').on("keyup keypress", function(e) {
-	  var code = e.keyCode || e.which; 
-	  //alert(code);
-	  if (code  == 13) {               
-	    e.preventDefault();
-	    return false;
-	  }
+  //Overlay on tab (to mark visually a delay...)
+  jq(function() {
+	  jq('#alinkTripListId').click(function() { 
+		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  });
+	  jq('#alinkParentTripId').click(function() { 
+		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  });
+	  jq('#alinkOrderListId').click(function() { 
+		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  });
+	  jq('#alinkInvoice').click(function() { 
+		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  });
   });
-  */
+  
+  
   jq(function() {
 	  jq("#selectedDate").datepicker({ 
 		  dateFormat: 'yymmdd',
@@ -574,20 +581,6 @@
   //END Model dialog timestamp for POD documents (on file upload)
   //----------------------------------------------------------------
   
-  
-  
-  //Overlay on tab (to mark visually a delay...)
-  jq(function() {
-	  jq('#alinkTripListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  });
-	  jq('#alinkParentTripId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  });
-	  jq('#alinkOrderListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  });
-  });
   
   jq(function() {
 	  //Frankatur window

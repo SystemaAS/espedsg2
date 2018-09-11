@@ -64,7 +64,7 @@
 			<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 				<a id="alinkOrderId" style="display:block;" id="order" href="transportdisp_mainorder.do?hepro=${model.parentTrip}&heavd=${recordOrderTransportDisp.heavd}&heopd=${recordOrderTransportDisp.heopd}">
 					<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
-					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.update.ourref.tab"/><font class="text12MediumBlue">&nbsp;${recordOrderTransportDisp.heavd}/${recordOrderTransportDisp.heopd}</font></font>
+					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.update.ourref.tab"/><font class="text14MediumBlue">&nbsp;${recordOrderTransportDisp.heavd}/${recordOrderTransportDisp.heopd}</font></font>
 				</a>
 			</td>
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>

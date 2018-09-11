@@ -74,7 +74,7 @@
 			<c:if test="${not empty model.record.heopd}">
 				<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 				<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
-					<a style="display:block;" id="orderList" href="transportdisp_mainorder_invoice.do?action=doFind&hepro=${model.parentTrip}&heavd=${model.record.heavd}&heopd=${model.record.heopd}&itemsType=O">
+					<a id="alinkInvoice" style="display:block;" href="transportdisp_mainorder_invoice.do?action=doFind&hepro=${model.parentTrip}&heavd=${model.record.heavd}&heopd=${model.record.heopd}&itemsType=O">
 						<img title="Add" style="vertical-align:bottom;" src="resources/images/invoice2.png" width="16" hight="16" border="0" alt="invoice">
 						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.tab"/>&nbsp;</font>
 					</a>
