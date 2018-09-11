@@ -2637,7 +2637,6 @@
 		</tr>
 		
 		
-		
 		<%-- -------------------------- --%>	
  		<%-- DUP dialog    --%>	
  		<%-- -------------------------- --%>	
@@ -2650,17 +2649,14 @@
 										<td class="text14"><span title="ffavd">Via avd</span></td>
 								 		<td class="text14">
 								 			<input readonly type="text" class="inputTextReadOnly" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
-								 			
 								 		</td>
 								 		<td class="text14"><span title="ffoty">Opd.type</span></td>
 								 		<td class="text14">
 								 			<input readonly type="text" class="inputTextReadOnly" size="3" maxlength="2" name="ffoty" id="ffoty" value="${model.record.ffoty}">
-											
 								 		</td>
 								 		<td class="text14"><span title="fffrank">Frankatur</span></td>
 								 		<td class="text14">
 								 			<input readonly type="text" class="inputTextReadOnly" size="4" maxlength="3" name="fffrank" id="fffrank" value="${model.record.fffrank}">
-											
 								 		</td>
 								 	</tr>
 								 	<tr>		
