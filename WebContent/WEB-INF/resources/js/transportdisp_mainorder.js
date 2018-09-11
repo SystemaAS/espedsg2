@@ -2123,7 +2123,35 @@
   function deleteOrderLine(element){
 	  var id = element.id;
 	  var record = id.split('_');
-	  var counter = record[1]; 
+	  var lineId = record[1]; 
+	  
+	  //Start dialog
+	  	jq('<div></div>').dialog({
+	        modal: true,
+	        title: "Slett linje " + lineId,
+	        buttons: {
+		        Fortsett: function() {
+	        		jq( this ).dialog( "close" );
+		            //do delete
+        		    var params = "heavd=" + jq('#heavd').val() + "&heopd=" + jq('#heopd').val() + "&lin=" + lineId + 
+        		    	"&hent=" + jq('#hent').val() + "&hevkt=" + jq('#hevkt').val() + 
+						"&hem3=" + jq('#hem3').val() + "&helm=" + jq('#helm').val() + "&helmla=" + jq('#helmla').val();
+		            jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		            window.location = "transportdisp_mainorder_delete_order_line.do?" + params;
+		        },
+		        Avbryt: function() {
+		            jq( this ).dialog( "close" );
+		        }
+	        },
+	        open: function() {
+		  		  var markup = "Er du sikker på at du vil slette denne?";
+		          jq(this).html(markup);
+		          //make Cancel the default button
+		          jq(this).siblings('.ui-dialog-buttonpane').find('button:eq(1)').focus();
+		     }
+		});  //end dialog
+	  
+	  /*
 	  var r = confirm("Are you sure you want to remove this order line?"+ counter);
 	  if (r == true){
 		  //updateOrderLineTotalsBeforeDelete(counter);
@@ -2133,7 +2161,7 @@
 		  				/*+ "&hepoen=" + jq('#hepoen').val();
 		  				//append the protect checkbox value (if applicable)
 						if(jq('#hestl4').prop('checked')){ params += "&hestl4=" + jq('#hestl4').val();}
-						else{ params += "&hestl4="; } */
+						else{ params += "&hestl4="; } 
 						
 						//shoot now to the controller!
 		  				//console.log(params);
@@ -2141,6 +2169,7 @@
 	  }else{
 		  //nothing
 	  }
+	  */
   }
   //--------------------------------
   // UPDATE before DELETE ORDER LINE

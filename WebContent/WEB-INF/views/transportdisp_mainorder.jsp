@@ -1795,7 +1795,7 @@
 						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></th>
 						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></th>
 						 			<th width="2%" align="right" valign="bottom" class="text12"><span title="ffpoen/hepoen(Tot)">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.adr"/>&nbsp;</span></th>
-						 			<th width="2%" align="left" valign="bottom" class="text14"><span title=""><spring:message code="systema.transportdisp.orders.form.detail.update.label.remove"/></span></th>										 			
+						 			<th width="2%" align="center" valign="bottom" class="text14"><span title=""><spring:message code="systema.transportdisp.orders.form.detail.update.label.remove"/></span></th>										 			
 						 		</tr>
 						 		</thead>
 						 		<tbody>
@@ -1831,7 +1831,7 @@
 						 				<td width="2%" align="right" class="tableCellDangerousGoods" >${fraktbrevRecord.ffante}</td>
 						 				<td width="2%" align="right" class="tableCellDangerousGoods">${fraktbrevRecord.ffenh}</td>
 						 				<td width="2%" align="right" class="tableCellDangerousGoods" >${fraktbrevRecord.ffpoen}</td>
-					 					<td width="2%" align="left" class="tableCell" >
+					 					<td width="2%" align="center" class="tableCell" >
 						               		<c:if test="${not empty fraktbrevRecord.fvlinr}">
 						               			<%--
 						               			<c:if test="${ model.record.singleLine == 'N' }">
@@ -1841,7 +1841,7 @@
 							               		</c:if>
 							               		--%>
 							               		<a id="deleteLine_${counter.count}" onClick="deleteOrderLine(this);">
-						               				<img valign="bottom" src="resources/images/delete.gif" border="0" alt="remove">
+						               				<img src="resources/images/delete.gif" border="0" alt="remove">
 							               		</a>
 						               		</c:if> 	
 							 			</td>
