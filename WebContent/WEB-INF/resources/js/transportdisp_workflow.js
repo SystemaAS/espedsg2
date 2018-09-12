@@ -1032,7 +1032,8 @@
 			  			jq('#totopn').text(data[i].totopn);
 			  			jq('#totovf').text(data[i].totovf);
 			  			jq('#totsum').text(data[i].totsum);
-			  			
+			  			//focus
+			  			jq('#centuryYearTurccTuraar').focus();
 			  		}
 			  	  },
 			  	  error: function() {
@@ -1134,7 +1135,7 @@
 	jq('#workflowTrips').dataTable( {
 		  "dom": '<"transpDispWorkflowFilter"f>t<"bottom"lirp><"clear">',
 		  "scrollY":        	"700px",
-		  "scrollCollapse":  	false,
+		  "scrollCollapse":  	true,
 		  "autoWidth": false, //for optimization purposes when initializing the table
 		  "lengthMenu": [ 50, 75, 100]
 		});

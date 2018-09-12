@@ -477,8 +477,8 @@
   function showDialogMatrixDraggable(){
 	  //jq( "#dialogDraggableMatrix" ).removeClass("popup");
 	  jq( "#dialogDraggableMatrix" ).dialog({
-		  minHeight: 280,
-		  minWidth:420,
+		  minHeight: 300,
+		  minWidth:450,
 		  position: { my: "right top", at: "right bottom", of: window }
 	  }); 
 	  jq( "#dialogDraggableMatrix" ).focus();
