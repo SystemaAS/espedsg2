@@ -8,6 +8,7 @@
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_workflow.js?ver=${user.versionEspedsg}"></SCRIPT>	
+	
 	<SCRIPT type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></SCRIPT>
 	
 	<%-- for dialog popup --%>
@@ -45,7 +46,7 @@
 			<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
 				<a id="alinkOrderListId" style="display:block;" id="ordersOpen" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.wssavd}">
 					<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 				</a>
 			</td>
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -85,6 +86,9 @@
         		<td>
         		<form name="searchForm" id="searchForm" action="transportdisp_workflow.do?action=doFind" method="post" >
         		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
+        		<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.wssavd}'>
+				<input type="hidden" name="fkeysopd" id="fkeystur" value='${model.record.tupro}'>
+	 	        
 	 	        <table style="width:90%;">
 	 	        <tr>	
 	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;

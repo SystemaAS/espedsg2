@@ -8,6 +8,7 @@
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist.js?ver=${user.versionEspedsg}"></SCRIPT>
+	
 	<%-- for dialog popup --%>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
@@ -35,7 +36,7 @@
 					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
 						<a style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.avd}">
 							<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 						</a>
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -44,7 +45,7 @@
 						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
 						
 							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>
+							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 						</a>
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -69,7 +70,7 @@
 						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
 						
 							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>
+							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 						</a>
 					</td>
 					<td width="60%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
@@ -83,6 +84,9 @@
 	
 	<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
 	<input type="hidden" name="tripNr" id="tripNr" value='${searchFilter.tur}'>
+	<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.avd}'>
+	<input type="hidden" name="fkeysopd" id="fkeystur" value='${searchFilter.tur}'>
+	 	        
 	
 	<tr>
 	<td>

@@ -41,7 +41,7 @@
 			<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 				<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${model.record.heavd}">
 					<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 				</a>
 			</td>
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -49,7 +49,7 @@
 				<%-- <a id="alinkTripListId" style="display:block;" id="ordersOpen" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${model.record.heavd}&tupro=${model.parentTrip}"> --%>
 				<a id="alinkTripListId" style="display:block;" id="ordersOpen" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${model.record.heavd}&tupro=">
 					<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.tab"/></font>
+					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 				</a>
 			</td>
 			<%-- Only present this option with there is a trip behind the order, otherwise this is a brand new order without any previous trip connection --%>
@@ -58,7 +58,7 @@
 				<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 					<a id="alinkParentTripId" style="display:block;" id="orderList" href="transportdisp_mainorderlist.do?action=doFind&wssavd=${model.record.heavd}&wstur=${model.parentTrip}">
 						<img title="Add" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" hight="15" border="0" alt="add">
-						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.open.orderlist.trip.label"/>&nbsp;${model.parentTrip}</font>
+						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.open.orderlist.trip.label"/>&nbsp;${model.parentTrip}</font>&nbsp;<font class="text10Orange">F10</font>
 					</a>
 				</td>
 			</c:if>
@@ -76,7 +76,7 @@
 				<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 					<a id="alinkInvoice" style="display:block;" href="transportdisp_mainorder_invoice.do?action=doFind&hepro=${model.parentTrip}&heavd=${model.record.heavd}&heopd=${model.record.heopd}&itemsType=O">
 						<img title="Add" style="vertical-align:bottom;" src="resources/images/invoice2.png" width="16" hight="16" border="0" alt="invoice">
-						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.tab"/>&nbsp;</font>
+						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.tab"/>&nbsp;</font>&nbsp;<font class="text10Orange">F5</font>
 					</a>
 				</td>
 			</c:if>
@@ -276,6 +276,12 @@
             		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
 					<input type="hidden" name="tripNr" id="tripNr" value='${model.record.hepro}'>
 					<input type="hidden" name="heopd" id="heopd" value='${model.record.heopd}'>
+					
+					<input type="hidden" name="fkeysavd" id="fkeysavd" value='${model.record.heavd}'>
+					<input type="hidden" name="fkeystur" id="fkeystur" value='${model.record.hepro}'>
+					<input type="hidden" name="fkeysturParent" id="fkeysturParent" value='${model.parentTrip}'>
+					<input type="hidden" name="fkeysopd" id="fkeysopd" value='${model.record.heopd}'>
+					
 					<input type="hidden" name="messageNoteConsigneeOriginal" id="messageNoteConsigneeOriginal" value='${model.record.messageNoteConsignee}'>
 					<input type="hidden" name="messageNoteCarrierOriginal" id="messageNoteCarrierOriginal" value='${model.record.messageNoteCarrier}'>
 					<input type="hidden" name="messageNoteInternalOriginal" id="messageNoteInternalOriginal" value='${model.record.messageNoteInternal}'>

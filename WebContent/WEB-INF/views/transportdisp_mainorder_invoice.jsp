@@ -39,7 +39,7 @@
 			<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 				<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${recordOrderTransportDisp.heavd}">
 					<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 				</a>
 			</td>
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -47,7 +47,7 @@
 				<%-- <a id="alinkTripListId" style="display:block;" id="ordersOpen" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${recordOrderTransportDisp.heavd}&tupro=${model.parentTrip}"> --%>
 				<a id="alinkTripListId" style="display:block;" id="ordersOpen" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${recordOrderTransportDisp.heavd}&tupro=">
 					<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.tab"/></font>
+					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 				</a>
 			</td>
 			<%-- Only present this option with there is a trip behind the order, otherwise this is a brand new order without any previous trip connection --%>
@@ -199,6 +199,11 @@
 		 						<input type="hidden" name="hepro" id="hepro" value='${recordOrderTransportDisp.hepro}'>
 		 						<input type="hidden" name="action" id="action" value='doFetch'>
 				 				<input type="hidden" name="sign" id="sign" value='${recordOrderTransportDisp.hesg}'>
+				 				
+				 				<input type="hidden" name="fkeysavd" id="fkeysavd" value='${recordOrderTransportDisp.heavd}'>
+								<input type="hidden" name="fkeystur" id="fkeystur" value='${recordOrderTransportDisp.hepro}'>
+								<input type="hidden" name="fkeysopd" id="fkeysopd" value='${recordOrderTransportDisp.heopd}'>
+					
 								
 								<table width="80%" cellspacing="0" border="0" cellpadding="0">
 									
