@@ -932,6 +932,15 @@ END override jQuery elements
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
+	font-size: 14px;
+	padding: 4px 7px;
+	outline: 0;
+}
+.inputText12{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
 	font-size: 12px;
 	padding: 4px 7px;
 	outline: 0;
@@ -942,6 +951,17 @@ END override jQuery elements
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
 	font-size: 11px;
+	padding: 4px 7px;
+	outline: 0;
+}
+
+.inputText12LightYellow{
+	border: 1px solid #DDDDDD;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 12px;
+	background-color: #FFFFF9;
 	padding: 4px 7px;
 	outline: 0;
 }
