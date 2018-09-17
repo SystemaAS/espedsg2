@@ -2602,15 +2602,18 @@ input[type=button]:focus{
 }
 
 select:focus{
-	/*border: 1px solid #CCC;*/
+	/*border: 1px solid #CCC;
 	background-color: lightyellow;
-	border: 1px solid #4169E1;	
+	border: 1px solid #4169E1;*/
+	
+	background-color: #FFFFFF;
+	box-shadow: 0 0 5px rgba(66, 148, 255, 1);
+	border: 2px solid rgba(66, 148, 255, 1);	
 }
+
 select {
   font-size: 14px;
 }
-
-
 
 a.menu:link {text-decoration: none ; font-weight: normal; border: 0px }
 a.menu:visited {text-decoration: none ; color:#FFFFFF; font-weight: normal; border: 0px }
