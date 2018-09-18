@@ -313,7 +313,22 @@
  			 jq("#tuavd").val(avd);
  		  }
 	  });
+ 	 
+ 	  jq('#objAvdGroupsList').click(function() {
+		  if(jq('#divAvdGroupsList').css('display') == 'none'){
+			  jq('#divAvdGroupsList').css('display','block');
+		  }else{
+			  jq('#divAvdGroupsList').css('display','none');
+		  }
+	  });
   });
+  function doPickAvdGroup(element){
+	  jq('#divAvdGroupsList').css('display','none');
+	  var rawId = element.id;
+	  var id = rawId.replace("id_","");
+	  jq('#wssavd').val(id);
+  }
+
   //Validation on Driver
   jq(function() {
  	  jq("#tusjn1").focus(function(){ 

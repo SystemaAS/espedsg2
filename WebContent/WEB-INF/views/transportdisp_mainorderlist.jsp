@@ -351,12 +351,11 @@
 			    	<table width="90%">
 			    		<tr> 
 			    		<td>
-							<img onMouseOver="showPop('dpts_info');" onMouseOut="hidePop('dpts_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+							<font id="objAvdGroupsList" class="text14OrangeBold" style="cursor:pointer;">G</font>
 							<font title="avd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
 							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
 		 					</a>
-			        		
 			        	</td>
 			        	<td>	
 			        		&nbsp;<font title="opd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
@@ -364,6 +363,7 @@
 			        		<a href="javascript:void(0);" onClick="window.open('sporringoppdraggate.do?lang=NO&cw=true','opdWin','top=100px,left=200px,height=900px,width=1500px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgOpdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
 		 					</a>
+		 					
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="opdType" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></font>
@@ -397,36 +397,25 @@
 				        <tr> 
 			    		<td>
 							<input type="text" class="inputText" name="avd" id="avd" size="5" maxlength="4" value='${searchFilter.avd}'>
-							
+							<div id="divAvdGroupsList" style="display:none;position: relative;height:10em;" class="ownScrollableSubWindowDynamicWidthHeight" align="left" >
+		 						<%--
+		 						<select class="inputTextMediumBlueMandatoryField" name="avdGroupsList" id="avdGroupsList" size="5">
+				            		<c:forEach var="record" items="${model.avdGroupsList}" >
+			                       	 	<option style="color:black;" value="${record.agrKode}">${record.agrKode}&nbsp;${record.agrNavn}</option>
+									</c:forEach> 
+								</select>
+								 --%>
+								<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
+									<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
+									<tr>
+										<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14OrangeBold">${record.agrKode}</font></td>
+										<td class="tableHeaderField">${record.agrNavn}</td>
+									</tr>
+									</c:forEach>
+								</table>	
+							</div>	
 			        	</td>
-			        	<div class="text11" style="position: relative;" align="left">
-								<span style="position:absolute; left:40px;top:10px;" id="dpts_info" class="popupWithInputText"  >
-		 							<font class="text11">
-					           			<b>Avd</b>
-					           			<div>
-					           			<p>Avd.grupper</p>
-					           			<ul>
-					           				<c:choose>
-					           				<c:when test="${not empty model.avdGroupsList}">
-						           				<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">
-						           					<li><b>${record.agrKode}</b>=${record.agrNavn}</li>
-						           				</c:forEach>
-					           				</c:when>
-					           				<c:otherwise>
-					           					<li>Blank=default, else dept.number</li>
-						           				<li><b>ALL</b>=All departments</li>
-						           			    <li><b>IMP</b>=Import</li>
-						           			    <li><b>EXP</b>=Export</li>
-						           			    <li><b>DOM</b>=Domestic</li>
-						           			    <li><b>IN</b>=Inbound domestic</li>
-						           			    <li><b>OUT</b>=Outbound domestic</li>
-					           			    </c:otherwise>
-					           			    </c:choose>
-					           			</ul>	
-					           			</div>
-				           			</font>
-								</span>
-							</div>
+			        	
 			        	<td>	
 			        		<input type="text" class="inputText" name="opd" id="opd" size="10" maxlength="15" value='${searchFilter.opd}'>
 				        </td>
