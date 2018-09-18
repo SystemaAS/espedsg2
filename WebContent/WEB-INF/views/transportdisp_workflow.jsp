@@ -101,20 +101,29 @@
 	                <div class="text14" style="position: relative;" align="left">
 						<span style="position:absolute; left:40px; top:10px;" id="dpts_info" class="popupWithInputText"  >
  							<font class="text11">
-			           			<b>Dept</b>
-			           			<div>
-			           			<p>Special search codes</p>
-			           			<ul>
-			           				<li>Blank=default, else dept.number</li>
-			           				<li><b>ALL</b>=All departments</li>
-			           			    <li><b>IMP</b>=Import</li>
-			           			    <li><b>EXP</b>=Export</li>
-			           			    <li><b>DOM</b>=Domestic</li>
-			           			    <li><b>IN</b>=Inbound domestic</li>
-			           			    <li><b>OUT</b>=Outbound domestic</li>
-			           			</ul>	
-			           			</div>
-		           			</font>
+					           			<b>Avd</b>
+					           			<div>
+					           			<p>Avd.grupper</p>
+					           			<ul>
+					           				<c:choose>
+					           				<c:when test="${not empty model.avdGroupsList}">
+						           				<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">
+						           					<li><b>${record.agrKode}</b>=${record.agrNavn}</li>
+						           				</c:forEach>
+					           				</c:when>
+					           				<c:otherwise>
+					           					<li>Blank=default, else dept.number</li>
+						           				<li><b>ALL</b>=All departments</li>
+						           			    <li><b>IMP</b>=Import</li>
+						           			    <li><b>EXP</b>=Export</li>
+						           			    <li><b>DOM</b>=Domestic</li>
+						           			    <li><b>IN</b>=Inbound domestic</li>
+						           			    <li><b>OUT</b>=Outbound domestic</li>
+					           			    </c:otherwise>
+					           			    </c:choose>
+					           			</ul>	
+					           			</div>
+				           			</font>
 						</span>
 					</div>
 					<td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>

@@ -108,6 +108,8 @@ public final class TransportDispUrlDataStore {
 	static public String TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJGE002.pgm";
 	//http://gw.systema.no/sycgip/TJGE002.pgm?user=JOVO&avd=75&opd=19
 	
+	static public String TRANSPORT_DISP_GENERAL_AVD_GROUPS_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJINQAGR.pgm";
+	//http://gw.systema.no/sycgip/TJINQAGR.pgm?user=JOVO
 	
 	
 	//--------------------------------------------

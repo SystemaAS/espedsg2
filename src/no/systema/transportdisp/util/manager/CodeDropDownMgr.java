@@ -19,7 +19,8 @@ import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTran
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeRecord;
-
+import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsRecord;
 
 
 import no.systema.transportdisp.util.manager.CodeDropDownMgr;
@@ -139,7 +140,38 @@ public class CodeDropDownMgr {
 			e.printStackTrace();
 		}
 			
-	}	
+	}
+	
+	public void populateHtmlDropDownsFromJsonStringAvdGroups(UrlCgiProxyService urlCgiProxyService, TransportDispDropDownListPopulationService listPopulationService,
+			Map model, SystemaWebUser appUser){
+			//fill in html lists here
+			try{
+				String URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_AVD_GROUPS_URL;
+				StringBuffer urlRequestParamsKeys = new StringBuffer();
+				urlRequestParamsKeys.append("user=" + appUser.getUser());
+				String utfPayload = urlCgiProxyService.getJsonContent(URL, urlRequestParamsKeys.toString());
+				logger.info(URL);
+				logger.info(urlRequestParamsKeys.toString());
+				//logger.info(utfPayload);
+				utfPayload = utfPayload.replaceAll("aGrKode", "agrKode");
+				utfPayload = utfPayload.replaceAll("aGrNavn", "agrNavn");
+				logger.info(utfPayload);
+				JsonTransportDispAvdGroupsContainer container = listPopulationService.getAvdGroupsContainer(utfPayload);
+				
+				if(container!=null && container.getInqAvdGrupp()!=null){
+					for(JsonTransportDispAvdGroupsRecord record: container.getInqAvdGrupp()){
+						logger.info("AVD-Groups: " + record.getAgrKode() + " " + record.getAgrNavn());
+					}
+					model.put(TransportDispConstants.RESOURCE_MODEL_KEY_AVD_GROUPS_LIST, container.getInqAvdGrupp());
+				}else{
+					model.put(TransportDispConstants.RESOURCE_MODEL_KEY_AVD_GROUPS_LIST, new ArrayList());
+				}
+				
+			}catch(Exception e){
+				e.printStackTrace();
+			}
+				
+		}
 	/**
 	 * 
 	 * @param urlCgiProxyService

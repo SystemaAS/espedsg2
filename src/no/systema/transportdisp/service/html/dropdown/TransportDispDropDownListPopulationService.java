@@ -18,6 +18,7 @@ import no.systema.transportdisp.mapper.jsonjackson.oppdragstype.JsonTransportDis
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispChildWindowMapper;
 
 import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispSignatureContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.frankatur.JsonTransportDispFrankaturContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeParametersContainer;
@@ -115,6 +116,10 @@ public class TransportDispDropDownListPopulationService {
 	 */
 	public JsonTransportDispSignatureContainer getSignContainer(String utfPayload) throws Exception{
 		return this.signMapper.getContainer(utfPayload);
+	}
+	
+	public JsonTransportDispAvdGroupsContainer getAvdGroupsContainer(String utfPayload) throws Exception{
+		return this.signMapper.getContainerAvdGroups(utfPayload);
 	}
 	
 	/**

@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class JsonTransportDispAvdGroupsRecord {
-	private String aGrKode = null;
-	private String aGrNavn = null;
+	private String agrKode = null;
+	private String agrNavn = null;
 	
 }

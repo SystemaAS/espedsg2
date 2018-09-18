@@ -44,6 +44,7 @@ import no.systema.transportdisp.service.TransportDispWorkflowListService;
 import no.systema.transportdisp.service.TransportDispWorkflowShippingPlanningOrdersListService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificTripService;
+import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevPdfContainer;
@@ -57,6 +58,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.shippinglists.JsonTra
 import no.systema.transportdisp.filter.SearchFilterTransportDispWorkflowShippingPlanningOrdersList;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
 import no.systema.transportdisp.util.TransportDispConstants;
+import no.systema.transportdisp.util.manager.CodeDropDownMgr;
 import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
 import no.systema.transportdisp.util.manager.java.reflect.ReflectionUrlStoreMgr;
 
@@ -80,6 +82,8 @@ public class TransportDispMainOrderListController {
 	private ControllerAjaxCommonFunctionsMgr controllerAjaxCommonFunctionsMgr;
 	private ReflectionUrlStoreMgr reflectionUrlStoreMgr = new ReflectionUrlStoreMgr();
 	private StringManager strMgr = new StringManager();
+	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
+	
 	@PostConstruct
 	public void initIt() throws Exception {
 		if("DEBUG".equals(AppConstants.LOG4J_LOGGER_LEVEL)){
@@ -120,6 +124,8 @@ public class TransportDispMainOrderListController {
 			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
 			appUser.setUrlStoreProps(this.reflectionUrlStoreMgr.printProperties("no.systema.transportdisp.url.store.TransportDispUrlDataStore", "html")); //Debug info om UrlStore
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			//drop downs
+    		this.setCodeDropDownMgr(appUser, model);
 			//-----------
 			//Validation
 			//-----------
@@ -132,11 +138,7 @@ public class TransportDispMainOrderListController {
 			if(bindingResult.hasErrors()){
 	    		logger.info("[ERROR Validation] search-filter does not validate)");
 	    		//put domain objects and do go back to the successView from here
-	    		//drop downs
-	    		this.setCodeDropDownMgr(appUser, model);
-				//this.populateAvdelningHtmlDropDownsFromJsonString(model, appUser);
-				//this.populateSignatureHtmlDropDownsFromJsonString(model, appUser);
-				
+	    		
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
 	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, new ArrayList());
 	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS, new ArrayList());
@@ -825,11 +827,8 @@ public class TransportDispMainOrderListController {
 	 * @param model
 	 */
 	private void setCodeDropDownMgr(SystemaWebUser appUser, Map model){
-		/* TODO COVI Status
-		 * 
-		this.codeDropDownMgr.populateCodesHtmlDropDownsFromJsonString(this.urlCgiProxyService, this.tvinnSadDropDownListPopulationService,
-				 model,appUser,CodeDropDownMgr.CODE_2_COUNTRY, null, null);
-		*/
+		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringAvdGroups(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model,appUser);
+		
 	}
 
 	//SERVICES
@@ -860,6 +859,12 @@ public class TransportDispMainOrderListController {
 	@Required	
 	public void setTransportDispWorkflowSpecificTripService(TransportDispWorkflowSpecificTripService value){this.transportDispWorkflowSpecificTripService = value;}
 	public TransportDispWorkflowSpecificTripService getTransportDispWorkflowSpecificTripService(){ return this.transportDispWorkflowSpecificTripService; }
+	
+	@Qualifier ("transportDispDropDownListPopulationService")
+	private TransportDispDropDownListPopulationService transportDispDropDownListPopulationService;
+	@Autowired
+	public void setTransportDispDropDownListPopulationService (TransportDispDropDownListPopulationService value){ this.transportDispDropDownListPopulationService=value; }
+	public TransportDispDropDownListPopulationService getTransportDispDropDownListPopulationService(){return this.transportDispDropDownListPopulationService;}
 	
 	
 }

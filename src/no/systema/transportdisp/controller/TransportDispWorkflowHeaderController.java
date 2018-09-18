@@ -675,6 +675,7 @@ public class TransportDispWorkflowHeaderController {
 				 model,appUser,CodeDropDownMgr.CODE_2_COUNTRY, null, null);
 		//oppdragtype
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
+		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringAvdGroups(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model,appUser);
 	}
 	
 	
