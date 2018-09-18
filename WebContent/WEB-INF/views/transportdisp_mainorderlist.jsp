@@ -397,7 +397,27 @@
 				        <tr> 
 			    		<td>
 							<input type="text" class="inputText" name="avd" id="avd" size="5" maxlength="4" value='${searchFilter.avd}'>
+							
 			        	</td>
+			        	<div class="text11" style="position: relative;" align="left">
+								<span style="position:absolute; left:40px;top:10px;" id="dpts_info" class="popupWithInputText"  >
+		 							<font class="text11">
+					           			<b>Dept</b>
+					           			<div>
+					           			<p>Special search codes</p>
+					           			<ul>
+					           				<li>Blank=default, else dept.number</li>
+					           				<li><b>ALL</b>=All departments</li>
+					           			    <li><b>IMP</b>=Import</li>
+					           			    <li><b>EXP</b>=Export</li>
+					           			    <li><b>DOM</b>=Domestic</li>
+					           			    <li><b>IN</b>=Inbound domestic</li>
+					           			    <li><b>OUT</b>=Outbound domestic</li>
+					           			</ul>	
+					           			</div>
+				           			</font>
+								</span>
+							</div>
 			        	<td>	
 			        		<input type="text" class="inputText" name="opd" id="opd" size="10" maxlength="15" value='${searchFilter.opd}'>
 				        </td>
@@ -436,25 +456,7 @@
 				    </table>    
 					</td>
 					</form>
-					<div class="text11" style="position: relative;" align="left">
-						<span style="position:absolute; left:250px; top:30px;" id="dpts_info" class="popupWithInputText"  >
- 							<font class="text11">
-			           			<b>Dept</b>
-			           			<div>
-			           			<p>Special search codes</p>
-			           			<ul>
-			           				<li>Blank=default, else dept.number</li>
-			           				<li><b>ALL</b>=All departments</li>
-			           			    <li><b>IMP</b>=Import</li>
-			           			    <li><b>EXP</b>=Export</li>
-			           			    <li><b>DOM</b>=Domestic</li>
-			           			    <li><b>IN</b>=Inbound domestic</li>
-			           			    <li><b>OUT</b>=Outbound domestic</li>
-			           			</ul>	
-			           			</div>
-		           			</font>
-						</span>
-					</div>
+					
 					
 				</tr>
 				<c:if test="${not empty model.containerOpenOrders.maxWarning}">

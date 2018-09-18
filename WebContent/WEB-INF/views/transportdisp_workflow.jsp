@@ -99,7 +99,7 @@
 		 				</a>
 	                </td>
 	                <div class="text14" style="position: relative;" align="left">
-						<span style="position:absolute; left:50px; top:10px;" id="dpts_info" class="popupWithInputText"  >
+						<span style="position:absolute; left:40px; top:10px;" id="dpts_info" class="popupWithInputText"  >
  							<font class="text11">
 			           			<b>Dept</b>
 			           			<div>
