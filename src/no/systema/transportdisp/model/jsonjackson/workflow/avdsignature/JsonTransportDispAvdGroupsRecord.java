@@ -2,19 +2,15 @@
  * 
  */
 package no.systema.transportdisp.model.jsonjackson.workflow.avdsignature;
-
+import lombok.Data;
 /**
  * @author oscardelatorre
  * @date Sep, 2018
  * 
  */
+@Data
 public class JsonTransportDispAvdGroupsRecord {
 	private String aGrKode = null;
-	public void setAGrKode(String value){ this.aGrKode = value;}
-	public String getAGrKode(){ return this.aGrKode; }
-	
 	private String aGrNavn = null;
-	public void setAGrNavn(String value){ this.aGrNavn = value;}
-	public String getAGrNavn(){ return this.aGrNavn; }
 	
 }
