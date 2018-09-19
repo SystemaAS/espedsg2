@@ -537,6 +537,32 @@
 		  window.close();
 	  });
 	});
+	
+	//Incoterms
+	jq(function() {
+		jq('#incotermsList').on('click', 'td', function(){
+		  var id = this.id;
+		  var record = id.split('@');
+		  var id = record[0].replace("code_", "");
+		  opener.jq('#hefr').val(id);
+		  opener.jq('#hefr').focus();
+		  //close child window
+		  window.close();
+	  });
+	});
+	
+	//Incoterms
+	jq(function() {
+		jq('#oppTypeList').on('click', 'td', function(){
+		  var id = this.id;
+		  var record = id.split('@');
+		  var id = record[0].replace("code_", "");
+		  opener.jq('#heot').val(id);
+		  opener.jq('#heot').focus();
+		  //close child window
+		  window.close();
+	  });
+	});
 	//======================
     //Datatables jquery 
     //======================
@@ -617,6 +643,11 @@
     		jq('#tollstedCodesList_filter').val()
         ).draw();
     }
+    function filterIncotermsList (){
+        jq('#incotermsList').DataTable().search(
+    		jq('#incotermsList_filter').val()
+        ).draw();
+    }
     function filterSupplierList (){
         jq('#supplierList').DataTable().search(
     		jq('#supplierList_filter').val()
@@ -633,7 +664,11 @@
     		jq('#countryCodeList_filter').val()
         ).draw();
     }
-    
+    function filterOppTypeList (){
+        jq('#oppTypeList').DataTable().search(
+    		jq('#oppTypeList_filter').val()
+        ).draw();
+    }
     
     
     //Init datatables
@@ -642,8 +677,11 @@
       //table [Avd]
   	  //-----------------------
     	  jq('#avdList').dataTable( {
-    		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 50, 75, 100]
+    		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+    		  "lengthMenu": [ 50, 75, 100],
+    		  "fnDrawCallback": function( oSettings ) {
+    			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    	      }
     	  });
       //event on input field for search
       jq('input.avdList_filter').on( 'keyup click', function () {
@@ -653,8 +691,11 @@
       //table [BilNr]
   	  //-----------------------
     	  jq('#bilnrList').dataTable( {
-    		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 50, 75, 100]
+    		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+    		  "lengthMenu": [ 50, 75, 100],
+    		  "fnDrawCallback": function( oSettings ) {
+    			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    	      }
     	  });
       //event on input field for search
       jq('input.bilnrList_filter').on( 'keyup click', function () {
@@ -664,8 +705,11 @@
       //table [BilCode]
   	  //-----------------------
     	  jq('#bilcodeList').dataTable( {
-    		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 50, 75, 100]
+    		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+    		  "lengthMenu": [ 50, 75, 100],
+    		  "fnDrawCallback": function( oSettings ) {
+    			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    	      }
     	  });
       //event on input field for search
       jq('input.bilcodeList_filter').on( 'keyup click', function () {
@@ -675,8 +719,11 @@
       //table [Carrier]
   	  //-----------------------
     	  jq('#transpCarrierList').dataTable( {
-    		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 50, 75, 100]
+    		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+    		  "lengthMenu": [ 50, 75, 100],
+    		  "fnDrawCallback": function( oSettings ) {
+    			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    	      }
     	  });
       //event on input field for search
       jq('input.transpCarrierList_filter').on( 'keyup click', function () {
@@ -686,8 +733,11 @@
       //table [Driver]
   	  //-----------------------
     	  jq('#driverList').dataTable( {
-    		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 50, 75, 100]
+    		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+    		  "lengthMenu": [ 50, 75, 100],
+    		  "fnDrawCallback": function( oSettings ) {
+    			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    	      }
     	  });
       //event on input field for search
       jq('input.driverList_filter').on( 'keyup click', function () {
@@ -697,8 +747,11 @@
       //table [PostNr From]
 	  //--------------------------
 	  jq('#postNrFromList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.postNrFromList_filter').on( 'keyup click', function () {
@@ -709,8 +762,11 @@
 	  //tables [PostNr To]
 	  //-----------------------
 	  jq('#postNrToList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.postNrToList_filter').on( 'keyup click', function () {
@@ -721,8 +777,11 @@
 	  //tables [Customer No.]
 	  //-----------------------
 	  jq('#customerList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.customerList_filter').on( 'keyup click', function () {
@@ -733,8 +792,11 @@
 	  //tables [Load/Unload places]
 	  //----------------------------
 	  jq('#loadUnloadPlacesList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.loadUnloadPlacesList_filter').on( 'keyup click', function () {
@@ -745,8 +807,11 @@
 	  //tables [dangerous goods]
 	  //----------------------------
 	  jq('#dangerousGoodsList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.dangerousGoodsList_filter').on( 'keyup click', function () {
@@ -757,8 +822,11 @@
 	  //tables [packing codes]
 	  //----------------------------
 	  jq('#packingCodesList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.packingCodesList_filter').on( 'keyup click', function () {
@@ -769,8 +837,11 @@
 	  //tables [frie søkeveier codes]
 	  //----------------------------
 	  jq('#frisokveiCodesList').dataTable( {
-		  "dom": '<"top"f>rt<"bottom"><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.frisokveiCodesList_filter').on( 'keyup click', function () {
@@ -780,8 +851,11 @@
 	  //tables [frie søkeveier doc.codes]
 	  //---------------------------------
 	  jq('#frisokveiDocCodesList').dataTable( {
-		  "dom": '<"top"f>rt<"bottom"><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.frisokveiDocCodesList_filter').on( 'keyup click', function () {
@@ -792,8 +866,11 @@
 	  //tables [frie søkeveier giltihetslist]
 	  //--------------------------------------
 	  jq('#frisokveiCodesGiltighetsList').dataTable( {
-		  "dom": '<"top"f>rt<"bottom"><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.frisokveiCodesGiltighetsList_filter').on( 'keyup click', function () {
@@ -804,20 +881,61 @@
 	  //tables [tollsted codes]
 	  //----------------------------
 	  jq('#tollstedCodesList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.tollstedCodesList_filter').on( 'keyup click', function () {
 		  filterTollstedCodesList();
 	  });
 	  
+	  //------------------------------
+	  //tables [incoterms codes]
+	  //----------------------------
+	  jq('#incotermsList').dataTable( {
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "scrollY":     "300px",
+	  	  "scrollCollapse":  true,
+		  "lengthMenu": [ 50, 75 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
+	  });
+	  //event on input field for search
+	  jq('input.incotermsList_filter').on( 'keyup click', function () {
+		  filterIncotermsList();
+	  });
+	
+	  
+	  //------------------------------
+	  //tables [opp.type codes]
+	  //----------------------------
+	  jq('#oppTypeList').dataTable( {
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "scrollY":     "300px",
+	  	  "scrollCollapse":  true,
+		  "lengthMenu": [ 50, 75 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
+	  });
+	  //event on input field for search
+	  jq('input.oppTypeList_filter').on( 'keyup click', function () {
+		  filterOppTypeList();
+	  });
+	  
 	  //-----------------------
 	  //tables [Supplier No.]
 	  //-----------------------
 	  jq('#supplierList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.supplierList_filter').on( 'keyup click', function () {
@@ -828,8 +946,11 @@
 	  //tables [Gebyr codes]
 	  //-----------------------
 	  jq('#gebyrcodeList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.gebyrcodeList_filter').on( 'keyup click', function () {
@@ -840,8 +961,11 @@
 	  //tables [Country codes]
 	  //-----------------------
 	  jq('#countryCodeList').dataTable( {
-		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-		  "lengthMenu": [ 50, 75, 100 ]
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "lengthMenu": [ 50, 75, 100 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 	  });
 	  //event on input field for search
 	  jq('input.countryCodeList_filter').on( 'keyup click', function () {

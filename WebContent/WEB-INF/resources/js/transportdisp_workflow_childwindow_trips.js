@@ -144,11 +144,14 @@
 jq(document).ready(function() {
       //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
   	jq('#workflowTrips').dataTable( {
-  		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
+  		"dom": '<"top"lf>t<"bottom"ip><"clear">',
   		  "scrollY":        	"1000px",
   		  "scrollCollapse":  	false,
   		  "autoWidth": false, //for optimization purposes when initializing the table
-  		  "lengthMenu": [ 50, 75, 100]
+  		  "lengthMenu": [ 50, 75, 100],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
   		  
   	});
   	

@@ -46,6 +46,7 @@ import no.systema.transportdisp.service.TransportDispChildWindowService;
 import no.systema.transportdisp.service.TransportDispWorkflowListService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificTripService;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
+import no.systema.transportdisp.util.manager.CodeDropDownMgr;
 import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
 import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesContainer;
 import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesRecord;
@@ -120,6 +121,7 @@ public class TransportDispWorkflowControllerChildWindow {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(2000);
 	private DateTimeManager dateTimeManager = new DateTimeManager();
 	private StringManager strMgr = new StringManager();
+	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
 	//customer
 	private final String DATATABLE_AVD_LIST = "avdList";
 	private final String DATATABLE_BILNR_LIST = "bilNrList";
@@ -131,6 +133,7 @@ public class TransportDispWorkflowControllerChildWindow {
 	private final String DATATABLE_DANGEROUS_GOODS_LIST = "dangerousGoodsList";
 	private final String DATATABLE_PACKING_CODES_LIST = "packingCodesList";
 	private final String DATATABLE_TOLLSTED_CODES_LIST = "tollstedCodesList";
+	private final String DATATABLE_INCOTERMS_LIST = "incotermsList";
 	private final String DATATABLE_SUPPLIER_LIST = "supplierList";
 	private final String DATATABLE_GEBYRCODE_LIST = "gebyrCodeList";
 	private final String DATATABLE_COUNTRYCODE_LIST = "countryCodeList";
@@ -1622,6 +1625,63 @@ public class TransportDispWorkflowControllerChildWindow {
 			
 		}
 	}
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_incoterms.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doFindIncoterms(HttpSession session, HttpServletRequest request){
+		logger.info("Inside: doFindIncoterms");
+		Map model = new HashMap();
+		
+		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_incoterms");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			//incoterms
+			this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringFrankatur(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
+			
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+			return successView;	
+	    }
+	}
+	/**
+	 * 
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_opptype.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doFindOppdragsType(HttpSession session, HttpServletRequest request){
+		logger.info("Inside: doFindIncoterms");
+		Map model = new HashMap();
+		
+		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_opptype");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			//incoterms
+			this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
+			
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+			return successView;	
+	    }
+	}
+
 	
 	/**
 	 * Supplier doInit

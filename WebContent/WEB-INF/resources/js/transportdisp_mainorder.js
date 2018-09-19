@@ -812,6 +812,26 @@
 				jq('#dftollIdLink').click();
 			}
 	  });
+	  
+	  jq('#hefrIdLink').click(function() {
+		  	jq('#hefrIdLink').attr('target','_blank');
+		  	window.open('transportdisp_workflow_childwindow_incoterms.do?action=doInit', "incotermsWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+		  });
+		  jq('#hefrIdLink').keypress(function(e){ //extra feature for the end user
+				if(e.which == 13) {
+					jq('#hefrIdLink').click();
+				}
+		  });
+	  jq('#heotIdLink').click(function() {
+		  	jq('#heotIdLink').attr('target','_blank');
+		  	window.open('transportdisp_workflow_childwindow_opptype.do?action=doInit', "opptypeWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+		  });
+		  jq('#heotIdLink').keypress(function(e){ //extra feature for the end user
+				if(e.which == 13) {
+					jq('#heotIdLink').click();
+				}
+		  });	  
+		  
   });
   
   
@@ -1770,7 +1790,7 @@
 	  jq(element.id).attr('target','_blank');
   	  window.open('transportdisp_workflow_childwindow_dangerousgoods.do?action=doFind&unnr=' + jq("#ffunnr").val() + 
   			  '&embg=' + jq("#ffembg").val() + '&indx=' + jq("#ffindx").val() + '&callerLineCounter=', 
-  			  "dangerousgoodsWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+  			  "dangerousgoodsWin", "top=300px,left=450px,height=600px,width=1050px,scrollbars=no,status=no,location=no");
   }
   //--------------------------------------------------------------
   //Dangerous goods validation in order to demand the indx or not

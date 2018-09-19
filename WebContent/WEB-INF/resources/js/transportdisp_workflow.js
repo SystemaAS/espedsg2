@@ -1152,7 +1152,10 @@
 		  "scrollY":        	"700px",
 		  "scrollCollapse":  	true,
 		  "autoWidth": false, //for optimization purposes when initializing the table
-		  "lengthMenu": [ 50, 75, 100]
+		  "lengthMenu": [ 50, 75, 100],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
 		});
 		//css styling
 		jq('.dataTables_filter input').addClass("inputText12LightYellow");

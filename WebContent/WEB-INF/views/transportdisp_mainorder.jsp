@@ -533,27 +533,12 @@
 						 				<select class="inputTextMediumBlueMandatoryField" name="heot" id="heot">
 						            		<option value="">-select-</option>
 						 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
-					                       	 	<option value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+					                       	 	<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 											</c:forEach> 
 										</select>	
-											<%-- info span --%>
-											<img id="heotImg" tabindex=-1 onClick="showPop('OppdragTypeInfo');" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="12px" height="12px" border="0" alt="search">
-											<span style="position:absolute; left:200px; top:350px; width:350px; height:150px;" id="OppdragTypeInfo" class="popupWithInputText"  >
-								           		<div class="text10" align="left">
-							           				<select class="inputTextMediumBlue" id="oppdragType" name="oppdragType" size="5" onDblClick="hidePop('OppdragTypeInfo');">
-								           				<c:forEach var="record" items="${model.oppdragstypeList}" >
-								 				  			<option value="${record.opdTyp}">${record.opdTyp}=${record.beskr}</option>
-														</c:forEach>
-								           			</select>
-								           			<table width="100%" align="left" border="0">
-														<tr height="10">&nbsp;<td class="text11">&nbsp;</td></tr>
-														<tr align="left" >
-															<td class="text11">&nbsp;<button name="oppdragTypeButtonClose" id="oppdragTypeButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('OppdragTypeInfo');">&nbsp;<spring:message code="systema.transportdisp.ok"/></button> 
-															</td>
-														</tr>
-													</table>
-												</div>
-											</span>	
+										<a tabindex=0 id="heotIdLink" >	
+											<img id="heotImg" tabindex=-1 style="vertical-align: middle;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+										</a>
 						 			</td>
 						 			
 						 												
@@ -579,23 +564,26 @@
 							            		<c:choose>
 							            		<c:when test="${not empty model.record.hefr}">
 								            		<c:forEach var="record" items="${model.incotermsList}" >
-								            			<option value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
+								            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
 													</c:forEach> 
 												</c:when>
 												<c:otherwise>
 													<c:forEach var="record" items="${model.incotermsList}" >
-								            			<option value="${record.franka}"<c:if test="${record.franka=='S'}"> selected </c:if> >${record.franka}</option>
+								            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${record.franka=='S'}"> selected </c:if> >${record.franka}</option>
 													</c:forEach>
 												</c:otherwise>
 												</c:choose>
-										</select>	
-											<%-- info span --%>
+										</select>
+										<a tabindex=0 id="hefrIdLink" >
+ 											<img id="imgIncotermsSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+ 										</a>	
+											<%-- info span 
 											<img id="hefrImg" tabindex=-1 onClick="showPop('frankaturInfo');" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="12px" height="12px" border="0" alt="search">
 											<span style="position:absolute; left:300px; top:350px; width:350px; height:150px;" id="frankaturInfo" class="popupWithInputText"  >
 								           		<div class="text10" align="left">
 							           				<select class="text11" id="frankatur" name="frankatur" size="5" onDblClick="hidePop('frankaturInfo');">
 								           				<c:forEach var="record" items="${model.incotermsList}" >
-								 				  			<option value="${record.franka}">${record.franka}=${record.beskr}</option>
+								 				  			<option title="${record.beskr}" value="${record.franka}">${record.franka}=${record.beskr}</option>
 														</c:forEach>
 								           			</select>
 								           			<table width="100%" align="left" border="0">
@@ -606,7 +594,8 @@
 														</tr>
 													</table>
 												</div>
-											</span>	
+											</span>
+											--%>	
 						 			</td>
 						 			<td align="right" class="text14">&nbsp;<span title="hebodt"><spring:message code="systema.transportdisp.orders.form.update.label.booking.date"/></span></td>
 						 			<td class="text14">
@@ -2255,10 +2244,10 @@
 								 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
 								 				  		<c:choose>
 								 				  		<c:when test="${not empty model.record.ffoty}">
-							                       	 		<option value="${record.opdTyp}"<c:if test="${model.record.ffoty == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+							                       	 		<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.ffoty == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 							                       	 	</c:when>
 							                       	 	<c:otherwise>
-							                       	 		<option value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+							                       	 		<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 							                       	 	</c:otherwise>
 							                       	 	</c:choose>
 													</c:forEach> 
@@ -2279,10 +2268,10 @@
 							            		<c:forEach var="record" items="${model.incotermsList}" >
 						 				  		<c:choose>
 						 				  		<c:when test="${not empty model.record.fffrank}">
-							 				  		<option value="${record.franka}"<c:if test="${model.record.fffrank == record.franka}"> selected </c:if> >${record.franka}</option>
+							 				  		<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.fffrank == record.franka}"> selected </c:if> >${record.franka}</option>
 												</c:when>
 												<c:otherwise>
-													<option value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
+													<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
 												</c:otherwise>
 												</c:choose>
 												</c:forEach>
@@ -2427,10 +2416,10 @@
 							 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
 							 				  		<c:choose>
 													<c:when test="${not empty model.record.vfoty}">
-							 				  	 		<option value="${record.opdTyp}"<c:if test="${model.record.vfoty == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+							 				  	 		<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.vfoty == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 							 				  	 	</c:when>
 							 				  	 	<c:otherwise>
-							 				  	 		<option value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+							 				  	 		<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 							 				  	 	</c:otherwise>
 							 				  	 	</c:choose>
 												</c:forEach> 
@@ -2450,10 +2439,10 @@
 												<c:forEach var="record" items="${model.incotermsList}" >
 							 				  		<c:choose>						 				  	
 							 				  		<c:when test="${not empty model.record.vffrank}">
-							 				  			<option value="${record.franka}"<c:if test="${model.record.vffrank == record.franka}"> selected </c:if> >${record.franka}</option>
+							 				  			<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.vffrank == record.franka}"> selected </c:if> >${record.franka}</option>
 													</c:when>
 													<c:otherwise>
-														<option value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
+														<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
 													</c:otherwise>
 													</c:choose>
 												</c:forEach> 

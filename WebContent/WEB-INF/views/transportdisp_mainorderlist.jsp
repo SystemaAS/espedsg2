@@ -521,7 +521,7 @@
 		            <tr class="tex14" <c:if test="${not empty record.hestn7}"> style="background-color:#FEEFB3; color: #9F6000;"</c:if> >
 		               <c:if test="${not empty searchFilter.tur}">
                    			<td class="textMediumBlue">&nbsp;
-			           			<a onClick="setBlockUI(this)" href="transportdisp_mainorderlist_add_remove_order.do?user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}">
+			           			<a style="display:block;" onClick="setBlockUI(this)" href="transportdisp_mainorderlist_add_remove_order.do?user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}">
     		    					<img title="Add" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" hight="15" border="0" alt="add">
 		   						</a>
 		   					</td>
@@ -594,7 +594,7 @@
    							</a>
             		   </td>
             		   <td align="center" class="textMediumBlue">
-            		  	 	<a sytle="cursor:pointer;" id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
+            		  	 	<a id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
 			               		<img src="resources/images/delete.gif" border="0" alt="remove">
 			               	</a>&nbsp;
 			               	
