@@ -2747,7 +2747,7 @@
 		  maxWidth:400,
           maxHeight: 400,
           width: 360,
-          height: 300,
+          height: 330,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });
@@ -2757,7 +2757,24 @@
 	  jq("#smsButton").click(function() {
 		  presentSmsDialog();
 	  });
+	  jq("#emailButton").click(function() {
+		  presentEmailDialog();
+	  });
+	  
+	  
   });
+  
+  function smsnrRadioButtons(element){
+	 var radio = element.id 
+	 if(radio == 'S'){
+		 jq("#smsnr").val(jq("#wsstlf").val());
+	 }else if (radio == 'R'){
+		 jq("#smsnr").val(jq("#wsktlf").val());	 
+	 } else if (radio == 'X'){
+		 jq("#smsnr").val('');
+	 }
+
+  }
   
   /*
   ---------------------
@@ -2833,6 +2850,100 @@
 	  	  }
 	  });
   }	
+  
+  
+  /*
+  ---------------------
+  /PRESENT EMAIL DIALOG
+  ---------------------
+   */
+//-----------------------------
+  //START Model dialog: "SMS"
+  //---------------------------
+  //Initialize <div> here
+  jq(function() { 
+	  jq("#dialogEmail").dialog({
+		  autoOpen: false,
+		  maxWidth:700,
+          maxHeight: 500,
+          width: 550,
+          height: 400,
+		  modal: true,
+		  dialogClass: 'main-dialog-class'
+	  });
+  });
+  
+  function presentEmailDialog(){
+	//setters (add more if needed)
+	  jq('#dialogEmail').dialog( "option", "title", "Send Mail" );
+	  //deal with buttons for this modal window
+	  jq('#dialogEmail').dialog({
+		 buttons: [ 
+            {
+			 id: "dialogSaveTU",	
+			 text: "Send",
+			 click: function(){
+				 		if(jq("#email").val() != ''){
+				 			sendEmail();
+				 		}
+		 			}
+		 	 },
+  			{
+		 	 id: "dialogCancelTU",
+		 	 text: "Lukk", 
+			 click: function(){
+				 		//back to initial state of form elements on modal dialog
+				 		//jq("#dialogSaveTU").button("option", "disabled", true);
+				 		jq("#email").val("");
+				 		jq("#emailSubject").text("");
+				 		jq("#emailStatus").removeClass( "isa_error" );
+				 		jq("#emailStatus").removeClass( "isa_success" );
+		  				jq( this ).dialog( "close" ); 
+			 		} 
+ 	 		 } ] 
+	  });
+	  //init values
+	  //jq("#dialogSaveTU").button("option", "disabled", true);
+	  //open now
+	  jq('#dialogEmail').dialog('open');
+  }
+  
+  //new line
+  function sendEmail() {
+	  
+	  jq.ajax({
+	  	  type: 'GET',
+	  	  url: 'sendEmail_TransportDisp.do',
+	  	  data: { applicationUser : jq('#applicationUser').val(),
+	  		  	  avd : jq("#heavd").val(),
+	  		  	  opd : jq("#heopd").val(),
+		  		  email : jq("#email").val(),
+		  		  subject : jq("#emailSubject").val(),
+		  		  text : jq("#emailText").val()},
+	  	  dataType: 'json',
+	  	  cache: false,
+	  	  contentType: 'application/json',
+	  	  success: function(data) {
+	  		var len = data.length;
+	  		
+	  		for ( var i = 0; i < len; i++) {
+	  			if(data[i].errMsg != ''){
+	  				jq("#emailStatus").removeClass( "isa_success" );
+	  				jq("#emailStatus").addClass( "isa_error" );
+	  				jq("#emailStatus").text("Mail error: " + data[i].smsnr + " " + data[i].errMsg);
+	  			}else{
+	  				jq("#emailStatus").removeClass( "isa_error" );
+	  				jq("#emailStatus").addClass( "isa_success" );
+	  				jq("#emailStatus").text("Mail er sendt ti" + data[i].smsnr + " (loggført i Hendelsesloggen)");
+	  			}
+	  		}
+	  	  },
+	  	  error: function() {
+	  	    alert('Error loading on Ajax callback (?) sendMail...check js');
+	  	  }
+	  });
+  }	
+  
   
   //--------------------------------
   //INIT elements at a global level

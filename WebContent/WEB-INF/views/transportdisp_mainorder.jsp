@@ -368,9 +368,11 @@
 				 					
 				 					<td colspan="6" class="text14">
 				 						
-				 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+				 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+				 						&nbsp;<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+				 						&nbsp;<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 								   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
-								   		&nbsp;<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+								   		
 								   		
 								   		<c:if test="${not empty model.record.heopd}">
 					 						&nbsp;&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" class="inputFormSubmitStd" type="button" onClick="showPop('trackAndTraceFields');" >Hend.logg</button> 
@@ -2617,9 +2619,18 @@
 						<tr>
 							<td class="text14" align="left" ><b>SMS-nummer</b>&nbsp;</td>
 							<td class="text14" align="left" >
-							<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
+								<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
 							</td>
    						</tr>
+   						<tr>
+   							<td class="text14" >Hente nummer&nbsp;</td>
+							<td class="text14" align="left" >
+								<input id="X" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="" checked>Annet
+  								<input id="S" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="S">Avsender
+  								<input id="R" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="R">Mottaker
+							</td>
+   						</tr>
+   						<tr height="8"><td></td></tr>
    						<tr>
    							<td class="text14" align="left" >Språk&nbsp;</td>
 							<td class="text14" align="left" >
@@ -2634,6 +2645,50 @@
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">
 								Send status:&nbsp;<label id="smsStatus"></label>
+							</td>
+						</tr>
+						
+					</table>
+			</div>
+		</td>
+		</tr>
+		
+		<%-- ---------------- --%>
+		<%-- DIALOG EMAIL		  --%>
+		<%-- ---------------- --%>
+		<tr>
+		<td>
+			<div id="dialogEmail" title="Dialog">
+				 	<table>
+						<tr>
+							<td colspan="3" class="text14" align="left" >Send Mail </td>
+   						</tr>
+   						<tr height="10"><td></td></tr>
+   						
+						<tr>
+							<td class="text14" align="left" ><b>Mail</b>&nbsp;</td>
+							<td class="text14" align="left" >
+								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
+							</td>
+   						</tr>
+   						<tr>
+   							<td class="text14" align="left" >Subject</td>
+							<td class="text14" align="left" >
+		   						<input type="text" class="inputText" id="emailSubject" name="emailSubject" size="25" maxlength="20" value=''>
+							</td>
+						</tr>
+						
+						<tr>
+   							<td class="text14" align="left" >Tekst</td>
+							<td class="text12" align="left" >
+		   						<textarea id="emailText" name="emailText" limit='48,4' cols="50" rows="4"></textarea>
+							</td>
+						</tr>
+
+						<tr height="10"><td></td></tr>
+						<tr>
+							<td colspan="3" class="text14MediumBlue" align="left">
+								Send status:&nbsp;<label id="emailStatus"></label>
 							</td>
 						</tr>
 						
