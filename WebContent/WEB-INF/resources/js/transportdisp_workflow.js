@@ -1178,10 +1178,10 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:450,
-          maxHeight: 300,
-          width: 380,
-          height: 290,
+		  maxWidth:400,
+          maxHeight: 400,
+          width: 360,
+          height: 300,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });
@@ -1244,7 +1244,7 @@
 	  	  data: { applicationUser : jq('#applicationUser').val(),
 	  		  	  tur : jq("#tupro").val(),
 	  		  	  smsnr : jq("#smsnr").val(),
-		  		  language : "EN" },
+		  		  smslang : jq("#smslang").val() },
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',

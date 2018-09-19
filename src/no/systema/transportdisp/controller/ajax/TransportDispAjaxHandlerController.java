@@ -795,7 +795,8 @@ public class TransportDispAjaxHandlerController {
 	   * @return
 	   */
 	  @RequestMapping(value = "sendSMS_TransportDisp.do", method = RequestMethod.GET)
-	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendSMS(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, @RequestParam String smsnr) {
+	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendSMS(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, 
+			  							@RequestParam String smsnr, @RequestParam String smslang) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendSMS...");
 		  
@@ -803,7 +804,7 @@ public class TransportDispAjaxHandlerController {
 		  	
 	  		//prepare the access CGI with RPG back-end
 			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_URL;
-			String urlRequestParamsKeys = "user=" + applicationUser + "&avd=" + avd + "&opd=" + opd + "&smsnr=" + smsnr;
+			String urlRequestParamsKeys = "user=" + applicationUser + "&avd=" + avd + "&opd=" + opd + "&smsnr=" + smsnr + "&sprak=" + smslang;
 			
 			logger.info("URL: " + BASE_URL);
 			logger.info("PARAMS: " + urlRequestParamsKeys);
@@ -829,7 +830,8 @@ public class TransportDispAjaxHandlerController {
 	  }
 	  
 	  @RequestMapping(value = "sendSMSFromTur_TransportDisp.do", method = RequestMethod.GET)
-	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendSMSFromTur(@RequestParam String applicationUser, @RequestParam String tur, @RequestParam String smsnr, @RequestParam String language ) {
+	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendSMSFromTur(@RequestParam String applicationUser, @RequestParam String tur, 
+			  						@RequestParam String smsnr, @RequestParam String smslang ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendSMSFromTur...");
 		  
@@ -837,7 +839,7 @@ public class TransportDispAjaxHandlerController {
 		  	
 	  		//prepare the access CGI with RPG back-end
 			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_FROM_TUR_URL;
-			String urlRequestParamsKeys = "user=" + applicationUser + "&tur=" + tur + "&smsnr=" + smsnr + "&sprak=" + language;
+			String urlRequestParamsKeys = "user=" + applicationUser + "&tur=" + tur + "&smsnr=" + smsnr + "&sprak=" + smslang;
 			
 			logger.info("URL: " + BASE_URL);
 			logger.info("PARAMS: " + urlRequestParamsKeys);

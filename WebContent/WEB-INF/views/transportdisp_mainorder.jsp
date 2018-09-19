@@ -2610,18 +2610,29 @@
 			<div id="dialogSMS" title="Dialog">
 				 	<table>
 						<tr>
-							<td class="text14" align="left" >Send SMS med lenke til TKeventGrabber</td>
+							<td colspan="3" class="text14" align="left" >Send SMS med lenke til TKeventGrabber</td>
    						</tr>
-   						<tr height="8"><td></td></tr>
+   						<tr height="10"><td></td></tr>
+   						
 						<tr>
+							<td class="text14" align="left" ><b>SMS-nummer</b>&nbsp;</td>
 							<td class="text14" align="left" >
-								<b>SMS-nummer</b>&nbsp;<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
+							<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
 							</td>
    						</tr>
+   						<tr>
+   							<td class="text14" align="left" >Språk&nbsp;</td>
+							<td class="text14" align="left" >
+		   						<select class="inputTextMediumBlue" name="smslang" id="smslang">
+		 							<option value="NO" selected>Norsk</option>
+		 							<option value="EN" >Engelsk</option>
+								</select>
+							</td>
+						</tr>
 
-						<tr height="12"><td></td></tr>
+						<tr height="10"><td></td></tr>
 						<tr>
-							<td class="text14MediumBlue" align="left">
+							<td colspan="3" class="text14MediumBlue" align="left">
 								Send status:&nbsp;<label id="smsStatus"></label>
 							</td>
 						</tr>

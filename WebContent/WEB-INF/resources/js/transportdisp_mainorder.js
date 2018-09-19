@@ -2745,9 +2745,9 @@
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
 		  maxWidth:400,
-          maxHeight: 250,
+          maxHeight: 400,
           width: 360,
-          height: 230,
+          height: 300,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });
@@ -2808,7 +2808,8 @@
 	  	  data: { applicationUser : jq('#applicationUser').val(),
 	  		  	  avd : jq("#heavd").val(),
 	  		  	  opd : jq("#heopd").val(),
-		  		  smsnr : jq("#smsnr").val() },
+		  		  smsnr : jq("#smsnr").val(),
+		  		  smslang : jq("#smslang").val() },
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',
