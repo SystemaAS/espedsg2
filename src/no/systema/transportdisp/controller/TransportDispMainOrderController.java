@@ -208,8 +208,6 @@ public class TransportDispMainOrderController {
 	    				this.populateFraktbrev(appUser, record);
 	    				//populate archive docs
 	    				this.populateArchiveDocs(appUser, record);
-	    				//populate track and trace
-	    				this.populateTrackAndTrace(appUser, record);
 	    				//set domain objects
 	    				this.setDomainObjectsInView(model, record);
 	    				//set in session (used in invoice child)
@@ -624,8 +622,7 @@ public class TransportDispMainOrderController {
 		this.populateFraktbrev(appUser, recordToValidate);
 		//populate archive docs
 		this.populateArchiveDocs(appUser, recordToValidate);
-		//populate track and trace
-		this.populateTrackAndTrace(appUser, recordToValidate);
+		
 	}
 	
 	/**
@@ -1533,45 +1530,7 @@ public class TransportDispMainOrderController {
 		 orderRecord.setArchivedDocsRecord(archivedDocList);
 		 
 	}
-	/**
-	 * 
-	 * @param appUser
-	 * @param orderRecord
-	 */
-	private void populateTrackAndTrace(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord orderRecord){
-		//===========
-		 //FETCH LIST
-		 //===========
-		 logger.info("Inside: populateTrackAndTrace");
-		 //prepare the access CGI with RPG back-end
-		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_URL;
-		 String urlRequestParamsKeys = "user=" + appUser.getUser() + "&avd=" + orderRecord.getHeavd() + "&opd=" + orderRecord.getHeopd();
-		 logger.info("URL: " + BASE_URL);
-		 logger.info("PARAMS: " + urlRequestParamsKeys);
-		 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
-		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-		 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
-		 
-		 Collection<JsonTransportDispWorkflowSpecificOrderLoggingRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderLoggingRecord>();
-		 if(jsonPayload!=null){
-		 	try{
-		 		JsonTransportDispWorkflowSpecificOrderLoggingContainer container = this.transportDispWorkflowSpecificOrderService.getOrderLoggingContainer(jsonPayload);
-				if(container!=null){
-					list = container.getTrackTraceEvents();
-					for(JsonTransportDispWorkflowSpecificOrderLoggingRecord record : list){
-						//DEBUG -->logger.info("####Link:" + record.getDoclnk());
-					}
-				}
-				
-		 	}catch(Exception e){
-		 		e.printStackTrace();
-		 	}
-		 }
-		//populate the list on parent record
-		 orderRecord.setLoggingRecord(list);
-		 
-	}
+	
 	/**
 	 * 
 	 * @param appUser

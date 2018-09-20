@@ -676,6 +676,13 @@
     		jq('#oppTypeList_filter').val()
         ).draw();
     }
+    function filterTrackAndTraceList (){
+        jq('#trackAndTraceList').DataTable().search(
+    		jq('#trackAndTraceList_filter').val()
+        ).draw();
+    }
+    
+    
     
     
     //Init datatables
@@ -932,6 +939,24 @@
 	  //event on input field for search
 	  jq('input.oppTypeList_filter').on( 'keyup click', function () {
 		  filterOppTypeList();
+	  });
+	  
+	  //------------------------------
+	  //tables [Track & Trace]
+	  //----------------------------
+	  jq('#trackAndTraceList').dataTable( {
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "scrollY":     "300px",
+	  	  "scrollCollapse":  true,
+	  	  "order": [[ 1, "desc" ], [ 2, "desc" ]],
+		  "lengthMenu": [ 50, 75 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	      }
+	  });
+	  //event on input field for search
+	  jq('input.trackAndTraceList_filter').on( 'keyup click', function () {
+		  filterTrackAndTraceList();
 	  });
 	  
 	  //-----------------------

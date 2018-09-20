@@ -375,7 +375,8 @@
 								   		
 								   		
 								   		<c:if test="${not empty model.record.heopd}">
-					 						&nbsp;&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" class="inputFormSubmitStd" type="button" onClick="showPop('trackAndTraceFields');" >Hend.logg</button> 
+					 						&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button> 
+										        <%--
 										        <span style="background-color:#EEEEEE; position:absolute; left:200px; top:200px; width:900px; height:500px;" id="trackAndTraceFields" class="popupWithInputTextThickBorder"  >
 									           		<table width="95%" border="0" align="left" cellspacing="2">
 									           			<tr>
@@ -421,12 +422,13 @@
 										   			</div>
 													
 							           				<table >
-													<%-- OK BUTTON --%>
+													<%-- OK BUTTON 
 							           				<tr align="left" >
 														<td class="text14">&nbsp;&nbsp;<button name="trackAndTraceButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('trackAndTraceFields');">&nbsp;Close</button></td>
 												 	</tr>
 													</table>
 								   				</span>
+								   				 --%>
 										</c:if>
 				 					</td>
 				 				</tr>
@@ -2622,15 +2624,19 @@
 								<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
 							</td>
    						</tr>
+   						<c:if test="${not empty model.record.wsstlf || not empty model.record.wsktlf}">
    						<tr>
-   							<td class="text14" >Hente nummer&nbsp;</td>
+   							<td class="text14" >Hente fra&nbsp;</td>
 							<td class="text14" align="left" >
-								<input id="X" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="" checked>Annet
-  								<input id="S" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="S">Avsender
-  								<input id="R" onClick="smsnrRadioButtons(this);" type="radio" name="telephone" value="R">Mottaker
+								<select class="inputTextMediumBlue" name="smsPhonePart" id="smsPhonePart" >
+		 							<option value="X" selected>velg</option>
+		 							<option value="S" >Avsender</option>
+		 							<option value="R" >Mottaker</option>
+								</select>
 							</td>
    						</tr>
-   						<tr height="8"><td></td></tr>
+   						</c:if>
+   						
    						<tr>
    							<td class="text14" align="left" >Språk&nbsp;</td>
 							<td class="text14" align="left" >
@@ -2644,7 +2650,7 @@
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">
-								Send status:&nbsp;<label id="smsStatus"></label>
+								<label id="smsStatus"></label>
 							</td>
 						</tr>
 						
@@ -2671,6 +2677,18 @@
 								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
 							</td>
    						</tr>
+   						<c:if test="${not empty model.record.wssmail || not empty model.record.wskmail}">
+   						<tr>
+   							<td class="text14" >Hente fra&nbsp;</td>
+							<td class="text14" align="left" >
+								<select class="inputTextMediumBlue" name="smsMailPart" id="smsMailPart" >
+		 							<option value="X" selected>velg</option>
+		 							<option value="S" >Avsender</option>
+		 							<option value="R" >Mottaker</option>
+								</select>
+							</td>
+   						</tr>
+   						</c:if>
    						<tr>
    							<td class="text14" align="left" >Subject</td>
 							<td class="text14" align="left" >
@@ -2688,7 +2706,7 @@
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">
-								Send status:&nbsp;<label id="emailStatus"></label>
+								<label id="emailStatus"></label>
 							</td>
 						</tr>
 						

@@ -794,9 +794,9 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:400,
+		  maxWidth:500,
           maxHeight: 400,
-          width: 360,
+          width: 400,
           height: 300,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'

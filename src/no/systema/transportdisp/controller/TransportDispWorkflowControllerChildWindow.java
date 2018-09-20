@@ -44,6 +44,7 @@ import no.systema.main.model.SystemaWebUser;
 //Trans.Disp
 import no.systema.transportdisp.service.TransportDispChildWindowService;
 import no.systema.transportdisp.service.TransportDispWorkflowListService;
+import no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificTripService;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
 import no.systema.transportdisp.util.manager.CodeDropDownMgr;
@@ -69,6 +70,8 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.Jso
 
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispSupplierContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispSupplierRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeRecord;
 
@@ -133,16 +136,13 @@ public class TransportDispWorkflowControllerChildWindow {
 	private final String DATATABLE_DANGEROUS_GOODS_LIST = "dangerousGoodsList";
 	private final String DATATABLE_PACKING_CODES_LIST = "packingCodesList";
 	private final String DATATABLE_TOLLSTED_CODES_LIST = "tollstedCodesList";
-	private final String DATATABLE_INCOTERMS_LIST = "incotermsList";
 	private final String DATATABLE_SUPPLIER_LIST = "supplierList";
 	private final String DATATABLE_GEBYRCODE_LIST = "gebyrCodeList";
 	private final String DATATABLE_COUNTRYCODE_LIST = "countryCodeList";
 	private final String DATATABLE_FRISOKVEI_CODES_LIST = "frisokveiCodesList";
 	private final String DATATABLE_FRISOKVEI_DOCCODES_LIST = "frisokveiDocCodesList";
 	private final String DATATABLE_FRISOKVEI_CODES_GILTIGHETS_LIST = "frisokveiCodesGiltihetsList";
-	
-	
-	
+	private final String DATATABLE_TRACK_AND_TRACE_LIST = "trackAndTraceList";
 	
 	//Postal codes
 	private final String DATATABLE_POSTALCODE_LIST = "postalCodeList";
@@ -295,6 +295,58 @@ public class TransportDispWorkflowControllerChildWindow {
 			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 	    		return successView;
 		}
+	}	
+	/**
+	 * 
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_trackandtrace.do", params="action=doInit",  method={RequestMethod.GET} )
+	public ModelAndView doInitTrackAndTrace(HttpSession session, HttpServletRequest request){
+		this.context = TdsAppContext.getApplicationContext();
+		logger.info("Inside: doInitTrackAndTrace");
+		Map model = new HashMap();
+		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_trackandtrace");
+		
+		String avd = request.getParameter("avd");
+		String opd = request.getParameter("opd");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return this.loginView;
+			
+		}else{
+		
+			 //===========
+			 //FETCH LIST
+			 //===========
+			 logger.info("Inside: populateTrackAndTrace");
+			 //prepare the access CGI with RPG back-end
+			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_URL;
+			 String urlRequestParamsKeys = "user=" + appUser.getUser() + "&avd=" + avd + "&opd=" + opd;
+			 logger.info("URL: " + BASE_URL);
+			 logger.info("PARAMS: " + urlRequestParamsKeys);
+			 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+			 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+			 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+			 
+			 Collection<JsonTransportDispWorkflowSpecificOrderLoggingRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderLoggingRecord>();
+			 if(jsonPayload!=null){
+		 		JsonTransportDispWorkflowSpecificOrderLoggingContainer container = this.transportDispWorkflowSpecificOrderService.getOrderLoggingContainer(jsonPayload);
+				if(container!=null){
+					list = container.getTrackTraceEvents();
+					for(JsonTransportDispWorkflowSpecificOrderLoggingRecord record : list){
+						//DEBUG -->logger.info("####Link:" + record.getDoclnk());
+					}
+				}
+				model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, list);
+				
+			 }
+			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+		}
+		return successView;
 	}	
 	
 	/**
@@ -2649,7 +2701,6 @@ public class TransportDispWorkflowControllerChildWindow {
 	public TransportDispChildWindowService getTransportDispChildWindowService(){ return this.transportDispChildWindowService; }
 	
 	
-	
 	//---------------
 	//Trip Services
 	//---------------
@@ -2673,6 +2724,13 @@ public class TransportDispWorkflowControllerChildWindow {
 	@Autowired
 	public void setTransportDispDropDownListPopulationService (TransportDispDropDownListPopulationService value){ this.transportDispDropDownListPopulationService=value; }
 	public TransportDispDropDownListPopulationService getTransportDispDropDownListPopulationService(){return this.transportDispDropDownListPopulationService;}
+	
+	@Qualifier ("transportDispWorkflowSpecificOrderService")
+	private TransportDispWorkflowSpecificOrderService transportDispWorkflowSpecificOrderService;
+	@Autowired
+	@Required
+	public void setTransportDispWorkflowSpecificOrderService (TransportDispWorkflowSpecificOrderService value){ this.transportDispWorkflowSpecificOrderService = value; }
+	public TransportDispWorkflowSpecificOrderService getTransportDispWorkflowSpecificOrderService(){ return this.transportDispWorkflowSpecificOrderService; }
 	
 	
 }

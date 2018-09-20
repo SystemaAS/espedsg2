@@ -351,11 +351,11 @@
 			    	<table width="90%">
 			    		<tr> 
 			    		<td>
-							<font id="objAvdGroupsList" class="text14OrangeBold" style="cursor:pointer;">G</font>
 							<font title="avd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
 							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
 		 					</a>
+							<font id="objAvdGroupsList" class="text14SkyBlue" style="cursor:pointer;text-decoration: underline;">Grp</font>
 			        	</td>
 			        	<td>	
 			        		&nbsp;<font title="opd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
@@ -408,7 +408,7 @@
 								<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
 									<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
 									<tr>
-										<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14OrangeBold">${record.agrKode}</font></td>
+										<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14SkyBlue">${record.agrKode}</font></td>
 										<td class="tableHeaderField">${record.agrNavn}</td>
 									</tr>
 									</c:forEach>
@@ -878,7 +878,7 @@
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">
-								Send status:&nbsp;<label id="smsStatus"></label>
+								<label id="smsStatus"></label>
 							</td>
 						</tr>
 						

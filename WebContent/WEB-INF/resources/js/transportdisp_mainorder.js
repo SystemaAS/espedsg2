@@ -132,6 +132,11 @@
   		window.open('transportdisp_workflow_getTrip_cw.do?tuavd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val(), 'planleggingWin','top=120px,left=100px,height=800px,width=1400px,scrollbars=no,status=no,location=no');
   	});
   	
+  	jq('#trackAndTraceButton').click(function() {
+  		//alert('A');
+  		window.open('transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val(), 'ttraceWin','top=120px,left=100px,height=800px,width=1200px,scrollbars=no,status=no,location=no');
+  	});
+  	
   	jq('#frisokveiButton').click(function() {
   		window.open('transportdisp_workflow_frisokvei.do?avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val() + "&tur=" + jq('#tripNr').val(), 'frisokveiWin','top=120px,left=100px,height=600px,width=900px,scrollbars=no,status=no,location=no');
   	});
@@ -2744,9 +2749,9 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:400,
+		  maxWidth:500,
           maxHeight: 400,
-          width: 360,
+          width: 400,
           height: 330,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
@@ -2764,17 +2769,33 @@
 	  
   });
   
-  function smsnrRadioButtons(element){
-	 var radio = element.id 
-	 if(radio == 'S'){
-		 jq("#smsnr").val(jq("#wsstlf").val());
-	 }else if (radio == 'R'){
-		 jq("#smsnr").val(jq("#wsktlf").val());	 
-	 } else if (radio == 'X'){
-		 jq("#smsnr").val('');
-	 }
+  jq(function() {
+	  jq('#smsPhonePart').change(function() { 
+		  var value = jq('#smsPhonePart').val();
+		  if(value == 'S'){
+			 jq("#smsnr").val(jq("#wsstlf").val());
+		  }else if (value == 'R'){
+			 jq("#smsnr").val(jq("#wsktlf").val());	 
+		  } else if (value == 'X'){
+			 jq("#smsnr").val('');
+		  }
+	  });	  
+  });  
+  
+  jq(function() {
+	  jq('#smsMailPart').change(function() { 
+		  var value = jq('#smsMailPart').val();
+		  if(value == 'S'){
+			 jq("#email").val(jq("#wssmail").val());
+		  }else if (value == 'R'){
+			 jq("#email").val(jq("#wskmail").val());	 
+		  } else if (value == 'X'){
+			 jq("#email").val('');
+		  }
+	  });	  
+  });  
+		 
 
-  }
   
   /*
   ---------------------

@@ -92,11 +92,12 @@
 	 	        <table style="width:90%;">
 	 	        <tr>	
 	                <td valign="bottom" class="text14" align="left" >
-                		<font id="objAvdGroupsList" class="text14OrangeBold" style="cursor:pointer;">G</font>
                 		<span title="wssavd"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></span>
 		 				<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=150px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 					<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 		 				</a>
+		 				<font id="objAvdGroupsList" class="text14SkyBlue" style="cursor:pointer;text-decoration: underline;">Grp</font>
+                		
 	                </td>
 	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wsstur"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span></td>
 	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wtusg"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></span></td>
@@ -119,17 +120,11 @@
 						<c:when test="${not empty searchFilter.wssavd}">	
 			                <td align="left" >&nbsp;<input type="text" class="inputTextMediumBlueUPPERCASE" name="wssavd" id="wssavd" size="5" maxlength="4" value='${searchFilter.wssavd}'>&nbsp;
 		                		<div id="divAvdGroupsList" style="display:none;position: relative;height:10em;" class="ownScrollableSubWindowDynamicWidthHeight" align="left" >
-			 						<%--
-			 						<select class="inputTextMediumBlueMandatoryField" name="avdGroupsList" id="avdGroupsList" size="5">
-					            		<c:forEach var="record" items="${model.avdGroupsList}" >
-				                       	 	<option style="color:black;" value="${record.agrKode}">${record.agrKode}&nbsp;${record.agrNavn}</option>
-										</c:forEach> 
-									</select>
-									 --%>
+			 						
 									<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
 										<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
 										<tr>
-											<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14OrangeBold">${record.agrKode}</font></td>
+											<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14SkyBlue">${record.agrKode}</font></td>
 											<td class="tableHeaderField">${record.agrNavn}</td>
 										</tr>
 										</c:forEach>
@@ -142,17 +137,11 @@
 		                		<td align="left" >&nbsp;<input type="text" class="inputTextMediumBlueUPPERCASE" name="wssavd" id="wssavd" size="5" maxlength="4" value='${model.record.tuavd}'>&nbsp;
 		                		
 			                		<div id="divAvdGroupsList" style="display:none;position: relative;height:10em;" class="ownScrollableSubWindowDynamicWidthHeight" align="left" >
-				 						<%--
-				 						<select class="inputTextMediumBlueMandatoryField" name="avdGroupsList" id="avdGroupsList" size="5">
-						            		<c:forEach var="record" items="${model.avdGroupsList}" >
-					                       	 	<option style="color:black;" value="${record.agrKode}">${record.agrKode}&nbsp;${record.agrNavn}</option>
-											</c:forEach> 
-										</select>
-										 --%>
+				 						
 										<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
 											<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
 											<tr>
-												<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14OrangeBold">${record.agrKode}</font></td>
+												<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14SkyBlue">${record.agrKode}</font></td>
 												<td class="tableHeaderField">${record.agrNavn}</td>
 											</tr>
 											</c:forEach>
@@ -1469,7 +1458,7 @@
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">
-								Send status:&nbsp;<label id="smsStatus"></label>
+								<label id="smsStatus"></label>
 							</td>
 						</tr>
 						
