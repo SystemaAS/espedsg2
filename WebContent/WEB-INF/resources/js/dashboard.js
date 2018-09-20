@@ -101,6 +101,11 @@
     		jq("#dashForm_GodsReg").submit();
     		setBlockUI();
 	    });
+  
+    	jq("td#dashItem_Kostf").bind("click",function() {
+    		jq("#dashForm_Kostf").submit();
+    		setBlockUI();
+	    });   	
     	
     	
     });

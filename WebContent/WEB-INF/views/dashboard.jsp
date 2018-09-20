@@ -391,6 +391,16 @@
 				 								<br/>
 				 								<font class="text18">eSpedsg Roadmap</font>
 							 				</td>
+											<td id="dashItem_Kostf" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+						 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="Kostnadsføring module">
+			 									<br/>
+			 									<font class="text18">Kostnadsføring</font>
+			 									<form id="dashForm_Kostf" method="post" action="/espedsgkostf/logonDashboard.do" >
+												    <input type="hidden" name="user" value="${user.user}" />
+												    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+												    <input type="hidden" name="lang" value="${user.usrLang}" />
+												</form>
+											</td>
 							 			</c:if>
 						 			</tr>
 						 			    
