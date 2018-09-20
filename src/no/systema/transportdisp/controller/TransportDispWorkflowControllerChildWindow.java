@@ -1662,10 +1662,12 @@ public class TransportDispWorkflowControllerChildWindow {
 	 */
 	@RequestMapping(value="transportdisp_workflow_childwindow_opptype.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doFindOppdragsType(HttpSession session, HttpServletRequest request){
-		logger.info("Inside: doFindIncoterms");
+		logger.info("Inside: doFindOppdragsType");
 		Map model = new HashMap();
 		
 		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_opptype");
+		String callerType = request.getParameter("ctype");
+		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		//check user (should be in session already)
 		if(appUser==null){
@@ -1676,6 +1678,7 @@ public class TransportDispWorkflowControllerChildWindow {
 			//incoterms
 			this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
 			
+			model.put("callerType", callerType);
 			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
 			return successView;	

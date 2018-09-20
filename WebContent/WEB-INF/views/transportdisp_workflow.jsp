@@ -646,9 +646,8 @@
 							 				  	<c:forEach var="record" items="${model.yearList}" >
 						                       	 	<option value="${record}"<c:if test="${model.record.centuryYearTurccTuraar == record}"> selected </c:if> >${record}</option>
 												</c:forEach> 
-											</select>	
-								    		</td>
-								    		<td>
+												</select>	
+													
 								    			<select class="inputTextMediumBlueMandatoryField" name="turmnd" id="turmnd">
 							            		<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="record" items="${model.monthList}" >
@@ -660,7 +659,7 @@
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
 								    		<td class="text14">
-								    			<span title="tubiln/tulk/tuheng/tulkh">
+								    			<span title="tubiln">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" height="16px" width="16px" border="0" alt="edit">
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic"/><font class="text12RedBold" >*</font>
 								    			</span>
@@ -671,7 +670,8 @@
 		 									</a>
 								    		
 								    		</td>
-								    		<td class="text14"  nowrap>
+								    		<td class="text14"><span title="tulk"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></span></td>
+								    		<td class="text14">
 								    			<select class="inputTextMediumBlueMandatoryField" name="tulk" id="tulk">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -683,8 +683,10 @@
 											</a>
 											</td>
 
-								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}"></td>
-								    		<td class="text14" nowrap>
+								    		<td class="text14"><span title="tuheng"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.henger"/></span>
+								    			<input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}">
+								    		</td>
+								    		<td class="text14" ><span title="tulkh"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></span>
 								    			<select class="inputText14" name="tulkh" id="tulkh">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -705,38 +707,22 @@
 								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.trucktype"/><font class="text12RedBold" >*</font>
 							    				</span>
 							    			</td>
-								    		<td><input type="text" class="inputTextMediumBlueUPPERCASEMandatoryField" name="tubilk" id="tubilk" size="4" maxlength="3" value="${model.record.tubilk}">
+								    		<td class="text14"><input type="text" class="inputTextMediumBlueUPPERCASEMandatoryField" name="tubilk" id="tubilk" size="4" maxlength="3" value="${model.record.tubilk}">
 								    			<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_bilcode.do?action=doInit','bilcodeWin','top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 											<img id="imgTruckTypeSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 		 										</a>
-							    			</td>
-							    			
-							    			<td class="text14"><span title="tuopdt"><spring:message code="systema.transportdisp.workflow.trip.form.label.ordertype"/></span></td>
-							    			<td class="text14" colspan="2">
-								 				<select class="inputText14" name="tuopdt" id="tuopdt">
+		 									</td>
+		 									<td class="text14"><span title="tuopdt"><spring:message code="systema.transportdisp.workflow.trip.form.label.ordertype"/></span></td>
+		 									<td class="text14">
+					    						<select class="inputText14" name="tuopdt" id="tuopdt">
 								            		<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 								 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
 							                       	 	<option value="${record.opdTyp}"<c:if test="${model.record.tuopdt == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 													</c:forEach> 
 												</select>	
 												<%-- info span --%>
-												<img id="tuopdtImg" tabindex=-1 onClick="showPop('OppdragTypeInfo');" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
-												<div class="text11" style="position: relative;" align="left">
-						 						<span style="position:absolute; width:280px; left:0px; top:4px;" id="OppdragTypeInfo" class="popupWithInputText"  >
-						 								<select class="text11" id="oppdragType" name="oppdragType" size="5" onDblClick="hidePop('OppdragTypeInfo');">
-									           				<c:forEach var="record" items="${model.oppdragstypeList}" >
-									 				  			<option value="${record.opdTyp}">${record.opdTyp}=${record.beskr}</option>
-															</c:forEach>
-									           			</select>
-									           			<table width="100%" align="left" border="0">
-															<tr height="10">&nbsp;<td class="text11">&nbsp;</td></tr>
-															<tr align="left" >
-																<td class="text11">&nbsp;<button name="oppdragTypeButtonClose" id="oppdragTypeButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('OppdragTypeInfo');">&nbsp;<spring:message code="systema.transportdisp.ok"/></button> 
-																</td>
-															</tr>
-														</table>
-												</span>	
-												</div>
+												<img id="tuopdtIdLink" tabindex=-1 style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
+												
 								 			</td>
 								    	</tr>
 								    	<tr height="10"><td ></td></tr>
@@ -748,21 +734,22 @@
 								    			</span>
 							    			</td>
 								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon1" id="tucon1" size="15" maxlength="17" value="${model.record.tucon1}"></td>
-								    		<td class="text14"  nowrap>
+								    		
+								    		<td class="text14"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></td>
+								    		<td class="text14">
 								    			<select class="inputText14" name="tulkc1" id="tulkc1">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc1 == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
-											</select>
-											<a tabindex="-1" id="tulkc1IdLink">
-												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
-											</a>
-											
+												</select>
+												<a tabindex="-1" id="tulkc1IdLink">
+													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
+												</a>
 								    		</td>
 
-								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="15" maxlength="17" value="${model.record.tucon2}"></td>
-								    		<td class="text14" nowrap>
+								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="18" maxlength="17" value="${model.record.tucon2}"></td>
+								    		<td class="text14" ><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/>
 								    			<select class="inputText14" name="tulkc2" id="tulkc2">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >

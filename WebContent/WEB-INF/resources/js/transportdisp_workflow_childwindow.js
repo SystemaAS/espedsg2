@@ -551,14 +551,21 @@
 	  });
 	});
 	
-	//Incoterms
+	//OppType
 	jq(function() {
 		jq('#oppTypeList').on('click', 'td', function(){
 		  var id = this.id;
 		  var record = id.split('@');
 		  var id = record[0].replace("code_", "");
-		  opener.jq('#heot').val(id);
-		  opener.jq('#heot').focus();
+		  var callerType = record[1].replace("ctype_", "");
+		  console.log(callerType);
+		  if(callerType == 'tur'){
+			  opener.jq('#tuopdt').val(id);
+			  opener.jq('#tuopdt').focus();
+		  }else{
+			  opener.jq('#heot').val(id);
+			  opener.jq('#heot').focus();
+		  }
 		  //close child window
 		  window.close();
 	  });

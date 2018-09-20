@@ -43,7 +43,7 @@
 		                <c:forEach var="record" items="${model.oppdragstypeList}" varStatus="counter">    
 			               	<tr class="text14">
 			               		<td nowrap style="cursor:pointer;" class="textMediumBlue" 
-				               		id="code_${record.opdTyp}@text_${record.beskr}" >
+				               		id="code_${record.opdTyp}@ctype_${model.callerType}" >
 				               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 				               		&nbsp;&nbsp;${record.opdTyp}
 			               		</td>	

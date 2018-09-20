@@ -17,10 +17,21 @@
   jq(function() {
 	  jq('#alinkOrderListId').click(function() { 
 		  setBlockUI();
-	  }); 
+	  });
   });
   //End BlockUI
   
+  jq(function() {
+	  jq('#tuopdtIdLink').click(function() {
+	  	jq('#tuopdtIdLink').attr('target','_blank');
+	  	window.open('transportdisp_workflow_childwindow_opptype.do?action=doInit&ctype=tur', "opptypeWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+	  });
+	  jq('#tuopdtIdLink').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#tuopdtIdLink').click();
+			}
+	  });	
+  });
   //-----------------------------------
   //START - Drag from Trips to Order 
   //----------------------------------
