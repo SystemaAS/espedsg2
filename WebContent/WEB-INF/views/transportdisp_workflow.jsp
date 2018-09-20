@@ -973,7 +973,7 @@
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
 								    		<td colspan="10">
-								    		<table align="center" class="tableBorderWithRoundCorners">
+								    		<table class="tableBorderWithRoundCorners">
 								    		<tr>
 								    		<td class="text14" nowrap>
 								    			&nbsp;<img onMouseOver="showPop('agreedPrice_info');" onMouseOut="hidePop('agreedPrice_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
@@ -1010,13 +1010,13 @@
 								    		</td>
 								    		<td class="text14" >&nbsp;&nbsp;
 								    			<span title="tuant1/tuenh1/tuant2/tuenh2"><b><spring:message code="systema.transportdisp.workflow.trip.form.label.price.construction"/></b></span>
-							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="4" maxlength="3" value="${model.record.tuant1}">
+							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="3" maxlength="3" value="${model.record.tuant1}">
 								    			Enh:
-								    			<input type="text" class="inputTextMediumBlue" name="tuenh1" id="tuenh1" size="4" maxlength="3" value="${model.record.tuenh1}">
+								    			<input type="text" class="inputTextMediumBlue" name="tuenh1" id="tuenh1" size="3" maxlength="3" value="${model.record.tuenh1}">
 								    			x
-								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant2" id="tuant2" size="7" maxlength="6" value="${model.record.tuant2}">
+								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant2" id="tuant2" size="6" maxlength="6" value="${model.record.tuant2}">
 								    			Enh:
-								    			<input type="text" class="inputTextMediumBlue" name="tuenh2" id="tuenh2" size="4" maxlength="3" value="${model.record.tuenh2}">
+								    			<input type="text" class="inputTextMediumBlue" name="tuenh2" id="tuenh2" size="3" maxlength="3" value="${model.record.tuenh2}">
 								    		</td>
 								    		</tr>
 								    		</table>
