@@ -606,10 +606,10 @@
 		 									&nbsp;
 						 				    <c:choose>
 							 				    <c:when test="${ not empty model.record.tupro}">
-							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
 							 				    </c:when>
 							 				    <c:otherwise>
-							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate';" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
+							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
 							 				    </c:otherwise>	
 						 				    </c:choose>
 						 				    </td>
@@ -642,7 +642,7 @@
 							    			</td>
 								    		<td>
 								    			<select class="inputTextMediumBlueMandatoryField" name="centuryYearTurccTuraar" id="centuryYearTurccTuraar">
-							            		<option value="">-select-</option>
+							            		<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="record" items="${model.yearList}" >
 						                       	 	<option value="${record}"<c:if test="${model.record.centuryYearTurccTuraar == record}"> selected </c:if> >${record}</option>
 												</c:forEach> 
@@ -650,7 +650,7 @@
 								    		</td>
 								    		<td>
 								    			<select class="inputTextMediumBlueMandatoryField" name="turmnd" id="turmnd">
-							            		<option value="">-select-</option>
+							            		<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="record" items="${model.monthList}" >
 						                       	 	<option value="${record}"<c:if test="${model.record.turmnd == record}"> selected </c:if> >${record}</option>
 												</c:forEach> 
@@ -673,7 +673,7 @@
 								    		</td>
 								    		<td class="text14"  nowrap>
 								    			<select class="inputTextMediumBlueMandatoryField" name="tulk" id="tulk">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulk == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -686,7 +686,7 @@
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}"></td>
 								    		<td class="text14" nowrap>
 								    			<select class="inputText14" name="tulkh" id="tulkh">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkh == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -714,7 +714,7 @@
 							    			<td class="text14"><span title="tuopdt"><spring:message code="systema.transportdisp.workflow.trip.form.label.ordertype"/></span></td>
 							    			<td class="text14" colspan="2">
 								 				<select class="inputText14" name="tuopdt" id="tuopdt">
-								            		<option value="">-select-</option>
+								            		<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 								 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
 							                       	 	<option value="${record.opdTyp}"<c:if test="${model.record.tuopdt == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
 													</c:forEach> 
@@ -750,7 +750,7 @@
 								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon1" id="tucon1" size="15" maxlength="17" value="${model.record.tucon1}"></td>
 								    		<td class="text14"  nowrap>
 								    			<select class="inputText14" name="tulkc1" id="tulkc1">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc1 == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -764,7 +764,7 @@
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="15" maxlength="17" value="${model.record.tucon2}"></td>
 								    		<td class="text14" nowrap>
 								    			<select class="inputText14" name="tulkc2" id="tulkc2">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc2 == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -875,7 +875,7 @@
 							    			</td>
 								    		<td class="text14" nowrap>
 								    			<select class="inputText14" name="tusonf" id="tusonf">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tusonf == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -890,12 +890,15 @@
 								    				<img id="imgFromSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 								    			</a>
 								    		</td>
+								    		<td ><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdf" id="tusdf" size="22" maxlength="20" value="${model.record.tusdf}"></td>
 								    	</tr>
-								    <tr>
+								    	<%--
+								    	<tr>
 								    		<td>&nbsp;</td>
 								    		<td colspan="6"><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdf" id="tusdf" size="22" maxlength="20" value="${model.record.tusdf}"></td>
 								    	</tr>
-								    <tr>
+								    	 --%>
+								    	<tr>
 								    		<td class="text14" nowrap>
 							    				&nbsp;<img onMouseOver="showPop('eta_info');" onMouseOut="hidePop('eta_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
 							    				<span title="tudtt/tutmt"><spring:message code="systema.transportdisp.workflow.trip.form.label.date.arrival"/></span>
@@ -945,7 +948,7 @@
 							    			</td>
 								    		<td class="text14" nowrap>
 								    			<select class="inputText14" name="tusont" id="tusont">
-						 						<option value="">-select-</option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tusont == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -959,49 +962,67 @@
 		 											<img id="imgToSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 		 										</a>
 								    		</td>
+								    		<td ><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdt" id="tusdt" size="22" maxlength="20" value="${model.record.tusdt}"></td>
 								    	</tr>
+								    	<%--
 								    	<tr>
 								    		<td>&nbsp;</td>
 								    		<td colspan="6"><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdt" id="tusdt" size="22" maxlength="20" value="${model.record.tusdt}"></td>
 								    	</tr>
+								    	 --%>
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
+								    		<td colspan="10">
+								    		<table align="center" class="tableBorderWithRoundCorners">
+								    		<tr>
 								    		<td class="text14" nowrap>
 								    			&nbsp;<img onMouseOver="showPop('agreedPrice_info');" onMouseOut="hidePop('agreedPrice_info');" style="vertical-align: bottom;" src="resources/images/info3.png" width="12px" height="12px" border="0" alt="info">
-								    			<span title="tutval/tutbel/tutako"><spring:message code="systema.transportdisp.workflow.trip.form.label.price.agreed"/></span>
+								    			<span title="tutbel/tutval/tutako"><b><spring:message code="systema.transportdisp.workflow.trip.form.label.price.agreed"/></b></span>
 								    			<div class="text11" style="position: relative;" align="left">
-					 						<span style="position:absolute; width:200px; left:0px; top:0px;" id="agreedPrice_info" class="popupWithInputText"  >
-					 							<font class="text11">
-								           			<b>Agreed/Estim. Price</b>
-								           			<div>
-								           			<ul>
-								           				<li>Currency</li>
-								           			    <li>Amount</li>
-								           			    <li>A=Agreed, E=Estimated</li>
-								           			</ul>
-								           			</p>	
-								           			</div>
-							           			</font>
-											</span>
-											</div>
+						 						<span style="position:absolute; width:200px; left:0px; top:0px;" id="agreedPrice_info" class="popupWithInputText"  >
+						 							<font class="text11">
+									           			<b>Agreed/Estim. Price</b>
+									           			<div>
+									           			<ul>
+									           				<li>Currency</li>
+									           			    <li>Amount</li>
+									           			    <li>A=Agreed, E=Estimated</li>
+									           			</ul>
+									           			</p>	
+									           			</div>
+								           			</font>
+												</span>
+												</div>
 							    			</td>
-								    		<td colspan="2">
+								    		<td class="text14" >
+								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tutbel" id="tutbel" size="8" maxlength="8" value="${model.record.tutbel}">
 								    			<select class="inputText14" id="tutval" name="tutval">
-							    				<option value="">-select-</option>
-						           				<c:forEach var="currency" items="${model.currencyCodeList}" >
-						 				  			<option value="${currency}"<c:if test="${model.record.tutval == currency}"> selected </c:if> >${currency}</option>
+								    			<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
+							    				<c:forEach var="record" items="${model.currencyCodeList}" >
+							    					<option value="${record}" <c:if test="${model.record.tutval == record}"> selected </c:if> >${record}</option>
 												</c:forEach>
-						           			</select>
-								    			&nbsp;<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tutbel" id="tutbel" size="8" maxlength="8" value="${model.record.tutbel}">
-								    			&nbsp;
+						           				</select>
 								    			<select class="inputText14" name="tutako" id="tutako">
-				            						<option value="">-select-</option>
-				 				  				<option value="A"<c:if test="${model.record.tutako == 'A'}"> selected </c:if> >A</option>
+								    			<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
+				            					<option value="A"<c:if test="${model.record.tutako == 'A'}"> selected </c:if> >A</option>
 				 				  				<option value="E"<c:if test="${model.record.tutako == 'E'}"> selected </c:if> >E</option>
-											</select>
+												</select>
 								    		</td>
+								    		<td class="text14" >&nbsp;&nbsp;
+								    			<span title="tuant1/tuenh1/tuant2/tuenh2"><b><spring:message code="systema.transportdisp.workflow.trip.form.label.price.construction"/></b></span>
+							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="4" maxlength="3" value="${model.record.tuant1}">
+								    			Enh:
+								    			<input type="text" class="inputTextMediumBlue" name="tuenh1" id="tuenh1" size="4" maxlength="3" value="${model.record.tuenh1}">
+								    			x
+								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant2" id="tuant2" size="7" maxlength="6" value="${model.record.tuant2}">
+								    			Enh:
+								    			<input type="text" class="inputTextMediumBlue" name="tuenh2" id="tuenh2" size="4" maxlength="3" value="${model.record.tuenh2}">
+								    		</td>
+								    		</tr>
+								    		</table>
 								    	</tr>
 								    	<tr height="5"><td ></td></tr>
+								    	
 								 </table>	
 				 				</td>
 			 				</tr>

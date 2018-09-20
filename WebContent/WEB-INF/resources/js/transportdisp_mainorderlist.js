@@ -5,15 +5,17 @@
 
 //BlockUI behaviour
   function setBlockUI(element){
-	  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  setBlockUI();
   }
-  /*
   jq(function() {
-	  jq('#todo').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  jq('#alinkOrderListId').click(function() { 
+		  setBlockUI();
+	  }); 
+	  jq('#alinkTripListId').click(function() { 
+		  //not working ... setBlockUI();
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  }); 
   });
-  */
   //End BlockUI
   
   //Global functions
@@ -302,11 +304,9 @@
   });	
   
   jq(function() {
-	  jq('#alinkTripListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  }); 
+	  
 	  jq("#cnButton").click(function() {
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT }); 
+		  setBlockUI();
 		  if(jq('#avd').val()!='' && jq('#tur').val()!=''){
 			  window.location = "transportdisp_mainorder.do?heavd=" + jq('#avd').val() + "&hepro=" + jq('#tur').val();
 		  }else{
@@ -424,7 +424,7 @@
 	  				
 	  			}else{
 	  				//proceed to the redirect for validate=OK
-	  				jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  				jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  				window.location = "transportdisp_mainorder.do?user=" + jq('#applicationUser').val() + "&hepro=" + hepro + "&heavd=" + heavd + "&heopd=" + heopd;
 	  			}
 	  		}

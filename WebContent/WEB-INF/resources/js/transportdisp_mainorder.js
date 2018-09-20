@@ -6,16 +6,16 @@
   //Overlay on tab (to mark visually a delay...)
   jq(function() {
 	  jq('#alinkTripListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  setBlockUI();
 	  });
 	  jq('#alinkParentTripId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  setBlockUI();
 	  });
 	  jq('#alinkOrderListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  setBlockUI();
 	  });
 	  jq('#alinkInvoice').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  setBlockUI();
 	  });
   });
   

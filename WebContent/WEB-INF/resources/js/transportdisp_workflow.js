@@ -3,14 +3,20 @@
   var counterIndex = 0;
   var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
   
-//BlockUI behaviour
+  //BlockUI behaviour
   function setBlockUI(element){
-	  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }
   
   jq(function() {
+	  jq('#submit').click(function() { 
+		  setBlockUI();
+	  }); 
+  });
+  
+  jq(function() {
 	  jq('#alinkOrderListId').click(function() { 
-		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  setBlockUI();
 	  }); 
   });
   //End BlockUI
@@ -844,6 +850,26 @@
 			  }
 		  }
 	  });
+      //priskonstruktion
+      jq("#tuant2").blur(function(){
+    	  var tuant1 = jq("#tuant1").val();
+    	  var tuant2 = jq("#tuant2").val();
+    	  if(tuant1 != '' && tuant2 != ''){
+    		  var x = tuant1.replace(",", ".");
+    		  var y = tuant2.replace(",", ".");
+    		  //multiply
+    		  jq("#tutbel").val(x*y);
+    		  if(jq("#tutval").val()==''){
+    			  jq("#tutval").val("NOK");
+    		  }
+    		  if(jq("#tutako").val()==''){
+    			  jq("#tutako").val("A");
+    		  }
+    		  
+    		  
+    	  }
+      });
+  		
   });
   
   //----------------------
@@ -1000,10 +1026,15 @@
 			  			jq('#tusont').val(""); jq('#tusont').val(data[i].tusont);
 			  			jq('#tustet').val(""); jq('#tustet').val(data[i].tustet);
 			  			jq('#tusdt').val(""); jq('#tusdt').val(data[i].tusdt);
-			  			//Agreed/Price
+			  			//Agreed/Price & Price construction
 			  			jq('#tutval').val(""); jq('#tutval').val(data[i].tutval);
 			  			jq('#tutbel').val(""); jq('#tutbel').val(data[i].tutbel);
 			  			jq('#tutako').val(""); jq('#tutako').val(data[i].tutako);
+			  			jq('#tuant1').val(""); jq('#tuant1').val(data[i].tuant1);
+			  			jq('#tuenh1').val(""); jq('#tuenh1').val(data[i].tuenh1);
+			  			jq('#tuant2').val(""); jq('#tuant2').val(data[i].tuant2);
+			  			jq('#tuenh2').val(""); jq('#tuenh2').val(data[i].tuenh2);
+			  			
 			  			//new fields
 			  			jq('#tutm3').text(data[i].tutm3); 
 			  			jq('#tutlm').text(data[i].tutlm); 

@@ -2,6 +2,22 @@
 	var jq = jQuery.noConflict();
 	var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
 	
+	jq(function() {
+		jq('#alinkOrderListId').click(function() { 
+			setBlockUI();
+		});
+		jq('#alinkTripListId').click(function() { 
+			setBlockUI();
+		}); 
+		jq('#alinkParentTripId').click(function() { 
+			setBlockUI();
+		});
+		jq('#alinkOrderId').click(function() { 
+			setBlockUI();
+		});
+	});
+	
+	
 	jq.ajaxSetup({ cache:false }); //to avoid F5 after every new version!
 
 	jq(document).ready(function() {
@@ -212,21 +228,7 @@
 		}
     });
 	
-	//Overlay for end-user when too much waiting...
-	jq(function() {
-		jq('#alinkOrderListId').click(function() { 
-			jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-		});
-		jq('#alinkTripListId').click(function() { 
-			jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-		}); 
-		jq('#alinkParentTripId').click(function() { 
-			jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-		});
-		jq('#alinkOrderId').click(function() { 
-			jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-		});
-	});
+	
 
 	/**
 	 * Get the specific item detail data
