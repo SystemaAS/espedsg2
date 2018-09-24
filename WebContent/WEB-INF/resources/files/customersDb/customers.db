@@ -7,7 +7,7 @@ C100;DHL@http://165.72.19.220:8443/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C101;DHL(external)@http://198.141.241.224:8443/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C110;Dachser NO - A24@http://10.13.3.22:8181/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
 C111;Dachser DK - A25@http://10.13.3.22:8383/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
-C112;Dachser SE-Gbg - A21@http://10.13.3.22:9292/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
+C112;Dachser SE-GOT - A21@http://10.13.3.22:9292/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
 C200;DSV@http://10.47.16.52:8080/espedsg@7.0 / 6.0 / old OS@
 C201;DSV@http://145.218.199.121:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C240;Holger Fischer@http://10.241.23.250:8181/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
