@@ -381,7 +381,7 @@ public class DashboardController {
 		
 		//We must user GET until we get Spring 4 (in order to send params on POST)
 		try{
-			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getEncryptedPassword(), "UTF-8");
+			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "lang=" + appUser.getUsrLang() + "&ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getEncryptedPassword(), "UTF-8");
 		}catch(Exception e){
 			//logger.info("XXXXX:" + request.getContextPath());
 		}
@@ -521,6 +521,7 @@ public class DashboardController {
 				if(companyCode!=null){
 					urlRequestParamsKeys.append(AppConstants.URL_CHAR_DELIMETER_FOR_PARAMS_WITH_HTML_REQUEST + "firma=" + companyCode);
 				}
+				
 			}
 		}
 		return urlRequestParamsKeys.toString();

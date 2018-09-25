@@ -146,7 +146,8 @@
 												<td id="dashItem_Tror" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
 													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text18">${record.prTxt}</font>
+				 									<%-- <font class="text18">${record.prTxt}</font> --%>
+				 									<font class="text18"><spring:message code="login.user.label.tror.dashboard"/></font>
 								 					<form id="dashForm_Tror" method="post" action="/espedsgtror/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
@@ -234,7 +235,8 @@
 						 						<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text18">${record.prTxt}</font>
+				 									<%-- <font class="text18">${record.prTxt}</font> --%>
+				 									<font class="text18"><spring:message code="login.user.label.maintenance.dashboard"/></font>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
