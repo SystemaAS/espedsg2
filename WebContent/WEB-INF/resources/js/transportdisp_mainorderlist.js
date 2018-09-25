@@ -5,11 +5,11 @@
 
 //BlockUI behaviour
   function setBlockUI(element){
-	  setBlockUI();
+	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }
   jq(function() {
 	  jq('#alinkOrderListId').click(function() { 
-		  setBlockUI();
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  }); 
 	  jq('#alinkTripListId').click(function() { 
 		  //not working ... setBlockUI();
@@ -306,7 +306,7 @@
   jq(function() {
 	  
 	  jq("#cnButton").click(function() {
-		  setBlockUI();
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 		  if(jq('#avd').val()!='' && jq('#tur').val()!=''){
 			  window.location = "transportdisp_mainorder.do?heavd=" + jq('#avd').val() + "&hepro=" + jq('#tur').val();
 		  }else{

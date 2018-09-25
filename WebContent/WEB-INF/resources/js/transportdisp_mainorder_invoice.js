@@ -4,16 +4,16 @@
 	
 	jq(function() {
 		jq('#alinkOrderListId').click(function() { 
-			setBlockUI();
+			jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 		});
 		jq('#alinkTripListId').click(function() { 
-			setBlockUI();
+			jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 		}); 
 		jq('#alinkParentTripId').click(function() { 
-			setBlockUI();
+			jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 		});
 		jq('#alinkOrderId').click(function() { 
-			setBlockUI();
+			jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 		});
 	});
 	

@@ -10,13 +10,13 @@
   
   jq(function() {
 	  jq('#submit').click(function() { 
-		  setBlockUI();
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  }); 
   });
   
   jq(function() {
 	  jq('#alinkOrderListId').click(function() { 
-		  setBlockUI();
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  });
   });
   //End BlockUI
