@@ -578,6 +578,7 @@
     		jq('#avdList').DataTable().search(
       		jq('#avdList_filter').val()
     		).draw();
+    		
     } 
     function filterBilNr () {
 		jq('#bilnrList').DataTable().search(
@@ -695,6 +696,7 @@
     		  "lengthMenu": [ 50, 75, 100],
     		  "fnDrawCallback": function( oSettings ) {
     			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    			  jq('.dataTables_filter input').focus();
     	      }
     	  });
       //event on input field for search
@@ -709,6 +711,7 @@
     		  "lengthMenu": [ 50, 75, 100],
     		  "fnDrawCallback": function( oSettings ) {
     			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    			  jq('.dataTables_filter input').focus();
     	      }
     	  });
       //event on input field for search
@@ -723,6 +726,7 @@
     		  "lengthMenu": [ 50, 75, 100],
     		  "fnDrawCallback": function( oSettings ) {
     			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    			  jq('.dataTables_filter input').focus();
     	      }
     	  });
       //event on input field for search
@@ -737,6 +741,7 @@
     		  "lengthMenu": [ 50, 75, 100],
     		  "fnDrawCallback": function( oSettings ) {
     			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    			  jq('.dataTables_filter input').focus();
     	      }
     	  });
       //event on input field for search
@@ -751,6 +756,7 @@
     		  "lengthMenu": [ 50, 75, 100],
     		  "fnDrawCallback": function( oSettings ) {
     			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+    			  jq('.dataTables_filter input').focus();
     	      }
     	  });
       //event on input field for search
@@ -765,6 +771,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  j
 	      }
 	  });
 	  //event on input field for search
@@ -780,6 +787,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  
 	      }
 	  });
 	  //event on input field for search
@@ -795,6 +803,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			
 	      }
 	  });
 	  //event on input field for search
@@ -810,6 +819,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			 
 	      }
 	  });
 	  //event on input field for search
@@ -825,6 +835,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -840,6 +851,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -855,6 +867,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -869,6 +882,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -884,6 +898,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -899,6 +914,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -916,6 +932,7 @@
 		  "lengthMenu": [ 50, 75 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -934,6 +951,7 @@
 		  "lengthMenu": [ 50, 75 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -952,6 +970,7 @@
 		  "lengthMenu": [ 50, 75 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -967,6 +986,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -982,6 +1002,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search
@@ -997,6 +1018,7 @@
 		  "lengthMenu": [ 50, 75, 100 ],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
 	  });
 	  //event on input field for search

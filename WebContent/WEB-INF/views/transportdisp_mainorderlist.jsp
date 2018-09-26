@@ -352,7 +352,7 @@
 			    		<tr> 
 			    		<td>
 							<font title="avd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
-							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
+							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doFind','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
 		 					</a>
 							<font id="objAvdGroupsList" class="text14SkyBlue" style="cursor:pointer;text-decoration: underline;">Grp</font>

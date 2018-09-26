@@ -151,6 +151,7 @@ jq(document).ready(function() {
   		  "lengthMenu": [ 50, 75, 100],
 		  "fnDrawCallback": function( oSettings ) {
 			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
 	      }
   		  
   	});
