@@ -34,6 +34,7 @@
       	  });
         //css styling
         jq('.dataTables_filter input').addClass("inputText12LightYellow");
+        jq('.dataTables_filter input').focus();
         
   		//event on input field for search
   	    jq('input.mainList_filter').on( 'keyup click', function () {
