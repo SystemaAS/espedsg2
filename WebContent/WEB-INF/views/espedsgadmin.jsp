@@ -13,6 +13,7 @@
 	
 	/* this line will align the datatable search field in the left */
 	.dataTables_wrapper .custMatrixFilter .dataTables_filter{float:left}
+	.dataTables_wrapper .custMatrixFilter .dataTables_info{float:right}
 
 	</style>
 

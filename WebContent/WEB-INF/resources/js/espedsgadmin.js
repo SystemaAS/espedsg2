@@ -21,7 +21,7 @@
   		var lang = jq('#language').val();
   	    //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
         jq('#mainList').dataTable( {
-      	  "dom": '<"custMatrixFilter"f>t<"bottom"li><"clear">', //look at custMatrixFilter on JSP SCRIPT-tag
+      	  "dom": '<"custMatrixFilter"if>t<"bottom"lp><"clear">', //look at custMatrixFilter on JSP SCRIPT-tag
       	  "scrollY": "800px",
       	  "scrollCollapse":  true,
       	  "lengthMenu": [100],
