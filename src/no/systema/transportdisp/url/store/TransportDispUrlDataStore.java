@@ -82,6 +82,8 @@ public final class TransportDispUrlDataStore {
 	
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjop11hs.pgm";
 	//http://gw.systema.no/sycgip/tjop11hs.pgm?user=JOVO&avd=75&opd=108&type=&smsnr=48052470
+	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_GENERAL_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjop11ht.pgm";
+	//http://gw.systema.no/sycgip/tjop11ht.pgm?user=JOVO&avd=75&opd=108&type=&smsnr=48052470&merknad1=...
 	
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_FROM_TUR_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjfa55s.pgm";
 	//http://gw.systema.no/sycgip/tjfa55s.pgm?user=JOVO&tur=80000060&smsnr=48052470&sprak=EN

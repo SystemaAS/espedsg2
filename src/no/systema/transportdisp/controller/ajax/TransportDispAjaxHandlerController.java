@@ -796,15 +796,28 @@ public class TransportDispAjaxHandlerController {
 	   */
 	  @RequestMapping(value = "sendSMS_TransportDisp.do", method = RequestMethod.GET)
 	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendSMS(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, 
-			  							@RequestParam String smsnr, @RequestParam String smslang) {
+			  							@RequestParam String smsnr, @RequestParam String smslang, @RequestParam String smsType, @RequestParam String smsFreeText1, 
+			  							@RequestParam String smsFreeText2, @RequestParam String smsUrlLink  ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendSMS...");
-		  
-		  	//http://gw.systema.no/sycgip/tjop11hs.pgm?user=JOVO&avd=75&opd=108&type=&smsnr=48052470
 		  	
-	  		//prepare the access CGI with RPG back-end
-			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_URL;
+		  	logger.info("smsType:" + smsType);
+		  	logger.info("smsFreeText1:" + smsFreeText1);
+		  	logger.info("smsFreeText2:" + smsFreeText2);
+		  	logger.info("smsUrlLink:" + smsUrlLink);
+		  	
+		  	//http://gw.systema.no/sycgip/tjop11hs.pgm?user=JOVO&avd=75&opd=108&type=&smsnr=48052470
+		  	//prepare default
+		  	String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_URL;
 			String urlRequestParamsKeys = "user=" + applicationUser + "&avd=" + avd + "&opd=" + opd + "&smsnr=" + smsnr + "&sprak=" + smslang;
+			if(strMgr.isNotNull(smsType) && smsType.equals("general")){
+				BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_GENERAL_URL;
+				StringBuffer tmpParams = new StringBuffer();
+				tmpParams.append("&merknad1=" + smsFreeText1);
+				tmpParams.append("&merknad2=" + smsFreeText2);
+				tmpParams.append("&lenke=" + smsUrlLink);
+				urlRequestParamsKeys = urlRequestParamsKeys + tmpParams.toString();
+			}
 			
 			logger.info("URL: " + BASE_URL);
 			logger.info("PARAMS: " + urlRequestParamsKeys);

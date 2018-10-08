@@ -2749,10 +2749,10 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:500,
-          maxHeight: 400,
-          width: 400,
-          height: 330,
+		  maxWidth:800,
+          maxHeight: 800,
+          width: 480,
+          height: 500,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });
@@ -2803,7 +2803,10 @@
   ---------------------
    */
   function presentSmsDialog(){
-	//setters (add more if needed)
+	  //set default. Can't be static in html ...MUST be dynamic HERE!!
+	  jq('input:radio[name="smsType"]').filter('[value="grabber"]').attr('checked', true);
+	  
+	  //setters (add more if needed)
 	  jq('#dialogSMS').dialog( "option", "title", "Send SMS" );
 	  //deal with buttons for this modal window
 	  jq('#dialogSMS').dialog({
@@ -2825,6 +2828,8 @@
 				 		//jq("#dialogSaveTU").button("option", "disabled", true);
 				 		jq("#smsnr").val("");
 				 		jq("#smsStatus").text("");
+				 		jq("#smsFreeText1").val("");
+				 		jq("#smsFreeText2").val("");
 				 		jq("#smsStatus").removeClass( "isa_error" );
 				 		jq("#smsStatus").removeClass( "isa_success" );
 		  				jq( this ).dialog( "close" ); 
@@ -2839,7 +2844,19 @@
   
   //new line
   function sendSMS() {
-	  
+	 
+	  var selectedSmsType = jq("input[name='smsType']:checked").val();
+	  var smsFreeText1 = null;
+	  var smsFreeText2 = null;
+	  var smsUrlLink = null;
+	  if(selectedSmsType == 'general'){
+		  smsFreeText1 = jq("#smsFreeText1").val();
+		  smsFreeText2 = jq("#smsFreeText2").val();
+		  if(jq('#smsUrlLink').is(":checked")){
+			  smsUrlLink = jq('#smsUrlLink').val();
+		  }
+	  }
+	  //do it
 	  jq.ajax({
 	  	  type: 'GET',
 	  	  url: 'sendSMS_TransportDisp.do',
@@ -2847,7 +2864,11 @@
 	  		  	  avd : jq("#heavd").val(),
 	  		  	  opd : jq("#heopd").val(),
 		  		  smsnr : jq("#smsnr").val(),
-		  		  smslang : jq("#smslang").val() },
+		  		  smslang : jq("#smslang").val(),
+		  		  smsType : selectedSmsType,
+		  		  smsFreeText1 : smsFreeText1,
+		  		  smsFreeText2 : smsFreeText2,
+		  		  smsUrlLink : smsUrlLink },
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',
@@ -2984,6 +3005,18 @@
 		  //"autoWidth": false, //for optimization purposes when initializing the table
 		  //"lengthMenu": [ 50, 75, 100]
 	  });
+	  
+	  jq('#smsForm').change(function(){
+          var selectedSmsTypeValue = jq("input[name='smsType']:checked").val();
+          
+          if(selectedSmsTypeValue=='general'){
+        	  	jq('#divFreeTextElements').css('display','block');
+        	  	jq("#smsStatus").text("");
+          }else{
+        	  jq('#divFreeTextElements').css('display','none');
+        	  jq("#smsStatus").text("");
+          }
+      });
 			
 	  
   });
