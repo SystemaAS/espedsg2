@@ -2755,6 +2755,7 @@
           height: 500,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
+			  
 	  });
   });
 

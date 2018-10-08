@@ -2657,6 +2657,7 @@
 							</td>
    						</tr>
    						<tr height="5"><td></td></tr>
+   						
    						<tr>
 	   						<td class="text14" colspan="3">
 	   						<div id="divFreeTextElements" style="display:none;position: relative;height:10em;" align="left" >

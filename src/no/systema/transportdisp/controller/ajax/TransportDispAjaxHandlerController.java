@@ -800,7 +800,7 @@ public class TransportDispAjaxHandlerController {
 			  							@RequestParam String smsFreeText2, @RequestParam String smsUrlLink  ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendSMS...");
-		  	
+		  	//
 		  	logger.info("smsType:" + smsType);
 		  	logger.info("smsFreeText1:" + smsFreeText1);
 		  	logger.info("smsFreeText2:" + smsFreeText2);
