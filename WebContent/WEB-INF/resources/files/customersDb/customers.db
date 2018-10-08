@@ -30,4 +30,4 @@ C603;Toten Trans. FK@http://cust.toten.as:8083/espedsg@<b>8.0</b> / 8.0 / <b>V12
 C604;Toten Trans. TR@http://cust.toten.as:8084/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C605;Toten Trans. DK@http://cust.toten.as:8085/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C610;Tyrholm@http://10.241.23.250:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
-C615;WML - A38@https://gw.systema.no:9696/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a38sg.systema.no
+C615;WML - A38@https://10.13.3.22:9595/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a38sg.systema.no
