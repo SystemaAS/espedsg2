@@ -1437,8 +1437,10 @@
 			<div id="dialogSMS" title="Dialog">
 					<form id="smsForm">
 				 	<table>
-						<tr height="3"><td></td></tr>
-   						<tr>
+						<tr height="2"><td></td></tr>
+						<tr><td colspan="3" class="text14" >Send SMS med lenke til TKeventGrabber</td></tr>
+						<tr height="4"><td></td></tr>
+						<tr>
 							<td class="text14" align="left" ><b>SMS-nummer</b>&nbsp;</td>
 							<td class="text14" align="left" >
 							<input type="text" class="inputText" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
@@ -1448,8 +1450,8 @@
    							<td class="text14" align="left" >Språk&nbsp;</td>
 							<td class="text14" align="left" >
 		   						<select class="inputTextMediumBlue" name="smslang" id="smslang">
-		 							<option value="NO">Norsk</option>
-		 							<option value="EN" selected>Engelsk</option>
+		 							<option value="NO" selected>Norsk</option>
+		 							<option value="EN">Engelsk</option>
 								</select>
 							</td>
 						</tr>
@@ -1495,8 +1497,8 @@
    							<td class="text14" align="left" >Språk&nbsp;</td>
 							<td class="text14" align="left" >
 		   						<select class="inputTextMediumBlue" name="emailLang" id="emailLang">
-		 							<option value="NO">Norsk</option>
-		 							<option value="EN" selected>Engelsk</option>
+		 							<option value="NO" selected>Norsk</option>
+		 							<option value="EN">Engelsk</option>
 								</select>
 							</td>
 						</tr>
