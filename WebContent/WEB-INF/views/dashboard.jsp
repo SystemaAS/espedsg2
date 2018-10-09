@@ -369,6 +369,22 @@
 		 										 <tr>
 		 										</c:if> 
 											</c:if>
+											<c:if test="${fn:contains(record.prog,'-KOSTF') }">
+					 							<td id="dashItem_Kostf" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+				 									<br/>
+				 									<font class="text18">${record.prTxt}</font>
+								 					<form id="dashForm_Kostf" method="post" action="/espedsgkostf/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
+													</form>
+		 										</td>
+												<c:if test="${counterTOMCATAPPS%5==0}">
+		 										 </tr>
+		 										 <tr>
+		 										</c:if> 
+											</c:if>
 											<c:if test="${fn:contains(record.prog,'-CUST_APP') }">
 												<td id="dashItem_custMatrix" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
@@ -393,6 +409,7 @@
 				 								<br/>
 				 								<font class="text18">eSpedsg Roadmap</font>
 							 				</td>
+	<!--  
 											<td id="dashItem_Kostf" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 						 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="Kostnadsføring module">
 			 									<br/>
@@ -403,6 +420,7 @@
 												    <input type="hidden" name="lang" value="${user.usrLang}" />
 												</form>
 											</td>
+	-->
 							 			</c:if>
 						 			</tr>
 						 			    
