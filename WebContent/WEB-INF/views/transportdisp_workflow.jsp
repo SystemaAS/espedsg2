@@ -1452,41 +1452,7 @@
 								</select>
 							</td>
 						</tr>
-						<tr height="10"><td></td></tr>
-						<tr>
-							<td colspan="3" class="text14" align="left" >
-								<input type="radio" name="smsType" id="smsType" value="grabber">Send SMS med lenke til TKeventGrabber
-							</td>
-   						</tr>
-   						<tr>
-							<td colspan="3" class="text14" align="left" >
-								<input type="radio" name="smsType" id="smsType" value="general">Send generell SMS med melding/evt lenke
-							</td>
-   						</tr>
-   						<tr height="5"><td></td></tr>
-   						
-   						<tr>
-	   						<td class="text14" colspan="3">
-	   						<div id="divFreeTextElements" style="display:none;position: relative;height:10em;" align="left" >
-		 						<table id="tblFreeTextElements">
-									<tr>
-										<td class="text14">Merknad</td>
-									</tr>
-									<tr>
-										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText1" name="smsFreeText1" size="40" maxlength="70" value=''></td>
-									</tr>
-									<tr>
-										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText2" name="smsFreeText2" size="40" maxlength="70" value=''></td>
-									</tr>
-									<tr>
-										<td ><input type="checkbox" id="smsUrlLink" name="smsUrlLink" value="J">Send også Url-lenke til spørring på sendingen</td>
-									</tr>
-									
-								</table>	
-							</div>	
-   							</td>
-   						</tr>
-
+						
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">

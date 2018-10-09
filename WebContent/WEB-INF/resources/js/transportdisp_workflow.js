@@ -1208,17 +1208,6 @@
     		filterGlobal();
     } );
     
-    jq('#smsForm').change(function(){
-        var selectedSmsTypeValue = jq("input[name='smsType']:checked").val();
-        
-        if(selectedSmsTypeValue=='general'){
-      	  	jq('#divFreeTextElements').css('display','block');
-      	  	jq("#smsStatus").text("");
-        }else{
-      	  jq('#divFreeTextElements').css('display','none');
-      	  jq("#smsStatus").text("");
-        }
-    });
     
     
     
@@ -1232,10 +1221,10 @@
   jq(function() { 
 	  jq("#dialogSMS").dialog({
 		  autoOpen: false,
-		  maxWidth:800,
-          maxHeight: 800,
-          width: 480,
-          height: 500,
+		  maxWidth:600,
+          maxHeight: 600,
+          width: 380,
+          height: 320,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 	  });
@@ -1277,8 +1266,6 @@
 				 		//jq("#dialogSaveTU").button("option", "disabled", true);
 				 		jq("#smsnr").val("");
 				 		jq("#smsStatus").text("");
-				 		jq("#smsFreeText1").val("");
-				 		jq("#smsFreeText2").val("");
 				 		jq("#smsStatus").removeClass( "isa_error" );
 				 		jq("#smsStatus").removeClass( "isa_success" );
 		  				jq( this ).dialog( "close" ); 
@@ -1293,17 +1280,6 @@
   
   //new line
   function sendSMS() {
-	  var selectedSmsType = jq("input[name='smsType']:checked").val();
-	  var smsFreeText1 = null;
-	  var smsFreeText2 = null;
-	  var smsUrlLink = null;
-	  if(selectedSmsType == 'general'){
-		  smsFreeText1 = jq("#smsFreeText1").val();
-		  smsFreeText2 = jq("#smsFreeText2").val();
-		  if(jq('#smsUrlLink').is(":checked")){
-			  smsUrlLink = jq('#smsUrlLink').val();
-		  }
-	  }
 	  
 	  jq.ajax({
 	  	  type: 'GET',
@@ -1311,11 +1287,7 @@
 	  	  data: { applicationUser : jq('#applicationUser').val(),
 	  		  	  tur : jq("#tupro").val(),
 	  		  	  smsnr : jq("#smsnr").val(),
-		  		  smslang : jq("#smslang").val(),
-		  		  smsType : selectedSmsType,
-		  		  smsFreeText1 : smsFreeText1,
-		  		  smsFreeText2 : smsFreeText2,
-		  		  smsUrlLink : smsUrlLink },
+		  		  smslang : jq("#smslang").val()},
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',

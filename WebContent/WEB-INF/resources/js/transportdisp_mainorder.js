@@ -2752,7 +2752,7 @@
 		  maxWidth:800,
           maxHeight: 800,
           width: 480,
-          height: 500,
+          height: 450,
 		  modal: true,
 		  dialogClass: 'main-dialog-class'
 			  
