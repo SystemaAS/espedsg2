@@ -369,8 +369,8 @@
 				 					<td colspan="6" class="text14">
 				 						
 				 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-				 						&nbsp;<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-				 						&nbsp;<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+				 						<%-- hided so far ... <button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button> --%>
+				 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 								   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
 								   		
 								   		

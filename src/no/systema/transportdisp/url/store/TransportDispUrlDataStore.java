@@ -87,6 +87,9 @@ public final class TransportDispUrlDataStore {
 	
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_FROM_TUR_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjfa55s.pgm";
 	//http://gw.systema.no/sycgip/tjfa55s.pgm?user=JOVO&tur=80000060&smsnr=48052470&sprak=EN
+	
+	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_EMAIL_FROM_TUR_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjfa55m.pgm";
+	//http://gw.systema.no/sycgip/tjfa55m.pgm?user=JOVO&tur=75000020&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
 		
 	//---------------------------------------------------
 	//[1] GENERAL CODES - for country (AS400 from TVINN) 

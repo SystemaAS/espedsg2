@@ -591,6 +591,7 @@
 								 			</td>
 					 						<td align="right">
 					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+					 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 		 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 		 									&nbsp;
 						 				    <c:choose>
@@ -1464,6 +1465,55 @@
 			</div>
 		</td>
 		</tr>
+		
+		<%-- ---------------- --%>
+		<%-- DIALOG EMAIL		  --%>
+		<%-- ---------------- --%>
+		<tr>
+		<td>
+			<div id="dialogEmail" title="Dialog">
+				 	<table>
+						<tr>
+							<td colspan="3" class="text14" align="left" >Send Mail </td>
+   						</tr>
+   						<tr height="10"><td></td></tr>
+   						
+						<tr>
+							<td class="text14" align="left" ><b>Mail</b>&nbsp;</td>
+							<td class="text14" align="left" >
+								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
+							</td>
+   						</tr>
+   						
+						<tr>
+   							<td class="text14" align="left" >Merknad</td>
+							<td class="text12" align="left" >
+		   						<textarea id="emailText" name="emailText" limit='48,4' cols="50" rows="4"></textarea>
+							</td>
+						</tr>
+						<tr>
+   							<td class="text14" align="left" >Språk&nbsp;</td>
+							<td class="text14" align="left" >
+		   						<select class="inputTextMediumBlue" name="emailLang" id="emailLang">
+		 							<option value="NO">Norsk</option>
+		 							<option value="EN" selected>Engelsk</option>
+								</select>
+							</td>
+						</tr>
+						
+
+						<tr height="10"><td></td></tr>
+						<tr>
+							<td colspan="3" class="text14MediumBlue" align="left">
+								<label id="emailStatus"></label>
+							</td>
+						</tr>
+						
+					</table>
+			</div>
+		</td>
+		</tr>
+		
 </table>	
 		
 <!-- ======================= footer ===========================-->

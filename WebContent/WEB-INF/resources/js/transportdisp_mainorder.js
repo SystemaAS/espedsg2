@@ -2901,7 +2901,7 @@
   ---------------------
    */
 //-----------------------------
-  //START Model dialog: "SMS"
+  //START Model dialog: "Email"
   //---------------------------
   //Initialize <div> here
   jq(function() { 

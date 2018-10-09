@@ -1236,6 +1236,12 @@
 		  	presentSmsDialog();
 	  	  }
 	  });
+	  jq("#emailButton").click(function() {
+		  if(jq('#tuproJS').text() != ''){
+			  presentEmailDialog();
+		  }
+	  });
+	  
   });
   
   /*
@@ -1298,11 +1304,11 @@
 	  			if(data[i].errMsg != ''){
 	  				jq("#smsStatus").removeClass( "isa_success" );
 	  				jq("#smsStatus").addClass( "isa_error" );
-	  				jq("#smsStatus").text("SMS error: " + data[i].smsnr + " " + data[i].errMsg);
+	  				jq("#smsStatus").text("SMS error: " + jq("#smsnr").val() + " " + data[i].errMsg);
 	  			}else{
 	  				jq("#smsStatus").removeClass( "isa_error" );
 	  				jq("#smsStatus").addClass( "isa_success" );
-	  				jq("#smsStatus").text("SMS er sendt ti" + data[i].smsnr + " (loggført i Hendelsesloggen)");
+	  				jq("#smsStatus").text("SMS er sendt til: " + jq("#smsnr").val() + " (loggført i Hendelsesloggen)");
 	  			}
 	  		}
 	  	  },
@@ -1312,6 +1318,96 @@
 	  });
   }	
 
+  
+//-----------------------------
+  //START Model dialog: "Email"
+  //---------------------------
+  //Initialize <div> here
+  jq(function() { 
+	  jq("#dialogEmail").dialog({
+		  autoOpen: false,
+		  maxWidth:700,
+          maxHeight: 500,
+          width: 550,
+          height: 400,
+		  modal: true,
+		  dialogClass: 'main-dialog-class'
+	  });
+  });
+  
+  function presentEmailDialog(){
+	//setters (add more if needed)
+	  jq('#dialogEmail').dialog( "option", "title", "Send Mail" );
+	  //deal with buttons for this modal window
+	  jq('#dialogEmail').dialog({
+		 buttons: [ 
+            {
+			 id: "dialogSaveTU",	
+			 text: "Send",
+			 click: function(){
+				 		if(jq("#email").val() != ''){
+				 			sendEmail();
+				 		}
+		 			}
+		 	 },
+  			{
+		 	 id: "dialogCancelTU",
+		 	 text: "Lukk", 
+			 click: function(){
+				 		//back to initial state of form elements on modal dialog
+				 		//jq("#dialogSaveTU").button("option", "disabled", true);
+				 		jq("#email").val("");
+				 		jq("#emailSubject").val("");
+				 		jq("#emailText").val("");
+				 		jq("#emailStatus").text("");
+				 		//
+				 		jq("#emailStatus").removeClass( "isa_error" );
+				 		jq("#emailStatus").removeClass( "isa_success" );
+		  				jq( this ).dialog( "close" ); 
+			 		} 
+ 	 		 } ] 
+	  });
+	  //init values
+	  //jq("#dialogSaveTU").button("option", "disabled", true);
+	  //open now
+	  jq('#dialogEmail').dialog('open');
+  }
+  
+  //new line
+  function sendEmail() {
+	  
+	  jq.ajax({
+	  	  type: 'GET',
+	  	  url: 'sendEmailFromTur_TransportDisp.do',
+	  	  data: { applicationUser : jq('#applicationUser').val(),
+	  		  	  tur : jq("#tuproJS").text(),
+	  		  	  email : jq("#email").val(),
+		  		  text : jq("#emailText").val(),
+		  		  lang : jq("#emailLang").val() },
+	  	  dataType: 'json',
+	  	  cache: false,
+	  	  contentType: 'application/json',
+	  	  success: function(data) {
+	  		var len = data.length;
+	  		
+	  		for ( var i = 0; i < len; i++) {
+	  			if(data[i].errMsg != ''){
+	  				jq("#emailStatus").removeClass( "isa_success" );
+	  				jq("#emailStatus").addClass( "isa_error" );
+	  				jq("#emailStatus").text("Mail error: " + jq("#email").val() + " " + data[i].errMsg);
+	  			}else{
+	  				jq("#emailStatus").removeClass( "isa_error" );
+	  				jq("#emailStatus").addClass( "isa_success" );
+	  				jq("#emailStatus").text("Mail er sendt til: " + jq("#email").val()  + " (loggført i Hendelsesloggen)");
+	  			}
+	  		}
+	  	  },
+	  	  error: function() {
+	  	    alert('Error loading on Ajax callback (?) sendMail...check js');
+	  	  }
+	  });
+  }	
+  
   
   
   
