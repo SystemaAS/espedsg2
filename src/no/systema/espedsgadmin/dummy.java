@@ -9,7 +9,7 @@ package no.systema.espedsgadmin;
  */
 public class dummy {
 	/**
-	 oscardelatorre
+	 oscardelatorre, not so dummy...
 	 Mar 31, 2014
 	 */
 }
