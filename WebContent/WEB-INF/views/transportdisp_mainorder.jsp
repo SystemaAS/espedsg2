@@ -119,7 +119,7 @@
 	
 	<%-- -------------------------- --%>
 	<%-- Validation errors BACK END --%>
-	<%-- -------------------------- --%>
+	<%-- -------------------------- 
 	<c:if test="${not empty model.containerValidationBackend && not empty model.containerValidationBackend.errMsgListFromValidationBackend}">
 		<tr>
 		<td>
@@ -137,16 +137,18 @@
 		</td>
 		</tr>		
 	</c:if>
+	--%>
 	<%-- -------------------------------------- --%>
 	<%-- Validation errors BACK END independent --%>
-	<%-- Usually Frie sokveier (FRISOK)         --%>
+	<%-- Usually Frie sokveier eller DUP        --%>
 	<%-- -------------------------------------- --%>
 	<c:if test="${not empty model.containerValidationBackend && not empty model.containerValidationBackend.errMsg}">
 		<tr>
 		<td>
            	<table class="tabThinBorderWhiteWithSideBorders" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
            	<tr>
-			<td valign="bottom" class="textError">					
+			<td valign="bottom" class="textError">
+				<p>BACK-END error</p>					
 	            <ul>
 	            	<li >${model.containerValidationBackend.errMsg}</li>
 	            </ul>
@@ -1124,7 +1126,7 @@
 					 				</td>
 						 			<td class="text14" >
 						 				<c:choose>
-										<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
+										<c:when test="${empty model.record.trstaf}">
 						 				<select class="inputTextMediumBlue" name="helks" id="helks">
 					 						<option value="">-landkode-</option>
 						 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -1139,7 +1141,7 @@
 						 			</td>
 						 			<td class="text14" >
 						 				<c:choose>
-										<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
+										<c:when test="${empty model.record.trstaf}">
 							 				<input type="text" class="inputTextMediumBlue" name="hesdff" id="hesdff" size="5" maxlength="5" value="${model.record.hesdff}">
 							 				<a tabindex=0 id="hesdffIdLink">
 		 										<img id="imgToSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
@@ -1152,37 +1154,34 @@
 						 			</td>
 						 			<td class="text14" >
 						 				<input type="text" readonly class="inputTextReadOnly" name="trstaf" id="trstaf" size="5" maxlength="1" value="${model.record.trstaf}">
-						 				<%-- OLD with dropdown 
-						 				<c:choose>
-										<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
-								 			<select name="trstaf" id="trstaf">
-						 						<option value="">-select-</option>
-						 						<option value="A" <c:if test="${model.record.trstaf == 'A'}"> selected </c:if> >A</option>
-						 						<option value="R" <c:if test="${model.record.trstaf == 'R'}"> selected </c:if> >R</option>
-						 						<option value="F" <c:if test="${model.record.trstaf == 'F'}"> selected </c:if> >F</option>
-						 						<option value="O" <c:if test="${model.record.trstaf == 'O'}"> selected </c:if> >O</option>
-											</select>
-										</c:when>
-										<c:otherwise>
-											<input type="text" readonly class="inputTextReadOnly" name="trstaf" id="trstaf" size="5" maxlength="1" value="${model.record.trstaf}">
-										</c:otherwise>
-										</c:choose>
-										--%>
+						 				
 						 			</td>
 						 			<td class="text14" >
 						 				<input readonly tabindex=-1 type="text" class="inputTextReadOnly" size="20" maxlength="14" name="OWNwppns3" id="OWNwppns3" value="${model.record.wppns3}">
 						 				<c:choose>
-						 				<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
-						 					<img title="DUP/Rekvisisjon" id="viaFromDialogImg" style="vertical-align:top; cursor:pointer;" width="14px" height="14px" src="resources/images/add.png" border="0" alt="Via ekstra">
+						 				<c:when test="${empty model.record.trstaf}">
+						 					<img tabindex="0" title="DUP/Rekvisisjon" id="viaFromDialogImg" style="vertical-align:middle; cursor:pointer;" width="14px" height="14px" src="resources/images/add.png" border="0" alt="Via ekstra">
 						 				</c:when>
 						 				<c:otherwise>
-						 					<img title="DUP/Rekvisisjon - Read-only" id="viaFromDialogImgReadOnly" style="vertical-align:top; cursor:pointer;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="Via ekstra">
+						 					<img tabindex="0" title="DUP/Rekvisisjon - Read-only" id="viaFromDialogImgReadOnly" style="vertical-align:middle; cursor:pointer;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="Via ekstra">
 						 				</c:otherwise>
 						 				</c:choose>
 						 			</td>
-						 			
-						 			
-						 			
+						 			<c:if test="${not empty model.record.trstaf}">
+							 			<td class="text14" >
+							 				&nbsp;&nbsp;&nbsp;
+							 				<label style="color:green;"><b>Innhent.</b>
+							 				<c:choose>
+								 				<c:when test= "${not empty model.record.ffavd}">
+								 					&nbsp;${model.record.ffavd}&nbsp;/&nbsp;${model.record.tropd1}&nbsp;${model.record.ffoty}&nbsp;${model.record.ffmodul}&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 				</c:when>
+								 				<c:otherwise>
+								 					&nbsp;Trans.&nbsp;${model.record.fftran}&nbsp;${model.record.ffbnr}&nbsp;&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 				</c:otherwise>
+							 				</c:choose>
+							 				</label>
+							 			</td>
+						 			</c:if>
 					 			</tr>
 					 			<tr>	
 					 				<td class="text14" align="left">
@@ -1213,7 +1212,7 @@
 					 				</td>
 						 			<td class="text14" >
 						 				<c:choose>
-										<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
+										<c:when test="${empty model.record.trstae}">
 									 		<select class="inputTextMediumBlue" name="helkk" id="helkk">
 						 						<option value="">-landkode-</option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -1228,7 +1227,7 @@
 						 			</td>
 						 			<td class="text14" >
 						 				<c:choose>
-										<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
+										<c:when test="${empty model.record.trstae}">
 									 		<input  type="text" class="inputTextMediumBlueUPPERCASE" size="5" maxlength="5" name="hesdvt" id="hesdvt" value="${model.record.hesdvt}">
 							 				<a tabindex=0 id="hesdvtIdLink">
 		 										<img id="imgToSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
@@ -1241,35 +1240,34 @@
 						 			</td>
 						 			<td class="text14" >
 						 				<input  readonly type="text" class="inputTextReadOnly" size="2" maxlength="1" name="trstae" id="trstae" value="${model.record.trstae}">
-						 				<%-- OLD with dropdown 
-						 				<c:choose>
-										<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
-									 		<select name="trstae" id="trstae">
-						 						<option value="">-select-</option>
-						 						<option value="A" <c:if test="${model.record.trstae == 'A'}"> selected </c:if> >A</option>
-						 						<option value="R" <c:if test="${model.record.trstae == 'R'}"> selected </c:if> >R</option>
-						 						<option value="F" <c:if test="${model.record.trstae == 'F'}"> selected </c:if> >F</option>
-						 						<option value="O" <c:if test="${model.record.trstae == 'O'}"> selected </c:if> >O</option>
-											</select>
-										</c:when>
-						 				<c:otherwise>
-											 <input  type="text" class="inputTextReadOnly" size="2" maxlength="1" name="trstae" id="trstae" value="${model.record.trstae}">
-										</c:otherwise>
-										</c:choose>
-										--%>
+						 				
 						 			</td>
 						 			<td class="text14" >
 						 				<input readonly tabindex=-1 type="text" class="inputTextReadOnly" size="20" maxlength="14" name="OWNwppns4" id="OWNwppns4" value="${model.record.wppns4}">
 						 				<c:choose>
-						 				<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
-						 					<img title="DUP/Rekvisisjon" id="viaFrom2DialogImg" style="vertical-align:top; cursor:pointer;" width="14px" height="14px" src="resources/images/add.png" border="0" alt="Via ekstra">
+						 				<c:when test="${empty model.record.trstae}">
+						 					<img tabindex="0" title="DUP/Rekvisisjon" id="viaFrom2DialogImg" style="vertical-align:middle; cursor:pointer;" width="14px" height="14px" src="resources/images/add.png" border="0" alt="Via ekstra">
 						 				</c:when>
 						 				<c:otherwise>
-						 					<img title="DUP/Rekvisisjon - Read-only" id="viaFrom2DialogImgReadOnly" style="vertical-align:top; cursor:pointer;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="Via ekstra">
+						 					<img tabindex="0" title="DUP/Rekvisisjon - Read-only" id="viaFrom2DialogImgReadOnly" style="vertical-align:middle; cursor:pointer;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="Via ekstra">
 						 				</c:otherwise>
 						 				</c:choose>
 						 			</td>
-						 			
+						 			<c:if test="${not empty model.record.trstae}">
+							 			<td class="text14" >
+							 				&nbsp;&nbsp;&nbsp;
+							 				<label style="color:green;"><b>Utkj.</b>
+							 				<c:choose>
+								 				<c:when test= "${not empty model.record.vfavd}">
+								 					&nbsp;${model.record.vfavd}&nbsp;/&nbsp;${model.record.tropd2}&nbsp;${model.record.vfoty}&nbsp;${model.record.vfmodul}&nbsp;Bel.&nbsp;${model.record.vfbel}
+								 				</c:when>
+								 				<c:otherwise>
+								 					&nbsp;Trans.&nbsp;${model.record.vftran}&nbsp;${model.record.vfbnr}&nbsp;Bel.&nbsp;${model.record.vfbel}
+								 				</c:otherwise>
+							 				</c:choose>
+							 				</label>
+							 			</td>
+						 			</c:if>
 					 			</tr>
 					 			<tr>	
 						 			<td class="text14">
@@ -2226,13 +2224,13 @@
 				<td>
 					<div id="dialogDup" title="Dialog">
 								<table border="0">
-							 		<tr ><td class="text14" colspan="3"><b>Forfrakt&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
+							 		<tr ><td class="text14" colspan="3"><b>Innhenting&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
 									<tr>
-										<td class="text14"><span title="ffavd"><font class="text14RedBold">*</font>Via avd</span></td>
+										<td class="text14"><span title="ffavd">Via avd</span></td>
 								 		<td class="text14">
 								 			<c:choose>
 											<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
-								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
+								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
 								 			</c:when>
 								 			<c:otherwise>
 								 				<input readonly type="text" class="inputTextReadOnly" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
@@ -2398,13 +2396,13 @@
 									<tr height="1"><td colspan="10" style="border-bottom:2px solid;border-color:#FFFFFF;" class="text"></td></tr>
 									<tr height="12"><td colspan="10" ></td></tr>
 								 	
-								 	<tr ><td class="text14" colspan="3"><b>Viderefrakt&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
+								 	<tr ><td class="text14" colspan="3"><b>Utkjøring&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
 								 	<tr>
-										<td class="text14"><span title="vfavd"><font class="text14RedBold">*</font>Via avd</span></td>
+										<td class="text14"><span title="vfavd">Via avd</span></td>
 								 		<td class="text14">
 								 			<c:choose>
 											<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
-								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}">
+								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}">
 								 			</c:when>
 								 			<c:otherwise>
 								 				<input readonly type="text" class="inputTextReadOnly" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}">
@@ -2549,7 +2547,7 @@
 								 	<tr height="5"><td class="text14" ></td></tr>
 								 	<tr>		
 							 			<td class="text14"><span title="vfbel">Beløp</span></td>
-							 			<td class="text14" colspan="4" >
+							 			<td class="text14" colspan="4" nowrap>
 							 				<c:choose>
 											<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
 							 					<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" size="15" maxlength="15" name="vfbel" id="vfbel" value="${model.record.vfbel}">
@@ -2756,7 +2754,7 @@
 				<td>
 					<div id="dialogDupReadOnly" title="Dialog">
 								<table border="0">
-							 		<tr ><td class="text14" colspan="3"><b>Forfrakt&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
+							 		<tr ><td class="text14" colspan="3"><b>Innhenting&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
 									<tr>
 										<td class="text14"><span title="ffavd">Via avd</span></td>
 								 		<td class="text14">
@@ -2833,7 +2831,7 @@
 									<tr height="1"><td colspan="10" style="border-bottom:2px solid;border-color:#FFFFFF;" class="text"></td></tr>
 									<tr height="12"><td colspan="10" ></td></tr>
 								 	
-								 	<tr ><td class="text14" colspan="3"><b>Viderefrakt&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
+								 	<tr ><td class="text14" colspan="3"><b>Utkjøring&nbsp;&nbsp;DUP-Oppdrag</b></td></tr>
 								 	<tr>
 										<td class="text14"><span title="vfavd">Via avd</span></td>
 								 		<td class="text14">
@@ -2902,7 +2900,7 @@
 								 	<tr height="5"><td class="text14" ></td></tr>
 								 	<tr>		
 							 			<td class="text14"><span title="vfbel">Beløp</span></td>
-							 			<td class="text14" colspan="4" >
+							 			<td class="text14" colspan="4" nowrap>
 							 				<input readonly type="text" class="inputTextReadOnly" size="15" maxlength="15" name="vfbel" id="vfbel" value="${model.record.vfbel}">
 							 				
 							 				&nbsp;&nbsp;<span title="vfbelk"><font class="text14">A/E</font></span>

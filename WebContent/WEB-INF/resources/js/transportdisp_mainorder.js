@@ -857,17 +857,17 @@
 				if(target==CITY_OWNwppns1){
 					jq('#OWNwppns1').val(data[i].st2nvn);
 					jq('#helka').val(data[i].st2lk);
-					jq('#hesdf').attr("class","inputTextMediumBlue11MandatoryField");
+					jq('#hesdf').attr("class","inputTextMediumBlueMandatoryField");
 					
 				}else if(target==CITY_OWNwppns2){
 					jq('#OWNwppns2').val(data[i].st2nvn);
 					jq('#hetri').val(data[i].st2lk);
-					jq('#hesdt').attr("class","inputTextMediumBlue11MandatoryField");
+					jq('#hesdt').attr("class","inputTextMediumBlueMandatoryField");
 					
 				}else if(target==CITY_OWNwppns3){
 					jq('#OWNwppns3').val(data[i].st2nvn);
 					jq('#helks').val(data[i].st2lk);
-					jq('#hesdff').attr("class","inputTextMediumBlue11");
+					jq('#hesdff').attr("class","inputTextMediumBlue");
 					//Via-fields
 					if(jq('#ffavd').val() == ''){
 						jq('#ffavd').val(data[i].avd);
@@ -879,7 +879,7 @@
 				}else if(target==CITY_OWNwppns4){
 					jq('#OWNwppns4').val(data[i].st2nvn);
 					jq('#helkk').val(data[i].st2lk);
-					jq('#hesdvt').attr("class","inputTextMediumBlue11");
+					jq('#hesdvt').attr("class","inputTextMediumBlue");
 					//Via-fields
 					if(jq('#vfavd').val() == ''){
 						jq('#vfavd').val(data[i].avd);
@@ -893,16 +893,16 @@
 		}else{
 			//invalid postal code
 			if(target==CITY_OWNwppns1){
-				jq('#hesdf').addClass("text11RedBold");
+				jq('#hesdf').addClass("textRedBold");
 				jq('#OWNwppns1').val("?");
 			}else if(target==CITY_OWNwppns2){
-				jq('#hesdt').addClass("text11RedBold");
+				jq('#hesdt').addClass("textRedBold");
 				jq('#OWNwppns2').val("?");
 			}else if(target==CITY_OWNwppns3){
-				jq('#hesdff').addClass("text11RedBold");
+				jq('#hesdff').addClass("textRedBold");
 				jq('#OWNwppns3').val("?");
 			}else if(target==CITY_OWNwppns4){
-				jq('#hesdvt').addClass("text11RedBold");
+				jq('#hesdvt').addClass("textRedBold");
 				jq('#OWNwppns4').val("?");
 			}
 		}
@@ -2590,10 +2590,10 @@
 	  });
 	  jq("#dialogDup").dialog({
 		  autoOpen: false,
-		  maxWidth:550,
+		  maxWidth:650,
           maxHeight: 650,
-          width: 520,
-          height: 640,
+          width: 600,
+          height: 650,
 		  modal: true,
 		  dialogClass: 'main-dialog-class',
 		  //the form must be appended otherwise the default jQuey dialog behavior (leave the dialog outside the form) will take place...=(
@@ -2602,10 +2602,10 @@
 	  });
 	  jq("#dialogDupReadOnly").dialog({
 		  autoOpen: false,
-		  maxWidth:550,
+		  maxWidth:650,
           maxHeight: 650,
-          width: 520,
-          height: 640,
+          width: 600,
+          height: 650,
 		  modal: true,
 		  dialogClass: 'main-dialog-class',
 		  //the form must be appended otherwise the default jQuey dialog behavior (leave the dialog outside the form) will take place...=(
@@ -2618,7 +2618,13 @@
   //Present dialog box onClick 
   //----------------------------
   jq(function() {
-	  //Via 1
+	  
+	  //Via 1 - DUP
+	  jq('#viaFromDialogImg').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#viaFromDialogImg').click();
+			}
+	  });
 	  jq("#viaFromDialogImg").click(function() {
 		  if(mandatoryViaFromFieldsForDupDialog()){
 			  presentDupDialog();
@@ -2626,12 +2632,22 @@
 	  		renderViaAlert();
 	  	  }
 	  });
-	  //Read only dialog
+	  //Read only dialog - DUP
+	  jq('#viaFromDialogImgReadOnly').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#viaFromDialogImgReadOnly').click();
+			}
+	  });
 	  jq("#viaFromDialogImgReadOnly").click(function() {
 		  presentDupDialogReadOnly();
 	  });
 	 
-	  //Via 2
+	  //Via 2 - DUP
+	  jq('#viaFrom2DialogImg').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#viaFrom2DialogImg').click();
+			}
+	  });
 	  jq("#viaFrom2DialogImg").click(function() {
 		  if(mandatoryViaToFieldsForDupDialog()){
 			  presentDupDialog();
@@ -2639,7 +2655,14 @@
 	  		  renderViaAlert();
 	  	  }
 	  });
-	  //Read-only dialog
+	  
+	  
+	  //Read-only dialog - DUP
+	  jq('#viaFrom2DialogImgReadOnly').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#viaFrom2DialogImgReadOnly').click();
+			}
+	  });
 	  jq("#viaFrom2DialogImgReadOnly").click(function() {
 		  presentDupDialogReadOnly();
 	  });

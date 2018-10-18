@@ -477,11 +477,7 @@ public class TransportDispMainOrderController {
 					    			//[3.1] Execute back end validation for order lines (now that the order has been created)
 						    		this.specificOrderValidatorBackend.validateOrderLine(appUser, recordToValidate);
 						    		
-						    		//update with the return values of the back-end (if any). 
-					    			//OBSOLETE ? this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(recordToValidate, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
-					    			//OBSOLETE ? recordToValidate.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
-					    			if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
-						    			
+						    		if(this.specificOrderValidatorBackend.getValidationOutputErrMsgList()!=null && this.specificOrderValidatorBackend.getValidationOutputErrMsgList().size()>0){
 						    			validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
 							    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
 							    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
@@ -518,8 +514,8 @@ public class TransportDispMainOrderController {
 						    			
 					    				//postUpdate events on back-end
 						    			this.processPostUpdateEvents(recordToValidate, appUser);
-						    			
 					    			}
+						    		
 				    			}else{
 				    				
 				    				if(recordToValidate.getFraktbrevRecord()!=null){
