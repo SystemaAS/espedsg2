@@ -1173,10 +1173,10 @@
 							 				<label style="color:green;"><b>Innhent.</b>
 							 				<c:choose>
 								 				<c:when test= "${not empty model.record.ffavd}">
-								 					&nbsp;${model.record.ffavd}&nbsp;/&nbsp;${model.record.tropd1}&nbsp;${model.record.ffoty}&nbsp;${model.record.ffmodul}&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 					&nbsp;<b>Dup</b>&nbsp;${model.record.ffavd}&nbsp;/&nbsp;${model.record.tropd1}&nbsp;Bel.&nbsp;${model.record.ffbel}
 								 				</c:when>
 								 				<c:otherwise>
-								 					&nbsp;Trans.&nbsp;${model.record.fftran}&nbsp;${model.record.ffbnr}&nbsp;&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 					&nbsp;<b>Rekv.</b>&nbsp;${model.record.ffbnr}&nbsp;Trans.&nbsp;${model.record.fftran}&nbsp;Bel.&nbsp;${model.record.ffbel}
 								 				</c:otherwise>
 							 				</c:choose>
 							 				</label>
@@ -1256,13 +1256,13 @@
 						 			<c:if test="${not empty model.record.trstae}">
 							 			<td class="text14" >
 							 				&nbsp;&nbsp;&nbsp;
-							 				<label style="color:green;"><b>Utkj.</b>
+							 				<label style="color:green;"><b>Utkjør.</b>
 							 				<c:choose>
 								 				<c:when test= "${not empty model.record.vfavd}">
-								 					&nbsp;${model.record.vfavd}&nbsp;/&nbsp;${model.record.tropd2}&nbsp;${model.record.vfoty}&nbsp;${model.record.vfmodul}&nbsp;Bel.&nbsp;${model.record.vfbel}
+								 					&nbsp;<b>Dup</b>&nbsp;${model.record.vfavd}&nbsp;/&nbsp;${model.record.tropd2}&nbsp;Bel.&nbsp;${model.record.vfbel}
 								 				</c:when>
 								 				<c:otherwise>
-								 					&nbsp;Trans.&nbsp;${model.record.vftran}&nbsp;${model.record.vfbnr}&nbsp;Bel.&nbsp;${model.record.vfbel}
+								 					&nbsp;<b>Rekv.</b>&nbsp;${model.record.vfbnr}&nbsp;Trans.&nbsp;${model.record.vftran}&nbsp;Bel.&nbsp;${model.record.vfbel}
 								 				</c:otherwise>
 							 				</c:choose>
 							 				</label>

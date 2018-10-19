@@ -2696,6 +2696,7 @@
   //PRESENT DUP DIALOG
   //---------------------
   function presentDupDialog(){
+	  var mandatoryMsg = "Enten Avd (Dup) eller Transportør og beløp (Rekv.) er obligatorisk";
 	//setters (add more if needed)
 	  jq('#dialogDup').dialog( "option", "title", "DUP / Rekvisisjon" );
 	  //deal with buttons for this modal window
@@ -2706,13 +2707,12 @@
 			 text: "Fortsett",
 			 click: function(){
 				 		if(!isValidViaFromAvd()){
-				 			alert("Forfrakt: Via-avd er obligatorisk");
+				 			alert("Innhent. " + mandatoryMsg);
 				 		}else if(!isValidViaToAvd()){
-				 			alert("Viderefrakt: Via-avd er obligatorisk");
+				 			alert("Utkjør. " + mandatoryMsg);
 				 		}else{
 				 			jq( this ).dialog( "close" );
 				 		}
-				 		
 			 		}
 		 	 } ]
 	  });
@@ -2720,20 +2720,28 @@
 	  jq('#dialogDup').dialog('open');
   }
   //check for DUP-dialog if there is any mandatory requirement
-  function isValidViaFromAvd(){
-	  var retval = true;
-	  if(jq("#ffavd").val() == ''){
+  function isValidViaFromAvd(){ 
+	  //At least AVD or Transp must be filled in 
+	  var retval = false;
+	  if( jq("#ffavd").val() != '' || (jq("#fftran").val() != '' && jq("#ffbel").val() != '') ){
 		  if(jq("#helks").val() != '' && jq("#hesdff").val() != '' ){
-			  retval = false;
+			  retval = true;
 		  }
 	  }
 	  return retval;
   }
-  function isValidViaToAvd(){
-	  var retval = true;
-	  if(jq("#vfavd").val() == ''){
-		  if(jq("#helkk").val() != '' && jq("#hesdvt").val() != '' ){
-			  retval = false;
+  function isValidViaToAvd(){ 
+	  //At least AVD or Transp must be filled in 
+	  var retval = false;
+	  if(jq("#vfavd").prop('readonly')){ //meaning that this part is blocked for the end-user thus not active for validation
+		  //console.log("a");
+		  retval = true;
+	  }else{
+		  //console.log("b");
+		  if( jq("#vfavd").val() != '' || (jq("#vftran").val() != '' && jq("#vfbel").val() != '') ){
+			  if(jq("#helkk").val() != '' && jq("#hesdvt").val() != '' ){
+				  retval = true;
+			  }
 		  }
 	  }
 	  return retval;
