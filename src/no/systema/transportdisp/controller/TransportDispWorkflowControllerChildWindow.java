@@ -268,34 +268,7 @@ public class TransportDispWorkflowControllerChildWindow {
 		}
 	}
 	
-	/**
-	 * 
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value="transportdisp_workflow_childwindow_bilnr.do", params="action=doInit",  method={RequestMethod.GET} )
-	public ModelAndView doInitBilNr(@ModelAttribute ("record") JsonTransportDispBilNrRecord recordToValidate, HttpSession session, HttpServletRequest request){
-		this.context = TdsAppContext.getApplicationContext();
-		logger.info("Inside: doInitBilNr");
-		Map model = new HashMap();
-		StringBuffer paramsRedirect = new StringBuffer();
-		if(recordToValidate.getUnbiln()!=null && !"".equals(recordToValidate.getUnbiln())){
-			paramsRedirect.append("&sokbnr=" + recordToValidate.getUnbiln());
-		}
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_bilnr.do?action=doFind" + paramsRedirect.toString());
-		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
-		//check user (should be in session already)
-		if(appUser==null){
-			return this.loginView;
-			
-		}else{
-			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
-			model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate);
-			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
-	    		return successView;
-		}
-	}	
+	
 	/**
 	 * 
 	 * @param session
@@ -355,6 +328,39 @@ public class TransportDispWorkflowControllerChildWindow {
 	 * @param request
 	 * @return
 	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_bilnr.do", params="action=doInit",  method={RequestMethod.GET} )
+	public ModelAndView doInitBilNr(@ModelAttribute ("record") JsonTransportDispBilNrRecord recordToValidate, HttpSession session, HttpServletRequest request){
+		this.context = TdsAppContext.getApplicationContext();
+		logger.info("Inside: doInitBilNr");
+		Map model = new HashMap();
+		StringBuffer paramsRedirect = new StringBuffer();
+		String caller = request.getParameter("ctype");
+		logger.info("CALLER:" + caller);
+		if(recordToValidate.getUnbiln()!=null && !"".equals(recordToValidate.getUnbiln())){
+			paramsRedirect.append("&sokbnr=" + recordToValidate.getUnbiln());
+		}
+		if(caller!=null && !"".equals(caller)){
+			paramsRedirect.append("&ctype=" + caller);
+		}
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_bilnr.do?action=doFind" + paramsRedirect.toString());
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return this.loginView;
+			
+		}else{
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate);
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+	    		return successView;
+		}
+	}	
+	/**
+	 * 
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	
 	@RequestMapping(value="transportdisp_workflow_childwindow_bilnr.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doFindBilNr(@ModelAttribute ("record") JsonTransportDispBilNrContainer recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
@@ -362,7 +368,9 @@ public class TransportDispWorkflowControllerChildWindow {
 		logger.info("Inside: doFindBilNr");
 		Collection outputList = new ArrayList();
 		Map model = new HashMap();
-		
+		String caller = request.getParameter("ctype");
+		//logger.info("CALLER:" + caller);
+		model.put("caller", caller);
 		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_bilnr");
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		//check user (should be in session already)
@@ -544,8 +552,12 @@ public class TransportDispWorkflowControllerChildWindow {
 		Map model = new HashMap();
 		StringBuffer paramsRedirect = new StringBuffer();
 		String soktnr = request.getParameter("soktnr");
+		String caller = request.getParameter("ctype");
 		if(soktnr!=null && !"".equals(soktnr)){
 			paramsRedirect.append("&soktnr=" + soktnr);
+		}
+		if(caller!=null && !"".equals(caller)){
+			paramsRedirect.append("&ctype=" + caller);
 		}
 		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_transpcarrier.do?action=doFind" + paramsRedirect.toString());
 
@@ -575,6 +587,8 @@ public class TransportDispWorkflowControllerChildWindow {
 		logger.info("Inside: doFindTranspCarrier");
 		Collection outputList = new ArrayList();
 		Map model = new HashMap();
+		String caller = request.getParameter("ctype");
+		model.put("caller", caller);
 		
 		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_transpcarrier");
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);

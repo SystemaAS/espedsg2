@@ -80,17 +80,7 @@
 	jq(function() {
 		jq('#bilnrList').on('click', 'td', function(){
 		  var id = this.id;
-		  /*
-		  bilnr_${record.unbiln}
-		  @heng_${record.untilh}
-		  @country_${record.unland}
-		  @trucktype_${record.untrme}
-		  @trucknr_${record.untran}
-		  @truckdriver_${record.vmnavn}
-		  @unretu_${record.unretu}
-		  @unretunavn_${record.unretunavn}
-		  @dt_${counter.count}
-		   */	
+		 
 		  var record = id.split('@');
 		  var bilnr = record[0].replace("bilnr_", "");
 		  var henger = record[1].replace("heng_", "");
@@ -115,6 +105,23 @@
 		  //driver1
 		  if(opener.jq('#tusja1').val()==''){ opener.jq('#tusja1').val(driver1); }
 		  if(opener.jq('#tusjn1').val()==''){ opener.jq('#tusjn1').val(driver1Name); }
+		  
+		  //ORDER GUI- DUP
+		  if(jq('#ctype').val() == 'ffbnr'){
+			  if(opener.jq('#ffbnr').val()==''){ 
+				  opener.jq('#ffbnr').val(bilnr);
+				  opener.jq('#fftran').val(truckNr); 
+			  }
+		  }
+		  if(jq('#ctype').val() == 'vfbnr'){
+			  if(opener.jq('#vfbnr').val()==''){ 
+				  opener.jq('#vfbnr').val(bilnr);
+				  opener.jq('#vftran').val(truckNr); 
+			  }
+		  }
+		  //END DUP
+		  
+		  
 		  //close child window
 		  window.close();
 	  });
@@ -148,6 +155,15 @@
 		  opener.jq('#traNavn').val(carrierdesc);
 		  //order parent window (when applicable)
 		  opener.jq('#dftran').val(carriernr);
+		 //order (when applicable)
+		  //ORDER GUI- DUP
+		  
+		  if(jq('#ctype').val() == 'fftran'){
+			  opener.jq('#fftran').val(carriernr);
+		  }
+		  if(jq('#ctype').val() == 'vftran'){
+			  opener.jq('#vftran').val(carriernr);
+		  }
 		  
 		  //close child window
 		  window.close();

@@ -2333,6 +2333,9 @@
 								 				<c:choose>
 												<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
 								 					<input type="text" class="inputTextMediumBlue" size="9" maxlength="8" name="ffbnr" id="ffbnr" value="${model.record.ffbnr}">
+								 					<a tabindex=0 id="ffbnrIdLink" >
+										    			<img id="imgTruckLicSearch" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
+				 									</a>
 								 				</c:when>
 								 				<c:otherwise>
 								 					<input readonly type="text" class="inputTextReadOnly" size="9" maxlength="8" name="ffbnr" id="ffbnr" value="${model.record.ffbnr}">
@@ -2344,6 +2347,9 @@
 								 				<c:choose>
 												<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
 								 					<input type="text" class="inputTextMediumBlue" size="9" maxlength="8" name="fftran" id="fftran" value="${model.record.fftran}">
+								 					<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_transpcarrier.do?action=doInit&ctype=fftran','transpcarrierWin','top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
+				 										<img id="imgTruckersNrSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
+				 									</a>
 								 				</c:when>
 								 				<c:otherwise>
 								 					<input readonly type="text" class="inputTextReadOnly" size="9" maxlength="8" name="fftran" id="fftran" value="${model.record.fftran}">
@@ -2508,6 +2514,9 @@
 								 				<c:choose>
 												<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
 								 					<input type="text" class="inputTextMediumBlue" size="9" maxlength="8" name="vfbnr" id="vfbnr" value="${model.record.vfbnr}">
+								 					<a tabindex=0 id="vfbnrIdLink" >
+										    			<img id="imgTruckLicSearch" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
+				 									</a>
 								 				</c:when>
 								 				<c:otherwise>
 								 					<input readonly type="text" class="inputTextReadOnly" size="9" maxlength="8" name="vfbnr" id="vfbnr" value="${model.record.vfbnr}">
@@ -2519,6 +2528,9 @@
 								 				<c:choose>
 												<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
 								 					<input type="text" class="inputTextMediumBlue" size="9" maxlength="8" name="vftran" id="vftran" value="${model.record.vftran}">
+								 					<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_transpcarrier.do?action=doInit&ctype=vftran','transpcarrierWin','top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
+				 										<img id="imgvftranSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
+				 									</a>
 								 				</c:when>
 								 				<c:otherwise>
 								 					<input readonly type="text" class="inputTextReadOnly" size="9" maxlength="8" name="vftran" id="vftran" value="${model.record.vftran}">

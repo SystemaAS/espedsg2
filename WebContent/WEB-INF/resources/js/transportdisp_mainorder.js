@@ -28,6 +28,15 @@
 		      }
 	  });
 	  
+	  jq('#ffbnrIdLink').click(function() {
+	    	jq('#ffbnrIdLink').attr('target','_blank');
+	    	window.open('transportdisp_workflow_childwindow_bilnr.do?action=doInit&unbiln=' + jq('#ffbnr').val() + '&ctype=ffbnr', "bilnrWin", "top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+	    });
+	  jq('#vfbnrIdLink').click(function() {
+	    	jq('#vfbnrIdLink').attr('target','_blank');
+	    	window.open('transportdisp_workflow_childwindow_bilnr.do?action=doInit&unbiln=' + jq('#vfbnr').val() + '&ctype=vfbnr', "bilnrWin", "top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+	    });
+	  
   });
   
   //Global functions
@@ -699,22 +708,6 @@
   });
   
   
-  /*
-  jq("#hesdff").blur(function() {
-	  if(mandatoryViaFromFieldsForDupDialog()){
-		  presentDupDialog();
-  	  }else{
-  		renderViaAlert();
-  	  }
-  });
-  jq("#hesdvt").blur(function() {
-	  if(mandatoryViaToFieldsForDupDialog()){
-		  presentDupDialog();
-  	  }else{
-  		renderViaAlert();
-  	  }
-  });
-  */
   
   
   jq(function() {
@@ -2100,9 +2093,6 @@
 	  jq( "#submit" ).click(function( event ) {
 		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT });
 		  
-		  //[1] sum all totals (in case)
-		  private_updateOrderLineTotalsBeforeSubmit();
-		  
 		  //[2] execute som events
 		  if(jq( "#hesdf" ).val()=='' && jq( "#helka" ).val()!=''){
 			  jq( "#hesdf" ).focus();
@@ -2118,9 +2108,6 @@
 	  //FORM submit (NEW ORDER) 
 	  jq( "#submitnew" ).click(function( event ) {
 		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT });
-		  
-		  //[1] sum all totals (in case)
-		  private_updateOrderLineTotalsBeforeSubmit();
 		  
 		  //[2] execute som events
 		  if(jq( "#hesdf" ).val()=='' && jq( "#helka" ).val()!=''){
@@ -2169,239 +2156,9 @@
 		     }
 		});  //end dialog
 	  
-	  /*
-	  var r = confirm("Are you sure you want to remove this order line?"+ counter);
-	  if (r == true){
-		  //updateOrderLineTotalsBeforeDelete(counter);
-		  var params = "heavd=" + jq('#heavd').val() + "&heopd=" + jq('#heopd').val() + 
-						"&lin=" + counter + "&hent=" + jq('#hent').val() + "&hevkt=" + jq('#hevkt').val() + 
-						"&hem3=" + jq('#hem3').val() + "&helm=" + jq('#helm').val() + "&helmla=" + jq('#helmla').val();
-		  				/*+ "&hepoen=" + jq('#hepoen').val();
-		  				//append the protect checkbox value (if applicable)
-						if(jq('#hestl4').prop('checked')){ params += "&hestl4=" + jq('#hestl4').val();}
-						else{ params += "&hestl4="; } 
-						
-						//shoot now to the controller!
-		  				//console.log(params);
-		  				window.location = "transportdisp_mainorder_delete_order_line.do?" + params;
-	  }else{
-		  //nothing
-	  }
-	  */
+	 
   }
-  //--------------------------------
-  // UPDATE before DELETE ORDER LINE
-  //--------------------------------
-  /*
-  function updateOrderLineTotalsBeforeDelete(counter_delete) { 
-      //Antall
-	  var sum = 0;
-	  jq( ".clazzAntMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvant_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hent').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //Weight
-	  var sum = 0;
-	  jq( ".clazzWeightMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvkt_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hevkt').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //M3
-	  var sum = 0;
-	  jq( ".clazzVolMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvol_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hem3').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM
-	  var sum = 0;
-	  jq( ".clazzLmMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helm').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM-la
-	  var sum = 0;
-	  jq( ".clazzLmlaMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm2_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helmla').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //ADR
-	  var sum = 0;
-	  jq( ".clazzAdrMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#ffpoen_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  //this ADR-field in NOT REQUIRED to be blocked by Protected checkbox: hestl4
-	  jq("#hepoen").attr("readonly", false); 
-	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  
-  }
-  */
-  
-  //-----------------------------
-  //UPDATE before ADD ORDER LINE
-  //-----------------------------
-  /*
-  function updateOrderLineTotalsBeforeAdd() { 
-      //Antall
-	  var sum = 0;
-	  jq( ".clazzAntMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvant_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  var fvant = jq('#fvant').val();
-		  if(fvant!=''){ fvant = fvant.replace(",","."); sum += Number(fvant); }
-		  jq('#hent').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //Weight
-	  var sum = 0;
-	  jq( ".clazzWeightMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvkt_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  var fvvkt = jq('#fvvkt').val();
-		  if(fvvkt!=''){ fvvkt = fvvkt.replace(",","."); sum += Number(fvvkt); }
-		  jq('#hevkt').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //M3
-	  var sum = 0;
-	  jq( ".clazzVolMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvol_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  var fvvol = jq('#fvvol').val();
-		  if(fvvol!=''){ fvvol = fvvol.replace(",","."); sum += Number(fvvol); }
-		  jq('#hem3').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM
-	  var sum = 0;
-	  jq( ".clazzLmMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  var fvlm = jq('#fvlm').val();
-		  if(fvlm!=''){ fvlm = fvlm.replace(",","."); sum += Number(fvlm); }
-		  jq('#helm').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM-la
-	  var sum = 0;
-	  jq( ".clazzLmlaMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm2_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  var fvlm2 = jq('#fvlm2').val();
-		  if(fvlm2!=''){ fvlm2 = fvlm2.replace(",","."); sum += Number(fvlm2); }
-		  jq('#helmla').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //ADR
-	  var sum = 0;
-	  jq( ".clazzAdrMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#ffpoen_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  //Update the ADR-sum with
-	  /* OLD With ffante as Integer
-	  var unitStr = jq('#ffante').val();
-	  var faktStr = jq('#ownAdrFaktNewLine').val();
-	  if(unitStr!='' && faktStr!=''){
-		  unit = parseInt(unitStr);
-		  fakt = parseInt(faktStr);
-		  sum += (unit*fakt);
-	  }
-	  var unitStr = jq('#ffante').val();
-	  var faktStr = jq('#ownAdrFaktNewLine').val();
-	  if(unitStr!='' && faktStr!=''){
-		  unitStr = unitStr.replace(",",".");
-		  unit = Number(unitStr);
-		  fakt = parseInt(faktStr);
-		  sum += (unit*fakt);
-	  }
-	  
-	  //ADR field NOT REQUIRED to be blocked by checkbox: hestl4
-	  jq("#hepoen").attr("readonly", false); 
-	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  
-  }
-  */
+ 
   //UPDATE before SUBMIT Vareslag - TOT
   //Usually if the field hasn't been populated earlier by other jQuery functions on Vareslag
   function private_isSingleOrderLine() {
@@ -2425,109 +2182,7 @@
 	  
   }
   
-  //-----------------------------
-  //UPDATE before SUBMIT (Save)
-  //-----------------------------
-  /*
-  function private_updateOrderLineTotalsBeforeSubmit() { 
-      //Antall
-	  var sum = 0;
-	  jq( ".clazzAntMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvant_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){	
-		  jq('#hent').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  
-	  //check Vareslag
-	  if(private_isSingleOrderLine()){
-		  /*
-		  if(jq("#hevs1").val()==''){
-			  var hevs1 = jq("#fvpakn_1").val()  + " " +  jq("#fvvt_1").val();
-			  jq("#hevs1").val(hevs1);
-		  }
-		  
-	  }
-	  
-	  //Weight
-	  var sum = 0;
-	  jq( ".clazzWeightMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvkt_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hevkt').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //M3
-	  var sum = 0;
-	  jq( ".clazzVolMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvol_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hem3').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM
-	  var sum = 0;
-	  jq( ".clazzLmMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helm').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //LM-la
-	  var sum = 0;
-	  jq( ".clazzLmlaMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm2_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helmla').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  //ADR
-	  var sum = 0;
-	  jq( ".clazzAdrMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#ffpoen_' + counter).val();
-		  if(value!='' && counter!=counter_delete){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  //this ADR-field in NOT REQUIRED to be blocked by Protected checkbox: hestl4
-	  jq("#hepoen").attr("readonly", false); 
-	  jq('#hepoen').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  
-  }
- */
+  
   
   
 //-----------------------------
@@ -2538,54 +2193,54 @@
 	  //events before the dialog is created/opened
 	  jQuery("#dialogDup").on("dialogopen", function (event, ui) {
 		  if(jq("#helks").val() == '' || jq("#hesdff").val() == '' ){
-			  jq("#ffavd").attr("readonly", true); 
-			  jq("#ffoty").attr("disabled", true); 
-			  jq("#fffrank").attr("disabled", true); 
-			  jq("#ffftxt").attr("readonly", true); 
-			  jq("#ffmodul").attr("readonly", true); 
-			  jq("#ffpkod").attr("readonly", true); 
-			  jq("#ffbel").attr("readonly", true); 
-			  jq("#ffbelk").attr("readonly", true); 
-			  jq("#ffbnr").attr("readonly", true); 
-			  jq("#fftran").attr("readonly", true);
-			  jq("#ffkomm").attr("readonly", true);
+			  jq("#ffavd").attr("readonly", true); jq("#ffavd").addClass("inputTextReadOnly");
+			  jq("#ffoty").attr("disabled", true); jq("#ffoty").addClass("inputTextReadOnly");
+			  jq("#fffrank").attr("disabled", true); jq("#fffrank").addClass("inputTextReadOnly");
+			  jq("#ffftxt").attr("readonly", true); jq("#ffftxt").addClass("inputTextReadOnly");
+			  jq("#ffmodul").attr("readonly", true); jq("#ffmodul").addClass("inputTextReadOnly");
+			  jq("#ffpkod").attr("readonly", true); jq("#ffpkod").addClass("inputTextReadOnly");
+			  jq("#ffbel").attr("readonly", true); jq("#ffbel").addClass("inputTextReadOnly");
+			  jq("#ffbelk").attr("readonly", true); jq("#ffbelk").addClass("inputTextReadOnly");
+			  jq("#ffbnr").attr("readonly", true); jq("#ffbnr").addClass("inputTextReadOnly");
+			  jq("#fftran").attr("readonly", true);jq("#fftran").addClass("inputTextReadOnly");
+			  jq("#ffkomm").attr("readonly", true);jq("#ffkomm").addClass("inputTextReadOnly");
 		  }else{
-			  jq("#ffavd").attr("readonly", false);
-			  jq("#ffoty").attr("disabled", false); 
-			  jq("#fffrank").attr("disabled", false); 
-			  jq("#ffftxt").attr("readonly", false); 
-			  jq("#ffmodul").attr("readonly", false); 
-			  jq("#ffpkod").attr("readonly", false); 
-			  jq("#ffbel").attr("readonly", false); 
-			  jq("#ffbelk").attr("readonly", false); 
-			  jq("#ffbnr").attr("readonly", false); 
-			  jq("#fftran").attr("readonly", false);
-			  jq("#ffkomm").attr("readonly", false);
+			  jq("#ffavd").attr("readonly", false); jq("#ffavd").removeClass("inputTextReadOnly");
+			  jq("#ffoty").attr("disabled", false); jq("#ffoty").removeClass("inputTextReadOnly");
+			  jq("#fffrank").attr("disabled", false);jq("#fffrank").removeClass("inputTextReadOnly"); 
+			  jq("#ffftxt").attr("readonly", false); jq("#ffftxt").removeClass("inputTextReadOnly");
+			  jq("#ffmodul").attr("readonly", false); jq("#ffmodul").removeClass("inputTextReadOnly");
+			  jq("#ffpkod").attr("readonly", false); jq("#ffpkod").removeClass("inputTextReadOnly");
+			  jq("#ffbel").attr("readonly", false); jq("#ffbel").removeClass("inputTextReadOnly");
+			  jq("#ffbelk").attr("readonly", false); jq("#ffbelk").removeClass("inputTextReadOnly");
+			  jq("#ffbnr").attr("readonly", false); jq("#ffbnr").removeClass("inputTextReadOnly");
+			  jq("#fftran").attr("readonly", false); jq("#fftran").removeClass("inputTextReadOnly");
+			  jq("#ffkomm").attr("readonly", false); jq("#ffkomm").removeClass("inputTextReadOnly");
 		  }
 		  if(jq("#helkk").val() == '' || jq("#hesdvt").val() == '' ){
-			  jq("#vfavd").attr("readonly", true); 
-			  jq("#vfoty").attr("disabled", true); 
-			  jq("#vffrank").attr("disabled", true); 
-			  jq("#vfftxt").attr("readonly", true); 
-			  jq("#vfmodul").attr("readonly", true); 
-			  jq("#vfpkod").attr("readonly", true); 
-			  jq("#vfbel").attr("readonly", true); 
-			  jq("#vfbelk").attr("readonly", true); 
-			  jq("#vfbnr").attr("readonly", true); 
-			  jq("#vftran").attr("readonly", true);
-			  jq("#vfkomm").attr("readonly", true);
+			  jq("#vfavd").attr("readonly", true); jq("#vfavd").addClass("inputTextReadOnly");
+			  jq("#vfoty").attr("disabled", true); jq("#vfoty").addClass("inputTextReadOnly");
+			  jq("#vffrank").attr("disabled", true); jq("#vffrank").addClass("inputTextReadOnly");
+			  jq("#vfftxt").attr("readonly", true); jq("#vfftxt").addClass("inputTextReadOnly");
+			  jq("#vfmodul").attr("readonly", true); jq("#vfmodul").addClass("inputTextReadOnly");
+			  jq("#vfpkod").attr("readonly", true); jq("#vfpkod").addClass("inputTextReadOnly");
+			  jq("#vfbel").attr("readonly", true);  jq("#vfbel").addClass("inputTextReadOnly");
+			  jq("#vfbelk").attr("readonly", true); jq("#vfbelk").addClass("inputTextReadOnly");
+			  jq("#vfbnr").attr("readonly", true);  jq("#vfbnr").addClass("inputTextReadOnly");
+			  jq("#vftran").attr("readonly", true); jq("#vftran").addClass("inputTextReadOnly");
+			  jq("#vfkomm").attr("readonly", true); jq("#vfkomm").addClass("inputTextReadOnly");
 		  }else{
-			  jq("#vfavd").attr("readonly", false);
-			  jq("#vfoty").attr("disabled", false); 
-			  jq("#vffrank").attr("disabled", false); 
-			  jq("#vfftxt").attr("readonly", false); 
-			  jq("#vfmodul").attr("readonly", false); 
-			  jq("#vfpkod").attr("readonly", false); 
-			  jq("#vfbel").attr("readonly", false); 
-			  jq("#vfbelk").attr("readonly", false); 
-			  jq("#vfbnr").attr("readonly", false); 
-			  jq("#vftran").attr("readonly", false);
-			  jq("#vfkomm").attr("readonly", false);
+			  jq("#vfavd").attr("readonly", false); jq("#vfavd").removeClass("inputTextReadOnly");
+			  jq("#vfoty").attr("disabled", false); jq("#vfoty").removeClass("inputTextReadOnly");
+			  jq("#vffrank").attr("disabled", false);jq("#vffrank").removeClass("inputTextReadOnly"); 
+			  jq("#vfftxt").attr("readonly", false); jq("#vfftxt").removeClass("inputTextReadOnly");
+			  jq("#vfmodul").attr("readonly", false); jq("#vfmodul").removeClass("inputTextReadOnly");
+			  jq("#vfpkod").attr("readonly", false); jq("#vfpkod").removeClass("inputTextReadOnly");
+			  jq("#vfbel").attr("readonly", false); jq("#vfbel").removeClass("inputTextReadOnly");
+			  jq("#vfbelk").attr("readonly", false); jq("#vfbelk").removeClass("inputTextReadOnly");
+			  jq("#vfbnr").attr("readonly", false); jq("#vfbnr").removeClass("inputTextReadOnly");
+			  jq("#vftran").attr("readonly", false); jq("#vftran").removeClass("inputTextReadOnly");
+			  jq("#vfkomm").attr("readonly", false); jq("#vfkomm").removeClass("inputTextReadOnly");
 		  }
 	  });
 	  jq("#dialogDup").dialog({
@@ -2712,6 +2367,12 @@
 				 			alert("Utkjør. " + mandatoryMsg);
 				 		}else{
 				 			jq( this ).dialog( "close" );
+				 			//do it
+				 			if( jq('#submit').length ){ //Update
+				 				jq("#submit").click();
+				 			}else if( jq('#submitnew').length ){ //Create new
+				 				jq("#submitnew").click();
+				 			} 
 				 		}
 			 		}
 		 	 } ]
@@ -2723,9 +2384,14 @@
   function isValidViaFromAvd(){ 
 	  //At least AVD or Transp must be filled in 
 	  var retval = false;
-	  if( jq("#ffavd").val() != '' || (jq("#fftran").val() != '' && jq("#ffbel").val() != '') ){
-		  if(jq("#helks").val() != '' && jq("#hesdff").val() != '' ){
-			  retval = true;
+	  if(jq("#ffavd").prop('readonly')){ //meaning that this part is blocked for the end-user thus not active for validation
+		  //console.log("a");
+		  retval = true;
+	  }else{
+		  if( jq("#ffavd").val() != '' || (jq("#fftran").val() != '' && jq("#ffbel").val() != '') ){
+			  if(jq("#helks").val() != '' && jq("#hesdff").val() != '' ){
+				  retval = true;
+			  }
 		  }
 	  }
 	  return retval;

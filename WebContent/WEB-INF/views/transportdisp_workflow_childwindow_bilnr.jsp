@@ -21,6 +21,7 @@
 		<tr>
 		<td valign="top">
 		<form action="transportdisp_workflow_childwindow_bilnr.do?action=doFind" name="searchBilNrForm" id="searchBilNrForm" method="post">
+			<input type="hidden" name="ctype" id="ctype" value='${model.caller}'>
 			<%-- =====================================================  --%>
           	<%-- Here we have the search [Customer] popup window --%>
           	<%-- =====================================================  --%>

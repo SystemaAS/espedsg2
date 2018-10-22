@@ -21,6 +21,7 @@
 		<tr>
 		<td valign="top">
 		<form action="transportdisp_workflow_childwindow_transpcarrier.do?action=doFind" name="searchCarrierForm" id="searchCarrierForm" method="post">
+			<input type="hidden" name="ctype" id="ctype" value='${model.caller}'>
 			<%-- =====================================================  --%>
           	<%-- Here we have the search [Customer] popup window --%>
           	<%-- =====================================================  --%>
