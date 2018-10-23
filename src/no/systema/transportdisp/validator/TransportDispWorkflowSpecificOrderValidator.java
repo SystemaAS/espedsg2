@@ -259,18 +259,22 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 	 */
 	private boolean isValidOrderLine(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord lineRecord){
 		boolean isValid =true;
-		boolean fvant = true; boolean fvvt = true; boolean fvvkt = true;
-		if( lineRecord.getFvant()==null || "".equals(lineRecord.getFvant())){
-			fvant = false;
-			isValid = false;
-		}
-		if( lineRecord.getFvvt()==null || "".equals(lineRecord.getFvvt())){
-			fvvt = false;
-			isValid = false;
-		}
-		if( lineRecord.getFvvkt()==null || "".equals(lineRecord.getFvvkt())){
-			fvvkt = false;
-			isValid = false;
+		boolean fvant = true; 
+		boolean fvvt = true; 
+		boolean fvvkt = true;
+		if(lineRecord!=null){
+			if( lineRecord.getFvant()==null || "".equals(lineRecord.getFvant())){
+				fvant = false;
+				isValid = false;
+			}
+			if( lineRecord.getFvvt()==null || "".equals(lineRecord.getFvvt())){
+				fvvt = false;
+				isValid = false;
+			}
+			if( lineRecord.getFvvkt()==null || "".equals(lineRecord.getFvvkt())){
+				fvvkt = false;
+				isValid = false;
+			}
 		}
 		//check if this is a null line (special case)
 		if(!isValid){

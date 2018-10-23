@@ -2188,61 +2188,92 @@
 //-----------------------------
   //START Model dialog: "DUP"
   //---------------------------
+  function blockUpperDialogDup(){
+	  jq("#ffavd").attr("readonly", true); jq("#ffavd").addClass("inputTextReadOnly");
+	  jq("#ffoty").attr("disabled", true); jq("#ffoty").addClass("inputTextReadOnly");
+	  jq("#fffrank").attr("disabled", true); jq("#fffrank").addClass("inputTextReadOnly");
+	  jq("#ffftxt").attr("readonly", true); jq("#ffftxt").addClass("inputTextReadOnly");
+	  jq("#ffmodul").attr("readonly", true); jq("#ffmodul").addClass("inputTextReadOnly");
+	  jq("#ffpkod").attr("readonly", true); jq("#ffpkod").addClass("inputTextReadOnly");
+	  jq("#ffbel").attr("readonly", true); jq("#ffbel").addClass("inputTextReadOnly");
+	  jq("#ffbelk").attr("readonly", true); jq("#ffbelk").addClass("inputTextReadOnly");
+	  jq("#ffbnr").attr("readonly", true); jq("#ffbnr").addClass("inputTextReadOnly");
+	  jq("#fftran").attr("readonly", true);jq("#fftran").addClass("inputTextReadOnly");
+	  jq("#ffkomm").attr("readonly", true);jq("#ffkomm").addClass("inputTextReadOnly");
+	  //focus on lower part
+	  jq("#vfavd").focus();
+  }
+  function unblockUpperDialogDup(){
+	  jq("#ffavd").attr("readonly", false); jq("#ffavd").removeClass("inputTextReadOnly");
+	  jq("#ffoty").attr("disabled", false); jq("#ffoty").removeClass("inputTextReadOnly");
+	  jq("#fffrank").attr("disabled", false);jq("#fffrank").removeClass("inputTextReadOnly"); 
+	  jq("#ffftxt").attr("readonly", false); jq("#ffftxt").removeClass("inputTextReadOnly");
+	  jq("#ffmodul").attr("readonly", false); jq("#ffmodul").removeClass("inputTextReadOnly");
+	  jq("#ffpkod").attr("readonly", false); jq("#ffpkod").removeClass("inputTextReadOnly");
+	  jq("#ffbel").attr("readonly", false); jq("#ffbel").removeClass("inputTextReadOnly");
+	  jq("#ffbelk").attr("readonly", false); jq("#ffbelk").removeClass("inputTextReadOnly");
+	  jq("#ffbnr").attr("readonly", false); jq("#ffbnr").removeClass("inputTextReadOnly");
+	  jq("#fftran").attr("readonly", false); jq("#fftran").removeClass("inputTextReadOnly");
+	  jq("#ffkomm").attr("readonly", false); jq("#ffkomm").removeClass("inputTextReadOnly");
+  }
+  
+  function blockLowerDialogDup(){
+	  jq("#vfavd").attr("readonly", true); jq("#vfavd").addClass("inputTextReadOnly");
+	  jq("#vfoty").attr("disabled", true); jq("#vfoty").addClass("inputTextReadOnly");
+	  jq("#vffrank").attr("disabled", true); jq("#vffrank").addClass("inputTextReadOnly");
+	  jq("#vfftxt").attr("readonly", true); jq("#vfftxt").addClass("inputTextReadOnly");
+	  jq("#vfmodul").attr("readonly", true); jq("#vfmodul").addClass("inputTextReadOnly");
+	  jq("#vfpkod").attr("readonly", true); jq("#vfpkod").addClass("inputTextReadOnly");
+	  jq("#vfbel").attr("readonly", true);  jq("#vfbel").addClass("inputTextReadOnly");
+	  jq("#vfbelk").attr("readonly", true); jq("#vfbelk").addClass("inputTextReadOnly");
+	  jq("#vfbnr").attr("readonly", true);  jq("#vfbnr").addClass("inputTextReadOnly");
+	  jq("#vftran").attr("readonly", true); jq("#vftran").addClass("inputTextReadOnly");
+	  jq("#vfkomm").attr("readonly", true); jq("#vfkomm").addClass("inputTextReadOnly");
+  }
+  
+  function unblockLowerDialogDup(){
+	  jq("#vfavd").attr("readonly", false); jq("#vfavd").removeClass("inputTextReadOnly");
+	  jq("#vfoty").attr("disabled", false); jq("#vfoty").removeClass("inputTextReadOnly");
+	  jq("#vffrank").attr("disabled", false);jq("#vffrank").removeClass("inputTextReadOnly"); 
+	  jq("#vfftxt").attr("readonly", false); jq("#vfftxt").removeClass("inputTextReadOnly");
+	  jq("#vfmodul").attr("readonly", false); jq("#vfmodul").removeClass("inputTextReadOnly");
+	  jq("#vfpkod").attr("readonly", false); jq("#vfpkod").removeClass("inputTextReadOnly");
+	  jq("#vfbel").attr("readonly", false); jq("#vfbel").removeClass("inputTextReadOnly");
+	  jq("#vfbelk").attr("readonly", false); jq("#vfbelk").removeClass("inputTextReadOnly");
+	  jq("#vfbnr").attr("readonly", false); jq("#vfbnr").removeClass("inputTextReadOnly");
+	  jq("#vftran").attr("readonly", false); jq("#vftran").removeClass("inputTextReadOnly");
+	  jq("#vfkomm").attr("readonly", false); jq("#vfkomm").removeClass("inputTextReadOnly");
+  }
+  
+  
   //Initialize <div> here
   jq(function() { 
 	  //events before the dialog is created/opened
 	  jQuery("#dialogDup").on("dialogopen", function (event, ui) {
+		  console.log("HI");
+		  //UPPER part of DUP
 		  if(jq("#helks").val() == '' || jq("#hesdff").val() == '' ){
-			  jq("#ffavd").attr("readonly", true); jq("#ffavd").addClass("inputTextReadOnly");
-			  jq("#ffoty").attr("disabled", true); jq("#ffoty").addClass("inputTextReadOnly");
-			  jq("#fffrank").attr("disabled", true); jq("#fffrank").addClass("inputTextReadOnly");
-			  jq("#ffftxt").attr("readonly", true); jq("#ffftxt").addClass("inputTextReadOnly");
-			  jq("#ffmodul").attr("readonly", true); jq("#ffmodul").addClass("inputTextReadOnly");
-			  jq("#ffpkod").attr("readonly", true); jq("#ffpkod").addClass("inputTextReadOnly");
-			  jq("#ffbel").attr("readonly", true); jq("#ffbel").addClass("inputTextReadOnly");
-			  jq("#ffbelk").attr("readonly", true); jq("#ffbelk").addClass("inputTextReadOnly");
-			  jq("#ffbnr").attr("readonly", true); jq("#ffbnr").addClass("inputTextReadOnly");
-			  jq("#fftran").attr("readonly", true);jq("#fftran").addClass("inputTextReadOnly");
-			  jq("#ffkomm").attr("readonly", true);jq("#ffkomm").addClass("inputTextReadOnly");
+			  blockUpperDialogDup();
 		  }else{
-			  jq("#ffavd").attr("readonly", false); jq("#ffavd").removeClass("inputTextReadOnly");
-			  jq("#ffoty").attr("disabled", false); jq("#ffoty").removeClass("inputTextReadOnly");
-			  jq("#fffrank").attr("disabled", false);jq("#fffrank").removeClass("inputTextReadOnly"); 
-			  jq("#ffftxt").attr("readonly", false); jq("#ffftxt").removeClass("inputTextReadOnly");
-			  jq("#ffmodul").attr("readonly", false); jq("#ffmodul").removeClass("inputTextReadOnly");
-			  jq("#ffpkod").attr("readonly", false); jq("#ffpkod").removeClass("inputTextReadOnly");
-			  jq("#ffbel").attr("readonly", false); jq("#ffbel").removeClass("inputTextReadOnly");
-			  jq("#ffbelk").attr("readonly", false); jq("#ffbelk").removeClass("inputTextReadOnly");
-			  jq("#ffbnr").attr("readonly", false); jq("#ffbnr").removeClass("inputTextReadOnly");
-			  jq("#fftran").attr("readonly", false); jq("#fftran").removeClass("inputTextReadOnly");
-			  jq("#ffkomm").attr("readonly", false); jq("#ffkomm").removeClass("inputTextReadOnly");
+			  if (jq("#viaFromDialogImgReadOnly").length){
+				  blockUpperDialogDup();
+			  }else{
+				  unblockUpperDialogDup();
+			  }
 		  }
+		  //LOWER part of DUP
 		  if(jq("#helkk").val() == '' || jq("#hesdvt").val() == '' ){
-			  jq("#vfavd").attr("readonly", true); jq("#vfavd").addClass("inputTextReadOnly");
-			  jq("#vfoty").attr("disabled", true); jq("#vfoty").addClass("inputTextReadOnly");
-			  jq("#vffrank").attr("disabled", true); jq("#vffrank").addClass("inputTextReadOnly");
-			  jq("#vfftxt").attr("readonly", true); jq("#vfftxt").addClass("inputTextReadOnly");
-			  jq("#vfmodul").attr("readonly", true); jq("#vfmodul").addClass("inputTextReadOnly");
-			  jq("#vfpkod").attr("readonly", true); jq("#vfpkod").addClass("inputTextReadOnly");
-			  jq("#vfbel").attr("readonly", true);  jq("#vfbel").addClass("inputTextReadOnly");
-			  jq("#vfbelk").attr("readonly", true); jq("#vfbelk").addClass("inputTextReadOnly");
-			  jq("#vfbnr").attr("readonly", true);  jq("#vfbnr").addClass("inputTextReadOnly");
-			  jq("#vftran").attr("readonly", true); jq("#vftran").addClass("inputTextReadOnly");
-			  jq("#vfkomm").attr("readonly", true); jq("#vfkomm").addClass("inputTextReadOnly");
+			  blockLowerDialogDup();
 		  }else{
-			  jq("#vfavd").attr("readonly", false); jq("#vfavd").removeClass("inputTextReadOnly");
-			  jq("#vfoty").attr("disabled", false); jq("#vfoty").removeClass("inputTextReadOnly");
-			  jq("#vffrank").attr("disabled", false);jq("#vffrank").removeClass("inputTextReadOnly"); 
-			  jq("#vfftxt").attr("readonly", false); jq("#vfftxt").removeClass("inputTextReadOnly");
-			  jq("#vfmodul").attr("readonly", false); jq("#vfmodul").removeClass("inputTextReadOnly");
-			  jq("#vfpkod").attr("readonly", false); jq("#vfpkod").removeClass("inputTextReadOnly");
-			  jq("#vfbel").attr("readonly", false); jq("#vfbel").removeClass("inputTextReadOnly");
-			  jq("#vfbelk").attr("readonly", false); jq("#vfbelk").removeClass("inputTextReadOnly");
-			  jq("#vfbnr").attr("readonly", false); jq("#vfbnr").removeClass("inputTextReadOnly");
-			  jq("#vftran").attr("readonly", false); jq("#vftran").removeClass("inputTextReadOnly");
-			  jq("#vfkomm").attr("readonly", false); jq("#vfkomm").removeClass("inputTextReadOnly");
+			  if (jq("#viaFrom2DialogImgReadOnly").length){
+				  blockLowerDialogDup();
+			  }else{
+				  unblockLowerDialogDup();
+			  }
 		  }
 	  });
+	  
+	  
 	  jq("#dialogDup").dialog({
 		  autoOpen: false,
 		  maxWidth:650,
