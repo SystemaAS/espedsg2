@@ -176,7 +176,7 @@
 						</select>
 					</td>
 					<td valign="bottom" align="left" >&nbsp;
-						<input class="inputFormSubmit" type="submit" name="submit" id="submitSearch" name="submitSearch" value='<spring:message code="systema.transportdisp.search"/>'>
+						<input class="inputFormSubmit" type="submit" name="submitSearch" id="submitSearch" name="submitSearch" value='<spring:message code="systema.transportdisp.search"/>'>
 	                </td>
 				</tr>
 				</table>
@@ -409,27 +409,7 @@
 	            		   
 	            		   
 	            		   <td align="center" class="text14 tableCellGray">
-	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=210px,width=330px,scrollbars=no,status=no,location=no')">
-	            		   		 <%-- OBSOLETE --> now we use the file upload with span/div hidden form and javascrip + jquery ajax
-		            		   		 <form name="uploadFileForm_${counter.count}" id="uploadFileForm_${counter.count}" method="post" enctype="multipart/form-data">
-		            		   		 	<input onChange="uploadFile(this);" type="file" name="file_${counter.count}" id="file_${counter.count}" />
-		            		   		 	
-		            		   		 	<%-- everything below this line will be hidden for the end-user but not for jquery
-		            		   		 	<input type="hidden" name="applicationUserUpload_${counter.count}" id="applicationUserUpload_${counter.count}" value='${user.user}'>
-										<input type="hidden" name="wstur_${counter.count}" id="wstur_${counter.count}" value='${record.tupro}'>
-										 <div class="text11" style="position: relative;" align="left">
-											<span style="position:absolute; left:0px; top:0px; width:250px" id="upload_phantom" class="popupWithInputText"  >
-												<input type="text" class="inputText" name="fileNameNew_${counter.count}" id="fileNameNew_${counter.count}" size="20" maxlength="20" value="">
-												<select name="wstype_${counter.count}" id="wstype_${counter.count}">
-													<c:forEach var="record" items="${user.arkivKodTurList}" >
-							                       	 	<option value="${record.arkKod}">${record.arkKod}</option>
-													</c:forEach> 
-												</select>
-												<input class="inputFormSubmit" type="button" name="submitUpload_${counter.count}" id="submitUpload_${counter.count}" value='Save'>
-											</span>
-										</div>
-									</form>
-								--%>	 
+	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=210px,width=330px,scrollbars=no,status=no,location=no')">	 
 	            		   </td>
 	            		   <td align="center" class="text14 tableCellGray">
             		   			 <form name="uploadFileForm_${counter.count}" id="uploadFileForm_${counter.count}" method="post" enctype="multipart/form-data">
@@ -591,18 +571,26 @@
 									 			
 								 			</td>
 					 						<td align="right">
-					 						<div id="divSmsEmailButtons" style="display:none">
-						 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-						 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-			 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
-			 									&nbsp;
-		 									</div>
+					 						
+					 						
 						 				    <c:choose>
 							 				    <c:when test="${ not empty model.record.tupro}">
-							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+							 				    	<div id="divSmsEmailButtons" style="display:inline">
+								 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+								 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+					 									&nbsp;
+				 									</div>
+							 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
 							 				    </c:when>
 							 				    <c:otherwise>
-							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
+							 				    	<div id="divSmsEmailButtons" style="display:none">
+								 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+								 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+					 									&nbsp;
+				 									</div>
+						 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
 							 				    </c:otherwise>	
 						 				    </c:choose>
 						 				    </td>
@@ -1066,18 +1054,19 @@
 										 			<td valign="top" class="text12">
 									 					<spring:message code="systema.transportdisp.workflow.trip.form.label.uploadedDocs"/>&nbsp;
 									 					<div id="resultUploadedDocs">
-									 					<%--
-									 					<ul>
-									 					<c:forEach items="${model.record.archivedDocsRecord}" var="record" varStatus="counter">
-									 						<li>
-									 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
-					    		    							<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
-					    		    							${record.doctxt}
-							   								</a>&nbsp;&nbsp;&nbsp;
-							   								</li>
-									 					</c:forEach>
-									 					</ul>
-									 					 --%>
+										 					<c:forEach items="${model.record.getdoctrip}" var="record" varStatus="counter">
+										 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
+						    		    							<c:choose>
+							    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
+							    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
+							    		    							</c:when>
+							    		    							<c:otherwise>
+							    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/jpg.png" width="14" height="14" border="0" alt="Html arch.">
+							    		    							</c:otherwise>
+						    		    							</c:choose>
+						    		    							${record.doctxt}
+								   								</a>&nbsp;&nbsp;
+										 					</c:forEach>
 									 					</div>
 									 					
 									 				</td>

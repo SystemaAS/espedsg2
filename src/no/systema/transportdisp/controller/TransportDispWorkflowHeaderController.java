@@ -127,7 +127,7 @@ public class TransportDispWorkflowHeaderController {
 						 for(JsonTransportDispWorkflowSpecificTripRecord  record : container.getGetonetrip()){
 							recordIsNull = false;
 							//put domain object
-					    	this.setDomainObjectsInView(session, model, record );	
+					    	this.setDomainObjectsInView(model, record );	
 						 }
 						 //Defaults (if applicable)
 						 if(recordIsNull){
@@ -139,7 +139,7 @@ public class TransportDispWorkflowHeaderController {
 							record.setTudt(this.dateTimeManager.getCurrentDate_ISO());
 							
 							//put domain object
-					    	this.setDomainObjectsInView(session, model, record );
+					    	this.setDomainObjectsInView(model, record );
 						 }
 						 
 					}
@@ -221,7 +221,7 @@ public class TransportDispWorkflowHeaderController {
 					if(bindingResult.hasErrors()){
 				    	logger.info("[ERROR Validation] Record does not validate)");
 					    //put domain objects and do go back to the original view...
-				    	this.setDomainObjectsInView(session, model, recordToValidate );
+				    	this.setDomainObjectsInView(model, recordToValidate );
 
 					}else{
 			    		String transactionMode = null;
@@ -290,25 +290,32 @@ public class TransportDispWorkflowHeaderController {
 					    	}else{
 					    		//Update successfully done!
 					    		logger.info("[INFO] Record successfully updated, OK ");
+					    		//fetch the newly updated record
+					    		JsonTransportDispWorkflowSpecificTripContainer container = this.controllerAjaxCommonFunctionsMgr.fetchTripHeading(appUser.getUser(), recordToValidate.getTuavd(), recordToValidate.getTupro());
+								if(container!=null){
+									for(JsonTransportDispWorkflowSpecificTripRecord  record : container.getGetonetrip()){
+										recordToValidate = record;
+									}
+								}
+					    		//
 					    		this.updateMessageNote(messageNote, recordToValidate.getTuavd(), recordToValidate.getTupro(), appUser);
-					    		
 					    		//set message note (after update aka refresh)
 					    		Collection<JsonTransportDispWorkflowSpecificTripMessageNoteRecord> messageNoteAfterUpdate = null;
 					    		messageNoteAfterUpdate = this.controllerAjaxCommonFunctionsMgr.fetchMessageNote(appUser.getUser(), recordToValidate.getTuavd(), recordToValidate.getTupro());
 					    		StringBuffer br = new StringBuffer();
-							for(JsonTransportDispWorkflowSpecificTripMessageNoteRecord record:messageNoteAfterUpdate ){
-								br.append(record.getFrttxt() + "\n");
-							}
-							recordToValidate.setMessageNote(br.toString());
-							//logger.info(recordToValidate.getMessageNote());
-							
-							//Now fetch the Archived Documents and fill the parent record with it
-							Collection<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord> archiveDocsList = null;
-							archiveDocsList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingArchiveDocs(appUser.getUser(), recordToValidate.getTupro());
-							recordToValidate.setGetdoctrip(archiveDocsList);
-							
-							//put domain objects
-					    	this.setDomainObjectsInView(session, model, recordToValidate );
+								for(JsonTransportDispWorkflowSpecificTripMessageNoteRecord record:messageNoteAfterUpdate ){
+									br.append(record.getFrttxt() + "\n");
+								}
+								recordToValidate.setMessageNote(br.toString());
+								//logger.info(recordToValidate.getMessageNote());
+								
+								//Now fetch the Archived Documents and fill the parent record with it
+								Collection<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord> archiveDocsList = null;
+								archiveDocsList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingArchiveDocs(appUser.getUser(), recordToValidate.getTupro());
+								recordToValidate.setGetdoctrip(archiveDocsList);
+								
+								//put domain objects
+						    	this.setDomainObjectsInView(model, recordToValidate );
 					    	}
 						}
 					}
@@ -614,19 +621,6 @@ public class TransportDispWorkflowHeaderController {
 		
 	}
 	
-	/**
-	 * 
-	 * @param session
-	 * @param model
-	 * @param container
-	 */
-	private void setDomainObjectsInView(HttpSession session, Map model, JsonTransportDispWorkflowSpecificTripRecord record){
-		model.put(TransportDispConstants.DOMAIN_RECORD, record);
-		//put the header topic in session for the coming item lines
-		//session.setAttribute(TransportDispConstants.DOMAIN_RECORD_TOPIC_TRANSPORT_DISP, record);
-	
-	}
-	
 	
 	
 	/**
@@ -636,7 +630,6 @@ public class TransportDispWorkflowHeaderController {
 	 * @param jsonTdsImportSpecificTopicRecord
 	 */
 	private void setDomainObjectsInView(Map model, JsonTransportDispWorkflowSpecificTripRecord record){
-		//SET HEADER RECORDS  (from RPG)
 		model.put(TransportDispConstants.DOMAIN_RECORD, record);
 	}
 	

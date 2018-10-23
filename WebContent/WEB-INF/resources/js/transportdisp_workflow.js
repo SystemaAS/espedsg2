@@ -223,15 +223,20 @@
 					  		//ERROR on back-end
 					  		jq("#file_" + counter).addClass( "isa_error" );
 					  		jq("#file_" + counter).removeClass( "isa_success" );
-					  		
+					  		//response to end user 
+						  	alert(data);
 					  	}else{
 					  		//OK
 					  		jq("#file_" + counter).addClass( "isa_success" );
 					  		jq("#file_" + counter).removeClass( "isa_error" );
-					  		
+					  		//emulate an update in order to refresh the specific "tur" (which is only fetch via ajax. The only POST is when "Saved")
+					  		//only if the record has been previously selected for update.
+					  		if(jq("#tuproJS").text()!=''){
+					  			console.log("submit...");
+					  			jq("#submit").click();
+					  		}
 					  	}
-					  	//response to end user 
-					  	alert(data);
+					  	
 			  		  }
 			  	  }, 
 			  	  error: function() {
@@ -892,7 +897,7 @@
 		  var avdString = "avd_"; //substring from the td=id when ajax is needed
 		  //Only when wanting an Ajax call. There are other cells with html POST that must be exluded from this call ...
 		  if(this.id.indexOf(avdString) !== -1){
-			  var ARCHIVE_DOCS_RECORD_SEPARATOR = "&nbsp;|&nbsp;";
+			  var ARCHIVE_DOCS_RECORD_SEPARATOR = "&nbsp;&nbsp;";
 			  var id = this.id;
 			  var record = id.split('@');
 			  var avd = record[0];
@@ -1092,8 +1097,6 @@
 			  			//buttons
 				  		if(jq('#divSmsEmailButtons').css('display') == 'none'){
 				  			jq('#divSmsEmailButtons').css('display','inline');
-				  		}else{
-				  			jq('#divSmsEmailButtons').css('display','none');
 				  		}
 			  			//focus
 			  			jq('#centuryYearTurccTuraar').focus();
