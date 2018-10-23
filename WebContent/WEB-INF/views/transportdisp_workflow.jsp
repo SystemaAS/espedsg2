@@ -238,9 +238,9 @@
 					<table id="workflowTrips" class="display compact cell-border">
 						<thead>
 						<tr class="tableHeaderField" height="20">
+						    <th class="text14" width="2%"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.update"/></th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
-						    <th class="text14" width="2%">&nbsp;</th>
 						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
 		                    <th class="text14"><span title="Trip">
 		                    		<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" width="15px" height="15px" border="0" alt="lorry no.">
@@ -298,6 +298,12 @@
 		                 <c:forEach items="${list}" var="record" varStatus="counter">    
 			               <tr class="text14 tableRow" >
 			             
+			               <td width="3%" align="center" nowrap style="cursor:pointer;" class="text14 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
+			               		<div style="line-height: 25px;line-width: 50px;" id="dtuavd${record.tuavd}_dtupro${record.tupro}_onlist${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
+			               		&nbsp;<img title="Edit trip ${record.tupro}" style="vertical-align:middle;cursor:pointer;" src="resources/images/update.gif" border="0" alt="edit">&nbsp;
+			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
+			               		</div>
+			               </td>	
 			               <td align="center" class="text14 tableCellGray">
 			               		${record.tuavd}
 			               </td>
@@ -321,12 +327,7 @@
 				               </c:choose>
 			               </td>
 			               	
-			               <td width="3%" align="center" nowrap style="cursor:pointer;" class="text14 tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@status_${record.turclose}@${counter.count}">
-			               		<div style="line-height: 25px;line-width: 50px;" id="dtuavd${record.tuavd}_dtupro${record.tupro}_onlist${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
-			               		&nbsp;<img title="Edit trip ${record.tupro}" style="vertical-align:middle;cursor:pointer;" src="resources/images/update.gif" border="0" alt="edit">&nbsp;
-			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
-			               		</div>
-			               </td>
+			               
 			               <td class="text14 tableCellGray">&nbsp;${record.tusg}</td>
 			               <td class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
 			               <td class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
@@ -590,10 +591,12 @@
 									 			
 								 			</td>
 					 						<td align="right">
-					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-					 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-		 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
-		 									&nbsp;
+					 						<div id="divSmsEmailButtons" style="display:none">
+						 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+						 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+			 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+			 									&nbsp;
+		 									</div>
 						 				    <c:choose>
 							 				    <c:when test="${ not empty model.record.tupro}">
 							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
@@ -1476,29 +1479,29 @@
 			<div id="dialogEmail" title="Dialog">
 				 	<table>
 						<tr>
-							<td colspan="3" class="text14" align="left" >Send Mail </td>
+							<td colspan="3" class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.manifest.label"/></td>
    						</tr>
    						<tr height="10"><td></td></tr>
    						
 						<tr>
-							<td class="text14" align="left" ><b>Mail</b>&nbsp;</td>
+							<td class="text14" align="left" ><b><spring:message code="systema.transportdisp.workflow.trip.email.email.label"/></b></td>
 							<td class="text14" align="left" >
 								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
 							</td>
    						</tr>
    						
 						<tr>
-   							<td class="text14" align="left" >Merknad</td>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.mark.label"/></td>
 							<td class="text12" align="left" >
 		   						<textarea id="emailText" name="emailText" limit='48,4' cols="50" rows="4"></textarea>
 							</td>
 						</tr>
 						<tr>
-   							<td class="text14" align="left" >Språk&nbsp;</td>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.language.label"/></td>
 							<td class="text14" align="left" >
 		   						<select class="inputTextMediumBlue" name="emailLang" id="emailLang">
-		 							<option value="NO" selected>Norsk</option>
-		 							<option value="EN">Engelsk</option>
+		 							<option value="NO" selected><spring:message code="systema.transportdisp.workflow.trip.email.language.no"/></option>
+		 							<option value="EN"><spring:message code="systema.transportdisp.workflow.trip.email.language.en"/></option>
 								</select>
 							</td>
 						</tr>

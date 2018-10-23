@@ -333,6 +333,7 @@ public class TransportDispMainOrderController {
 			logger.info("Host via HttpServletRequest.getHeader('Host'): " + request.getHeader("Host"));
 			//adjust some fields before big-mamma update
 			this.adjustFields(recordToValidate);
+			//this.populateOrderLineForValidation(recordToValidate, request);
 			//adjust percentage
 			recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToBackEndOnSpecificOrder(recordToValidate.getHevalp()));
 			//populate all order lines with end-user input in order to validate that at least one line exists.
@@ -471,7 +472,6 @@ public class TransportDispMainOrderController {
 					    		//START ITEM LINE UPDATE
 				    			//Validation [3] Back-end-Order line
 				    			//------------------------------------------------
-					    		
 					    		//Validate order line in BACK-END only with line-update
 				    			if(recordToValidate.getFraktbrevRecord()!=null && strMgr.isNotNull(recordToValidate.getFraktbrevRecord().getFvlinr()) ){
 					    			//[3.1] Execute back end validation for order lines (now that the order has been created)
@@ -513,7 +513,7 @@ public class TransportDispMainOrderController {
 					    				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, recordToValidate, model);
 						    			
 					    				//postUpdate events on back-end
-						    			this.processPostUpdateEvents(recordToValidate, appUser);
+						    			//this.processPostUpdateEvents(recordToValidate, appUser);
 					    			}
 						    		
 				    			}else{
@@ -526,12 +526,12 @@ public class TransportDispMainOrderController {
 					    				this.populateFraktbrev(appUser, recordToValidate);
 					    				this.adjustFraktbrevDecimalTotalsBeforeOrderUpdate(recordToValidate);
 					    				this.updateOrderLineTotalsAfterLineUpdate(appUser, session, recordToValidate, model);
-						    			
-				    				
-				    					//postUpdate events on back-end
-				    					this.processPostUpdateEvents(recordToValidate, appUser);
+						    			//postUpdate events on back-end
+				    					//this.processPostUpdateEvents(recordToValidate, appUser);
 				    				}
 				    			}
+				    			//postUpdate events on back-end
+		    					this.processPostUpdateEvents(recordToValidate, appUser);
 				    		}	
 			    		}
 		    		}
@@ -602,7 +602,7 @@ public class TransportDispMainOrderController {
 		String vkt = request.getParameter("fvvkt");
 		String desc = request.getParameter("fvvt");
 		
-		if(strMgr.isNotNull(ant) && strMgr.isNotNull(vkt) && strMgr.isNotNull(desc) ){
+		if(strMgr.isNotNull(ant) || strMgr.isNotNull(vkt) || strMgr.isNotNull(desc) ){
 			retval = true;
 		}
 		return retval;
@@ -1243,7 +1243,20 @@ public class TransportDispMainOrderController {
 	    	}
 	    	return map;
 	}
-	
+	/** fill in order lines- fraktbrevs linjer for validation
+	 * 
+	 * @param recordToValidate
+	 * @param request
+	 */
+	private void populateOrderLineForValidation(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, HttpServletRequest request){
+		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord line = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
+		line.setFvlinr(request.getParameter("updateLinNr"));
+		line.setFvant(request.getParameter("fvant"));
+		line.setFvvt(request.getParameter("fvvt"));
+		line.setFvvkt(request.getParameter("fvvkt"));
+		recordToValidate.setFraktbrevRecord(line);
+		
+	}
 	/**
 	 * Adjusts some fields to comply with back-end requirements (ISO-dates, etc)
 	 * @param recordToValidate

@@ -40,7 +40,6 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 	public void validate(Object obj, Errors errors) { 
 		JsonTransportDispWorkflowSpecificOrderRecord record = (JsonTransportDispWorkflowSpecificOrderRecord)obj;
 		
-		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "heavd", "systema.transportdisp.orders.form.error.null.dept.heavd");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trknfa", "systema.transportdisp.orders.form.error.null.oppdgiv.nr.trknfa"); 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "henaa", "systema.transportdisp.orders.form.error.null.oppdgiv.name.henaa"); 
@@ -217,7 +216,13 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 					}
 				}
 				
-				
+				//Order line (only on update)
+				if(strMgr.isNotNull(record.getHeopd())){
+					if(!this.isValidOrderLine(record.getFraktbrevRecord())){
+						//dummy hent since we lack item lines variables.
+						errors.rejectValue("hent", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
+					}
+				}
 				
 				
 				//TOTALS (only on update)

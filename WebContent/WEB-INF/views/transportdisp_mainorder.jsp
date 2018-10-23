@@ -367,70 +367,13 @@
 			 		
 				 				</tr>
 				 				<tr>
-				 					
 				 					<td colspan="6" class="text14">
-				 						
-				 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-				 						<%-- hided so far ... <button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button> --%>
-				 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
-								   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
-								   		
-								   		
-								   		<c:if test="${not empty model.record.heopd}">
-					 						&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button> 
-										        <%--
-										        <span style="background-color:#EEEEEE; position:absolute; left:200px; top:200px; width:900px; height:500px;" id="trackAndTraceFields" class="popupWithInputTextThickBorder"  >
-									           		<table width="95%" border="0" align="left" cellspacing="2">
-									           			<tr>
-										           			<td colspan="3" class="text14">&nbsp;&nbsp;<b>Hend.logg</b>&nbsp;<img style="vertical-align: bottom" src="resources/images/log-iconLOG.png" width="20" hight="20" border="0" alt="show track and trace"></td>
-										           		</tr>
-										           	</table>	
-									           		<div class="ownScrollableSubWindow" style="width:850px; height:400px; margin:10px;">
-									           			<nav>
-									           			<table width="95%" border="0" align="left" cellspacing="2">
-									           			<tr>	
-															<td >
-															<table width="95%" cellspacing="0" border="0" cellpadding="0">
-																<tr class="tableHeaderField" height="20" valign="left">
-																    <td class="tableHeaderFieldFirst">&nbsp;F.brev.&nbsp;</td>   
-																    <td class="tableHeaderField">&nbsp;Dato&nbsp;</td>
-												                    <td class="tableHeaderField">&nbsp;Tid&nbsp;</td>   
-												                    <td class="tableHeaderField">&nbsp;Event&nbsp;</td>
-												                    <td class="tableHeaderField">&nbsp;Tekst&nbsp;</td>
-												                    <td class="tableHeaderField">&nbsp;Bruker&nbsp;</td>
-											               		</tr> 
-										 						  <c:forEach items="${model.record.loggingRecord}" var="record" varStatus="counter">    
-														               <c:choose>           
-														                   <c:when test="${counter.count%2==0}">
-														                       <tr class="tableRow" height="20" >
-														                   </c:when>
-														                   <c:otherwise> 
-														                       <tr class="tableOddRow" height="20" >
-														                   </c:otherwise>
-														               </c:choose>
-														               	<td class="tableCellFirst">&nbsp;${record.frBrev}</td>
-														               	<td class="tableCell" >&nbsp;${record.date}</td>
-														               	<td class="tableCell" >&nbsp;${record.time}</td>
-														               	<td class="tableCell" >&nbsp;${record.event}</td>
-														               	<td class="tableCell" >&nbsp;${record.textLoc}</td>
-														               	<td class="tableCell" >&nbsp;${record.user}</td>
-														            	</tr>
-														            </c:forEach>
-													        </table>
-															</td>											           		
-												         </tr>
-										   			</table>
-										   			</nav>
-										   			</div>
-													
-							           				<table >
-													<%-- OK BUTTON 
-							           				<tr align="left" >
-														<td class="text14">&nbsp;&nbsp;<button name="trackAndTraceButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('trackAndTraceFields');">&nbsp;Close</button></td>
-												 	</tr>
-													</table>
-								   				</span>
-								   				 --%>
+				 						<c:if test="${not empty model.record.heopd}">
+					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+					 						<%-- hided so far ... <button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button> --%>
+					 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+									   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
+									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button> 
 										</c:if>
 				 					</td>
 				 				</tr>

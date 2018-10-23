@@ -1089,6 +1089,12 @@
 			  			jq('#totopn').text(data[i].totopn);
 			  			jq('#totovf').text(data[i].totovf);
 			  			jq('#totsum').text(data[i].totsum);
+			  			//buttons
+				  		if(jq('#divSmsEmailButtons').css('display') == 'none'){
+				  			jq('#divSmsEmailButtons').css('display','inline');
+				  		}else{
+				  			jq('#divSmsEmailButtons').css('display','none');
+				  		}
 			  			//focus
 			  			jq('#centuryYearTurccTuraar').focus();
 			  		}
