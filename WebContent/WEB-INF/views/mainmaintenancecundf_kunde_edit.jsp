@@ -728,7 +728,7 @@
 							<tr> 
 								<td >&nbsp;</td>
 								<td align="right">
-									<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
+									<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
 								</td>
 							</tr>
 

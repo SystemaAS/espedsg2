@@ -33,7 +33,9 @@
  
 	<table width="100%" border="0" cellspacing="0" cellpadding="0"> <!-- width="1200"  -->
 		<%--Banner --%>
-		<tr class="text" height="10"><td></td></tr>
+		<tr class="text" height="10">
+			<td><input type="hidden" name="language" id=language value="${user.usrLang}"></td>
+		</tr>
 		<tr >
     		<td height="60" align="center" colspan="5"> 
     		

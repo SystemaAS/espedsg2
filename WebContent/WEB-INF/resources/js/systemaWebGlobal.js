@@ -1,8 +1,15 @@
 var jq = jQuery.noConflict();
-  	var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
   	
+	function setBlockUI(element){
+		setBlockUI();
+	}
+
 	function setBlockUI(){
-    	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		let lang = jq('#language').val();
+		if (lang == undefined) {
+			lang = 'EN';
+		}
+		jq.blockUI({ css: { fontSize: '22px' }, message: blockUIMessageMap[lang]});
      }	
 	
 	var langMap = {
@@ -11,6 +18,14 @@ var jq = jQuery.noConflict();
 			   'SE' : 'Swedish',
 			   'NO' : 'Norwegian-Bokmal'
 	}
+
+	var blockUIMessageMap = {
+			   'EN' : 'Please wait...',
+			   'DK' : 'Vent venligst...',
+			   'SE' : 'Vänligen vänta...',
+			   'NO' : 'Vennligst vent...'
+	}	
+	
 	//for setting user lang to datatables
 	function getLanguage(lang) {
 	    return '/espedsg2/resources/localization/'+langMap[lang]+'.json';
