@@ -1389,7 +1389,7 @@
 	  		  	  tur : jq("#tuproJS").text(),
 	  		  	  email : jq("#email").val(),
 		  		  text : jq("#emailText").val(),
-		  		  lang : jq("#emailLang").val() },
+		  		  emailLang : jq("#emailLang").val() },
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',

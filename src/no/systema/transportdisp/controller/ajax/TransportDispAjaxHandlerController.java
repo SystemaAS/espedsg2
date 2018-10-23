@@ -894,13 +894,13 @@ public class TransportDispAjaxHandlerController {
 	   */
 	  @RequestMapping(value = "sendEmailFromTur_TransportDisp.do", method = RequestMethod.GET)
 	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendEmailFromTur(@RequestParam String applicationUser, @RequestParam String tur, 
-			  					@RequestParam String email, @RequestParam String text, @RequestParam String lang ) {
+			  					@RequestParam String email, @RequestParam String text, @RequestParam String emailLang ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendEmailFromTur...");
 		  	
 		  	//http://gw.systema.no/sycgip/tjfa55m.pgm?user=JOVO&tur=75000020&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
 		  	String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_EMAIL_FROM_TUR_URL;
-			String urlRequestParamsKeys = "user=" + applicationUser + "&tur=" + tur + "&merk=" + text + "&mail=" + email + "&sprak=" + lang;
+			String urlRequestParamsKeys = "user=" + applicationUser + "&tur=" + tur + "&merk=" + text + "&mail=" + email + "&sprak=" + emailLang;
 			
 			logger.info("URL: " + BASE_URL);
 			logger.info("PARAMS: " + urlRequestParamsKeys);

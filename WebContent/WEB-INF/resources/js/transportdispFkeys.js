@@ -54,17 +54,14 @@
 	  			window.location.href = "transportdisp_mainorderlist.do?action=doFind&avd=" + jq('#fkeysavd').val(); 
 	  		 
 	  		 }else if (charCode == f5){
-	  			 //TODO
-	  			setBlockUIKeys();
-	   			window.location.href = "transportdisp_mainorder_invoice.do?action=doFind&hepro=" + jq('#fkeystur').val() + "&heavd=" + jq('#fkeysavd').val() + "&heopd=" + jq('#fkeysopd').val() + "&itemsType=O"
-	   		 
-	   		
+	  			if( jq('#alinkInvoice').length ){ 
+	  				setBlockUIKeys();
+	  				window.location.href = "transportdisp_mainorder_invoice.do?action=doFind&hepro=" + jq('#fkeystur').val() + "&heavd=" + jq('#fkeysavd').val() + "&heopd=" + jq('#fkeysopd').val() + "&itemsType=O"
+	  			}
 	  		 }else if (charCode == f9){
 		  			//Disponering turer
 		  			setBlockUIKeys();
 			   		window.location.href = "transportdisp_workflow_getTrip.do?user=" + jq('#applicationUser').val() + "&tuavd=" + jq('#fkeysavd').val() + "&tupro="
-			   		 
-			   		
 	  		 }else if (charCode == f10){
 	  			//Disponering turer
 	  			setBlockUIKeys();

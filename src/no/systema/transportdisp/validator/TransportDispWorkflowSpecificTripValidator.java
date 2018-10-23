@@ -45,14 +45,15 @@ public class TransportDispWorkflowSpecificTripValidator implements Validator {
 				//at least avd or sign must exist IF everything else is empty... 
 				errors.rejectValue("tupro", "systema.transportdisp.workflow.trip.error.null.leastNumberOfValues"); 
 			}
-			//independent validation
+			//OBSOLETE --> independent validation - JOVOs does it
+			/*
 			if(record.getTutbel()!=null && !"".equals(record.getTutbel())){
 				if( (record.getTutval()!=null && !"".equals(record.getTutval())) &&  (record.getTutako()!=null && !"".equals(record.getTutako())) ){
 					//validation passed
 				}else{
 					errors.rejectValue("tutbel", "systema.transportdisp.workflow.trip.error.rule.invalidPrice");
 				}
-			}
+			}*/
 			
 			if(record.getTutm()!=null && !"".equals(record.getTutm())){
 				if(!this.dateValidator.validateTimeHHmm(record.getTutm())){
