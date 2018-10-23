@@ -15,14 +15,14 @@ var jq = jQuery.noConflict();
 	var langMap = {
 			   'EN' : 'English',
 			   'DK' : 'Danish',
-			   'SE' : 'Swedish',
+			   'SV' : 'Swedish',
 			   'NO' : 'Norwegian-Bokmal'
 	}
 
 	var blockUIMessageMap = {
 			   'EN' : 'Please wait...',
 			   'DK' : 'Vent venligst...',
-			   'SE' : 'Vänligen vänta...',
+			   'SV' : 'Vänligen vänta...',
 			   'NO' : 'Vennligst vent...'
 	}	
 	
