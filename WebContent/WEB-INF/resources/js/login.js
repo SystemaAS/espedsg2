@@ -1,18 +1,39 @@
   var jq = jQuery.noConflict();
   var counterIndex = 0;
-  var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
+//  var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
   
   function setBlockUI(element){
-	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  let lang = getLanguage();
+	  if (lang == undefined) {
+		lang = 'en-GB';
+	  }
+	  jq.blockUI({ css: { fontSize: '22px' }, message: blockUIMessage[lang]});
   }
 
+  //https://www.w3schools.com/tags/ref_language_codes.asp - https://www.w3schools.com/tags/ref_country_codes.asp
+  var blockUIMessage = {
+			   'en-GB' : 'Please wait...',
+			   'da-DK' : 'Vent venligst...',
+			   'sv-SE' : 'Vänligen vänta...',
+			   'no-NO' : 'Vennligst vent...'
+  }
+  
+  function getLanguage() {
+	  let language = navigator.languages && navigator.languages[0] ||
+	  navigator.language ||
+	  navigator.userLanguage;
+	  
+	  return language;
+  }
+  
   jq(function() {
 	  jq("#user").focus();
   });
-  
+ 
   
   jq(document).ready(function() {
 	  console.log("Hi"); 
+	  console.log("language",getLanguage());
   });
   
   
