@@ -203,7 +203,9 @@ public class TransportDispWorkflowControllerChildWindow {
 		logger.info("Inside: doFind");
 		Collection outputList = new ArrayList();
 		Map model = new HashMap();
-		
+		String caller = request.getParameter("ctype");
+		model.put("caller", caller);
+		logger.info("AVD caller:" + caller);
 		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_avd");
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		//check user (should be in session already)

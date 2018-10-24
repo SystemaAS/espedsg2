@@ -22,6 +22,7 @@
 		<td valign="top">
 		<form action="transportdisp_workflow_childwindow_avd.do?action=doFind" name="searchAvdForm" id="searchAvdForm" method="post">
 			<input type="hidden" name="status" id="status" value='${model.record.status}'>
+			<input type="hidden" name="ctype" id="ctype" value='${model.caller}'>
 			<%-- =====================================================  --%>
           	<%-- Here we have the search [Customer] popup window --%>
           	<%-- =====================================================  --%>

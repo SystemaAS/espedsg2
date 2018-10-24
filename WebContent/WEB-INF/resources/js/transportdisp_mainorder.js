@@ -2188,8 +2188,54 @@
 //-----------------------------
   //START Model dialog: "DUP"
   //---------------------------
+  jq(function() {
+	    jq('#fftran').blur(function() {
+	    		var id = jq('#fftran').val();
+	    		if(id!=null && id!=""){
+	    			jq.getJSON('searchTranspCarrier_TransportDisp.do', {
+	    				applicationUser : jq('#applicationUser').val(),
+	    				id : id,
+	    				ajax : 'true'
+	    			}, function(data) {
+	    				//alert("Hello");
+	    				var len = data.length;
+	    				if (len > 0){
+		    				for ( var i = 0; i < len; i++) {
+		    					jq('#fftran').val(data[i].vmtran);
+		    					jq("#fftran").removeClass( "isa_error" );
+		    				}
+	    				}else{
+	    					jq('#fftran').val("?");
+	    					jq("#fftran").addClass( "isa_error" );
+	    				}
+	    			});
+	    		}
+		});
+	    jq('#vftran').blur(function() {
+    		var id = jq('#vftran').val();
+    		if(id!=null && id!=""){
+    			jq.getJSON('searchTranspCarrier_TransportDisp.do', {
+    				applicationUser : jq('#applicationUser').val(),
+    				id : id,
+    				ajax : 'true'
+    			}, function(data) {
+    				//alert("Hello");
+    				var len = data.length;
+    				if (len > 0){
+	    				for ( var i = 0; i < len; i++) {
+	    					jq('#vftran').val(data[i].vmtran);
+	    					jq("#vftran").removeClass( "isa_error" );
+	    				}
+    				}else{
+    					jq('#vftran').val("?");
+    					jq("#vftran").addClass( "isa_error" );
+    				}
+    			});
+    		}
+	});
+	  });
   function blockUpperDialogDup(){
-	  jq("#ffavd").attr("readonly", true); jq("#ffavd").addClass("inputTextReadOnly");
+	  jq("#ffavd").attr("disabled", true); jq("#ffavd").addClass("inputTextReadOnly");jq("#imgFfAvdSearch").hide();
 	  jq("#ffoty").attr("disabled", true); jq("#ffoty").addClass("inputTextReadOnly");
 	  jq("#fffrank").attr("disabled", true); jq("#fffrank").addClass("inputTextReadOnly");
 	  jq("#ffftxt").attr("readonly", true); jq("#ffftxt").addClass("inputTextReadOnly");
@@ -2198,13 +2244,13 @@
 	  jq("#ffbel").attr("readonly", true); jq("#ffbel").addClass("inputTextReadOnly");
 	  jq("#ffbelk").attr("readonly", true); jq("#ffbelk").addClass("inputTextReadOnly");
 	  jq("#ffbnr").attr("readonly", true); jq("#ffbnr").addClass("inputTextReadOnly");
-	  jq("#fftran").attr("readonly", true);jq("#fftran").addClass("inputTextReadOnly");
+	  jq("#fftran").attr("readonly", true);jq("#fftran").addClass("inputTextReadOnly");jq("#fftran").removeClass("isa_error");
 	  jq("#ffkomm").attr("readonly", true);jq("#ffkomm").addClass("inputTextReadOnly");
 	  //focus on lower part
 	  jq("#vfavd").focus();
   }
   function unblockUpperDialogDup(){
-	  jq("#ffavd").attr("readonly", false); jq("#ffavd").removeClass("inputTextReadOnly");
+	  jq("#ffavd").attr("disabled", false); jq("#ffavd").removeClass("inputTextReadOnly");jq("#imgFfAvdSearch").show();
 	  jq("#ffoty").attr("disabled", false); jq("#ffoty").removeClass("inputTextReadOnly");
 	  jq("#fffrank").attr("disabled", false);jq("#fffrank").removeClass("inputTextReadOnly"); 
 	  jq("#ffftxt").attr("readonly", false); jq("#ffftxt").removeClass("inputTextReadOnly");
@@ -2213,12 +2259,12 @@
 	  jq("#ffbel").attr("readonly", false); jq("#ffbel").removeClass("inputTextReadOnly");
 	  jq("#ffbelk").attr("readonly", false); jq("#ffbelk").removeClass("inputTextReadOnly");
 	  jq("#ffbnr").attr("readonly", false); jq("#ffbnr").removeClass("inputTextReadOnly");
-	  jq("#fftran").attr("readonly", false); jq("#fftran").removeClass("inputTextReadOnly");
+	  jq("#fftran").attr("readonly", false); jq("#fftran").removeClass("inputTextReadOnly");jq("#fftran").removeClass("isa_error");
 	  jq("#ffkomm").attr("readonly", false); jq("#ffkomm").removeClass("inputTextReadOnly");
   }
   
   function blockLowerDialogDup(){
-	  jq("#vfavd").attr("readonly", true); jq("#vfavd").addClass("inputTextReadOnly");
+	  jq("#vfavd").attr("disabled", true); jq("#vfavd").addClass("inputTextReadOnly");jq("#imgVfAvdSearch").hide();
 	  jq("#vfoty").attr("disabled", true); jq("#vfoty").addClass("inputTextReadOnly");
 	  jq("#vffrank").attr("disabled", true); jq("#vffrank").addClass("inputTextReadOnly");
 	  jq("#vfftxt").attr("readonly", true); jq("#vfftxt").addClass("inputTextReadOnly");
@@ -2227,12 +2273,12 @@
 	  jq("#vfbel").attr("readonly", true);  jq("#vfbel").addClass("inputTextReadOnly");
 	  jq("#vfbelk").attr("readonly", true); jq("#vfbelk").addClass("inputTextReadOnly");
 	  jq("#vfbnr").attr("readonly", true);  jq("#vfbnr").addClass("inputTextReadOnly");
-	  jq("#vftran").attr("readonly", true); jq("#vftran").addClass("inputTextReadOnly");
-	  jq("#vfkomm").attr("readonly", true); jq("#vfkomm").addClass("inputTextReadOnly");
+	  jq("#vftran").attr("readonly", true); jq("#vftran").addClass("inputTextReadOnly");jq("#vftran").removeClass("isa_error");
+	  jq("#vfkomm").attr("readonly", true); jq("#vfkomm").addClass("inputTextReadOnly");jq("#vftran").removeClass("isa_error");
   }
   
   function unblockLowerDialogDup(){
-	  jq("#vfavd").attr("readonly", false); jq("#vfavd").removeClass("inputTextReadOnly");
+	  jq("#vfavd").attr("disabled", false); jq("#vfavd").removeClass("inputTextReadOnly");jq("#imgVfAvdSearch").show();
 	  jq("#vfoty").attr("disabled", false); jq("#vfoty").removeClass("inputTextReadOnly");
 	  jq("#vffrank").attr("disabled", false);jq("#vffrank").removeClass("inputTextReadOnly"); 
 	  jq("#vfftxt").attr("readonly", false); jq("#vfftxt").removeClass("inputTextReadOnly");
@@ -2241,7 +2287,7 @@
 	  jq("#vfbel").attr("readonly", false); jq("#vfbel").removeClass("inputTextReadOnly");
 	  jq("#vfbelk").attr("readonly", false); jq("#vfbelk").removeClass("inputTextReadOnly");
 	  jq("#vfbnr").attr("readonly", false); jq("#vfbnr").removeClass("inputTextReadOnly");
-	  jq("#vftran").attr("readonly", false); jq("#vftran").removeClass("inputTextReadOnly");
+	  jq("#vftran").attr("readonly", false); jq("#vftran").removeClass("inputTextReadOnly");jq("#vftran").removeClass("isa_error");
 	  jq("#vfkomm").attr("readonly", false); jq("#vfkomm").removeClass("inputTextReadOnly");
   }
   
@@ -2250,7 +2296,7 @@
   jq(function() { 
 	  //events before the dialog is created/opened
 	  jQuery("#dialogDup").on("dialogopen", function (event, ui) {
-		  console.log("HI");
+		  //console.log("HI");
 		  //UPPER part of DUP
 		  if(jq("#helks").val() == '' || jq("#hesdff").val() == '' ){
 			  blockUpperDialogDup();
@@ -2276,9 +2322,9 @@
 	  
 	  jq("#dialogDup").dialog({
 		  autoOpen: false,
-		  maxWidth:650,
-          maxHeight: 650,
-          width: 600,
+		  maxWidth:850,
+          maxHeight: 750,
+          width: 650,
           height: 650,
 		  modal: true,
 		  dialogClass: 'main-dialog-class',
@@ -2288,8 +2334,8 @@
 	  });
 	  jq("#dialogDupReadOnly").dialog({
 		  autoOpen: false,
-		  maxWidth:650,
-          maxHeight: 650,
+		  maxWidth:850,
+          maxHeight: 750,
           width: 600,
           height: 650,
 		  modal: true,
@@ -2397,12 +2443,19 @@
 				 		}else if(!isValidViaToAvd()){
 				 			alert("Utkjør. " + mandatoryMsg);
 				 		}else{
-				 			jq( this ).dialog( "close" );
 				 			//do it
 				 			if( jq('#submit').length ){ //Update
-				 				jq("#submit").click();
+				 				if(validForm()){
+				 					jq( this ).dialog( "close" );
+				 					jq("#submit").click();
+				 				}else{
+				 					
+				 				}	
 				 			}else if( jq('#submitnew').length ){ //Create new
-				 				jq("#submitnew").click();
+				 				if(validForm()){
+				 					jq( this ).dialog( "close" );
+						 			jq("#submitnew").click();
+				 				}
 				 			} 
 				 		}
 			 		}
@@ -2411,11 +2464,23 @@
 	  //open now
 	  jq('#dialogDup').dialog('open');
   }
+  function validForm(){
+	  var retval = true;
+	  if(jq("#fftran").val() == "?"){
+		  retval = false;
+	  }
+	  if(jq("#vftran").val() == "?"){
+		  retval = false;
+	  }
+	  return retval;
+  }
+  
+  
   //check for DUP-dialog if there is any mandatory requirement
   function isValidViaFromAvd(){ 
 	  //At least AVD or Transp must be filled in 
 	  var retval = false;
-	  if(jq("#ffavd").prop('readonly')){ //meaning that this part is blocked for the end-user thus not active for validation
+	  if(jq("#ffavd").prop('disabled')){ //meaning that this part is blocked for the end-user thus not active for validation
 		  //console.log("a");
 		  retval = true;
 	  }else{
@@ -2430,7 +2495,7 @@
   function isValidViaToAvd(){ 
 	  //At least AVD or Transp must be filled in 
 	  var retval = false;
-	  if(jq("#vfavd").prop('readonly')){ //meaning that this part is blocked for the end-user thus not active for validation
+	  if(jq("#vfavd").prop('disabled')){ //meaning that this part is blocked for the end-user thus not active for validation
 		  //console.log("a");
 		  retval = true;
 	  }else{

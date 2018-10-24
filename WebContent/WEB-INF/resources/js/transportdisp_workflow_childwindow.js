@@ -59,7 +59,6 @@
 		  var avdNr = record[0].replace("avdnr_", "");
 		  var status = record[1].replace("status_", "");
 		  
-		  //alert(avdNr);
 		  //addressing a parent field from this child window
 		  if(opener.jq('#wssavd').length){ //only way to check if field exists.
 			  //DEBUG--> alert(status);
@@ -71,6 +70,14 @@
 		  }
 		  if (opener.jq('#avd').length){
 			  opener.jq('#avd').val(avdNr);
+		  }
+		  
+		  
+		  //DUP special case
+		  if(jq('#ctype').val() == 'ffavd'){
+			  opener.jq('#ffavd').val(avdNr); 
+		  }else if(jq('#ctype').val() == 'vfavd'){
+			  opener.jq('#vfavd').val(avdNr);
 		  }
 		  //close child window
 		  window.close();
@@ -108,15 +115,19 @@
 		  
 		  //ORDER GUI- DUP
 		  if(jq('#ctype').val() == 'ffbnr'){
-			  if(opener.jq('#ffbnr').val()==''){ 
+			  if(opener.jq('#ffbnr').val()=='' || opener.jq('#ffbnr').val()=='?'){ 
 				  opener.jq('#ffbnr').val(bilnr);
-				  opener.jq('#fftran').val(truckNr); 
+				  opener.jq('#fftran').val(truckNr);
+				  opener.jq('#fftran').removeClass("isa_error");
+				  //console.log("A");
 			  }
 		  }
 		  if(jq('#ctype').val() == 'vfbnr'){
-			  if(opener.jq('#vfbnr').val()==''){ 
+			  if(opener.jq('#vfbnr').val()=='' || opener.jq('#vfbnr').val()=='?'){
 				  opener.jq('#vfbnr').val(bilnr);
 				  opener.jq('#vftran').val(truckNr); 
+				  opener.jq('#vftran').removeClass("isa_error");
+				  //console.log("B");
 			  }
 		  }
 		  //END DUP

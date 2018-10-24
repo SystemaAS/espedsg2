@@ -519,7 +519,7 @@
 	            <%-- FORM DETAIL --%>
 		 		<tr id="formcontainer" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
 	            		<td>
-	            			<form name="transportdispForm" id="transportdispForm" method="post">
+	            			<form action="transportdisp_workflow_edit.do?action=doUpdate" name="transportdispForm" id="transportdispForm" method="post">
 	            			<%-- <input type="hidden" name="tuavd" id="tuavd" value='${model.record.tuavd}'> --%>
 	            			<input type="hidden" name="tupro" id="tupro" value='${model.record.tupro}'>
 	            			
@@ -581,7 +581,7 @@
 					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 					 									&nbsp;
 				 									</div>
-							 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+							 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
 							 				    </c:when>
 							 				    <c:otherwise>
 							 				    	<div id="divSmsEmailButtons" style="display:none">
@@ -590,7 +590,7 @@
 					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 					 									&nbsp;
 				 									</div>
-						 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onclick="javascript: form.action='transportdisp_workflow_edit.do?action=doUpdate'" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
+						 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
 							 				    </c:otherwise>	
 						 				    </c:choose>
 						 				    </td>

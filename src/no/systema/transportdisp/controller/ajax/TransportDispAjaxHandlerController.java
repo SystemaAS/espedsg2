@@ -645,18 +645,18 @@ public class TransportDispAjaxHandlerController {
 		  //Should be removed as soon as RPG return the correct container name = customerlist (not capitalized in the first letter)
 		  logger.info(jsonPayload);
 		  logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-    		  if(jsonPayload!=null){
-	    		JsonTransportDispDriverContainer container = this.transportDispChildWindowService.getDriverContainer(jsonPayload);
-	    		if(container!=null){
-	    			List<JsonTransportDispDriverRecord> list = new ArrayList();
-	    			for(JsonTransportDispDriverRecord  record : container.getSjoflist()){
-	    				list.add(record);
-	    				
-	    			}
-	    			result = list;
-	    		}
-	    	  }
-	    	  return result;
+		  if(jsonPayload!=null){
+    		JsonTransportDispDriverContainer container = this.transportDispChildWindowService.getDriverContainer(jsonPayload);
+    		if(container!=null){
+    			List<JsonTransportDispDriverRecord> list = new ArrayList();
+    			for(JsonTransportDispDriverRecord  record : container.getSjoflist()){
+    				list.add(record);
+    				
+    			}
+    			result = list;
+    		}
+    	  }
+    	  return result;
 	  }
 	  /**
 	   * 
@@ -678,17 +678,17 @@ public class TransportDispAjaxHandlerController {
 		  //Should be removed as soon as RPG return the correct container name = customerlist (not capitalized in the first letter)
 		  logger.info(jsonPayload);
 		  logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-    		  if(jsonPayload!=null){
-    			  JsonTransportDispTranspCarrierContainer container = this.transportDispChildWindowService.getTranspCarrierContainer(jsonPayload);
-	    		if(container!=null){
-	    			List<JsonTransportDispTranspCarrierRecord> list = new ArrayList();
-	    			for(JsonTransportDispTranspCarrierRecord  record : container.getTranslist()){
-	    				list.add(record);
-	    			}
-	    			result = list;
-	    		}
-	    	  }
-	    	  return result;
+		  if(jsonPayload!=null){
+			  JsonTransportDispTranspCarrierContainer container = this.transportDispChildWindowService.getTranspCarrierContainer(jsonPayload);
+    		if(container!=null){
+    			List<JsonTransportDispTranspCarrierRecord> list = new ArrayList();
+    			for(JsonTransportDispTranspCarrierRecord  record : container.getTranslist()){
+    				list.add(record);
+    			}
+    			result = list;
+    		}
+    	  }
+    	  return result;
 	  }
 	  /**
 	   * 

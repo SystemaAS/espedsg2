@@ -8,11 +8,29 @@
 	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }
   
+  //FORM SUBMIT
   jq(function() {
-	  jq('#submit').click(function() { 
-		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  jq('#submit').click(function(e) { 
+		  if(validForm()){
+			  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+			  jq('#transportdispForm').attr('onsubmit','return true;');
+			  jq("#transportdispForm").submit();
+		  }else{
+			  jq('#transportdispForm').attr('onsubmit','return false;');
+			  e.preventDefault();
+		  }
+		  
 	  }); 
   });
+  function validForm(){
+	  var retval = true;
+	  if(jq("#tunat").val() == "?"){
+		  retval = false;
+	  }
+	  return retval;
+  }
+  //END FORM SUBMIT
+  
   
   jq(function() {
 	  jq('#alinkOrderListId').click(function() { 
@@ -411,8 +429,6 @@
 	});
   }
   
-  //Carrier
-  /*TODO!! - Defect on SEARCH function: JOVO must implement getval=J on (CBs): http://gw.systema.no/sycgip/TJINQTNR.pgm
   jq(function() {
     jq('#tuknt2').blur(function() {
     		var id = jq('#tuknt2').val();
@@ -424,14 +440,20 @@
     			}, function(data) {
     				//alert("Hello");
     				var len = data.length;
-    				for ( var i = 0; i < len; i++) {
-					jq('#tunat').val(data[i].navn);
+    				if (len > 0){
+	    				for ( var i = 0; i < len; i++) {
+	    					jq('#tunat').val(data[i].navn);
+	    					jq("#tunat").removeClass( "isa_error" );
+	    				}
+    				}else{
+    					jq('#tunat').val("?");
+    					jq("#tunat").addClass( "isa_error" );
     				}
     			});
     		}
 	});
   });
-  */
+
   
   //POSTAL CODES/CITY
   var CITY1 = "1";
@@ -994,7 +1016,7 @@
 			  			
 			  			//Truck No.
 			  			jq('#tuknt2').val(""); jq('#tuknt2').val(data[i].tuknt2);
-			  			jq('#tunat').val(""); jq('#tunat').val(data[i].tunat);
+			  			jq('#tunat').val(""); jq('#tunat').val(data[i].tunat); jq('#tunat').removeClass("isa_error"); 
 			  			//Truck type
 			  			jq('#tubilk').val(""); jq('#tubilk').val(data[i].tubilk);
 			  			//Order type

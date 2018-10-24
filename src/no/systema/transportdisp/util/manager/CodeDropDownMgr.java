@@ -19,6 +19,8 @@ import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTran
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.triplist.childwindow.JsonTransportDispAvdContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.triplist.childwindow.JsonTransportDispAvdRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsRecord;
 
@@ -27,6 +29,7 @@ import no.systema.transportdisp.util.manager.CodeDropDownMgr;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
 import no.systema.transportdisp.util.TransportDispConstants;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
+import no.systema.transportdisp.service.TransportDispChildWindowService;
 
 
 /**
@@ -250,6 +253,37 @@ public class CodeDropDownMgr {
 			}
 				
 		}	
-	
+		/**
+		 * 
+		 * @param urlCgiProxyService
+		 * @param listPopulationService
+		 * @param model
+		 * @param appUser
+		 */
+		public void populateHtmlDropDownsFromJsonAvd(UrlCgiProxyService urlCgiProxyService, TransportDispChildWindowService listPopulationService,
+				Map model, SystemaWebUser appUser){
+				//fill in html lists here
+				String DATATABLE_AVD_LIST = "avdList";
+				try{
+					String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_AVD_URL;
+					String urlRequestParamsKeys = "user=" + appUser.getUser();
+		    		logger.info("URL: " + BASE_URL);
+		    		logger.info("PARAMS: " + urlRequestParamsKeys);
+		    		logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+		    		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+		    		//Debug -->
+			    	//logger.debug(jsonPayload);
+		    		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+			    
+		    		if(jsonPayload!=null){
+			    		JsonTransportDispAvdContainer container = listPopulationService.getAvdContainer(jsonPayload);
+			    		if(container!=null){
+			    			model.put(DATATABLE_AVD_LIST, container.getAvdelningar());
+			    		}
+		    		}
+				}catch(Exception e){
+						e.printStackTrace();
+				}		
+			}
 	
 }

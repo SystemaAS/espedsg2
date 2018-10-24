@@ -2173,7 +2173,17 @@
 								 		<td class="text14">
 								 			<c:choose>
 											<c:when test="${empty model.record.travd1 && empty model.record.tropd1}">
-								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
+								 				<%-- <input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}"> --%>
+								 				<select class="inputTextMediumBlue" name="ffavd" id="ffavd">
+								            		<option value="">-velg-</option>
+								 				  	<c:forEach var="record" items="${model.avdList}" >
+								 				  		<option title="${record.avd}" value="${record.avd}"<c:if test="${model.record.ffavd == record.avd}"> selected </c:if> >${record.avd}</option>
+													</c:forEach> 
+												</select>
+												<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doFind&ctype=ffavd','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
+				 									<img id="imgFfAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
+				 								</a>
+										
 								 			</c:when>
 								 			<c:otherwise>
 								 				<input readonly type="text" class="inputTextReadOnly" size="5" maxlength="4" name="ffavd" id="ffavd" value="${model.record.ffavd}">
@@ -2351,7 +2361,16 @@
 								 		<td class="text14">
 								 			<c:choose>
 											<c:when test="${empty model.record.travd2 && empty model.record.tropd2}">
-								 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}">
+								 				<%-- <input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}"> --%>
+								 				<select class="inputTextMediumBlue" name="vfavd" id="vfavd">
+								            		<option value="">-velg-</option>
+								 				  	<c:forEach var="record" items="${model.avdList}" >
+								 				  		<option title="${record.avd}" value="${record.avd}"<c:if test="${model.record.vfavd == record.avd}"> selected </c:if> >${record.avd}</option>
+													</c:forEach> 
+												</select>
+												<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doFind&ctype=vfavd','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
+				 									<img id="imgVfAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
+				 								</a>
 								 			</c:when>
 								 			<c:otherwise>
 								 				<input readonly type="text" class="inputTextReadOnly" size="5" maxlength="4" name="vfavd" id="vfavd" value="${model.record.vfavd}">

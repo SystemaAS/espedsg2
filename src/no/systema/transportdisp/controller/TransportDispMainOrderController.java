@@ -1592,6 +1592,9 @@ public class TransportDispMainOrderController {
 	 * @param model
 	 */
 	private void setCodeDropDownMgr(SystemaWebUser appUser, Map model){
+		//avd
+		this.codeDropDownMgr.populateHtmlDropDownsFromJsonAvd(this.urlCgiProxyService, this.transportDispChildWindowService, model, appUser);
+		
 		this.codeDropDownMgr.populateCodesHtmlDropDownsFromJsonString(this.urlCgiProxyService, this.transportDispDropDownListPopulationService,
 				model,appUser,CodeDropDownMgr.CODE_2_COUNTRY, null, null);
 		//frankatur
@@ -1927,11 +1930,16 @@ public class TransportDispMainOrderController {
 					record.setHetri(avdRecord.getKoaLK());
 				}
 			}
+			//populate a list of AVD in case of use (usually in DUP)
+			
+			
 			//logger.info("KLOKKE:" + record.getKlokkeJN());
 		}catch(Exception e){
 			e.printStackTrace();
 		}
 	}
+	
+	
 	//SERVICES
 	@Qualifier ("urlCgiProxyService")
 	private UrlCgiProxyService urlCgiProxyService;
