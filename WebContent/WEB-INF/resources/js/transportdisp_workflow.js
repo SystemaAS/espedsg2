@@ -1439,6 +1439,72 @@
 	  });
   }	
   
+//-----------------------------------
+  //START Model dialog Copy Trip
+  //-----------------------------------
+  //Initialize <div> here
+  jq(function() { 
+	  jq( ".clazz_dialog" ).each(function(){
+		jq(this).dialog({
+			autoOpen: false,
+			modal: true
+		});
+	  });
+  });
+  //Present dialog box onClick (href in parent JSP)
+  jq(function() {
+	  jq(".copyLink").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("copyLink","");
+		  //setters (add more if needed)
+		  jq('#dialog'+counterIndex).dialog( "option", "title", "Kopi Tur " + jq('#originalTrip'+counterIndex).val() );
+		  
+		  //deal with buttons for this modal window
+		  jq('#dialog'+counterIndex).dialog({
+			 buttons: [ 
+	            {
+				 id: "dialogSave"+counterIndex,	
+				 text: "Fortsett",
+				 click: function(){
+					 		jq('#copyForm'+counterIndex).submit();
+				 		}
+			 	 },
+	 	 		{
+			 	 id: "dialogCancel"+counterIndex,
+			 	 text: "Avbryt", 
+				 click: function(){
+					 		//back to initial state of form elements on modal dialog
+					 		jq("#dialogSave"+counterIndex).button("option", "disabled", true);
+					 		jq( this ).dialog( "close" ); 
+					 		  
+				 		} 
+	 	 		 } ] 
+			  
+		  });
+		  //init values
+		  //jq("#dialogSave"+counterIndex).button("option", "disabled", true);
+		  
+		  //open now
+		  jq('#dialog'+counterIndex).dialog('open');
+		 
+	  });
+  });
+  
+  //Events for the html elements (some kind of "implicit validation")
+  jq(function() {
+	  jq(".newAvd").blur(function() {
+		  if(jq("#dialog"+counterIndex).find('.newAvd').val()!=''){
+			  jq("#dialogSave"+counterIndex).button("option", "disabled", false);
+			  
+		  }else{
+			  jq("#dialogSave"+counterIndex).button("option", "disabled", true);
+		  }
+	  });
+  });
+  //---------------------------------
+  //END Model dialog Copy Trip
+  //---------------------------------
+
   
   
   

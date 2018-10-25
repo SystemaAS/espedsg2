@@ -155,7 +155,7 @@
 					<td >
 					<%-- this container table is necessary in order to separate the datatables element and the frame above, otherwise
 						 the cosmetic frame will not follow the whole datatable grid including the search field... --%>
-					<table id="containerdatatableTable" width="100%" cellspacing="1" align="left" >
+					<table id="containerdatatableTable1" style="width:100%;" cellspacing="2" align="left" >
 					<tr>
 						<td id="dtuavd${searchFilter.avd}_dtupro${searchFilter.tur}_oncontainer" ondrop="dropX(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" class="text14MediumBlue">
 							<spring:message code="systema.transportdisp.orders.current.header"/>&nbsp;&nbsp;
@@ -173,8 +173,9 @@
 					 
 					<tr>
 					<td>
-					<table width="100%" id="currentOrders" class="display compact cell-border" cellspacing="0" >
-						<thead style="width:100%"; >
+					
+					<table style="width:100%;" id="currentOrders" class="display compact cell-border" cellspacing="0" >
+						<thead >
 						<tr class="tableHeaderField" >
 							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.remove"/></th>   
 		                    <th class="text14">
@@ -184,7 +185,15 @@
 							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ttstat"/></th> 
 							
 							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.supplier"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.consignee"/></th>   
+		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.date"/>&nbsp;</th> 
+		                    <th class="text14">
+		                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
+	                   		</th>
+		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.consignee"/></th>
+		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.date"/>&nbsp;</th> 
+		                    <th class="text14">
+		                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
+	                   		</th>   
 		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.goodsDesc"/></th>   
 		                    
 		                    <th class="text14">
@@ -258,7 +267,11 @@
 			               </c:choose>
 			               
 			               <td class="text14 tableCellGray">&nbsp;${record.henas}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.trsdfd}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.trsdfk}</td>
 			               <td class="text14 tableCellGray">&nbsp;${record.henak}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.trsdtd}</td>
+			               <td class="text14 tableCellGray">&nbsp;${record.trsdtk}</td>
 			               <td class="text14 tableCellGray">&nbsp;${record.hevs1}</td>
 			               
 			               <td class="text14 tableCellGray">&nbsp;
@@ -336,7 +349,7 @@
 					
 				<%-- this container table is necessary in order to separate the datatables element and the frame above, otherwise
 					 the cosmetic frame will not follow the whole datatable grid including the search field... --%>
-				<table id="containerdatatableTable" width="100%" cellspacing="2" align="left" >
+				<table id="containerdatatableTable2" style="width:100%;" cellspacing="2" align="left" >
 				<tr>
 					<td colspan="6" class="text14MediumBlue"><spring:message code="systema.transportdisp.orders.open.header"/>&nbsp;&nbsp;&nbsp;
 			            <%-- <input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.open.form.button.createnew.trip"/>" name="cnButton" id="cnButton" onClick="location.href = 'transportdisp_mainorder.do?heavd=${searchFilter.avd}&hepro=${searchFilter.tur}'">--%>

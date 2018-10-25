@@ -331,6 +331,110 @@ public class TransportDispWorkflowTripListController {
 		    	return(null);
 		}
 	}
+	/**
+	 * 
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_workflow_copyRoundTrip.do",  method={RequestMethod.POST} )
+	public ModelAndView doCopyOrder(HttpSession session, HttpServletRequest request){
+		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		
+		Map model = new HashMap();
+		String originalAvd = "";
+		String originalOpd = ""; 
+		String originalTur = "";
+		String sign = "";
+		String newAvd = "";
+		//get the dynamic parameters
+		Enumeration requestParameters = request.getParameterNames();
+	    while (requestParameters.hasMoreElements()) {
+	        String element = (String) requestParameters.nextElement();
+	        String value = request.getParameter(element);
+
+	        if (element != null && value != null) {
+        		//logger.info("####################################################");
+    			//logger.info("param Name : " + element + " value: " + value);
+    			if(element.startsWith("originalAvd")){
+    				originalAvd = value;
+    			}else if(element.startsWith("originalTrip")){
+    				originalTur = value;
+    			}else if(element.startsWith("newAvd")){
+    				newAvd = value;
+    			}else if(element.startsWith("sign")){
+    				sign = value;
+    			}
+	        }
+	    }
+		logger.info("#orig. avd:" + originalAvd);
+		logger.info("#orig. opd:" + originalOpd);
+		logger.info("#new avd:" + newAvd);
+		logger.info("#sign:" + sign);
+		
+		ModelAndView errorView = new ModelAndView("redirect:transportdisp_workflow.do?action=doFind&user=" + appUser.getUser() + "&avd=" + newAvd);
+		ModelAndView successView = null;
+		
+		//check user (should be in session already)
+		if(appUser==null ){
+			return loginView;
+			
+		}else{
+			
+			//start process	
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_COPY_TUR_URL;
+    		//add URL-parameters
+    		StringBuffer urlRequestParams = new StringBuffer();
+    		urlRequestParams.append("user=" + appUser.getUser());
+    		urlRequestParams.append("&avd=" + originalAvd);
+    		urlRequestParams.append("&opd=" + originalOpd);
+    		urlRequestParams.append("&newavd=" + newAvd);
+    		//urlRequestParams.append("&newhesg=" + sign);
+
+    		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+	    	logger.info("URL: " + BASE_URL);
+	    	logger.info("URL PARAMS: " + urlRequestParams);
+	    	String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+	    	//Debug --> 
+	    	logger.info("Checking errMsg in rpgReturnPayload" + rpgReturnPayload);
+	    	//we must evaluate a return RPG code in order to know if the Update was OK or not
+	    	rpgReturnResponseHandler.evaluateRpgResponseOnCopyOrder(rpgReturnPayload);
+	    	if(rpgReturnResponseHandler.getErrorMessage()!=null && !"".equals(rpgReturnResponseHandler.getErrorMessage())){
+	    		rpgReturnResponseHandler.setErrorMessage("[ERROR] FATAL on COPY: " + rpgReturnResponseHandler.getErrorMessage());
+	    		this.setFatalErrorCopyTrip(model, rpgReturnResponseHandler, originalAvd, originalTur, newAvd);	
+	    		errorView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+	    		return errorView;
+	    	}
+	    	//now build the success view to redirect to (with no errors)
+	    	StringBuffer sbSuccessViewParams = new StringBuffer();
+	    	sbSuccessViewParams.append ("action=doFind");
+			sbSuccessViewParams.append ("&user=" + appUser.getUser());
+			sbSuccessViewParams.append ("&avd=" + rpgReturnResponseHandler.getNewavd());
+			successView = new ModelAndView("transportdisp_workflow.do?" + sbSuccessViewParams.toString());
+
+	    	return successView;
+		}
+	}
+	/**
+	 * 
+	 * @param model
+	 * @param rpgReturnResponseHandler
+	 * @param avd
+	 * @param tur
+	 * @param newAvd
+	 */
+	private void setFatalErrorCopyTrip(Map model, RpgReturnResponseHandler rpgReturnResponseHandler, String avd, String tur, String newAvd ){
+		logger.info(rpgReturnResponseHandler.getErrorMessage());
+		model.put(TransportDispConstants.ASPECT_ERROR_MESSAGE, rpgReturnResponseHandler.getErrorMessage());
+		//extra error information
+		StringBuffer errorMetaInformation = new StringBuffer();
+		errorMetaInformation.append(avd);
+		errorMetaInformation.append(tur);
+		model.put(TransportDispConstants.ASPECT_ERROR_META_INFO, errorMetaInformation);
+		
+	}
 	
 	/**
 	 * 

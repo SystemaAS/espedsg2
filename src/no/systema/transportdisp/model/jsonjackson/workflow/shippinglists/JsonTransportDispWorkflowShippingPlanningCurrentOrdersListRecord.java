@@ -97,6 +97,22 @@ public class JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord ex
 	public void setTtstat(String value) {  this.ttstat = value; }
 	public String getTtstat() {return this.ttstat;}
 
+	private String trsdfd = null;
+	public void setTrsdfd(String value) {  this.trsdfd = value; }
+	public String getTrsdfd() {return this.trsdfd;}
+	
+	private String trsdfk = null;
+	public void setTrsdfk(String value) {  this.trsdfk = value; }
+	public String getTrsdfk() {return this.trsdfk;}
+	
+	private String trsdtd = null;
+	public void setTrsdtd(String value) {  this.trsdtd = value; }
+	public String getTrsdtd() {return this.trsdtd;}
+
+	private String trsdtk = null;
+	public void setTrsdtk(String value) {  this.trsdtk = value; }
+	public String getTrsdtk() {return this.trsdtk;}
+
 	
 	
 	/**

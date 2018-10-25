@@ -279,9 +279,9 @@
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;
-	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;
-	                    	</th>
+		                    
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.copy"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
 	                    	<c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
 		                    	<th class=text14>
 			            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>" name="currenttripsColumnHeaderButtonCloseOpen" id="currenttripsColumnHeaderButtonCloseOpen" onClick="getValidCheckis(this);">
@@ -376,6 +376,31 @@
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
+	            		   <td align="center" class="textMediumBlue">
+		               		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
+								<img title="Copy / Round trip" src="resources/images/copy.png" border="0" alt="copy">
+							</a>
+							<div style="display: none;" class="clazz_dialog" id="dialog${counter.count}" title="Dialog">
+								<form  action="transportdisp_workflow_copyRoundTrip.do" name="copyForm${counter.count}" id="copyForm${counter.count}" method="post">
+								 	<input type="hidden" name="action${counter.count}" id="action${counter.count}" value='doUpdate'/>
+									<input type="hidden" name="originalAvd${counter.count}" id="originalAvd${counter.count}" value='${record.tuavd}'/>
+				 					<input type="hidden" name="originalTrip${counter.count}" id="originalTrip${counter.count}" value='${record.tupro}'/>
+					 				<input type="hidden" name="sign${counter.count}" id="sign${counter.count}" value='${user.signatur}'/>
+					 				
+									<p class="text14" >Du kan velge en ny avdeling</p>
+									<p class="text14" >En ny tur vil bli etablert automatisk.</p>
+									
+									<table>
+										<tr>
+											<td class="text14" align="left" >Ny Avd.</td>
+											<td class="text14MediumBlue">
+												<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue newAvd" name="newAvd${counter.count}" id="newAvd${counter.count}" size="5" maxlength="4" value="${record.tuavd}">
+											</td>
+                						</tr>
+									</table>
+								</form>
+							</div>
+						   </td>
 	            		   <td align="center" class="text14 tableCellGray">
 	            		   		<c:choose>	
 		            		   		<c:when test="${record.turclose=='close'}">
@@ -932,15 +957,10 @@
 								    		</td>
 								    		<td ><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdt" id="tusdt" size="22" maxlength="20" value="${model.record.tusdt}"></td>
 								    	</tr>
-								    	<%--
-								    	<tr>
-								    		<td>&nbsp;</td>
-								    		<td colspan="6"><input tabindex=-1 readonly tabindex=-1 type="text" class="inputTextReadOnlyNormal" name="tusdt" id="tusdt" size="22" maxlength="20" value="${model.record.tusdt}"></td>
-								    	</tr>
-								    	 --%>
+								    	
 								    	<tr height="5"><td ></td></tr>
 								    	<tr>
-								    		<td colspan="10">
+								    		<td colspan="8" nowrap>
 								    		<table class="tableBorderWithRoundCorners">
 								    		<tr>
 								    		<td class="text14" nowrap>
@@ -962,7 +982,7 @@
 												</span>
 												</div>
 							    			</td>
-								    		<td class="text14" >
+								    		<td class="text14" nowrap>
 								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tutbel" id="tutbel" size="8" maxlength="8" value="${model.record.tutbel}">
 								    			<select class="inputText14" id="tutval" name="tutval">
 								    			<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
@@ -978,7 +998,7 @@
 								    		</td>
 								    		<td class="text14" >&nbsp;&nbsp;
 								    			<span title="tuant1/tuenh1/tuant2/tuenh2"><b><spring:message code="systema.transportdisp.workflow.trip.form.label.price.construction"/></b></span>
-							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="3" maxlength="3" value="${model.record.tuant1}">
+							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="6" maxlength="5" value="${model.record.tuant1}">
 								    			Enh:
 								    			<input type="text" class="inputTextMediumBlue" name="tuenh1" id="tuenh1" size="3" maxlength="3" value="${model.record.tuenh1}">
 								    			x
