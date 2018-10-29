@@ -6,7 +6,7 @@ package no.systema.sporringoppdrag.model.jsonjackson.topic;
 import no.systema.main.model.jsonjackson.general.JsonAbstractGrandFatherRecord;
 import java.util.*;
 import java.lang.reflect.Field;
-import no.systema.main.util.AppConstants;
+import lombok.Data;
 
 /**
  * @author oscardelatorre
@@ -14,16 +14,14 @@ import no.systema.main.util.AppConstants;
  * 
  *
  */
+@Data
 public class JsonSporringOppdragSpecificTopicChildDocumentRecord extends JsonAbstractGrandFatherRecord{
 	
 	private String doctxt = null;
-	public void setDoctxt(String value) {  this.doctxt = value; }
-	public String getDoctxt() {return this.doctxt;}
-	
 	private String doclnk = null;
-	public void setDoclnk(String value) {  this.doclnk = value; }
-	public String getDoclnk() {return this.doclnk;}
-	
+	private String doctyp = null;
+	private String docdat = null;
+	private String doctim = null;
 	
 	
 	/**

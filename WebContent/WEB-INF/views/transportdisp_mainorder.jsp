@@ -2120,12 +2120,15 @@
 						 					<spring:message code="systema.transportdisp.workflow.trip.form.label.uploadedDocs"/>&nbsp;
 						 					<table>
 						 						<tr class="tableHeaderField" >
-						 						<th align="left" class="text14">Dok.navn</th>
 						 						<th align="left" class="text14">Dok.type</th>
+						 						<th align="left" class="text14">Dok.navn</th>
+						 						<th align="left" class="text14">Dato/kl</th>
+						 						
 						 						</tr>
 						 					<c:forEach items="${model.record.archivedDocsRecord}" var="record" varStatus="counter">
 						 						<tr class="text14 tableRow">
-							 						<td class="tableCellFirst">
+						 							<td class="tableCellFirst" style="white-space:nowrap">${record.doctyp}</td>
+					   								<td class="tableCell" style="white-space:nowrap">
 							 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
 							 							<c:choose>
 				    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
@@ -2138,7 +2141,7 @@
 			    		    							${record.doctxt}
 					   								</a>
 					   								</td>
-					   								<td class="tableCell">${record.doctxt}</td>
+					   								<td class="tableCell" style="white-space:nowrap">${record.docdat}&nbsp;${record.doctim}</td>
 				   								</tr>
 						 					</c:forEach>
 						 					</table>

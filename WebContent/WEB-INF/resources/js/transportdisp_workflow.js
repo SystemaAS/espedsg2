@@ -987,30 +987,71 @@
 			  					jq('#messageNote').append("\n");
 			  				}//END Message Note
 			  				
+			  				//-----------------------------
 			  				//START populate ArchDocs list
+			  				//-----------------------------
 			  				var doctriplen = data[i].getdoctrip.length;
 			  				jq('#resultUploadedDocs').text("");
+			  				
+			  				var table = jq('<table></table>').addClass('foo');
+			  				var row = jq('<tr></tr>').addClass('tableHeaderField');
+			  				var td_1 = jq('<th align="left"></th>').addClass('text14').text('Dok.type');
+			  				row.append(td_1);
+			  				var td_2 = jq('<th align="left"></th>').addClass('text14').text('Dok.navn');
+			  				row.append(td_2);
+			  				var td_3 = jq('<th align="left"></th>').addClass('text14').text('Dato/kl');
+			  				row.append(td_3);
+			  				//TABLE APPEND row
+			  				table.append(row);
+			  				
+			  				//fill in table
 			  				for ( var j = 0; j < doctriplen; j++) {
+			  					var documentText = data[i].getdoctrip[j].doctxt;
+			  					if(documentText==''){
+			  						documentText = data[i].getdoctrip[j].doclnk;
+			  					}
+			  					var row = jq('<tr></tr>').addClass('tableRow');
+				  				var td_1 = jq('<td ></td>').addClass('tableCellFirst');td_1.css('white-space','nowrap')
+				  				var td_2 = jq('<td></td>').addClass('tableCell');td_2.css('white-space','nowrap')
+				  				var td_3 = jq('<td></td>').addClass('tableCell');td_3.css('white-space','nowrap');
+				  				
 			  					if(data[i].getdoctrip[j].doclnk.indexOf(".pdf")>0 ||data[i].getdoctrip[j].doclnk.indexOf(".PDF")>0){
 						  			imgSrc="resources/images/pdf.png";
 			  					}else{
 			  						imgSrc="resources/images/jpg.png";
 			  					}
+			  					
+			  					//ROW APPEND TD_1 
+			  					td_1.text(data[i].getdoctrip[j].doctyp);
+			  					row.append(td_1);
+			  					
+			  					//ROW APPEND TD_2 
 			  					jq('<img/>',{
 			  						src: imgSrc,
 			  						width: '14px',
 			  						height: '14px'
-		  		  			  	}).appendTo(jq('#resultUploadedDocs'));	
-						  		  
+		  		  			  	}).appendTo(td_2);
+			  					
 			  					jq('<a>',{
-					  			    text: data[i].getdoctrip[j].doctxt,
+					  			    text: documentText,
 					  			    target: '_blank',
 					  			    href: 'transportdisp_workflow_renderArchivedDocs.do?doclnk='+data[i].getdoctrip[j].doclnk,
 					  			    click: function(){ BlahFunc( options.rowId );return false;}
-			  					}).appendTo(jq('#resultUploadedDocs'));
-						  		jq('#resultUploadedDocs').append(ARCHIVE_DOCS_RECORD_SEPARATOR);
-						  	}//END ArchDocs
-			  				
+			  					}).appendTo(td_2);
+			  					row.append(td_2);
+			  					
+			  					//ROW APPEND TD_3 
+			  					td_3.text(data[i].getdoctrip[j].docdat + " " + data[i].getdoctrip[j].doctim);
+			  					row.append(td_3);
+			  					
+			  					//
+			  					table.append(row);
+						  	}
+			  				//append TABLE to DIV
+			  				jq('#resultUploadedDocs').append(table);
+			  				//--------------
+			  				//END ArchDocs
+			  				//--------------
 			  			}
 			  			
 			  			//Truck Lic
