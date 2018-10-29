@@ -692,7 +692,10 @@
 								    		<td class="text14"><span title="tuheng"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.henger"/></span>
 								    			<input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}">
 								    		</td>
-								    		<td class="text14" ><span title="tulkh"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></span>
+								    		<td class="text14" >
+								    			<span title="tulkh"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></span>
+								    		</td>
+								    		<td class="text14" align="left">
 								    			<select class="inputText14" name="tulkh" id="tulkh">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -755,7 +758,10 @@
 								    		</td>
 
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="18" maxlength="17" value="${model.record.tucon2}"></td>
-								    		<td class="text14" ><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/>
+								    		<td class="text14" >
+								    			<spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/>
+								    		</td>
+								    		<td class="text14" align="left">
 								    			<select class="inputText14" name="tulkc2" id="tulkc2">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -780,7 +786,21 @@
 		 										<img id="imgTruckersNrSearch" style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search">
 		 									</a>
 								    		</td>
-								    		<td colspan="4"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
+								    		<td colspan="3"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
+  								 			<td class="text14" align="left">
+  								 				<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.incoterms"/></span>
+  								 			</td>	
+  								 			<td class="text14" align="left">
+								 				<select class="inputTextMediumBlueMandatoryField" name="tutrma" id="tutrma">
+									            		<option value="">-select-</option>
+									            		<c:forEach var="record" items="${model.incotermsList}" >
+									            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.tutrma == record.franka}"> selected </c:if> >${record.franka}</option>
+														</c:forEach>	
+												</select>
+												<a tabindex=0 id="tutrmaIdLink" >
+		 											<img id="imgIncotermsSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+		 										</a>	
+								 			</td>
 								    	</tr>
 							    		<tr height="5"><td ></td></tr>
 								    	<tr>
@@ -1069,44 +1089,43 @@
 							 		<tr height="10"><td></td></tr>
 							 		<tr>
 						 				<td colspan="20" class="text14">
-						 					<table class="tableBorderWithRoundCorners" width="470px" >
+						 					<table class="tableBorderWithRoundCorners" >
 												<tr>
 										 			<td valign="top" class="text12">
 									 					<spring:message code="systema.transportdisp.workflow.trip.form.label.uploadedDocs"/>&nbsp;
 									 					<div id="resultUploadedDocs">
-										 					<c:forEach items="${model.record.getdoctrip}" var="record" varStatus="counter">
-										 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
-						    		    							<c:choose>
-							    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
-							    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
-							    		    							</c:when>
-							    		    							<c:otherwise>
-							    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/jpg.png" width="14" height="14" border="0" alt="Html arch.">
-							    		    							</c:otherwise>
-						    		    							</c:choose>
-						    		    							${record.doctxt}
-								   								</a>&nbsp;&nbsp;
-										 					</c:forEach>
+									 						<table>
+										 						<tr class="tableHeaderField" >
+										 						<th align="left" class="text14">Dok.navn</th>
+										 						<th align="left" class="text14">Dok.type</th>
+										 						</tr>
+									 						
+											 					<c:forEach items="${model.record.getdoctrip}" var="record" varStatus="counter">
+											 						<tr class="text14 tableRow">
+							 										<td class="tableCellFirst">
+											 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
+							    		    							<c:choose>
+								    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
+								    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
+								    		    							</c:when>
+								    		    							<c:otherwise>
+								    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/jpg.png" width="14" height="14" border="0" alt="Other arch.">
+								    		    							</c:otherwise>
+							    		    							</c:choose>
+							    		    							${record.doctxt}
+									   								</a>
+									   								</td>
+										   							<td class="tableCell">${record.doctxt}</td>
+									   								</tr>
+											 					</c:forEach>
+											 				</table>
 									 					</div>
 									 					
 									 				</td>
 												</tr>
 											</table>
 										 	
-					 						<%-- this piece below is currently never used since we construct the string in jquery because of AJAX call in this. Has been used before and could be activated
-					 						<c:if test="${not empty model.record.getdoctrip}">
-					 							<ul>
-						 						<c:forEach var="record" items="${model.record.getdoctrip}">
-						 							<li>
-									                <img src="resources/images/jpg.png" border="0" width="16px" height="16px">
-									                <a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}" >${record.doctxt}</a> 
-									                &nbsp;
-									                </li>
-									            </c:forEach>
-									            </ul>
-								            </c:if>
-								            --%>
-						 					
+					 						
 						 				</td>
 						 			</tr>
 								</table>

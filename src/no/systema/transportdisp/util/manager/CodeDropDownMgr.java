@@ -163,7 +163,7 @@ public class CodeDropDownMgr {
 				
 				if(container!=null && container.getInqAvdGrupp()!=null){
 					for(JsonTransportDispAvdGroupsRecord record: container.getInqAvdGrupp()){
-						logger.info("AVD-Groups: " + record.getAgrKode() + " " + record.getAgrNavn());
+						//logger.info("AVD-Groups: " + record.getAgrKode() + " " + record.getAgrNavn());
 					}
 					model.put(TransportDispConstants.RESOURCE_MODEL_KEY_AVD_GROUPS_LIST, container.getInqAvdGrupp());
 				}else{

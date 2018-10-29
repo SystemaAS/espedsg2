@@ -526,25 +526,6 @@
 										<a tabindex=0 id="hefrIdLink" >
  											<img id="imgIncotermsSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
  										</a>	
-											<%-- info span 
-											<img id="hefrImg" tabindex=-1 onClick="showPop('frankaturInfo');" style="cursor:pointer; vertical-align: middle;" src="resources/images/find.png" width="12px" height="12px" border="0" alt="search">
-											<span style="position:absolute; left:300px; top:350px; width:350px; height:150px;" id="frankaturInfo" class="popupWithInputText"  >
-								           		<div class="text10" align="left">
-							           				<select class="text11" id="frankatur" name="frankatur" size="5" onDblClick="hidePop('frankaturInfo');">
-								           				<c:forEach var="record" items="${model.incotermsList}" >
-								 				  			<option title="${record.beskr}" value="${record.franka}">${record.franka}=${record.beskr}</option>
-														</c:forEach>
-								           			</select>
-								           			<table width="100%" align="left" border="0">
-														<tr height="10">&nbsp;<td class="text11">&nbsp;</td></tr>
-														<tr align="left" >
-															<td class="text11">&nbsp;<button name="frankaturButtonClose" id="frankaturButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('frankaturInfo');">&nbsp;<spring:message code="systema.transportdisp.ok"/></button> 
-															</td>
-														</tr>
-													</table>
-												</div>
-											</span>
-											--%>	
 						 			</td>
 						 			<td align="right" class="text14">&nbsp;<span title="hebodt"><spring:message code="systema.transportdisp.orders.form.update.label.booking.date"/></span></td>
 						 			<td class="text14">
@@ -2133,20 +2114,34 @@
 							<table> 		
 					 		<tr>
 					 			<td align="left">
-					 			<table class="tableBorderWithRoundCorners" width="480px">
+					 			<table class="tableBorderWithRoundCorners" >
 									<tr>
 							 			<td valign="top" class="text14">
 						 					<spring:message code="systema.transportdisp.workflow.trip.form.label.uploadedDocs"/>&nbsp;
-						 					<ul>
+						 					<table>
+						 						<tr class="tableHeaderField" >
+						 						<th align="left" class="text14">Dok.navn</th>
+						 						<th align="left" class="text14">Dok.type</th>
+						 						</tr>
 						 					<c:forEach items="${model.record.archivedDocsRecord}" var="record" varStatus="counter">
-						 						<li>
-						 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
-		    		    							<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
-		    		    							${record.doctxt}
-				   								</a>&nbsp;&nbsp;&nbsp;
-				   								</li>
+						 						<tr class="text14 tableRow">
+							 						<td class="tableCellFirst">
+							 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
+							 							<c:choose>
+				    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
+				    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
+				    		    							</c:when>
+				    		    							<c:otherwise>
+				    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/jpg.png" width="14" height="14" border="0" alt="Other arch.">
+				    		    							</c:otherwise>
+			    		    							</c:choose>
+			    		    							${record.doctxt}
+					   								</a>
+					   								</td>
+					   								<td class="tableCell">${record.doctxt}</td>
+				   								</tr>
 						 					</c:forEach>
-						 					</ul>
+						 					</table>
 						 				</td>
 									</tr>
 								</table>

@@ -729,7 +729,11 @@ public class TransportDispMainOrderListController {
 	    		JsonTransportDispWorkflowShippingPlanningOpenOrdersListContainer jsonOpenOrdersListContainer = this.transportDispWorkflowShippingPlanningOrdersListService.getOpenOrdersListContainer(jsonPayload);
 	    		model.put(TransportDispConstants.DOMAIN_CONTAINER_OPEN_ORDERS, jsonOpenOrdersListContainer);
 	    		if(jsonOpenOrdersListContainer!=null){
-		    		outputListOpenOrders = jsonOpenOrdersListContainer.getOrderlistlandled();
+	    			outputListOpenOrders = jsonOpenOrdersListContainer.getOrderlistlandled();
+	    			if(outputListOpenOrders!=null){
+	    				logger.info("List size open orders:" + outputListOpenOrders.size() + "--maxWarnings:" + jsonOpenOrdersListContainer.getMaxWarning());
+	    			}
+		    		
 		    		if(userAvd!=null){
 			    		if(jsonOpenOrdersListContainer.getWssavd()!=null && !"".equals(jsonOpenOrdersListContainer.getWssavd())){
 			    			userAvd.append(jsonOpenOrdersListContainer.getWssavd());

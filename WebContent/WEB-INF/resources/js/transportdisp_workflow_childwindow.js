@@ -571,8 +571,13 @@
 		  var id = this.id;
 		  var record = id.split('@');
 		  var id = record[0].replace("code_", "");
+		  //
 		  opener.jq('#hefr').val(id);
 		  opener.jq('#hefr').focus();
+		  //
+		  opener.jq('#tutrma').val(id);
+		  opener.jq('#tutrma').focus();
+		  
 		  //close child window
 		  window.close();
 	  });

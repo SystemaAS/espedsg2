@@ -669,6 +669,9 @@ public class TransportDispWorkflowHeaderController {
 		//oppdragtype
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringAvdGroups(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model,appUser);
+		//transp.måte
+		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringFrankatur(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
+				
 	}
 	
 	

@@ -48,7 +48,17 @@
 			if(e.which == 13) {
 				jq('#tuopdtIdLink').click();
 			}
-	  });	
+	  });
+	  
+	  jq('#tutrmaIdLink').click(function() {
+		  	jq('#tutrmaIdLink').attr('target','_blank');
+		  	window.open('transportdisp_workflow_childwindow_incoterms.do?action=doInit', "incotermsWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+	  });
+	  jq('#tutrmaIdLink').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#tutrmaIdLink').click();
+			}
+	  });
   });
   //-----------------------------------
   //START - Drag from Trips to Order 
@@ -1026,6 +1036,8 @@
 			  			jq('#tusjn1').val(""); jq('#tusjn1').val(data[i].tusjn1);
 			  			jq('#tusja2').val(""); jq('#tusja2').val(data[i].tusja2);
 			  			jq('#tusjn2').val(""); jq('#tusjn2').val(data[i].tusjn2);
+			  			//Incoterms
+			  			jq('#tutrma').val(""); jq('#tutrma').val(data[i].tutrma);
 			  			//Dates
 			  			//ETD
 			  			jq('#tudt').val(""); 

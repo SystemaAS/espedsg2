@@ -34,15 +34,17 @@ public class SporringOppdragMainListValidator implements Validator {
 		if(record!=null){
 			//AVD && OPP.
 			if(!"".equals(record.getWsavd())){
+				/* REMOVED because of Kingsrød Okt-2018)
 				if("".equals(record.getWsopd())){
 					errors.rejectValue("wsopd", "systema.sporringoppdrag.mainlist.form.search.error.rule.avd.invalidAlone");
-				}
+				}*/
 			}
 			
 			if(!"".equals(record.getWsopd())){
+				/* REMOVED because of Kingsrød Okt-2018)
 				if("".equals(record.getWsavd())){
 					errors.rejectValue("wsavd", "systema.sporringoppdrag.mainlist.form.search.error.rule.opd.invalidAlone");
-				}
+				}*/
 			}
 			//OPP.TYPE && OPP.DATO
 			if(!"".equals(record.getWsot())){
