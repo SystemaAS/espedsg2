@@ -574,6 +574,14 @@
     						var totalWeight = Number(data[i].unvekt) + Number(data[i].untara);
     						jq('#wstov1').text(totalWeight);
     					}
+    					//Incoterms
+    					if(jq('#tutrma').val()==''){
+    						jq('#tutrma').val(data[i].untrma);
+    					}
+    					if(jq('#tutbel').val()==''){
+    						jq('#tutbel').val(data[i].unkmp);
+    						jq('#tutval').val(data[i].unval);
+    					}
     					//Lorry capacity matrix: SET HIDDEN FIELDS
     					/*jq('#own_tukvkt').val(data[i].unvekt);
     					jq('#own_tutara').val(data[i].untara);

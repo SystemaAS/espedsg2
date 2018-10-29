@@ -30,6 +30,10 @@ public class JsonTransportDispBilNrRecord extends JsonAbstractGrandFatherRecord{
 	public void setUntrme(String value) {  this.untrme = value; }
 	public String getUntrme() {return this.untrme;}
 	
+	private String untrma = null;
+	public void setUntrma(String value) {  this.untrma = value; }
+	public String getUntrma() {return this.untrma;}
+	
 	private String unvekt = null;
 	public void setUnvekt(String value) {  this.unvekt = value; }
 	public String getUnvekt() {return this.unvekt;}
@@ -65,6 +69,31 @@ public class JsonTransportDispBilNrRecord extends JsonAbstractGrandFatherRecord{
 	private String vmnavn = null;
 	public void setVmnavn(String value) {  this.vmnavn = value; }
 	public String getVmnavn() {return this.vmnavn;}
+	
+	private String unval = null;
+	public void setUnval(String value) {  this.unval = value; }
+	public String getUnval() {return this.unval;}
+	
+	private String unkmp = null;
+	public void setUnkmp(String value) {  this.unkmp = value; }
+	public String getUnkmp() {return this.unkmp;}
+	
+	private String unvali = null;
+	public void setUnvali(String value) {  this.unvali = value; }
+	public String getUnvali() {return this.unvali;}
+	
+	private String unkmpi = null;
+	public void setUnkmpi(String value) {  this.unkmpi = value; }
+	public String getUnkmpi() {return this.unkmpi;}
+	
+	private String unvale = null;
+	public void setUnvale(String value) {  this.unvale = value; }
+	public String getUnvale() {return this.unvale;}
+	
+	private String unkmpe = null;
+	public void setUnkmpe(String value) {  this.unkmpe = value; }
+	public String getUnkmpe() {return this.unkmpe;}
+	
 	
 	/**
 	 * Used for java reflection in other classes

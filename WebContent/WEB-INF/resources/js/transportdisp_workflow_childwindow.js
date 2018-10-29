@@ -97,18 +97,22 @@
 		  var truckDriver = record[5].replace("truckdriver_", "");
 		  var driver1 = record[6].replace("unretu_", "");
 		  var driver1Name = record[7].replace("unretunavn_", "");
+		  var incoterms = record[8].replace("incoterms_", "");
+		  
 		  //alert(bilnr + " " + henger + " " + countryCode);
 		  //addressing a parent field from this child window
-		  if(opener.jq('#tubiln').val()==''){ opener.jq('#tubiln').val(bilnr); }
-		  if(opener.jq('#tulk').val()==''){ opener.jq('#tulk').val(countryCode); }
-		  if(opener.jq('#tuheng').val()==''){ opener.jq('#tuheng').val(henger); }
-		  if(opener.jq('#tulkh').val()==''){ opener.jq('#tulkh').val(countryCode); }
+		  opener.jq('#tubiln').val(bilnr);
+		  opener.jq('#tulk').val(countryCode);
+		  opener.jq('#tuheng').val(henger);
+		  opener.jq('#tulkh').val(countryCode);
 		  //child fields
-		  if(opener.jq('#tubilk').val()==''){ opener.jq('#tubilk').val(truckType); }
-		  if(opener.jq('#tuknt2').val()==''){
+		  opener.jq('#tubilk').val(truckType);
+		  //if(opener.jq('#tuknt2').val()==''){
 			  opener.jq('#tuknt2').val(truckNr);
 			  opener.jq('#tunat').val(truckDriver);
-		  }
+		  //}
+		  //incoterms	  
+		  opener.jq('#tutrma').val(incoterms);	  	  
 		  //driver1
 		  if(opener.jq('#tusja1').val()==''){ opener.jq('#tusja1').val(driver1); }
 		  if(opener.jq('#tusjn1').val()==''){ opener.jq('#tusjn1').val(driver1Name); }
