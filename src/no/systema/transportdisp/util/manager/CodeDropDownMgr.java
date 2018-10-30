@@ -26,6 +26,10 @@ import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTran
 
 
 import no.systema.transportdisp.util.manager.CodeDropDownMgr;
+import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodts4Container;
+import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodts4Record;
+import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts4Service;
+import no.systema.external.tvinn.sad.z.maintenance.url.store.TvinnSadMaintenanceUrlDataStore;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
 import no.systema.transportdisp.util.TransportDispConstants;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
@@ -144,7 +148,42 @@ public class CodeDropDownMgr {
 		}
 			
 	}
+	/**
+	 * 
+	 * @param urlCgiProxyService
+	 * @param specialListPopulationService
+	 * @param model
+	 * @param appUser
+	 */
+	public void populateCodesHtmlDropDownsFromJsonTransporttypeJavaBased(UrlCgiProxyService urlCgiProxyService, MaintSadImportKodts4Service specialListPopulationService,
+			Map model, SystemaWebUser appUser){
+			String BASE_URL = TvinnSadMaintenanceUrlDataStore.TVINN_SAD_MAINTENANCE_IMPORT_BASE_SAD002_KODTS4R_GET_LIST_URL;
+			StringBuffer urlRequestParams = new StringBuffer();
+			urlRequestParams.append("user="+ appUser.getUser());
+			
+			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+	    	logger.info("URL: " + BASE_URL);
+	    	logger.info("URL PARAMS: " + urlRequestParams);
+	    	String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+	    	//extract
+	    	List<JsonMaintSadImportKodts4Record> list = new ArrayList();
+	    	if(jsonPayload!=null){
+				//lists
+	    		JsonMaintSadImportKodts4Container container = specialListPopulationService.getList(jsonPayload);
+		        if(container!=null){
+		        	list = (List)container.getList();
+		        }
+	    	}
+	    	model.put(TransportDispConstants.RESOURCE_MODEL_KEY_TRANSPORTTYPE_CODE_LIST, list);
+		}
 	
+	/**
+	 * 
+	 * @param urlCgiProxyService
+	 * @param listPopulationService
+	 * @param model
+	 * @param appUser
+	 */
 	public void populateHtmlDropDownsFromJsonStringAvdGroups(UrlCgiProxyService urlCgiProxyService, TransportDispDropDownListPopulationService listPopulationService,
 			Map model, SystemaWebUser appUser){
 			//fill in html lists here

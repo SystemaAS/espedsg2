@@ -49,6 +49,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="maintSadSadlService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintSadSadlServiceImpl"/>
 	<bean id="maintNctsExportTrkodfService" class="no.systema.external.tvinn.sad.z.maintenance.service.MaintNctsExportTrkodfServiceImpl"/>
 	
+	
 	<!-- SAD avd maintenance -->
 	<bean id="maintMainStandiService" class="no.systema.z.main.maintenance.service.sad.MaintMainStandiServiceImpl"/>
 	<bean id="maintMainStandeService" class="no.systema.z.main.maintenance.service.sad.MaintMainStandeServiceImpl"/>

@@ -788,17 +788,17 @@
 								    		</td>
 								    		<td colspan="3"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
   								 			<td class="text14" align="left">
-  								 				<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.incoterms"/></span>
+  								 				<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></span>
   								 			</td>	
   								 			<td class="text14" align="left">
 								 				<select class="inputTextMediumBlueMandatoryField" name="tutrma" id="tutrma">
 									            		<option value="">-select-</option>
-									            		<c:forEach var="record" items="${model.incotermsList}" >
-									            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.tutrma == record.franka}"> selected </c:if> >${record.franka}</option>
+									            		<c:forEach var="record" items="${model.transporttypeList}" >
+									            			<option title="${record.ks4ftx}" value="${record.ks4trm}"<c:if test="${model.record.tutrma == record.ks4trm}"> selected </c:if> >${record.ks4trm}</option>
 														</c:forEach>	
 												</select>
 												<a tabindex=0 id="tutrmaIdLink" >
-		 											<img id="imgIncotermsSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+		 											<img id="imgTransportTypeSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
 		 										</a>	
 								 			</td>
 								    	</tr>

@@ -54,6 +54,7 @@ import no.systema.transportdisp.util.TransportDispDateTimeFormatter;
 import no.systema.transportdisp.util.manager.CodeDropDownMgr;
 import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
 
+import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts4Service;
 /**
  * 
  * TransportDisp Header Controller 
@@ -670,8 +671,7 @@ public class TransportDispWorkflowHeaderController {
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringAvdGroups(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model,appUser);
 		//transp.måte
-		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringFrankatur(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
-				
+		this.codeDropDownMgr.populateCodesHtmlDropDownsFromJsonTransporttypeJavaBased(this.urlCgiProxyService,this.maintSadImportKodts4Service, model, appUser);
 	}
 	
 	
@@ -703,6 +703,14 @@ public class TransportDispWorkflowHeaderController {
 	@Autowired
 	public void setTransportDispDropDownListPopulationService (TransportDispDropDownListPopulationService value){ this.transportDispDropDownListPopulationService=value; }
 	public TransportDispDropDownListPopulationService getTransportDispDropDownListPopulationService(){return this.transportDispDropDownListPopulationService;}
+	
+	
+	
+	@Qualifier ("maintSadImportKodts4Service")
+	private MaintSadImportKodts4Service maintSadImportKodts4Service;
+	@Autowired
+	public void setMaintSadImportKodts4Service (MaintSadImportKodts4Service value){ this.maintSadImportKodts4Service=value; }
+	public MaintSadImportKodts4Service getMaintSadImportKodts4Service(){return this.maintSadImportKodts4Service;}
 	
 	
 		
