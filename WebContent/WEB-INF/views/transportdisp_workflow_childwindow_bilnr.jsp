@@ -101,7 +101,7 @@
 			                       <tr class="text14">
 			                   </c:otherwise>
 			               </c:choose>
-			               <td style="width:20%; cursor:pointer;" class="textMediumBlue" id="bilnr_${record.unbiln}@heng_${record.untilh}@country_${record.unland}@trucktype_${record.untrme}@trucknr_${record.untran}@truckdriver_${record.vmnavn}@unretu_${record.unretu}@unretunavn_${record.unretunavn}@incoterms_${record.untrma}@dt_${counter.count}" >
+			               <td style="width:20%; cursor:pointer;" class="textMediumBlue" id="bilnr_${record.unbiln}@heng_${record.untilh}@country_${record.unland}@trucktype_${record.untrme}@trucknr_${record.untran}@truckdriver_${record.vmnavn}@unretu_${record.unretu}@unretunavn_${record.unretunavn}@transporttype_${record.untrma}@dt_${counter.count}" >
 			               		&nbsp;<img title="select" valign="bottom" src="resources/images/update.gif" border="0" alt="edit">
 			               		&nbsp;&nbsp;${record.unbiln}
 		               	   </td>

@@ -97,7 +97,7 @@
 		  var truckDriver = record[5].replace("truckdriver_", "");
 		  var driver1 = record[6].replace("unretu_", "");
 		  var driver1Name = record[7].replace("unretunavn_", "");
-		  var incoterms = record[8].replace("incoterms_", "");
+		  var transporttype = record[8].replace("transporttype_", "");
 		  
 		  //alert(bilnr + " " + henger + " " + countryCode);
 		  //addressing a parent field from this child window
@@ -111,8 +111,8 @@
 			  opener.jq('#tuknt2').val(truckNr);
 			  opener.jq('#tunat').val(truckDriver);
 		  //}
-		  //incoterms	  
-		  opener.jq('#tutrma').val(incoterms);	  	  
+		  //transporttype  
+		  opener.jq('#tutrma').val(transporttype);	  	  
 		  //driver1
 		  if(opener.jq('#tusja1').val()==''){ opener.jq('#tusja1').val(driver1); }
 		  if(opener.jq('#tusjn1').val()==''){ opener.jq('#tusjn1').val(driver1Name); }
@@ -578,7 +578,17 @@
 		  //
 		  opener.jq('#hefr').val(id);
 		  opener.jq('#hefr').focus();
-		  //
+		  //close child window
+		  window.close();
+	  });
+	});
+	//Transp.type
+	jq(function() {
+		jq('#transporttypesList').on('click', 'td', function(){
+		  var id = this.id;
+		  var record = id.split('@');
+		  var id = record[0].replace("code_", "");
+		  
 		  opener.jq('#tutrma').val(id);
 		  opener.jq('#tutrma').focus();
 		  
@@ -690,6 +700,11 @@
     function filterIncotermsList (){
         jq('#incotermsList').DataTable().search(
     		jq('#incotermsList_filter').val()
+        ).draw();
+    }
+    function filterTransporttypesList (){
+        jq('#transporttypesList').DataTable().search(
+    		jq('#transporttypesList_filter').val()
         ).draw();
     }
     function filterSupplierList (){
@@ -974,6 +989,24 @@
 	  //event on input field for search
 	  jq('input.incotermsList_filter').on( 'keyup click', function () {
 		  filterIncotermsList();
+	  });
+	  
+	//------------------------------
+	  //tables [transp.types codes]
+	  //----------------------------
+	  jq('#transporttypesList').dataTable( {
+		  "dom": '<"top"lf>t<"bottom"ip><"clear">',
+		  "scrollY":   "300px",
+	  	  "scrollCollapse":  true,
+		  "lengthMenu": [ 50, 75 ],
+		  "fnDrawCallback": function( oSettings ) {
+			  jq('.dataTables_filter input').addClass("inputText12LightYellow");
+			  jq('.dataTables_filter input').focus();
+	      }
+	  });
+	  //event on input field for search
+	  jq('input.transporttypesList_filter').on( 'keyup click', function () {
+		  filterTransporttypesList();
 	  });
 	
 	  

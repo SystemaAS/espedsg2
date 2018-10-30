@@ -52,7 +52,7 @@
 	  
 	  jq('#tutrmaIdLink').click(function() {
 		  	jq('#tutrmaIdLink').attr('target','_blank');
-		  	window.open('transportdisp_workflow_childwindow_incoterms.do?action=doInit', "incotermsWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+		  	window.open('transportdisp_workflow_childwindow_transporttypes.do?action=doInit', "transtypesWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
 	  });
 	  jq('#tutrmaIdLink').keypress(function(e){ //extra feature for the end user
 			if(e.which == 13) {

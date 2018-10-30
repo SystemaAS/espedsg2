@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
+import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts4Service;
 //application imports
 import no.systema.main.context.TdsAppContext;
 import no.systema.main.service.UrlCgiProxyService;
@@ -1728,6 +1729,33 @@ public class TransportDispWorkflowControllerChildWindow {
 	 * @param request
 	 * @return
 	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_transporttypes.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doFindTransportType(HttpSession session, HttpServletRequest request){
+		logger.info("Inside: doFindTransportType");
+		Map model = new HashMap();
+		
+		ModelAndView successView = new ModelAndView("transportdisp_workflow_childwindow_transporttypes");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			//transp.types
+			this.codeDropDownMgr.populateCodesHtmlDropDownsFromJsonTransporttypeJavaBased(this.urlCgiProxyService, this.maintSadImportKodts4Service, model, appUser);
+			
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+			return successView;	
+	    }
+	}
+	/**
+	 * 
+	 * @param session
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping(value="transportdisp_workflow_childwindow_opptype.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doFindOppdragsType(HttpSession session, HttpServletRequest request){
 		logger.info("Inside: doFindOppdragsType");
@@ -2747,6 +2775,12 @@ public class TransportDispWorkflowControllerChildWindow {
 	@Required
 	public void setTransportDispWorkflowSpecificOrderService (TransportDispWorkflowSpecificOrderService value){ this.transportDispWorkflowSpecificOrderService = value; }
 	public TransportDispWorkflowSpecificOrderService getTransportDispWorkflowSpecificOrderService(){ return this.transportDispWorkflowSpecificOrderService; }
+	
+	@Qualifier ("maintSadImportKodts4Service")
+	private MaintSadImportKodts4Service maintSadImportKodts4Service;
+	@Autowired
+	public void setMaintSadImportKodts4Service (MaintSadImportKodts4Service value){ this.maintSadImportKodts4Service=value; }
+	public MaintSadImportKodts4Service getMaintSadImportKodts4Service(){return this.maintSadImportKodts4Service;}
 	
 	
 }

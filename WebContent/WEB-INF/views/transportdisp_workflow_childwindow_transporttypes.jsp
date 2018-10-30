@@ -2,7 +2,7 @@
 <%@ include file="/WEB-INF/views/include.jsp" %>
 
 <!-- ======================= header =====================================-->
-<jsp:include page="/WEB-INF/views/headerTransportDisp.jsp" />
+<jsp:include page="/WEB-INF/views/headerTransportDispChildWindows.jsp" />
 <!-- =====================end header ====================================-->
 
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
@@ -14,13 +14,13 @@
 		<tr>
 			<td colspan="3" class="text14Bold">&nbsp;&nbsp;&nbsp;
 				<img title="search" valign="bottom" src="resources/images/search.gif" width="24px" height="24px" border="0" alt="search">
-				<spring:message code="systema.tror.childwindow.transporttypes.label.title"/>
+				Transportmåte
 			</td>
 		</tr>
 		<tr height="20"><td colspan="2"></td></tr>
 		<tr>
 		<td valign="top">
-		<form name="searchTransportForm" id="searchTransportForm" method="post">
+		
 			<input type="hidden" name="ctype" id="ctype" value="${model.ctype}">
 			<%-- =====================================================  --%>
           	<%-- Here we have the search [Customer] popup window --%>
@@ -48,7 +48,7 @@
 		                <c:forEach var="record" items="${model.transporttypeList}" varStatus="counter">    
 			               <tr class="text14" >
 			               
-			               <td class="text14MediumBlue" style="cursor:pointer;" id="id_${record.ks4trm}@name_${record.ks4ftx}@counter_${counter.count}">${record.ks4trm}</td>
+			               <td class="text14MediumBlue" style="cursor:pointer;" id="code_${record.ks4trm}@name_${record.ks4ftx}@counter_${counter.count}">${record.ks4trm}</td>
 			               <td class="text14" >&nbsp;${record.ks4ftx}</td>
 			            </tr> 
 			            </c:forEach>
@@ -57,8 +57,7 @@
 		            </td>
 	           		</tr>
         			</table>
-				
-		</form>	
+
 		</td>
 		</tr>
 	</table> 

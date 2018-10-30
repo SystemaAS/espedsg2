@@ -692,10 +692,10 @@
 								    		<td class="text14"><span title="tuheng"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.henger"/></span>
 								    			<input type="text" class="inputTextMediumBlueUPPERCASE" name="tuheng" id="tuheng" size="10" maxlength="10" value="${model.record.tuheng}">
 								    		</td>
-								    		<td class="text14" >
+								    		<td class="text14" align="center">
 								    			<span title="tulkh"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></span>
 								    		</td>
-								    		<td class="text14" align="left">
+								    		<td class="text14" >
 								    			<select class="inputText14" name="tulkh" id="tulkh">
 						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
@@ -758,7 +758,7 @@
 								    		</td>
 
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="18" maxlength="17" value="${model.record.tucon2}"></td>
-								    		<td class="text14" >
+								    		<td class="text14" align="center">
 								    			<spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/>
 								    		</td>
 								    		<td class="text14" align="left">
@@ -788,10 +788,22 @@
 								    		</td>
 								    		<td colspan="3"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
   								 			<td class="text14" align="left">
-  								 				<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></span>
+  								 				<img onMouseOver="showPop('tutrma_info');" onMouseOut="hidePop('tutrma_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+							 					<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></span>
+							 					<div class="text11" style="position: relative;" align="left" >
+									 				<span style="position:absolute; top:2px; width:200px;" id="tutrma_info" class="popupWithInputText text11"  >
+										           		<p><b><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></b></p> 
+									           			Tast gyldig kode for transportmåte ved grense. Overføres SAD:
+									           			<ul>
+									           				<c:forEach var="record" items="${model.transporttypeList}" >
+									           					<li><b>${record.ks4trm}</b>&nbsp;${record.ks4ftx}
+															</c:forEach>
+									           			</ul>
+													</span>	
+												</div>
   								 			</td>	
   								 			<td class="text14" align="left">
-								 				<select class="inputTextMediumBlueMandatoryField" name="tutrma" id="tutrma">
+								 				<select class="inputTextMediumBlue" name="tutrma" id="tutrma">
 									            		<option value="">-select-</option>
 									            		<c:forEach var="record" items="${model.transporttypeList}" >
 									            			<option title="${record.ks4ftx}" value="${record.ks4trm}"<c:if test="${model.record.tutrma == record.ks4trm}"> selected </c:if> >${record.ks4trm}</option>
