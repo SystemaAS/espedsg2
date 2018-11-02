@@ -86,6 +86,7 @@
         		<td>
         		<form name="searchForm" id="searchForm" action="transportdisp_workflow.do?action=doFind" method="post" >
         		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
+        		<input type="hidden" name="filand" id="filand" value='${user.filand}'>
         		<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.wssavd}'>
 				<input type="hidden" name="fkeysopd" id="fkeystur" value='${model.record.tupro}'>
 	 	        

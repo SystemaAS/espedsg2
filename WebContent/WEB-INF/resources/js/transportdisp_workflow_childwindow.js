@@ -116,6 +116,7 @@
 		  //driver1
 		  if(opener.jq('#tusja1').val()==''){ opener.jq('#tusja1').val(driver1); }
 		  if(opener.jq('#tusjn1').val()==''){ opener.jq('#tusjn1').val(driver1Name); }
+		  opener.jq('#tubiln').focus();
 		  
 		  //ORDER GUI- DUP
 		  if(jq('#ctype').val() == 'ffbnr'){
@@ -132,6 +133,7 @@
 				  opener.jq('#vftran').val(truckNr); 
 				  opener.jq('#vftran').removeClass("isa_error");
 				  //console.log("B");
+				  
 			  }
 		  }
 		  //END DUP

@@ -539,59 +539,122 @@
 	});
   }
   
+  //----------------------------------------------------
   //Bilnr (cascade all children fields, if applicable)
+  //Priskalkulation inkluderas här
+  //----------------------------------------------------
   jq(function() {
-    jq('#tubiln').blur(function() {
-    		var id = jq('#tubiln').val();
-    		if(id!=null && id!=""){
-    			jq.getJSON('searchBilnr_TransportDisp.do', {
-    				applicationUser : jq('#applicationUser').val(),
-    				id : id,
-    				ajax : 'true'
-    			}, function(data) {
-    				var len = data.length;
-    				for ( var i = 0; i < len; i++) {
-    					jq('#tubiln').val(data[i].unbiln); //always fill-in in case there is a dummy record too ask for a narrower search
-    					
-    					if(jq('#tulk').val()==''){jq('#tulk').val(data[i].unland);}
-    					if(jq('#tuheng').val()==''){jq('#tuheng').val(data[i].untilh);}
-    					if(jq('#tulkh').val()=='' && jq('#tuheng').val()!=''){
-    						jq('#tulkh').val(data[i].unland);//json returns only this country code (tulk)
-    					} 
-    					if(jq('#tubilk').val()==''){jq('#tubilk').val(data[i].untrme);}
-    					if(jq('#tuknt2').val()==''){
-    						jq('#tuknt2').val(data[i].untran);
-    						jq('#tunat').val(data[i].vmnavn);
+	    jq('#tubiln').blur(function() {
+	    	setBilnrAndPriskalk();
+	    });
+	    jq('#tusonf').change(function() {
+	    	setPriskalk();
+	    });
+	    jq('#tusont').change(function() {
+	    	setPriskalk();
+	    });
+  });
+  function setBilnrAndPriskalk(){
+	  	var id = jq('#tubiln').val();
+		if(id!=null && id!=""){
+			jq.getJSON('searchBilnr_TransportDisp.do', {
+				applicationUser : jq('#applicationUser').val(),
+				id : id,
+				ajax : 'true'
+			}, function(data) {
+				var len = data.length;
+				for ( var i = 0; i < len; i++) {
+					jq('#tubiln').val(data[i].unbiln); //always fill-in in case there is a dummy record too ask for a narrower search
+					
+					if(jq('#tulk').val()==''){jq('#tulk').val(data[i].unland);}
+					if(jq('#tuheng').val()==''){jq('#tuheng').val(data[i].untilh);}
+					if(jq('#tulkh').val()=='' && jq('#tuheng').val()!=''){
+						jq('#tulkh').val(data[i].unland);//json returns only this country code (tulk)
+					} 
+					if(jq('#tubilk').val()==''){jq('#tubilk').val(data[i].untrme);}
+					if(jq('#tuknt2').val()==''){
+						jq('#tuknt2').val(data[i].untran);
+						jq('#tunat').val(data[i].vmnavn);
+				}
+					if(jq('#tusja1').val()==''){jq('#tusja1').val(data[i].unretu);}
+					if(jq('#tusjn1').val()==''){jq('#tusjn1').val(data[i].unretunavn);}
+					//Lorry capacity matrix: SET LABELS
+					jq('#tukvkt').text(data[i].unvekt);
+					jq('#tutara').text(data[i].untara);
+					jq('#tukam3').text(data[i].unm3);
+					jq('#tukalM').text(data[i].unlm);
+					if(data[i].unvekt!='' && data[i].untara!=''){
+						var totalWeight = Number(data[i].unvekt) + Number(data[i].untara);
+						jq('#wstov1').text(totalWeight);
 					}
-    					if(jq('#tusja1').val()==''){jq('#tusja1').val(data[i].unretu);}
-    					if(jq('#tusjn1').val()==''){jq('#tusjn1').val(data[i].unretunavn);}
-    					//Lorry capacity matrix: SET LABELS
-    					jq('#tukvkt').text(data[i].unvekt);
-    					jq('#tutara').text(data[i].untara);
-    					jq('#tukam3').text(data[i].unm3);
-    					jq('#tukalM').text(data[i].unlm);
-    					if(data[i].unvekt!='' && data[i].untara!=''){
-    						var totalWeight = Number(data[i].unvekt) + Number(data[i].untara);
-    						jq('#wstov1').text(totalWeight);
-    					}
-    					//Incoterms
-    					if(jq('#tutrma').val()==''){
-    						jq('#tutrma').val(data[i].untrma);
-    					}
-    					if(jq('#tutbel').val()==''){
-    						jq('#tutbel').val(data[i].unkmp);
-    						jq('#tutval').val(data[i].unval);
-    					}
-    					//Lorry capacity matrix: SET HIDDEN FIELDS
-    					/*jq('#own_tukvkt').val(data[i].unvekt);
-    					jq('#own_tutara').val(data[i].untara);
-    					jq('#own_tukam3').val(data[i].unm3);
-    					jq('#own_tukalM').val(data[i].unlm);
-    					*/
-    				}
-    			});
-    		}
-	});
+					//transp.måte
+					if(jq('#tutrma').val()==''){
+						jq('#tutrma').val(data[i].untrma);
+					}
+					if(jq('#tutbel').val()==''){
+						//INNLAND priser
+						if( (jq('#filand').val() == jq('#tusonf').val()) && (jq('#filand').val() == jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmpi);
+							jq('#tutval').val(data[i].unvali);
+						//EXPORT priser	
+						}else if( (jq('#filand').val() == jq('#tusonf').val()) && (jq('#filand').val() != jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmpe);
+							jq('#tutval').val(data[i].unvale);
+						//IMPORT priser	
+						}else if( (jq('#filand').val() != jq('#tusonf').val()) && (jq('#filand').val() == jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmp);
+							jq('#tutval').val(data[i].unval);
+						}
+					}
+					//Lorry capacity matrix: SET HIDDEN FIELDS
+					/*jq('#own_tukvkt').val(data[i].unvekt);
+					jq('#own_tutara').val(data[i].untara);
+					jq('#own_tukam3').val(data[i].unm3);
+					jq('#own_tukalM').val(data[i].unlm);
+					*/
+				}
+			});
+		}
+	  
+  }
+  function setPriskalk(){
+	  	var id = jq('#tubiln').val();
+		if(id!=null && id!=""){
+			jq.getJSON('searchBilnr_TransportDisp.do', {
+				applicationUser : jq('#applicationUser').val(),
+				id : id,
+				ajax : 'true'
+			}, function(data) {
+				var len = data.length;
+				for ( var i = 0; i < len; i++) {
+
+					//if(jq('#tutbel').val()==''){
+						//INNLAND priser
+						if( (jq('#filand').val() == jq('#tusonf').val()) && (jq('#filand').val() == jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmpi);
+							jq('#tutval').val(data[i].unvali);
+						//EXPORT priser	
+						}else if( (jq('#filand').val() == jq('#tusonf').val()) && (jq('#filand').val() != jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmpe);
+							jq('#tutval').val(data[i].unvale);
+						//IMPORT priser	
+						}else if( (jq('#filand').val() != jq('#tusonf').val()) && (jq('#filand').val() == jq('#tusont').val()) ){
+							jq('#tutbel').val(data[i].unkmp);
+							jq('#tutval').val(data[i].unval);
+						}
+					//}
+					
+				}
+			});
+		}
+	  
+}
+  
+  
+  
+	    
+  jq(function() {
+    
     jq('#tubilnIdLink').click(function() {
     	jq('#tubilnIdLink').attr('target','_blank');
     	window.open('transportdisp_workflow_childwindow_bilnr.do?action=doInit&unbiln=' + jq('#tubiln').val(), "bilnrWin", "top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no");
