@@ -8,6 +8,13 @@
 	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }
   
+  
+  jq(function() {
+	  jq('#updCancelButton').click(function() {
+		  window.location = 'transportdisp_workflow.do?action=doFind&wssst=' + jq('#wssst').val() + '&wssavd=' + jq('#tuavd').val() ;
+	  });
+	});	  
+  
   //FORM SUBMIT
   jq(function() {
 	  jq('#submit').click(function(e) { 
@@ -1363,7 +1370,8 @@
     		filterGlobal();
     } );
     
-    
+    //focus
+    jq('#centuryYearTurccTuraar').focus();
     
     
   } );

@@ -526,7 +526,9 @@
 		                		<c:set var="requestParamWssavd" scope="request" value="${model.record.tuavd}"/>
 		                </c:otherwise>
 	                </c:choose>
-	            		<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.form.button.createnew.trip"/>" name="cnButton" onClick="location.href = 'transportdisp_workflow.do?action=doFind&wssst=${requestParamWssst}&wssavd=${requestParamWssavd}'">
+	                	<%-- Replace bt updCancelButton  (Kingsr.NO--> requirement)
+	            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.form.button.createnew.trip"/>" name="cnButton" onClick="location.href = 'transportdisp_workflow.do?action=doFind&wssst=${requestParamWssst}&wssavd=${requestParamWssavd}'">
+	            		--%>
 	            		</td>
 	           	</tr>
 	            
@@ -608,6 +610,7 @@
 					 									&nbsp;
 				 									</div>
 							 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+							 				    	<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
 							 				    </c:when>
 							 				    <c:otherwise>
 							 				    	<div id="divSmsEmailButtons" style="display:none">
@@ -617,6 +620,7 @@
 					 									&nbsp;
 				 									</div>
 						 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
+						 				    		<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
 							 				    </c:otherwise>	
 						 				    </c:choose>
 						 				    </td>

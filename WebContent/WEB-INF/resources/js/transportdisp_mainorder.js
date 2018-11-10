@@ -395,10 +395,12 @@
 	  jq('#henasf').focus(function(){ jq(jq("#henasf")).css({ "background-color": "lightgrey"}); });
 	  jq('#henakf').focus(function(){ jq(jq("#henakf")).css({ "background-color": "lightgrey"}); });
 	  //dates
+	  /*
 	  jq('#wsatdd').focus(function(){ jq(jq("#wsatdd")).css({ "background-color": "lightgrey"}); });
 	  jq('#wsatdk').focus(function(){ jq(jq("#wsatdk")).css({ "background-color": "lightgrey"}); });
 	  jq('#wsatad').focus(function(){ jq(jq("#wsatad")).css({ "background-color": "lightgrey"}); });
 	  jq('#wsatak').focus(function(){ jq(jq("#wsatak")).css({ "background-color": "lightgrey"}); });
+	  */
 	  //places
 	  jq('#OWNwppns1').focus(function(){ jq(jq("#OWNwppns1")).css({ "background-color": "lightgrey"}); });
 	  jq('#OWNwppns2').focus(function(){ jq(jq("#OWNwppns2")).css({ "background-color": "lightgrey"}); });

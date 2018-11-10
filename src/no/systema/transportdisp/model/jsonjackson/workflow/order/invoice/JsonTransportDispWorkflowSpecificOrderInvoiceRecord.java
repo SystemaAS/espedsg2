@@ -6,6 +6,7 @@ package no.systema.transportdisp.model.jsonjackson.workflow.order.invoice;
 import java.util.*;
 import java.lang.reflect.Field;
 import no.systema.main.model.jsonjackson.general.JsonAbstractGrandFatherRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderArchivedDocsRecord;
 
 /**
  * @author oscardelatorre
@@ -286,6 +287,9 @@ public class JsonTransportDispWorkflowSpecificOrderInvoiceRecord extends JsonAbs
 		}
 		return retval;
 	}
+	
+
+	
 	
 	/**
 	 * Used for java reflection in other classes

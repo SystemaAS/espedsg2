@@ -141,23 +141,20 @@
 			    			</td>		      				
 		      				<td class="text12" width="50%" align="right" valign="middle">
 		      					
-	      					<c:choose>           
-	                   			<c:when test="${user.usrLang == 'NO' || empty user.usrLang }">
-		                   			<img src="resources/images/countryFlags/Flag_NO.gif" " height="12" border="0" alt="country">
-      							</c:when>
-	      						<c:otherwise>
-	      							<c:choose>           
-	                   				<c:when test="${user.usrLang == 'EN'}">
-	                   					<img src="resources/images/countryFlags/Flag_UK.gif" " height="12" border="0" alt="country">	
-	      							</c:when>
-	      							<c:otherwise>
-	      								<%-- put new implementations of flags here --%>
-	      								Flag_UNKNOWN.png
-	      							</c:otherwise>
-	      							</c:choose>
-	      						</c:otherwise>
-	      					</c:choose>
-	      					&nbsp;
+		      					<c:if test="${ empty user.usrLang || user.usrLang == 'NO'}">
+				               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country">
+				               	</c:if>
+				               	<c:if test="${ user.usrLang == 'DA'}">
+				               		<img src="resources/images/countryFlags/Flag_DK.gif" height="12" border="0" alt="country">
+				               	</c:if>
+				               	<c:if test="${ user.usrLang == 'SV'}">
+				               		<img src="resources/images/countryFlags/Flag_SE.gif" height="12" border="0" alt="country">
+				               	</c:if>
+				               	<c:if test="${ user.usrLang == 'EN'}">
+				               		<img src="resources/images/countryFlags/Flag_UK.gif" height="12" border="0" alt="country">
+				               	</c:if>
+				               	&nbsp;
+			               	
 		      				
 		      				<font class="headerMenuGreen">
 			    				<img src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');" > 

@@ -257,14 +257,14 @@
 									<tr class="tableHeaderField" height="20" valign="left">
 										<td class="tableHeaderFieldFirst" align="center">&nbsp;<span title="...">Lin&nbsp;</span></td>
 										<td class="tableHeaderField" align="center">&nbsp;<span title="fali">Modus&nbsp;</span></td>
-									    <td class="tableHeaderField">&nbsp;<span title="fask">SK&nbsp;</span></td>   
-					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="favk">VK&nbsp;</span></td>
+									    <td class="tableHeaderField">&nbsp;<span title="fask">Selg/Kjøp&nbsp;</span></td>   
+					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="favk">Vare.kode&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="faVT/stdVt">Gebyrtekst&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="faval">Valuta&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap align="right">&nbsp;<span title="fabelv">Beløp&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap align="right">&nbsp;<span title="fabeln">Beløp NOK&nbsp;</span></td>
-					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakdm">M&nbsp;</span></td>
-					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakda">A&nbsp;</span></td>
+					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakdm">Moms&nbsp;</span></td>
+					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakda">A	&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="faopko">S&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fafakt">Fakt.nr.&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fadato">Fakt.dato&nbsp;</span></td>
@@ -476,7 +476,7 @@
 					</table>
 				</td>
 			</tr>
-			<tr height="5"><td></td></tr>
+			
 			<%-- Validation errors --%>
 			<spring:hasBindErrors name="record"> <%-- name must equal the command object name in the Controller --%>
 			<tr>
@@ -897,7 +897,51 @@
 		        </td>
 		       
 		    </tr>
-			<tr height="20"><td colspan="2" ></td></tr>
+		    <tr height="10"><td></td></tr>
+			<tr >
+				<td valign="top" align="left" >
+					<table> 		
+				 		<tr>
+				 			<td align="left">
+				 			<table class="tableBorderWithRoundCorners" >
+								<tr>
+						 			<td valign="top" class="text14">
+					 					<spring:message code="systema.transportdisp.workflow.trip.form.label.uploadedDocs"/>&nbsp;
+					 					<table>
+					 						<tr class="tableHeaderField" >
+					 						<th align="left" class="text14">Dok.type</th>
+					 						<th align="left" class="text14">Dok.navn</th>
+					 						<th align="left" class="text14">Dato/kl</th>
+					 						
+					 						</tr>
+					 					<c:forEach items="${recordOrderTransportDisp.archivedDocsRecord}" var="record" varStatus="counter">
+					 						<tr class="text14 tableRow">
+					 							<td class="tableCellFirst" style="white-space:nowrap">${record.doctyp}</td>
+				   								<td class="tableCell" style="white-space:nowrap">
+						 						<a target="_blank" href="transportdisp_workflow_renderArchivedDocs.do?doclnk=${record.doclnk}">
+						 							<c:choose>
+			    		    							<c:when test="${fn:contains(record.doclnk, '.pdf')}">
+			    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="PDF arch.">
+			    		    							</c:when>
+			    		    							<c:otherwise>
+			    		    								<img title="Archive" style="vertical-align:middle;" src="resources/images/jpg.png" width="14" height="14" border="0" alt="Other arch.">
+			    		    							</c:otherwise>
+		    		    							</c:choose>
+		    		    							${record.doctxt}
+				   								</a>
+				   								</td>
+				   								<td class="tableCell" style="white-space:nowrap">${record.docdat}&nbsp;${record.doctim}</td>
+			   								</tr>
+					 					</c:forEach>
+					 					</table>
+					 				</td>
+								</tr>
+							</table>
+							</td>
+						</tr>	
+					</table>
+				</td>
+			</tr>
 			<tr height="30"><td></td></tr>
 			
 		</table>

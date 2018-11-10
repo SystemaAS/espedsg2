@@ -567,9 +567,9 @@
 									
 									<td class="text14">&nbsp;<span title="wsatdd/wsatdk"><spring:message code="systema.transportdisp.orders.form.update.label.shippingDates.atd"/></span></td>
 									<td class="text14">
-										<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="wsatdd" id="wsatdd" size="9" maxlength="8" value="${model.record.wsatdd}">
+										<input type="text" class="inputTextMediumBlue" name="wsatdd" id="wsatdd" size="9" maxlength="8" value="${model.record.wsatdd}">
 					    			</td>
-									<td class="text14"><input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="wsatdk" id="wsatdk" size="4" maxlength="4" value="${model.record.wsatdk}"></td>
+									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatdk" id="wsatdk" size="4" maxlength="4" value="${model.record.wsatdk}"></td>
 								</tr>
 							</table>
 							</td>
@@ -585,9 +585,9 @@
 									
 									<td class="text14">&nbsp;<span title="wsatad/wsatak"><spring:message code="systema.transportdisp.orders.form.update.label.arrivalDates.ata"/></span></td>
 									<td class="text14">
-										<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="wsatad" id="wsatad" size="9" maxlength="8" value="${model.record.wsatad}">
+										<input type="text" class="inputTextMediumBlue" name="wsatad" id="wsatad" size="9" maxlength="8" value="${model.record.wsatad}">
 									</td>
-									<td class="text14"><input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="wsatak" id="wsatak" size="4" maxlength="4" value="${model.record.wsatak}"></td>
+									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatak" id="wsatak" size="4" maxlength="4" value="${model.record.wsatak}"></td>
 								</tr>
 							</table>
 							</td>		

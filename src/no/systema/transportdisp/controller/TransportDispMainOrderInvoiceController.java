@@ -53,6 +53,8 @@ import no.systema.transportdisp.service.TransportDispChildWindowService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderService;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
 import no.systema.transportdisp.mapper.url.request.UrlRequestParameterMapper;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderArchivedDocsContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderArchivedDocsRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.JsonTransportDispWorkflowSpecificOrderInvoiceContainer;
@@ -166,6 +168,7 @@ public class TransportDispMainOrderInvoiceController {
 			//populate drop downs
 			this.setCodeDropDownMgr(appUser, model);
 			this.setDropDownsFromFiles(model);
+			this.populateArchiveDocs(appUser, recordToValidate);
 			
     		//--------------------------------------
 			//Final successView with domain objects
@@ -593,6 +596,46 @@ public class TransportDispMainOrderInvoiceController {
 	 */
 	private void setDropDownsFromFiles(Map<String, Object> model){
 		model.put(TransportDispConstants.RESOURCE_MODEL_KEY_CURRENCY_CODE_LIST, this.transportDispDropDownListPopulationService.getCurrencyList());
+	}
+	
+	/**
+	 * 
+	 * @param appUser
+	 * @param orderRecord
+	 */
+	private void populateArchiveDocs(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord orderRecord){
+		//===========
+		 //FETCH LIST
+		 //===========
+		 logger.info("Inside: populateArchiveDocs");
+		 //prepare the access CGI with RPG back-end
+		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_UPLOADED_DOCS_URL;
+		 String urlRequestParamsKeys = "user=" + appUser.getUser() + "&avd=" + orderRecord.getHeavd() + "&opd=" + orderRecord.getHeopd();
+		 logger.info("URL: " + BASE_URL);
+		 logger.info("PARAMS: " + urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		 logger.info(jsonPayload);
+		 Collection<JsonTransportDispWorkflowSpecificOrderArchivedDocsRecord> archivedDocList = new ArrayList<JsonTransportDispWorkflowSpecificOrderArchivedDocsRecord>();
+		    
+		 if(jsonPayload!=null){
+		 	try{
+		 		JsonTransportDispWorkflowSpecificOrderArchivedDocsContainer container = this.transportDispWorkflowSpecificOrderService.getOrderArchivedDocsContainer(jsonPayload);
+				if(container!=null){
+					archivedDocList = container.getGetdoc();
+					for(JsonTransportDispWorkflowSpecificOrderArchivedDocsRecord record : container.getGetdoc()){
+						//DEBUG -->logger.info("####Link:" + record.getDoclnk());
+					}
+				}
+				
+		 	}catch(Exception e){
+		 		e.printStackTrace();
+		 	}
+		 }
+		//populate the list on parent record
+		 orderRecord.setArchivedDocsRecord(archivedDocList);
+		 
 	}
 	
 	//SERVICES
