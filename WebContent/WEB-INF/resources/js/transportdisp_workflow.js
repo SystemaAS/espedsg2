@@ -1037,6 +1037,8 @@
 			  			jq("#tuavd").attr('readonly', true);jq("#tuavd").attr('class', 'inputTextReadOnly');
 			  			jq('#tupro').val(""); jq('#tupro').val(data[i].tupro);
 			  			jq('#tusg').val(""); jq('#tusg').val(data[i].tusg);
+			  			jq('#turund').text(""); jq('#turund').text(data[i].turund);
+			  			jq('#turundJS').text(""); jq('#turundJS').text(data[i].turund);
 			  			
 			  			//Trip nr is required for some GUI aspects
 			  			if(data[i].tupro!=""){

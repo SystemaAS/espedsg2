@@ -222,7 +222,9 @@ public final class TransportDispUrlDataStore {
 	static public String TRANSPORT_DISP_BASE_WORKFLOW_MOVE_ORDER_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJEOPD6LM.pgm";
 	//http://gw.systema.no/sycgip/TJEOPD6LM.pgm?user=JOVO&avd=75&opd=70&newavd=1
 	
-	static public String TRANSPORT_DISP_BASE_WORKFLOW_COPY_TUR_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJE_TODO_6LC.pgm";
+	
+	static public String TRANSPORT_DISP_BASE_WORKFLOW_COPY_TUR_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR02.pgm";
+	//http://gw.systema.no/sycgip/TJETUR02.pgm?user=JOVO&TUAVD=75&TUPRO=75000019&kopiRund=J
 	
 	//NOTE: nästan alla fält i HEADF + [WSKCONT WSKTLF WSKMAIL WSSCONT WSSTLF WSSMAIL]
 	static public String TRANSPORT_DISP_BASE_WORKFLOW_VALIDATE_MAIN_ORDER_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJEOPD6LV.pgm";

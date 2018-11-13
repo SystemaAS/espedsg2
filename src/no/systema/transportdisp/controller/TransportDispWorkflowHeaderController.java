@@ -161,6 +161,45 @@ public class TransportDispWorkflowHeaderController {
 		 
 	}
 	
+	/**
+	 * This method only prepares for an upcoming CREATE NEW (it is just a rendering of standard defaults to prepare some fields)
+	 * @param recordToValidate
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value = "transportdisp_workflow_getTripAndPrepareRundTur.do", method = RequestMethod.GET)
+	public ModelAndView doTranspDispGetTripAndPrepareRundTur(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificTripRecord recordToValidate, HttpSession session, HttpServletRequest request){
+		 logger.info("Inside: doTranspDispGetTrip");
+		 ModelAndView successView = new ModelAndView("transportdisp_workflow");
+		 SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		 SearchFilterTransportDispWorkflowTripList tripListSearchFilter = new SearchFilterTransportDispWorkflowTripList();
+		 
+		 String applicationUser = appUser.getUser();
+		 String avdNr = request.getParameter("tuavd");
+		 String tripNr = request.getParameter("tupro");
+		 tripListSearchFilter.setWssavd(request.getParameter("originalAvd"));
+		 
+		 Map model = new HashMap();
+		 if(appUser==null){
+				return loginView;
+		 }else{
+		 
+		 	 this.setDomainObjectsInView(model, recordToValidate );
+		 
+			 //drop downs from files
+			 this.setDropDownsFromFiles(model);
+			 this.setCodeDropDownMgr(appUser, model);
+			 //Now get the parent list of workflow trips
+			 Collection<JsonTransportDispWorkflowListRecord> outputList = this.fetchWorkflowList(applicationUser, tripListSearchFilter.getWssavd(), session, model);
+			 successView.addObject(TransportDispConstants.DOMAIN_LIST,outputList);
+			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);	
+			 successView.addObject("searchFilter", tripListSearchFilter);
+		 } 
+		return successView;
+		 
+	}
+	
 	
 	/**
 	 * Creates or Updates a new Trip (Tur)
@@ -180,6 +219,8 @@ public class TransportDispWorkflowHeaderController {
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
 		logger.info("Method: " + method);
 		//required params for a specific trip
+		String originalAvdOnCopyRundtur = request.getParameter("originalAvd");
+		logger.info("Avd original:" + originalAvdOnCopyRundtur);
 		logger.info("Avd:" + recordToValidate.getTuavd());
 		logger.info("Trip No.:" + recordToValidate.getTupro());
 		String[] messageNote = this.getChunksOfMessageNote(recordToValidate);
@@ -342,8 +383,12 @@ public class TransportDispWorkflowHeaderController {
 				//drop downs from files
 				this.setDropDownsFromFiles(model);
 				this.setCodeDropDownMgr(appUser, model);
+				
 				//Now get the parent list of workflow trips
-				Collection<JsonTransportDispWorkflowListRecord> outputList = this.fetchWorkflowList(appUser.getUser(), recordToValidate.getTuavd(), session, model);
+				//Was defualt until copyRoundTrip was implemented--->Collection<JsonTransportDispWorkflowListRecord> outputList = this.fetchWorkflowList(appUser.getUser(), record.getTuavd(), session, model);
+				Collection<JsonTransportDispWorkflowListRecord> outputList = this.fetchWorkflowList(appUser.getUser(), originalAvdOnCopyRundtur, session, model);
+				
+				
 				successView.addObject(TransportDispConstants.DOMAIN_LIST,outputList);
 				//put domain object in view
 	    		successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);

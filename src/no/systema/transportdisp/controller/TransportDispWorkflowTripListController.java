@@ -217,7 +217,6 @@ public class TransportDispWorkflowTripListController {
 			successView = new ModelAndView("redirect:transportdisp_workflow.do?action=doFind&user=" + appUser.getUser() + sb.toString());
 			
 			//appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
-			//TODO session.setAttribute(TvinnSadConstants.ACTIVE_URL_RPG_TVINN_SAD, TvinnSadConstants.ACTIVE_URL_RPG_INITVALUE);
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
 				
             //get BASE URL
@@ -338,13 +337,12 @@ public class TransportDispWorkflowTripListController {
 	 * @return
 	 */
 	@RequestMapping(value="transportdisp_workflow_copyRoundTrip.do",  method={RequestMethod.POST} )
-	public ModelAndView doCopyOrder(HttpSession session, HttpServletRequest request){
+	public ModelAndView doCopyRoundTrip(HttpSession session, HttpServletRequest request){
 		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		
 		Map model = new HashMap();
 		String originalAvd = "";
-		String originalOpd = ""; 
 		String originalTur = "";
 		String sign = "";
 		String newAvd = "";
@@ -368,8 +366,8 @@ public class TransportDispWorkflowTripListController {
     			}
 	        }
 	    }
-		logger.info("#orig. avd:" + originalAvd);
-		logger.info("#orig. opd:" + originalOpd);
+		logger.info("#orig.avd:" + originalAvd);
+		logger.info("#orig.tur:" + originalTur);
 		logger.info("#new avd:" + newAvd);
 		logger.info("#sign:" + sign);
 		
@@ -385,38 +383,77 @@ public class TransportDispWorkflowTripListController {
 			//start process	
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
 			final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_COPY_TUR_URL;
+			
     		//add URL-parameters
     		StringBuffer urlRequestParams = new StringBuffer();
     		urlRequestParams.append("user=" + appUser.getUser());
-    		urlRequestParams.append("&avd=" + originalAvd);
-    		urlRequestParams.append("&opd=" + originalOpd);
+    		urlRequestParams.append("&tuavd=" + originalAvd);
+    		urlRequestParams.append("&tupro=" + originalTur);
     		urlRequestParams.append("&newavd=" + newAvd);
+    		urlRequestParams.append("&kopiRund=J");
+    		
     		//urlRequestParams.append("&newhesg=" + sign);
 
     		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 	    	logger.info("URL: " + BASE_URL);
 	    	logger.info("URL PARAMS: " + urlRequestParams);
-	    	String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-	    	//Debug --> 
-	    	logger.info("Checking errMsg in rpgReturnPayload" + rpgReturnPayload);
-	    	//we must evaluate a return RPG code in order to know if the Update was OK or not
-	    	rpgReturnResponseHandler.evaluateRpgResponseOnCopyOrder(rpgReturnPayload);
-	    	if(rpgReturnResponseHandler.getErrorMessage()!=null && !"".equals(rpgReturnResponseHandler.getErrorMessage())){
-	    		rpgReturnResponseHandler.setErrorMessage("[ERROR] FATAL on COPY: " + rpgReturnResponseHandler.getErrorMessage());
-	    		this.setFatalErrorCopyTrip(model, rpgReturnResponseHandler, originalAvd, originalTur, newAvd);	
-	    		errorView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
-	    		return errorView;
-	    	}
-	    	//now build the success view to redirect to (with no errors)
-	    	StringBuffer sbSuccessViewParams = new StringBuffer();
-	    	sbSuccessViewParams.append ("action=doFind");
-			sbSuccessViewParams.append ("&user=" + appUser.getUser());
-			sbSuccessViewParams.append ("&avd=" + rpgReturnResponseHandler.getNewavd());
-			successView = new ModelAndView("transportdisp_workflow.do?" + sbSuccessViewParams.toString());
-
-	    	return successView;
+	    	
+	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+	    	JsonTransportDispWorkflowSpecificTripContainer container = this.transportDispWorkflowSpecificTripService.getContainer(jsonPayload);
+			if(container!=null){
+				for(JsonTransportDispWorkflowSpecificTripRecord  record : container.getGetonetrip()){
+					//now build the success view to redirect to (with no errors)
+					String params = this.populateViewParams(appUser.getUser(), newAvd, originalAvd,  record);
+					successView = new ModelAndView("redirect:transportdisp_workflow_getTripAndPrepareRundTur.do?" + params);
+				}
+			}
+				return successView;
 		}
 	}
+	/**
+	 * only way to send params (through GET) over redirect...
+	 * @param applicationUser
+	 * @param newAvd
+	 * @param filterAvd
+	 * @param record
+	 * @return
+	 */
+	private String populateViewParams(String applicationUser, String newAvd, String originalAvd,  JsonTransportDispWorkflowSpecificTripRecord record){
+		StringBuffer sbSuccessViewParams = new StringBuffer();
+		sbSuccessViewParams.append ("action=doFind");
+		sbSuccessViewParams.append ("&user=" + applicationUser);
+		sbSuccessViewParams.append ("&tuavd=" + newAvd);
+		sbSuccessViewParams.append ("&originalAvd=" + originalAvd);
+		sbSuccessViewParams.append ("&turund=" + record.getTurund());
+		//default values here
+		sbSuccessViewParams.append ("&tunat=" + record.getTunat());
+		sbSuccessViewParams.append ("&tuad1t=" + record.getTuad1t());
+		sbSuccessViewParams.append ("&tuad2t=" + record.getTuad2t());
+		sbSuccessViewParams.append ("&tuad3t=" + record.getTuad3t());
+		sbSuccessViewParams.append ("&tubiln=" + record.getTubiln());
+		sbSuccessViewParams.append ("&tulk=" + record.getTulk());
+		sbSuccessViewParams.append ("&tuheng=" + record.getTuheng() );
+		
+		sbSuccessViewParams.append ("&tulkh=" + record.getTulkh());
+		sbSuccessViewParams.append ("&tucon1=" + record.getTucon1());
+		sbSuccessViewParams.append ("&tulkc1=" + record.getTulkc1());
+		sbSuccessViewParams.append ("&tucon2=" + record.getTucon2());
+		sbSuccessViewParams.append ("&tulkc2=" + record.getTulkc2());
+		//
+		sbSuccessViewParams.append ("&tubilk=" + record.getTubilk());
+		sbSuccessViewParams.append ("&tuknt2=" + record.getTuknt2());
+		sbSuccessViewParams.append ("&tusja1=" + record.getTusja1());
+		sbSuccessViewParams.append ("&tusjn1=" + record.getTusjn1());
+		sbSuccessViewParams.append ("&tusja2=" + record.getTusja2());
+		sbSuccessViewParams.append ("&tusjn2=" + record.getTusjn2());
+		sbSuccessViewParams.append ("&tures=" + record.getTures());
+		
+		
+		
+		return sbSuccessViewParams.toString();
+	}
+	
+	
 	/**
 	 * 
 	 * @param model

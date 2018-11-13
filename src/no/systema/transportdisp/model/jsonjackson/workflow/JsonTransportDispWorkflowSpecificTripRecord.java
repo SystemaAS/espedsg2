@@ -200,6 +200,7 @@ public class JsonTransportDispWorkflowSpecificTripRecord extends JsonAbstractGra
 	public void setTuheng(String value) {  this.tuheng = value; }
 	public String getTuheng() {return this.tuheng;}
 	
+	
 	private String tulkh = null;
 	public void setTulkh(String value) {  this.tulkh = value; }
 	public String getTulkh() {return this.tulkh;}

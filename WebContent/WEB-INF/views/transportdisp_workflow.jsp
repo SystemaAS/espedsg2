@@ -519,6 +519,7 @@
 		                </c:otherwise>
 	                </c:choose>
 	                <c:choose>
+	                
 						<c:when test="${not empty searchFilter.wssavd}">	
 			                <c:set var="requestParamWssavd" scope="request" value="${searchFilter.wssavd}"/>
 		                </c:when>
@@ -537,7 +538,7 @@
 	            		<td>
 		        			<table width="98%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
 					 		<tr height="15">
-					 			<td class="text12White">
+					 			<td class="text14White">
 									&nbsp;<spring:message code="systema.transportdisp.workflow.trip.form.label.header.workWithTrip"/>&nbsp;<img style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="edit">
 				 				</td>
 			 				</tr>
@@ -550,27 +551,28 @@
 	            			<form action="transportdisp_workflow_edit.do?action=doUpdate" name="transportdispForm" id="transportdispForm" method="post">
 	            			<%-- <input type="hidden" name="tuavd" id="tuavd" value='${model.record.tuavd}'> --%>
 	            			<input type="hidden" name="tupro" id="tupro" value='${model.record.tupro}'>
+	            			<input type="hidden" name="turund" id="turund" value='${model.record.turund}'>
 	            			
+	            			<input type="hidden" name="originalAvd" id="originalAvd" value='${searchFilter.wssavd}'>
 	            			<table width="98%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
 					 		<tr height="10"><td ></td></tr>
 					 		<tr>
 								<td colspan="2" valign="top">
-									<table style="width:48%" cellspacing="1" cellpadding="0">
+									<table style="width:49%" cellspacing="1" cellpadding="0">
 							 			<tr>
-								 			<td class="text14" nowrap>&nbsp;&nbsp;
-									 			&nbsp;&nbsp;
+								 			<td class="text14" nowrap>&nbsp;
 									 			<font class="text14"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.dept"/></b>&nbsp;</font>
 									 			<c:choose>
 							 				    <c:when test="${not empty model.record.tupro}">
-													<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tuavd" id="tuavd" size="5" value='${model.record.tuavd}'>
+													<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tuavd" id="tuavd" size="4" value='${model.record.tuavd}'>
 									 			</c:when>
 									 			<c:otherwise>
 									 				<c:choose>
 							 				    	<c:when test="${not empty model.record.tuavd}">
-										 				<input type="text" class="inputTextMediumBlue" name="tuavd" id="tuavd" size="5" maxlength="4" value='${model.record.tuavd}'>
+										 				<input type="text" class="inputTextMediumBlue" name="tuavd" id="tuavd" size="4" maxlength="4" value='${model.record.tuavd}'>
 									 				</c:when>
 									 				<c:otherwise>
-										 				<input type="text" class="inputTextMediumBlue" name="tuavd" id="tuavd" size="5" maxlength="4" value='${searchFilter.wssavd}'>
+										 				<input type="text" class="inputTextMediumBlue" name="tuavd" id="tuavd" size="4" maxlength="4" value='${searchFilter.wssavd}'>
 										 				<div style="display:inline-block;" class="clazzAvdCreateNew" >
 											 				<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit&status=a','avdWin','top=150px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 				 												<img id="imgAvdSearchOnCreateNew" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
@@ -581,7 +583,7 @@
 		 											
 									 			</c:otherwise>
 									 			</c:choose>
-									 			&nbsp;&nbsp;&nbsp;<span title="tusg"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></b></span>
+									 				<span title="tusg"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/></b></span>
 									 			<c:choose>
 										 			<c:when test="${not empty model.record.tupro}">
 											 			<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tusg" id="tusg" size="5" value='${model.record.tusg}'>
@@ -590,7 +592,7 @@
 									 					<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tusg" id="tusg" size="5" value='${user.signatur}'>
 									 				</c:otherwise>
 								 				</c:choose>
-								 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span title="tuproJS"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>:</b></span>
+								 				<span title="tuproJS"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>:</b></span>
 									 			<div style="display:inline-block;" class="clazzOrderTripTab" <c:if test="${empty model.record.tupro}">style="visibility:collapse;"</c:if> >
 													<a class="ordersTripOpen" style="display:block" href="transportdisp_mainorderlist.do?action=doFind&wssavd=${model.record.tuavd}&wstur=${model.record.tupro}">
 										 				<label id="tuproJS" class="text14MediumBlue" style="cursor:pointer;">${model.record.tupro}</label>
@@ -598,31 +600,31 @@
 									 			</div>
 									 			
 								 			</td>
-					 						<td align="right">
-					 						
-					 						
-						 				    <c:choose>
-							 				    <c:when test="${ not empty model.record.tupro}">
-							 				    	<div id="divSmsEmailButtons" style="display:inline">
-								 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-								 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
-					 									&nbsp;
-				 									</div>
-							 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
-							 				    	<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
-							 				    </c:when>
-							 				    <c:otherwise>
-							 				    	<div id="divSmsEmailButtons" style="display:none">
-								 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-								 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-					 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
-					 									&nbsp;
-				 									</div>
-						 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
-						 				    		<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
-							 				    </c:otherwise>	
-						 				    </c:choose>
+								 			<td class="text14" ><span title="turund"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.copy"/></b></span>
+								 				<label id="turundJS" class="text14MediumBlue" >${model.record.turund}</label>
+								 			</td>
+					 						<td nowrap align="right">
+						 						<c:choose>
+								 				    <c:when test="${ not empty model.record.tupro}">
+								 				    	<div id="divSmsEmailButtons" style="display:inline">
+									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+					 									</div>
+								 				    	<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+								 				    	<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
+								 				    </c:when>
+								 				    <c:otherwise>
+								 				    	<div id="divSmsEmailButtons" style="display:none">
+									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+						 									
+					 									</div>
+							 				    		<input class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.createnew"/>'/>
+							 				    		<input class="inputFormSubmitGray" type="button" name="updCancelButton" id="updCancelButton" value='<spring:message code="systema.transportdisp.cancel"/>'>
+								 				    </c:otherwise>	
+							 				    </c:choose>
 						 				    </td>
 								    		</tr>
 							 		</table>
