@@ -270,7 +270,7 @@
    		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th align="left" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
 		                    
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
@@ -281,7 +281,6 @@
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
 		                    
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.copy"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
 	                    	<c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
 		                    	<th class=text14>
@@ -367,7 +366,33 @@
 	            		   	</c:if>
 	            		   </td>
 	            		   <td class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
-	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.turund}</td>
+	            		   <td align="left" class="text14 tableCellGray">&nbsp;
+	            		   
+		            		   	<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
+									<img style="vertical-align:middle;" title="Copy-Round trip" src="resources/images/copy.png" width="12px" height="12px" border="0" alt="copy">
+									${record.turund}
+								</a>
+								<div style="display: none;" class="clazz_dialog" id="dialog${counter.count}" title="Dialog">
+									<form  action="transportdisp_workflow_copyRoundTrip.do" name="copyForm${counter.count}" id="copyForm${counter.count}" method="post">
+									 	<input type="hidden" name="action${counter.count}" id="action${counter.count}" value='doUpdate'/>
+										<input type="hidden" name="originalAvd${counter.count}" id="originalAvd${counter.count}" value='${record.tuavd}'/>
+					 					<input type="hidden" name="originalTrip${counter.count}" id="originalTrip${counter.count}" value='${record.tupro}'/>
+						 				<input type="hidden" name="sign${counter.count}" id="sign${counter.count}" value='${user.signatur}'/>
+						 				
+										<p class="text14" >Du kan velge en ny avdeling</p>
+										<p class="text14" >En ny tur vil bli etablert automatisk.</p>
+										
+										<table>
+											<tr>
+												<td class="text14" align="left" >Ny Avd.</td>
+												<td class="text14MediumBlue">
+													<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue newAvd" name="newAvd${counter.count}" id="newAvd${counter.count}" size="5" maxlength="4" value="${record.tuavd}">
+												</td>
+	                						</tr>
+										</table>
+									</form>
+								</div>
+		            	   </td>
 	            		   
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>
@@ -377,31 +402,7 @@
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
 	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
-	            		   <td align="center" class="textMediumBlue">
-		               		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
-								<img title="Copy / Round trip" src="resources/images/copy.png" border="0" alt="copy">
-							</a>
-							<div style="display: none;" class="clazz_dialog" id="dialog${counter.count}" title="Dialog">
-								<form  action="transportdisp_workflow_copyRoundTrip.do" name="copyForm${counter.count}" id="copyForm${counter.count}" method="post">
-								 	<input type="hidden" name="action${counter.count}" id="action${counter.count}" value='doUpdate'/>
-									<input type="hidden" name="originalAvd${counter.count}" id="originalAvd${counter.count}" value='${record.tuavd}'/>
-				 					<input type="hidden" name="originalTrip${counter.count}" id="originalTrip${counter.count}" value='${record.tupro}'/>
-					 				<input type="hidden" name="sign${counter.count}" id="sign${counter.count}" value='${user.signatur}'/>
-					 				
-									<p class="text14" >Du kan velge en ny avdeling</p>
-									<p class="text14" >En ny tur vil bli etablert automatisk.</p>
-									
-									<table>
-										<tr>
-											<td class="text14" align="left" >Ny Avd.</td>
-											<td class="text14MediumBlue">
-												<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue newAvd" name="newAvd${counter.count}" id="newAvd${counter.count}" size="5" maxlength="4" value="${record.tuavd}">
-											</td>
-                						</tr>
-									</table>
-								</form>
-							</div>
-						   </td>
+	            		   
 	            		   <td align="center" class="text14 tableCellGray">
 	            		   		<c:choose>	
 		            		   		<c:when test="${record.turclose=='close'}">
@@ -600,7 +601,7 @@
 									 			</div>
 									 			
 								 			</td>
-								 			<td class="text14" ><span title="turund"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.copy"/></b></span>
+								 			<td class="text14" ><span title="turundJS"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>:</b></span>
 								 				<label id="turundJS" class="text14MediumBlue" >${model.record.turund}</label>
 								 			</td>
 					 						<td nowrap align="right">

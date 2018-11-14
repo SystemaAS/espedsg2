@@ -184,7 +184,7 @@ public class TransportDispWorkflowHeaderController {
 		 if(appUser==null){
 				return loginView;
 		 }else{
-		 
+			 
 		 	 this.setDomainObjectsInView(model, recordToValidate );
 		 
 			 //drop downs from files
@@ -472,6 +472,8 @@ public class TransportDispWorkflowHeaderController {
 		if(record.getTuavd()!=null && !"".equals(record.getTuavd())){ urlRequestParams.append("&tuavd=" + record.getTuavd()); }
 		if(record.getTusg()!=null && !"".equals(record.getTusg())){ urlRequestParams.append("&tusg=" + record.getTusg()); }
 		urlRequestParams.append("&mode=" + transactionMode); 
+		urlRequestParams.append("&turund=" + record.getTurund()); 
+		
 		
 		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 	    	logger.info("URL: " + BASE_URL);

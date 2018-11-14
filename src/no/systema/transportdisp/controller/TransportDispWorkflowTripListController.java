@@ -33,8 +33,10 @@ import no.systema.main.validator.LoginValidator;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.DateTimeManager;
 import no.systema.main.util.JsonDebugger;
+import no.systema.main.util.StringManager;
 import no.systema.main.util.io.PayloadContentFlusher;
 import no.systema.main.util.io.FileContentRenderer;
+
 
 import no.systema.main.model.SystemaWebUser;
 //TRANSPDISP
@@ -72,7 +74,7 @@ public class TransportDispWorkflowTripListController {
 	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(1000);
 	private DateTimeManager dateTimeManager = new DateTimeManager();
-	
+	private StringManager strMgr = new StringManager();
 	
 	private ModelAndView loginView = new ModelAndView("login");
 	private ApplicationContext context;
@@ -447,7 +449,13 @@ public class TransportDispWorkflowTripListController {
 		sbSuccessViewParams.append ("&tusja2=" + record.getTusja2());
 		sbSuccessViewParams.append ("&tusjn2=" + record.getTusjn2());
 		sbSuccessViewParams.append ("&tures=" + record.getTures());
-		
+		//
+		sbSuccessViewParams.append ("&centuryYearTurccTuraar=" + this.dateTimeManager.getCurrentYear());
+		sbSuccessViewParams.append ("&turmnd=" + this.dateTimeManager.getCurrentMonth());
+		//
+		if(strMgr.isNotNull(record.getTudt())){
+			sbSuccessViewParams.append ("&turdt=" + this.dateTimeManager.getCurrentDate_ISO());
+		}
 		
 		
 		return sbSuccessViewParams.toString();
