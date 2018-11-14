@@ -270,7 +270,8 @@
    		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
-		                    <th align="left" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th align="right" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th align="center" class="text14">&nbsp;</th>
 		                    
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
@@ -328,9 +329,9 @@
 			               </td>
 			               	
 			               
-			               <td class="text14 tableCellGray">&nbsp;${record.tusg}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
+			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tusg}</td>
+			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
+			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
 			               <td align="center" class="text14 tableCellGray" >
 			               	<c:if test="${not empty record.pdaStat}">
 				               <c:choose>
@@ -350,27 +351,26 @@
 					           </c:choose> 
 				           </c:if>   
 			               </td>
-	            		   <td class="text14 tableCellGray">&nbsp;${record.tustef}</td>
-	            		   <td class="text14 tableCellGray">
+	            		   <td width="3%" class="text14 tableCellGray">&nbsp;${record.tustef}</td>
+	            		   <td width="3%" class="text14 tableCellGray">
 	            		   	<c:if test="${not empty record.tudt && fn:startsWith(record.tudt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudt}" var="dateEtdDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtdDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text14 tableCellGray">&nbsp;${record.tutm}</td>
-	            		   <td class="text14 tableCellGray">&nbsp;${record.tustet}</td>
-	            		   <td class="text14 tableCellGray">
+	            		   <td width="3%" class="text14 tableCellGray">&nbsp;${record.tutm}</td>
+	            		   <td width="3%" class="text14 tableCellGray">&nbsp;${record.tustet}</td>
+	            		   <td width="3%" class="text14 tableCellGray">
             		   		<c:if test="${not empty record.tudtt && fn:startsWith(record.tudtt, '20')}">
 	            		   		<fmt:parseDate value="${record.tudtt}" var="dateEtaDate" pattern="yyyyMMdd" />
 	            		   		&nbsp;<fmt:formatDate pattern="yyyyMMdd" value="${dateEtaDate}"/>
 	            		   	</c:if>
 	            		   </td>
-	            		   <td class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
-	            		   <td align="left" class="text14 tableCellGray">&nbsp;
-	            		   
-		            		   	<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
+	            		   <td width="3%" class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
+	            		   <td width="3%" align="right" class="text14 tableCellGray">${record.turund}</td>
+		            	    <td width="3%" align="center" class="text14">
+		            	   		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
 									<img style="vertical-align:middle;" title="Copy-Round trip" src="resources/images/copy.png" width="12px" height="12px" border="0" alt="copy">
-									${record.turund}
 								</a>
 								<div style="display: none;" class="clazz_dialog" id="dialog${counter.count}" title="Dialog">
 									<form  action="transportdisp_workflow_copyRoundTrip.do" name="copyForm${counter.count}" id="copyForm${counter.count}" method="post">
@@ -392,7 +392,6 @@
 										</table>
 									</form>
 								</div>
-		            	   </td>
 	            		   
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
 	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>
