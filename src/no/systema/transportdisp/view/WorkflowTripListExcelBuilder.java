@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.servlet.view.document.AbstractExcelView;
+
+import org.springframework.web.servlet.view.document.AbstractXlsView;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.*;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -25,7 +30,7 @@ import no.systema.main.context.TdsAppContext;
  * @date Maj 4, 2015
  * 
  */
-public class WorkflowTripListExcelBuilder extends AbstractExcelView {
+public class WorkflowTripListExcelBuilder extends AbstractXlsView {
 	private ApplicationContext context;
 	
 	public WorkflowTripListExcelBuilder(){
@@ -33,12 +38,12 @@ public class WorkflowTripListExcelBuilder extends AbstractExcelView {
 	}
 	
 	protected void buildExcelDocument(Map<String, Object> model,
-        HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // get data model which is passed by the Spring Container via our own Controller implementation
         List<JsonTransportDispWorkflowListRecord> list = (List<JsonTransportDispWorkflowListRecord>) model.get(TransportDispConstants.DOMAIN_LIST);
          
         // create a new Excel sheet
-        HSSFSheet sheet = workbook.createSheet("SHIPPING TRIP list");
+        Sheet sheet = workbook.createSheet("SHIPPING TRIP list");
         sheet.setDefaultColumnWidth(30);
          
         // create style for header cells
@@ -54,7 +59,7 @@ public class WorkflowTripListExcelBuilder extends AbstractExcelView {
         //Note: the locale must be fetched from the response since we are working with the Spring Interceptor.
         Locale locale = response.getLocale();
         // create header row
-        HSSFRow header = sheet.createRow(0);
+        Row header = sheet.createRow(0);
 
         header.createCell(0).setCellValue(this.context.getMessage("systema.transportdisp.workflow.trip.list.search.label.department", new Object[0], locale));
         header.getCell(0).setCellStyle(style);
@@ -113,7 +118,7 @@ public class WorkflowTripListExcelBuilder extends AbstractExcelView {
         // create data rows
         int rowCount = 1;
         for (JsonTransportDispWorkflowListRecord record : list) {
-            HSSFRow aRow = sheet.createRow(rowCount++);
+            Row aRow = sheet.createRow(rowCount++);
             aRow.createCell(0).setCellValue(record.getTuavd());
             aRow.createCell(1).setCellValue(record.getTupro());
             aRow.createCell(2).setCellValue(record.getTusg());

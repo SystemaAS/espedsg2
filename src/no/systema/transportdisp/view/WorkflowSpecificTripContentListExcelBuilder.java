@@ -9,14 +9,16 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.servlet.view.document.AbstractExcelView;
+import org.springframework.web.servlet.view.document.AbstractXlsView;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.*;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 
-import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowListRecord;
-import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowListRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.shippinglists.JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord;
 
 import no.systema.transportdisp.util.TransportDispConstants;
@@ -27,7 +29,7 @@ import no.systema.main.context.TdsAppContext;
  * @date Mar 14, 2016
  * 
  */
-public class WorkflowSpecificTripContentListExcelBuilder extends AbstractExcelView {
+public class WorkflowSpecificTripContentListExcelBuilder extends AbstractXlsView {
 	private ApplicationContext context;
 	
 	public WorkflowSpecificTripContentListExcelBuilder(){
@@ -35,12 +37,12 @@ public class WorkflowSpecificTripContentListExcelBuilder extends AbstractExcelVi
 	}
 	
 	protected void buildExcelDocument(Map<String, Object> model,
-        HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // get data model which is passed by the Spring Container via our own Controller implementation
         List<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> list = (List<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord>) model.get(TransportDispConstants.DOMAIN_LIST);
          
         // create a new Excel sheet
-        HSSFSheet sheet = workbook.createSheet("SHIPPING TRIP Content - list");
+        Sheet sheet = workbook.createSheet("SHIPPING TRIP Content - list");
         sheet.setDefaultColumnWidth(30);
          
         // create style for header cells
@@ -56,7 +58,7 @@ public class WorkflowSpecificTripContentListExcelBuilder extends AbstractExcelVi
         //Note: the locale must be fetched from the response since we are working with the Spring Interceptor.
         Locale locale = response.getLocale();
         // create header row
-        HSSFRow header = sheet.createRow(0);
+        Row header = sheet.createRow(0);
 
         header.createCell(0).setCellValue(this.context.getMessage("systema.transportdisp.orders.current.list.search.label.ourRef", new Object[0], locale));
         header.getCell(0).setCellStyle(style);
@@ -98,7 +100,7 @@ public class WorkflowSpecificTripContentListExcelBuilder extends AbstractExcelVi
         // create data rows
         int rowCount = 1;
         for (JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : list) {
-            HSSFRow aRow = sheet.createRow(rowCount++);
+            Row aRow = sheet.createRow(rowCount++);
             aRow.createCell(0).setCellValue(record.getHeavd() + "/" + record.getHeopd());
             aRow.createCell(1).setCellValue(record.getTtstat());
             aRow.createCell(2).setCellValue(record.getHenas());
