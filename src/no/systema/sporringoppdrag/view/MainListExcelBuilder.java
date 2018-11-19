@@ -10,7 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.context.ApplicationContext;
-import org.springframework.web.servlet.view.document.AbstractExcelView;
+
+import org.springframework.web.servlet.view.document.AbstractXlsView;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.hssf.util.*;
 import org.apache.poi.ss.usermodel.CellStyle;
@@ -25,7 +30,7 @@ import no.systema.main.context.TdsAppContext;
  * @date Feb 16, 2015
  * 
  */
-public class MainListExcelBuilder extends AbstractExcelView {
+public class MainListExcelBuilder extends AbstractXlsView {
 	private ApplicationContext context;
 	
 	public MainListExcelBuilder(){
@@ -33,12 +38,12 @@ public class MainListExcelBuilder extends AbstractExcelView {
 	}
 	
 	protected void buildExcelDocument(Map<String, Object> model,
-        HSSFWorkbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
+        Workbook workbook, HttpServletRequest request, HttpServletResponse response) throws Exception {
         // get data model which is passed by the Spring Container via our own Controller implementation
         List<JsonSporringOppdragTopicListRecord> itemList = (List<JsonSporringOppdragTopicListRecord>) model.get(SporringOppdragConstants.DOMAIN_LIST);
          
         // create a new Excel sheet
-        HSSFSheet sheet = workbook.createSheet("SP.OPPDRAG list");
+        Sheet sheet = workbook.createSheet("SP.OPPDRAG list");
         sheet.setDefaultColumnWidth(30);
          
         // create style for header cells
@@ -54,7 +59,7 @@ public class MainListExcelBuilder extends AbstractExcelView {
         //Note: the locale must be fetched from the response since we are working with the Spring Interceptor.
         Locale locale = response.getLocale();
         // create header row
-        HSSFRow header = sheet.createRow(0);
+        Row header = sheet.createRow(0);
 
         header.createCell(0).setCellValue(this.context.getMessage("systema.sporringoppdrag.mainlist.column.label.avdOppdr", new Object[0], locale));
         header.getCell(0).setCellStyle(style);
@@ -106,7 +111,7 @@ public class MainListExcelBuilder extends AbstractExcelView {
         int rowCount = 1;
          
         for (JsonSporringOppdragTopicListRecord record : itemList) {
-            HSSFRow aRow = sheet.createRow(rowCount++);
+            Row aRow = sheet.createRow(rowCount++);
             String avdOpd = record.getHeavd() + "/" + record.getHeopd();
             aRow.createCell(0).setCellValue(avdOpd);
             
