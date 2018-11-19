@@ -274,6 +274,7 @@
   
   
   jq(function() {
+	  //ETD
 	  jq("#wsetdd").datepicker({ 
 		  onSelect: function(date) {
 		  	jq("#wsetdk").focus();
@@ -314,6 +315,50 @@
 		  }
 	  });
 	  
+	  //ATD
+	  if ( !jq("#wsatdd").is('[readonly]') ) { 
+		  jq("#wsatdd").datepicker({ 
+			  onSelect: function(date) {
+			  	jq("#wsatdk").focus();
+		      },
+			  dateFormat: 'yymmdd',
+			  firstDay: 1 //monday
+			  /*showOn: "button",
+		      buttonImage: "resources/images/calendar.gif",
+		      buttonImageOnly: true,
+		      buttonText: "Select date" 
+			  */
+			  //dateFormat: 'ddmmy', 
+		  });
+		  jq("#wsatdd").blur(function(){
+			  //now check the user input alternatives
+			  var str = jq("#wsatdd").val();
+			  if(str!=''){
+				  var length = str.length;
+				  if(length==2){
+					  jq("#wsatdd").val(g_getCurrentYearStr() + g_getCurrentMonthStr() + str);  
+				  }else if (length==4){
+					  var userDay = str.substring(0,2);
+					  var userMonth = str.substring(2,4);
+					  jq("#wsatdd").val(g_getCurrentYearStr() + userMonth + userDay);
+				  }
+			  }
+		  });
+		  jq("#wsatdk").blur(function(){
+			  //now check the user input alternatives
+			  var str = jq("#wsatdk").val();
+			  if(str!=''){
+				  var length = str.length;
+				  if(length==2){
+					  jq("#wsatdk").val(str + '00');  
+				  }else if (length==1){
+					  jq("#wsatdk").val('0' + str + '00');
+				  }
+			  }
+		  });
+	  }
+	  
+	  //ETA
 	  jq("#wsetad").datepicker({ 
 		  onSelect: function(date) {
 		  	jq("#wsetak").focus();
@@ -349,6 +394,50 @@
 		  }
 		  
 	  });
+	  
+	  
+	  //ATA
+	  if ( !jq("#wsatad").is('[readonly]') ) { 
+		  jq("#wsatad").datepicker({ 
+			  onSelect: function(date) {
+			  	jq("#wsatak").focus();
+		      },
+			  dateFormat: 'yymmdd',
+			  firstDay: 1 //monday
+		  });
+		  jq("#wsatad").blur(function(){
+			  //now check the user input alternatives
+			  var str = jq("#wsatad").val();
+			  if(str!=''){
+				  var length = str.length;
+				  if(length==2){
+					  jq("#wsatad").val(g_getCurrentYearStr() + g_getCurrentMonthStr() + str);  
+				  }else if (length==4){
+					  var userDay = str.substring(0,2);
+					  var userMonth = str.substring(2,4);
+					  jq("#wsatad").val(g_getCurrentYearStr() + userMonth + userDay);
+				  }
+			  }
+			  
+		  });
+		  jq("#wsatak").blur(function(){
+			  //now check the user input alternatives
+			  var str = jq("#wsatak").val();
+			  if(str!=''){
+				  var length = str.length;
+				  if(length==2){
+					  jq("#wsatak").val(str + '00');  
+				  }else if (length==1){
+					  jq("#wsatak").val('0' + str + '00');
+				  }
+			  }
+			  
+		  });
+	  }
+	  
+	  
+	  
+	  
 	  //Bookingdato / time
 	  jq("#hebodt").datepicker({
 		  onSelect: function(date) {

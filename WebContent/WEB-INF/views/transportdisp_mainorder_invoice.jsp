@@ -264,8 +264,8 @@
 					                    <td class="tableHeaderField" nowrap align="right">&nbsp;<span title="fabelv">Beløp&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap align="right">&nbsp;<span title="fabeln">Beløp NOK&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakdm">Moms&nbsp;</span></td>
-					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakda">A	&nbsp;</span></td>
-					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="faopko">S&nbsp;</span></td>
+					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fakda">Opr&nbsp;</span></td>
+					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="facd11">Sam&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fafakt">Fakt.nr.&nbsp;</span></td>
 					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="fadato">Fakt.dato&nbsp;</span></td>
    					                    <td class="tableHeaderField" nowrap>&nbsp;<span title="peri">Periode&nbsp;</span></td>
@@ -352,7 +352,7 @@
 																    			<td colspan="2" class="tableCell14" style="background-color:#FFFFFF;"  align="left"><label name="v_knavn" id="v_knavn">&nbsp;${record.knavn}&nbsp;</label></td>
 																	    	</tr>
 																	    	<tr>	
-																    			<td class="text14" align="left"><span title="faopko">Status</span></td>
+																    			<td class="text14" align="left"><span title="	">Status</span></td>
 															    				<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_faopko" id="v_faopko">&nbsp;${record.faopko}&nbsp;</label></td>
 															    				<td class="text14" align="left"><span title="facd11">&nbsp;&nbsp;Samm.</span></td>
 																    			<td class="tableCell" style="background-color:#FFFFFF;"  align="left"><label name="v_facd11" id="v_facd11">&nbsp;${record.facd11}&nbsp;</label></td>
@@ -436,7 +436,7 @@
 							               
 							               <td class="tableCell" >&nbsp;${record.fakdm}</td>
 							               <td class="tableCell" >&nbsp;${record.fakda}</td>
-							               <td class="tableCell" >&nbsp;${record.faopko}</td>
+							               <td class="tableCell" >&nbsp;${record.facd11}</td>
 							               <td class="tableCell" >&nbsp;${record.fafakt}</td>
 							               <td class="tableCell" >&nbsp;${record.fadato}</td>
 							               <td class="tableCell" >&nbsp;${record.peri}</td>
@@ -750,11 +750,11 @@
 							            <td>
 							            	<table>
 							            	<tr>
-							            		<td class="text14" align="left"><span title="wkomp">&nbsp;
+							            		<td class="text14" align="left"><span title="wkomp">
 								            		<img onMouseOver="showPop('komp_info');" onMouseOut="hidePop('komp_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								            		Komp.</span>
 							            		</td>
-							            		<td class="text14" align="left"><span title="facd11">&nbsp;&nbsp;&nbsp;
+							            		<td class="text14" align="left"><span title="facd11">&nbsp;
 								            		<img onMouseOver="showPop('sam_info');" onMouseOut="hidePop('sam_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								            		Sam.</span>
 								            	</td>
@@ -784,7 +784,7 @@
 											<div class="text11" style="position: relative;" align="left">
 											<span style="position:absolute; top:20px; width:350px" id="sam_info" class="popupWithInputText"  >
 												<font class="text11">
-							           			<b>Samm</b>
+							           			<b>Samm.</b>
 							           			<div>
 							           				<p>Hvis gebyret i fakturautskriften skal slås sammen med en eller flere andre gebyrlinjer under en felles gebyrtekst,
 							           				 skal det her ligge en kode som forteller hvilke linjer som skal slås sammen og med hvilken gebyrtekst.</p>
