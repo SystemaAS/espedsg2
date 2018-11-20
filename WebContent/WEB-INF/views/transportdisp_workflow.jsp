@@ -607,6 +607,9 @@
 						 						<c:choose>
 								 				    <c:when test="${ not empty model.record.tupro}">
 								 				    	<div id="divSmsEmailButtons" style="display:inline">
+								 				    		<a id="printerLinkId" tabindex=-1 >
+							 									<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="22px" height="22px" border="0" alt="Print">
+							 								</a>
 									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
 									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
@@ -616,6 +619,9 @@
 								 				    </c:when>
 								 				    <c:otherwise>
 								 				    	<div id="divSmsEmailButtons" style="display:none">
+								 				    		<a id="printerLinkId" tabindex=-1 >
+							 									<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="22px" height="22px" border="0" alt="Print">
+							 								</a>
 									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
 									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>

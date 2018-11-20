@@ -286,5 +286,11 @@ public final class TransportDispUrlDataStore {
 	//----------------------------------------------------------------------------------------------------------
 	static public String TRANSPORT_DISP_BASE_WORKFLOW_POST_UPDATE_Z = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJEOPDZ.pgm";
 	
+	//PRINT routine
+	//when avd & opd !=null and tur==null, then the order is printed
+	//when tur !=null and avd&opd == null, then the trip prints ALL children orders...
+	//http://gw.systema.no/sycgip/TJFA12d.pgm?user=JOVO&avd=80&opd=0201571&tur=
+	static public String TRANSPORT_DISP_BASE_PRINT_OUT = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJFA12d.pgm";
+	
 	
 }

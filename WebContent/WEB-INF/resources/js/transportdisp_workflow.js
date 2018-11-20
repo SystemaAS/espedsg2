@@ -13,6 +13,10 @@
 	  jq('#updCancelButton').click(function() {
 		  window.location = 'transportdisp_workflow.do?action=doFind&wssst=' + jq('#wssst').val() + '&wssavd=' + jq('#tuavd').val() ;
 	  });
+	  jq('#printerLinkId').click(function() {
+		  //Print out tur (AS400 printer)
+		  window.location = 'transpdisp_mainorder_printout.do?avd=&opd=&tur=' + jq("#tupro").val();
+	  });
 	});	  
   
   //FORM SUBMIT

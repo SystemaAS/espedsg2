@@ -323,12 +323,20 @@
 								 		
 								 		<c:if test="${not empty model.record.heopd}">
 								 			&nbsp;<button name="frisokveiButton" id="frisokveiButton" class="buttonGrayWithGreenFrame" type="button" >Frie søkeveier</button>
+								 			
 								 		</c:if>
 								 		<c:if test="${not empty model.record.hesgm}">
 								 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font title="hesgm" class="inputText11" style="background-color: #DFF2BF;color: #4F8A10;">Levert:&nbsp;${model.record.hesgm}&nbsp;-&nbsp;${model.record.hedtmo}:${model.record.heklmo}</font>
 								 		</c:if>	
 								 		
 								 	</td>
+								 	<c:if test="${not empty model.record.heopd}">
+									 	<td>&nbsp;
+				 							<a onClick="setBlockUI(this)" tabindex=-1 href="transpdisp_mainorder_printout.do?avd=${model.record.heavd}&opd=${model.record.heopd}">
+				 								<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="25px" height="25px" border="0" alt="Print">
+				 							</a>
+				 						</td>
+			 						</c:if>
 							 	</tr>
 							 	</table>	
 							</td>
@@ -360,11 +368,9 @@
 				 						<span title="travd0-tropd0" >&nbsp;Opphav.</span>
 				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="travd0" id="travd0" size="3" value="${model.record.travd0}">
 				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tropd0" id="tropd0" size="7" value="${model.record.tropd0}">
-				 						
-				 						
 			 						</td>
 			 						
-			 		
+			 						
 				 				</tr>
 				 				<tr>
 				 					<td colspan="6" class="text14">
