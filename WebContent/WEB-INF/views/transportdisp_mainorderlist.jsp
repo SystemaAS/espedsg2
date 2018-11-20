@@ -402,9 +402,12 @@
 				        
 				        <td>
 				        	&nbsp;<font title="to" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.prebook"/></font>
-				        	
 				        </td>
 				        
+				        <td>
+				        	&nbsp;<font title="to" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.ordreType"/></font>
+				        </td>
+
 				        </tr>
 				        
 				        <tr> 
@@ -458,6 +461,14 @@
 		 						<option value="A" <c:if test="${searchFilter.wsprebook == 'A'}"> selected </c:if> >Alle</option>
 		 						<option value="F" <c:if test="${searchFilter.wsprebook == 'F'}"> selected </c:if> >Ferdige</option>
 		 						<option value="P" <c:if test="${searchFilter.wsprebook == 'P'}"> selected </c:if> >PreBook</option>
+							</select>
+				        </td>
+				        <td>
+				        	<select class="inputText14" name="todo" id="todo">
+		 						<option value="X" >Alle</option>
+		 						<option value="U" >Udisp.ordrer</option>
+		 						<option value="V" >Vent.ordrer</option>
+		 						<option value="E" >EDI ordrer</option>
 							</select>
 				        </td>
 				        <td>	
