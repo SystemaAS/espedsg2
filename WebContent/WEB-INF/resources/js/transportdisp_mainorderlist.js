@@ -477,7 +477,7 @@
     
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#openOrders').dataTable( {
-	  "jQueryUI": false,
+	  //"responsive": true, //better in html (instead of "compact"
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",
 	  "scrollCollapse": false,

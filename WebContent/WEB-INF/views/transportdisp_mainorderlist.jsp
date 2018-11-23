@@ -492,7 +492,7 @@
 				<tr height="5"><td></td></tr>
 				<tr>
 				<td >
-				<table style="width:100%;" id="openOrders" class="display compact cell-border" cellspacing="0" >
+				<table id="openOrders" class="display compact cell-border" cellspacing="0">
 					<thead >
 					<tr class="tableHeaderField" >
 						<c:if test="${not empty searchFilter.tur}">

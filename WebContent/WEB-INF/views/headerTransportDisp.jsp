@@ -11,6 +11,8 @@
 		
 		<%-- datatables grid CSS --%>
 		<link type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css" rel="stylesheet">
+		<link type="text/css" href="//cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css" rel="stylesheet">
+		
 		<%-- <link type="text/css" href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet">--%>
 		
 		<link rel="SHORTCUT ICON" type="image/png" href="resources/images/systema_logo.png"></link>
@@ -34,6 +36,8 @@
 	
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+	<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+	
 	<%--<script type="text/javascript" src="resources/js/dataTables.fixedHeader.min.js"></script>
 	<script type="text/javascript" src="resources/js/dataTables.fixedHeader.js"></script>
 	<script type="text/javascript" src="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.js"></script> --%>
