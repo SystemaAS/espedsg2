@@ -1568,7 +1568,7 @@
 	    					jq('#heknsf').addClass( "isa_warning" );
 	    					jq('#henasf').addClass( "isa_warning" );
 	    					//jq('#heknsf').removeClass ("inputTextMediumBlueUPPERCASE");
-	    					jq('#henasf').val("adr.kunde?" + data[i].navn);
+	    					jq('#henasf').val("adr.kunde? " + data[i].navn);
 	    				}
 	    			}
 	    		});
@@ -1600,7 +1600,7 @@
 	    				}else{
 	    					jq('#heknkf').addClass( "isa_warning" );
 	    					jq('#henakf').addClass( "isa_warning" );
-	    					jq('#henakf').val("adr.kunde?" + data[i].navn);
+	    					jq('#henakf').val("adr.kunde? " + data[i].navn);
 	    				}
 	    				
 	    			}

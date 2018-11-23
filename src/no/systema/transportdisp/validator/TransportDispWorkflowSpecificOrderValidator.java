@@ -69,6 +69,15 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 			if("".equals(record.getHeknsf()) && "".equals(record.getHenasf()) && "".equals(record.getHeknkf()) && "".equals(record.getHenakf()) ){
 				ValidationUtils.rejectIfEmptyOrWhitespace(errors, "heknsf", "systema.transportdisp.orders.form.error.null.invoiceparty.heknsfOrheknkf");
 			}
+			String INVALID_STRING = "adr.kunde?";
+			//logger.info("###########:AVS" + record.getHenasf());
+			if(!"".equals(record.getHeknsf()) && (strMgr.isNotNull(record.getHenasf()) &&  record.getHenasf().contains(INVALID_STRING)) ){
+				errors.rejectValue("henasf", "systema.transportdisp.orders.form.error.null.invoiceparty.seller.inaktivPart");
+			}
+			//logger.info("###########:MOTT" + record.getHenakf());
+			if(!"".equals(record.getHeknkf()) && (strMgr.isNotNull(record.getHenakf()) &&  record.getHenakf().contains(INVALID_STRING)) ){
+				errors.rejectValue("henakf", "systema.transportdisp.orders.form.error.null.invoiceparty.buyer.inaktivPart");
+			}
 		}
 		
 		//Booking time
