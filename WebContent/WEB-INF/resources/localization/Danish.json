@@ -8,7 +8,7 @@
 	"sInfoEmpty":    "Viser 0 til 0 af 0 linjer",
 	"sInfoFiltered": "(filtreret fra _MAX_ linjer)",
 	"sInfoPostFix":  "",
-	"sSearch":       "S&oslash;g:",
+	"sSearch":       "Filter i valg:",
 	"sUrl":          "",
 	"oPaginate": {
 	    "sFirst":    "F&oslash;rste",

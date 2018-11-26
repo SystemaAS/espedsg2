@@ -10,9 +10,9 @@
 	"sLoadingRecords": "Laster...",
 	"sLengthMenu": "Vis _MENU_ linjer",
 	"sProcessing": "Laster...",
-	"sSearch": "S&oslash;k:",
+	"sSearch": "Filter i utvalg:",
 	"sUrl": "",
-	"sZeroRecords": "Ingen linjer matcher s&oslash;ket",
+	"sZeroRecords": "Ingen linjer matcher filter",
   	"oPaginate": {
 		"sFirst": "F&oslash;rste",
 		"sPrevious": "Forrige",
