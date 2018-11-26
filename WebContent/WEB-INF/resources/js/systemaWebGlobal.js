@@ -11,6 +11,10 @@ var jq = jQuery.noConflict();
 		}
 		jq.blockUI({ css: { fontSize: '22px' }, message: blockUIMessageMap[lang]});
      }	
+
+	function unBlockUI(){
+		jq.unblockUI();	
+	}
 	
 	var langMap = {
 			   'EN' : 'English',
