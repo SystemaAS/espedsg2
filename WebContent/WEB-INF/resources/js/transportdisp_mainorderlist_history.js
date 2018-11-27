@@ -8,13 +8,7 @@
 	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }
   jq(function() {
-	  jq('#alinkOrderListId').click(function() { 
-		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  }); 
-	  jq('#alinkTripListId').click(function() { 
-		  //not working ... setBlockUI();
-		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  });
+	  
 	  jq('#alinkHeaderMenuMainListId').click(function() { 
 		  //not working ... setBlockUI();
 		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
@@ -23,12 +17,8 @@
 		  //not working ... setBlockUI();
 		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 	  });
-	  
   });
   //End BlockUI
-  
-  
-  
   
   //Global functions
   function g_getCurrentYearStr(){
@@ -40,13 +30,6 @@
 	  if (currentMonth < 10) { currentMonthStr = '0' + currentMonth; }
 	  return currentMonthStr;
   }
-  
-  
-  jq(function() {
-	  jq("#removeFilterButton").click(function() {
-		  window.location = "transportdisp_mainorderlist_clearSearchFilter.do?action=doFind";
-	  });
-  });
   
   //---------------------------------
   //START - Drag from Orders to Trip 
@@ -474,7 +457,7 @@
   jq(document).ready(function() {
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#currentOrders').dataTable( {
-	  "searchHighlight": true,
+	  "searchHighlight": true,	
 	  "jQueryUI": false,
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "350px",
@@ -496,7 +479,7 @@
     
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#openOrders').dataTable( {
-	  "searchHighlight": true,
+	  "searchHighlight": true,	
 	  //"responsive": true, //better in html (instead of "compact"
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",

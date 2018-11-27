@@ -45,7 +45,10 @@ import no.systema.transportdisp.service.TransportDispWorkflowShippingPlanningOrd
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderService;
 import no.systema.transportdisp.service.TransportDispWorkflowSpecificTripService;
 import no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevPdfContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.shippinglists.JsonTransportDispWorkflowShippingPlanningCurrentOrdersListContainer;
@@ -60,19 +63,19 @@ import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
 import no.systema.transportdisp.util.manager.java.reflect.ReflectionUrlStoreMgr;
 
 /**
- * TransportDisp Order List Controller 
+ * TransportDisp Order List - History (Archive) Controller 
  * 
  * @author oscardelatorre
- * @date Apr 11, 2015
- * 
+ * @date Nov 2018 
+ *  
  */
 
 @Controller
 @SessionAttributes(AppConstants.SYSTEMA_WEB_USER_KEY)
 @Scope("session")
-public class TransportDispMainOrderListController {
+public class TransportDispMainOrderListHistoryController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(1500);
-	private static Logger logger = Logger.getLogger(TransportDispMainOrderListController.class.getName());
+	private static Logger logger = Logger.getLogger(TransportDispMainOrderListHistoryController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private ApplicationContext context;
 	private LoginValidator loginValidator = new LoginValidator();
@@ -87,47 +90,6 @@ public class TransportDispMainOrderListController {
 			logger.setLevel(Level.DEBUG);
 		}
 	}
-	/**
-	 * 
-	 * @param recordToValidate
-	 * @param bindingResult
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value="transportdisp_mainorderlist_clearSearchFilter.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView doClearFilter(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
-		
-		this.controllerAjaxCommonFunctionsMgr = new ControllerAjaxCommonFunctionsMgr(this.urlCgiProxyService, this.transportDispWorkflowSpecificTripService);
-		this.context = TdsAppContext.getApplicationContext();
-		Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> outputListCurrentOrders = new ArrayList<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord>();
-		Collection<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord> outputListOpenOrders = new ArrayList<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord>();
-		String wstur = request.getParameter("wstur");
-		String wssavd = request.getParameter("wssavd");
-		if(wssavd!=null && !"".equals(wssavd)){ recordToValidate.setAvd(wssavd); }
-		if(wstur!=null && !"".equals(wstur)){ recordToValidate.setTur(wstur); }
-		
-		Map model = new HashMap();
-		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
-		
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind");
-		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
-		
-		//check user (should be in session already)
-		if(appUser==null){
-			return loginView;
-			
-		}else{
-			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
-			//drop downs
-    		this.setCodeDropDownMgr(appUser, model);
-    		
-    		//remove filter from session
-            session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
-		}
-		return successView;
-		
-	}
 	
 	/**
 	 * 
@@ -135,7 +97,7 @@ public class TransportDispMainOrderListController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_mainorderlist.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value="transportdisp_mainorderlist_history.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doFind(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		
 		this.controllerAjaxCommonFunctionsMgr = new ControllerAjaxCommonFunctionsMgr(this.urlCgiProxyService, this.transportDispWorkflowSpecificTripService);
@@ -146,12 +108,14 @@ public class TransportDispMainOrderListController {
 		String wssavd = request.getParameter("wssavd");
 		if(wssavd!=null && !"".equals(wssavd)){ recordToValidate.setAvd(wssavd); }
 		if(wstur!=null && !"".equals(wstur)){ recordToValidate.setTur(wstur); }
+		//Always wsdista=* since it is the flag to indicate all types of orders
+		if(strMgr.isNull(recordToValidate.getWsdista())){ recordToValidate.setWsdista("*"); }
 		
 		
 		Map model = new HashMap();
 		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
 		
-		ModelAndView successView = new ModelAndView("transportdisp_mainorderlist");
+		ModelAndView successView = new ModelAndView("transportdisp_mainorderlist_history");
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		
 		//check user (should be in session already)
@@ -159,35 +123,19 @@ public class TransportDispMainOrderListController {
 			return loginView;
 			
 		}else{
-			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
-			appUser.setUrlStoreProps(this.reflectionUrlStoreMgr.printProperties("no.systema.transportdisp.url.store.TransportDispUrlDataStore", "html")); //Debug info om UrlStore
-			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
+			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP_HISTORY);
 			//drop downs
     		this.setCodeDropDownMgr(appUser, model);
-    		
-    		//Put in session for further use (within this module) ONLY with: POST method = doFind on search fields
-            if(request.getMethod().equalsIgnoreCase(RequestMethod.POST.toString())){
-            		session.setAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP, recordToValidate);
-            }else{
-            	SearchFilterTransportDispWorkflowShippingPlanningOrdersList sessionFilter = (SearchFilterTransportDispWorkflowShippingPlanningOrdersList)session.getAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
-            	if(sessionFilter!=null){
-            		//Use the session filter when applicable
-            		recordToValidate = sessionFilter;
-            	}
-            }
-            
-    		
 			//-----------
 			//Validation
 			//-----------
-    		
+			
 		    //check for ERRORS
 			if(bindingResult.hasErrors()){
 	    		logger.info("[ERROR Validation] search-filter does not validate)");
 	    		//put domain objects and do go back to the successView from here
 	    		
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
-	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, new ArrayList());
 	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS, new ArrayList());
 	    		successView.addObject("searchFilter", recordToValidate);
 				return successView;
@@ -195,11 +143,6 @@ public class TransportDispMainOrderListController {
 		    }else{
 				//STEP [1]
 		    	//Get all lists
-	    		outputListCurrentOrders = this.getListCurrentOrders(appUser, recordToValidate, model);
-	    		//Put list for upcoming view (PDF, Excel, or ErrorHandling in add/remove orders (method below...)
-				if(outputListCurrentOrders!=null){
-					session.setAttribute(session.getId() + TransportDispConstants.SESSION_LIST_CURRENT_ORDERS_ON_TRIP, outputListCurrentOrders);
-				}
 	    		StringBuffer userAvd = new StringBuffer();
 	    		outputListOpenOrders = this.getListOpenOrders(appUser, recordToValidate, model, userAvd);
 	    		//Put list for upcoming view (PDF, Excel, or ErrorHandling in add/remove orders (method below...)
@@ -229,7 +172,6 @@ public class TransportDispMainOrderListController {
 				//this.setCodeDropDownMgr(appUser, model);
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 	    		//domain and search filter
-				successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, outputListCurrentOrders);
 				successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS,outputListOpenOrders);
 				//Put list for upcoming view (PDF, Excel, etc)
 				if(outputListOpenOrders!=null){
@@ -254,7 +196,7 @@ public class TransportDispMainOrderListController {
 	 * @return
 	 */
 	
-	@RequestMapping(value="transportdisp_mainorderlist_add_remove_order.do",  method={RequestMethod.GET} )
+	@RequestMapping(value="transportdisp_mainorderlist_history_add_remove_order.do",  method={RequestMethod.GET} )
 	public ModelAndView doAddRemoveOrder(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 		Map model = new HashMap();
@@ -271,8 +213,8 @@ public class TransportDispMainOrderListController {
 		if(wstur!=null && !"".equals(wstur))recordToValidate.setTur(wstur);
 		if(wsopd!=null && !"".equals(wsopd))recordToValidate.setOpd(wsopd);
 		logger.info("#OPD:" + recordToValidate.getOpd());
-		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist");
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind&wssavd=" + wsavd + "&wstur=" + wstur);
+		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist_history");
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist_history.do?action=doFind&wssavd=" + wsavd + "&wstur=" + wstur);
 		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		
@@ -299,7 +241,6 @@ public class TransportDispMainOrderListController {
 				//this.populateAvdelningHtmlDropDownsFromJsonString(model, appUser);
 				//this.populateSignatureHtmlDropDownsFromJsonString(model, appUser);
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
-	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, new ArrayList());
 	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS, new ArrayList());
 	    		successView.addObject("searchFilter", recordToValidate);
 				return errorView;
@@ -331,9 +272,7 @@ public class TransportDispMainOrderListController {
 		    		//Now re-populate all elements since we are not able to redirect (we must present the ERROR message ...)
 		    		//-------------------------------------------------------------------------------------------------------
 		    		//STEP [1] get from session
-		    		List sessionCurrentOrdersList = (List)session.getAttribute(session.getId() + TransportDispConstants.SESSION_LIST_CURRENT_ORDERS_ON_TRIP);
 		    		List sessionOpenOrdersList = (List)session.getAttribute(session.getId() + TransportDispConstants.SESSION_LIST_OPEN_ORDERS_ON_TRIP);
-		    		successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, sessionCurrentOrdersList);
 		    		successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS, sessionOpenOrdersList);
 		    		
 		    		//STEP [2] Get the trip header and economic Matrix
@@ -366,19 +305,19 @@ public class TransportDispMainOrderListController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_mainorderlist_permanently_delete_order.do",  method={RequestMethod.GET} )
+	@RequestMapping(value="transportdisp_mainorderlist_history_permanently_delete_order.do",  method={RequestMethod.GET} )
 	public ModelAndView doPermanentlyDeleteOrder(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 		Map model = new HashMap();
 
 		logger.info("#AVD:" + recordToValidate.getAvd());
 		logger.info("#OPD:" + recordToValidate.getOpd());
-		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist");
+		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist_history");
 		StringBuffer params = new StringBuffer();
 		if(recordToValidate.getAvd()!=null && !"".equals(recordToValidate.getAvd())){
 			params.append("&wssavd=" + recordToValidate.getAvd());
 		}
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind" + params);
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist_history.do?action=doFind" + params);
 		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		//check user (should be in session already)
@@ -390,11 +329,7 @@ public class TransportDispMainOrderListController {
 			//-----------
 			//Validation
 			//-----------
-			/* TODO (further on...?)
-			SadImportListValidator validator = new SadImportListValidator();
-			logger.info("Host via HttpServletRequest.getHeader('Host'): " + request.getHeader("Host"));
-		    validator.validate(recordToValidate, bindingResult);
-		    */
+			
 		    //check for ERRORS
 			if(bindingResult.hasErrors()){
 	    		logger.info("[ERROR Validation] search-filter does not validate)");
@@ -404,7 +339,6 @@ public class TransportDispMainOrderListController {
 				//this.populateAvdelningHtmlDropDownsFromJsonString(model, appUser);
 				//this.populateSignatureHtmlDropDownsFromJsonString(model, appUser);
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
-	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, new ArrayList());
 	    		successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS, new ArrayList());
 	    		successView.addObject("searchFilter", recordToValidate);
 				//return errorView;
@@ -444,7 +378,7 @@ public class TransportDispMainOrderListController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_mainorderlist_copy_order.do",  method={RequestMethod.POST} )
+	@RequestMapping(value="transportdisp_mainorderlist_history_copy_order.do",  method={RequestMethod.POST} )
 	public ModelAndView doCopyOrder(HttpSession session, HttpServletRequest request){
 		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 		
@@ -480,7 +414,7 @@ public class TransportDispMainOrderListController {
 		logger.info("#new avd:" + newAvd);
 		logger.info("#sign:" + sign);
 		
-		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist");
+		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist_history");
 		ModelAndView successView = null;
 		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
@@ -535,7 +469,7 @@ public class TransportDispMainOrderListController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_mainorderlist_move_order.do",  method={RequestMethod.POST} )
+	@RequestMapping(value="transportdisp_mainorderlist_history_move_order.do",  method={RequestMethod.POST} )
 	public ModelAndView doMoveOrder(HttpSession session, HttpServletRequest request){
 		RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 		
@@ -567,7 +501,7 @@ public class TransportDispMainOrderListController {
 		logger.info("#orig. OPD:" + originalOpd);
 		logger.info("#New AVD:" + newAvd);
 		
-		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist");
+		ModelAndView errorView = new ModelAndView("transportdisp_mainorderlist_history");
 		ModelAndView successView = null;
 		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
@@ -622,7 +556,7 @@ public class TransportDispMainOrderListController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_mainorderlist_renderFraktbrev.do", method={RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value="transportdisp_mainorderlist_history_renderFraktbrev.do", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doRenderFraktbrev(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		this.context = TdsAppContext.getApplicationContext();
 		String avd = request.getParameter("wsavd");

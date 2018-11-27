@@ -124,6 +124,9 @@ public class JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord exten
 	public void setDftoll(String value) {  this.dftoll = value; }
 	public String getDftoll() {return this.dftoll;}
 	
+	private String dista1 = null;
+	public void setDista1(String value) {  this.dista1 = value; }
+	public String getDista1() {return this.dista1;}
 	
 	
 	

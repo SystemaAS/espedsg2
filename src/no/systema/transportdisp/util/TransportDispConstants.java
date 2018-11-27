@@ -88,7 +88,9 @@ public final class TransportDispConstants {
 	public static final String SESSION_LIST_CURRENT_ORDERS_ON_TRIP = "sessionListCurrentOrdersOnTrip";
 	public static final String SESSION_LIST_OPEN_ORDERS_ON_TRIP = "sessionListOpenOrdersOnTrip";
 	
+	public static final String SESSION_SEARCH_FILTER_TRANSP_DISP = "searchFilterTranspDisp";
 	public static final String SESSION_SEARCH_FILTER = "searchFilter";
+	
 	public static final String SESSION_CHILDWINDOW_FLAG = "cw";
 	public static final String SESSION_CHILDWINDOW_FLAG_INIT = "cwInit";
 	

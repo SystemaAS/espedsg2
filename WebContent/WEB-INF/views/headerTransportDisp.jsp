@@ -12,6 +12,8 @@
 		<%-- datatables grid CSS --%>
 		<link type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css" rel="stylesheet">
 		<link type="text/css" href="//cdn.datatables.net/responsive/1.0.7/css/responsive.dataTables.min.css" rel="stylesheet">
+		<link type="text/css" href="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.css" rel="stylesheet">
+		
 		
 		<%-- <link type="text/css" href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet">--%>
 		
@@ -30,6 +32,8 @@
 	<%-- include som javascript functions --%>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+	
 	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispFkeys.js?ver=${user.versionEspedsg}"></SCRIPT>
@@ -37,6 +41,8 @@
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+	
 	
 	<%--<script type="text/javascript" src="resources/js/dataTables.fixedHeader.min.js"></script>
 	<script type="text/javascript" src="resources/js/dataTables.fixedHeader.js"></script>
@@ -115,7 +121,7 @@
 			    			<%-- Workflow Shipping trip MENU --%>
 			    			<%-- ---------------------------
 			    			<a tabindex=-1 href="transportdisp_workflow.do?action=doFind"> --%>
-			    			<a tabindex=-1 href="transportdisp_mainorderlist.do?action=doFind">
+			    			<a id="alinkHeaderMenuMainListId" tabindex=-1 href="transportdisp_mainorderlist.do?action=doFind">
 			    				&nbsp;<font 
 			    				<c:choose>           
 		                   			<c:when test="${user.activeMenu=='TRANSPORT_DISP'}">
@@ -127,7 +133,23 @@
 		               			</c:choose>
 			    				
 			    				>&nbsp;<spring:message code="systema.transportdisp.workflow.label"/>&nbsp;</font>
-			    			</a>
+		    				</a>
+		    				&nbsp;<font color="#FFFFFF"; style="font-weight: bold;">|</font>
+			    			<a id="alinkHeaderMenuHistoryListId" tabindex=-1 href="transportdisp_mainorderlist_history.do?action=doFind">
+			    				&nbsp;<font 
+			    				<c:choose>           
+		                   			<c:when test="${user.activeMenu=='TRANSPORT_DISP_HISTORY'}">
+		                       			class="headerMenuMediumGreen"
+		                   			</c:when>
+		                   			<c:otherwise>   
+		                       			class="headerMenuLightGreen"
+		                   			</c:otherwise>
+		               			</c:choose>
+			    				
+			    				>&nbsp;<spring:message code="systema.transportdisp.workflow.label.history"/>&nbsp;</font>
+		    				</a>
+			    				
+			    				
 			    				<label onClick="showPop('debugPrintlnUrlStore');" >&nbsp;&nbsp;</label>
 			    				<div class="text11" style="position: relative;display: inline;" align="left">
 								<span style="position:absolute; left:-150px; top:3px; width:150;" id="debugPrintlnUrlStore" class="popupWithInputText"  >

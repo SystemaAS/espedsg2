@@ -75,6 +75,10 @@ public class SearchFilterTransportDispWorkflowShippingPlanningOrdersList {
 	public void setWsprebook(String value) {  this.wsprebook = value; }
 	public String getWsprebook() { return this.wsprebook;}
 	
+	private String wsdista = null;
+	public void setWsdista(String value) {  this.wsdista = value; }
+	public String getWsdista() { return this.wsdista;}
+	
 	
 	
 	

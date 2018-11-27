@@ -7,7 +7,7 @@
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
-	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist.js?ver=${user.versionEspedsg}"></SCRIPT>
+	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist_history.js?ver=${user.versionEspedsg}"></SCRIPT>
 	
 	<%-- for dialog popup --%>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
@@ -33,6 +33,7 @@
 		<tr height="25"> 
 			<c:choose>
 				<c:when test="${not empty searchFilter.tur}">
+					<%--
 					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
 						<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.avd}">
 							<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
@@ -41,7 +42,6 @@
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<%--<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=${searchFilter.tur}"> --%>
 						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
 						
 							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
@@ -58,22 +58,24 @@
 						</div>	           	
 					</td>
 					<td width="40%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
+					 --%>
 				</c:when>
 				<c:otherwise>
 					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
 						<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
 						<font class="tabLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
 					</td>
+					<%--
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<%--<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=${searchFilter.tur}">--%>
 						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
 						
 							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
 							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 						</a>
 					</td>
-					<td width="60%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
+					 --%>
+					<td width="80%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
 				</c:otherwise>
 			</c:choose>
 				
@@ -148,198 +150,6 @@
 			<%-- this table wrapper is necessary to apply the css class with the thin border --%>
 			<table id="wrapperTable" class="tabThinBorderWhite" width="100%" cellspacing="1">
 			
-			<%-- Datatables component --%>
-			<%-- CURRENT ORDERS in TRIP --%>
-			<c:if test="${not empty searchFilter.tur}">
-				<tr>
-					<td >
-					<%-- this container table is necessary in order to separate the datatables element and the frame above, otherwise
-						 the cosmetic frame will not follow the whole datatable grid including the search field... --%>
-					<table id="containerdatatableTable1" style="width:100%;" cellspacing="2" align="left" >
-					<tr>
-						<td id="dtuavd${searchFilter.avd}_dtupro${searchFilter.tur}_oncontainer" ondrop="dropX(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" class="text14MediumBlue">
-							<spring:message code="systema.transportdisp.orders.current.header"/>&nbsp;&nbsp;
-							<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-						</td>
-					</tr>
-					<c:if test="${not empty model.containerCurrentOrders.maxWarning}">
-						<tr>	
-							<td class="listMaxLimitWarning">
-							<img style="vertical-align:bottom;" src="resources/images/redFlag.png" width="16" height="16" border="0" alt="Warning">
-							${model.containerCurrentOrders.maxWarning}</td>
-						</tr>
-						<tr height="2"><td></td></tr>
-					</c:if>
-					 
-					<tr>
-					<td>
-					
-					<table style="width:100%;" id="currentOrders" class="display compact cell-border" cellspacing="0" >
-						<thead >
-						<tr class="tableHeaderField" >
-							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.remove"/></th>   
-		                    <th class="text14">
-		            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.current.list.search.label.remove"/>" name="currentordersColumnHeaderButtonRmv" id="currentordersColumnHeaderButtonRmv" onClick="getValidCheckis(this);">
-		                    </th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ourRef"/></th> 
-							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ttstat"/></th> 
-							
-							<th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.supplier"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.date"/>&nbsp;</th> 
-		                    <th class="text14">
-		                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-	                   		</th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.consignee"/></th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.date"/>&nbsp;</th> 
-		                    <th class="text14">
-		                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-	                   		</th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.goodsDesc"/></th>   
-		                    
-		                    <th class="text14">
-	                    		<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.current.list.search.label.pos"/>" name="currentordersColumnHeaderButtonPos" id="currentordersColumnHeaderButtonPos" onClick="getValidPositions(this);">
-		                    </th> 
-		                    <th class="text14" title="faktura status"><spring:message code="systema.transportdisp.orders.current.list.search.label.o"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.pcs"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.weight"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.volume"/></th>   
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.loadMtr"/></th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.poNr"/></th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
-		                    <th class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>  
-		                </tr> 
-		                </thead>
-		              
-		                <tbody >
-			            <c:forEach items="${listCurrentOrders}" var="record" varStatus="counter">    
-			               <tr height="20" >
-			                  
-			               <td class="text14 tableCellGray">&nbsp;
-				           		<a onClick="setBlockUI(this)" href="transportdisp_mainorderlist_add_remove_order.do?user=${user.user}&wmode=D&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}">
-	    		    				<img title="Remove" style="vertical-align:bottom;" src="resources/images/remove.png" width="14" height="15" border="0" alt="remove">
-			   					</a>
-				           </td>
-			               <td class="text14 tableCellGray" align="center">
-			               		<input class="clazz_checkis_currentorders" type="checkbox" id="checkis_currentorders${counter.count}@user=${user.user}&wmode=D&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}" >
-			               </td>
-			               <td class="text14 tableCellGray">
-				           		<a id="alinkCurrentOrdersListId_${counter.count}" onClick="setBlockUI(this);" href="transportdisp_mainorder.do?hepro=${searchFilter.tur}&heavd=${record.heavd}&heopd=${record.heopd}">
-	    		    				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
-	    		    				<font class="textMediumBlue">${record.heavd}/${record.heopd}</font>
-			   					</a>
-				           </td>
-				           
-				           <c:choose>
-					           <c:when test="${not empty record.ttstat}">
-					           		<c:choose>
-					           		<c:when test="${record.ttstat=='Levert' || record.ttstat=='Urørt' || record.ttstat=='Hentet' }">
-						           		<c:if test="${record.ttstat=='Levert'}" >   
-						           			<td align="center" class="text14 tableCellGray" >
-							           			<font class="inputText11" style="background-color: #DFF2BF;color: #4F8A10;" onMouseOver="showPop('delivered_info${counter.count}');" onMouseOut="hidePop('delivered_info${counter.count}');">${record.ttstat}</font>
-							           			<div class="text11" style="position: relative;" align="left">
-													<span style="position:absolute; left:15px; top:2px;" id="delivered_info${counter.count}" class="popupWithInputText"  >
-							 							<font class="text11" >
-										           			${record.hesgm}-${record.hedtmo}:${record.heklmo}
-									           			</font>
-													</span>
-												</div>
-						           			</td>
-						           		</c:if>
-						           		<c:if test="${record.ttstat=='Urørt'}" >   
-						           			<td align="center" class="text14 tableCellGray" style="color: #D8000C;">
-							           			<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">${record.ttstat}</font>
-						           			</td>
-						           		</c:if>
-						           		<c:if test="${record.ttstat=='Hentet'}" >   
-						           			<td align="center" class="text14 tableCellGray" style="color: #9F6000;">
-							           			<font class="inputText11" style="background-color: #FEEFB3;color: #9F6000;">${record.ttstat}</font>
-						           			</td>
-						           		</c:if>
-					           		</c:when>
-					           		<c:otherwise>
-					           			<td align="center" class="text14 tableCellGray">&nbsp;${record.ttstat}</td>
-					           		</c:otherwise>
-					           		</c:choose>
-					           </c:when>
-					           <c:otherwise>
-					           		<td align="center" class="text14 tableCellGray">&nbsp;${record.ttstat}</td>
-					           </c:otherwise>
-			               </c:choose>
-			               
-			               <td class="text14 tableCellGray">&nbsp;${record.henas}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.trsdfd}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.trsdfk}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.henak}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.trsdtd}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.trsdtk}</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.hevs1}</td>
-			               
-			               <td class="text14 tableCellGray">&nbsp;
-			               		<input onKeyPress="return numberKey(event)" type="text" class="inputText11 clazz_position_currentorders" name="wspos${counter.count}" id="wspos${counter.count}" title="wspos${counter.count}@user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}" size="4" maxlength="3" value='${record.wspos}'>&nbsp;
-			               </td>
-			               <td align="center" class="text14 tableCellGray">&nbsp;${record.hest}&nbsp;</td>
-			               <td align="right" class="text14 tableCellGray">&nbsp;${record.hent}&nbsp;</td>
-			               <td align="right" class="text14 tableCellGray">&nbsp;${record.hevkt}&nbsp;</td>
-			               <td align="right" class="text14 tableCellGray">&nbsp;${record.hem3}&nbsp;</td>
-			               <td align="right" class="text14 tableCellGray">&nbsp;${record.helm}&nbsp;</td>
-			               <td class="text14 tableCellGray">&nbsp;${record.herfa}</td>
-			               <td align="center" class="text14 tableCell11RedFont">&nbsp;${record.hepoen}</td>
-			               <td align="center" class="text14 tableCellGray">
-	           		   			<a target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}&wstoll=${record.dftoll}">
-  		    						<img title="Fraktbr.PDF" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Fraktbr. PDF">
-   								</a>
-           		   			</td>
-			            </tr> 
-			            
-			            </c:forEach>
-			            </tbody>
-			            
-			            <tfoot>
-						<tr style="background-color:#EEEEEE">
-							<th align="left" class="text14">SUM.</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							   
-							<th align="right" class="text14"><c:out value="${model.containerCurrentOrders.hentTotalAmount}"></c:out>&nbsp;</th>   
-		                    <th align="right" class="text14"><c:out value="${model.containerCurrentOrders.hevktTotalAmount}"></c:out>&nbsp;</th>   
-		                    <th align="right" class="text14"><c:out value="${model.containerCurrentOrders.hem3TotalAmount}"></c:out>&nbsp;</th>   
-		                    <th align="right" class="text14"><c:out value="${model.containerCurrentOrders.helmTotalAmount}"></c:out>&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-							<th class="text14">&nbsp;</th>
-		                </tr> 
-		                </tfoot>
-		                
-		            </table>
-					</td>	
-					</tr>
-					
-					<tr>
-            		<td align="right" class="text14">
-            			<table >
-						<tr>
-							<td>	
-							<a href="transportDispWorkflowSpecificTripContentListExcelView.do" target="_new">
-		                		<img valign="bottom" id="specificTripContentListExcel" src="resources/images/excel.gif" width="14" height="14" border="0" alt="excel">
-		                		<font class="text12MediumBlue">&nbsp;Eksport til Excel</font>
-	 	        			</a>
-							</td>
-						</tr>
-						</table>
-					</td>
-					</tr>
-					
-					</table>
-					</td>
-				</tr>
-				<tr height="10"><td></td></tr> 
-			</c:if>
 			
 			<%-- OPEN ORDERS --%>
 			<%-- search filter component --%>
@@ -352,7 +162,7 @@
 				<table id="containerdatatableTable2" style="width:100%;" cellspacing="2" align="left" >
 				
 			    <tr>
-   				    <form name="searchForm" id="searchForm" action="transportdisp_mainorderlist.do?action=doFind" method="post" >
+   				    <form name="searchForm" id="searchForm" action="transportdisp_mainorderlist_history.do?action=doFind" method="post" >
 					<input type="hidden" name="tur" id="tur" value='${searchFilter.tur}'>
 					<input type="hidden" name="userAvd" id="userAvd" value='${model.userAvd}'>
 			    	<td> 
@@ -382,7 +192,14 @@
 			    		<td>
 							<input type="text" class="inputText" name="avd" id="avd" size="5" maxlength="4" value='${searchFilter.avd}'>
 							<div id="divAvdGroupsList" style="display:none;position: relative;height:10em;" class="ownScrollableSubWindowDynamicWidthHeight" align="left" >
-		 						<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
+		 						<%--
+		 						<select class="inputTextMediumBlueMandatoryField" name="avdGroupsList" id="avdGroupsList" size="5">
+				            		<c:forEach var="record" items="${model.avdGroupsList}" >
+			                       	 	<option style="color:black;" value="${record.agrKode}">${record.agrKode}&nbsp;${record.agrNavn}</option>
+									</c:forEach> 
+								</select>
+								 --%>
+								<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
 									<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
 									<tr>
 										<td id="id_${record.agrKode}" OnClick="doPickAvdGroup(this)" class="tableHeaderFieldFirst" style="cursor:pointer;" ><font class="text14SkyBlue">${record.agrKode}</font></td>
@@ -445,9 +262,7 @@
 				        </td>
 				        <td>
 				        	<select class="inputText14" name="wsdista" id="wsdista">
-		 						<option value="" <c:if test="${empty searchFilter.wsdista}"> selected </c:if> >Udisp.ordrer</option>
-		 						<option value="V" <c:if test="${searchFilter.wsdista == 'V'}"> selected </c:if>  >Vent.ordrer</option>
-		 						<option value="E" <c:if test="${searchFilter.wsdista == 'E'}"> selected </c:if> >EDI ordrer</option>
+		 						<option value="*" >Alle</option>
 							</select>
 				        </td>
 				        
@@ -494,7 +309,6 @@
 				        </td>
 				        <td >	
 				        	<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
-				        	<input onClick="setBlockUI(this);" class="inputFormSubmitStd" type="button" name="removeFilterButton" id="removeFilterButton" value='<spring:message code="systema.transportdisp.search.remove.filter"/>'>
 				        </td> 
 				        
 				        </tr>
@@ -502,9 +316,11 @@
 						<tr height="5"><td></td></tr>
 				
 				        <tr>
+				        <%-- Not applicable for history view ? (JOVO?)
 						<td colspan="2" class="text14MediumBlue">
 				            <input class="inputFormSubmitStd" tabindex=0 style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.open.form.button.createnew.trip"/>" name="cnButton" id="cnButton">
 				        </td>
+				         --%>
 				        </tr>
 				    </table>    
 					</td>
