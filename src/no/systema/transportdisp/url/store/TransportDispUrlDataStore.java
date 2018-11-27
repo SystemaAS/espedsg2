@@ -125,13 +125,20 @@ public final class TransportDispUrlDataStore {
 	//--------------------------------------------
 	static public String TRANSPORT_DISP_BASE_FETCH_SPECIFIC_TRIP_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR02.pgm";
 	//http://gw.systema.no/sycgip/TJETUR02.pgm?user=JOVO&tuavd=75&tupro=75000002 (via Ajax)
+	
 	static public String TRANSPORT_DISP_BASE_FETCH_SPECIFIC_TRIP_ARCHIVED_DOCS_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR02DO.pgm";
 	//http://gw.systema.no/sycgip/TJETUR02DO.pgm?user=JOVO&wstur=75000015 (via Ajax)
+	
+	static public String TRANSPORT_DISP_BASE_FETCH_SPECIFIC_SHIPPING_TRIP_LIST_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR11L.pgm";
+	//http://gw.systema.no/sycgip/TJETUR11L.pgm?user=SYSTEMA&feavd=33&fetur=33010116 (via Ajax)
+	
 	static public String TRANSPORT_DISP_BASE_ClOSE_SPECIFIC_TRIP_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR03ST.pgm";
 	//Close:-->http://gw.systema.no/sycgip/TJETUR03ST.pgm?user=OSCAR&tuavd=75&tupro=75000015&tust=A 
 	//Open:-->http://gw.systema.no/sycgip/TJETUR03ST.pgm?user=OSCAR&tuavd=75&tupro=75000015 
+	
 	static public String TRANSPORT_DISP_BASE_PRINT_SPECIFIC_TRIP_GODSLISTA_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR06GL.pgm";
 	//http://gw.systema.no/sycgip/TJETUR06GL.pgm?user=OSCAR&wstur=75000015 
+	
 	static public String TRANSPORT_DISP_BASE_PRINT_SPECIFIC_TRIP_LASTLISTA_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR06LL.pgm";	
 	//http://gw.systema.no/sycgip/TJETUR06LL.pgm?user=OSCAR&wstur=75000015 
 	

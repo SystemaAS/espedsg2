@@ -8,6 +8,9 @@ import org.apache.log4j.Logger;
 //application library
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipRecord;
+
 import no.systema.main.mapper.jsonjackson.general.ObjectMapperAbstractGrandFather;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsRecord;
@@ -80,6 +83,22 @@ public class JsonTransportDispWorkflowSpecificTripMapper extends ObjectMapperAbs
 		JsonTransportDispWorkflowSpecificTripMessageNoteContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispWorkflowSpecificTripMessageNoteContainer.class); 
 		logger.info("[JSON-String payload status=OK]  " + container.getUser());
 		for (JsonTransportDispWorkflowSpecificTripMessageNoteRecord record : container.getFreetextlist()){
+			//DEBUG
+		}
+		return container;
+	}
+	
+	/**
+	 * 
+	 * @param utfPayload
+	 * @return
+	 * @throws Exception
+	 */
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShip(String utfPayload) throws Exception{
+		//At this point we now have an UTF-8 payload
+		JsonTransportDispWorkflowSpecificTripShipContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispWorkflowSpecificTripShipContainer.class); 
+		logger.info("[JSON-String payload status=OK]  " + container.getUser());
+		for (JsonTransportDispWorkflowSpecificTripShipRecord record : container.getFerryTrips()){
 			//DEBUG
 		}
 		return container;

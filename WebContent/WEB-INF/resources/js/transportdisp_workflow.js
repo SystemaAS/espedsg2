@@ -1138,6 +1138,89 @@
 			  				//--------------
 			  				//END ArchDocs
 			  				//--------------
+			  				
+			  				//----------------------------------
+			  				//START populate Shipping-tour list
+			  				//----------------------------------
+			  				var shippingTripListLen = data[i].shippingTripList.length;
+			  				jq('#resultShippingList').text("");
+			  				
+			  				var table = jq('<table></table>').addClass('foo');
+			  				var row = jq('<tr></tr>').addClass('tableHeaderField');
+			  				var td_1 = jq('<th align="left"></th>').addClass('text14').text('Dato');
+			  				row.append(td_1);
+			  				var td_2 = jq('<th align="left"></th>').addClass('text14').text('Kl.');
+			  				row.append(td_2);
+			  				var td_3 = jq('<th align="left"></th>').addClass('text14').text('Fra');
+			  				row.append(td_3);
+			  				var td_4 = jq('<th align="left"></th>').addClass('text14').text('Til');
+			  				row.append(td_4);
+			  				var td_5 = jq('<th align="left"></th>').addClass('text14').text('Lengd');
+			  				row.append(td_5);
+			  				var td_6 = jq('<th align="left"></th>').addClass('text14').text('Selskap');
+			  				row.append(td_6);
+			  				var td_7 = jq('<th align="left"></th>').addClass('text14').text('Kostpris');
+			  				row.append(td_7);
+			  				var td_8 = jq('<th align="left"></th>').addClass('text14').text('Valuta');
+			  				row.append(td_8);
+			  				var td_9 = jq('<th align="left"></th>').addClass('text14').text('Bilnr.');
+			  				row.append(td_9);
+			  				
+			  				//TABLE APPEND row
+			  				table.append(row);
+			  				
+			  				//fill in table
+			  				for ( var j = 0; j < shippingTripListLen; j++) {
+			  					
+			  					var row = jq('<tr></tr>').addClass('tableRow');
+				  				var td_1 = jq('<td ></td>').addClass('tableCellFirst');td_1.css('white-space','nowrap')
+				  				var td_2 = jq('<td></td>').addClass('tableCell');td_2.css('white-space','nowrap')
+				  				var td_3 = jq('<td></td>').addClass('tableCell');td_3.css('white-space','nowrap');
+				  				var td_4 = jq('<td></td>').addClass('tableCell');td_4.css('white-space','nowrap');
+				  				var td_5 = jq('<td></td>').addClass('tableCell');td_5.css('white-space','nowrap');
+				  				var td_6 = jq('<td></td>').addClass('tableCell');td_6.css('white-space','nowrap');
+				  				var td_7 = jq('<td></td>').addClass('tableCell');td_7.css('white-space','nowrap');
+				  				var td_8 = jq('<td></td>').addClass('tableCell');td_8.css('white-space','nowrap');
+				  				var td_9 = jq('<td></td>').addClass('tableCell');td_9.css('white-space','nowrap');
+				  				
+			  					//ROW APPEND TD_1 
+			  					td_1.text(data[i].shippingTripList[j].fedat2);
+			  					row.append(td_1);
+			  					//ROW APPEND TD_2 
+			  					td_2.text(data[i].shippingTripList[j].fetime);
+			  					row.append(td_2);
+			  					//ROW APPEND TD_3 
+			  					td_3.text(data[i].shippingTripList[j].fefrom);
+			  					row.append(td_3);
+			  					//ROW APPEND TD_4 
+			  					td_4.text(data[i].shippingTripList[j].feto);
+			  					row.append(td_4);
+			  					//ROW APPEND TD_5 
+			  					td_5.text(data[i].shippingTripList[j].feleng);
+			  					row.append(td_5);
+			  					//ROW APPEND TD_6 
+			  					td_6.text(data[i].shippingTripList[j].levNavn);
+			  					row.append(td_6);
+			  					//ROW APPEND TD_6 
+			  					td_7.text(data[i].shippingTripList[j].fepri1);
+			  					row.append(td_7);
+			  					//ROW APPEND TD_8 
+			  					td_8.text(data[i].shippingTripList[j].fecurr);
+			  					row.append(td_8);
+			  					//ROW APPEND TD_9 
+			  					td_9.text(data[i].shippingTripList[j].febiln);
+			  					row.append(td_9);
+
+			  					//
+			  					table.append(row);
+						  	}
+			  				//append TABLE to DIV
+			  				jq('#resultShippingList').append(table);
+			  				//-----------------------
+			  				//END Shipping-tour list
+			  				//-----------------------
+			  				
+			  				
 			  			}
 			  			
 			  			//Truck Lic

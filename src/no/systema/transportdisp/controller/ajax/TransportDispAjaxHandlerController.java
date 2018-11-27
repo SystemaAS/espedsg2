@@ -42,6 +42,9 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDi
 
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipRecord;
+
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripMessageNoteContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripMessageNoteRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispCustomerContainer;
@@ -128,6 +131,7 @@ public class TransportDispAjaxHandlerController {
 			if(container!=null){
 				Collection<JsonTransportDispWorkflowSpecificTripMessageNoteRecord> messageNote = new ArrayList<JsonTransportDispWorkflowSpecificTripMessageNoteRecord>();
 				Collection<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord> archiveDocsList = new ArrayList<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord>();
+				Collection<JsonTransportDispWorkflowSpecificTripShipRecord> shippingTripList = new ArrayList<JsonTransportDispWorkflowSpecificTripShipRecord>();
 				for(JsonTransportDispWorkflowSpecificTripRecord  record : container.getGetonetrip()){
 					logger.info("####TUPRO-field:" + record.getTupro());
 					//Now fetch the Message Note and fill the parent record with it
@@ -136,6 +140,10 @@ public class TransportDispAjaxHandlerController {
 					//Now fetch the Archived Documents and fill the parent record with it
 					archiveDocsList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingArchiveDocs(applicationUser, tripNr);
 					record.setGetdoctrip(archiveDocsList);
+					//Now fetch the Shipping list and fill the parent record with it
+					shippingTripList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingShippingTripList(applicationUser, avdNr, tripNr);
+					record.setShippingTripList(shippingTripList);
+					
 					//set final complete record
 					result.add(record);
 				 }

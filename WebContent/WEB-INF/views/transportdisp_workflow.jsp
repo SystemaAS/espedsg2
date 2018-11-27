@@ -1057,6 +1057,53 @@
 								    		</table>
 								    	</tr>
 								    	<tr height="5"><td ></td></tr>
+								    	<tr>
+						 				<td colspan="10" class="text14">
+						 					<table class="tableBorderWithRoundCorners" >
+												<tr>
+										 			<td valign="top" class="text14"><spring:message code="systema.transportdisp.workflow.trip.form.label.shippinglist"/>
+									 					<div id="resultShippingList">
+									 						<table >
+										 						<tr class="tableHeaderField" >
+										 						<th align="left" class="text14">Dato</th>
+										 						<th align="left" class="text14">Kl.</th>
+										 						<th align="left" class="text14">Fra</th>
+										 						<th align="left" class="text14">Til</th>
+										 						<th align="left" class="text14">Lengd</th>
+										 						<th align="left" class="text14">Selskap</th>
+										 						<th align="left" class="text14">Kostpris</th>
+										 						<th align="left" class="text14">Valuta</th>
+										 						<th align="left" class="text14">Bilnr.</th>
+										 						
+										 						</tr>
+									 						
+											 					<c:forEach items="${model.record.shippingTripList}" var="record" varStatus="counter">
+											 						<tr class="text14 tableRow">
+											 						<td class="tableCellFirst" style="white-space:nowrap">${record.fedat2}</td>
+							 										<td class="tableCell" style="white-space:nowrap">${record.fetime}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.fefrom}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.feto}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.feleng}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.levNavn}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.fepri1}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.fecurr}</td>
+										   							<td class="tableCell" style="white-space:nowrap">${record.febiln}</td>
+										   							
+										   							</tr>
+											 					</c:forEach>
+											 				</table>
+									 					</div>
+									 					
+									 				</td>
+												</tr>
+											</table>
+										 	
+					 						
+							 				</td>
+							 			</tr>
+								    	
+								    	
+								    	<tr height="5"><td ></td></tr>
 								    	
 								 </table>	
 				 				</td>

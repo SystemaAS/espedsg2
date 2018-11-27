@@ -6,6 +6,7 @@ package no.systema.transportdisp.service;
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificTripMapper;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripMessageNoteContainer;
 
 /**
@@ -24,6 +25,19 @@ public class TransportDispWorkflowSpecificTripServiceImpl implements TransportDi
 		try{
 			JsonTransportDispWorkflowSpecificTripMapper mapper = new JsonTransportDispWorkflowSpecificTripMapper();
 			container = mapper.getContainer(utfPayload);
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return container;
+	}
+	/**
+	 * 
+	 */
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShip(String utfPayload) {
+		JsonTransportDispWorkflowSpecificTripShipContainer container = null;
+		try{
+			JsonTransportDispWorkflowSpecificTripMapper mapper = new JsonTransportDispWorkflowSpecificTripMapper();
+			container = mapper.getContainerShip(utfPayload);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

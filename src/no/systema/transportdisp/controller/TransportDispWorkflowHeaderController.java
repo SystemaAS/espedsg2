@@ -44,6 +44,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWork
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripMessageNoteRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
 import no.systema.transportdisp.util.TransportDispConstants;
@@ -262,8 +263,18 @@ public class TransportDispWorkflowHeaderController {
 					//----------------------------
 					if(bindingResult.hasErrors()){
 				    	logger.info("[ERROR Validation] Record does not validate)");
-					    //put domain objects and do go back to the original view...
+				    	//Now fetch the Archived Documents and fill the parent record with it
+						Collection<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord> archiveDocsList = null;
+						archiveDocsList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingArchiveDocs(appUser.getUser(), recordToValidate.getTupro());
+						recordToValidate.setGetdoctrip(archiveDocsList);
+						//Now fetch the Shipping list and fill the parent record with it
+						Collection<JsonTransportDispWorkflowSpecificTripShipRecord> shippingTripList = null;
+						shippingTripList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingShippingTripList(appUser.getUser(), recordToValidate.getTuavd(), recordToValidate.getTupro());
+						recordToValidate.setShippingTripList(shippingTripList);
+						
+						//put domain objects and do go back to the original view...
 				    	this.setDomainObjectsInView(model, recordToValidate );
+				    	
 
 					}else{
 			    		String transactionMode = null;
@@ -355,6 +366,10 @@ public class TransportDispWorkflowHeaderController {
 								Collection<JsonTransportDispWorkflowSpecificTripArchivedDocsRecord> archiveDocsList = null;
 								archiveDocsList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingArchiveDocs(appUser.getUser(), recordToValidate.getTupro());
 								recordToValidate.setGetdoctrip(archiveDocsList);
+								//Now fetch the Shipping list and fill the parent record with it
+								Collection<JsonTransportDispWorkflowSpecificTripShipRecord> shippingTripList = null;
+								shippingTripList = this.controllerAjaxCommonFunctionsMgr.fetchTripHeadingShippingTripList(appUser.getUser(), recordToValidate.getTuavd(), recordToValidate.getTupro());
+								recordToValidate.setShippingTripList(shippingTripList);
 								
 								//put domain objects
 						    	this.setDomainObjectsInView(model, recordToValidate );

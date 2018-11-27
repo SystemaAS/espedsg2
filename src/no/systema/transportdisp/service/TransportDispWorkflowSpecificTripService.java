@@ -4,6 +4,7 @@
 package no.systema.transportdisp.service;
 
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripShipContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripMessageNoteContainer;
 
@@ -17,6 +18,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWork
  */
 public interface TransportDispWorkflowSpecificTripService {
 	public JsonTransportDispWorkflowSpecificTripContainer getContainer(String utfPayload);
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShip(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripContainer getUpdateContainer(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripArchivedDocsContainer getArchivedDocsContainer(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripMessageNoteContainer getMessageNoteContainer(String utfPayload);
