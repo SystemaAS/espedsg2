@@ -90,8 +90,10 @@
         		<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.wssavd}'>
 				<input type="hidden" name="fkeysopd" id="fkeystur" value='${model.record.tupro}'>
 	 	        
-	 	        <table style="width:90%;">
-	 	        <tr>	
+	 	        <table cellspacing="2">
+	 	        <tr>
+	 	        	<td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
+	                	
 	                <td valign="bottom" class="text14" align="left" >
                 		<span title="wssavd"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/></span>
 		 				<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doInit','avdWin','top=150px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
@@ -113,10 +115,19 @@
 	                		&nbsp;&nbsp;&nbsp;<span title="wtudtt/wtudtt2"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/></span>
 	                		<img src="resources/images/calendar.gif" height="12px" width="12px" border="0" alt="date">
 	                </td>
-	                <td valign="bottom" class="text14" align="left" >&nbsp;&nbsp;&nbsp;<span title="wssst"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.status"/></span></td>
 	                <td>&nbsp;</td>
 				</tr>
-				<tr>			       
+				<tr>
+					<td class="text14" align="left" >
+						<select class="inputTextMediumBlue" name="wssst" id="wssst">
+								<option value="" <c:if test="${searchFilter.wssst == ''}"> selected </c:if> >Åpne</option>
+								<option value="A" <c:if test="${searchFilter.wssst == 'A'}"> selected </c:if> >A-Stengde</option>
+			            		<option value="B" <c:if test="${searchFilter.wssst == 'B'}"> selected </c:if> >B-Underveis</option>
+			            		<option value="C" <c:if test="${searchFilter.wssst == 'C'}"> selected </c:if> >C-Ferdige</option>
+			            		<option value="Z" <c:if test="${searchFilter.wssst == 'Z'}"> selected </c:if> >Alle</option>
+			            		
+						</select>
+					</td>			       
 	                <c:choose>
 						<c:when test="${not empty searchFilter.wssavd}">	
 			                <td align="left" >&nbsp;<input type="text" class="inputTextMediumBlueUPPERCASE" name="wssavd" id="wssavd" size="5" maxlength="4" value='${searchFilter.wssavd}'>&nbsp;
@@ -164,17 +175,6 @@
 					<td align="left" >&nbsp;
 						<input type="text" class="inputTextMediumBlue" name="wtudtt" id="wtudtt" size="9" maxlength="8" value='${searchFilter.wtudtt}'>
 						-<input type="text" class="inputTextMediumBlue" name="wtudtt2" id="wtudtt2" size="9" maxlength="8" value='${searchFilter.wtudtt2}'>
-						
-					</td>
-					<td class="text14" align="left" >
-						<select class="inputText14" name="wssst" id="wssst">
-								<option value="" <c:if test="${searchFilter.wssst == ''}"> selected </c:if> >Åpne</option>
-								<option value="A" <c:if test="${searchFilter.wssst == 'A'}"> selected </c:if> >A-Stengde</option>
-			            		<option value="B" <c:if test="${searchFilter.wssst == 'B'}"> selected </c:if> >B-Underveis</option>
-			            		<option value="C" <c:if test="${searchFilter.wssst == 'C'}"> selected </c:if> >C-Ferdige</option>
-			            		<option value="Z" <c:if test="${searchFilter.wssst == 'Z'}"> selected </c:if> >Alle</option>
-			            		
-						</select>
 					</td>
 					<td valign="bottom" align="left" >&nbsp;
 						<input class="inputFormSubmit" type="submit" name="submitSearch" id="submitSearch" name="submitSearch" value='<spring:message code="systema.transportdisp.search"/>'>
@@ -270,8 +270,6 @@
    		                    <th class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
-		                    <th align="right" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
-		                    <th align="center" class="text14">&nbsp;</th>
 		                    
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
@@ -281,10 +279,12 @@
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
+		                    <th width="2%" align="right" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th width="1%" align="left" class="text14">&nbsp;</th>
 		                    
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
 	                    	<c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
-		                    	<th class=text14>
+		                    	<th width="2%" class=text14>
 			            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>" name="currenttripsColumnHeaderButtonCloseOpen" id="currenttripsColumnHeaderButtonCloseOpen" onClick="getValidCheckis(this);">
 			                    </th>
 		                    </c:if>
@@ -292,7 +292,9 @@
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
+		                    <%--
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
+		                     --%>
 		                </tr> 
 		                </thead>
 		                <tbody>
@@ -305,10 +307,10 @@
 			               		<%--<font class="text11MediumBlue"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.edit"/></font> --%>
 			               		</div>
 			               </td>	
-			               <td align="center" class="text14 tableCellGray">
+			               <td width="3%" align="center" class="text14 tableCellGray">
 			               		${record.tuavd}
 			               </td>
-			               <td nowrap align="left" style="width: 100px;" class="textMediumBlue tableCellGray" id="htmlpost_${counter.count}">
+			               <td width="3%" nowrap align="left" class="textMediumBlue tableCellGray" id="htmlpost_${counter.count}">
 			               <%--OLD before upgrade to Spring 4 OBS:remove if the above is working
 			               	<td nowrap align="left" style="width: 100px;" class="text11MediumBlue tableCellGray" id="avd_${record.tuavd}@tripnr_${record.tupro}@statusA_${record.turclose}@${counter.count}"> 
 			               --%>
@@ -332,7 +334,7 @@
 			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tusg}</td>
 			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tubiln}</td>
 			               <td width="3%" class="text14 tableCellGray">&nbsp;${record.tuopdt}</td>
-			               <td align="center" class="text14 tableCellGray" >
+			               <td width="3%" align="center" class="text14 tableCellGray" >
 			               	<c:if test="${not empty record.pdaStat}">
 				               <c:choose>
 					               <c:when test="${record.pdaStat=='inWork'}">
@@ -367,8 +369,17 @@
 	            		   	</c:if>
 	            		   </td>
 	            		   <td width="3%" class="text14 tableCellGray">&nbsp;${record.tutmt}</td>
-	            		   <td width="3%" align="right" class="text14 tableCellGray">${record.turund}</td>
-		            	    <td width="3%" align="center" class="text14">
+	            		   
+	            		   <td width="3%" align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
+	            		   <td width="3%" align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>
+	            		   
+	            		   <td width="3%" align="right" class="text14 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
+	            		   <td width="3%" align="right" class="text14 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
+	            		   <td width="3%" align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
+	            		   <td width="3%" align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
+	            		   <td width="3%" align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
+	            		   <td width="1%" align="right" class="text14 tableCellGray">${record.turund}</td>
+		            	   <td width="1%" align="left" class="text14">
 		            	   		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
 									<img style="vertical-align:middle;" title="Copy-Round trip" src="resources/images/copy.png" width="12px" height="12px" border="0" alt="copy">
 								</a>
@@ -392,56 +403,46 @@
 										</table>
 									</form>
 								</div>
-	            		   
-	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tuao}</td>
-	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.podTxt}</td>
-	            		   
-	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutvkt}&nbsp;</td>
-	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutm3}&nbsp;</td>
-	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tutlm2}&nbsp;</td>
-	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tupoen}&nbsp;</td>
-	            		   <td align="right" class="text14 tableCellGray">&nbsp;${record.tures}&nbsp;</td>
-	            		   
-	            		   <td align="center" class="text14 tableCellGray">
+	            		   </td>
+	            		   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<c:choose>	
 		            		   		<c:when test="${record.turclose=='close'}">
 					           		<a href="transportdisp_workflow_closeOpenTrip.do?user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=A">
 	    		    					<img title="Close" style="vertical-align:bottom;" src="resources/images/close.png" width="15" hight="15" border="0" alt="close">
-				   					</a>
+				   					</a><font class="text12Bold" >${record.tust}</font>
 			   					</c:when>
 			   					<c:otherwise>
 									<a href="transportdisp_workflow_closeOpenTrip.do?user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=">
 	    		    					<img title="Open" style="vertical-align:bottom;" src="resources/images/open.png" width="18" hight="18" border="0" alt="open">
-				   					</a>
+				   					</a><font class="text12Bold" >${record.tust}</font>
 			   					</c:otherwise>
 		   					</c:choose>
 	            		   	</td>
 	            		   <c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
-	            		   		<td class="text14 tableCellGray" align="center"><input class="clazz_checkis_currenttrips" type="checkbox" id="checkis_currenttrips${counter.count}@user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=<c:if test="${record.turclose=='close'}">A</c:if>"></td>
+	            		   		<td width="3%" class="text14 tableCellGray" align="center"><input class="clazz_checkis_currenttrips" type="checkbox" id="checkis_currenttrips${counter.count}@user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=<c:if test="${record.turclose=='close'}">A</c:if>"></td>
 	            		   </c:if>	
-	            		   <td align="center" class="text14 tableCellGray">
+	            		   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=G">
     		    					<img title="Glist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Glist PDF">
 		   						</a>
 	            		   </td>
-	            		   <td align="center" class="text14 tableCellGray">&nbsp;${record.tutst1}&nbsp;</td>
-		               		<td align="center" class="text14 tableCellGray">
+	            		   <td width="3%" align="center" class="text14 tableCellGray">&nbsp;${record.tutst1}&nbsp;</td>
+		               	   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=L">
     		    					<img title="Llist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" hight="16" border="0" alt="Llist PDF">
 	   							</a>
 	            		   </td>
 	            		   
 	            		   
-	            		   
-	            		   
-	            		   <td align="center" class="text14 tableCellGray">
+	            		   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=210px,width=330px,scrollbars=no,status=no,location=no')">	 
 	            		   </td>
+	            		   <%--
 	            		   <td align="center" class="text14 tableCellGray">
             		   			 <form name="uploadFileForm_${counter.count}" id="uploadFileForm_${counter.count}" method="post" enctype="multipart/form-data">
 	            		   		 	<input ondragenter="myFileUploadDragEnter(event,this)" ondragleave="myFileUploadDragLeave(event,this)" class="tableBorderWithRoundCornersLightYellow noFileChosenTransparent" style="height:25px;display:block;" onChange="uploadFile(this);" type="file" name="file_${counter.count}" id="file_${counter.count}" />
 	            		   		 	
-	            		   		 	<%-- everything below this line will be hidden for the end-user but not for jquery--%>
+	            		   		 	<%-- everything below this line will be hidden for the end-user but not for jquery
 	            		   		 	<input type="hidden" name="applicationUserUpload_${counter.count}" id="applicationUserUpload_${counter.count}" value='${user.user}'>
 									<input type="hidden" name="wstur_${counter.count}" id="wstur_${counter.count}" value='${record.tupro}'>
 									 <div class="text14" style="position: relative;" align="left">
@@ -456,6 +457,7 @@
 									</div>
 								</form>
 	            		   </td>
+	            		    --%>
 			            </tr> 
 		            	</c:forEach>
 		            </tbody>

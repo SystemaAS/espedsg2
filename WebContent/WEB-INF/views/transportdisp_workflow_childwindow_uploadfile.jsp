@@ -20,7 +20,7 @@
 					<tr>
 						<td colspan="3" class="text14Bold">&nbsp;
 							<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="24" height="24" alt="upload">
-							&nbsp;File Upload&nbsp;							
+							&nbsp;File Upload&nbsp;&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>:<b>${model.wstur}</b>						
 						</td>
 					</tr>
 					<tr>
@@ -50,7 +50,7 @@
 						<tr>	
 							<td class="text14">&nbsp;Fil:</td>
 							<td class="text14">
-           						&nbsp;<input class="tableBorderWithRoundCornersLightYellow3D" style="width:150px;height:55px;display:block;" type="file" name="file" id="file" />
+           						&nbsp;<input ondragenter="myFileUploadDragEnter(event,this)" ondragleave="myFileUploadDragLeave(event,this)" class="tableBorderWithRoundCornersLightYellow3D" style="width:150px;height:55px;display:block;" type="file" name="file" id="file" />
        						</td>
 		           		</tr>
 		           	 	<%--

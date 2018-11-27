@@ -12,6 +12,13 @@
 			
 		});
   	});
+  	//drag enter/leave
+	  function myFileUploadDragEnter(event, element){
+		  jq("#file").addClass( "isa_blue" );
+	  }
+	  function myFileUploadDragLeave(event, element){
+		  jq("#file").removeClass( "isa_blue" );
+	  }
   	
   	//Customer
 	jq(function() {
@@ -613,6 +620,9 @@
 		  }else{
 			  opener.jq('#heot').val(id);
 			  opener.jq('#heot').focus();
+			  //
+			  opener.jq('#opdType').val(id);
+			  opener.jq('#opdType').focus();
 		  }
 		  //close child window
 		  window.close();

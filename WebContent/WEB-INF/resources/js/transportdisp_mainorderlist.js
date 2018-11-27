@@ -902,7 +902,20 @@
 	  	  }
 	  });
   }	
-
+  
+  
+  
+  jq(function() {
+  	  jq('#opdTypeIdLink').click(function() {
+	  	jq('#opdTypeIdLink').attr('target','_blank');
+	  	window.open('transportdisp_workflow_childwindow_opptype.do?action=doInit', "opptypeWin", "top=300px,left=450px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+	  });
+	  jq('#opdTypeIdLink').keypress(function(e){ //extra feature for the end user
+			if(e.which == 13) {
+				jq('#opdTypeIdLink').click();
+			}
+	  });	 
+  });
   
 
   

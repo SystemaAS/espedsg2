@@ -300,6 +300,8 @@
 		  var counter = id.replace("file_","");
 		  jq("#file_" + counter).removeClass( "isa_blue" );
 	  }
+	  
+	  
 	  /*
 	  jq(function() {
 		  //Triggers drag-and-drop

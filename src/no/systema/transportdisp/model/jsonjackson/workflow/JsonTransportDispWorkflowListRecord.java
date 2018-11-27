@@ -45,6 +45,10 @@ public class JsonTransportDispWorkflowListRecord extends JsonAbstractGrandFather
 	public void setTustet(String value) {  this.tustet = value; }
 	public String getTustet() {return this.tustet;}
 	
+	private String tust = null;
+	public void setTust(String value) {  this.tust = value; }
+	public String getTust() {return this.tust;}
+	
 	private String tuetd = null;
 	public void setTuetd(String value) {  this.tuetd = value; }
 	public String getTuetd() {return this.tuetd;}

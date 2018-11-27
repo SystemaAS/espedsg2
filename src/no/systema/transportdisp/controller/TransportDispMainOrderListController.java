@@ -87,47 +87,6 @@ public class TransportDispMainOrderListController {
 			logger.setLevel(Level.DEBUG);
 		}
 	}
-	/**
-	 * 
-	 * @param recordToValidate
-	 * @param bindingResult
-	 * @param session
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping(value="transportdisp_mainorderlist_clearSearchFilter.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView doClearFilter(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
-		
-		this.controllerAjaxCommonFunctionsMgr = new ControllerAjaxCommonFunctionsMgr(this.urlCgiProxyService, this.transportDispWorkflowSpecificTripService);
-		this.context = TdsAppContext.getApplicationContext();
-		Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> outputListCurrentOrders = new ArrayList<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord>();
-		Collection<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord> outputListOpenOrders = new ArrayList<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord>();
-		String wstur = request.getParameter("wstur");
-		String wssavd = request.getParameter("wssavd");
-		if(wssavd!=null && !"".equals(wssavd)){ recordToValidate.setAvd(wssavd); }
-		if(wstur!=null && !"".equals(wstur)){ recordToValidate.setTur(wstur); }
-		
-		Map model = new HashMap();
-		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
-		
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind");
-		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
-		
-		//check user (should be in session already)
-		if(appUser==null){
-			return loginView;
-			
-		}else{
-			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
-			//drop downs
-    		this.setCodeDropDownMgr(appUser, model);
-    		
-    		//remove filter from session
-            session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
-		}
-		return successView;
-		
-	}
 	
 	/**
 	 * 
@@ -671,6 +630,34 @@ public class TransportDispMainOrderListController {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_mainorderlist_clearSearchFilter.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doClearFilter(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+		
+		
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			//remove filter from session
+            session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
+		}
+		return successView;
+		
+	}
+	
 	/**
 	 * 
 	 * @param appUser
@@ -880,7 +867,8 @@ public class TransportDispMainOrderListController {
 	 */
 	private void setCodeDropDownMgr(SystemaWebUser appUser, Map model){
 		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringAvdGroups(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model,appUser);
-		
+		//oppdragtype
+		this.codeDropDownMgr.populateHtmlDropDownsFromJsonStringOppdragsType(this.urlCgiProxyService, this.transportDispDropDownListPopulationService, model, appUser, null);
 	}
 
 	//SERVICES

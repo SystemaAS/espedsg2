@@ -363,7 +363,7 @@
 				        </td>
 				        
 				        <td>
-				        	<select class="inputText14" name="wsprebook" id="wsprebook">
+				        	<select class="inputTextMediumBlue" name="wsprebook" id="wsprebook">
 		 						<option value="A" <c:if test="${searchFilter.wsprebook == 'A'}"> selected </c:if> >Alle</option>
 		 						<option value="F" <c:if test="${searchFilter.wsprebook == 'F'}"> selected </c:if> >Ordre</option>
 		 						<option value="P" <c:if test="${searchFilter.wsprebook == 'P'}"> selected </c:if> >PreBook</option>
@@ -373,14 +373,14 @@
 				        <td>
 							<font title="avd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
 							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doFind','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
-		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
+		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 		 					</a>
 							<font id="objAvdGroupsList" class="text14SkyBlue" style="cursor:pointer;text-decoration: underline;">Grp</font>
 			        	</td>
 			        	
 				        
 			    		<td>
-							<input type="text" class="inputText" name="avd" id="avd" size="5" maxlength="4" value='${searchFilter.avd}'>
+							<input type="text" class="inputTextMediumBlue" name="avd" id="avd" size="5" maxlength="4" value='${searchFilter.avd}'>
 							<div id="divAvdGroupsList" style="display:none;position: relative;height:10em;" class="ownScrollableSubWindowDynamicWidthHeight" align="left" >
 		 						<table id="tblAvdGroupsList" class="inputTextMediumBlueMandatoryField">
 									<c:forEach items="${model.avdGroupsList}" var="record" varStatus="counter">  
@@ -397,42 +397,51 @@
 			        		&nbsp;<font title="opd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
 			        		<%-- release 2 BRING (punkt (17)) and delete the above space with the link --%>
 			        		<a href="javascript:void(0);" onClick="window.open('sporringoppdraggate.do?lang=NO&cw=true','opdWin','top=100px,left=200px,height=900px,width=1500px,scrollbars=no,status=no,location=no')">
-		 						<img id="imgOpdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="14px" width="14px" border="0" alt="search">
+		 						<img id="imgOpdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 		 					</a>
 		 					
 				        </td>
 				        
 			        	
 			        	<td>	
-			        		<input type="text" class="inputText" name="opd" id="opd" size="10" maxlength="15" value='${searchFilter.opd}'>
+			        		<input type="text" class="inputTextMediumBlue" name="opd" id="opd" size="10" maxlength="15" value='${searchFilter.opd}'>
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="opdType" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></font>
-				        	
+				        	<a tabindex=-1 id="opdTypeIdLink" >	
+								<img id="opdTypeImg" tabindex=0 style="vertical-align: middle;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+							</a>
 				        </td>
 				        
 				        <td>	
-			        		<input type="text" class="inputText" name="opdType" id="opdType" size="10" maxlength="15" value='${searchFilter.opdType}'>
+			        		<select class="inputTextMediumBlue" name="opdType" id="opdType">
+			            		<option value="">-select-</option>
+			 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
+		                       	 	<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${searchFilter.opdType == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+								</c:forEach> 
+							</select>	
+							
+			        		
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="sender" class="text14">Avs</font>
 				        </td>
 				        <td>	
-			        		<input type="text" class="inputText" name="sender" id="sender" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="sender" id="sender" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 			        	<td>	
 			        		&nbsp;<font title="from" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.from"/></font>
 				        </td>
 				        <td>	
-			        		<input type="text" class="inputText" name="from" id="from" size="9" maxlength="8" value='${searchFilter.from}'>
+			        		<input type="text" class="inputTextMediumBlue" name="from" id="from" size="9" maxlength="8" value='${searchFilter.from}'>
 				        </td>
 				        <td>	
 				        	&nbsp;<font title="fromDateF/fromDateT" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
 				        </td>
 				        
 				        <td>	
-			        		<input type="text" class="inputText" name="fromDateF" id="fromDateF" size="9" maxlength="8" value='${searchFilter.fromDateF}'>
-				        	-<input type="text" class="inputText" name="fromDateT" id="fromDateT" size="9" maxlength="8" value='${searchFilter.fromDateT}'>
+			        		<input type="text" class="inputTextMediumBlue" name="fromDateF" id="fromDateF" size="9" maxlength="8" value='${searchFilter.fromDateF}'>
+				        	-<input type="text" class="inputTextMediumBlue" name="fromDateT" id="fromDateT" size="9" maxlength="8" value='${searchFilter.fromDateT}'>
 				        </td>
 				        
 				        
@@ -444,7 +453,7 @@
 				        	&nbsp;<font title="wsdista" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.ordreType"/></font>
 				        </td>
 				        <td>
-				        	<select class="inputText14" name="wsdista" id="wsdista">
+				        	<select class="inputTextMediumBlue" name="wsdista" id="wsdista">
 		 						<option value="" <c:if test="${empty searchFilter.wsdista}"> selected </c:if> >Udisp.ordrer</option>
 		 						<option value="V" <c:if test="${searchFilter.wsdista == 'V'}"> selected </c:if>  >Vent.ordrer</option>
 		 						<option value="E" <c:if test="${searchFilter.wsdista == 'E'}"> selected </c:if> >EDI ordrer</option>
@@ -455,42 +464,42 @@
 			        		&nbsp;<font title="sign" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></font>
 				        </td>
 						<td>	
-			        		<input type="text" class="inputText" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="ponr" class="text14">Ponr.</font>
 				        </td>
 						<td>	
-			        		<input type="text" class="inputText" name="ponr" id="ponr" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="ponr" id="ponr" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="customer" class="text14">Kunde</font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputText" name="customer" id="customer" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="customer" id="customer" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="receiver" class="text14">Mott.</font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputText" name="receiver" id="receiver" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="receiver" id="receiver" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 			        	<td>	
 				        	&nbsp;<font title="to" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.to"/></font>
 				        </td>
 			        	
 				        <td>	
-				        	<input type="text" class="inputText" name="to" id="to" size="9" maxlength="8" value='${searchFilter.to}'>
+				        	<input type="text" class="inputTextMediumBlue" name="to" id="to" size="9" maxlength="8" value='${searchFilter.to}'>
 				        </td>
 				        <td>	
 				        	&nbsp;<font title="toDateF/toDateT" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
 				        </td>
 				        
 				        <td>	
-			        		<input type="text" class="inputText" name="toDateF" id="toDateF" size="9" maxlength="8" value='${searchFilter.toDateF}'>
-				        	-<input type="text" class="inputText" name="toDateT" id="toDateT" size="9" maxlength="8" value='${searchFilter.toDateT}'>
+			        		<input type="text" class="inputTextMediumBlue" name="toDateF" id="toDateF" size="9" maxlength="8" value='${searchFilter.toDateF}'>
+				        	-<input type="text" class="inputTextMediumBlue" name="toDateT" id="toDateT" size="9" maxlength="8" value='${searchFilter.toDateT}'>
 				        </td>
 				        <td >	
 				        	<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
@@ -559,13 +568,14 @@
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.volume"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.loadMtr"/></th>  
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.copy"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.move"/></th>
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
+	                    
 	                </tr> 
 	                </thead>
 	                
@@ -626,7 +636,6 @@
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hem3}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.helm}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.herfa}</td>
-		               <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
 		               <td width="2%" align="center" class="tableCellRedFont">&nbsp;${record.hepoen}</td>
 		               <td width="2%" align="center" class="textMediumBlue">
 		               		<c:if test="${not empty record.interninfo}">
@@ -707,7 +716,8 @@
 								</form>
 							</div>
 		               </td>
-		              
+		               <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
+		               
 					   			               	
 		            </tr> 
 		            </c:forEach>
