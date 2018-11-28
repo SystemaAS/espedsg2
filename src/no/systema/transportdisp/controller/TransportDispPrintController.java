@@ -92,7 +92,7 @@ public class TransportDispPrintController {
 			//-------------------------------------
 			//get BASE URL = RPG-PROGRAM for PRINT
             //-------------------------------------
-			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT;
+			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
 			
 			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 	    	logger.info("URL: " + BASE_URL);

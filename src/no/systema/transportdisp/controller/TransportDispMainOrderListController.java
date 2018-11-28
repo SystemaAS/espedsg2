@@ -103,8 +103,6 @@ public class TransportDispMainOrderListController {
 		Collection<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord> outputListOpenOrders = new ArrayList<JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord>();
 		String wstur = request.getParameter("wstur");
 		String wssavd = request.getParameter("wssavd");
-		if(wssavd!=null && !"".equals(wssavd)){ recordToValidate.setAvd(wssavd); }
-		if(wstur!=null && !"".equals(wstur)){ recordToValidate.setTur(wstur); }
 		
 		
 		Map model = new HashMap();
@@ -123,10 +121,14 @@ public class TransportDispMainOrderListController {
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
 			//drop downs
     		this.setCodeDropDownMgr(appUser, model);
-    		
-    		//Put in session for further use (within this module) ONLY with: POST method = doFind on search fields
+    		//----------------------
+    		//Put FILTER in SESSION for further use (within this module) ONLY with: POST method = doFind on search fields
+    		//----------------------
             if(request.getMethod().equalsIgnoreCase(RequestMethod.POST.toString())){
-            		session.setAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP, recordToValidate);
+    				//Only when the JSP has not a "trip-list" on top. Only at the main entry point of the entire transp.module (order list without trips)
+    				if(strMgr.isNull(wstur)){
+    					session.setAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP, recordToValidate);
+    				}
             }else{
             	SearchFilterTransportDispWorkflowShippingPlanningOrdersList sessionFilter = (SearchFilterTransportDispWorkflowShippingPlanningOrdersList)session.getAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
             	if(sessionFilter!=null){
@@ -134,6 +136,14 @@ public class TransportDispMainOrderListController {
             		recordToValidate = sessionFilter;
             	}
             }
+            //END FILTER in SESSION
+            
+            //Adjust record after fetch of filter from session (is applicable)
+            if(strMgr.isNotNull(wssavd)){ recordToValidate.setAvd(wssavd); }
+            //Init
+            recordToValidate.setTur(null);
+    		if(strMgr.isNotNull(wstur)){ recordToValidate.setTur(wstur); }
+    		
             
     		
 			//-----------
@@ -154,11 +164,13 @@ public class TransportDispMainOrderListController {
 		    }else{
 				//STEP [1]
 		    	//Get all lists
-	    		outputListCurrentOrders = this.getListCurrentOrders(appUser, recordToValidate, model);
-	    		//Put list for upcoming view (PDF, Excel, or ErrorHandling in add/remove orders (method below...)
-				if(outputListCurrentOrders!=null){
-					session.setAttribute(session.getId() + TransportDispConstants.SESSION_LIST_CURRENT_ORDERS_ON_TRIP, outputListCurrentOrders);
-				}
+		    	if(strMgr.isNotNull(recordToValidate.getTur())){
+		    		outputListCurrentOrders = this.getListCurrentOrders(appUser, recordToValidate, model);
+		    		//Put list for upcoming view (PDF, Excel, or ErrorHandling in add/remove orders (method below...)
+					if(outputListCurrentOrders!=null){
+						session.setAttribute(session.getId() + TransportDispConstants.SESSION_LIST_CURRENT_ORDERS_ON_TRIP, outputListCurrentOrders);
+					}
+		    	}
 	    		StringBuffer userAvd = new StringBuffer();
 	    		outputListOpenOrders = this.getListOpenOrders(appUser, recordToValidate, model, userAvd);
 	    		//Put list for upcoming view (PDF, Excel, or ErrorHandling in add/remove orders (method below...)

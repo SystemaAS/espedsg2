@@ -679,7 +679,7 @@ public class TransportDispMainOrderListHistoryController {
 		//------------------------------------
         //[STEP 2] get Open Orders BASE URL
     		//------------------------------------
-    		final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_LIST_ORDERS_NOT_ON_TRIP_URL;
+    		final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_LIST_ORDERS_NOT_ON_TRIP_HISTORY_URL;
     		//add URL-parameters
     		StringBuffer urlRequestParams = new StringBuffer();
     		urlRequestParams.append("user=" + appUser.getUser());

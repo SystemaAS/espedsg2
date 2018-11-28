@@ -169,6 +169,12 @@ public final class TransportDispUrlDataStore {
 	//wssavd= ALL   IN     OUT        IMP           EXP            DOM     
 	//d.v.s antingen en konkret avdelning med siffra, eller bokstævskoder
 	
+	static public String TRANSPORT_DISP_BASE_WORKFLOW_LIST_ORDERS_NOT_ON_TRIP_HISTORY_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR05LH.pgm";
+	//http://gw.systema.no/sycgip/TJETUR05LL.pgm?user=JOVO&wssavd=75
+	//Note: Det finns fler parametrar: wssdf=Fra sted; wssdt=Til sted 
+	//wssavd= ALL   IN     OUT        IMP           EXP            DOM     
+	//d.v.s antingen en konkret avdelning med siffra, eller bokstævskoder
+	
 	static public String TRANSPORT_DISP_BASE_PRINT_SPECIFIC_ORDER_FRAKTBREV_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJEOPDFBR.pgm";
 	//renders PDF...
 	
@@ -293,11 +299,11 @@ public final class TransportDispUrlDataStore {
 	//----------------------------------------------------------------------------------------------------------
 	static public String TRANSPORT_DISP_BASE_WORKFLOW_POST_UPDATE_Z = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJEOPDZ.pgm";
 	
-	//PRINT routine
+	//PRINT routine FraktBrev
 	//when avd & opd !=null and tur==null, then the order is printed
 	//when tur !=null and avd&opd == null, then the trip prints ALL children orders...
 	//http://gw.systema.no/sycgip/TJFA12d.pgm?user=JOVO&avd=80&opd=0201571&tur=
-	static public String TRANSPORT_DISP_BASE_PRINT_OUT = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJFA12d.pgm";
+	static public String TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJFA12d.pgm";
 	
 	
 }

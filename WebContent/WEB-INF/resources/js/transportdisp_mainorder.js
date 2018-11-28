@@ -2626,9 +2626,9 @@
   
   
   
-  //-----------------------------
-  //START Model dialog: "SMS"
-  //---------------------------
+  //-----------------------------------
+  //INIT Model dialogs: "SMS"
+  //-----------------------------------
   //Initialize <div> here
   jq(function() { 
 	  jq("#dialogSMS").dialog({
@@ -2641,6 +2641,7 @@
 		  dialogClass: 'main-dialog-class'
 			  
 	  });
+	  
   });
 
   jq(function() {
@@ -2651,6 +2652,9 @@
 		  presentEmailDialog();
 	  });
 	  
+	  jq("#printImg").click(function() {
+		  presentPrintDialog();
+	  });
 	  
   });
   
@@ -2870,6 +2874,108 @@
 	  	  }
 	  });
   }	
+  
+  
+  
+  /*
+  ---------------------
+  /PRINT DIALOG
+  ---------------------
+   */
+  //INIT Dialog
+  jq(function() { 
+	  jq("#dialogPrint").dialog({
+		  autoOpen: false,
+		  maxWidth:600,
+	      maxHeight: 600,
+	      width: 400,
+	      height: 300,
+		  modal: true,
+		  dialogClass: 'print-dialog-class'
+			  
+	  });
+  });
+  
+  function presentPrintDialog(){
+	  //set default. Can't be static in html ...MUST be dynamic HERE!!
+	  //jq('input:radio[name="smsType"]').filter('[value="grabber"]').attr('checked', true);
+	  
+	  //setters (add more if needed)
+	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut" );
+	  //deal with buttons for this modal window
+	  jq('#dialogPrint').dialog({
+		 buttons: [ 
+            {
+			 id: "dialogSaveTU",	
+			 text: "Direkt til printer",
+			 click: function(){
+				 		if(jq("#fbType").is(':checked') || jq("#cmType").is(':checked') || jq("#ffType").is(':checked')){
+				 			doPrintDocuments();
+				 		}
+		 			}
+		 	 },
+  			{
+		 	 id: "dialogCancelTU",
+		 	 text: "Lukk", 
+			 click: function(){
+				 		//back to initial state of form elements on modal dialog
+				 		
+				 		jq('#fbType').prop('checked', false);
+				 		jq('#cmrType').prop('checked', false);
+				 		jq('#ffType').prop('checked', false);
+				 		jq("#printStatus").removeClass( "isa_error" );
+				 		jq("#printStatus").removeClass( "isa_success" );
+				 		jq("#printStatus").text("");
+				 		
+			 			//
+		  				jq( this ).dialog( "close" ); 
+		  				
+			 		} 
+ 	 		 } ] 
+	  });
+	  //init values
+	  //jq("#dialogSaveTU").button("option", "disabled", true);
+	  //open now
+	  jq('#dialogPrint').dialog('open');
+  }
+  //PRINT documents 
+  function doPrintDocuments() {
+	  	var form = new FormData(document.getElementById('printForm'));
+	  	//add values to form since we do not combine form data and other data in the same ajax call.
+	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
+	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	var payload = jq('printForm').serialize();
+	  	
+	    jq.ajax({
+	        type        : 'POST',
+	        url         : 'printDocuments_TransportDisp.do?' + payload,
+	        data        : form,
+	        dataType    : 'text',
+	        cache: false,
+	  	  	processData: false,
+	        contentType : false,
+	        success     : function(data){
+	        		console.log("A");
+	        		var len = data.length;
+	        		if(len > 0){
+	        			jq("#printStatus").removeClass( "isa_error" );
+     	  				jq("#printStatus").addClass( "isa_success" );
+     	  				jq("#printStatus").text("Print = OK (loggført i Hendelsesloggen)");
+	        		}else{
+	        			jq("#printStatus").removeClass( "isa_success" );
+     	  				jq("#printStatus").addClass( "isa_error" );
+     	  				jq("#printStatus").text("Print error...  ");
+	        		}
+             },
+             error: function() {
+		  		  //alert('Error loading ...');
+            	 alert('Error loading on Ajax callback (?) doPrintDocuments... check js');
+			  }
+             
+	    });
+	}
+  
+  
   
   
   //--------------------------------

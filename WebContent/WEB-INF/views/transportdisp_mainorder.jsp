@@ -26,7 +26,7 @@
 	.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	
-	/*.main-dialog-class .ui-widget-header{ background-color:#DAC8BA } */
+	.print-dialog-class .ui-widget-content{ background-color:lightsteelblue } 
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
 
 	</style>
@@ -332,9 +332,12 @@
 								 	</td>
 								 	<c:if test="${not empty model.record.heopd}">
 									 	<td>&nbsp;
+									 		<%--
 				 							<a onClick="setBlockUI(this)" tabindex=-1 href="transpdisp_mainorder_printout.do?avd=${model.record.heavd}&opd=${model.record.heopd}">
-				 								<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="25px" height="25px" border="0" alt="Print">
+				 								<img title="Print" style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer3.png" width="28px" height="28px" border="0" alt="Print">
 				 							</a>
+				 							 --%>
+				 							<img id="printImg" name="printImg" title="Print" style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer3.png" width="28px" height="28px" border="0" alt="Print"> 
 				 						</td>
 			 						</c:if>
 							 	</tr>
@@ -1578,7 +1581,7 @@
 												</div>
 								 			</td>
 								 			<td class="text14">
-								 				<a tabindex=-1 id="fraktbrevRenderPdfLink" name="fraktbrevRenderPdfLink" target="_new" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
+								 				<a tabindex=-1 id="fraktbrevRenderPdfLink" target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
 			    									<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="20" height="20" border="0" alt="Fraktbr. PDF">
 												</a>
 											</td>
@@ -2887,10 +2890,137 @@
 							 			</td>
 							 			
 								 	</tr>	
-								</table>
-							</div>
-						</td>
-					</tr> 
+						</table>
+					</div>
+				</td>
+			</tr> 
+			
+			
+			
+		<%-- ---------------- --%>
+		<%-- DIALOG PRINT     --%>
+		<%-- ---------------- --%>
+		<tr>
+		<td>
+			<div id="dialogPrint" title="Dialog Print">
+					<form id="printForm">
+						<input type="hidden" id="avd" name="avd" value="${model.record.heavd}">
+						<input type="hidden" id="opd" name="opd" value="${model.record.heopd}">
+						<input type="hidden" id="tur" name="tur" value="${model.record.hepro}">
+						
+				 	<table>
+						
+   						<tr height="3"><td></td></tr>
+   						
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="fbType" id="fbType" value="fb">Fraktbrev
+							</td>	
+							<td class="text14" align="left" >	
+								<a tabindex=-1 id="fraktbrevRenderPdfLink" target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
+   									<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
+								</a>
+							</td>
+   						</tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">CMR-Fraktbrev
+							</td>
+							<td class="text14" align="left" >	
+								<a tabindex=-1 id="cmrFraktbrevRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderCmrFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
+   									<img id="imgCmrFraktbrevPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
+								</a>
+							</td>
+   						</tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="ffType" id="ffType" value="ff">Ferdigmeldte-fakturaer
+							</td>
+							<td class="text14" align="left" >	
+								<a tabindex=-1 id="ffaktRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderFFakt.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
+   									<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
+								</a>
+							</td>
+   						</tr>
+   						<%--
+						<tr>
+							<td class="text14" align="left" ><b>Print</b>&nbsp;</td>
+							<td class="text14" align="left" >
+								<input type="text" class="inputTextMediumBlue" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
+							</td>
+   						</tr>
+   						<tr>
+   							<td class="text14" >Hente fra&nbsp;</td>
+							<td class="text14" align="left" >
+								<select class="inputTextMediumBlue" name="smsPhonePart" id="smsPhonePart" >
+		 							<option value="X" selected>velg</option>
+		 							<option value="S" >Avsender</option>
+		 							<option value="R" >Mottaker</option>
+								</select>
+							</td>
+   						</tr>
+   						
+   						<tr>
+   							<td class="text14" align="left" >Språk&nbsp;</td>
+							<td class="text14" align="left" >
+		   						<select class="inputTextMediumBlue" name="smslang" id="smslang">
+		 							<option value="NO" selected>Norsk</option>
+		 							<option value="EN" >Engelsk</option>
+								</select>
+							</td>
+						</tr>
+						<tr height="10"><td></td></tr>
+						<tr>
+							<td colspan="3" class="text14" align="left" >
+								<input type="radio" name="smsType" id="smsType" value="grabber">Send SMS med lenke til TKeventGrabber
+							</td>
+   						</tr>
+   						<tr>
+							<td colspan="3" class="text14" align="left" >
+								<input type="radio" name="smsType" id="smsType" value="general">Send generell SMS med melding/evt lenke
+							</td>
+   						</tr>
+   						 --%>
+   						<tr height="5"><td></td></tr>
+   						
+   						<%--
+   						<tr>
+	   						<td class="text14" colspan="3">
+	   						<div id="divFreeTextElements" style="display:none;position: relative;height:10em;" align="left" >
+		 						<table id="tblFreeTextElements">
+									<tr>
+										<td class="text14">Merknad</td>
+									</tr>
+									<tr>
+										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText1" name="smsFreeText1" size="40" maxlength="70" value=''></td>
+									</tr>
+									<tr>
+										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText2" name="smsFreeText2" size="40" maxlength="70" value=''></td>
+									</tr>
+									<tr>
+										<td ><input type="checkbox" id="smsUrlLink" name="smsUrlLink" value="J">Send også Url-lenke til spørring på sendingen</td>
+									</tr>
+									
+								</table>	
+							</div>	
+   							</td>
+   						</tr>
+   						--%>
+						<tr height="10"><td></td></tr>
+						<tr>
+							<td colspan="4" class="text14MediumBlue" align="left">
+								<label id="printStatus"></label>
+							</td>
+						</tr>
+						 
+						
+					</table>
+					</form>
+			</div>
+		</td>
+		</tr>
+			
+			
 			
 		
 	

@@ -18,15 +18,18 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
+import no.systema.transportdisp.model.dto.PrintFormObjectDto;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowListContainer;
@@ -103,7 +106,7 @@ import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
  * 
  */
 
-@Controller
+@RestController
 
 public class TransportDispAjaxHandlerController {
 	private static final Logger logger = Logger.getLogger(TransportDispAjaxHandlerController.class.getName());
@@ -1682,8 +1685,184 @@ public class TransportDispAjaxHandlerController {
 				 }
 				 
 				 return result;
-			}		
+			}
+		/**
+		 * 
+		 * @param request
+		 * @param bindingResult
+		 * @return
+		 */
+		@RequestMapping(path="/printDocuments_TransportDisp.do", method = RequestMethod.POST)
+		public Collection<String> printDocuments(@ModelAttribute PrintFormObjectDto dto, BindingResult bindingResult ){
+			Collection list = new ArrayList();
+			logger.info("Inside: printDocuments");
 			
+			logger.info("appUser:" + dto.getApplicationUser());
+			logger.info("avd:" + dto.getAvd());
+			logger.info("opd:" + dto.getOpd());
+			logger.info("tur:" + dto.getTur());
+			//
+			logger.info(dto.getFbType());
+			logger.info(dto.getCmrType());
+			logger.info(dto.getFfType());
+			
+			
+			//Print fraktbrev
+			if(strMgr.isNotNull(dto.getFbType())){
+				list = this.printFraktbrev(dto);
+			}
+				
+			//Print CMR
+			if(strMgr.isNotNull(dto.getCmrType())){
+				list = this.printCmrFraktbrev(dto);
+			}
+		    //Print FFakturor
+			if(strMgr.isNotNull(dto.getFfType())){
+				list = this.printFFakt(dto);
+			}
+			
+			return list;
+			  
+		}	
+		
+	  /**
+	   * 	
+	   * @param dto
+	   * @return
+	   */
+	  private Collection printFraktbrev(PrintFormObjectDto dto){
+		  logger.info("print fraktbrev ...");
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+			
+		 //check the parent caller for this print (ORDER or TRIP)
+		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
+			 //fill other params
+			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&opd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&tur=");
+		 }	 
+		  //-------------------------------------
+		  //get BASE URL = RPG-PROGRAM for PRINT
+          //-------------------------------------
+			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
+			
+			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+	    	logger.info("URL: " + BASE_URL);
+	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
+	    	//--------------------------------------
+	    	//EXECUTE the Print (RPG program) here
+	    	//--------------------------------------
+	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+			//Debug --> 
+	    	logger.info(jsonPayload);
+	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+	    	//END of PRINT here and now
+	    	logger.info("Method PRINT END");
+	    	
+	    	Collection<String> list = new ArrayList<String>();
+			list.add("dummy");
+			
+			return list;
+		  
+	  }
+	  /**
+	   * 
+	   * @param dto
+	   * @return
+	   */
+	  private Collection printCmrFraktbrev(PrintFormObjectDto dto){
+		  logger.info("print CMR-fraktbrev ...");
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+			
+		 //check the parent caller for this print (ORDER or TRIP)
+		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
+			 //fill other params
+			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&opd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&tur=");
+		 }else{
+			//fill other params
+			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&opd=");
+			 urlRequestParamsKeys.append("&tur=" + dto.getTur());
+		 }
+		  //-------------------------------------
+		  //get BASE URL = RPG-PROGRAM for PRINT
+          //-------------------------------------
+		 /*TODO
+			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
+			
+			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+	    	logger.info("URL: " + BASE_URL);
+	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
+	    	//--------------------------------------
+	    	//EXECUTE the Print (RPG program) here
+	    	//--------------------------------------
+	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+			//Debug --> 
+	    	logger.info(jsonPayload);
+	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+	    	//END of PRINT here and now
+	    	logger.info("Method PRINT END");
+	    	*/
+		 
+	    	Collection<String> list = new ArrayList<String>();
+			list.add("dummy");
+			
+			return list;
+		  
+	  }
+	  
+	  /**
+	   * 
+	   * @param dto
+	   * @return
+	   */
+	  private Collection printFFakt(PrintFormObjectDto dto){
+		  logger.info("print ferdigmeld.fakt ...");
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+			
+		 //check the parent caller for this print (ORDER or TRIP)
+		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
+			 //fill other params
+			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&opd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&tur=");
+		 }else{
+			//fill other params
+			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&opd=");
+			 urlRequestParamsKeys.append("&tur=" + dto.getTur());
+		 }
+		  //-------------------------------------
+		  //get BASE URL = RPG-PROGRAM for PRINT
+          //-------------------------------------
+		 /*TODO
+			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
+			
+			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+	    	logger.info("URL: " + BASE_URL);
+	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
+	    	//--------------------------------------
+	    	//EXECUTE the Print (RPG program) here
+	    	//--------------------------------------
+	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+			//Debug --> 
+	    	logger.info(jsonPayload);
+	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+	    	//END of PRINT here and now
+	    	logger.info("Method PRINT END");
+	    	*/
+		 
+	    	Collection<String> list = new ArrayList<String>();
+			list.add("dummy");
+			
+			return list;
+		  
+	  }
 	  /**
 	   * 
 	   * @param applicationUser
