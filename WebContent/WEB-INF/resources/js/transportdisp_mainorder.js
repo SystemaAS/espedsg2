@@ -2888,8 +2888,8 @@
 		  autoOpen: false,
 		  maxWidth:600,
 	      maxHeight: 600,
-	      width: 400,
-	      height: 300,
+	      width: 350,
+	      height: 250,
 		  modal: true,
 		  dialogClass: 'print-dialog-class'
 			  

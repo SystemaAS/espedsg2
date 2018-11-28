@@ -24,8 +24,8 @@
 	.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
 	.ui-timepicker-rtl dl dt{ float: right; clear: right; }
 	.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
-	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	
+	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	.print-dialog-class .ui-widget-content{ background-color:lightsteelblue } 
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
 
@@ -2942,78 +2942,12 @@
 								</a>
 							</td>
    						</tr>
-   						<%--
-						<tr>
-							<td class="text14" align="left" ><b>Print</b>&nbsp;</td>
-							<td class="text14" align="left" >
-								<input type="text" class="inputTextMediumBlue" onKeyPress="return numberKey(event)" id="smsnr" name="smsnr" size="20" maxlength="15" value=''>
-							</td>
-   						</tr>
-   						<tr>
-   							<td class="text14" >Hente fra&nbsp;</td>
-							<td class="text14" align="left" >
-								<select class="inputTextMediumBlue" name="smsPhonePart" id="smsPhonePart" >
-		 							<option value="X" selected>velg</option>
-		 							<option value="S" >Avsender</option>
-		 							<option value="R" >Mottaker</option>
-								</select>
-							</td>
-   						</tr>
-   						
-   						<tr>
-   							<td class="text14" align="left" >Språk&nbsp;</td>
-							<td class="text14" align="left" >
-		   						<select class="inputTextMediumBlue" name="smslang" id="smslang">
-		 							<option value="NO" selected>Norsk</option>
-		 							<option value="EN" >Engelsk</option>
-								</select>
-							</td>
-						</tr>
-						<tr height="10"><td></td></tr>
-						<tr>
-							<td colspan="3" class="text14" align="left" >
-								<input type="radio" name="smsType" id="smsType" value="grabber">Send SMS med lenke til TKeventGrabber
-							</td>
-   						</tr>
-   						<tr>
-							<td colspan="3" class="text14" align="left" >
-								<input type="radio" name="smsType" id="smsType" value="general">Send generell SMS med melding/evt lenke
-							</td>
-   						</tr>
-   						 --%>
-   						<tr height="5"><td></td></tr>
-   						
-   						<%--
-   						<tr>
-	   						<td class="text14" colspan="3">
-	   						<div id="divFreeTextElements" style="display:none;position: relative;height:10em;" align="left" >
-		 						<table id="tblFreeTextElements">
-									<tr>
-										<td class="text14">Merknad</td>
-									</tr>
-									<tr>
-										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText1" name="smsFreeText1" size="40" maxlength="70" value=''></td>
-									</tr>
-									<tr>
-										<td ><input type="text" class="inputTextMediumBlue" id="smsFreeText2" name="smsFreeText2" size="40" maxlength="70" value=''></td>
-									</tr>
-									<tr>
-										<td ><input type="checkbox" id="smsUrlLink" name="smsUrlLink" value="J">Send også Url-lenke til spørring på sendingen</td>
-									</tr>
-									
-								</table>	
-							</div>	
-   							</td>
-   						</tr>
-   						--%>
-						<tr height="10"><td></td></tr>
+   						<tr height="15"><td></td></tr>
 						<tr>
 							<td colspan="4" class="text14MediumBlue" align="left">
 								<label id="printStatus"></label>
 							</td>
 						</tr>
-						 
-						
 					</table>
 					</form>
 			</div>

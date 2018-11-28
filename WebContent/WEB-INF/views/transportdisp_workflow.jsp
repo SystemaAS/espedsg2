@@ -28,8 +28,9 @@
 	.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
 	.ui-timepicker-rtl dl dt{ float: right; clear: right; }
 	.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
+	
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
-	/*.main-dialog-class .ui-widget-header{ background-color:#DAC8BA } */
+	.print-dialog-class .ui-widget-content{ background-color:lightsteelblue }
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
 	
 	/* this line will align the datatable search field in the left */
@@ -609,9 +610,7 @@
 						 						<c:choose>
 								 				    <c:when test="${ not empty model.record.tupro}">
 								 				    	<div id="divSmsEmailButtons" style="display:inline">
-								 				    		<a id="printerLinkId" tabindex=-1 >
-							 									<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="22px" height="22px" border="0" alt="Print">
-							 								</a>
+								 				    		<img id="printImg" name="printImg" title="Print" style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer3.png" width="28px" height="28px" border="0" alt="Print"> 
 									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
 									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
@@ -621,9 +620,7 @@
 								 				    </c:when>
 								 				    <c:otherwise>
 								 				    	<div id="divSmsEmailButtons" style="display:none">
-								 				    		<a id="printerLinkId" tabindex=-1 >
-							 									<img title="Print to dedicated AS400 printer..." style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer.png" width="22px" height="22px" border="0" alt="Print">
-							 								</a>
+								 				    		<img id="printImg" name="printImg" title="Print" style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer3.png" width="28px" height="28px" border="0" alt="Print"> 
 									 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
 									 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 						 									<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
@@ -1622,6 +1619,72 @@
 			</div>
 		</td>
 		</tr>
+		
+		
+		
+		<%-- ---------------- --%>
+		<%-- DIALOG PRINT     --%>
+		<%-- ---------------- --%>
+		<tr>
+		<td>
+			<div id="dialogPrint" title="Dialog Print">
+					<form id="printForm">
+						<input type="hidden" id="avd" name="avd" value="">
+						<input type="hidden" id="opd" name="opd" value="">
+						<input type="hidden" id="tur" name="tur" value="${model.record.tupro}">
+						
+				 	<table>
+   						<tr height="3"><td></td></tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="godslistType" id="godslistType" value="gl">Godsliste
+							</td>	
+							<td class="text14" align="left" >	
+								<img id="imgGodslistePdf" title="GL.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="GL. PDF">
+							</td>
+   						</tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="lastlistType" id="lastlistType" value="ll">Lasteliste
+							</td>
+							<td class="text14" align="left" >	
+								<img id="imgLastlistePdf" title="LL.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
+							</td>	
+   						</tr>
+   						<%-- TODO  ... is it the same as in ORDER?
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">CMR-Fraktbrev
+							</td>
+							<td class="text14" align="left" >	
+								<a tabindex=-1 id="cmrFraktbrevRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderCmrFraktbrev.do?user=${user.user}&wsavd=${Xmodel.record.tuavd}&wsopd=&wstoll=${Xmodel.record.dftoll}">
+   									<img id="imgCmrFraktbrevPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
+								</a>
+							</td>
+   						</tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="ffType" id="ffType" value="ff">Ferdigmeldte-fakturaer
+							</td>
+							<td class="text14" align="left" >	
+								<a tabindex=-1 id="ffaktRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderFFakt.do?user=${user.user}&wsavd=${Xmodel.record.tuavd}&wsopd=&wstoll=${Xmodel.record.dftoll}">
+   									<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
+								</a>
+							</td>
+   						</tr>
+   						 --%>
+   						<tr height="15"><td></td></tr>
+						<tr>
+							<td colspan="4" class="text14MediumBlue" align="left">
+								<label id="printStatus"></label>
+							</td>
+						</tr>
+					</table>
+					</form>
+			</div>
+		</td>
+		</tr>
+		
 		
 </table>	
 		

@@ -17,6 +17,9 @@ public class PrintFormObjectDto   {
 	private String fbType;
 	private String cmrType;
 	private String ffType;
+	private String godslistType;
+	private String lastlistType;
+	
 	
 	
 }

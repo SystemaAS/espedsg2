@@ -13,10 +13,15 @@
 	  jq('#updCancelButton').click(function() {
 		  window.location = 'transportdisp_workflow.do?action=doFind&wssst=' + jq('#wssst').val() + '&wssavd=' + jq('#tuavd').val() ;
 	  });
-	  jq('#printerLinkId').click(function() {
-		  //Print out tur (AS400 printer)
-		  window.location = 'transpdisp_mainorder_printout.do?avd=&opd=&tur=' + jq("#tupro").val();
+	  jq("#printImg").click(function() {
+		  presentPrintDialog();
 	  });
+	  jq("#imgGodslistePdf").click(function() {
+		  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=G', '_blank');
+	  });	
+	  jq("#imgLastlistePdf").click(function() {
+		  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
+	  });	
 	});	  
   
   //FORM SUBMIT
@@ -1730,5 +1735,103 @@
   //---------------------------------
 
   
+  /*
+  ---------------------
+  /PRINT DIALOG
+  ---------------------
+   */
+  //INIT Dialog
+  jq(function() { 
+	  jq("#dialogPrint").dialog({
+		  autoOpen: false,
+		  maxWidth:600,
+	      maxHeight: 600,
+	      width: 350,
+	      height: 250,
+		  modal: true,
+		  dialogClass: 'print-dialog-class'
+			  
+	  });
+  });
   
-  
+  function presentPrintDialog(){
+	  //set default. Can't be static in html ...MUST be dynamic HERE!!
+	  //jq('input:radio[name="smsType"]').filter('[value="grabber"]').attr('checked', true);
+	  
+	  //setters (add more if needed)
+	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut - Turnr. " + jq("#tuproJS").text() );
+	  //deal with buttons for this modal window
+	  jq('#dialogPrint').dialog({
+		 buttons: [ 
+            {
+			 id: "dialogSaveTU",	
+			 text: "Direkt til printer",
+			 click: function(){
+				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked')){
+				 			doPrintDocuments();
+				 		}
+		 			}
+		 	 },
+  			{
+		 	 id: "dialogCancelTU",
+		 	 text: "Lukk", 
+			 click: function(){
+				 		//back to initial state of form elements on modal dialog
+				 		
+				 		jq('#fbType').prop('checked', false);
+				 		jq('#cmrType').prop('checked', false);
+				 		jq('#ffType').prop('checked', false);
+				 		jq("#printStatus").removeClass( "isa_error" );
+				 		jq("#printStatus").removeClass( "isa_success" );
+				 		jq("#printStatus").text("");
+				 		
+			 			//
+		  				jq( this ).dialog( "close" ); 
+		  				
+			 		} 
+ 	 		 } ] 
+	  });
+	  //init values
+	  //jq("#dialogSaveTU").button("option", "disabled", true);
+	  //open now
+	  jq('#dialogPrint').dialog('open');
+  }
+  //PRINT documents 
+  function doPrintDocuments() {
+	  	 
+	   //populate tur
+	    jq("#tur").val(jq("#tuproJS").text());
+	    var form = new FormData(document.getElementById('printForm'));
+	  	//add values to form since we do not combine form data and other data in the same ajax call.
+	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
+	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	var payload = jq('printForm').serialize();
+	  	
+	  	jq.ajax({
+	        type        : 'POST',
+	        url         : 'printDocumentsTrip_TransportDisp.do?' + payload,
+	        data        : form,
+	        dataType    : 'text',
+	        cache: false,
+	  	  	processData: false,
+	        contentType : false,
+	        success     : function(data){
+	        		console.log("A");
+	        		var len = data.length;
+	        		if(len > 0){
+	        			jq("#printStatus").removeClass( "isa_error" );
+     	  				jq("#printStatus").addClass( "isa_success" );
+     	  				jq("#printStatus").text("Print = OK (loggført i Hendelsesloggen)");
+	        		}else{
+	        			jq("#printStatus").removeClass( "isa_success" );
+     	  				jq("#printStatus").addClass( "isa_error" );
+     	  				jq("#printStatus").text("Print error...  ");
+	        		}
+             },
+             error: function() {
+		  		  //alert('Error loading ...');
+            	 alert('Error loading on Ajax callback (?) doPrintDocuments... check js');
+			  }
+             
+	    });
+	}
