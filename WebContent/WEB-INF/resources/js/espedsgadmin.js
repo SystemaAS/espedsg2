@@ -16,23 +16,24 @@
     		jq('#mainList').DataTable().search(
       		jq('#mainList_filter').val()
     		).draw();
-    } 
+    }
+    
   	jq(document).ready(function() {
   		var lang = jq('#language').val();
   	    //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
         jq('#mainList').dataTable( {
       	  "dom": '<"custMatrixFilter"if>t<"bottom"lp><"clear">', //look at custMatrixFilter on JSP SCRIPT-tag
-      	  //"scrollY": "800px",
+      	  "scrollY": "800px",
       	  "scrollCollapse":  true,
       	  "lengthMenu": [100],
-	      	"language": {
-	  		  "url": getLanguage(lang)
-	        },
+	      //	"language": {
+	  		//  "url": getLanguage(lang)
+	      //  },
 	  	  "fnDrawCallback": function( oSettings ) {
-	  		  jq('.dataTables_filter input').addClass("inputText12LightYellow");
-	  		  jq('.dataTables_filter input').focus();
-	      	}
-      	  });
+	  		jq('.dataTables_filter input').addClass("inputText12LightYellow");
+	  		jq('.dataTables_filter input').focus();
+	   	}
+  	  });
         //css styling
         //jq('.dataTables_filter input').addClass("inputText12LightYellow");
         
