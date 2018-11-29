@@ -1582,7 +1582,7 @@
 								 			</td>
 								 			<td class="text14">
 								 				<a tabindex=-1 id="fraktbrevRenderPdfLink" target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
-			    									<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="20" height="20" border="0" alt="Fraktbr. PDF">
+			    									<img id="imgFraktbrevPdfStdAlone" title="Fraktbr.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="20" height="20" border="0" alt="Fraktbr. PDF">
 												</a>
 											</td>
 								 			<td nowrap class="text14">
@@ -2914,32 +2914,30 @@
    						
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="fbType" id="fbType" value="fb">Fraktbrev
+								<input type="checkbox" name="fbType" id="fbType" value="fb">
+								<span id="alinkFraktbrevPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
 							</td>	
 							<td class="text14" align="left" >	
-								<a tabindex=-1 id="fraktbrevRenderPdfLink" target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
-   									<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
-								</a>
+								<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
+								
 							</td>
    						</tr>
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">CMR-Fraktbrev
+								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">
+								<span id="alinkCmrFraktbrevPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
 							</td>
 							<td class="text14" align="left" >	
-								<a tabindex=-1 id="cmrFraktbrevRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderCmrFraktbrev.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
-   									<img id="imgCmrFraktbrevPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
-								</a>
+								<img id="imgCmrFraktbrevPdf" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
 							</td>
    						</tr>
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="ffType" id="ffType" value="ff">Ferdigmeldte-fakturaer
+								<input type="checkbox" name="ffType" id="ffType" value="ff">
+								<span id="alinkFFaktPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
 							</td>
 							<td class="text14" align="left" >	
-								<a tabindex=-1 id="ffaktRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderFFakt.do?user=${user.user}&wsavd=${model.record.heavd}&wsopd=${model.record.heopd}&wstoll=${model.record.dftoll}">
-   									<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
-								</a>
+								<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
 							</td>
    						</tr>
    						<tr height="15"><td></td></tr>

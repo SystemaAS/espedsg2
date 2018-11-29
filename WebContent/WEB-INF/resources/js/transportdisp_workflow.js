@@ -17,12 +17,26 @@
 		  presentPrintDialog();
 	  });
 	  jq("#imgGodslistePdf").click(function() {
-		  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=G', '_blank');
-	  });	
+		  renderGodsLista();
+	  });
+	  jq("#alinkGodslistePdf").click(function() {
+		  renderGodsLista();
+	  });
+	  
 	  jq("#imgLastlistePdf").click(function() {
-		  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
-	  });	
-	});	  
+		  renderLastLista();
+	  });
+	  jq("#alinkLastlistePdf").click(function() {
+		  renderLastLista();
+	  });
+	});
+  
+  	function renderGodsLista(){
+  		window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=G', '_blank');
+  	}
+  	function renderLastLista(){
+  		 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
+  	}
   
   //FORM SUBMIT
   jq(function() {
@@ -988,26 +1002,31 @@
 		  }
 	  });
       //priskonstruktion
+      jq("#tuant1").blur(function(){
+    	  prisCalculateSum();
+      });
       jq("#tuant2").blur(function(){
-    	  var tuant1 = jq("#tuant1").val();
-    	  var tuant2 = jq("#tuant2").val();
-    	  if(tuant1 != '' && tuant2 != ''){
-    		  var x = tuant1.replace(",", ".");
-    		  var y = tuant2.replace(",", ".");
-    		  //multiply
-    		  jq("#tutbel").val(x*y);
-    		  if(jq("#tutval").val()==''){
-    			  jq("#tutval").val("NOK");
-    		  }
-    		  if(jq("#tutako").val()==''){
-    			  jq("#tutako").val("A");
-    		  }
-    		  
-    		  
-    	  }
+    	  prisCalculateSum();
       });
   		
   });
+  
+  function prisCalculateSum(){
+	  var tuant1 = jq("#tuant1").val();
+	  var tuant2 = jq("#tuant2").val();
+	  if(tuant1 != '' && tuant2 != ''){
+		  var x = tuant1;
+		  var y = tuant2.replace(",", ".");
+		  //multiply
+		  jq("#tutbel").val(x*y);
+		  if(jq("#tutval").val()==''){
+			  jq("#tutval").val("NOK");
+		  }
+		  if(jq("#tutako").val()==''){
+			  jq("#tutako").val("A");
+		  }
+	  }
+  }
   
   //----------------------
   //Select Specific Trip
@@ -1765,9 +1784,9 @@
 		 buttons: [ 
             {
 			 id: "dialogSaveTU",	
-			 text: "Direkt til printer",
+			 text: "Direkte til printer",
 			 click: function(){
-				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked')){
+				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked')){
 				 			doPrintDocuments();
 				 		}
 		 			}
@@ -1796,9 +1815,9 @@
 	  //open now
 	  jq('#dialogPrint').dialog('open');
   }
+  
   //PRINT documents 
   function doPrintDocuments() {
-	  	 
 	   //populate tur
 	    jq("#tur").val(jq("#tuproJS").text());
 	    var form = new FormData(document.getElementById('printForm'));

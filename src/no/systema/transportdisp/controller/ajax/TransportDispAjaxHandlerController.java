@@ -1732,9 +1732,12 @@ public class TransportDispAjaxHandlerController {
 			logger.info("opd:" + dto.getOpd());
 			logger.info("tur:" + dto.getTur());
 			//
+			logger.info(dto.getFbType());
 			logger.info(dto.getGodslistType());
 			logger.info(dto.getLastlistType());
 			
+			//Print fraktbrev
+			if(strMgr.isNotNull(dto.getFbType())){list = this.printFraktbrev(dto); }
 			
 			//Print Godslista
 			if(strMgr.isNotNull(dto.getGodslistType())){

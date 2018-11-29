@@ -36,8 +36,38 @@
 	    	jq('#vfbnrIdLink').attr('target','_blank');
 	    	window.open('transportdisp_workflow_childwindow_bilnr.do?action=doInit&unbiln=' + jq('#vfbnr').val() + '&ctype=vfbnr', "bilnrWin", "top=300px,left=350px,height=600px,width=800px,scrollbars=no,status=no,location=no");
 	    });
+	  //PRINT popup
+	  jq("#alinkFraktbrevPdf").click(function() {
+		  renderFraktBrev();
+	  });
+	  jq("#imgFraktbrevPdf").click(function() {
+		  renderFraktBrev();
+	  });
+	  jq("#alinkCmrFraktbrevPdf").click(function() {
+		  renderCmrFraktBrev();
+	  });
+	  jq("#imgCmrFraktbrevPdf").click(function() {
+		  renderCmrFraktBrev();
+	  });
+	  jq("#alinkFFaktPdf").click(function() {
+		  renderFFakturor();
+	  });
+	  jq("#imgFFaktPdf").click(function() {
+		  renderFFakturor();
+	  });
+	  //END PRINT
 	  
   });
+  
+  function renderFraktBrev(){
+	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+  } 
+  function renderCmrFraktBrev(){
+	window.open('TODO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+  } 
+  function renderFFakturor(){
+	window.open('TODO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+  } 
   
   //Global functions
   function g_getCurrentYearStr(){
@@ -2907,7 +2937,7 @@
 		 buttons: [ 
             {
 			 id: "dialogSaveTU",	
-			 text: "Direkt til printer",
+			 text: "Direkte til printer",
 			 click: function(){
 				 		if(jq("#fbType").is(':checked') || jq("#cmType").is(':checked') || jq("#ffType").is(':checked')){
 				 			doPrintDocuments();

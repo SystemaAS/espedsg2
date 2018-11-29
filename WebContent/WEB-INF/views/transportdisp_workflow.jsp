@@ -1028,13 +1028,13 @@
 							    			</td>
 								    		<td class="text14" nowrap>
 								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tutbel" id="tutbel" size="8" maxlength="8" value="${model.record.tutbel}">
-								    			<select class="inputText14" id="tutval" name="tutval">
+								    			<select class="inputTextMediumBlue" style="background-color:lemonchiffon" id="tutval" name="tutval">
 								    			<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 							    				<c:forEach var="record" items="${model.currencyCodeList}" >
 							    					<option value="${record}" <c:if test="${model.record.tutval == record}"> selected </c:if> >${record}</option>
 												</c:forEach>
 						           				</select>
-								    			<select class="inputText14" name="tutako" id="tutako">
+								    			<select class="inputTextMediumBlue" name="tutako" id="tutako">
 								    			<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
 				            					<option value="A"<c:if test="${model.record.tutako == 'A'}"> selected </c:if> >A</option>
 				 				  				<option value="E"<c:if test="${model.record.tutako == 'E'}"> selected </c:if> >E</option>
@@ -1042,11 +1042,11 @@
 								    		</td>
 								    		<td class="text14" >&nbsp;&nbsp;
 								    			<span title="tuant1/tuenh1/tuant2/tuenh2"><b><spring:message code="systema.transportdisp.workflow.trip.form.label.price.construction"/></b></span>
-							    				<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant1" id="tuant1" size="6" maxlength="5" value="${model.record.tuant1}">
+							    				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="background-color:lemonchiffon" name="tuant1" id="tuant1" size="6" maxlength="5" value="${model.record.tuant1}">
 								    			Enh:
 								    			<input type="text" class="inputTextMediumBlue" name="tuenh1" id="tuenh1" size="3" maxlength="3" value="${model.record.tuenh1}">
 								    			x
-								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" name="tuant2" id="tuant2" size="6" maxlength="6" value="${model.record.tuant2}">
+								    			<input onKeyPress="return amountKey(event)" type="text" class="inputTextMediumBlue" style="background-color:lemonchiffon" name="tuant2" id="tuant2" size="6" maxlength="6" value="${model.record.tuant2}">
 								    			Enh:
 								    			<input type="text" class="inputTextMediumBlue" name="tuenh2" id="tuenh2" size="3" maxlength="3" value="${model.record.tuenh2}">
 								    		</td>
@@ -1637,18 +1637,26 @@
    						<tr height="3"><td></td></tr>
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="godslistType" id="godslistType" value="gl">Godsliste
+								<input type="checkbox" name="fbType" id="fbType" value="fb">
+								Fraktbrev
+							</td>	
+   						</tr>
+   						<tr>
+							<td class="text14" align="left" >
+								<input type="checkbox" name="godslistType" id="godslistType" value="gl">
+								<span id="alinkGodslistePdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Godsliste</span>
 							</td>	
 							<td class="text14" align="left" >	
-								<img id="imgGodslistePdf" title="GL.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="GL. PDF">
+								<img id="imgGodslistePdf" title="GL.PDF" style="vertical-align:middle;cursor:pointer" src="resources/images/pdf.png" width="14" height="14" border="0" alt="GL. PDF">
 							</td>
    						</tr>
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="lastlistType" id="lastlistType" value="ll">Lasteliste
+								<input type="checkbox" name="lastlistType" id="lastlistType" value="ll">
+								<span id="alinkLastlistePdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Lasteliste</span>
 							</td>
 							<td class="text14" align="left" >	
-								<img id="imgLastlistePdf" title="LL.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
+								<img id="imgLastlistePdf" title="LL.PDF" style="vertical-align:middle;cursor:pointer" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
 							</td>	
    						</tr>
    						<%-- TODO  ... is it the same as in ORDER?
