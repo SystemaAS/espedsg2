@@ -17,18 +17,21 @@ import no.systema.espedsgadmin.model.TomcatAspApplicationObject;
  *
  */
 public class FileDatabaseServiceImpl implements FileDatabaseService {
-	
+	private Integer numberOfColumns = 0;
+	public Integer getNumberOfColumns (){ return this.numberOfColumns; }
 	/**
 	 * @return
 	 * 
 	 */
 	public List<CustomerApplicationObject> getCustomerApplicationList(){
-		
 		FileDatabaseManager dbMgr = new FileDatabaseManager();
 		List<CustomerApplicationObject> list = dbMgr.getCustAppMap();
-
+		this.numberOfColumns = dbMgr.getNumberOfColumns();
+		
 		return list;
 	}
+	
+	
 	
 	/**
 	 * @return

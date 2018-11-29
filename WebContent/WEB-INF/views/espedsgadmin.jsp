@@ -75,16 +75,9 @@
 			                    <th width="10%" class="text14" align="left" >&nbsp;URL&nbsp;</th>
 			                    <th width="10%" class="text14" align="left" >&nbsp;URL - HTTPS&nbsp;</th>
 			                    <%-- NOTE: as many columns as apps in custApps.db file. --%>
-			                    <th class="text14" align="center" >1</th>
-			                    <th class="text14" align="center" >2</th>
-			                    <th class="text14" align="center" >3</th>
-			                    <th class="text14" align="center" >4</th>
-			                    <th class="text14" align="center" >5</th>
-			                    <th class="text14" align="center" >6</th>
-			                    <th class="text14" align="center" >7</th>
-			                    <th class="text14" align="center" >8</th>
-			                    <th class="text14" align="center" >9</th>
-								<th class="text14" align="center" >10</th>
+			                    <c:forEach begin="1" end="${model.dbNrColumns}" varStatus="loop">
+									<th class="text14" align="center" >${loop.index}</th>
+			                    </c:forEach>
 			                </tr>  
 			                </thead> 
 			                

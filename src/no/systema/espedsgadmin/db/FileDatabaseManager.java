@@ -33,6 +33,10 @@ public class FileDatabaseManager {
 	//Tomcat ports
 	private String sourceFileTomcatAspCustomers = "tomcatAspCustomers.db";
 	
+	//number of columns fro cust matrix on GUI
+	private Integer numberOfColumns = 0;
+	public Integer getNumberOfColumns (){ return this.numberOfColumns; }
+	
 	
 	/**
 	 * 
@@ -126,6 +130,7 @@ public class FileDatabaseManager {
 				String[] fields = { };
 				if(id!=null && id.length>1){
 					fields = id[1].split(";");
+					this.numberOfColumns = fields.length;
 				}	
 				
 				List<String> list = null;

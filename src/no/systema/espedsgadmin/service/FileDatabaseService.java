@@ -14,4 +14,5 @@ import no.systema.espedsgadmin.model.TomcatAspApplicationObject;
 public interface FileDatabaseService {
 	public List<CustomerApplicationObject> getCustomerApplicationList();
 	public List<TomcatAspApplicationObject> getTomcatAspPortList();
+	public Integer getNumberOfColumns();
 }

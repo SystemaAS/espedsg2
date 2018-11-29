@@ -69,10 +69,12 @@ public class CustomerApplicationController {
 			
 			List dbObjectList = this.fileDatabaseService.getCustomerApplicationList();
 			List dbTomcatPortsObjectList = this.fileDatabaseService.getTomcatAspPortList();
+			Integer nrColumns = this.fileDatabaseService.getNumberOfColumns();
+			logger.info("COLUMNS:" + nrColumns);
 			//
 			model.put("dbObjectList", dbObjectList);
 			model.put("dbTomcatPortsObjectList", dbTomcatPortsObjectList);
-			
+			model.put("dbNrColumns", nrColumns);
 			successView.addObject("model" , model);
 			
 	    	return successView;
