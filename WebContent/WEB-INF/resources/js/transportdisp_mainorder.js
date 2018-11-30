@@ -63,10 +63,10 @@
 	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
   function renderCmrFraktBrev(){
-	window.open('TODO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
   function renderFFakturor(){
-	window.open('TODO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
   
   //Global functions
@@ -2958,6 +2958,7 @@
 			 text: "Direkte til printer",
 			 click: function(){
 				 		if(jq("#fbType").is(':checked') || jq("#cmType").is(':checked') || jq("#ffType").is(':checked')){
+				 			//print directly to system printer (AS400-printer)
 				 			doPrintDocuments();
 				 		}
 		 			}

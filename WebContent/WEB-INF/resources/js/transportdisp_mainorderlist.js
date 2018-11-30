@@ -682,11 +682,10 @@
 				 id: "dialogSaveTU"+counterIndex,	
 				 text: "Direkte til printer",
 				 click: function(){
-					 		
 					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
+					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocuments(counterIndex);
 					 		}
-					 		
 				 		}
 			 	 },
 	 	 		{
@@ -722,6 +721,10 @@
 	  	//add values to form since we do not combine form data and other data in the same ajax call.
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	//adjust to the only id's the rest-controller knows about (avd/opd)
+	  	form.append("avd", jq('#avd'+counterIndex).val());
+	  	form.append("opd", jq('#opd'+counterIndex).val());
+	  	
 	  	var payload = jq('printForm'+counterIndex).serialize();
 	  	
 	    jq.ajax({
@@ -755,6 +758,7 @@
   
   //Render PDF doc 
   jq(function() {
+	  //Fraktbrev
 	  jq(".clazz_alinkFraktbrevPdf").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("alinkFraktbrevPdf","");
@@ -765,9 +769,38 @@
 		  counterIndex = id.replace("imgFraktbrevPdf","");
 		  renderFraktBrev(counterIndex);
 	  });
+	  //CMR-Fraktbrev
+	  jq(".clazz_alinkCmrFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkCmrFraktbrevPdf","");
+		  renderCmrFraktBrev(counterIndex);
+	  });
+	  jq(".clazz_imgCmrFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgCmrFraktbrevPdf","");
+		  renderCmrFraktBrev(counterIndex);
+	  });
+	  //FFakturor
+	  jq(".clazz_alinkFFaktPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkFFaktPdf","");
+		  renderFFakturor(counterIndex);
+	  });
+	  jq(".clazz_imgFFaktPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgFFaktPdf","");
+		  renderFFakturor(counterIndex);
+	  });
+	  
   });
   function renderFraktBrev(counterIndex){
 	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  }
+  function renderCmrFraktBrev(counterIndex){
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  } 
+  function renderFFakturor(counterIndex){
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
   } 
   //----------------------------
   //END Model dialog Print docs
