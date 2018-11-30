@@ -371,7 +371,7 @@
 				        </td>
 			    		
 				        <td>
-							<font title="avd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
+							<font title="avd/wssavd" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.dept"/></font>
 							<a href="javascript:void(0);" onClick="window.open('transportdisp_workflow_childwindow_avd.do?action=doFind','avdWin','top=100px,left=300px,height=600px,width=800px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgAvdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
 		 					</a>
@@ -394,7 +394,7 @@
 			        	</td>
 			        	
 			        	<td>	
-			        		&nbsp;<font title="opd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
+			        		&nbsp;<font title="opd/wssopd" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></font>
 			        		<%-- release 2 BRING (punkt (17)) and delete the above space with the link --%>
 			        		<a href="javascript:void(0);" onClick="window.open('sporringoppdraggate.do?lang=NO&cw=true','opdWin','top=100px,left=200px,height=900px,width=1500px,scrollbars=no,status=no,location=no')">
 		 						<img id="imgOpdSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" height="13px" width="13px" border="0" alt="search">
@@ -407,7 +407,7 @@
 			        		<input type="text" class="inputTextMediumBlue" name="opd" id="opd" size="10" maxlength="15" value='${searchFilter.opd}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="opdType" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></font>
+			        		&nbsp;<font title="opdType/wssot" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></font>
 				        	<a tabindex=-1 id="opdTypeIdLink" >	
 								<img id="opdTypeImg" tabindex=0 style="vertical-align: middle;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
 							</a>
@@ -424,19 +424,19 @@
 			        		
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="sender" class="text14">Avs</font>
+			        		&nbsp;<font title="sender/todo" class="text14">Avs</font>
 				        </td>
 				        <td>	
 			        		<input type="text" class="inputTextMediumBlue" name="sender" id="sender" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 			        	<td>	
-			        		&nbsp;<font title="from" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.from"/></font>
+			        		&nbsp;<font title="from/wssdf" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.from"/></font>
 				        </td>
 				        <td>	
 			        		<input type="text" class="inputTextMediumBlue" name="from" id="from" size="9" maxlength="8" value='${searchFilter.from}'>
 				        </td>
 				        <td>	
-				        	&nbsp;<font title="fromDateF/fromDateT" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
+				        	&nbsp;<font title="fromDateF/fromDateT-wopdtf/wopdtf2" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
 				        </td>
 				        
 				        <td>	
@@ -461,40 +461,40 @@
 				        </td>
 				        
 				        <td align="right">	
-			        		&nbsp;<font title="sign" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></font>
+			        		&nbsp;<font title="sign/wsssg" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></font>
 				        </td>
 						<td>	
 			        		<input type="text" class="inputTextMediumBlue" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="ponr" class="text14">Ponr.</font>
+			        		&nbsp;<font title="ponr/wsrfa" class="text14">Ponr.</font>
 				        </td>
 						<td>	
 			        		<input type="text" class="inputTextMediumBlue" name="ponr" id="ponr" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="customer" class="text14">Kunde</font>
+			        		&nbsp;<font title="customer/todo" class="text14">Kunde</font>
 				        </td>
 
 						<td>	
 			        		<input type="text" class="inputTextMediumBlue" name="customer" id="customer" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="receiver" class="text14">Mott.</font>
+			        		&nbsp;<font title="receiver/todo" class="text14">Mott.</font>
 				        </td>
 
 						<td>	
 			        		<input type="text" class="inputTextMediumBlue" name="receiver" id="receiver" size="10" maxlength="15" value='${XsearchFilter.sign}'>
 				        </td>
 			        	<td>	
-				        	&nbsp;<font title="to" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.to"/></font>
+				        	&nbsp;<font title="to/wssdt" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.to"/></font>
 				        </td>
 			        	
 				        <td>	
 				        	<input type="text" class="inputTextMediumBlue" name="to" id="to" size="9" maxlength="8" value='${searchFilter.to}'>
 				        </td>
 				        <td>	
-				        	&nbsp;<font title="toDateF/toDateT" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
+				        	&nbsp;<font title="toDateF/toDateT-wopdtt/wopdtt2" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
 				        </td>
 				        
 				        <td>	

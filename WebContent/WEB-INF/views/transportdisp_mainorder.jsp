@@ -247,7 +247,7 @@
 		<tr>
 		<td>
 			<%-- this table wrapper is necessary to apply the css class with the thin border --%>
-			<form action="transportdisp_mainorder_update.do"  name="transportdispForm" id="transportdispForm" method="post">
+			<form name="transportdispForm" id="transportdispForm" method="post">
 			<input type="hidden" name="parentTrip" id="parentTrip" value="${model.parentTrip}">
 		
 			<table style="width:100%" id="wrapperTable" class="tabThinBorderWhite" cellspacing="0">
@@ -382,7 +382,10 @@
 					 						<%-- hided so far ... <button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button> --%>
 					 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 									   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
-									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button> 
+									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button>
+									   		<c:if test="${ not empty model.record.heavd && not empty model.record.heopd }">
+						 				    	<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit2" id="submit2" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+						 				    </c:if>
 										</c:if>
 				 					</td>
 				 				</tr>
@@ -2055,10 +2058,10 @@
 						<td align="right">
 		 				    <c:choose>
 			 				    <c:when test="${ not empty model.record.heavd && not empty model.record.heopd }">
-			 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+		 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
 			 				    </c:when>
 			 				    <c:otherwise>
-			 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submitnew" id="submitnew" value='<spring:message code="systema.transportdisp.submit.createnew.order"/>'/>
+		 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submitnew" id="submitnew" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.createnew.order"/>'/>
 			 				    </c:otherwise>	
 		 				    </c:choose>
 	 				    </td>

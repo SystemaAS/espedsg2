@@ -2241,6 +2241,24 @@
 		  }
 	  });
 	  
+	  
+	  //FORM submit2 /only because the end-user wants an alternative fucking button on top ...  
+	  jq( "#submit2" ).click(function( event ) {
+		  jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT });
+		  
+		  //[2] execute som events
+		  if(jq( "#hesdf" ).val()=='' && jq( "#helka" ).val()!=''){
+			  jq( "#hesdf" ).focus();
+			  jq( "#hesdf" ).blur();
+		  }
+		  if(jq( "#hesdt" ).val()=='' && jq( "#hetri" ).val()!=''){
+			  jq( "#hesdt" ).focus();
+			  jq( "#hesdt" ).blur();
+		  }
+		 
+		  
+	  });
+	  
   });
   
   //------------------
