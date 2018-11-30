@@ -684,7 +684,7 @@
 				 click: function(){
 					 		
 					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
-					 			doPrintDocuments();
+					 			doPrintDocuments(counterIndex);
 					 		}
 					 		
 				 		}
@@ -716,6 +716,59 @@
 		 
 	  });
   });
+  //PRINT documents 
+  function doPrintDocuments(counterIndex) {
+	  	var form = new FormData(document.getElementById('printForm'+counterIndex));
+	  	//add values to form since we do not combine form data and other data in the same ajax call.
+	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
+	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	var payload = jq('printForm'+counterIndex).serialize();
+	  	
+	    jq.ajax({
+	        type        : 'POST',
+	        url         : 'printDocuments_TransportDisp.do?' + payload,
+	        data        : form,
+	        dataType    : 'text',
+	        cache: false,
+	  	  	processData: false,
+	        contentType : false,
+	        success     : function(data){
+	        		console.log("A");
+	        		var len = data.length;
+	        		if(len > 0){
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).text("Print = OK (loggført i Hendelsesloggen)");
+	        		}else{
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).text("Print error...  ");
+	        		}
+             },
+             error: function() {
+		  		  //alert('Error loading ...');
+            	 alert('Error loading on Ajax callback (?) doPrintDocuments(counterIndex)... check js');
+			  }
+             
+	    });
+	}
+  
+  //Render PDF doc 
+  jq(function() {
+	  jq(".clazz_alinkFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkFraktbrevPdf","");
+		  renderFraktBrev(counterIndex);
+	  });
+	  jq(".clazz_imgFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgFraktbrevPdf","");
+		  renderFraktBrev(counterIndex);
+	  });
+  });
+  function renderFraktBrev(counterIndex){
+	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  } 
   //----------------------------
   //END Model dialog Print docs
   //----------------------------

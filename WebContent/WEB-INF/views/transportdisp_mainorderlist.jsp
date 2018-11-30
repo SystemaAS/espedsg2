@@ -653,11 +653,11 @@
 							</c:if>
 		               </td>
 		               <td width="2%" align="center" class="textMediumBlue">
-		               		<a title="print" class="printLink" id="printLink${counter.count}" runat="server" href="#">
+		               		<a title="print Oppd.&nbsp;${record.heopd}" class="printLink" id="printLink${counter.count}" runat="server" href="#">
 								<img style="vertical-align: middle;" src="resources/images/printer3.png" width="20px" height="20px" border="0" alt="Print">
 							</a>
 							<div style="display: none;" class="clazz_dialogPrint" id="dialogPrint${counter.count}" title="Dialog Print">
-									<form id="printForm">
+									<form id="printForm${counter.count}">
 										<input type="hidden" id="avd${counter.count}" name="avd${counter.count}" value="${record.heavd}">
 										<input type="hidden" id="opd${counter.count}" name="opd${counter.count}" value="${record.heopd}">
 										<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${Xrecord.hepro}">
@@ -666,10 +666,10 @@
 				   						<tr>
 											<td class="text14" align="left" >
 												<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
-												<span id="alinkFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
+												<span class="clazz_alinkFraktbrevPdf" id="alinkFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
 											</td>	
 											<td class="text14" align="left" >	
-												<img id="imgFraktbrevPdf${counter.count}" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
+												<img class="clazz_imgFraktbrevPdf" id="imgFraktbrevPdf${counter.count}" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
 												
 											</td>
 				   						</tr>
