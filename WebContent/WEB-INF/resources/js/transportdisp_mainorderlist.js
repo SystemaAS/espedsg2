@@ -651,7 +651,7 @@
   }
   
   
-//-----------------------------------
+ //-----------------------------------
   //START Model dialog Print docs
   //-----------------------------------
   //Initialize <div> here
@@ -673,7 +673,7 @@
 	  jq(".printLink").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLink","");
-		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Oppd. " + jq('#opd'+counterIndex).val() );
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opd'+counterIndex).val() );
 		  //deal with buttons for this modal window
 		  jq("#dialogPrint"+counterIndex).dialog({
 		  
@@ -827,7 +827,7 @@
 		  var id = this.id;
 		  counterIndex = id.replace("copyLink","");
 		  //setters (add more if needed)
-		  jq('#dialog'+counterIndex).dialog( "option", "title", "Kopi Oppd. " + jq('#originalOpd'+counterIndex).val() );
+		  jq('#dialog'+counterIndex).dialog( "option", "title", "Kopi Op. " + jq('#originalOpd'+counterIndex).val() );
 		  
 		  //deal with buttons for this modal window
 		  jq('#dialog'+counterIndex).dialog({
@@ -904,7 +904,7 @@
 		  var id = this.id;
 		  counterIndex = id.replace("moveLink","");
 		  //setters (add more if needed)
-		  jq('#dialogMove'+counterIndex).dialog( "option", "title", "Flytte Oppd. " + jq('#originalOpd'+counterIndex).val() );
+		  jq('#dialogMove'+counterIndex).dialog( "option", "title", "Flytte Op. " + jq('#originalOpd'+counterIndex).val() );
 		  
 		  //deal with buttons for this modal window
 		  jq('#dialogMove'+counterIndex).dialog({

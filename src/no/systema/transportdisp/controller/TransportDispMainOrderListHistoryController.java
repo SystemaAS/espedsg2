@@ -637,7 +637,7 @@ public class TransportDispMainOrderListHistoryController {
     		Double helmTotalAmount = 0.000D;
     		Double hevktTotalAmount = 0.000D;
     		
-    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandtur()){
+    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandled()){
     			if(record.getHent()!=null && !"".equals(record.getHent())){
     				String tmpHent = record.getHent().replace(",", ".");
     				hentTotalAmount += Double.parseDouble(tmpHent);
@@ -663,7 +663,7 @@ public class TransportDispMainOrderListHistoryController {
     		jsonCurrentOrdersListContainer.setHevktTotalAmount(hevktTotalAmount);
     		
     		model.put(TransportDispConstants.DOMAIN_CONTAINER_CURRENT_ORDERS, jsonCurrentOrdersListContainer);
-    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandtur();
+    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandled();
     	}		
 		return outputListCurrentOrders;
 	    	

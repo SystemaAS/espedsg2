@@ -158,6 +158,8 @@ public class TransportDispMainOrderController {
 			return loginView;
 			
 		}else{
+			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
+			
 			//Update the order with the new totals(if applicable). Usually when creating new line with AJAX)
 			if(orderLineTotalsString!=null && !"".equals(orderLineTotalsString)){
 				//[1] pre-Fetch the whole record first since we do not have all values in place (when calling from within jquery in a GET)
@@ -311,9 +313,10 @@ public class TransportDispMainOrderController {
 			logger.info("PARENT TRIP:" + parentTrip);
 		}
 		Map model = new HashMap();
-		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
 		
 		ModelAndView returnView = new ModelAndView("transportdisp_mainorder");
+		ModelAndView getoutView = new ModelAndView("redirect:transportdisp_mainorderlist.do?action=doFind&avd=" + recordToValidate.getHeavd());
+		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		
 		//check user (should be in session already)
@@ -321,6 +324,8 @@ public class TransportDispMainOrderController {
 			return loginView;
 			
 		}else{
+			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP);
+			
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
 			//------------------------
 			//Validation [1] Front-end
@@ -536,56 +541,66 @@ public class TransportDispMainOrderController {
 			    		}
 		    		}
 		    	}
-	    		//------------------------------------------
-	    		//FETCH the updated or newly created record
-	    		//------------------------------------------
-		    	final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_URL;
-	    		//add URL-parameters
-	    		StringBuffer urlRequestParams = new StringBuffer();
-	    		urlRequestParams.append("user=" + appUser.getUser());
-	    		urlRequestParams.append("&heavd=" + recordToValidate.getHeavd());
-	    		urlRequestParams.append("&heopd=" + recordToValidate.getHeopd());
-	    		
-	    		session.setAttribute(TransportDispConstants.ACTIVE_URL_RPG_TRANSPORT_DISP, BASE_URL + "==>params: " + urlRequestParams.toString()); 
-		    	logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-		    	logger.info("URL: " + BASE_URL);
-		    	logger.info("URL PARAMS: " + urlRequestParams);
-	    		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		    	//Debug --> 
-	    		logger.debug(jsonPayload);
-		  	
-	    		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-	    		if(jsonPayload!=null){
-	    			JsonTransportDispWorkflowSpecificOrderContainer container = this.transportDispWorkflowSpecificOrderService.getContainer(jsonPayload);
-	    			for (JsonTransportDispWorkflowSpecificOrderRecord record: container.getDspoppdrag()){
-	    				//adjust percentage
-	    				//record.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(record.getHevalp()));
-	    				
-	    				//update the order in session since we might go to Invoice tab directly after this
-	    				session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
-	    				
-	    				if(isCreateNewTransaction){
-	    					this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(record, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
-			    			record.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
-			    		}
-	    				//TODO (Run validation and reflexion and sum TOTALS)
-	    				//ONLY when isCreateNewTransaction ?
-	    				
-	    				//populate children
-	    				this.populateChildren(appUser, record);
-	    				
-	    				//set domain objects
-	    				this.setDomainObjectsInView(model, record);
-	    				this.setCodeDropDownMgr(appUser, model);
-	    				this.setDropDownsFromFiles(model);
-	    			}
-	    		}
-	    		//--------------------------------------
-	    		//Final successView with domain objects
-	    		//--------------------------------------
-	    		model.put("parentTrip", parentTrip);
-	    		returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
-	    		logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+		    	
+		    	
+		    	//Check if the save = OK and if we need to get out of here ...
+		    	if(strMgr.isNotNull(recordToValidate.getSavecloseFlag()) || strMgr.isNotNull(recordToValidate.getSavecloseFlag2())){
+		    		returnView = getoutView;
+		    		
+		    	}else{
+		    		//-----------------------------------------------------------
+		    		//FETCH the updated or newly created record and stay in view
+		    		//-----------------------------------------------------------
+			    	final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_URL;
+		    		//add URL-parameters
+		    		StringBuffer urlRequestParams = new StringBuffer();
+		    		urlRequestParams.append("user=" + appUser.getUser());
+		    		urlRequestParams.append("&heavd=" + recordToValidate.getHeavd());
+		    		urlRequestParams.append("&heopd=" + recordToValidate.getHeopd());
+		    		
+		    		session.setAttribute(TransportDispConstants.ACTIVE_URL_RPG_TRANSPORT_DISP, BASE_URL + "==>params: " + urlRequestParams.toString()); 
+			    	logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+			    	logger.info("URL: " + BASE_URL);
+			    	logger.info("URL PARAMS: " + urlRequestParams);
+		    		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+			    	//Debug --> 
+		    		logger.debug(jsonPayload);
+			  	
+		    		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		    		if(jsonPayload!=null){
+		    			JsonTransportDispWorkflowSpecificOrderContainer container = this.transportDispWorkflowSpecificOrderService.getContainer(jsonPayload);
+		    			for (JsonTransportDispWorkflowSpecificOrderRecord record: container.getDspoppdrag()){
+		    				//adjust percentage
+		    				//record.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(record.getHevalp()));
+		    				
+		    				//update the order in session since we might go to Invoice tab directly after this
+		    				session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
+		    				
+		    				if(isCreateNewTransaction){
+		    					this.reflectionSpecificOrderHeaderMgr.updateOriginalAttributesOnTargetFraktbrevLines(record, this.specificOrderValidatorBackend.getValidationOutputOderLinesList());
+				    			record.setFraktbrevList(this.reflectionSpecificOrderHeaderMgr.getTargetFraktbrevListUpdated());
+				    		}
+		    				//TODO (Run validation and reflexion and sum TOTALS)
+		    				//ONLY when isCreateNewTransaction ?
+		    				
+		    				//populate children
+		    				this.populateChildren(appUser, record);
+		    				
+		    				//set domain objects
+		    				this.setDomainObjectsInView(model, record);
+		    				this.setCodeDropDownMgr(appUser, model);
+		    				this.setDropDownsFromFiles(model);
+		    			}
+		    		}
+		    		//--------------------------------------
+		    		//Final successView with domain objects
+		    		//--------------------------------------
+		    		model.put("parentTrip", parentTrip);
+		    		returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+		    		logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+		    	}
+		    	
+		    	
 		    }
 			return returnView;
 		}
@@ -653,6 +668,7 @@ public class TransportDispMainOrderController {
 			return loginView;
 			
 		}else{
+			
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER start - timestamp");
     		//UPDATE (Delete)
 			logger.info("UPDATE (DELETE) transaction...");

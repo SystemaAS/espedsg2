@@ -36,7 +36,7 @@ public class JsonTransportDispWorkflowShippingPlanningOrdersListMapper {
 		//At this point we now have an UTF-8 payload
 		JsonTransportDispWorkflowShippingPlanningCurrentOrdersListContainer container = mapper.readValue(utfPayload.getBytes(), JsonTransportDispWorkflowShippingPlanningCurrentOrdersListContainer.class); 
 		logger.info("[JSON-String payload status=OK]  " + container.getUser());
-		for (JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : container.getOrderlistlandtur()){
+		for (JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : container.getOrderlistlandled()){
 			//DEBUG
 		}
 		return container;

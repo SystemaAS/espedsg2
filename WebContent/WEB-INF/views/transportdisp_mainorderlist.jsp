@@ -570,11 +570,13 @@
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></th>
 	                    <th title="farliggods" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
 	                    <th title="internmelding" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
-	                    <th title="print" width="2%" class="text14">Pr.</th>
+	                    <th title="print" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.printDocs"/></th>
+	                    <%--
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
+	                     --%>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.copy"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.move"/></th>
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
 	                    
 	                </tr> 
@@ -703,18 +705,14 @@
 							
 	           		   				
             		   </td>
-		               
+		               <%--
 		               <td width="2%" align="center" class="textMediumBlue">
 	           		   		<a target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}&wstoll=${record.dftoll}">
   		    					<img title="Fraktbr.PDF" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Fraktbr. PDF">
    							</a>
             		   </td>
+            		    --%>
             		   <td width="2%" align="center" class="textMediumBlue">
-            		  	 	<a id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
-			               		<img src="resources/images/delete.gif" border="0" alt="remove">
-			               	</a>&nbsp;
-					   </td>
-					   <td width="2%" align="center" class="textMediumBlue">
 		               		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
 								<img src="resources/images/copy.png" border="0" alt="copy">
 							</a>
@@ -765,7 +763,12 @@
 								</form>
 							</div>
 		               </td>
-		               <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
+		               <td width="2%" align="center" class="textMediumBlue">
+            		  	 	<a id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
+			               		<img src="resources/images/delete.gif" border="0" alt="remove">
+			               	</a>&nbsp;
+					   </td>
+					   <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
 		               
 					   			               	
 		            </tr> 

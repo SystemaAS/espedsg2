@@ -697,38 +697,41 @@ public class TransportDispMainOrderListController {
     	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
     	if(jsonPayloadCurrentOrders!=null){
     		JsonTransportDispWorkflowShippingPlanningCurrentOrdersListContainer jsonCurrentOrdersListContainer = this.transportDispWorkflowShippingPlanningOrdersListService.getCurrentOrdersListContainer(jsonPayloadCurrentOrders);
-    		Double hentTotalAmount = 0.000D;
-    		Double hem3TotalAmount = 0.000D;
-    		Double helmTotalAmount = 0.000D;
-    		Double hevktTotalAmount = 0.000D;
     		
-    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandtur()){
-    			if(record.getHent()!=null && !"".equals(record.getHent())){
-    				String tmpHent = record.getHent().replace(",", ".");
-    				hentTotalAmount += Double.parseDouble(tmpHent);
-    			}
-    			if(record.getHem3()!=null && !"".equals(record.getHem3())){
-    				String tmpHem3 = record.getHem3().replace(",", ".");
-    				hem3TotalAmount += Double.parseDouble(tmpHem3);
-    			}
-    			if(record.getHelm()!=null && !"".equals(record.getHelm())){
-    				String tmpHelm = record.getHelm().replace(",", ".");
-    				helmTotalAmount += Double.parseDouble(tmpHelm);
-    			}
-    			if(record.getHevkt()!=null && !"".equals(record.getHevkt())){
-    				String tmpHevkt = record.getHevkt().replace(",", ".");
-    				hevktTotalAmount += Double.parseDouble(tmpHevkt);
-    			}
-    			
+    		if(jsonCurrentOrdersListContainer!=null){
+	    		Double hentTotalAmount = 0.000D;
+	    		Double hem3TotalAmount = 0.000D;
+	    		Double helmTotalAmount = 0.000D;
+	    		Double hevktTotalAmount = 0.000D;
+	    		
+	    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandled()){
+	    			if(record.getHent()!=null && !"".equals(record.getHent())){
+	    				String tmpHent = record.getHent().replace(",", ".");
+	    				hentTotalAmount += Double.parseDouble(tmpHent);
+	    			}
+	    			if(record.getHem3()!=null && !"".equals(record.getHem3())){
+	    				String tmpHem3 = record.getHem3().replace(",", ".");
+	    				hem3TotalAmount += Double.parseDouble(tmpHem3);
+	    			}
+	    			if(record.getHelm()!=null && !"".equals(record.getHelm())){
+	    				String tmpHelm = record.getHelm().replace(",", ".");
+	    				helmTotalAmount += Double.parseDouble(tmpHelm);
+	    			}
+	    			if(record.getHevkt()!=null && !"".equals(record.getHevkt())){
+	    				String tmpHevkt = record.getHevkt().replace(",", ".");
+	    				hevktTotalAmount += Double.parseDouble(tmpHevkt);
+	    			}
+	    			
+	    		}
+	    		//Totals
+	    		jsonCurrentOrdersListContainer.setHentTotalAmount(hentTotalAmount);
+	    		jsonCurrentOrdersListContainer.setHem3TotalAmount(hem3TotalAmount);
+	    		jsonCurrentOrdersListContainer.setHelmTotalAmount(helmTotalAmount);
+	    		jsonCurrentOrdersListContainer.setHevktTotalAmount(hevktTotalAmount);
+	    		
+	    		model.put(TransportDispConstants.DOMAIN_CONTAINER_CURRENT_ORDERS, jsonCurrentOrdersListContainer);
+	    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandled();
     		}
-    		//Totals
-    		jsonCurrentOrdersListContainer.setHentTotalAmount(hentTotalAmount);
-    		jsonCurrentOrdersListContainer.setHem3TotalAmount(hem3TotalAmount);
-    		jsonCurrentOrdersListContainer.setHelmTotalAmount(helmTotalAmount);
-    		jsonCurrentOrdersListContainer.setHevktTotalAmount(hevktTotalAmount);
-    		
-    		model.put(TransportDispConstants.DOMAIN_CONTAINER_CURRENT_ORDERS, jsonCurrentOrdersListContainer);
-    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandtur();
     	}		
 		return outputListCurrentOrders;
 	    	

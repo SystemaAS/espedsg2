@@ -634,6 +634,163 @@
   }
   
   
+//-----------------------------------
+  //START Model dialog Print docs
+  //-----------------------------------
+  //Initialize <div> here
+  jq(function() { 
+	  jq( ".clazz_dialogPrint" ).each(function(){
+		jq(this).dialog({
+			autoOpen: false,
+			  maxWidth:600,
+		      maxHeight: 600,
+		      width: 350,
+		      height: 250,
+			  modal: true,
+			  dialogClass: 'print-dialog-class'
+		});
+	  });
+  });
+  //Present dialog box onClick 
+  jq(function() {
+	  jq(".printLink").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("printLink","");
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opd'+counterIndex).val() );
+		  //deal with buttons for this modal window
+		  jq("#dialogPrint"+counterIndex).dialog({
+		  
+			 buttons: [ 
+	            {
+				 id: "dialogSaveTU"+counterIndex,	
+				 text: "Direkte til printer",
+				 click: function(){
+					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
+					 			//print directly to system printer (AS400-printer)
+					 			doPrintDocuments(counterIndex);
+					 		}
+				 		}
+			 	 },
+	 	 		{
+			 	 id: "dialogCancelTU"+counterIndex,
+			 	 text: "Lukk", 
+				 click: function(){
+					 		//back to initial state of form elements on modal dialog
+					 		jq("#fbType"+counterIndex).prop('checked', false);
+					 		jq("#cmrType"+counterIndex).prop('checked', false);
+					 		jq("#ffType"+counterIndex).prop('checked', false);
+					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
+					 		jq("#printStatus"+counterIndex).removeClass( "isa_success" );
+					 		jq("#printStatus"+counterIndex).text("");
+					 		
+				 			//
+			  				jq( this ).dialog( "close" );
+					 		  
+				 		} 
+	 	 		 } ] 
+			  
+		  });
+		  //init values
+		  //jq("#dialogSave"+counterIndex).button("option", "disabled", true);
+		  
+		  //open now
+		  jq("#dialogPrint"+counterIndex).dialog('open');
+		 
+	  });
+  });
+  //PRINT documents 
+  function doPrintDocuments(counterIndex) {
+	  	var form = new FormData(document.getElementById('printForm'+counterIndex));
+	  	//add values to form since we do not combine form data and other data in the same ajax call.
+	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
+	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	//adjust to the only id's the rest-controller knows about (avd/opd)
+	  	form.append("avd", jq('#avd'+counterIndex).val());
+	  	form.append("opd", jq('#opd'+counterIndex).val());
+	  	
+	  	var payload = jq('printForm'+counterIndex).serialize();
+	  	
+	    jq.ajax({
+	        type        : 'POST',
+	        url         : 'printDocuments_TransportDisp.do?' + payload,
+	        data        : form,
+	        dataType    : 'text',
+	        cache: false,
+	  	  	processData: false,
+	        contentType : false,
+	        success     : function(data){
+	        		console.log("A");
+	        		var len = data.length;
+	        		if(len > 0){
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).text("Print = OK (loggført i Hendelsesloggen)");
+	        		}else{
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).text("Print error...  ");
+	        		}
+             },
+             error: function() {
+		  		  //alert('Error loading ...');
+            	 alert('Error loading on Ajax callback (?) doPrintDocuments(counterIndex)... check js');
+			  }
+             
+	    });
+	}
+  
+  //Render PDF doc 
+  jq(function() {
+	  //Fraktbrev
+	  jq(".clazz_alinkFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkFraktbrevPdf","");
+		  renderFraktBrev(counterIndex);
+	  });
+	  jq(".clazz_imgFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgFraktbrevPdf","");
+		  renderFraktBrev(counterIndex);
+	  });
+	  //CMR-Fraktbrev
+	  jq(".clazz_alinkCmrFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkCmrFraktbrevPdf","");
+		  renderCmrFraktBrev(counterIndex);
+	  });
+	  jq(".clazz_imgCmrFraktbrevPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgCmrFraktbrevPdf","");
+		  renderCmrFraktBrev(counterIndex);
+	  });
+	  //FFakturor
+	  jq(".clazz_alinkFFaktPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkFFaktPdf","");
+		  renderFFakturor(counterIndex);
+	  });
+	  jq(".clazz_imgFFaktPdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgFFaktPdf","");
+		  renderFFakturor(counterIndex);
+	  });
+	  
+  });
+  function renderFraktBrev(counterIndex){
+	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  }
+  function renderCmrFraktBrev(counterIndex){
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  } 
+  function renderFFakturor(counterIndex){
+	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  } 
+  //----------------------------
+  //END Model dialog Print docs
+  //----------------------------
+
+  
+  
   
   //-----------------------------------
   //START Model dialog Copy Order
@@ -653,7 +810,7 @@
 		  var id = this.id;
 		  counterIndex = id.replace("copyLink","");
 		  //setters (add more if needed)
-		  jq('#dialog'+counterIndex).dialog( "option", "title", "Kopi Oppdrag " + jq('#originalOpd'+counterIndex).val() );
+		  jq('#dialog'+counterIndex).dialog( "option", "title", "Kopi Op. " + jq('#originalOpd'+counterIndex).val() );
 		  
 		  //deal with buttons for this modal window
 		  jq('#dialog'+counterIndex).dialog({
@@ -730,7 +887,7 @@
 		  var id = this.id;
 		  counterIndex = id.replace("moveLink","");
 		  //setters (add more if needed)
-		  jq('#dialogMove'+counterIndex).dialog( "option", "title", "Flytte Oppdrag " + jq('#originalOpd'+counterIndex).val() );
+		  jq('#dialogMove'+counterIndex).dialog( "option", "title", "Flytte Op. " + jq('#originalOpd'+counterIndex).val() );
 		  
 		  //deal with buttons for this modal window
 		  jq('#dialogMove'+counterIndex).dialog({

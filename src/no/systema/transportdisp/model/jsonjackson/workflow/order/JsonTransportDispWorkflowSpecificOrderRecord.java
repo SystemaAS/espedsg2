@@ -18,6 +18,14 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTra
  */
 public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGrandFatherRecord{
 
+	//Kingsr NO ville ha en Lagre och LUKK knapp men vi skapar en flagga istället.
+	private String savecloseFlag = null;
+	public void setSavecloseFlag(String value) {  this.savecloseFlag = value; }
+	public String getSavecloseFlag() { return this.savecloseFlag;}
+	private String savecloseFlag2 = null;
+	public void setSavecloseFlag2(String value) {  this.savecloseFlag2 = value; }
+	public String getSavecloseFlag2() { return this.savecloseFlag2;}
+	
 	private String totalNumberOfLines = null;
 	public void setTotalNumberOfLines(String value) {  this.totalNumberOfLines = value; }
 	public String getTotalNumberOfLines() { return this.totalNumberOfLines;}

@@ -385,6 +385,8 @@
 									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button>
 									   		<c:if test="${ not empty model.record.heavd && not empty model.record.heopd }">
 						 				    	<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit2" id="submit2" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+						 				    	<input title="Lagre og Lukk" onMouseOver="style='cursor:pointer;box-shadow: 0 0 5px rgba(66, 148, 255, 1);border: 5px solid rgba(66, 148, 255, 1);'" onMouseOut="style=''" type="checkbox" name="savecloseFlag2" id="savecloseFlag2" value="1" <c:if test="${model.record.savecloseFlag2 == '1'}"> checked </c:if>></span>						 	
+						 				    	
 						 				    </c:if>
 										</c:if>
 				 					</td>
@@ -2059,6 +2061,7 @@
 		 				    <c:choose>
 			 				    <c:when test="${ not empty model.record.heavd && not empty model.record.heopd }">
 		 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit" id="submit" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+		 				    		<input title="Lagre og Lukk" onMouseOver="style='cursor:pointer;box-shadow: 0 0 5px rgba(66, 148, 255, 1);border: 5px solid rgba(66, 148, 255, 1);'" onMouseOut="style=''" type="checkbox" name="savecloseFlag" id="savecloseFlag" value="1" <c:if test="${model.record.savecloseFlag == '1'}"> checked </c:if>>
 			 				    </c:when>
 			 				    <c:otherwise>
 		 				    		<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submitnew" id="submitnew" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.createnew.order"/>'/>

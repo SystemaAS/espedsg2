@@ -16,7 +16,7 @@
 	.ui-dialog{font-size:10pt;}
 	.ui-datepicker { font-size:9pt;}
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
-	/*.main-dialog-class .ui-widget-header{ background-color:#DAC8BA } */
+	.print-dialog-class .ui-widget-content{ background-color:lightsteelblue } 
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
 	
 	/* this line will align the datatable search field in the left */
@@ -375,13 +375,18 @@
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.volume"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.loadMtr"/></th>  
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
+	                    <th title="farliggods" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
+	                    <th title="internmelding" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
+	                    <th title="print" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.printDocs"/></th>
+	                    
+	                    <%--
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
+	                     --%>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.copy"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.move"/></th>
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
+	                    
 	                </tr> 
 	                </thead>
 	                
@@ -442,8 +447,7 @@
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hem3}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.helm}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.herfa}</td>
-		               <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
-		               <td width="2%" align="center" class="tableCellRedFont">&nbsp;${record.hepoen}</td>
+		               <td width="2%" align="center" class="textMediumBlue" style="color:red;">&nbsp;${record.hepoen}</td>
 		               <td width="2%" align="center" class="textMediumBlue">
 		               		<c:if test="${not empty record.interninfo}">
 			               		<img onMouseOver="showPop('imText_info${counter.count}');" onMouseOut="hidePop('imText_info${counter.count}');" style="vertical-align:bottom;" src="resources/images/info4.png" width="12" height="12" border="0" alt="Internmelding">
@@ -460,18 +464,64 @@
 		               </td>
 		               
 		               <td width="2%" align="center" class="textMediumBlue">
+		               		<a title="print Oppd.&nbsp;${record.heopd}" class="printLink" id="printLink${counter.count}" runat="server" href="#">
+								<img style="vertical-align: middle;" src="resources/images/printer3.png" width="20px" height="20px" border="0" alt="Print">
+							</a>
+							<div style="display: none;" class="clazz_dialogPrint" id="dialogPrint${counter.count}" title="Dialog Print">
+									<form id="printForm${counter.count}">
+										<input type="hidden" id="avd${counter.count}" name="avd${counter.count}" value="${record.heavd}">
+										<input type="hidden" id="opd${counter.count}" name="opd${counter.count}" value="${record.heopd}">
+										<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${Xrecord.hepro}">
+								 	<table>
+				   						<tr height="3"><td></td></tr>
+				   						<tr>
+											<td class="text14" align="left" >
+												<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
+												<span class="clazz_alinkFraktbrevPdf" id="alinkFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
+											</td>	
+											<td class="text14" align="left" >	
+												<img class="clazz_imgFraktbrevPdf" id="imgFraktbrevPdf${counter.count}" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
+												
+											</td>
+				   						</tr>
+				   						<tr>
+											<td class="text14" align="left" >
+												<input type="checkbox" name="cmrType${counter.count}" id="cmrType${counter.count}" value="cmr">
+												<span class="clazz_alinkCmrFraktbrevPdf" id="alinkCmrFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
+											</td>
+											<td class="text14" align="left" >	
+												<img class="clazz_imgCmrFraktbrevPdf" id="imgCmrFraktbrevPdf${counter.count}" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
+											</td>
+				   						</tr>
+				   						<tr>
+											<td class="text14" align="left" >
+												<input type="checkbox" name="ffType${counter.count}" id="ffType${counter.count}" value="ff">
+												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
+											</td>
+											<td class="text14" align="left" >	
+												<img class="clazz_imgFFaktPdf" id="imgFFaktPdf${counter.count}" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
+											</td>
+				   						</tr>
+				   						<tr height="15"><td></td></tr>
+										<tr>
+											<td colspan="4" class="text14MediumBlue" align="left">
+												<label id="printStatus${counter.count}"></label>
+											</td>
+										</tr>
+									</table>
+									</form>
+							</div>
+							
+	           		   				
+            		   </td>
+		               <%--
+		               <td width="2%" align="center" class="textMediumBlue">
 	           		   		<a target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}&wstoll=${record.dftoll}">
   		    					<img title="Fraktbr.PDF" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Fraktbr. PDF">
    							</a>
             		   </td>
-            		   <td width="2%" align="center" class="textMediumBlue">
-            		  	 	<a id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
-			               		<img src="resources/images/delete.gif" border="0" alt="remove">
-			               	</a>&nbsp;
-			               	
-					   </td>
-					   
-					   
+            		    --%>
+            		    
 					   <td width="2%" align="center" class="textMediumBlue">
 		               		<a title="copy" class="copyLink" id="copyLink${counter.count}" runat="server" href="#">
 								<img src="resources/images/copy.png" border="0" alt="copy">
@@ -523,8 +573,15 @@
 								</form>
 							</div>
 		               </td>
-		              
-					   			               	
+		               
+		               <td width="2%" align="center" class="textMediumBlue">
+            		  	 	<a id="avd_${record.heavd}@opd_${record.heopd}" title="delete" onClick="doPermanentlyDeleteOrder(this)" tabindex=-1>
+			               		<img src="resources/images/delete.gif" border="0" alt="remove">
+			               	</a>&nbsp;
+			               	
+					   </td>
+					   <td width="2%" align="center" class="text14RedBold">&nbsp;${record.hestn7}</td>
+		               			               	
 		            </tr> 
 		            </c:forEach>
 		            </tbody>
