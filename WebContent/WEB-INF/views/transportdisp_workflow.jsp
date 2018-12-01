@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<style type = "text/css">
+	.ui-dialog{font-size:10pt;}
 	.ui-datepicker { font-size:9pt;}
 	
 	.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
@@ -292,6 +293,7 @@
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
+		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.printDocs"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
 		                    <%--
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
@@ -433,6 +435,52 @@
     		    					<img title="Llist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" hight="16" border="0" alt="Llist PDF">
 	   							</a>
 	            		   </td>
+	            		   
+	            		   <td width="3%" align="center" class="textMediumBlue">
+			               		<a title="print Tur.&nbsp;${record.tupro}" class="printLink" id="printLink${counter.count}" runat="server" href="#">
+									<img style="vertical-align: middle;" src="resources/images/printer3.png" width="20px" height="20px" border="0" alt="Print">
+								</a>
+								<div style="display: none;" class="clazz_dialogPrint" id="dialogPrint${counter.count}" title="Dialog Print">
+										<form id="printFormOnList${counter.count}">
+											<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${record.tupro}">
+									 	<table>
+					   						<tr height="3"><td></td></tr>
+					   						<tr>
+												<td class="text14" align="left" >
+													<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
+													Fraktbrev
+												</td>	
+					   						</tr>
+					   						<tr>
+												<td class="text14" align="left" >
+													<input type="checkbox" name="godslistType${counter.count}" id="godslistType${counter.count}" value="gl">
+													<span class="clazz_alinkGodslistePdf" id="alinkGodslistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Godsliste</span>
+												</td>	
+												<td class="text14" align="left" >	
+													<img class="clazz_imgGodslistePdf" id="imgGodslistePdf${counter.count}" title="G.l" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Godsliste PDF">
+												</td>
+					   						</tr>
+					   						<tr>
+												<td class="text14" align="left" >
+													<input type="checkbox" name="lastlistType${counter.count}" id="lastlistType${counter.count}" value="ll">
+													<span class="clazz_alinkLastlistePdf" id="alinkLastlistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Lastelista</span>
+												</td>
+												<td class="text14" align="left" >	
+													<img class="clazz_imgLastlistePdf" id="imgLastlistePdf${counter.count}" title="LL PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
+												</td>
+					   						</tr>
+					   						
+					   						<tr height="15"><td></td></tr>
+											<tr>
+												<td colspan="4" class="text14MediumBlue" align="left">
+													<label id="printStatus${counter.count}"></label>
+												</td>
+											</tr>
+										</table>
+										</form>
+								</div>
+							</td>
+	            		   
 	            		   
 	            		   
 	            		   <td width="3%" align="center" class="text14 tableCellGray">

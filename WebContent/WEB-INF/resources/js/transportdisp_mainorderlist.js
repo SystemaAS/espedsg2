@@ -725,6 +725,10 @@
 	  	form.append("avd", jq('#avd'+counterIndex).val());
 	  	form.append("opd", jq('#opd'+counterIndex).val());
 	  	
+	  	form.append("fbType", jq('#fbType'+counterIndex).val());
+	  	form.append("cmrType", jq('#cmrType'+counterIndex).val());
+	  	form.append("ffType", jq('#ffType'+counterIndex).val());
+	  	
 	  	var payload = jq('printForm'+counterIndex).serialize();
 	  	
 	    jq.ajax({

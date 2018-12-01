@@ -19,7 +19,10 @@ public class PrintFormObjectDto   {
 	private String ffType;
 	private String godslistType;
 	private String lastlistType;
-	
+	//
+	private String fbTypeOnList;
+	private String godslistTypeOnList;
+	private String lastlistTypeOnList;
 	
 	
 }

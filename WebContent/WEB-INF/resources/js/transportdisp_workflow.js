@@ -1756,7 +1756,7 @@
   
   /*
   ---------------------
-  /PRINT DIALOG
+  //PRINT DIALOG ON FORM
   ---------------------
    */
   //INIT Dialog
@@ -1797,9 +1797,9 @@
 			 click: function(){
 				 		//back to initial state of form elements on modal dialog
 				 		
+				 		jq('#godslistType').prop('checked', false);
+				 		jq('#lastlistType').prop('checked', false);
 				 		jq('#fbType').prop('checked', false);
-				 		jq('#cmrType').prop('checked', false);
-				 		jq('#ffType').prop('checked', false);
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");
@@ -1851,6 +1851,166 @@
 		  		  //alert('Error loading ...');
             	 alert('Error loading on Ajax callback (?) doPrintDocuments... check js');
 			  }
+           });
+	}
+  
+  
+//-----------------------------------
+  //PRINT DIALOG ON Tur list
+  //-----------------------------------
+  //Initialize <div> here
+  
+  jq(function() { 
+	  
+	  jq( ".clazz_dialogPrint" ).each(function(){
+		jq(this).dialog({
+			autoOpen: false,
+			  maxWidth:600,
+		      maxHeight: 600,
+		      width: 350,
+		      height: 250,
+			  modal: true,
+			  dialogClass: 'print-dialog-class'
+		});
+	  });
+	  
+  });
+ 
+  //Present dialog box onClick 
+  jq(function() {
+	  jq(".printLink").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("printLink","");
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Tur " + jq('#tur'+counterIndex).val() );
+		  //deal with buttons for this modal window
+		  jq("#dialogPrint"+counterIndex).dialog({
+		  
+			 buttons: [ 
+	            {
+				 id: "dialogSaveTU"+counterIndex,	
+				 text: "Direkte til printer",
+				 click: function(){
+					 		if(jq("#godslistType"+counterIndex).is(':checked') || jq("#lastlistType"+counterIndex).is(':checked') || jq("#fbType"+counterIndex).is(':checked')){
+					 			//print directly to system printer (AS400-printer)
+					 			doPrintDocumentsFromList(counterIndex);
+					 		}
+				 		}
+			 	 },
+	 	 		{
+			 	 id: "dialogCancelTU"+counterIndex,
+			 	 text: "Lukk", 
+				 click: function(){
+					 		//back to initial state of form elements on modal dialog
+					 		jq("#fbType"+counterIndex).prop('checked', false);
+				 			jq("#godslistType"+counterIndex).prop('checked', false);
+					 		jq("#lastlistType"+counterIndex).prop('checked', false);
+					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
+					 		jq("#printStatus"+counterIndex).removeClass( "isa_success" );
+					 		jq("#printStatus"+counterIndex).text("");
+				 			//
+			  				jq( this ).dialog( "close" );
+					 		  
+				 		} 
+	 	 		 } ] 
+			  
+		  });
+		  //init values
+		  //jq("#dialogSave"+counterIndex).button("option", "disabled", true);
+		  
+		  //open now
+		  jq("#dialogPrint"+counterIndex).dialog('open');
+		 
+	  });
+  });
+  
+  //PRINT documents 
+  function doPrintDocumentsFromList(counterIndex) {
+	  	var form = new FormData(document.getElementById('printFormOnList'+counterIndex));
+	  	//add values to form since we do not combine form data and other data in the same ajax call.
+	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
+	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	console.log(jq('#fbType'+counterIndex).val());
+	  	console.log(jq('#godslistType'+counterIndex).val());
+	  	console.log(jq('#lastlistType'+counterIndex).val());
+	  	
+	  	//adjust to the only id's the rest-controller knows about (avd/opd)
+	  	form.append("tur", jq('#tur'+counterIndex).val());
+	  	
+	  	if(jq("#fbType"+counterIndex).is(':checked')){
+	  		form.append("fbTypeOnList", jq('#fbType'+counterIndex).val());
+	  	}
+	  	if(jq("#godslistType"+counterIndex).is(':checked')){
+	  		form.append("godslistTypeOnList", jq('#godslistType'+counterIndex).val());
+	  	}
+	  	if(jq("#lastlistType"+counterIndex).is(':checked')){
+	  		form.append("lastlistTypeOnList", jq('#lastlistType'+counterIndex).val());
+	  	}
+	  	//
+	  	var payload = jq('printFormOnList'+counterIndex).serialize();
+	  	
+	    jq.ajax({
+	        type        : 'POST',
+	        url         : 'printDocumentsTrip_TransportDisp.do?' + payload,
+	        data        : form,
+	        dataType    : 'text',
+	        cache: false,
+	  	  	processData: false,
+	        contentType : false,
+	        success     : function(data){
+	        		console.log("Z");
+	        		var len = data.length;
+	        		if(len > 0){
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).text("Print = OK (loggført i Hendelsesloggen)");
+	        		}else{
+	        			jq("#printStatus"+counterIndex).removeClass( "isa_success" );
+     	  				jq("#printStatus"+counterIndex).addClass( "isa_error" );
+     	  				jq("#printStatus"+counterIndex).text("Print error...  ");
+	        		}
+             },
+             error: function() {
+		  		  //alert('Error loading ...');
+            	 alert('Error loading on Ajax callback (?) doPrintDocuments(counterIndex)... check js');
+			  }
              
 	    });
 	}
+  
+  //Render PDF doc 
+  jq(function() {
+	  
+	  //Godslista
+	  jq(".clazz_alinkGodslistePdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkGodslistePdf","");
+		  renderGodsLista(counterIndex);
+	  });
+	  jq(".clazz_imgGodslistePdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgGodslistePdf","");
+		  renderGodsLista(counterIndex);
+	  });
+	 //Lastelista
+	  jq(".clazz_alinkLastlistePdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("alinkLastlistePdf","");
+		  renderLastLista(counterIndex);
+	  });
+	  jq(".clazz_imgLastlistePdf").click(function() {
+		  var id = this.id;
+		  counterIndex = id.replace("imgLastlistePdf","");
+		  renderLastLista(counterIndex);
+	  });
+	  
+	  
+  });
+  function renderGodsLista(counterIndex){
+	  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).text() + '&type=G', '_blank');
+  }
+  function renderLastLista(counterIndex){
+	 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).text() + '&type=L', '_blank');
+  }
+  //----------------------------
+  //END Model dialog Print docs
+  //----------------------------

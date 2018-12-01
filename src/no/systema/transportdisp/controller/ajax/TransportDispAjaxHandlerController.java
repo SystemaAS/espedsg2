@@ -1732,20 +1732,27 @@ public class TransportDispAjaxHandlerController {
 			logger.info("opd:" + dto.getOpd());
 			logger.info("tur:" + dto.getTur());
 			//
-			logger.info(dto.getFbType());
-			logger.info(dto.getGodslistType());
-			logger.info(dto.getLastlistType());
+			
+			if(strMgr.isNotNull(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
+			if(strMgr.isNotNull(dto.getGodslistType())) {logger.info("godslistType:"+ dto.getGodslistType());}
+			if(strMgr.isNotNull(dto.getLastlistType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
+			//
+			if(strMgr.isNotNull(dto.getFbTypeOnList())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
+			if(strMgr.isNotNull(dto.getGodslistTypeOnList())) {logger.info("godslistTypeOnList:"+ dto.getGodslistTypeOnList()); }
+			if(strMgr.isNotNull(dto.getLastlistTypeOnList())) {logger.info("lastlistTypeOnList:"+ dto.getLastlistTypeOnList()); }
 			
 			//Print fraktbrev
-			if(strMgr.isNotNull(dto.getFbType())){list = this.printFraktbrev(dto); }
+			if(strMgr.isNotNull(dto.getFbType()) || strMgr.isNotNull(dto.getFbTypeOnList())){ 
+				list = this.printFraktbrev(dto); 
+			}
 			
 			//Print Godslista
-			if(strMgr.isNotNull(dto.getGodslistType())){
-				list = this.printGodsOrLastList(dto, TYPE_GODSL);
+			if(strMgr.isNotNull(dto.getGodslistType()) || strMgr.isNotNull(dto.getGodslistTypeOnList())){ 
+				list = this.printGodsOrLastList(dto, TYPE_GODSL); 
 			}
 			//Print Lastelista
-			if(strMgr.isNotNull(dto.getLastlistType())){
-				list = this.printGodsOrLastList(dto, TYPE_LASTL);
+			if(strMgr.isNotNull(dto.getLastlistType()) || strMgr.isNotNull(dto.getLastlistTypeOnList())){ 
+				list = this.printGodsOrLastList(dto, TYPE_LASTL); 
 			}
 		    
 			return list;

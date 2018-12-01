@@ -7,7 +7,6 @@
 		<link href="resources/${user.cssEspedsg}?ver=${user.versionEspedsg}" rel="stylesheet" type="text/css"/>
 		<link href="resources/jquery.calculator.css" rel="stylesheet" type="text/css"/>
 		<link type="text/css" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/overcast/jquery-ui.css" rel="stylesheet">
-		<%--<link type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" rel="stylesheet"> --%>
 		
 		<%-- datatables grid CSS --%>
 		<link type="text/css" href="//cdn.datatables.net/1.10.11/css/jquery.dataTables.css" rel="stylesheet">
@@ -21,6 +20,13 @@
 				<link rel="SHORTCUT ICON" type="image/png" href="resources/images/systema_logo.png"></link>
 			</c:otherwise>
 		</c:choose>
+		
+		<%-- for dialog popup --%>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<style type = "text/css">
+			.ui-dialog{font-size:10pt;}
+		</style>
+	
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
@@ -31,6 +37,7 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js""></script>
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
+	<SCRIPT type="text/javascript" src="resources/js/headerSporringOppdrag.js?ver=${user.versionEspedsg}"></SCRIPT>
 
 	<%--datatables grid JS --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
@@ -159,15 +166,17 @@
 				    			</a>
 				    			<font color="#FFFFFF"; style="font-weight: bold;">&nbsp;&nbsp;|&nbsp;</font>
 				    			<font class="text12LightGreen" style="cursor:pointer;" onClick="showPop('versionInfo');">${user.versionSpring}&nbsp;</font>
-			    				    <span style="position:absolute; left:800px; top:105px; width:150px; height:100px;" id="versionInfo" class="popupWithInputText"  >
-						           		<div class="text11" align="left">
-						           			&nbsp;<b>${user.versionEspedsg}</b>
-						           			<br/><br/>
-						           			&nbsp;<a href="renderLocalLog4j.do" target="_blank">log4j</a>
-						           			<br/><br/><br/>
+			    				    <div class="text12" style="position: relative;display: inline;" align="left">
+									<span style="position:absolute; left:-150px; top:3px;" id="versionInfo" class="popupWithInputText"  >
+						           		<div class="text12" align="left">
+						           			<b>${user.versionEspedsg}</b>
+						           			<p>
+						           				&nbsp;<a id="alinkLog4jLogger" ><font class="text14LightGreen" style="cursor:pointer;">log4j</font></a><br/>
+						           			</p>
 						           			<button name="versionInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('versionInfo');">Close</button> 
 						           		</div>
-						        </span> 
+						           	</span>
+						           	</div>
 						        
 				    		</td>
 	      				
@@ -175,7 +184,34 @@
 			     </table> 
 			</td>
 	    </tr>
-	    	<tr class="text" height="20"><td></td></tr>
+	    	<tr class="text" height="20"><td></td>
+	    </tr>
+	    
+	    <%-- ------------------------- --%>
+		<%-- DIALOG render log4j.log   --%>
+		<%-- ------------------------- --%>
+		<tr>
+		<td>
+			<div id="dialogLogger" title="Dialog" style="display:none">
+			 	<table>
+			 		<tr>
+						<td colspan="3" class="text14" align="left" >Password</td>
+  						</tr>
+					<tr >
+						<td>
+							<input type="password" class="inputText" id="pwd" name="pwd" size="15" maxlength="15" value=''>
+						</td>
+					</tr>
+  						<tr height="10"><td></td></tr>
+					<tr>
+						<td colspan="3" class="text14MediumBlue" align="left">
+							<label id="loggerStatus"></label>
+						</td>
+					</tr>
+				</table>
+			</div>
+		</td>
+		</tr>
 		    
 	    <%-- Validation Error section --%>
 	    <c:if test="${errorMessage!=null}">
