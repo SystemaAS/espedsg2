@@ -13,8 +13,6 @@
 		<link type="text/css" href="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.css" rel="stylesheet">
 		
 		
-		<%-- <link type="text/css" href="http://cdn.datatables.net/plug-ins/3cfcc339e89/integration/jqueryui/dataTables.jqueryui.css" rel="stylesheet">--%>
-		
 		<link rel="SHORTCUT ICON" type="image/png" href="resources/images/systema_logo.png"></link>
 		
 		<%-- for dialog popup --%>
@@ -23,8 +21,7 @@
 			.ui-dialog{font-size:10pt;}
 		</style>
 	
-		
-		
+	
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
@@ -52,9 +49,6 @@
 	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
-	
-	
-	
 	
 	
     <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
