@@ -44,6 +44,7 @@
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispFkeys.js?ver=${user.versionEspedsg}"></SCRIPT>
 	<SCRIPT type="text/javascript" src="resources/js/headerTransport.js?ver=${user.versionEspedsg}"></SCRIPT>
+
 	
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
