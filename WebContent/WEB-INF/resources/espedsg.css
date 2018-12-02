@@ -508,11 +508,13 @@
 }
 
 .inputFormSubmitStd{
+	border: 1px solid #ccc;
 	-moz-border-radius: 5px;
 	-webkit-border-radius: 5px;
 	border-radius: 5px;
-	padding: 4px 7px;
 	font-size: 14px;
+	background-color:#EEEEEE;
+	padding: 4px 7px;
 	cursor:pointer;
  }
  .inputFormSubmitStd11{

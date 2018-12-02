@@ -39,7 +39,6 @@
 	<%-- include som javascript functions --%>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 		
 	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
@@ -48,6 +47,8 @@
 	
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
+	<%-- searchHighlight on datatables --%>
+	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/1.0.7/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
 	
@@ -238,6 +239,7 @@
 		<tr>
 		<td>
 			<div id="dialogLogger" title="Dialog" style="display:none">
+				<form>
 			 	<table>
 			 		<tr>
 						<td colspan="3" class="text14" align="left" >Password</td>
@@ -254,6 +256,7 @@
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 		</td>
 		</tr>

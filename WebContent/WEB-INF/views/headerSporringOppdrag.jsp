@@ -193,6 +193,7 @@
 		<tr>
 		<td>
 			<div id="dialogLogger" title="Dialog" style="display:none">
+				<form>
 			 	<table>
 			 		<tr>
 						<td colspan="3" class="text14" align="left" >Password</td>
@@ -209,6 +210,7 @@
 						</td>
 					</tr>
 				</table>
+				</form>
 			</div>
 		</td>
 		</tr>
