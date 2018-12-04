@@ -564,6 +564,10 @@
 			  opener.jq('#tulkc2').val(code);
 			  opener.jq('#tulkc2').focus();
 			  
+		  }else if(callerType=='tulkc3'){
+			  opener.jq('#tulkc3').val(code);
+			  opener.jq('#tulkc3').focus();
+			  
 		  }else if(callerType=='tusonf'){
 			  opener.jq('#tusonf').val(code);
 			  opener.jq('#tusonf').focus();

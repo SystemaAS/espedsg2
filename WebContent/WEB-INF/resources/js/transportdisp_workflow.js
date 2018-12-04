@@ -733,6 +733,16 @@
 			jq('#tulkc2IdLink').click();
 		}
     });
+    //tulkc3
+  	jq('#tulkc3IdLink').click(function() {
+    	jq('#tulkc3IdLink').attr('target','_blank');
+    	window.open('transportdisp_workflow_childwindow_country.do?action=doInit&code=' + jq('#tulkc3').val() + "&ctype=tulkc3", "codeWin", "top=300px,left=500px,height=600px,width=800px,scrollbars=no,status=no,location=no");
+    });
+    jq('#tulkc3IdLink').keypress(function(e){ //extra feature for the end user
+		if(e.which == 13) {
+			jq('#tulkc3IdLink').click();
+		}
+    });
     //tusonf
   	jq('#tusonfIdLink').click(function() {
     	jq('#tusonfIdLink').attr('target','_blank');

@@ -285,14 +285,18 @@
 		                    <th width="1%" align="left" class="text14">&nbsp;</th>
 		                    
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
-	                    	<c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
+	                    	<%--
+		                    <c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
 		                    	<th width="2%" class=text14>
 			            			<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>" name="currenttripsColumnHeaderButtonCloseOpen" id="currenttripsColumnHeaderButtonCloseOpen" onClick="getValidCheckis(this);">
 			                    </th>
 		                    </c:if>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
+		                     --%>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
+		                    <%--
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
+		                     --%>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.printDocs"/>&nbsp;</th>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
 		                    <%--
@@ -421,20 +425,24 @@
 			   					</c:otherwise>
 		   					</c:choose>
 	            		   	</td>
+	            		   <%--	
 	            		   <c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
 	            		   		<td width="3%" class="text14 tableCellGray" align="center"><input class="clazz_checkis_currenttrips" type="checkbox" id="checkis_currenttrips${counter.count}@user=${user.user}&tuavd=${record.tuavd}&tupro=${record.tupro}&tust=<c:if test="${record.turclose=='close'}">A</c:if>"></td>
-	            		   </c:if>	
+	            		   </c:if>
 	            		   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=G">
     		    					<img title="Glist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Glist PDF">
 		   						</a>
 	            		   </td>
+	            		   --%>
 	            		   <td width="3%" align="center" class="text14 tableCellGray">&nbsp;${record.tutst1}&nbsp;</td>
+	            		   <%--
 		               	   <td width="3%" align="center" class="text14 tableCellGray">
 	            		   		<a target="_new" href="transportdisp_workflow_renderGodsOrLastlist.do?user=${user.user}&tupro=${record.tupro}&type=L">
     		    					<img title="Llist" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" hight="16" border="0" alt="Llist PDF">
 	   							</a>
 	            		   </td>
+	            		    --%>
 	            		   
 	            		   <td width="3%" align="center" class="textMediumBlue">
 			               		<a title="print Tur.&nbsp;${record.tupro}" class="printLink" id="printLink${counter.count}" runat="server" href="#">
@@ -794,12 +802,15 @@
 												
 								 			</td>
 								    	</tr>
-								    	<tr height="10"><td ></td></tr>
+								    	<tr height="5"><td ></td></tr>
 								    	<tr>
+								    		<td colspan="8" nowrap>
+								    		<table style="width:98%" class="tableBorderWithRoundCorners">
+								    		<tr>
 								    		<td class="text14">
-								    			<span title="tucon1/tulkc1/tucon2/tulkc2">
+								    			<span title="tucon1/tulkc1">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/containerYellow.png" height="16px" width="16px" border="0" alt="edit">
-								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.container.nr"/>
+								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.container.nr"/>&nbsp;<b>1</b>
 								    			</span>
 							    			</td>
 								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon1" id="tucon1" size="15" maxlength="17" value="${model.record.tucon1}"></td>
@@ -816,7 +827,12 @@
 													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 												</a>
 								    		</td>
-
+											<td class="text14">
+								    			<span title="tucon2/tulkc2">
+								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/containerYellow.png" height="16px" width="16px" border="0" alt="edit">
+								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.container.nr"/>&nbsp;<b>2</b>
+								    			</span>
+							    			</td>	
 								    		<td><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon2" id="tucon2" size="18" maxlength="17" value="${model.record.tucon2}"></td>
 								    		<td class="text14" align="center">
 								    			<spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/>
@@ -832,8 +848,36 @@
 												<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
 											</a>
 							    			</td>
+							    			</tr>
+							    			
+							    			<tr>
+								    		<td class="text14">
+								    			<span title="tucon3/tulkc3">
+								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/containerYellow.png" height="16px" width="16px" border="0" alt="edit">
+								    				<spring:message code="systema.transportdisp.workflow.trip.form.label.container.nr"/>&nbsp;<b>3</b>
+								    			</span>
+							    			</td>
+								    		<td class="text14" nowrap><input type="text" class="inputTextMediumBlueUPPERCASE" name="tucon3" id="tucon3" size="15" maxlength="17" value="${Xmodel.record.tucon3}"></td>
+								    		
+								    		<td class="text14"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.countryCode"/></td>
+								    		<td class="text14">
+								    			<select class="inputText14" name="tulkc3" id="tulkc3">
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
+							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
+							 				  		<option value="${country.zkod}"<c:if test="${Xmodel.record.tulkc3 == country.zkod}"> selected </c:if> >${country.zkod}</option>
+												</c:forEach>  
+												</select>
+												<a tabindex="-1" id="tulkc3IdLink">
+													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="search" >
+												</a>
+								    		</td>
+								    		</tr>
+							    			
+							    			
+							    			</table>
+							    			</td>
 								    	</tr>
-								    
+								    	<tr height="5"><td ></td></tr>
 								    	<tr>
 								    		<td class="text14">
 								    			<span title="tuknt2/tunat">

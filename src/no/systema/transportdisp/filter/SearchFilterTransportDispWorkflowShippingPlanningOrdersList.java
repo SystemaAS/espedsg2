@@ -79,6 +79,9 @@ public class SearchFilterTransportDispWorkflowShippingPlanningOrdersList {
 	public void setWsdista(String value) {  this.wsdista = value; }
 	public String getWsdista() { return this.wsdista;}
 	
+	private String wsrfa = null;
+	public void setWsrfa(String value) {  this.wsrfa = value; }
+	public String getWsrfa() { return this.wsrfa;}
 	
 	
 	

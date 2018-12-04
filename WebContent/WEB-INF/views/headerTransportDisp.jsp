@@ -207,7 +207,6 @@
 									<span style="position:absolute; left:-150px; top:3px;" id="versionInfo" class="popupWithInputText"  >
 						           		<div class="text12" align="left">
 						           			<b>${user.versionEspedsg}</b>
-						           			
 						           			<p>
 						           				&nbsp;<a id="alinkLog4jLogger" ><font class="text14LightGreen" style="cursor:pointer;">log4j</font></a><br/>
 						           				&nbsp;<a href="renderLocalLog4j.do?tp=1" target="_blank"><font class="text14LightGreen" style="cursor:pointer;">log4j_transpModule</font></a>
