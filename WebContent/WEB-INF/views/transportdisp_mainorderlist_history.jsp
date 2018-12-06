@@ -273,10 +273,10 @@
 			        		<input type="text" class="inputText" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="ponr/wsrfa" class="text14">Ponr.</font>
+			        		&nbsp;<font title="wsrfa" class="text14">Ponr.</font>
 				        </td>
 						<td>	
-			        		<input type="text" class="inputText" name="ponr" id="ponr" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputText" name="wsrfa" id="wsrfa" size="10" maxlength="15" value='${searchFilter.wsrfa}'>
 				        </td>
 				        <td>	
 			        		&nbsp;<font title="customer/todo" class="text14">Kunde</font>
