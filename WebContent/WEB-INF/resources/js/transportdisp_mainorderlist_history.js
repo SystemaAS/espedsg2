@@ -217,6 +217,51 @@
 		  }
 	  });
 	  
+	  jq("#wopdtf").datepicker({ 
+		  onSelect: function(date) {
+		  	jq("#wopdtt").focus();
+	      },
+		  dateFormat: 'yymmdd',
+		  firstDay: 1 //monday
+	  });
+	  jq("#wopdtf").blur(function(){
+		  //now check the user input alternatives
+		  var str = jq("#wopdtf").val();
+		  if(str!=''){
+			  var length = str.length;
+			  if(length==2){
+				  jq("#wopdtf").val(g_getCurrentYearStr() + g_getCurrentMonthStr() + str);  
+			  }else if (length==4){
+				  var userDay = str.substring(0,2);
+				  var userMonth = str.substring(2,4);
+				  jq("#wopdtf").val(g_getCurrentYearStr() + userMonth + userDay);
+			  }
+		  }
+	  });
+	  jq("#wopdtt").datepicker({ 
+		  onSelect: function(date) {
+		  	jq("#sign").focus();
+	      },
+		  dateFormat: 'yymmdd',
+		  firstDay: 1 //monday
+	  });
+	  
+	  jq("#wopdtt").blur(function(){
+		  //now check the user input alternatives
+		  var str = jq("#wopdtt").val();
+		  if(str!=''){
+			  var length = str.length;
+			  if(length==2){
+				  jq("#wopdtt").val(g_getCurrentYearStr() + g_getCurrentMonthStr() + str);  
+			  }else if (length==4){
+				  var userDay = str.substring(0,2);
+				  var userMonth = str.substring(2,4);
+				  jq("#wopdtt").val(g_getCurrentYearStr() + userMonth + userDay);
+			  }
+		  }
+	  });
+	  
+	  /*
 	  jq("#fromDateF").datepicker({ 
 		  onSelect: function(date) {
 		  	jq("#fromDateT").focus();
@@ -302,7 +347,7 @@
 			  }
 		  }
 	  });
-	  
+	  */
   });	
   
   jq(function() {

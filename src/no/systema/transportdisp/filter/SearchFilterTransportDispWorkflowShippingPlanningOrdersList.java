@@ -83,6 +83,13 @@ public class SearchFilterTransportDispWorkflowShippingPlanningOrdersList {
 	public void setWsrfa(String value) {  this.wsrfa = value; }
 	public String getWsrfa() { return this.wsrfa;}
 	
+	private String wopdtf = null;
+	public void setWopdtf(String value) {  this.wopdtf = value; }
+	public String getWopdtf() { return this.wopdtf;}
+	
+	private String wopdtt = null;
+	public void setWopdtt(String value) {  this.wopdtt = value; }
+	public String getWopdtt() { return this.wopdtt;}
 	
 	
 	/**

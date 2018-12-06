@@ -244,12 +244,12 @@
 			        		<input type="text" class="inputText" name="from" id="from" size="9" maxlength="8" value='${searchFilter.from}'>
 				        </td>
 				        <td>	
-				        	&nbsp;<font title="fromDateF/fromDateT-wopdtf/wopdtf2" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
+				        	&nbsp;<font title="wopdtf/wopdtt" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderdate"/></font>
 				        </td>
 				        
 				        <td>	
-			        		<input type="text" class="inputText" name="fromDateF" id="fromDateF" size="9" maxlength="8" value='${searchFilter.fromDateF}'>
-				        	-<input type="text" class="inputText" name="fromDateT" id="fromDateT" size="9" maxlength="8" value='${searchFilter.fromDateT}'>
+			        		<input type="text" class="inputText" name="wopdtf" id="wopdtf" size="9" maxlength="8" value='${searchFilter.wopdtf}'>
+			        		<input type="text" class="inputText" name="wopdtt" id="wopdtt" size="9" maxlength="8" value='${searchFilter.wopdtt}'>
 				        </td>
 				        
 				        
@@ -300,14 +300,6 @@
 				        	<input type="text" class="inputText" name="to" id="to" size="9" maxlength="8" value='${searchFilter.to}'>
 				        </td>
 				        <td>	
-				        	&nbsp;<font title="toDateF/toDateT-wopdtt/wopdtt2" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></font>
-				        </td>
-				        
-				        <td>	
-			        		<input type="text" class="inputText" name="toDateF" id="toDateF" size="9" maxlength="8" value='${searchFilter.toDateF}'>
-				        	-<input type="text" class="inputText" name="toDateT" id="toDateT" size="9" maxlength="8" value='${searchFilter.toDateT}'>
-				        </td>
-				        <td >	
 				        	<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 				        </td> 
 				        
