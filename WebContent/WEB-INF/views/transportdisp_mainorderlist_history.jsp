@@ -336,7 +336,12 @@
 				
 				<tr height="5"><td></td></tr>
 				<tr>
-				<td >
+				<%-- for responsivness fix the with of the cell 
+				<td style="max-width: 1000px">
+				<table id="openOrders" class="display compact cell-border nowrap" style="width:100%">
+				... and put responsive: true in jquery datatable..
+				--%>
+				<td>
 				<table id="openOrders" class="display compact cell-border" cellspacing="0">
 					<thead >
 					<tr class="tableHeaderField" >
