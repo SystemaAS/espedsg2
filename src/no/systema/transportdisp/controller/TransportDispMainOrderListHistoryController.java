@@ -699,8 +699,20 @@ public class TransportDispMainOrderListHistoryController {
     		if(!"".equals(recordToValidate.getWsdista())&& recordToValidate.getWsdista()!=null ){ urlRequestParams.append("&wsdista=" + recordToValidate.getWsdista()); }
     		if(!"".equals(recordToValidate.getWopdtf())&& recordToValidate.getWopdtf()!=null ){ urlRequestParams.append("&wopdtf=" + recordToValidate.getWopdtf()); }
     		if(!"".equals(recordToValidate.getWopdtt())&& recordToValidate.getWopdtt()!=null ){ urlRequestParams.append("&wopdtt=" + recordToValidate.getWopdtt()); }
-    		//PO-nr
     		if(!"".equals(recordToValidate.getWsrfa())&& recordToValidate.getWsrfa()!=null ){ urlRequestParams.append("&wsrfa=" + recordToValidate.getWsrfa()); }
+    		//
+    		if(!"".equals(recordToValidate.getWsavs())&& recordToValidate.getWsavs()!=null ){ urlRequestParams.append("&wsavs=" + recordToValidate.getWsavs()); }
+    		if(!"".equals(recordToValidate.getWsmot())&& recordToValidate.getWsmot()!=null ){ urlRequestParams.append("&wsmot=" + recordToValidate.getWsmot()); }
+    		if(!"".equals(recordToValidate.getWsopdgi())&& recordToValidate.getWsopdgi()!=null ){ urlRequestParams.append("&wsopdgi=" + recordToValidate.getWsopdgi()); }
+    		if(!"".equals(recordToValidate.getWsgn())&& recordToValidate.getWsgn()!=null ){ urlRequestParams.append("&wsgn=" + recordToValidate.getWsgn()); }
+    		if(!"".equals(recordToValidate.getWstur())&& recordToValidate.getWstur()!=null ){ urlRequestParams.append("&wstur=" + recordToValidate.getWstur()); }
+    		if(!"".equals(recordToValidate.getWstra())&& recordToValidate.getWstra()!=null ){ urlRequestParams.append("&wstra=" + recordToValidate.getWstra()); }
+    		//
+    		if(!"".equals(recordToValidate.getWssndn())&& recordToValidate.getWssndn()!=null ){ urlRequestParams.append("&wssndn=" + recordToValidate.getWssndn()); }
+    		if(!"".equals(recordToValidate.getWsclid())&& recordToValidate.getWsclid()!=null ){ urlRequestParams.append("&wsclid=" + recordToValidate.getWsclid()); }
+    		if(!"".equals(recordToValidate.getWsfskod())&& recordToValidate.getWsfskod()!=null ){ urlRequestParams.append("&wsfskod=" + recordToValidate.getWsfskod()); }
+    		if(!"".equals(recordToValidate.getWsfssok())&& recordToValidate.getWsfssok()!=null ){ urlRequestParams.append("&wsfssok=" + recordToValidate.getWsfssok()); }
+    		
     		
     		
     		//session.setAttribute(TransportDispConstants.ACTIVE_URL_RPG_TRANSPORT_DISP, BASE_URL + "==>params: " + urlRequestParams.toString()); 

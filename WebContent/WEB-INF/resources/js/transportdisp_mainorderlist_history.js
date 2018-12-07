@@ -507,7 +507,7 @@
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "350px",
 	  "scrollX":true,
-	  "scrollCollapse": false,
+	  "scrollCollapse": true,
 	  //"autoWidth": false, //for optimization purposes when initializing the table
 	  "lengthMenu": [ 50, 75, 100],
 	  "fnDrawCallback": function( oSettings ) {
@@ -528,7 +528,7 @@
 	  //"responsive": true, //better in html (instead of "compact"
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",
-	  "scrollCollapse": false,
+	  "scrollCollapse": true,
 	  //"autoWidth": false, //for optimization purposes when initializing the table
 	  "lengthMenu": [ 50, 75, 100],
 	  "fnDrawCallback": function( oSettings ) {

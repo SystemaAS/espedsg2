@@ -31,54 +31,11 @@
 	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
-			<c:choose>
-				<c:when test="${not empty searchFilter.tur}">
-					<%--
-					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.avd}">
-							<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
-						</a>
-					</td>
-					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
-					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
-						
-							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
-						</a>
-					</td>
-					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
-					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
-						<img title="Planning" style="vertical-align:bottom;" src="resources/images/math.png" width="16" height="16" border="0" alt="planning">
-						<font class="tabLink"><spring:message code="systema.transportdisp.open.orderlist.trip.label"/><font class="text14MediumBlue">&nbsp;&nbsp;${searchFilter.tur}</font></font>
-						&nbsp;
-						<div title="Økonomi" style="display:inline-block; cursor:pointer;" onClick="showDialogMatrixDraggable();" >
-							<font class="text14OrangeBold">e</font>
-						</div>	           	
-					</td>
-					<td width="40%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
-					 --%>
-				</c:when>
-				<c:otherwise>
-					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
-						<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-						<font class="tabLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
-					</td>
-					<%--
-					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
-					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
-						
-							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
-						</a>
-					</td>
-					 --%>
-					<td width="80%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
-				</c:otherwise>
-			</c:choose>
-				
+			<td width="20%" valign="bottom" class="tab" align="center" nowrap>
+				<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
+				<font class="tabLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+			</td>
+			<td width="80%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
 		</tr>
 	</table>
 	</td>
@@ -232,10 +189,10 @@
 			        		<input type="text" class="inputText" name="opdType" id="opdType" size="10" maxlength="15" value='${searchFilter.opdType}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="sender/todo" class="text14">Avs</font>
+			        		&nbsp;<font title="wsavs" class="text14">Avs</font>
 				        </td>
 				        <td>	
-			        		<input type="text" class="inputText" name="sender" id="sender" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputText" name="wsavs" id="wsavs" size="10" maxlength="20" value='${searchFilter.wsavs}'>
 				        </td>
 			        	<td>	
 			        		&nbsp;<font title="from/wssdf" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.from"/></font>
@@ -252,6 +209,26 @@
 			        		<input type="text" class="inputText" name="wopdtt" id="wopdtt" size="9" maxlength="8" value='${searchFilter.wopdtt}'>
 				        </td>
 				        
+				        <td>	
+			        		&nbsp;<font title="wsgn" class="text14">Godsnr.</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="wsgn" id="wsgn" size="21" maxlength="20" value='${searchFilter.wsgn}'>
+				        </td>
+				        
+				        <td>	
+			        		&nbsp;<font title="wssndn" class="text14">Send.nr</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="wssndn" id="wssndn" size="10" maxlength="20" value='${searchFilter.wssndn}'>
+				        </td>
+				        
+				        <td>	
+			        		&nbsp;<font title="wsclid" class="text14">Kollid</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="wsclid" id="wsclid" size="10" maxlength="20" value='${searchFilter.wsclid}'>
+				        </td>
 				        
 				        </tr>
 				        
@@ -279,18 +256,18 @@
 			        		<input type="text" class="inputText" name="wsrfa" id="wsrfa" size="10" maxlength="15" value='${searchFilter.wsrfa}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="customer/todo" class="text14">Kunde</font>
+			        		&nbsp;<font title="wsopdgi" class="text14">Oppd.giver</font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputText" name="customer" id="customer" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputText" name="wsopdgi" id="wsopdgi" size="10" maxlength="20" value='${searchFilter.wsopdgi}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="receiver/todo" class="text14">Mott.</font>
+			        		&nbsp;<font title="wsmot" class="text14">Mott.</font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputText" name="receiver" id="receiver" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputText" name="wsmot" id="wsmot" size="10" maxlength="20" value='${searchFilter.wsmot}'>
 				        </td>
 			        	<td>	
 				        	&nbsp;<font title="to/wssdt" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.to"/></font>
@@ -299,6 +276,21 @@
 				        <td>	
 				        	<input type="text" class="inputText" name="to" id="to" size="9" maxlength="8" value='${searchFilter.to}'>
 				        </td>
+				        
+				        <td>	
+			        		&nbsp;<font title="wstur" class="text14">Turnr.</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="wstur" id="wstur" size="10" maxlength="20" value='${searchFilter.wstur}'>
+				        </td>
+				        
+				        <td>	
+			        		&nbsp;<font title="wstra" class="text14">Transp.</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="wstra" id="wstra" size="10" maxlength="10" value='${searchFilter.wstra}'>
+				        </td>
+				        
 				        <td>	
 				        	<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
 				        </td> 
@@ -313,6 +305,20 @@
 				            <input class="inputFormSubmitStd" tabindex=0 style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.open.form.button.createnew.trip"/>" name="cnButton" id="cnButton">
 				        </td>
 				         --%>
+				        </tr>
+				        <tr>
+					        <td>	
+				        		&nbsp;<font title="wsfskod" class="text14">Frisøk.kode</font>
+					        </td>
+					        <td>	
+				        		<input type="text" class="inputText" name="wsfskod" id="wsfskod" size="4" maxlength="3" value='${searchFilter.wsfskod}'>
+					        </td>
+					        <td align="right">	
+				        		&nbsp;<font title="wsfssok" class="text14">Frisøk.txt</font>
+					        </td>
+					        <td colspan="3">	
+				        		<input type="text" class="inputText" name="wsfssok" id="wsfssok" size="10" maxlength="35" value='${searchFilter.wsfssok}'>
+					        </td>
 				        </tr>
 				    </table>    
 					</td>
@@ -334,19 +340,12 @@
 				<table id="openOrders" class="display compact cell-border" cellspacing="0">
 					<thead >
 					<tr class="tableHeaderField" >
-						<c:if test="${not empty searchFilter.tur}">
-							<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pick"/></th>   
-                    		<th width="2%" class="text14"><input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.open.list.search.label.pick"/>" name="openordersColumnHeaderButton" id="openordersColumnHeaderButton" onClick="getValidCheckis(this);"></th>
-                   		</c:if>
+						
                    		<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></th> 
-                   		<c:if test="${empty searchFilter.tur}">
-                   			<th width="2%" class="text14"></th>   
-                   		</c:if>  
                    		<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></th>
-	                    <c:if test="${empty searchFilter.tur && not empty searchFilter.opd}">
-							<th width="2%" class="text14">Turnr</th>
-	                    </c:if>
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.tur"/></th>
+	                    
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.from"/></th> 
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/>&nbsp;</th> 
@@ -387,14 +386,7 @@
 		            <c:forEach items="${listOpenOrders}" var="record" varStatus="counter">  
 		            <%-- Prebooking=hestn7: should be cathegorized with another color. In this case with warning color... --%>  
 		            <tr class="tex14" <c:if test="${not empty record.hestn7}"> style="background-color:#FEEFB3; color: #9F6000;"</c:if> >
-		               <c:if test="${not empty searchFilter.tur}">
-                   			<td width="2%" class="textMediumBlue">&nbsp;
-			           			<a style="display:block;" onClick="setBlockUI(this)" href="transportdisp_mainorderlist_add_remove_order.do?user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}">
-    		    					<img title="Add" style="vertical-align:bottom;" src="resources/images/addOrder.png" width="14" hight="15" border="0" alt="add">
-		   						</a>
-		   					</td>
-		   					<td width="2%" class="textMediumBlue" ><input class="clazz_checkis_openorders" type="checkbox" id="checkis_openorders${counter.count}@user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}"></td>		
-            		   </c:if>
+		               
             		   
             		   <td width="2%" class="textMediumBlue" >
 			           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
@@ -414,17 +406,10 @@
     		    			</c:choose>
     		    			</div>
 			           </td>
-			           <c:if test="${empty searchFilter.tur}">
-				           <td width="2%" class="textMediumBlue">
-				           		<%-- Drag and drop handle (when being source) --%>
-			 			  		 &nbsp;<img title="Drag to target..." style="vertical-align:middle;cursor:pointer;" src="resources/images/icon_drag_drop.png" width="25px" height="25px" border="0" alt="edit" draggable="true" ondragstart="drag(event)" id="avd_${record.heavd}@opd_${record.heopd}@tripnr_@${counter.count}">
-						   </td>
-					   </c:if>							 		
+			           							 		
 			           <td width="2%" align="center" class="textMediumBlue">&nbsp;${record.heot}</td>
 		               <td width="2%" align="center" class="textMediumBlue">&nbsp;${record.hesg}</td>
-		               <c:if test="${empty searchFilter.tur && not empty searchFilter.opd}">
-							<td width="2%" class="textMediumBlue">&nbsp;${record.hepro}</td>	
-	                   </c:if>
+		               <td width="2%" class="textMediumBlue">&nbsp;${record.hepro}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henas}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.helka}-${record.heads3}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfd}</td>
@@ -612,151 +597,6 @@
 				</table>
 				</td>
 			</tr>
-			
-			<tr height="10"><td></td></tr>
-			
-			<c:if test="${not empty searchFilter.tur}">
-			<tr>
-				<td valign="bottom" >
-					<%--<span style="position:absolute; left:1600px; top:160px; width:480px; height:250px;" id="economyMatrixInfo" class="popupFloating"  > --%>
-	           		<div id="dialogDraggableMatrix" title="Økonomi">
-	           		<p>
-	           		<table align="left" class="popupFloatingWithRoundCorners3D">
-					    <tr height="10"><td></td></tr>
-					    <tr>
-				    		<td class="text14" title="tuao/tuts"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.ordersColli"/></td>
-				    		<td colspan="2" class="text14" title="berbud"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.estimatedTransportCost"/></td>
-				    		<td class="text14"><input readonly tabindex=-1 type="text10" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:right;" name="berbud" id="berbud" size="6" value="${model.record.berbud}"></td>
-				    	</tr>
-				    	<tr>
-				    		<td class="text14" nowrap>
-				    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuao" id="tuao" size="6" value="${model.record.tuao}">
-				    			<b>/</b>
-				    			<input readonly tabindex=-1 type="text" class="inputTextMediumBlueReadOnlyMateBg" style="text-align:center;" name="tuts" id="tuts" size="4" value="${model.record.tuts}">
-				    		</td>
-				    		<td class="tableHeaderFieldFirst11" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.open"/></td>
-				    		<td class="tableHeaderField11" align="center"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.finished"/></td>
-				    		<td class="tableHeaderField11" align="right"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.header.sum"/>&nbsp;</td>
-				    	</tr>
-				    	<tr class="tableRow">	
-				    		<td class="text14" >
-				    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			 				<span title="totiaa/totioa/totisa"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.avrgrl"/></span>
-				    		</td>
-			    			<td class="tableCellFirst" align="right"><label name="totiaa" id="totiaa">${model.record.totiaa}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totioa" id="totioa">${model.record.totioa}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totisa" id="totisa">${model.record.totisa}&nbsp;</label></td>
-				    	</tr>
-				    	<tr class="tableRow">	
-				    		<td class="text14" >
-				    			<img onMouseOver="showPop('totiaa_info');" onMouseOut="hidePop('totiaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			 				<span title="totiag/totiog/totisg"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.inntekt.ovriga"/></span>
-				    		
-				    		<div class="text10" style="position: relative;" align="left">
-	 						<span style="position:absolute; top:10px; width:350px;" id="totiaa_info" class="popupWithInputText"  >
-	 							<font class="text10">
-				           			<b>Inntekt avregning grl.- og Inntekt øvrige</b>
-				           			<div>
-				           			<p>Basert på det som ligger som FAKTURALINJER på alle oppdragene summeres inntektene. 
-				           			De grupperes som "FERDIGE" dersom statuskoden er "F" (Fakturert) eller høyere.
-				           			</p>
-				           			<p> 
-				           			Lavere status akkumuleres under åpne. Inntektene klassifiseres som "avregningsgrunnlag" dersom gebyrkoden
-									har kode "T" i gebyrkoderegisteret. Ellers i "øvrige".
-									</p>
-				           			</div>
-			           			</font>
-							</span>
-							</div>
-				    		</td>
-			    			<td class="tableCellFirst" align="right"><label name="totiag" id="totiag">${model.record.totiag}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totiog" id="totiog">${model.record.totiog}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totisg" id="totisg">${model.record.totisg}&nbsp;</label></td>
-				    	</tr>
-				    	<tr class="tableRow">	
-				    		<td class="text14">
-				    			<img onMouseOver="showPop('totkaa_info');" onMouseOut="hidePop('totkaa_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			 				<span title="totkaa/totkoa/totksa"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.kostnad.avrtrans"/></span>
-				    			<div class="text10" style="position: relative;" align="left">
-	 						<span style="position:absolute; top:0px; width:350px;" id="totkaa_info" class="popupWithInputText"  >
-	 							<font class="text10">
-				           			<b>Kostn. avregning/tran</b>
-				           			<div>
-				           			<p>Når tur ER avregnet/inng faktura kontert (RØD TEKST OPPE TIL HØYRE):Plasseres beløp i kolonne "FERDIGE". ....Ved transportører som avregnes (kode 0 bak transportørs navn), hentes
-										beløp rett fra avregnings-filer. Ved transportører som sender faktura (kode 2) hentes evt. beløp fra
-										turbildets <b>Pris transp</b>.
-				           			</p>
-				           			<p>Når tur IKKE er avregnet/kontert: Når <b>Pris transp</b> er utfylt, legges dette inn i kolonne <b>ÅPNE</b>.</p>
-				           			<p>Er det IKKE utfylt må en selv estimere</p>
-				           			</div>
-			           			</font>
-							</span>
-							</div>
-			    			</td>
-			    			<td class="tableCellFirst" align="right"><label name="totkaa" id="totkaa">${model.record.totkaa}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totkoa" id="totkoa">${model.record.totkoa}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totksa" id="totksa">${model.record.totksa}&nbsp;</label></td>
-
-				    	</tr>
-				    	<tr class="tableRow">	
-				    		<td class="text14">
-				    			<img onMouseOver="showPop('totkao_info');" onMouseOut="hidePop('totkao_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			 				<span title="totkao/totkoo/totkso"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.kostnad.ovriga"/></span>
-				    			<div class="text11" style="position: relative;" align="left">
-	 						<span style="position:absolute; top:0px; width:500px;" id="totkao_info" class="popupWithInputText"  >
-	 							<font class="text11">
-				           			<b>Kostnad øvrige</b>
-				           			<div>
-				           			<p>Fra fakturalinjene akkumuleres <b>Kostnad øvrige</b> / <b>FERDIGE</b>.(Alle linjer med opprinnelseskode <b>K</b>=Kostnad, UNNTATT de som har inneholder "AVREGNING HOVEDTRANS" eller "*T*" i fakturatekst.<br>
-				           			 (Disse takles under "Kostn. avr/tran")).Fra registeret "Foventede kostnader/Rekvisisjoner" (F7 i turbildet) akkumuleres til kolonnen "ÅPNE" (Men linjen som evt kommer fra "Pris transp" hoppes over, da denne alt er tatt med).
-				           			</p>
-				           			<p>
-				           			OBS! FORVENTEDE KOSTNADER SOM ER PLUKKET TIL KOSTNADSBILAG
-									(=HENFØRT, OG DERMED UTE AV LISTA OVER ÅPNE FORVENTEDE KOSTNADER),
-									MEN ENNÅ IKKE OVERFØRT TIL ØKONOMI (=KOMMET INN SOM "FAKT.LINJE" PÅ
-									OPPDRAGENE, OG MEDTATT UNDER "FERDIG") "FALLER MELLOM 2 STOLER".
-									DISSE FORVENTEDE KOSTNADENE VIL VÆRE "SKJULT" INNTIL DE OVERFØRES.
-									</p>
-									<p>
-									FOR AT DETTE IKKE SKAL GJELDE EN SÅ VIKTIG KOMPONENT SOM "PRIS TRANSPORTØR" (NÅR TRANSPORTØREN SENDER REGNING) ER DENNE HÅNDTERT SOM BESKREVET OVER (PLUKKET RETT FRA TURBILDET).
-									DETTE INNEBÆRER EN VISS RISIKO. (DEN SOM HAR KONTERT KAN!!! HA ENDRET BELØP I FØRINGSØYEBLIKKET PÅ MÅTER SOM IKKE SYSTEMET HAR FANGET OPP.<br>
-									MEN!!! SLIKE EVT ENDRINGER VIL STATISTIKK / OG ANALYSEPROGRAMMER FANGE)
-				           			</p>
-				           			<p>
-				           			OBS 2 !!! MIDLERTIDIG!!!!
-									Versjon 5 av SYSPED merket IKKE spesielt ut (med *T* som i versj 6) "fakturalinjer" skapt basert på føring av inngående transportør-faktura (=basert på plukket budsjett-post med "Pris transp").
-									DET BETYR AT NÅR EN SER PÅ GAMLE TURER (der kontering/plukking av budsjettpost er skjedd under versjon 5) VIL DENNE KOSTNADEN SYNS DOBBELT OPP!!! (Igjen, her må en se på turanalyse, meny Cost pkt 18 for å få et rett bilde).
-				           			</p>
-				           			</div>
-			           			</font>
-							</span>
-							</div>
-				    			
-			    			</td>
-			    			<td class="tableCellFirst" align="right"><label name="totkao" id="totkao">${model.record.totkao}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totkoo" id="totkoo">${model.record.totkoo}&nbsp;</label></td>
-			    			<td class="tableCell" align="right"><label name="totkso" id="totkso">${model.record.totkso}&nbsp;</label></td>
-				    	</tr>
-				    	<tr class="tableRow">
-				    		<td class="text14Bold" title="totopn/totovf/totsum"><spring:message code="systema.transportdisp.workflow.trip.form.label.economy.matrix.line.sum.resultat"/></td>
-			    			<td class="tableCellFirst" align="right"><label name="totopn" id="totopn"><b>${model.record.totopn}&nbsp;</b></label></td>
-			    			<td class="tableCell" align="right"><label name="totovf" id="totovf"><b>${model.record.totovf}&nbsp;</b></label></td>
-			    			<td class="tableCell" align="right"><label name="totsum" id="totsum"><b>${model.record.totsum}&nbsp;</b></label></td>
-				    	</tr>
-				    	<tr height="10"><td></td></tr>
-				    	<%--
-				    	<tr align="left" >
-							<td class="text12">
-								<button name="economyMatrixButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('economyMatrixInfo');">&nbsp;Close</button> 
-							</td>
-						</tr>
-						 --%> 
-						</table>
-						</p>
-					  </div>	
-				</td>
-			</tr>	
-			</c:if>
 			
 			
 			</table>

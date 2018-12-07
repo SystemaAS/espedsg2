@@ -92,6 +92,46 @@ public class SearchFilterTransportDispWorkflowShippingPlanningOrdersList {
 	public String getWopdtt() { return this.wopdtt;}
 	
 	
+	private String wsopdgi = null;
+	public void setWsopdgi(String value) {  this.wsopdgi = value; }
+	public String getWsopdgi() { return this.wsopdgi;}
+	
+	private String wsavs = null;
+	public void setWsavs(String value) {  this.wsavs = value; }
+	public String getWsavs() { return this.wsavs;}
+	
+	private String wsmot = null;
+	public void setWsmot(String value) {  this.wsmot = value; }
+	public String getWsmot() { return this.wsmot;}
+	
+	private String wsgn = null;
+	public void setWsgn(String value) {  this.wsgn = value; }
+	public String getWsgn() { return this.wsgn;}
+	
+	private String wstur = null;
+	public void setWstur(String value) {  this.wstur = value; }
+	public String getWstur() { return this.wstur;}
+	
+	private String wstra = null;
+	public void setWstra(String value) {  this.wstra = value; }
+	public String getWstra() { return this.wstra;}
+	
+	private String wssndn = null;
+	public void setWssndn(String value) {  this.wssndn = value; }
+	public String getWssndn() { return this.wssndn;}
+	
+	private String wsclid = null;
+	public void setWsclid(String value) {  this.wsclid = value; }
+	public String getWsclid() { return this.wsclid;}
+	
+	private String wsfskod = null;
+	public void setWsfskod(String value) {  this.wsfskod = value; }
+	public String getWsfskod() { return this.wsfskod;}
+	
+	private String wsfssok = null;
+	public void setWsfssok(String value) {  this.wsfssok = value; }
+	public String getWsfssok() { return this.wsfssok;}
+	
 	/**
 	 * Gets the populated values by reflection
 	 * @param searchFilter
