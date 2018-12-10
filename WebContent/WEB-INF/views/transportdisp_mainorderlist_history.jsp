@@ -354,17 +354,11 @@
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.from"/></th> 
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/>&nbsp;</th> 
-	                    <th width="2%" class="text14">
-	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-                   		</th> 
+	                    
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.to"/></th> 
-	                    <th width="2%" class="text14">
-                    		<spring:message code="systema.transportdisp.orders.open.list.search.label.date"/>&nbsp;
-                   		</th>
-	                    <th width="2%" class="text14">
-	                    	<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-	                    </th> 
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th>
+	                    
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.goodsDesc"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pcs"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.weight"/></th>   
@@ -417,12 +411,32 @@
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hepro}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henas}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.helka}-${record.heads3}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfd}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfk}</td>
+		               
+		               <td width="2%" class="textMediumBlue">${record.trsdfd}&nbsp;${record.trsdfk}
+		               	 <%-- Wait for GO from JOVO (Kingsr.) Right now ONLY ISO-date but below handles the locale issue
+		               	 <c:choose>
+			               	 <c:when test="${not empty user.usrLang && user.usrLang == 'NO'}">
+				               	 <c:if test="${not empty record.trsdfd}">
+		    						<%-- Convert the raw strings to a date primitive 
+		    						<c:catch var="invalid">
+									    <fmt:parseDate value="${record.trsdfd}" var="trsdfd" pattern="yyyyMMdd" />
+									    <fmt:formatDate pattern="ddMMyy" value="${trsdfd}" />
+									</c:catch>
+									<c:if test="${not empty invalid}">
+									    ?${record.trsdfd}
+									</c:if>
+		    					 </c:if>
+	    					 </c:when>
+	    					 <c:otherwise>
+	    					 	${record.trsdfd}
+	    					 </c:otherwise>
+    					 </c:choose>
+    					  --%>
+		               </td>
+		               
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henak}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hetri}-${record.headk3}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtd}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtk}</td>
+		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtd}&nbsp;${record.trsdtk}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevs1}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hent}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevkt}</td>

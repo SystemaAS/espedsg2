@@ -48,10 +48,14 @@
 	
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.16/sorting/datetime-moment.js"></script>
+	
 	<%-- searchHighlight on datatables --%>
 	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
+	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
+	<input type="hidden" name="language" id=language value="${user.usrLang}">
 	<%-- 
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>

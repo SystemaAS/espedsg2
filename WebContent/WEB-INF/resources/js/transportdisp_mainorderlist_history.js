@@ -217,14 +217,42 @@
 		  }
 	  });
 	  
+	  
 	  jq("#wopdtf").datepicker({ 
 		  onSelect: function(date) {
-		  	jq("#wopdtt").focus();
+			jq("#wopdtt").focus();
 	      },
 		  dateFormat: 'yymmdd',
 		  firstDay: 1 //monday
 	  });
+	  //handle date format... test dif. alt and must use this dirty one
+	  //Wait for GO from JOVO (Kings.) in case NO-locale should be implemented. Right now ONLY ISO-dates
+	  /*
+	  if(jq("#language").val() == 'NO'){
+		  jq("#wopdtf").datepicker({ 
+			  onSelect: function(date) {
+				jq("#wopdtt").focus();
+		      },
+			  dateFormat: 'ddmmy',
+			  firstDay: 1 //monday
+		  });
+		  
+	  }else{
+		  jq("#wopdtf").datepicker({ 
+			  onSelect: function(date) {
+				jq("#wopdtt").focus();
+		      },
+			  dateFormat: 'yymmdd',
+			  firstDay: 1 //monday
+		  });
+		  
+	  }
+	  */
+	  
+	  
+	  
 	  jq("#wopdtf").blur(function(){
+
 		  //now check the user input alternatives
 		  var str = jq("#wopdtf").val();
 		  if(str!=''){
@@ -500,6 +528,14 @@
   }
 
   jq(document).ready(function() {
+	
+	//very important for sorting for NO locale
+	/*Wait for GO from JOVO
+		if(jq("#language").val() == 'NO'){  
+			jq.fn.dataTable.moment( 'DDMMYY' );
+		}
+	*/
+		  
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#currentOrders').dataTable( {
 	  "searchHighlight": true,	
