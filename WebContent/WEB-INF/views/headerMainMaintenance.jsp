@@ -38,7 +38,9 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js""></script>
 	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
+<!--  needed? fuckar upp med dubbleter
 	<SCRIPT type="text/javascript" src="resources/js/headerMainMaintenance.js?ver=${user.versionEspedsg}"></SCRIPT>
+-->
 	<%--datatables grid --%>
 	<script type="text/javascript" src="//cdn.datatables.net/1.10.11/js/jquery.dataTables.min.js"></script>
 	<input type="hidden" name="language" id=language value="${user.usrLang}">
