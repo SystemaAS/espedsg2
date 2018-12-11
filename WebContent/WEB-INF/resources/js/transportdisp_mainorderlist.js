@@ -497,6 +497,12 @@
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#openOrders').dataTable( {
 	  "searchHighlight": true,
+	  //START this handles the sort numerical despite text/img elements. Plug-in required. Check headerTranspDisp ... sorting/natural.js
+	  columnDefs: [
+		  { type: 'natural', targets: 0 }
+	  ],
+	  order: [[ 0, 'desc' ]],
+	  //END sort plug-in
 	  //"responsive": true, //better in html (instead of "compact"
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",

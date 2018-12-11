@@ -9,6 +9,7 @@
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist.js?ver=${user.versionEspedsg}"></SCRIPT>
 	
+	
 	<%-- for dialog popup --%>
 	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
@@ -424,10 +425,10 @@
 			        		
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="sender/todo" class="text14">Avs</font>
+			        		&nbsp;<font title="wsavs" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></font>
 				        </td>
 				        <td>	
-			        		<input type="text" class="inputTextMediumBlue" name="sender" id="sender" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="wsavs" id="wsavs" size="10" maxlength="20" value='${searchFilter.wsavs}'>
 				        </td>
 			        	<td>	
 			        		&nbsp;<font title="from/wssdf" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.from"/></font>
@@ -467,24 +468,24 @@
 			        		<input type="text" class="inputTextMediumBlue" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="wsrfa" class="text14">Ponr.</font>
+			        		&nbsp;<font title="wsrfa" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></font>
 				        </td>
 						<td>	
 			        		<input type="text" class="inputTextMediumBlue" name="wsrfa" id="wsrfa" size="10" maxlength="15" value='${searchFilter.wsrfa}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="customer/todo" class="text14">Kunde</font>
+			        		&nbsp;<font title="wsopdgi" class="text14">Op.giver</font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputTextMediumBlue" name="customer" id="customer" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="wsopdgi" id="wsopdgi" size="10" maxlength="20" value='${searchFilter.wsopdgi}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="receiver/todo" class="text14">Mott.</font>
+			        		&nbsp;<font title="wsmot" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></font>
 				        </td>
 
 						<td>	
-			        		<input type="text" class="inputTextMediumBlue" name="receiver" id="receiver" size="10" maxlength="15" value='${XsearchFilter.sign}'>
+			        		<input type="text" class="inputTextMediumBlue" name="wsmot" id="wsmot" size="10" maxlength="20" value='${searchFilter.wsmot}'>
 				        </td>
 			        	<td>	
 				        	&nbsp;<font title="to/wssdt" class="text14"><spring:message code="systema.transportdisp.orders.open.search.label.to"/></font>
@@ -550,18 +551,11 @@
 	                    </c:if>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.from"/></th> 
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/>&nbsp;</th> 
-	                    <th width="2%" class="text14">
-	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-                   		</th> 
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th> 
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.to"/></th> 
-	                    <th width="2%" class="text14">
-                    		<spring:message code="systema.transportdisp.orders.open.list.search.label.date"/>&nbsp;
-                   		</th>
-	                    <th width="2%" class="text14">
-	                    	<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
-	                    </th> 
+	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th>
+	                     
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.goodsDesc"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pcs"/></th>   
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.weight"/></th>   
@@ -596,7 +590,7 @@
 		   					<td align="center" width="2%" class="textMediumBlue" ><input class="clazz_checkis_openorders" type="checkbox" id="checkis_openorders${counter.count}@user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}"></td>		
             		   </c:if>
             		   
-            		   <td width="2%" class="textMediumBlue" >
+            		   <td width="2%" class="textMediumBlue" nowrap>
 			           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
 			           		<c:choose>
 				           		<c:when test="${empty searchFilter.tur && not empty searchFilter.opd}">
@@ -627,12 +621,10 @@
 	                   </c:if>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henas}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.helka}-${record.heads3}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfd}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfk}</td>
+		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdfd}&nbsp;${record.trsdfk}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henak}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hetri}-${record.headk3}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtd}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtk}</td>
+		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtd}&nbsp;${record.trsdtk}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevs1}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hent}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevkt}</td>

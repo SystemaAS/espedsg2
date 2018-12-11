@@ -189,7 +189,7 @@
 			        		<input type="text" class="inputText" name="opdType" id="opdType" size="10" maxlength="15" value='${searchFilter.opdType}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="wsavs" class="text14">Avs</font>
+			        		&nbsp;<font title="wsavs" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></font>
 				        </td>
 				        <td>	
 			        		<input type="text" class="inputText" name="wsavs" id="wsavs" size="10" maxlength="20" value='${searchFilter.wsavs}'>
@@ -250,20 +250,20 @@
 			        		<input type="text" class="inputText" name="sign" id="sign" size="4" maxlength="5" value='${searchFilter.sign}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="wsrfa" class="text14">Ponr.</font>
+			        		&nbsp;<font title="wsrfa" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></font>
 				        </td>
 						<td>	
 			        		<input type="text" class="inputText" name="wsrfa" id="wsrfa" size="10" maxlength="15" value='${searchFilter.wsrfa}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="wsopdgi" class="text14">Oppd.giver</font>
+			        		&nbsp;<font title="wsopdgi" class="text14">Op.giver</font>
 				        </td>
 
 						<td>	
 			        		<input type="text" class="inputText" name="wsopdgi" id="wsopdgi" size="10" maxlength="20" value='${searchFilter.wsopdgi}'>
 				        </td>
 				        <td>	
-			        		&nbsp;<font title="wsmot" class="text14">Mott.</font>
+			        		&nbsp;<font title="wsmot" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></font>
 				        </td>
 
 						<td>	
@@ -278,7 +278,7 @@
 				        </td>
 				        
 				        <td>	
-			        		&nbsp;<font title="wstur" class="text14">Turnr.</font>
+			        		&nbsp;<font title="wstur" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.tur"/></font>
 				        </td>
 				        <td>	
 			        		<input type="text" class="inputText" name="wstur" id="wstur" size="10" maxlength="20" value='${searchFilter.wstur}'>
@@ -341,6 +341,7 @@
 				<table id="openOrders" class="display compact cell-border nowrap" style="width:100%">
 				... and put responsive: true in jquery datatable..
 				--%>
+				
 				<td>
 				<table id="openOrders" class="display compact cell-border" cellspacing="0">
 					<thead >
@@ -387,7 +388,7 @@
 		            <tr class="tex14" <c:if test="${not empty record.hestn7}"> style="background-color:#FEEFB3; color: #9F6000;"</c:if> >
 		               
             		   
-            		   <td width="2%" class="textMediumBlue" >
+            		   <td width="2%" class="textMediumBlue" nowrap>
 			           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
 			           		<c:choose>
 				           		<c:when test="${empty searchFilter.tur && not empty searchFilter.opd}">

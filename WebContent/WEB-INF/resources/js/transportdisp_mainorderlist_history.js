@@ -561,7 +561,13 @@
     //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
 	jq('#openOrders').dataTable( {
 	  "searchHighlight": true,	
-	  //"responsive": true, //better in html (instead of "compact"
+	  //START this handles the sort numerical despite text/img elements. Plug-in required. Check headerTranspDisp ... sorting/natural.js
+	  columnDefs: [
+		  { type: 'natural', targets: 0 }
+	  ],
+	  order: [[ 0, 'desc' ]],
+	  //END sort plug-in
+	  //"responsive": true, //when collapsing columns (problems with jquery UI dialogs)
 	  "dom": '<"transpDispMainOrderListFilter"f>t<"bottom"lirp><"clear">',
 	  "scrollY": "700px",
 	  "scrollCollapse": true,
@@ -593,6 +599,7 @@
 	  }); 
 	  jq( "#dialogDraggableMatrix" ).focus();
   }
+  
   
   
   //----------------------------------------
@@ -734,7 +741,8 @@
   });
   //Present dialog box onClick 
   jq(function() {
-	  jq(".printLink").click(function() {
+	  jq(".dataTable").on('click','.printLink', function () { 
+	  //jq(".printLink").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLink","");
 		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opd'+counterIndex).val() );
