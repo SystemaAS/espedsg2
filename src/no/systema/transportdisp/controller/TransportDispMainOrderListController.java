@@ -200,6 +200,8 @@ public class TransportDispMainOrderListController {
 				//this.setCodeDropDownMgr(appUser, model);
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 	    		//domain and search filter
+				logger.info("AAAAA:" + outputListOpenOrders.size());
+				logger.info("BBBBB:" + outputListCurrentOrders.size());
 				successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, outputListCurrentOrders);
 				successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS,outputListOpenOrders);
 				//Put list for upcoming view (PDF, Excel, etc)
@@ -704,7 +706,7 @@ public class TransportDispMainOrderListController {
 	    		Double helmTotalAmount = 0.000D;
 	    		Double hevktTotalAmount = 0.000D;
 	    		
-	    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandled()){
+	    		for(JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord record : jsonCurrentOrdersListContainer.getOrderlistlandtur()){
 	    			if(record.getHent()!=null && !"".equals(record.getHent())){
 	    				String tmpHent = record.getHent().replace(",", ".");
 	    				hentTotalAmount += Double.parseDouble(tmpHent);
@@ -730,7 +732,7 @@ public class TransportDispMainOrderListController {
 	    		jsonCurrentOrdersListContainer.setHevktTotalAmount(hevktTotalAmount);
 	    		
 	    		model.put(TransportDispConstants.DOMAIN_CONTAINER_CURRENT_ORDERS, jsonCurrentOrdersListContainer);
-	    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandled();
+	    		outputListCurrentOrders = jsonCurrentOrdersListContainer.getOrderlistlandtur();
     		}
     	}		
 		return outputListCurrentOrders;

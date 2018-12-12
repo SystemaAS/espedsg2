@@ -55,9 +55,9 @@ public class JsonTransportDispWorkflowShippingPlanningCurrentOrdersListContainer
 	}
 	
 	
-	private Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> orderlistlandled;
-	public void setOrderlistlandled(Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> value){ this.orderlistlandled = value; }
-	public Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> getOrderlistlandled(){ return orderlistlandled; }
+	private Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> orderlistlandtur;
+	public void setOrderlistlandtur(Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> value){ this.orderlistlandtur = value; }
+	public Collection<JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord> getOrderlistlandtur(){ return orderlistlandtur; }
 	
 	
 }
