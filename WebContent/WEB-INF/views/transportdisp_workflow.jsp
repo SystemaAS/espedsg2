@@ -1151,6 +1151,7 @@
 						 					<table class="tableBorderWithRoundCorners" >
 												<tr>
 										 			<td valign="top" class="text14"><spring:message code="systema.transportdisp.workflow.trip.form.label.shippinglist"/>
+										 			<img id="imgUpdateFerjeoverfarter" title="Endre ferjeoverfarter" style="vertical-align:middle;cursor:pointer;" src="resources/images/addOrder.png" width="14" height="14" border="0" alt="Add shipping trip">
 									 					<div id="resultShippingList">
 									 						<table >
 										 						<tr class="tableHeaderField" >

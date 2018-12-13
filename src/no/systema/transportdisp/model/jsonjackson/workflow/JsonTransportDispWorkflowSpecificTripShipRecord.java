@@ -16,6 +16,8 @@ import lombok.Data;
 @Data
 public class JsonTransportDispWorkflowSpecificTripShipRecord extends JsonAbstractGrandFatherRecord{
 	
+	private String feavd = null;
+	private String fetur = null;
 	private String fefrom = null;
 	private String feto = null;
 	private String feleng = null;
@@ -42,6 +44,7 @@ public class JsonTransportDispWorkflowSpecificTripShipRecord extends JsonAbstrac
 	private String fedaff = null;
 	private String febiln = null;
 	
+	private String wsfajn = null;
 	
 	/**
 	 * Used for java reflection in other classes

@@ -29,6 +29,12 @@
 	  jq("#alinkLastlistePdf").click(function() {
 		  renderLastLista();
 	  });
+	  //ferjeoverfarter
+	  jq('#imgUpdateFerjeoverfarter').click(function() {
+		if(jq('#tuproJS').text()!=''){
+			window.open('transportdisp_workflow_ferjeoverfarter.do?feavd='+ jq('#tuavd').val() + '&fetur=' + jq('#tuproJS').text(), 'ferjeoverfarterWin','top=120px,left=100px,height=600px,width=1200px,scrollbars=no,status=no,location=no');
+		}
+	  });
 	});
   
   	function renderGodsLista(){
@@ -37,6 +43,7 @@
   	function renderLastLista(){
   		 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
   	}
+  	
   
   //FORM SUBMIT
   jq(function() {
@@ -1479,7 +1486,7 @@
 	jq('#workflowTrips').dataTable( {
 		"searchHighlight": true,
 		"dom": '<"transpDispWorkflowFilter"f>t<"bottom"lirp><"clear">',
-		"scrollY":        	"700px",
+		"scrollY":  "700px",
 		"scrollCollapse":  	true,
 		"autoWidth": false, //for optimization purposes when initializing the table
 		"lengthMenu": [ 50, 75, 100],
