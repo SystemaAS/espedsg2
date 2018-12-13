@@ -98,8 +98,27 @@ public class JsonTransportDispWorkflowSpecificTripMapper extends ObjectMapperAbs
 		//At this point we now have an UTF-8 payload
 		JsonTransportDispWorkflowSpecificTripShipContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispWorkflowSpecificTripShipContainer.class); 
 		logger.info("[JSON-String payload status=OK]  " + container.getUser());
-		for (JsonTransportDispWorkflowSpecificTripShipRecord record : container.getFerryTrips()){
+		if(container.getFerryTrips()!=null){
+			for (JsonTransportDispWorkflowSpecificTripShipRecord record : container.getFerryTrips()){
+				//DEBUG
+			}
+		}
+		return container;
+	}
+	/**
+	 * 
+	 * @param utfPayload
+	 * @return
+	 * @throws Exception
+	 */
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShipDepartures(String utfPayload) throws Exception{
+		//At this point we now have an UTF-8 payload
+		JsonTransportDispWorkflowSpecificTripShipContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispWorkflowSpecificTripShipContainer.class); 
+		logger.info("[JSON-String payload status=OK]  " + container.getUser());
+		if(container.getFerryDepartures()!=null){
+			for (JsonTransportDispWorkflowSpecificTripShipRecord record : container.getFerryDepartures()){
 			//DEBUG
+			}
 		}
 		return container;
 	}

@@ -132,6 +132,12 @@ public final class TransportDispUrlDataStore {
 	static public String TRANSPORT_DISP_BASE_FETCH_SPECIFIC_SHIPPING_TRIP_LIST_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR11L.pgm";
 	//http://gw.systema.no/sycgip/TJETUR11L.pgm?user=SYSTEMA&feavd=33&fetur=33010116 (via Ajax)
 	
+	static public String TRANSPORT_DISP_BASE_FETCH_SPECIFIC_SHIPPING_DEPARTURES_LIST_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR11A.pgm";
+	//http://gw.systema.no/sycgip/TJETUR11A.pgm?user=JOVO
+	static public String TRANSPORT_DISP_BASE_UPDATE_SPECIFIC_SHIPPING_TRIPS_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR11U.pgm";
+	//gw.systema.no/sycgip/TJETUR11U.pgm?user=JOVO&feavd=1&fetur=501906&fefrom=TRELL&feto=SASSN&mode=A&wsfajn=J&fedat2=20181220&fetime=0830&feleng=12&fefirm=3150&fedate=19970101&fecurr=SEK&fepri1=1805&fepri2=2105	
+	
+	
 	static public String TRANSPORT_DISP_BASE_ClOSE_SPECIFIC_TRIP_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJETUR03ST.pgm";
 	//Close:-->http://gw.systema.no/sycgip/TJETUR03ST.pgm?user=OSCAR&tuavd=75&tupro=75000015&tust=A 
 	//Open:-->http://gw.systema.no/sycgip/TJETUR03ST.pgm?user=OSCAR&tuavd=75&tupro=75000015 

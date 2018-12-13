@@ -19,5 +19,6 @@ public class JsonTransportDispWorkflowSpecificTripShipContainer {
 	private String mode = null;
 	private String errMsg = null;
 	private Collection<JsonTransportDispWorkflowSpecificTripShipRecord> ferryTrips;
+	private Collection<JsonTransportDispWorkflowSpecificTripShipRecord> ferryDepartures;
 		
 }

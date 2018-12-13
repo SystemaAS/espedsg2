@@ -3,6 +3,8 @@
  */
 package no.systema.transportdisp.service;
 
+import org.apache.log4j.Logger;
+
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificTripMapper;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
@@ -17,6 +19,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWork
  * 
  */
 public class TransportDispWorkflowSpecificTripServiceImpl implements TransportDispWorkflowSpecificTripService {
+	private static final Logger logger = Logger.getLogger(TransportDispWorkflowSpecificTripServiceImpl.class.getName());
 	/**
 	 * 
 	 */
@@ -38,6 +41,18 @@ public class TransportDispWorkflowSpecificTripServiceImpl implements TransportDi
 		try{
 			JsonTransportDispWorkflowSpecificTripMapper mapper = new JsonTransportDispWorkflowSpecificTripMapper();
 			container = mapper.getContainerShip(utfPayload);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return container;
+	}
+	
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShipDepartures(String utfPayload) {
+		JsonTransportDispWorkflowSpecificTripShipContainer container = null;
+		try{
+			JsonTransportDispWorkflowSpecificTripMapper mapper = new JsonTransportDispWorkflowSpecificTripMapper();
+			container = mapper.getContainerShipDepartures(utfPayload);
 		}catch(Exception e){
 			e.printStackTrace();
 		}

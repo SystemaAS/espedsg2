@@ -12,7 +12,7 @@ import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesCont
 import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesRecord;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.JsonDebugger;
-
+import no.systema.main.util.StringManager;
 //import no.systema.tvinn.sad.model.external.url.UrlTvinnSadTolltariffenObject;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripArchivedDocsRecord;
@@ -56,6 +56,8 @@ public class ControllerAjaxCommonFunctionsMgr {
 	private TransportDispWorkflowSpecificTripService transportDispWorkflowSpecificTripService;
 	private TransportDispChildWindowService transportDispChildWindowService;
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(2000);
+	private StringManager strMgr = new StringManager();
+	
 	//required constructor (when applicable)
 	public ControllerAjaxCommonFunctionsMgr(UrlCgiProxyService urlCgiProxyService, TransportDispWorkflowSpecificTripService transportDispWorkflowSpecificTripService){
 		this.urlCgiProxyService = urlCgiProxyService;
@@ -172,6 +174,52 @@ public class ControllerAjaxCommonFunctionsMgr {
 			 		JsonTransportDispWorkflowSpecificTripShipContainer container = this.transportDispWorkflowSpecificTripService.getContainerShip(jsonPayload);
 					if(container!=null){
 						outputList = container.getFerryTrips();
+						for(JsonTransportDispWorkflowSpecificTripShipRecord record : outputList){
+							//logger.info("####Link:" + record.getDoclnk());
+						}
+					}
+			 	}catch(Exception e){
+			 		e.printStackTrace();
+			 	}
+			 }
+		 return outputList;
+	}
+	/**
+	 * 
+	 * @param applicationUser
+	 * @param avd
+	 * @param tripNr
+	 * @return
+	 */
+	public Collection<JsonTransportDispWorkflowSpecificTripShipRecord> fetchTripHeadingShippingTripListDepartures(String applicationUser, JsonTransportDispWorkflowSpecificTripShipRecord recordToValidate) {
+		 Collection<JsonTransportDispWorkflowSpecificTripShipRecord> outputList = new ArrayList<JsonTransportDispWorkflowSpecificTripShipRecord>();
+		 //===========
+		 //FETCH LIST
+		 //===========
+		 logger.info("Inside: fetchTripHeadingShippingTripList");
+		 //prepare the access CGI with RPG back-end
+		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_FETCH_SPECIFIC_SHIPPING_DEPARTURES_LIST_URL;
+		 String urlRequestParamsKeys = "user=" + applicationUser;
+		 if(recordToValidate!=null){
+			 if(strMgr.isNotNull(recordToValidate.getFefrom())){
+				 urlRequestParamsKeys = urlRequestParamsKeys + "&wsfrom=" + recordToValidate.getFefrom();
+			 }
+			 if(strMgr.isNotNull(recordToValidate.getFeto())){
+				 urlRequestParamsKeys = urlRequestParamsKeys + "&wsto=" + recordToValidate.getFeto();
+			 }
+		 }
+		 logger.info("URL: " + BASE_URL);
+		 logger.info("PARAMS: " + urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		 //logger.info(jsonPayload);
+		 if(jsonPayload!=null){
+			 	
+			 	try{
+			 		JsonTransportDispWorkflowSpecificTripShipContainer container = this.transportDispWorkflowSpecificTripService.getContainerShipDepartures(jsonPayload);
+					if(container!=null){
+						outputList = container.getFerryDepartures();
 						for(JsonTransportDispWorkflowSpecificTripShipRecord record : outputList){
 							//logger.info("####Link:" + record.getDoclnk());
 						}

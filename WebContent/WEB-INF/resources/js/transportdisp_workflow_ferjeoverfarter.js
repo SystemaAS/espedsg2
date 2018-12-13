@@ -3,6 +3,29 @@
   var counterIndex = 0;
   var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
  
+  
+  jq(function() {
+	  jq("#fedat2").datepicker({ 
+		  onClose: function() {
+			    /* Validate a specific element: */
+			  	refreshCustomValidity(jq('#fedat2')[0]);
+		   },
+		  dateFormat: 'yymmdd',
+		  firstDay: 1 //monday
+	  });
+	  //
+	  jq('#fedat2').focus(function() {
+	    	if(jq('#fedat2').val()!=''){
+	    		refreshCustomValidity(jq('#fedat2')[0]);
+	    	}
+	  });
+	  jq('#wsfajn').focus(function() {
+	    	if(jq('#wsfajn').val()!=''){
+	    		refreshCustomValidity(jq('#wsfajn')[0]);
+	    	}
+	  });
+  });
+  
   //Global functions
   function g_getCurrentYearStr(){
 	  return new Date().getFullYear().toString();
@@ -15,16 +38,18 @@
   }
    jq(function() {
 	  jq('#newRecordButton').click(function() {
-		  jq('#fskode').val("");
-		  jq('#fskode').prop("readonly", false);
-		  jq('#fskode').removeClass("inputTextReadOnly");
-		  jq('#fskode').addClass("inputTextMediumBlueMandatoryField");
+		  jq("#fefirm").val('');
+		  jq("#fetime").val('');
+		  jq("#fefrom").val('');
+		  jq("#feto").val('');
+		  jq("#feleng").val('');
+		  //jq("#levNavn").val(levNavn);
+		  jq("#fepri1").val('');
+		  jq("#fepri2").val('');
+		  jq("#fecurr").val('');
 		  
-		  //rest of the gang
-		  jq('#fssok').val("");
-		  jq('#fsdokk').val("");
-		  //
 		  jq('#isModeUpdate').val("");
+		  //jq('#submit').css("visibility", "hidden");
 		  
 	  });
   });
@@ -107,6 +132,35 @@
 	  	
 	}
 
+  
+  //populate form read-only fields
+  function setDepartureData(element){
+	  var record = element.id.split('@');
+	  var fefirm = record[0].replace("fefirm_","");
+	  var fetime = record[1].replace("fetime_","");
+	  var fefrom = record[2].replace("fefrom_","");
+	  var feto = record[3].replace("feto_","");
+	  var feleng = record[4].replace("feleng_","");
+	  var levNavn = record[5].replace("levNavn_","");
+	  var fepri1 = record[6].replace("fepri1_","");
+	  var fepri2 = record[7].replace("fepri2_","");
+	  var fecurr = record[8].replace("fecurr_","");
+	  //
+	  jq("#fefirm").val(fefirm);
+	  jq("#fetime").val(fetime);
+	  jq("#fefrom").val(fefrom);
+	  jq("#feto").val(feto);
+	  jq("#feleng").val(feleng);
+	  //jq("#levNavn").val(levNavn);
+	  jq("#fepri1").val(fepri1);
+	  jq("#fepri2").val(fepri2);
+	  jq("#fecurr").val(fecurr);
+	  //
+	  //jq('#submit').css("visibility", "visible");
+	 
+	  
+  }
+  
   	//---------------------------------------
 	//DELETE Invoice line
 	//This is done in order to present a jquery
@@ -114,23 +168,22 @@
 	//----------------------------------------
 	function doDeleteItemLine(element){
 	  //start
-		//avd_${record.fsavd}@opd_${record.fsopd}@kode_${record.fskode}@sok_${record.fssok}
 		var record = element.id.split('@');
-		var avd = record[0].replace("avd_","");
-		var opd = record[1].replace("opd_","");
-		var kode = record[2].replace("kode_","");
-		var sok = record[3].replace("sok_","");
-		
+		var fetur = record[0].replace("fetur_","");
+		var feavd = record[1].replace("feavd_","");
+		var fefrom = record[2].replace("fefrom_","");
+		var feto = record[3].replace("feto_","");
+
 	  //Start dialog
 	  jq('<div></div>').dialog({
       modal: true,
-      title: "Dialog - Slett kode: " + kode + " " + sok,
+      title: "Dialog - Slett avg. " + fefrom + "/" + feto,
       buttons: {
 	        Fortsett: function() {
       		jq( this ).dialog( "close" );
 	            //do delete
 	            jq.blockUI({ message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	            window.location = "transportdisp_workflow_frisokvei_edit.do?action=doDelete" + "&avd=" + avd + "&opd=" + opd + "&fskode=" + kode + "&fssok=" + sok;
+	            window.location = "transportdisp_workflow_ferjeoverfarter_edit.do?action=doDelete&feavd=" + feavd + "&fetur=" + fetur + "&fefrom=" + fefrom + "&feto=" + feto;
 	        },
 	        Avbryt: function() {
 	            jq( this ).dialog( "close" );
@@ -149,10 +202,10 @@
 	  //Datatables jquery
 	  //-------------------
 	 jq(document).ready(function() {
-		  jq('#sokList').dataTable( {
+		  jq('#listDepartures').dataTable( {
 			  "searchHighlight": true,
 			  "dom": '<"localFilter"f>t<"bottom"lirp><"clear">',
-			  "scrollY": "300px",
+			  "scrollY": "200px",
 			  "scrollCollapse": true,
 			  "lengthMenu": [ 50, 75, 100],
 			  "fnDrawCallback": function( oSettings ) {
@@ -161,9 +214,9 @@
 			} );
 			
 		    //event on input field for search
-		    jq('input.sokList_filter').on( 'keyup click', function () {
-		    	jq('#sokList').DataTable().search(
-		        		jq('#sokList_filter').val()
+		    jq('input.listDepartures_filter').on( 'keyup click', function () {
+		    	jq('#listDepartures').DataTable().search(
+		        		jq('#listDepartures_filter').val()
 		        ).draw();
 		    });
 		    

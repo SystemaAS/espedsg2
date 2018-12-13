@@ -32,7 +32,7 @@
 	  //ferjeoverfarter
 	  jq('#imgUpdateFerjeoverfarter').click(function() {
 		if(jq('#tuproJS').text()!=''){
-			window.open('transportdisp_workflow_ferjeoverfarter.do?feavd='+ jq('#tuavd').val() + '&fetur=' + jq('#tuproJS').text(), 'ferjeoverfarterWin','top=120px,left=100px,height=600px,width=1200px,scrollbars=no,status=no,location=no');
+			window.open('transportdisp_workflow_ferjeoverfarter.do?feavd='+ jq('#tuavd').val() + '&fetur=' + jq('#tuproJS').text(), 'ferjeoverfarterWin','top=120px,left=100px,height=900px,width=1250px,scrollbars=no,status=no,location=no');
 		}
 	  });
 	});

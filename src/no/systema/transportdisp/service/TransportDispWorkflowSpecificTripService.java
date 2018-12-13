@@ -19,6 +19,8 @@ import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWork
 public interface TransportDispWorkflowSpecificTripService {
 	public JsonTransportDispWorkflowSpecificTripContainer getContainer(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShip(String utfPayload);
+	public JsonTransportDispWorkflowSpecificTripShipContainer getContainerShipDepartures(String utfPayload);
+	
 	public JsonTransportDispWorkflowSpecificTripContainer getUpdateContainer(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripArchivedDocsContainer getArchivedDocsContainer(String utfPayload);
 	public JsonTransportDispWorkflowSpecificTripMessageNoteContainer getMessageNoteContainer(String utfPayload);
