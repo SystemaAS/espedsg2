@@ -259,7 +259,7 @@
 					    <tr height="10"><td colspan="2" ></td></tr>
 					    <tr>	
 						    <td align="left" colspan="5">
-								<input class="inputFormSubmit" onClick="setBlockUI(this)" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'>
+								<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'>
 							</td>
 														        	
 				        </tr>

@@ -200,8 +200,6 @@ public class TransportDispMainOrderListController {
 				//this.setCodeDropDownMgr(appUser, model);
 				successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 	    		//domain and search filter
-				logger.info("AAAAA:" + outputListOpenOrders.size());
-				logger.info("BBBBB:" + outputListCurrentOrders.size());
 				successView.addObject(TransportDispConstants.DOMAIN_LIST_CURRENT_ORDERS, outputListCurrentOrders);
 				successView.addObject(TransportDispConstants.DOMAIN_LIST_OPEN_ORDERS,outputListOpenOrders);
 				//Put list for upcoming view (PDF, Excel, etc)
@@ -769,6 +767,9 @@ public class TransportDispMainOrderListController {
     		if(!"".equals(recordToValidate.getWsdista())&& recordToValidate.getWsdista()!=null ){ urlRequestParams.append("&wsdista=" + recordToValidate.getWsdista()); }
     		//PO-nr
     		if(!"".equals(recordToValidate.getWsrfa())&& recordToValidate.getWsrfa()!=null ){ urlRequestParams.append("&wsrfa=" + recordToValidate.getWsrfa()); }
+    		if(!"".equals(recordToValidate.getWsavs())&& recordToValidate.getWsavs()!=null ){ urlRequestParams.append("&wsavs=" + recordToValidate.getWsavs()); }
+    		if(!"".equals(recordToValidate.getWsmot())&& recordToValidate.getWsmot()!=null ){ urlRequestParams.append("&wsmot=" + recordToValidate.getWsmot()); }
+    		if(!"".equals(recordToValidate.getWsopdgi())&& recordToValidate.getWsopdgi()!=null ){ urlRequestParams.append("&wsopdgi=" + recordToValidate.getWsopdgi()); }
     		
     		
     		//session.setAttribute(TransportDispConstants.ACTIVE_URL_RPG_TRANSPORT_DISP, BASE_URL + "==>params: " + urlRequestParams.toString()); 

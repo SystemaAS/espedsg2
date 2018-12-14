@@ -540,38 +540,39 @@
 							<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pick"/></th>   
                     		<th width="2%" class="text14"><input style="cursor:pointer;" type="button" value="M." name="openordersColumnHeaderButton" id="openordersColumnHeaderButton" onClick="getValidCheckis(this);"></th>
                    		</c:if>
-                   		<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></th> 
+                   		<th title="avd/ordre" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></th> 
                    		<c:if test="${empty searchFilter.tur}">
                    			<th width="2%" class="text14"></th>   
                    		</c:if>  
-                   		<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></th>
+                   		<th title="Track&Trace status:Urørt/Hentet/Levert" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ttstat"/></th> 
+                   		<th title="Oppdragstype" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.orderType"/></th>
+	                    <th title="Signatur" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.sign"/></th>
 	                    <c:if test="${empty searchFilter.tur && not empty searchFilter.opd}">
-							<th width="2%" class="text14">Turnr</th>
+							<th title="Ordretype" width="2%" class="text14">Turnr</th>
 	                    </c:if>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.from"/></th> 
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th> 
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.to"/></th> 
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th>
+	                    <th title="Avsender" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.shipper"/></th>   
+	                    <th title="Fra" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.from"/></th> 
+	                    <th title="Dato" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th> 
+	                    <th title="Mottaker" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.consignee"/></th>   
+	                    <th title="Til" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.to"/></th> 
+	                    <th title="Dato" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.date"/></th>
 	                     
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.goodsDesc"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pcs"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.weight"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.volume"/></th>   
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.loadMtr"/></th>  
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></th>
-	                    <th title="farliggods" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
-	                    <th title="internmelding" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
-	                    <th title="print" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.printDocs"/></th>
+	                    <th title="Antall" align="right" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pcs"/></th>   
+	                    <th title="V.slag" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.goodsDesc"/></th>   
+	                    <th title="Vekt" align="right" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.weight"/></th>   
+	                    <th title="M3" align="right" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.volume"/></th>   
+	                    <th title="Lm" align="right" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.loadMtr"/></th>  
+	                    <th title="PONr" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.poNr"/></th>
+	                    <th title="Farliggods" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
+	                    <th title="Internmelding" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.internmelding.text"/></th>
+	                    <th title="Print" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.printDocs"/></th>
 	                    <%--
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>
 	                     --%>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.copy"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.move"/></th>
 	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.delete"/></th>
-	                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
+	                    <th title="P=Prebooking. Linjen lys gul!" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.prebooking"/></th>
 	                    
 	                </tr> 
 	                </thead>
@@ -613,7 +614,46 @@
 				           		<%-- Drag and drop handle (when being source) --%>
 			 			  		 &nbsp;<img title="Drag to target..." style="vertical-align:middle;cursor:pointer;" src="resources/images/icon_drag_drop.png" width="25px" height="25px" border="0" alt="edit" draggable="true" ondragstart="drag(event)" id="avd_${record.heavd}@opd_${record.heopd}@tripnr_@${counter.count}">
 						   </td>
-					   </c:if>							 		
+					   </c:if>	
+					   
+					   <c:choose>
+					           <c:when test="${not empty record.ttstat}">
+					           		<c:choose>
+					           		<c:when test="${record.ttstat=='Levert' || record.ttstat=='Urørt' || record.ttstat=='Hentet' }">
+						           		<c:if test="${record.ttstat=='Levert'}" >   
+						           			<td width="2%" align="center" class="textMediumBlue" >
+							           			<font class="inputText11" style="background-color: #DFF2BF;color: #4F8A10;" onMouseOver="showPop('delivered_info${counter.count}');" onMouseOut="hidePop('delivered_info${counter.count}');">${record.ttstat}</font>
+							           			<div class="text11" style="position: relative;" align="left">
+													<span style="position:absolute; left:15px; top:2px;" id="delivered_info${counter.count}" class="popupWithInputText"  >
+							 							<font class="text11" >
+										           			${record.hesgm}-${record.hedtmo}:${record.heklmo}
+									           			</font>
+													</span>
+												</div>
+						           			</td>
+						           		</c:if>
+						           		<c:if test="${record.ttstat=='Urørt'}" >   
+						           			<td width="2%" align="center" class="textMediumBlue" style="color: #D8000C;">
+							           			<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">${record.ttstat}</font>
+						           			</td>
+						           		</c:if>
+						           		<c:if test="${record.ttstat=='Hentet'}" >   
+						           			<td width="2%" align="center" class="textMediumBlue" style="color: #9F6000;">
+							           			<font class="inputText11" style="background-color: #FEEFB3;color: #9F6000;">${record.ttstat}</font>
+						           			</td>
+						           		</c:if>
+					           		</c:when>
+					           		<c:otherwise>
+					           			<td width="2%" align="center" class="textMediumBlue">&nbsp;${record.ttstat}</td>
+					           		</c:otherwise>
+					           		</c:choose>
+					           </c:when>
+					           <c:otherwise>
+					           		<td width="2%" align="center" class="textMediumBlue">&nbsp;${record.ttstat}</td>
+					           </c:otherwise>
+			               </c:choose>
+			               
+					   						 		
 			           <td width="2%" align="center" class="textMediumBlue">&nbsp;${record.heot}</td>
 		               <td width="2%" align="center" class="textMediumBlue">&nbsp;${record.hesg}</td>
 		               <c:if test="${empty searchFilter.tur && not empty searchFilter.opd}">
@@ -625,11 +665,11 @@
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.henak}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hetri}-${record.headk3}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.trsdtd}&nbsp;${record.trsdtk}</td>
+		               <td align="right" width="2%" class="textMediumBlue">&nbsp;${record.hent}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevs1}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.hent}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.hevkt}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.hem3}</td>
-		               <td width="2%" class="textMediumBlue">&nbsp;${record.helm}</td>
+		               <td align="right" width="2%" class="textMediumBlue">&nbsp;${record.hevkt}</td>
+		               <td align="right" width="2%" class="textMediumBlue">&nbsp;${record.hem3}</td>
+		               <td align="right" width="2%" class="textMediumBlue">&nbsp;${record.helm}</td>
 		               <td width="2%" class="textMediumBlue">&nbsp;${record.herfa}</td>
 		               <td width="2%" align="center" class="textMediumBlue" style="color:red;">&nbsp;${record.hepoen}</td>
 		               <td width="2%" align="center" class="textMediumBlue">
