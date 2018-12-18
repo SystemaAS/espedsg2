@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.aop.framework.ReflectiveMethodInvocation;
@@ -152,6 +153,8 @@ public class MainMaintenanceCundfKundeController {
 					record = (JsonMaintMainCundfRecord) iterator.next();
 					fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 					record.setFmotname(fmotRecord.getKnavn());
+					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
+					record.setPostnr(leftPaddedPostnr);
 				}
 			}
 		}

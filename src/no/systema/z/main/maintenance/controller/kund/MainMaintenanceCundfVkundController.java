@@ -12,6 +12,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -1274,11 +1275,12 @@ public class MainMaintenanceCundfVkundController {
 			jsonPayload = jsonPayload.replaceFirst("Customerlist", "customerlist");
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.getList(jsonPayload);
 			if (container != null) {
-				list = container.getList();
-/*		        for(JsonMaintMainCundfRecord record : list){
-	        	  logger.info("record:" + record.toString());
-	        	}	
-*/			}
+		        for(JsonMaintMainCundfRecord record : container.getList()){
+					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
+					record.setPostnr(leftPaddedPostnr);
+					list.add(record);
+		        }	
+			}
 		}
 
 		return list;
@@ -1303,11 +1305,12 @@ public class MainMaintenanceCundfVkundController {
 			jsonPayload = jsonPayload.replaceFirst("Customerlist", "customerlist");
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.getList(jsonPayload);
 			if (container != null) {
-				list = container.getList();
-/*		        for(JsonMaintMainCundfRecord record : list){
-	        	  logger.info("record:" + record.toString());
-	        	}	
-*/			}
+		        for(JsonMaintMainCundfRecord record : container.getList()){
+					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
+					record.setPostnr(leftPaddedPostnr);
+					list.add(record);
+		        }	
+			}
 		}
 
 		return list;
