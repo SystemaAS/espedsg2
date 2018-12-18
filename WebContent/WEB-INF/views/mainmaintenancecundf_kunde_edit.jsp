@@ -301,6 +301,37 @@
 								<td width="45%" valign="top">&nbsp;
 									<table>
 										<tr>
+											<td class="text14" title="syfr06">
+												Faktura sendes som EHF:
+												<c:if test="${user.filand == 'NO'}">
+								 					&nbsp;<img onMouseOver="showPop('ehf_info');" onMouseOut="hidePop('ehf_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+									 				<div class="text11" style="position: relative;" align="left">
+									 				<span style="position:absolute; top:2px; width:250px;" id="ehf_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			Faktura sendes som EHF
+											 	          	</b><br><br>
+															Hvis krysset av sendes EDIfaktura på EHF-formatet. <br>
+															Merk. EHF er alltid "Single-faktura". <br>
+															Forutsetning er at kunden er registrert med organisasjonsnummer/foretaksnummer <br>
+															(som er registrert i det sentrale "ELMA-registeret" som mulig mottaker av EHF.)   <br>  
+															Om kunden er registrert med et bedriftsnummer (av fortollingshensyn eller annet), <br>
+															kan en parameter med kode "EHFON" benyttes for å overstyre til det Org.nr som EHF skal sendes til.
+
+															<br><br>
+													</span>
+													</div>
+												</c:if>
+											</td>
+											<td>
+												<select name="syfr06" id="syfr06" >
+			 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+								  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
+								  				</select>
+											</td>
+											
+											<td colspan="2">&nbsp;</td>
+										</tr>
+										<tr>
 											<td class="text14" title="adr21">
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.eori"/>:
 											</td>
@@ -341,9 +372,6 @@
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.kundgr"/>:
 											</td>
 											<td><input type="text" class="inputTextMediumBlue" name="kundgr" id="kundgr" size="2" maxlength="2" value='${model.record.kundgr}'></td>
-										</tr>
-										<tr>
-											<td colspan="4">&nbsp;</td>
 										</tr>
 										<tr>
 											<td colspan="4">&nbsp;</td>
@@ -638,14 +666,8 @@
 														<td class="text14" title="syselg">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sell"/>:
 														</td>
-														<td>
+														<td colspan="3">
 															<input type="text" class="inputTextMediumBlue" name="syselg" id="syselg" size="5" maxlength="3" value='${model.record.syselg}'>												
-														</td>
-														<td class="text14" title="syfr06">&nbsp;
-															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.syfr06"/>:
-														</td>
-														<td>
-															<input type="text" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="syfr06" id="syfr06" size="5" maxlength="4" value='${model.record.syfr06}'>
 														</td>
 													</tr>
 												</table>
