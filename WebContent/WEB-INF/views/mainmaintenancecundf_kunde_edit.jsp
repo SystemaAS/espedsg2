@@ -71,58 +71,6 @@
 	 	    <tr height="20"><td>&nbsp;</td></tr>
 	 	    
 			
-<!-- 	 	    
-	 	    <tr>
-	 	   		<td width="5%">&nbsp;</td>
-	 	   		<td>
-					<table class="formFrameHeaderTransparent" width="1000" cellspacing="0" border="0" cellpadding="0">
-
-						<tr height="20"> 
-						
-								<td width="20">&nbsp;</td>
-
-								<td width="80" valign="bottom" class="tabDisabled" align="center" title="Sköna  personer...">
-									<a id="alinkMainMaintMavgGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Miljöavgift</font>&nbsp;						
-									</a>
-								</td>
-
-								<td width="80" valign="bottom" class="tabDisabled" align="center" title="Kontakt personer...">
-									<a id="alinkMainMaintxxxGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Fane xxx</font>&nbsp;	
-									</a>
-								</td>
-
-								<td width="80" valign="bottom" class="tabDisabled" align="center">
-									<a id="alinkMainMaintxxxGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Fane xyz</font>&nbsp;						
-									</a>
-								</td>
-
-								<td width="80" valign="bottom" class="tabDisabled" align="center">
-									<a id="alinkMainMaintxxxGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Fane xyz</font>&nbsp;						
-									</a>
-								</td>
-
-								<td width="80" valign="bottom" class="tabDisabled" align="center">
-									<a id="alinkMainMaintxxGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Fane xyz</font>&nbsp;						
-									</a>
-								</td>
-
-								<td width="80" valign="bottom" class="tabDisabledTrailingAbove" align="center">
-									<a id="alinkMainMaintxxxGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;Fane xyz</font>&nbsp;						
-									</a>
-								</td>
-
-							   <td width="500"></td>
-						</tr>
-					</table>
-				</td>
- 	   	 	</tr>
-  -->	   	 	
  	   	 	<tr> <!-- Second tab row... -->
  	   	 		<td>&nbsp;</td>
  	   	 	    <td>
@@ -133,6 +81,9 @@
 										<spring:message code="systema.main.maintenance.customer"/>
 									</font>
 								</td>
+	
+						 <c:if test="${not empty kundeSessionParams.kundnr}">
+	
 								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
 									<a id="alinkMainMaintKontaktGate" href="mainmaintenancecundf_kontaktpersoner_list.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
@@ -162,24 +113,14 @@
 										</font>&nbsp;						
 									</a>
 								</td>
-								
-<!-- 
-
-								<td width="110" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-									<a id="alinkMainMaintMavgGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_xxx_edit.do">
-										<font class="tabDisabledLinkMinor">&nbsp;
-											<spring:message code="systema.main.maintenance.customer.envfee"/>
-										</font>&nbsp;						
-									</a>
-								</td>
--->									
-<!--  
-								<td width="40" class="tabDisabledTrailingEnd"  align="center" nowrap></td>
--->
+		
+						 </c:if>
+		
 							 	<td width="590" class="tabFantomSpace" align="center" nowrap></td>
 
-
 						</tr>
+	
+	
 					</table>
 				</td>
  	   	 	</tr> <!-- End second tab row -->
@@ -322,14 +263,24 @@
 													</div>
 												</c:if>
 											</td>
-											<td>
+											
+											<td colspan="2" class="text11BlueGreen">
 												<select name="syfr06" id="syfr06" >
 								  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
 			 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
 								  				</select>
+
+												<c:if test="${user.filand == 'NO'}">
+													<c:if test="${model.record.syfr06 == ''}">
+														<c:if test="${model.record.elma == 'J'}">
+															&nbsp;merk: Org.nr er registrert i ELMA.
+														</c:if>
+													</c:if>
+												</c:if>
+
 											</td>
 											
-											<td colspan="2">&nbsp;</td>
+											<td colspan="1">&nbsp;</td>
 										</tr>
 										<tr>
 											<td class="text14" title="adr21">

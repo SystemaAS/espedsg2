@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikContainer;
+import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikRecord;
+import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodtlikService;
+import no.systema.external.tvinn.sad.z.maintenance.url.store.TvinnSadMaintenanceUrlDataStore;
 import no.systema.jservices.common.dao.FirmDao;
 import no.systema.jservices.common.dao.KodtftDao;
 import no.systema.jservices.common.dao.KodtlkDao;
@@ -41,6 +46,8 @@ import no.systema.jservices.common.dao.Svtx03fDao;
 import no.systema.jservices.common.dao.Svtx10fDao;
 import no.systema.jservices.common.dao.TariDao;
 import no.systema.jservices.common.dao.ValufDao;
+import no.systema.jservices.common.elma.entities.Entry;
+import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.values.FasteKoder;
@@ -50,11 +57,6 @@ import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.service.UrlCgiProxyServiceImpl;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.JsonDebugger;
-
-import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikContainer;
-import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikRecord;
-import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodtlikService;
-import no.systema.external.tvinn.sad.z.maintenance.url.store.TvinnSadMaintenanceUrlDataStore;
 import no.systema.z.main.maintenance.controller.ChildWindowKode;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainChildWindowKofastContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainChildWindowKofastRecord;
@@ -1252,8 +1254,12 @@ public class MainMaintenanceCundfVkundController {
 			record = (JsonMaintMainCundfRecord) iterator.next();
 			fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 			record.setFmotname(fmotRecord.getKnavn());
+			record.setElma(existInElma(record.getSyrg()));		
 		}
 
+		
+		logger.info("record.getElma()="+record.getElma());
+		
 		return record;
 
 	}
@@ -1341,6 +1347,18 @@ public class MainMaintenanceCundfVkundController {
 
 		return retval;
 	}
+
+	private String existInElma(String orgnr) {
+		Entry entry = entryRequest.getElmaEntry(orgnr);
+		if (entry != null) {
+			return "J";
+		} else {
+			return "";
+		}
+	}		
+	
+	@Autowired
+	EntryRequest entryRequest;		
 	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")

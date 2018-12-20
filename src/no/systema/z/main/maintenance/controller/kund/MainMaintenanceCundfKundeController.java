@@ -11,9 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
-import org.springframework.aop.framework.ReflectiveMethodInvocation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -23,6 +21,9 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import no.systema.jservices.common.elma.entities.Entry;
+import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.AppConstants;
@@ -155,6 +156,7 @@ public class MainMaintenanceCundfKundeController {
 					record.setFmotname(fmotRecord.getKnavn());
 					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
 					record.setPostnr(leftPaddedPostnr);
+					record.setElma(existInElma(record.getSyrg()));
 				}
 			}
 		}
@@ -200,6 +202,18 @@ public class MainMaintenanceCundfKundeController {
 		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 	}
 	
+
+	private String existInElma(String orgnr) {
+		Entry entry = entryRequest.getElmaEntry(orgnr);
+		if (entry != null) {
+			return "J";
+		} else {
+			return "";
+		}
+	}	
+	
+	@Autowired
+	EntryRequest entryRequest;	
 	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")
