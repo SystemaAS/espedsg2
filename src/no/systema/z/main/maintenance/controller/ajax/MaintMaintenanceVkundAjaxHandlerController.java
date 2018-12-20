@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -99,17 +100,27 @@ public class MaintMaintenanceVkundAjaxHandlerController {
 		return (List<JsonMaintMainCundcRecord>) fetchSpecificCundc(applicationUser, cfirma, ccompn, cconta, ctype);
 	}
 
+	
 	@RequestMapping(value = "getSpecificRecord_enhet_brreg.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Collection<Enhet> getRecordHovedEnhetBrreg(@RequestParam String applicationUser, @RequestParam String orgnr) {
+	public @ResponseBody Enhet getRecordHovedEnhetBrreg(@RequestParam String applicationUser, @RequestParam String orgnr) {
 		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		final String METHOD = "[DEBUG] getSpecificRecord_enhet_brreg ";
 		logger.info(METHOD + " applicationUser=" + applicationUser + ", orgnr=" + orgnr );
 
-		Collection<Enhet> list =  util.fetchSpecificEnhet(applicationUser, orgnr);
+		List<Enhet> list =  util.fetchSpecificEnhet(applicationUser, orgnr);
 		
-		return list;
+		if (!list.isEmpty()) {
+			Enhet enhet =  list.get(0);
+			enhet.setNavn(StringUtils.substring(enhet.getNavn(), 0, 30));
+			
+			return enhet;
+			
+		} else {
+			return null;
+		} 
+		
 	}
-	
+
 	@RequestMapping(value = "getDefaultEmmaXmlInfo.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody List<JsonMaintMainCundcRecord> getDefaultEmmaXmlInfo(@RequestParam String applicationUser, @RequestParam String firma) {
 		final String METHOD = "[DEBUG] getDefaultEmmaXmlInfo ";

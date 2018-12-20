@@ -17,40 +17,40 @@
 				orgnr : orgnr,
 				ajax : 'true'
 			}, function(data) {
-				var len = data.length;
-				for (var i = 0; i < len; i++) {
-					jq("#knavn").val(data[i].navn);
-					jq("#knavn").change();
-					if (data[i].postadresse !== undefined ) {
-						jq("#adr1").val(data[i].postadresse.adresse);
+	
+				jq("#knavn").val(data.navn);
+				jq("#knavn").change();
+				jq("#spraak").val("N");
+				jq("#spraak").change();
+
+				if (data.postadresse !== undefined ) {
+					jq("#adr1").val(data.postadresse.adresse);
+					jq("#adr1").change();
+					jq("#adr3").val(data.postadresse.poststed);
+					jq("#adr3").change();
+					jq("#postnr").val(data.postadresse.postnummer);
+					jq("#postnr").change();
+					jq("#syland").val(data.postadresse.landkode);
+					jq("#syland").change();
+				} else {
+					if (data.forretningsadresse !== undefined ) {
+						jq("#adr1").val(data.forretningsadresse.adresse);
 						jq("#adr1").change();
-						jq("#adr3").val(data[i].postadresse.poststed);
+						jq("#adr3").val(data.forretningsadresse.poststed);
 						jq("#adr3").change();
-						jq("#postnr").val(data[i].postadresse.postnummer);
+						jq("#postnr").val(data.forretningsadresse.postnummer);
 						jq("#postnr").change();
-						jq("#syland").val(data[i].postadresse.landkode);
+						jq("#syland").val(data.forretningsadresse.landkode);
 						jq("#syland").change();
-					} else {
-						if (data[i].forretningsadresse !== undefined ) {
-							jq("#adr1").val(data[i].forretningsadresse.adresse);
-							jq("#adr1").change();
-							jq("#adr3").val(data[i].forretningsadresse.poststed);
-							jq("#adr3").change();
-							jq("#postnr").val(data[i].forretningsadresse.postnummer);
-							jq("#postnr").change();
-							jq("#syland").val(data[i].forretningsadresse.landkode);
-							jq("#syland").change();
-						}
-						
 					}
-					jq("#spraak").val("N");
-					jq("#spraak").change();
 				}
+
 			});
 			
-			getDataFromBrregAsText(element);
 			
 		}	
+
+		getDataFromBrregAsText(element);
 		
   }
   

@@ -1,6 +1,5 @@
 package no.systema.z.main.maintenance.controller.kund;
 
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -86,7 +85,7 @@ public class VkundControllerUtil {
 	 * @param orgnr, aka syrg in CUNDF
 	 * @return a Collection with one Enhet, if npt found return null
 	 */
-	public Collection<Enhet> fetchSpecificEnhet(String user, String orgnr ) {
+	public List<Enhet> fetchSpecificEnhet(String user, String orgnr ) {
 		JsonReader<JsonDtoContainer<Enhet>> jsonReader = new JsonReader<JsonDtoContainer<Enhet>>();
 		jsonReader.set(new JsonDtoContainer<Enhet>());
 		String BASE_URL = MaintenanceMainUrlDataStore.BRREG_GET_URL;
