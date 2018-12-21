@@ -19,6 +19,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import no.systema.jservices.common.brreg.proxy.entities.Enhet;
+import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
+import no.systema.jservices.common.brreg.proxy.entities.UnderEnhet;
 import no.systema.jservices.common.dao.SadvareDao;
 import no.systema.jservices.common.dao.SvewDao;
 import no.systema.jservices.common.dao.SviwDao;
@@ -102,18 +104,29 @@ public class MaintMaintenanceVkundAjaxHandlerController {
 
 	
 	@RequestMapping(value = "getSpecificRecord_enhet_brreg.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public @ResponseBody Enhet getRecordHovedEnhetBrreg(@RequestParam String applicationUser, @RequestParam String orgnr) {
+	public @ResponseBody IEnhet getRecordHovedEnhetBrreg(@RequestParam String applicationUser, @RequestParam String orgnr) {
 		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		final String METHOD = "[DEBUG] getSpecificRecord_enhet_brreg ";
 		logger.info(METHOD + " applicationUser=" + applicationUser + ", orgnr=" + orgnr );
 
-		List<Enhet> list =  util.fetchSpecificEnhet(applicationUser, orgnr);
+		List<IEnhet> list =  util.fetchSpecificEnhet(applicationUser, orgnr);
 		
-		if (!list.isEmpty()) {
-			Enhet enhet =  list.get(0);
-			enhet.setNavn(StringUtils.substring(enhet.getNavn(), 0, 30));
+		if (list != null && !list.isEmpty()) {
+			IEnhet i_enhet =  list.get(0);
+			if (i_enhet instanceof Enhet) {
+				Enhet enhet = (Enhet ) i_enhet;
+				enhet.setNavn(StringUtils.substring(enhet.getNavn(), 0, 30));
+
+				return enhet;
+				
+			} else {
+				UnderEnhet underEnhet = (UnderEnhet ) i_enhet;
+				underEnhet.setNavn(StringUtils.substring(underEnhet.getNavn(), 0, 30));
+
+				return underEnhet;
+				
+			}
 			
-			return enhet;
 			
 		} else {
 			return null;

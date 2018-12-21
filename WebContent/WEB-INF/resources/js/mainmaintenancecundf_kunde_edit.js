@@ -23,7 +23,7 @@
 				jq("#spraak").val("N");
 				jq("#spraak").change();
 
-				if (data.postadresse !== undefined ) {
+				if (data.postadresse !== undefined ) {  //Enhet
 					jq("#adr1").val(data.postadresse.adresse);
 					jq("#adr1").change();
 					jq("#adr3").val(data.postadresse.poststed);
@@ -33,14 +33,14 @@
 					jq("#syland").val(data.postadresse.landkode);
 					jq("#syland").change();
 				} else {
-					if (data.forretningsadresse !== undefined ) {
-						jq("#adr1").val(data.forretningsadresse.adresse);
+					if (data.beliggenhetsadresse !== undefined ) {  //Underenhet
+						jq("#adr1").val(data.beliggenhetsadresse.adresse);
 						jq("#adr1").change();
-						jq("#adr3").val(data.forretningsadresse.poststed);
+						jq("#adr3").val(data.beliggenhetsadresse.poststed);
 						jq("#adr3").change();
-						jq("#postnr").val(data.forretningsadresse.postnummer);
+						jq("#postnr").val(data.beliggenhetsadresse.postnummer);
 						jq("#postnr").change();
-						jq("#syland").val(data.forretningsadresse.landkode);
+						jq("#syland").val(data.beliggenhetsadresse.landkode);
 						jq("#syland").change();
 					}
 				}

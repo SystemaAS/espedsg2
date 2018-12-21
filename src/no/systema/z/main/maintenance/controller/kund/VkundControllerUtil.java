@@ -8,6 +8,7 @@ import java.util.Map;
 import org.apache.log4j.Logger;
 
 import no.systema.jservices.common.brreg.proxy.entities.Enhet;
+import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
 import no.systema.main.service.UrlCgiProxyService;
@@ -65,13 +66,13 @@ public class VkundControllerUtil {
 	public Map<String, Object> fetchEnhetMap(String user, String orgnr) {
 		JsonReader<Map> jsonReader = new JsonReader<Map>();
 		jsonReader.set(new HashMap<String, Object>());
-		Enhet enhet = null;
-		List<Enhet> enhetList = (List<Enhet>) fetchSpecificEnhet(user, orgnr);
+		IEnhet enhet = null;
+		List<IEnhet> enhetList = (List<IEnhet>) fetchSpecificEnhet(user, orgnr);
 		if (enhetList == null) {
 			return null;
 		}
 		if (enhetList.size() == 1) {
-			enhet = (Enhet) enhetList.get(0);
+			enhet = enhetList.get(0);
 			return jsonReader.convertValue(enhet, Map.class);
 		} else {
 			return null;
@@ -85,9 +86,9 @@ public class VkundControllerUtil {
 	 * @param orgnr, aka syrg in CUNDF
 	 * @return a Collection with one Enhet, if npt found return null
 	 */
-	public List<Enhet> fetchSpecificEnhet(String user, String orgnr ) {
-		JsonReader<JsonDtoContainer<Enhet>> jsonReader = new JsonReader<JsonDtoContainer<Enhet>>();
-		jsonReader.set(new JsonDtoContainer<Enhet>());
+	public List<IEnhet> fetchSpecificEnhet(String user, String orgnr ) {
+		JsonReader<JsonDtoContainer<IEnhet>> jsonReader = new JsonReader<JsonDtoContainer<IEnhet>>();
+		jsonReader.set(new JsonDtoContainer<IEnhet>());
 		String BASE_URL = MaintenanceMainUrlDataStore.BRREG_GET_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
 		urlRequestParams.append("user=" + user);
@@ -98,7 +99,7 @@ public class VkundControllerUtil {
 		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		logger.info("jsonPayload="+jsonPayload);
 
-		JsonDtoContainer<Enhet> container =  (JsonDtoContainer<Enhet> )jsonReader.get(jsonPayload);
+		JsonDtoContainer<IEnhet> container =  (JsonDtoContainer<IEnhet> )jsonReader.get(jsonPayload);
 		if (container != null) {
 			return container.getDtoList();
 		} else {
