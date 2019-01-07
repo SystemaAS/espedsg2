@@ -142,9 +142,7 @@ public class TransportDispMainOrderListController {
             if(strMgr.isNotNull(wssavd)){ recordToValidate.setAvd(wssavd); }
             //Init
             recordToValidate.setTur(null);
-    		if(strMgr.isNotNull(wstur)){ recordToValidate.setTur(wstur); }
-    		
-            
+    		if(strMgr.isNotNull(wstur)){  recordToValidate.setTur(wstur); }
     		
 			//-----------
 			//Validation

@@ -157,6 +157,23 @@
 					<%-- this container table is necessary in order to separate the datatables element and the frame above, otherwise
 						 the cosmetic frame will not follow the whole datatable grid including the search field... --%>
 					<table id="containerdatatableTable1" style="width:100%;" cellspacing="2" align="left" >
+					<%-- Extra tur-information --%>
+					<tr>
+						<td class="text16">
+							<table style="background-color: lightyellow;" >
+								<tr>
+									<td ><span title="tupro"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.tupro}</font></b></td>
+									<td >&nbsp;&nbsp;<span title="tupro"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.turund}</font></b></td>
+									<td >&nbsp;&nbsp;<span title="tubiln"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.tubiln}</font></b></td>
+									<td >&nbsp;&nbsp;<span title="tuheng"><spring:message code="systema.transportdisp.workflow.trip.form.label.trucklic.henger"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.tuheng}</font></b></td>
+									<td width="25">&nbsp;</td>
+									<td >&nbsp;&nbsp;<span title="tuknt2"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.tuknt2}</font></b></td>
+									<td >&nbsp;&nbsp;<span title="tunat"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.carrierName"/></span>&nbsp;<b><font class="text14MediumBlue">${model.record.tunat}</font></b></td>
+								</tr>							
+							</table>
+						</td>
+					</tr>
+					
 					<tr>
 						<td id="dtuavd${searchFilter.avd}_dtupro${searchFilter.tur}_oncontainer" ondrop="dropX(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" class="text14MediumBlue">
 							<spring:message code="systema.transportdisp.orders.current.header"/>&nbsp;&nbsp;
@@ -169,9 +186,9 @@
 							<img style="vertical-align:bottom;" src="resources/images/redFlag.png" width="16" height="16" border="0" alt="Warning">
 							${model.containerCurrentOrders.maxWarning}</td>
 						</tr>
-						<tr height="2"><td></td></tr>
 					</c:if>
 					 
+				    <tr height="3"><td></td></tr>	 
 					<tr>
 					<td>
 					
@@ -247,18 +264,18 @@
 						           			</td>
 						           		</c:if>
 						           		<c:if test="${record.ttstat=='Urørt'}" >   
-						           			<td align="center" class="text14 tableCellGray" style="color: #D8000C;">
+						           			<td width="2%" align="center" class="text14 tableCellGray" style="color: #D8000C;">
 							           			<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">${record.ttstat}</font>
 						           			</td>
 						           		</c:if>
 						           		<c:if test="${record.ttstat=='Hentet'}" >   
-						           			<td align="center" class="text14 tableCellGray" style="color: #9F6000;">
+						           			<td width="2%" align="center" class="text14 tableCellGray" style="color: #9F6000;">
 							           			<font class="inputText11" style="background-color: #FEEFB3;color: #9F6000;">${record.ttstat}</font>
 						           			</td>
 						           		</c:if>
 					           		</c:when>
 					           		<c:otherwise>
-					           			<td align="center" class="text14 tableCellGray">&nbsp;${record.ttstat}</td>
+					           			<td width="2%" align="center" class="text14 tableCellGray">&nbsp;${record.ttstat}</td>
 					           		</c:otherwise>
 					           		</c:choose>
 					           </c:when>
