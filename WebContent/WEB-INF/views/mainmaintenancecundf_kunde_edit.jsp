@@ -135,7 +135,22 @@
 						<table class="tabThinBorderWhite" width="100%" cellspacing="0" border="0" align="left">
 							<tr>
 								<td width="50%" >&nbsp;
-									<table border="0">
+									<table>
+								<c:if test="${model.action == 'doCreate'}">
+									<c:if test="${model.invoiceCustomerAllowed == 'J'}">
+										<tr>
+											<td class="text14" title="knavn">&nbsp;<font class="text14RedBold" >*</font>
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype"/>:
+											</td>
+											<td>
+												<select name="kundetype" id="kundetype" class="inputTextMediumBlueMandatoryField">
+								  					<option value="A">Adressekunde</option>
+			 					  					<option value="F">Fakturakunde</option>
+								  				</select>
+											</td>
+										</tr>
+									</c:if>		
+								</c:if>
 										<tr>
 											<td class="text14" title="kundnr">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>:
@@ -144,7 +159,12 @@
 													<td><input type="text" class="inputTextMediumBlue"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'></td>
 												</c:when>
 												<c:otherwise>
-													<td><input readonly type="text" class="inputTextReadOnly"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'></td>
+													<td>
+														<input readonly type="text" class="inputTextReadOnly"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'>
+														<c:if test="${model.isAdressCustomer == 'J'}">
+														<font class="text12BlueGreen">er adressekunde</font>
+														</c:if>												
+													</td>
 												</c:otherwise>
 											</c:choose>
 											
@@ -229,7 +249,9 @@
 											<td class="text14" title="adr3">&nbsp;<font class="text14RedBold" >*</font>
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.adr3"/>:
 											</td>
-											<td><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="adr3" id="adr3" size="25" maxlength="24" value='${model.record.adr3}'></td>
+
+											<td><input type="text" required class="inputTextMediumBlueMandatoryField" name="adr3" id="adr3" size="25" maxlength="24" value='${model.record.adr3}'></td>
+		
 											<td class="text14" title="adr21">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.adr21"/>:
 											</td>
@@ -264,7 +286,7 @@
 												</c:if>
 											</td>
 											
-											<td colspan="2" class="text11BlueGreen">
+											<td colspan="2" class="text12BlueGreen">
 												<select name="syfr06" id="syfr06" >
 								  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
 			 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
@@ -544,12 +566,38 @@
 																							&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod"/>:
 														</td>
-														<td>
+														<td class="text14" >
+
+													<c:choose>
+														<c:when test="${model.action == 'doCreate'}">
 															<select name="aktkod" id="aktkod" >
-						 					  					<option value="">-<spring:message code="systema.choose"/>-</option>
-						 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.invoice"/></option>
-											  					<option value="I"<c:if test="${ model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.address"/></option>
+						 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+											  					<option value="I"<c:if test="${ model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 											  				</select>
+														</c:when>
+														<c:otherwise>
+															<c:choose>
+																<c:when test="${model.isAdressCustomer == 'N'}">
+																	<select name="aktkod" id="aktkod" >
+								 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+													  					<option value="I"<c:if test="${ model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
+													  				</select>
+																</c:when>
+																<c:otherwise>
+																	<c:if test="${model.record.aktkod == 'A'}">
+																		<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/>
+																	</c:if>
+																	<c:if test="${model.record.aktkod == 'I'}">
+																		<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/>
+																	</c:if>
+																	<c:if test="${model.record.aktkod == ''}">
+																		-
+																	</c:if>
+																</c:otherwise>
+															</c:choose>
+														</c:otherwise>
+													</c:choose>
+
 														</td>
 													</tr>
 													<tr>
@@ -701,7 +749,7 @@
 							<tr> 
 								<td >&nbsp;</td>
 								<td align="right">
-									<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
+									<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
 								</td>
 							</tr>
 

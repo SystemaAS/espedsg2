@@ -6,11 +6,18 @@ import java.util.Locale;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
+import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import no.systema.jservices.common.brreg.proxy.entities.Enhet;
 import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
+import no.systema.jservices.common.dao.FirkuDao;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
+import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 
@@ -22,10 +29,16 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
  * @date Dec 28, 2016
  *
  */
+@Service
 public class VkundControllerUtil {
 	private static final Logger logger = Logger.getLogger(VkundControllerUtil.class.getName());
 	private UrlCgiProxyService cgiProxyService = null;
 
+	@Bean 
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
+	
 	
 	/**
 	 * Inject UrlCgiProxyService for http calls.
@@ -97,7 +110,7 @@ public class VkundControllerUtil {
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
 		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		logger.info("jsonPayload="+jsonPayload);
+//		logger.info("jsonPayload="+jsonPayload);
 
 		JsonDtoContainer<IEnhet> container =  (JsonDtoContainer<IEnhet> )jsonReader.get(jsonPayload);
 		if (container != null) {
@@ -147,4 +160,57 @@ public class VkundControllerUtil {
 		return caller.startsWith("svew") || caller.startsWith("sviw");
 	}	
 
+	/**
+	 * Get info if it is allowed to create invoice customer
+	 * 
+	 * @param appUser
+	 * @return J if ok, N if not
+	 */
+	public String getInvoiceCustomerAllowed(SystemaWebUser appUser) {
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_INVOICE_VALID_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser.getUser());
+		logger.info("Full url: " + BASE_URL +urlRequestParams.toString());
+
+		ResponseEntity<String> response = restTemplate().exchange(BASE_URL + urlRequestParams.toString(),
+				HttpMethod.GET, null, String.class);
+
+		if (response != null) {
+			return response.getBody();
+		} else {
+			return null;
+		}
+	
+	}
+	
+	/**
+	 * Check if customer is address customer, if not meaning invoice customer.
+	 * 
+	 * @param appUser
+	 * @param kundnr
+	 * @return J if is address customer, N if not.
+	 */
+	public String isAdressCustomer(SystemaWebUser appUser, int kundnr) {
+		FirkuDao firkuDao = getFirku(appUser);
+
+		if(kundnr >= firkuDao.getFikufr() && kundnr <= firkuDao.getFikuti()) {
+			return "J";
+		} else {
+			return "N";
+		}
+
+	}
+	
+	private FirkuDao getFirku(SystemaWebUser appUser) {
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser.getUser());
+		logger.info("Full url: " + BASE_URL +urlRequestParams.toString());
+
+		ResponseEntity<FirkuDao> response = restTemplate().exchange(BASE_URL + urlRequestParams.toString(),
+				HttpMethod.GET, null, FirkuDao.class);
+
+		return response.getBody();
+	}	
+	
 }

@@ -20,6 +20,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.systema.jservices.common.elma.entities.Entry;
@@ -53,8 +54,9 @@ public class MainMaintenanceCundfKundeController {
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
-	//private VkundControllerUtil util = null;
 	
+	@Autowired
+	VkundControllerUtil vkundControllerUtil;	
 
 	@RequestMapping(value="mainmaintenancecundf_kunde_edit.do", method={RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mainmaintenancecundf_vkund_edit(@ModelAttribute ("record") JsonMaintMainCundfRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
@@ -124,7 +126,9 @@ public class MainMaintenanceCundfKundeController {
 			model.put("action", MainMaintenanceConstants.ACTION_UPDATE); //User can change data
 			model.put("kundnr", kundeSessionParams.getKundnr());
 			model.put("firma", kundeSessionParams.getFirma());
-
+			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
+			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
+			
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
 			
@@ -178,7 +182,7 @@ public class MainMaintenanceCundfKundeController {
 
 		List<JsonMaintMainCundfRecord> list = new ArrayList();
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
-		logger.info("jsonPayload=" + jsonPayload);
+//		logger.info("jsonPayload=" + jsonPayload);
 		if (jsonPayload != null) {
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.doUpdate(jsonPayload);
 			if (container != null) {
@@ -214,6 +218,9 @@ public class MainMaintenanceCundfKundeController {
 	
 	@Autowired
 	EntryRequest entryRequest;	
+	
+	@Autowired
+	RestTemplate restTemplate;
 	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")

@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,6 +22,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikContainer;
@@ -99,6 +99,9 @@ public class MainMaintenanceCundfVkundController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private boolean KOFAST_NO_ID = true; 
 	
+	@Autowired
+	VkundControllerUtil vkundControllerUtil;
+	
 	@RequestMapping(value="mainmaintenancecundf_vkund.do", method={RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mainmaintenancecundf_vkund(HttpSession session, HttpServletRequest request){
 		ModelAndView successView = new ModelAndView("mainmaintenancecundf_vkund");
@@ -107,7 +110,7 @@ public class MainMaintenanceCundfVkundController {
 		String kundnr = request.getParameter("searchKundnr");
 		String knavn = request.getParameter("searchKnavn");
 		String firma = request.getParameter("firma");
-		
+	
 		Map model = new HashMap();
 		if (appUser == null) {
 			return this.loginView;
@@ -170,9 +173,10 @@ public class MainMaintenanceCundfVkundController {
 				model.put("kundnr", kundnr);
 				model.put("firma", firma);
 				model.put("updateId", updateId);
+				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
 
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
-
+				model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
 			} else if (MainMaintenanceConstants.ACTION_DELETE.equals(action)) { // Delete from list
 				dmlRetval = deleteRecord(appUser.getUser(), kundnr, firma, MainMaintenanceConstants.MODE_DELETE, errMsg);
 				session.removeAttribute(MainMaintenanceConstants.KUNDE_SESSION_PARAMS);
@@ -1359,6 +1363,9 @@ public class MainMaintenanceCundfVkundController {
 	
 	@Autowired
 	EntryRequest entryRequest;		
+	
+	@Autowired
+	RestTemplate restTemplate;
 	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")
