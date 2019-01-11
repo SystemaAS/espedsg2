@@ -106,9 +106,9 @@
 											<td colspan="8" class="text14MediumBlue" >
 											<span title="fifirm">Firmakode&nbsp;</span>&nbsp;&nbsp;<input name="fifirm" id="fifirm" tabindex=-1 readonly class="inputTextReadOnly" type="text" size="10" value="${model.record.fifirm}"/>
 											&nbsp;&nbsp;&nbsp;
-											<span  title="fift">Firmanavn&nbsp;</span>&nbsp;&nbsp;<input name="fift" id="fift" tabindex=-1 readonly class="inputTextReadOnly" type="text" size="40" value="${model.record.fift}"/>
+											<span  title="fift">Firmanavn&nbsp;</span>&nbsp;&nbsp;<input name="fift" id="fift" class="inputTextMediumBlue" type="text" size="40" value="${model.record.fift}"/>
 											&nbsp;&nbsp;&nbsp;
-											<span  title="fikrtn">Kortnavn&nbsp;</span>&nbsp;&nbsp;<input tabindex=-1 readonly class="inputTextReadOnly" type="text" size="30" value="${model.record.fikrtn}"/>
+											<span  title="fikrtn">Kortnavn&nbsp;</span>&nbsp;&nbsp;<input name="fikrtn" id="fikrtn" class="inputTextMediumBlue" type="text" size="30" value="${model.record.fikrtn}"/>
 											
 											</td>
 										</tr>
@@ -749,6 +749,21 @@
 																</td>
 													
 									 						</tr>
+									 						<tr>
+									 							<td class="text14"><img onMouseOver="showPop('fikufn_info');" onMouseOut="hidePop('fikufn_info');" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+																	<span title="fikune">Fakturakunder neste nummer for tildeling</span>
+																	<div class="text12" style="position: relative;" align="left">
+																	<span style="position:absolute;top:2px" id="fikufn_info" class="popupWithInputText text12"  >	
+													           			Utfylt serie betyr tillat oppretting i Sysped
+																	</span>
+																	</div>
+																</td>
+																<td class="text14">
+																	<input onKeyPress="return numberKey(event)" align="right" type="text" class="inputTextMediumBlue" name="fikufn" id="fikufn" size="10" maxlength="8" value="${model.record.fikufn}"/>	
+																</td>
+													
+									 						</tr>
+
 															<tr height="25"><td></td></tr>
 														</table>
 													</td>
