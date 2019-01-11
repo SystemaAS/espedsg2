@@ -122,6 +122,8 @@ public class MainMaintenanceCundfVkundController {
 				list = this.fetchList(appUser.getUser(), kundnr, firma);
 			}else if( (knavn!=null && !"".equals(knavn)) ){
 				list = this.fetchList(appUser.getUser(), null, null, knavn);
+			} else { //fetch first rows for nice ux
+				list = this.fetchList(appUser.getUser(), null, null);
 			}
 
 			model.put("dbTable", dbTable);
