@@ -725,7 +725,6 @@
 				   						<tr height="3"><td></td></tr>
 				   						<tr>
 											<td class="text14" align="left" >
-												
 												<c:choose>
 												<c:when test="${record.hepk1 == 'J'}">
 													<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
@@ -733,7 +732,7 @@
 												<c:otherwise>
 													&nbsp;<img onMouseOver="showPop('fbType_info${counter.count}');" onMouseOut="hidePop('fbType_info${counter.count}');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
 									 				<div class="text11" style="position: relative; display:inline;" align="left">
-														<span style="position:absolute; left:0px; top:0px;width:200px;" id="fbType_info" class="popupWithInputText"  >
+														<span style="position:absolute; left:0px; top:0px;width:200px;" id="fbType_info${counter.count}" class="popupWithInputText"  >
 															<font class="text11">
 										           			<b style="color:red;">Direct print out not available</b>
 										           			<div>
