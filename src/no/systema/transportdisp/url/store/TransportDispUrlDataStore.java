@@ -311,5 +311,11 @@ public final class TransportDispUrlDataStore {
 	//http://gw.systema.no/sycgip/TJFA12d.pgm?user=JOVO&avd=80&opd=0201571&tur=
 	static public String TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJFA12d.pgm";
 	
+	//----------------------------------------------------------------
+	//PRINT FETCH/UPDATE/CREATE/DELETE Fellesutskrift general
+	//----------------------------------------------------------------
+	//http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=OSCAR&wsavd=1&wssg=OT ... etc
+	static public String TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TSYFAPR1.pgm";
+			
 	
 }
