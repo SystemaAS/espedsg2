@@ -49,6 +49,9 @@ http://www.springframework.org/schema/context/spring-context-4.0.xsd">
 	<bean id="transportDispWorkflowShippingPlanningOrdersListService" class="no.systema.transportdisp.service.TransportDispWorkflowShippingPlanningOrdersListServiceImpl"/>
 	<bean id="transportDispWorkflowSpecificOrderService" class="no.systema.transportdisp.service.TransportDispWorkflowSpecificOrderServiceImpl"/>	
 	<bean id="transportDispWorkflowBudgetService" class="no.systema.transportdisp.service.TransportDispWorkflowBudgetServiceImpl"/>	
+	<bean id="TransportDispWorkflowFellesutskriftService" class="no.systema.transportdisp.service.TransportDispWorkflowFellesutskriftServiceImpl"/>	
+	
+	
 	<!-- WRK.WITH TRIPS - Drop down bean --> 
     <bean id="transportDispDropDownListPopulationService" class="no.systema.transportdisp.service.html.dropdown.TransportDispDropDownListPopulationService"/>
     <!-- Post Update service-->
