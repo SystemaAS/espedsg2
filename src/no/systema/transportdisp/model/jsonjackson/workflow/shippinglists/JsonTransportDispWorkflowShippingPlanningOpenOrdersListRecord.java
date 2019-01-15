@@ -50,6 +50,8 @@ public class JsonTransportDispWorkflowShippingPlanningOpenOrdersListRecord exten
 	private String hesgm = null;
 	private String hedtmo = null;
 	private String heklmo = null;
+	private String hepk1 = null;
+	private String hepk7 = null;
 	
 	
 	/**

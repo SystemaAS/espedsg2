@@ -146,6 +146,13 @@ public class JsonTransportDispWorkflowListRecord extends JsonAbstractGrandFather
 	public void setTuao(String value) {  this.tuao = value; }
 	public String getTuao() { return this.tuao; }
 	
+	private String hepk1 = null;
+	public void setHepk1(String value) {  this.hepk1 = value; }
+	public String getHepk1() { return this.hepk1; }
+	
+	private String hepk7 = null;
+	public void setHepk7(String value) {  this.hepk7 = value; }
+	public String getHepk7() { return this.hepk7; }
 	
 	
 	/**
@@ -153,7 +160,6 @@ public class JsonTransportDispWorkflowListRecord extends JsonAbstractGrandFather
 	 * @return
 	 * @throws Exception
 	 */
-	
 	public List<Field> getFields() throws Exception{
 		Class cl = Class.forName(this.getClass().getCanonicalName());
 		Field[] fields = cl.getDeclaredFields();

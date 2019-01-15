@@ -858,11 +858,7 @@
 		  counterIndex = id.replace("alinkFFaktPdf","");
 		  renderFFakturor(counterIndex);
 	  });
-	  jq(".clazz_imgFFaktPdf").click(function() {
-		  var id = this.id;
-		  counterIndex = id.replace("imgFFaktPdf","");
-		  renderFFakturor(counterIndex);
-	  });
+	  
 	  
   });
   function renderFraktBrev(counterIndex){
@@ -871,9 +867,7 @@
   function renderCmrFraktBrev(counterIndex){
 	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
   } 
-  function renderFFakturor(counterIndex){
-	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
-  } 
+  
   //----------------------------
   //END Model dialog Print docs
   //----------------------------

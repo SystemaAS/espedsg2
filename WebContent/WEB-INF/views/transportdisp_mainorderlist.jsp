@@ -716,7 +716,27 @@
 				   						<tr height="3"><td></td></tr>
 				   						<tr>
 											<td class="text14" align="left" >
-												<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
+												
+												<c:choose>
+												<c:when test="${record.hepk1 == 'J'}">
+													<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
+												</c:when>
+												<c:otherwise>
+													&nbsp;<img onMouseOver="showPop('fbType_info${counter.count}');" onMouseOut="hidePop('fbType_info${counter.count}');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+									 				<div class="text11" style="position: relative; display:inline;" align="left">
+														<span style="position:absolute; left:0px; top:0px;width:200px;" id="fbType_info" class="popupWithInputText"  >
+															<font class="text11">
+										           			<b style="color:red;">Direct print out not available</b>
+										           			<div>
+										           			<p>Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+										           			
+										           			</div>
+									           			</font>
+														</span>
+													</div>
+												</c:otherwise>
+												</c:choose>
+												
 												<span class="clazz_alinkFraktbrevPdf" id="alinkFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
 											</td>	
 											<td class="text14" align="left" >	
@@ -738,9 +758,7 @@
 												<input type="checkbox" name="ffType${counter.count}" id="ffType${counter.count}" value="ff">
 												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
 											</td>
-											<td class="text14" align="left" >	
-												<img class="clazz_imgFFaktPdf" id="imgFFaktPdf${counter.count}" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
-											</td>
+											
 				   						</tr>
 				   						<tr height="15"><td></td></tr>
 										<tr>

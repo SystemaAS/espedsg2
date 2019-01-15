@@ -2920,12 +2920,29 @@
    						
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="fbType" id="fbType" value="fb">
+								<c:choose>
+								<c:when test="${model.record.hepk1 == 'J'}">
+									<input type="checkbox" name="fbType" id="fbType" value="fb">
+								</c:when>
+								<c:otherwise>
+									&nbsp;<img onMouseOver="showPop('fbType_info');" onMouseOut="hidePop('fbType_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+					 				<div class="text11" style="position: relative; display:inline;" align="left">
+										<span style="position:absolute; left:0px; top:0px;width:200px;" id="fbType_info" class="popupWithInputText"  >
+											<font class="text11">
+						           			<b style="color:red;">Direct print out not available</b>
+						           			<div>
+						           			<p>Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+						           			
+						           			</div>
+					           			</font>
+										</span>
+									</div>
+								</c:otherwise>
+								</c:choose>
 								<span id="alinkFraktbrevPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
 							</td>	
 							<td class="text14" align="left" >	
 								<img id="imgFraktbrevPdf" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
-								
 							</td>
    						</tr>
    						<tr>
@@ -2942,9 +2959,7 @@
 								<input type="checkbox" name="ffType" id="ffType" value="ff">
 								<span id="alinkFFaktPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
 							</td>
-							<td class="text14" align="left" >	
-								<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
-							</td>
+							
    						</tr>
    						<tr height="15"><td></td></tr>
 						<tr>

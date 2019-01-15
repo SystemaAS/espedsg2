@@ -617,9 +617,9 @@
 					 		<tr height="10"><td ></td></tr>
 					 		<tr>
 								<td colspan="2" valign="top">
-									<table style="width:49%" cellspacing="1" cellpadding="0">
+									<table style="width:51%" cellspacing="1" cellpadding="0">
 							 			<tr>
-								 			<td class="text14" nowrap>&nbsp;
+								 			<td class="text14" nowrap>
 									 			<font class="text14"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.dept"/></b>&nbsp;</font>
 									 			<c:choose>
 							 				    <c:when test="${not empty model.record.tupro}">
@@ -659,7 +659,7 @@
 									 			</div>
 									 			
 								 			</td>
-								 			<td class="text14" ><span title="turundJS"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>:</b></span>
+								 			<td nowrap class="text14" ><span title="turundJS"><b><spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>:</b></span>
 								 				<label id="turundJS" class="text14MediumBlue" >${model.record.turund}</label>
 								 			</td>
 					 						<td nowrap align="right">

@@ -40,6 +40,8 @@ public class JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord ex
 	private String trsdfk = null;
 	private String trsdtd = null;
 	private String trsdtk = null;
+	private String hepk1 = null;
+	private String hepk7 = null;
 	
 	
 	

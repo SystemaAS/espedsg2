@@ -52,9 +52,7 @@
 	  jq("#alinkFFaktPdf").click(function() {
 		  renderFFakturor();
 	  });
-	  jq("#imgFFaktPdf").click(function() {
-		  renderFFakturor();
-	  });
+	  
 	  //END PRINT
 	  
   });
@@ -65,9 +63,7 @@
   function renderCmrFraktBrev(){
 	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
-  function renderFFakturor(){
-	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
-  } 
+  
   
   //Global functions
   function g_getCurrentYearStr(){
