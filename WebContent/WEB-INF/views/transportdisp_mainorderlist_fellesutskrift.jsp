@@ -338,9 +338,7 @@
 									 				</table>
 									 			</td>
 									 			<td valign="bottom">
-									 				<%---TODO COVI after test on OPPDR.REG
 									 				<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.submit.save"/>'>
-									 				--%>
 									 			</td>
 									        </tr>
 									        

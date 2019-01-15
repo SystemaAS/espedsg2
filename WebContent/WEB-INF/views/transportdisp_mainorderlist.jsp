@@ -62,7 +62,7 @@
 				</c:when>
 				<c:otherwise>
 					<td width="18%" valign="bottom" class="tab" align="center" nowrap>
-						<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${model.avd}">
+						<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.avd}">
 							<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
 							<font class="tabLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 						</a>
@@ -70,14 +70,14 @@
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 						<%--<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=${searchFilter.tur}">--%>
-						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${model.avd}&tupro=">
+						<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=">
 							<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
 							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
 						</a>
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<a class="text14" onClick="setBlockUI(this);" href="transportdisp_mainorderlist_fellesutskrift.do?avd=${model.avd}&sign=${model.sign}" > 	
+						<a class="text14" onClick="setBlockUI(this);" href="transportdisp_mainorderlist_fellesutskrift.do?avd=${searchFilter.avd}&sign=${searchFilter.sign}" > 	
 							<img style="vertical-align:middle;" src="resources/images/printer2.png" width="12px" height="12px" border="0" alt="create new">
 							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.fellesutskrift.tab"/></font>
 						</a>
