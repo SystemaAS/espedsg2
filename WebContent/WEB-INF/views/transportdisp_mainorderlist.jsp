@@ -774,7 +774,6 @@
 												</c:otherwise>
 												</c:choose>
 												
-												
 												<span class="clazz_alinkCmrFraktbrevPdf" id="alinkCmrFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
 											</td>
 											<td class="text14" align="left" >	
