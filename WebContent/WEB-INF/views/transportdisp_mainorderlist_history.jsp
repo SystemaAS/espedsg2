@@ -31,9 +31,17 @@
 	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25"> 
-			<td width="20%" valign="bottom" class="tab" align="center" nowrap>
+			<td width="18%" valign="bottom" class="tab" align="center" nowrap>
 				<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
 				<font class="tabLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
+			</td>
+			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
+			<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
+				<a class="text14" onClick="setBlockUI(this);" href="transportdisp_mainorderlist_history_fellesutskrift.do?avd=${searchFilter.avd}&sign=${searchFilter.sign}" > 	
+					<img style="vertical-align:middle;" src="resources/images/printer2.png" width="12px" height="12px" border="0" alt="create new">
+					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.fellesutskrift.tab"/></font>
+				</a>
+				
 			</td>
 			<td width="80%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>	
 		</tr>

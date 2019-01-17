@@ -161,25 +161,9 @@ public class TransportDispPrintController {
 				//---------------------------
 				//get BASE URL = RPG-PROGRAM
 	            //---------------------------
-				String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
-				String urlRequestParamsKeys = "user=" + appUser.getUser();
-				String urlRequestParams = this.urlRequestParameterMapper.getUrlParameterValidString((recordToValidate));
-				//put the final valid param. string
-				urlRequestParams = urlRequestParamsKeys + urlRequestParams;
-				
-				logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-		    	logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
-		    	logger.info("URL PARAMS:" + urlRequestParams);
-		    	
-		    	
-		    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		    	//Debug --> 
-		    	logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
-		    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-		    	
-				if(jsonPayload!=null){
-					JsonTransportDispWorkflowFellesutskriftContainer container = this.transportDispWorkflowFellesutskriftService.getFellesutskriftContainer(jsonPayload);
-		    		//ok now with execution ...
+				JsonTransportDispWorkflowFellesutskriftContainer container = this.executeFellesutskrift(appUser, recordToValidate);
+				if(container!=null){
+					//ok now with execution ...
 					
 		    	}else{
 					logger.fatal("NO CONTENT on jsonPayload from URL... ??? <Null>");
@@ -198,6 +182,94 @@ public class TransportDispPrintController {
 			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 		}
 		return successView;
+	}
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_mainorderlist_history_fellesutskrift.do",  method={RequestMethod.GET, RequestMethod.POST })
+	public ModelAndView doFellesutskriftHistory(@ModelAttribute ("record") JsonTransportDispWorkflowFellesutskriftRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+		Map model = new HashMap();
+		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
+		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
+		ModelAndView successView = new ModelAndView("transportdisp_mainorderlist_history_fellesutskrift");
+		logger.info("Method: doFellesutskrift [RequestMapping-->transportdisp_mainorderlist_history_fellesutskrift.do]");
+		
+		String avd = request.getParameter("avd");
+		String sign = request.getParameter("sign");
+		String opd = request.getParameter("opd");
+		String action = request.getParameter("action");
+		model.put("avd", avd);
+		model.put("sign", sign);
+		
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			
+			if(TransportDispConstants.ACTION_EXECUTE.equals(action)){
+				//---------------------------
+				//get BASE URL = RPG-PROGRAM
+	            //---------------------------
+				JsonTransportDispWorkflowFellesutskriftContainer container = this.executeFellesutskrift(appUser, recordToValidate);
+				if(container!=null){
+					//ok now with execution ...
+					
+		    	}else{
+					logger.fatal("NO CONTENT on jsonPayload from URL... ??? <Null>");
+					return loginView;
+				}
+			}else{
+				recordToValidate.setWsavd(avd);
+				recordToValidate.setWssg(sign);
+				recordToValidate.setWsdt2(this.dateTimeMgr.getNewDateFromNow("ddMMyy", -7));
+			}
+			
+			model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate);
+			this.setCodeDropDownMgr(appUser, model);
+			//here we prepare for the update
+			model.put("action", TransportDispConstants.ACTION_EXECUTE);
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+		}
+		return successView;
+	}
+	/**
+	 * 
+	 * @param appUser
+	 * @return
+	 */
+	private JsonTransportDispWorkflowFellesutskriftContainer executeFellesutskrift(SystemaWebUser appUser, JsonTransportDispWorkflowFellesutskriftRecord recordToValidate){
+		//---------------------------
+		//get BASE URL = RPG-PROGRAM
+        //---------------------------
+		String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
+		String urlRequestParamsKeys = "user=" + appUser.getUser();
+		String urlRequestParams = this.urlRequestParameterMapper.getUrlParameterValidString((recordToValidate));
+		//put the final valid param. string
+		urlRequestParams = urlRequestParamsKeys + urlRequestParams;
+		
+		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+    	logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
+    	logger.info("URL PARAMS:" + urlRequestParams);
+    	
+    	
+    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+    	//Debug --> 
+    	logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+    	JsonTransportDispWorkflowFellesutskriftContainer container = null;
+		if(jsonPayload!=null){
+			container = this.transportDispWorkflowFellesutskriftService.getFellesutskriftContainer(jsonPayload);
+    		//ok now with execution ...
+			
+    	}
+		
+		return container;
 	}
 	
 	/**

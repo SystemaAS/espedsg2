@@ -6,7 +6,7 @@
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
-	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist_fellesutskrift.js?ver=${user.versionEspedsg}"></SCRIPT>
+	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist_history_fellesutskrift.js?ver=${user.versionEspedsg}"></SCRIPT>
 	<%--<SCRIPT type="text/javascript" src="resources/js/trorFkeys_landimport.js?ver=${user.versionEspedsg}"></SCRIPT> --%>
 	
 	<%-- for dialog popup --%>
@@ -26,18 +26,10 @@
 	<table width="100%"  class="text14" cellspacing="0" border="0" cellpadding="0">
 		<tr height="2"><td></td></tr>
 		<tr height="25">
-			<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
-				<a id="alinkOrderListId" style="display:block;" id="ordersOpen" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.wssavd}">
-					<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
-				</a>
-			</td>
-			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 			<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
-				<%--<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.avd}&tupro=${searchFilter.tur}">--%>
-				<a id="alinkTripListId" style="display:block;" href="transportdisp_workflow_getTrip.do?user=${user.user}&tuavd=${searchFilter.wssavd}&tupro=">
-					<img style="vertical-align:bottom;" src="resources/images/list.gif" border="0" alt="general list">
-					<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.tab"/></font>&nbsp;<font class="text10Orange">F9</font>
+				<a id="alinkOrderListId" style="display:block;" id="ordersOpen" href="transportdisp_mainorderlist_history.do?action=doFind">
+					<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
+					<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>
 				</a>
 			</td>
 			<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -45,7 +37,7 @@
 				<img style="vertical-align:middle;" src="resources/images/printer2.png" width="12px" height="12px" border="0" alt="fellesutskrift">
 				<font class="tabLink"><spring:message code="systema.transportdisp.fellesutskrift.tab"/></font>
 			</td>
-			<td width="70%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
+			<td width="85%" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 
 		 		
 		</tr>
@@ -118,7 +110,7 @@
 	
 	<tr>
 		<td>
-			<form action="transportdisp_mainorderlist_fellesutskrift.do" name="transportDispFellesutskriftForm" id="transportDispFellesutskriftForm" method="post">
+			<form action="transportdisp_mainorderlist_history_fellesutskrift.do" name="transportDispFellesutskriftForm" id="transportDispFellesutskriftForm" method="post">
 			<%-- this table wrapper is necessary to apply the css class with the thin border --%>
 			<table style="width:100%" id="wrapperTable" class="tabThinBorderWhite" cellspacing="0" border="0" cellpadding="0">
 			<%--for F-Keys shortcuts. Used only in trorFkeys_...js 
