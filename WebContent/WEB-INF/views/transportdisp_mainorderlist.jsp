@@ -754,7 +754,27 @@
 				   						</tr>
 				   						<tr>
 											<td class="text14" align="left" >
-												<input type="checkbox" name="cmrType${counter.count}" id="cmrType${counter.count}" value="cmr">
+												<c:choose>
+												<c:when test="${record.hepk7 == 'C'}">
+													<input type="checkbox" name="cmrType${counter.count}" id="cmrType${counter.count}" value="cmr">
+												</c:when>
+												<c:otherwise>
+													&nbsp;<img onMouseOver="showPop('cmrType_info${counter.count}');" onMouseOut="hidePop('cmrType_info${counter.count}');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+									 				<div class="text11" style="position: relative; display:inline;" align="left">
+														<span style="position:absolute; left:0px; top:0px;width:200px;" id="cmrType_info${counter.count}" class="popupWithInputText"  >
+															<font class="text11">
+										           			<b style="color:red;">Direct print out not available</b>
+										           			<div>
+										           			<p>CMR-Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+										           			
+										           			</div>
+									           			</font>
+														</span>
+													</div>
+												</c:otherwise>
+												</c:choose>
+												
+												
 												<span class="clazz_alinkCmrFraktbrevPdf" id="alinkCmrFraktbrevPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
 											</td>
 											<td class="text14" align="left" >	

@@ -1559,7 +1559,12 @@
 							 			<td class="text14"><input type="text" class="inputTextMediumBlueUPPERCASE" size="1" maxlength="1" name="hepk6" id="hepk6" value="${model.record.hepk6}"></td>
 							 			<td class="text14">&nbsp;
 							 				<span title="hepk7"><spring:message code="systema.transportdisp.orders.form.update.label.billOfLading"/></span></td>
-							 			<td class="text14"><input type="text" class="inputTextMediumBlueUPPERCASE" size="1" maxlength="1" name="hepk7" id="hepk7" value="${model.record.hepk7}"></td>
+							 			<td class="text14">
+							 				<%-- <input type="text" class="inputTextMediumBlueUPPERCASE" size="1" maxlength="1" name="hepk7" id="hepk7" value="${model.record.hepk7}"> --%>
+							 				<input type="checkbox" id="hepk7" name="hepk7" value="C" <c:if test="${model.record.hepk7 == 'C'}"> checked </c:if>>
+								 			<input readonly type="text" class="inputText11ReadOnly" size="1" maxlength="1" name="hepk7RO" id="hepk7RO" value="${model.record.hepk7}">
+								 				
+							 			</td>
 							 			
 							 			<td style="width:50px">&nbsp;</td>
 							 			<%-------------------------- --%>
@@ -1593,6 +1598,7 @@
 								 			<td nowrap class="text14">
 								 				<input type="checkbox" id="hepk1" name="hepk1" value="J" <c:if test="${model.record.hepk1 == 'J'}"> checked </c:if>>
 								 				<input readonly type="text" class="inputText11ReadOnly" size="1" maxlength="1" name="hepk1RO" id="hepk1RO" value="${model.record.hepk1}">
+								 				&nbsp;&nbsp;&nbsp;
 								 			</td>
 							 			</c:if>
 							 			
@@ -2947,7 +2953,27 @@
    						</tr>
    						<tr>
 							<td class="text14" align="left" >
-								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">
+								<c:choose>
+								<c:when test="${model.record.hepk7 == 'C'}">
+									<input type="checkbox" name="cmrType" id="cmrType" value="cmr">
+								</c:when>
+								<c:otherwise>
+									&nbsp;<img onMouseOver="showPop('cmrType_info');" onMouseOut="hidePop('cmrType_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+					 				<div class="text11" style="position: relative; display:inline;" align="left">
+										<span style="position:absolute; left:0px; top:0px;width:200px;" id="cmrType_info" class="popupWithInputText"  >
+											<font class="text11">
+						           			<b style="color:red;">Direct print out not available</b>
+						           			<div>
+						           			<p>CMR-Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+						           			
+						           			</div>
+					           			</font>
+										</span>
+									</div>
+								</c:otherwise>
+								</c:choose>
+								
+								
 								<span id="alinkCmrFraktbrevPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
 							</td>
 							<td class="text14" align="left" >	
