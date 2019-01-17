@@ -66,7 +66,6 @@ public class MainMaintenanceCundfKundeController {
 		Map model = new HashMap();
 		String action = request.getParameter("action");
 		StringBuffer errMsg = new StringBuffer();
-		int dmlRetval = 0;
 		JsonMaintMainCundfRecord savedRecord = null;
 
 		if (appUser == null) {
@@ -82,6 +81,9 @@ public class MainMaintenanceCundfKundeController {
 				if (bindingResult.hasErrors()) {
 					logger.info("[ERROR Validation] Record does not validate)");
 					model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
+					
+					action = MainMaintenanceConstants.ACTION_CREATE;
+					 
 				} else {
 					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_ADD, errMsg);
 					
@@ -89,6 +91,9 @@ public class MainMaintenanceCundfKundeController {
 						logger.info("[ERROR Validation] Record does not validate)");
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
+						
+						action = MainMaintenanceConstants.ACTION_CREATE;
+						
 					} else {
 						kundeSessionParams.setKundnr(savedRecord.getKundnr());
 						kundeSessionParams.setFirma(savedRecord.getFirma());
@@ -97,6 +102,9 @@ public class MainMaintenanceCundfKundeController {
 
 						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
+						
+						action = MainMaintenanceConstants.ACTION_UPDATE;
+						
 					}
 				}
 
@@ -116,6 +124,8 @@ public class MainMaintenanceCundfKundeController {
 					} else {
 						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
+						model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
+
 					}
 				}
 			} else { // Fetch
@@ -123,11 +133,10 @@ public class MainMaintenanceCundfKundeController {
 				model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 			}
 
-			model.put("action", MainMaintenanceConstants.ACTION_UPDATE); //User can change data
+			model.put("action", action);
 			model.put("kundnr", kundeSessionParams.getKundnr());
 			model.put("firma", kundeSessionParams.getFirma());
 			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
-			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
 			
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
@@ -182,7 +191,7 @@ public class MainMaintenanceCundfKundeController {
 
 		List<JsonMaintMainCundfRecord> list = new ArrayList();
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
-//		logger.info("jsonPayload=" + jsonPayload);
+		logger.info("jsonPayload=" + jsonPayload);
 		if (jsonPayload != null) {
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.doUpdate(jsonPayload);
 			if (container != null) {
