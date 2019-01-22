@@ -143,7 +143,8 @@
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype"/>:
 											</td>
 											<td>
-												<select name="kundetype" id="kundetype" class="inputTextMediumBlueMandatoryField">
+												<select required name="kundetype" id="kundetype" class="inputTextMediumBlueMandatoryField">
+								  					<option value="">-velg-</option>
 								  					<option value="A">Adressekunde</option>
 			 					  					<option value="F">Fakturakunde</option>
 								  				</select>
