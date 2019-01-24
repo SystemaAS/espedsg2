@@ -404,9 +404,28 @@ public class DashboardController {
     	for(JsonFirmLoginRecord record : firmContainer.getList()){
     		companyCode = record.getFifirm();
     	}
-    	logger.info(companyCode);
+    	logger.info("Company-code(FIRM):" + companyCode);
 	
     	return companyCode;
+	}
+	/**
+	 * 
+	 * @return
+	 */
+	private String getTradevisionFlagForLogin(){
+		String tradevisionFlag = null;
+		
+		String FIRM_URL = MainUrlDataStore.SYSTEMA_WEB_FIRMLOGIN_URL;
+    	String jsonFirmPayload = this.urlCgiProxyService.getJsonContent(FIRM_URL);
+    	logger.info(FIRM_URL);
+    	logger.info(jsonFirmPayload);
+    	JsonFirmLoginContainer firmContainer = this.firmLoginService.getContainer(jsonFirmPayload);
+    	for(JsonFirmLoginRecord record : firmContainer.getList()){
+    		tradevisionFlag = record.getFitdvi();
+    	}
+    	logger.info("Tradevision-flag(FIRM):" + tradevisionFlag);
+	
+    	return tradevisionFlag;
 	}
 	/**
 	 * This is the only place in which the jsonUserContainer lends over its values to the global SystemWebUser object
@@ -425,6 +444,7 @@ public class DashboardController {
 		appUser.setUserName(jsonSystemaUserContainer.getUserName());
 		appUser.setCompanyCode(companyCode);//fifirm in firm
 		appUser.setFallbackCompanyCode(this.getCompanyCodeForLogin()); //as a fallback needed in espedsg use cases
+		appUser.setTradevisionFlag(this.getTradevisionFlagForLogin());
 		appUser.setUsrLang(jsonSystemaUserContainer.getUsrLang());
 		appUser.setUserAS400(jsonSystemaUserContainer.getUsrAS400());
 		appUser.setIntern(jsonSystemaUserContainer.getIntern());
