@@ -803,7 +803,12 @@
 	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
   }
   function renderCmrFraktBrev(counterIndex){
-	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+	var userIP = jq("#userHttpJQueryDocRoot").val().replace("http://", "");
+	var link = jq("#userHttpJQueryDocRoot").val() + '/sycgip/esop11cm.pgm?user=' + jq("#applicationUser").val() + '&curtur=' + '&UserIP=' + userIP + '&avd=' + jq("#avd" + counterIndex).val() + '&opd=' + jq("#opd" + counterIndex).val();
+	console.log("pgm:" + link);
+	window.open(link, "printDocWinCm", "top=300px,left=50px,height=800px,width=900px,scrollbars=no,status=no,location=no");    
+	
+	//window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
   } 
   
   //----------------------------

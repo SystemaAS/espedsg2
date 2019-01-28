@@ -61,7 +61,11 @@
 	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
   function renderCmrFraktBrev(){
-	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
+	  var userIP = jq("#userHttpJQueryDocRoot").val().replace("http://", "");
+	  var link = jq("#userHttpJQueryDocRoot").val() + '/sycgip/esop11cm.pgm?user=' + jq("#applicationUser").val() + '&curtur=' + '&UserIP=' + userIP + '&avd=' + jq("#wsavd").val() + '&opd=' + jq("#wsopd").val();
+	  console.log("pgm:" + link); 
+	  window.open(link, "printDocWinCm", "top=300px,left=50px,height=800px,width=900px,scrollbars=no,status=no,location=no");
+	  //window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#heavd').val() + '&wsopd=' + jq('#heopd').val(), '_blank');
   } 
   
   

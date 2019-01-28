@@ -93,6 +93,7 @@
 	</tr>
 	
 	<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
+	<input type="hidden" name="userHttpJQueryDocRoot" id="userHttpJQueryDocRoot" value='${user.httpJQueryDocRoot}'>
 	<input type="hidden" name="tripNr" id="tripNr" value='${searchFilter.tur}'>
 	<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.avd}'>
 	<input type="hidden" name="fkeysopd" id="fkeystur" value='${searchFilter.tur}'>

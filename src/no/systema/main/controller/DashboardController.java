@@ -497,7 +497,7 @@ public class DashboardController {
 		appUser.setHttpCgiRoot(AppConstants.HTTP_ROOT_CGI);
 		//get host root for docs (PDF,etc) where the call is done from outside the AS400 env. Usually from JQuery.
 		//this variable will be usually exactly the same as httpCgiRoot unless Systema's customer does have own customers outside the range of their internal IP
-		appUser.setHttpJQueryDocRoot(AppConstants.HTTP_ROOT_JQUERY_DOCS_ROOT);
+		appUser.setHttpJQueryDocRoot(AppConstants.HTTP_ROOT_JQUERY_DOCS_ROOT.trim());
 		
 		//CSS
 		appUser.setCssEspedsg(AppConstants.CSS_ESPEDSG);

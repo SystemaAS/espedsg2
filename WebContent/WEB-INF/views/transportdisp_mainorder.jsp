@@ -194,6 +194,7 @@
 							<td valign="top">
 							<form name="uploadFileForm" id="uploadFileForm" method="post" enctype="multipart/form-data">
 								<input type="hidden" name="applicationUserUpload" id="applicationUserUpload" value='${user.user}'>
+								<input type="hidden" name="userHttpJQueryDocRoot" id="userHttpJQueryDocRoot" value='${user.httpJQueryDocRoot}'>
 								<input type="hidden" name="wsavd" id="wsavd" value='${model.record.heavd}'>
 								<input type="hidden" name="wsopd" id="wsopd" value='${model.record.heopd}'>
 								<input type="hidden" name="userDate" id="userDate" value=''>
