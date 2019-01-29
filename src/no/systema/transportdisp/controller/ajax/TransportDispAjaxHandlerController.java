@@ -1740,11 +1740,13 @@ public class TransportDispAjaxHandlerController {
 			
 			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
 			if(strMgr.isNotNull(dto.getCmrType()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrType:"+ dto.getCmrType());}
+			if(strMgr.isNotNull(dto.getFfType()) && "ff".equals(dto.getFfType())) {logger.info("ffType:"+ dto.getFfType());}
 			if(strMgr.isNotNull(dto.getGodslistType()) && "gl".equals(dto.getFbType())) {logger.info("godslistType:"+ dto.getGodslistType());}
 			if(strMgr.isNotNull(dto.getLastlistType()) && "ll".equals(dto.getFbType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
 			//
 			if(strMgr.isNotNull(dto.getFbTypeOnList()) && "fb".equals(dto.getFbType())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
 			if(strMgr.isNotNull(dto.getCmrTypeOnList()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrTypeOnList:"+ dto.getCmrTypeOnList()); }
+			if(strMgr.isNotNull(dto.getFfTypeOnList()) && "ff".equals(dto.getFfType())) {logger.info("ffTypeOnList:"+ dto.getFfTypeOnList()); }
 			if(strMgr.isNotNull(dto.getGodslistTypeOnList()) && "gl".equals(dto.getFbType())) {logger.info("godslistTypeOnList:"+ dto.getGodslistTypeOnList()); }
 			if(strMgr.isNotNull(dto.getLastlistTypeOnList()) && "ll".equals(dto.getFbType())) {logger.info("lastlistTypeOnList:"+ dto.getLastlistTypeOnList()); }
 			
@@ -1755,6 +1757,10 @@ public class TransportDispAjaxHandlerController {
 			//Print CMR-fraktbrev
 			if(strMgr.isNotNull(dto.getCmrType()) || strMgr.isNotNull(dto.getCmrTypeOnList())){ 
 				list = this.printCmrFraktbrev(dto); 
+			}
+			//Print Ferdigmeldte fakt.
+			if(strMgr.isNotNull(dto.getFfType()) || strMgr.isNotNull(dto.getFfTypeOnList())){ 
+				list = this.printFFakt(dto); 
 			}
 			//Print Godslista
 			if(strMgr.isNotNull(dto.getGodslistType()) || strMgr.isNotNull(dto.getGodslistTypeOnList())){ 
@@ -1823,8 +1829,8 @@ public class TransportDispAjaxHandlerController {
 	   */
 	  private Collection printCmrFraktbrev(PrintFormObjectDto dto){
 		  logger.info("print CMR-fraktbrev ...");
-		  StringBuffer urlRequestParamsKeys = new StringBuffer();
 		  Collection<String> list = new ArrayList<String>();
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
 		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
 			 
 		 //check the parent caller for this print (ORDER or TRIP)
@@ -1867,51 +1873,59 @@ public class TransportDispAjaxHandlerController {
 	  }
 	  
 	  /**
+	   * Printdialog Per Ordre
+	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=128&wspro=&wssg=JOV&FFAK=J
+	   * Printdialog Alle på EN TUR:
+	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&FFAK=J
 	   * 
 	   * @param dto
 	   * @return
 	   */
 	  private Collection printFFakt(PrintFormObjectDto dto){
 		  logger.info("print ferdigmeld.fakt ...");
+		  Collection<String> list = new ArrayList<String>();
+		  
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
 		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
-		  logger.info("TODO");
 		  
-		 //check the parent caller for this print (ORDER or TRIP)
-		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
-			 //fill other params
-			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
-			 urlRequestParamsKeys.append("&opd=" + dto.getOpd());
-			 urlRequestParamsKeys.append("&tur=");
-		 }else{
-			//fill other params
-			 urlRequestParamsKeys.append("&avd=&opd=");
-			 urlRequestParamsKeys.append("&tur=" + dto.getTur());
-		 }
+		  //check the parent caller for this print (ORDER or TRIP)
+		  if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&wsopd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=");
+			 urlRequestParamsKeys.append("&FFAK=J");
+			 
+				 
+		  }else if (strMgr.isNotNull(dto.getTur())){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd() + "&wsopd=");
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
+			 urlRequestParamsKeys.append("&FFAK=J");
+			 	 
+		  }
+			 
 		  //-------------------------------------
 		  //get BASE URL = RPG-PROGRAM for PRINT
-          //-------------------------------------
-		 /*TODO
-			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
+		  //-------------------------------------
+		  String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
 			
-			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-	    	logger.info("URL: " + BASE_URL);
-	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
-	    	//--------------------------------------
-	    	//EXECUTE the Print (RPG program) here
-	    	//--------------------------------------
-	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
-			//Debug --> 
-	    	logger.info(jsonPayload);
-	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-	    	//END of PRINT here and now
-	    	logger.info("Method PRINT END");
-	    	*/
-		 
-	    	Collection<String> list = new ArrayList<String>();
-			list.add("dummy");
-			
-			return list;
+		  logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		  logger.info("URL: " + BASE_URL);
+		  logger.info("URL PARAMS: " + urlRequestParamsKeys);
+		  //--------------------------------------
+		  //EXECUTE the Print (RPG program) here
+		  //--------------------------------------
+		  String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+		  //Debug --> 
+		  logger.info(jsonPayload);
+		  logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		  //END of PRINT here and now
+		  logger.info("Method PRINT END");
+		  list.add("dummy");
+	
+			 
+		  return list;
 		  
 	  }
 	  

@@ -2984,7 +2984,7 @@
    						<tr>
 							<td class="text14" align="left" >
 								<input type="checkbox" name="ffType" id="ffType" value="ff">
-								<span id="alinkFFaktPdf" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
+								<span id="alinkFFaktPdf" >Ferdigmeldte-fakturaer</span>
 							</td>
 							
    						</tr>

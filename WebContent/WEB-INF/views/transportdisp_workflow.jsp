@@ -468,6 +468,12 @@
 												</td>	
 					   						</tr>
 					   						<tr>
+												<td colspan="2" class="text14" align="left" >
+													<input type="checkbox" name="ffType${counter.count}" id="ffType${counter.count}" value="ff">
+													Ferdigmeldte-fakturaer
+												</td>	
+					   						</tr>
+					   						<tr>
 												<td class="text14" align="left" >
 													<input type="checkbox" name="godslistType${counter.count}" id="godslistType${counter.count}" value="gl">
 													<span class="clazz_alinkGodslistePdf" id="alinkGodslistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Godsliste</span>
@@ -1744,6 +1750,12 @@
 							<td colspan="2" class="text14" align="left" >
 								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">
 								CMR-Fraktbrev
+							</td>	
+   						</tr>
+   						<tr>
+							<td colspan="2" class="text14" align="left" >
+								<input type="checkbox" name="ffType" id="ffType" value="ff">
+								Ferdigmeldte-fakturaer
 							</td>	
    						</tr>
    						<tr>

@@ -784,7 +784,7 @@
 				   						<tr>
 											<td class="text14" align="left" >
 												<input type="checkbox" name="ffType${counter.count}" id="ffType${counter.count}" value="ff">
-												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
+												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" >Ferdigmeldte-fakturaer</span>
 											</td>
 											
 				   						</tr>

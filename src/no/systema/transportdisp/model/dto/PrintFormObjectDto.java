@@ -23,6 +23,7 @@ public class PrintFormObjectDto   {
 	//
 	private String fbTypeOnList;
 	private String cmrTypeOnList;
+	private String ffTypeOnList;
 	private String godslistTypeOnList;
 	private String lastlistTypeOnList;
 	

@@ -1786,7 +1786,7 @@
 		  maxWidth:600,
 	      maxHeight: 600,
 	      width: 350,
-	      height: 250,
+	      height: 350,
 		  modal: true,
 		  dialogClass: 'print-dialog-class'
 			  
@@ -1806,7 +1806,8 @@
 			 id: "dialogSaveTU",	
 			 text: "Direkte til printer",
 			 click: function(){
-				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked') || jq("#cmrType").is(':checked')){
+				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked') || 
+				 			jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')){
 				 			doPrintDocuments();
 				 		}
 		 			}
@@ -1821,6 +1822,7 @@
 				 		jq('#lastlistType').prop('checked', false);
 				 		jq('#fbType').prop('checked', false);
 				 		jq('#cmrType').prop('checked', false);
+				 		jq('#ffType').prop('checked', false);
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");
@@ -1893,7 +1895,7 @@
 			  maxWidth:600,
 		      maxHeight: 600,
 		      width: 350,
-		      height: 250,
+		      height: 350,
 			  modal: true,
 			  dialogClass: 'print-dialog-class'
 		});
@@ -1916,7 +1918,7 @@
 				 text: "Direkte til printer",
 				 click: function(){
 					 		if(jq("#godslistType"+counterIndex).is(':checked') || jq("#lastlistType"+counterIndex).is(':checked') || jq("#fbType"+counterIndex).is(':checked') ||
-					 				jq("#cmrType"+counterIndex).is(':checked')){
+					 				jq("#cmrType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
 					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocumentsFromList(counterIndex);
 					 		}
@@ -1929,6 +1931,7 @@
 					 		//back to initial state of form elements on modal dialog
 					 		jq("#fbType"+counterIndex).prop('checked', false);
 					 		jq("#cmrType"+counterIndex).prop('checked', false);
+					 		jq("#ffType"+counterIndex).prop('checked', false);
 				 			jq("#godslistType"+counterIndex).prop('checked', false);
 					 		jq("#lastlistType"+counterIndex).prop('checked', false);
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
@@ -1974,6 +1977,9 @@
 	  	}
 	  	if(jq("#cmrType"+counterIndex).is(':checked')){
 	  		form.append("cmrTypeOnList", jq('#cmrType'+counterIndex).val());
+	  	}
+	  	if(jq("#ffType"+counterIndex).is(':checked')){
+	  		form.append("ffTypeOnList", jq('#ffType'+counterIndex).val());
 	  	}
 	  	if(jq("#godslistType"+counterIndex).is(':checked')){
 	  		form.append("godslistTypeOnList", jq('#godslistType'+counterIndex).val());
