@@ -1687,7 +1687,7 @@ public class TransportDispAjaxHandlerController {
 				 return result;
 			}
 		/**
-		 * 
+		 * Main gate in order to print to the system printer directly ...
 		 * @param request
 		 * @param bindingResult
 		 * @return
@@ -1698,27 +1698,32 @@ public class TransportDispAjaxHandlerController {
 			logger.info("Inside: printDocuments");
 			
 			logger.info("appUser:" + dto.getApplicationUser());
+			logger.info("sign:" + dto.getSign());
 			logger.info("avd:" + dto.getAvd());
 			logger.info("opd:" + dto.getOpd());
 			logger.info("tur:" + dto.getTur());
 			//
-			logger.info(dto.getFbType());
-			logger.info(dto.getCmrType());
-			logger.info(dto.getFfType());
-			
+			logger.info("fbType:" + dto.getFbType());
+			logger.info("cmrType:" + dto.getCmrType());
+			logger.info("ffType:" + dto.getFfType());
 			
 			//Print fraktbrev
-			if(strMgr.isNotNull(dto.getFbType())){list = this.printFraktbrev(dto); }
-				
+			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())){list = this.printFraktbrev(dto); }
 			//Print CMR
-			if(strMgr.isNotNull(dto.getCmrType())){ list = this.printCmrFraktbrev(dto); }
+			if(strMgr.isNotNull(dto.getCmrType()) && "cmr".equals(dto.getCmrType())){ list = this.printCmrFraktbrev(dto); }
 		    //Print FFakturor
-			if(strMgr.isNotNull(dto.getFfType())){ list = this.printFFakt(dto); }
+			if(strMgr.isNotNull(dto.getFfType()) && "ff".equals(dto.getFfType())){ list = this.printFFakt(dto); }
 			
 			return list;
 			  
 		}
 		
+		/**
+		 * 
+		 * @param dto
+		 * @param bindingResult
+		 * @return
+		 */
 		@RequestMapping(path="/printDocumentsTrip_TransportDisp.do", method = RequestMethod.POST)
 		public Collection<String> printDocumentsTrip(@ModelAttribute PrintFormObjectDto dto, BindingResult bindingResult ){
 			Collection list = new ArrayList();
@@ -1733,13 +1738,13 @@ public class TransportDispAjaxHandlerController {
 			logger.info("tur:" + dto.getTur());
 			//
 			
-			if(strMgr.isNotNull(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
-			if(strMgr.isNotNull(dto.getGodslistType())) {logger.info("godslistType:"+ dto.getGodslistType());}
-			if(strMgr.isNotNull(dto.getLastlistType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
+			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
+			if(strMgr.isNotNull(dto.getGodslistType()) && "gl".equals(dto.getFbType())) {logger.info("godslistType:"+ dto.getGodslistType());}
+			if(strMgr.isNotNull(dto.getLastlistType()) && "ll".equals(dto.getFbType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
 			//
-			if(strMgr.isNotNull(dto.getFbTypeOnList())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
-			if(strMgr.isNotNull(dto.getGodslistTypeOnList())) {logger.info("godslistTypeOnList:"+ dto.getGodslistTypeOnList()); }
-			if(strMgr.isNotNull(dto.getLastlistTypeOnList())) {logger.info("lastlistTypeOnList:"+ dto.getLastlistTypeOnList()); }
+			if(strMgr.isNotNull(dto.getFbTypeOnList()) && "fb".equals(dto.getFbType())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
+			if(strMgr.isNotNull(dto.getGodslistTypeOnList()) && "gl".equals(dto.getFbType())) {logger.info("godslistTypeOnList:"+ dto.getGodslistTypeOnList()); }
+			if(strMgr.isNotNull(dto.getLastlistTypeOnList()) && "ll".equals(dto.getFbType())) {logger.info("lastlistTypeOnList:"+ dto.getLastlistTypeOnList()); }
 			
 			//Print fraktbrev
 			if(strMgr.isNotNull(dto.getFbType()) || strMgr.isNotNull(dto.getFbTypeOnList())){ 
@@ -1804,52 +1809,48 @@ public class TransportDispAjaxHandlerController {
 			return list;
 		  
 	  }
+	  
 	  /**
-	   * 
+	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=113&wspro=&jbk=J&wssg=JOV&cm=J
+	   * @param appUser
 	   * @param dto
 	   * @return
 	   */
 	  private Collection printCmrFraktbrev(PrintFormObjectDto dto){
 		  logger.info("print CMR-fraktbrev ...");
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
-		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
-		  logger.info("TODO");
+		  Collection<String> list = new ArrayList<String>();
 		  
 		 //check the parent caller for this print (ORDER or TRIP)
 		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
-			 //fill other params
-			 urlRequestParamsKeys.append("&avd=" + dto.getAvd());
-			 urlRequestParamsKeys.append("&opd=" + dto.getOpd());
-			 urlRequestParamsKeys.append("&tur=");
-		 }else{
-			//fill other params
-			 urlRequestParamsKeys.append("&avd=&opd=");
-			 urlRequestParamsKeys.append("&tur=" + dto.getTur());
-		 }
-		  //-------------------------------------
-		  //get BASE URL = RPG-PROGRAM for PRINT
-          //-------------------------------------
-		 /*TODO
-			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
-			
-			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-	    	logger.info("URL: " + BASE_URL);
-	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
-	    	//--------------------------------------
-	    	//EXECUTE the Print (RPG program) here
-	    	//--------------------------------------
-	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
-			//Debug --> 
-	    	logger.info(jsonPayload);
-	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-	    	//END of PRINT here and now
-	    	logger.info("Method PRINT END");
-	    	*/
+			 urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&wsopd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=&jbk=J&cm=J");
+			 
 		 
-	    	Collection<String> list = new ArrayList<String>();
-			list.add("dummy");
-			
-			return list;
+			 //-------------------------------------
+			 //get BASE URL = RPG-PROGRAM for PRINT
+			 //-------------------------------------
+			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
+				
+			 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+			 logger.info("URL: " + BASE_URL);
+			 logger.info("URL PARAMS: " + urlRequestParamsKeys);
+			 //--------------------------------------
+			 //EXECUTE the Print (RPG program) here
+			 //--------------------------------------
+			 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+			 //Debug --> 
+			 logger.info(jsonPayload);
+			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+			 //END of PRINT here and now
+			 logger.info("Method PRINT END");
+			 list.add("dummy");
+		 }
+		 
+		 return list;
 		  
 	  }
 	  

@@ -2957,7 +2957,7 @@
 			 id: "dialogSaveTU",	
 			 text: "Direkte til printer",
 			 click: function(){
-				 		if(jq("#fbType").is(':checked') || jq("#cmType").is(':checked') || jq("#ffType").is(':checked')){
+				 		if(jq("#fbType").is(':checked') || jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')){
 				 			//print directly to system printer (AS400-printer)
 				 			doPrintDocuments();
 				 		}
@@ -2993,6 +2993,18 @@
 	  	//add values to form since we do not combine form data and other data in the same ajax call.
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	form.append("sign", jq('#hesg').val());
+	  	//
+	  	if(jq("#fbType").is(':checked')){
+	  		form.append("fbType", jq('#fbType').val());
+	  	}
+	  	if(jq("#cmrType"+counterIndex).is(':checked')){
+	  		form.append("cmrType", jq('#cmrType').val());
+	  	}
+	  	if(jq("#ffType"+counterIndex).is(':checked')){
+	  		form.append("ffType", jq('#ffType').val());
+	  	}
+	  	
 	  	var payload = jq('printForm').serialize();
 	  	
 	    jq.ajax({

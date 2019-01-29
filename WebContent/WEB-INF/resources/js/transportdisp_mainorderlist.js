@@ -688,7 +688,7 @@
 				 id: "dialogSaveTU"+counterIndex,	
 				 text: "Direkte til printer",
 				 click: function(){
-					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
+					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmrType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
 					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocuments(counterIndex);
 					 		}
@@ -727,13 +727,20 @@
 	  	//add values to form since we do not combine form data and other data in the same ajax call.
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	form.append("sign", jq('#sign'+counterIndex).val());
 	  	//adjust to the only id's the rest-controller knows about (avd/opd)
 	  	form.append("avd", jq('#avd'+counterIndex).val());
 	  	form.append("opd", jq('#opd'+counterIndex).val());
 	  	
-	  	form.append("fbType", jq('#fbType'+counterIndex).val());
-	  	form.append("cmrType", jq('#cmrType'+counterIndex).val());
-	  	form.append("ffType", jq('#ffType'+counterIndex).val());
+	  	if(jq("#fbType"+counterIndex).is(':checked')){
+	  		form.append("fbType", jq('#fbType'+counterIndex).val());
+	  	}
+	  	if(jq("#cmrType"+counterIndex).is(':checked')){
+	  		form.append("cmrType", jq('#cmrType'+counterIndex).val());
+	  	}
+	  	if(jq("#ffType"+counterIndex).is(':checked')){
+	  		form.append("ffType", jq('#ffType'+counterIndex).val());
+	  	}
 	  	
 	  	var payload = jq('printForm'+counterIndex).serialize();
 	  	

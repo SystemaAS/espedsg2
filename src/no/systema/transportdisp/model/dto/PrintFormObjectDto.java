@@ -10,6 +10,7 @@ import lombok.Data;
 @Data
 public class PrintFormObjectDto   {
 	private String applicationUser;
+	private String sign;
 	private String opd;
 	private String avd;
 	private String tur;

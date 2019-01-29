@@ -17,17 +17,16 @@
 		  presentPrintDialog();
 	  });
 	  jq("#imgGodslistePdf").click(function() {
-		  renderGodsLista();
+		  renderGodsListaWithTuproJS();
 	  });
 	  jq("#alinkGodslistePdf").click(function() {
-		  renderGodsLista();
+		  renderGodsListaWithTuproJS();
 	  });
-	  
 	  jq("#imgLastlistePdf").click(function() {
-		  renderLastLista();
+		  renderLastListaWithTuproJS();
 	  });
 	  jq("#alinkLastlistePdf").click(function() {
-		  renderLastLista();
+		  renderLastListaWithTuproJS();
 	  });
 	  //ferjeoverfarter
 	  jq('#imgUpdateFerjeoverfarter').click(function() {
@@ -37,11 +36,15 @@
 	  });
 	});
   
-  	function renderGodsLista(){
-  		window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=G', '_blank');
+  	function renderGodsListaWithTuproJS(){
+  		if(jq('#tuproJS').text()!=''){
+  			window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=G', '_blank');
+  		}
   	}
-  	function renderLastLista(){
-  		 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
+  	function renderLastListaWithTuproJS(){
+  		if(jq('#tuproJS').text()!=''){
+  			window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tuproJS').text() + '&type=L', '_blank');
+  		} 
   	}
   	
   
@@ -2023,10 +2026,14 @@
 	  
   });
   function renderGodsLista(counterIndex){
-	  window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).text() + '&type=G', '_blank');
+	 if(jq('#tur'+counterIndex).val()!=''){ 
+		 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).val() + '&type=G', '_blank');
+	 }
   }
   function renderLastLista(counterIndex){
-	 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).text() + '&type=L', '_blank');
+	 if(jq('#tur'+counterIndex).val()!=''){ 
+		 window.open('transportdisp_workflow_renderGodsOrLastlist.do?user=' + jq('#applicationUser').val() + '&tupro=' + jq('#tur'+counterIndex).val() + '&type=L', '_blank');
+	 }
   }
   //----------------------------
   //END Model dialog Print docs
