@@ -1806,7 +1806,7 @@
 			 id: "dialogSaveTU",	
 			 text: "Direkte til printer",
 			 click: function(){
-				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked')){
+				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked') || jq("#cmrType").is(':checked')){
 				 			doPrintDocuments();
 				 		}
 		 			}
@@ -1820,6 +1820,7 @@
 				 		jq('#godslistType').prop('checked', false);
 				 		jq('#lastlistType').prop('checked', false);
 				 		jq('#fbType').prop('checked', false);
+				 		jq('#cmrType').prop('checked', false);
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");
@@ -1844,6 +1845,10 @@
 	  	//add values to form since we do not combine form data and other data in the same ajax call.
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
+	  	form.append("sign", jq('#tusg').val());
+	  	form.append("avd", jq('#tuavd').val());
+	  	form.append("opd", "");
+	  	//serialize form
 	  	var payload = jq('printForm').serialize();
 	  	
 	  	jq.ajax({
@@ -1910,7 +1915,8 @@
 				 id: "dialogSaveTU"+counterIndex,	
 				 text: "Direkte til printer",
 				 click: function(){
-					 		if(jq("#godslistType"+counterIndex).is(':checked') || jq("#lastlistType"+counterIndex).is(':checked') || jq("#fbType"+counterIndex).is(':checked')){
+					 		if(jq("#godslistType"+counterIndex).is(':checked') || jq("#lastlistType"+counterIndex).is(':checked') || jq("#fbType"+counterIndex).is(':checked') ||
+					 				jq("#cmrType"+counterIndex).is(':checked')){
 					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocumentsFromList(counterIndex);
 					 		}
@@ -1922,6 +1928,7 @@
 				 click: function(){
 					 		//back to initial state of form elements on modal dialog
 					 		jq("#fbType"+counterIndex).prop('checked', false);
+					 		jq("#cmrType"+counterIndex).prop('checked', false);
 				 			jq("#godslistType"+counterIndex).prop('checked', false);
 					 		jq("#lastlistType"+counterIndex).prop('checked', false);
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
@@ -1949,15 +1956,24 @@
 	  	//add values to form since we do not combine form data and other data in the same ajax call.
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
-	  	console.log(jq('#fbType'+counterIndex).val());
-	  	console.log(jq('#godslistType'+counterIndex).val());
-	  	console.log(jq('#lastlistType'+counterIndex).val());
-	  	
+	  	//
+	  	form.append("sign", jq('#sign'+counterIndex).val());
 	  	//adjust to the only id's the rest-controller knows about (avd/opd)
+	  	form.append("avd", jq('#avd'+counterIndex).val());
 	  	form.append("tur", jq('#tur'+counterIndex).val());
+	  	
+	  	//DEBUG
+	  	//console.log(jq('#fbType'+counterIndex).val());
+	  	//console.log(jq('#cmrType'+counterIndex).val());
+	  	//console.log(jq('#godslistType'+counterIndex).val());
+	  	//console.log(jq('#lastlistType'+counterIndex).val());
+	  	
 	  	
 	  	if(jq("#fbType"+counterIndex).is(':checked')){
 	  		form.append("fbTypeOnList", jq('#fbType'+counterIndex).val());
+	  	}
+	  	if(jq("#cmrType"+counterIndex).is(':checked')){
+	  		form.append("cmrTypeOnList", jq('#cmrType'+counterIndex).val());
 	  	}
 	  	if(jq("#godslistType"+counterIndex).is(':checked')){
 	  		form.append("godslistTypeOnList", jq('#godslistType'+counterIndex).val());

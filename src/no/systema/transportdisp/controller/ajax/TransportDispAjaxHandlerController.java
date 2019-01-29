@@ -1739,10 +1739,12 @@ public class TransportDispAjaxHandlerController {
 			//
 			
 			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
+			if(strMgr.isNotNull(dto.getCmrType()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrType:"+ dto.getCmrType());}
 			if(strMgr.isNotNull(dto.getGodslistType()) && "gl".equals(dto.getFbType())) {logger.info("godslistType:"+ dto.getGodslistType());}
 			if(strMgr.isNotNull(dto.getLastlistType()) && "ll".equals(dto.getFbType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
 			//
 			if(strMgr.isNotNull(dto.getFbTypeOnList()) && "fb".equals(dto.getFbType())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
+			if(strMgr.isNotNull(dto.getCmrTypeOnList()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrTypeOnList:"+ dto.getCmrTypeOnList()); }
 			if(strMgr.isNotNull(dto.getGodslistTypeOnList()) && "gl".equals(dto.getFbType())) {logger.info("godslistTypeOnList:"+ dto.getGodslistTypeOnList()); }
 			if(strMgr.isNotNull(dto.getLastlistTypeOnList()) && "ll".equals(dto.getFbType())) {logger.info("lastlistTypeOnList:"+ dto.getLastlistTypeOnList()); }
 			
@@ -1750,7 +1752,10 @@ public class TransportDispAjaxHandlerController {
 			if(strMgr.isNotNull(dto.getFbType()) || strMgr.isNotNull(dto.getFbTypeOnList())){ 
 				list = this.printFraktbrev(dto); 
 			}
-			
+			//Print CMR-fraktbrev
+			if(strMgr.isNotNull(dto.getCmrType()) || strMgr.isNotNull(dto.getCmrTypeOnList())){ 
+				list = this.printCmrFraktbrev(dto); 
+			}
 			//Print Godslista
 			if(strMgr.isNotNull(dto.getGodslistType()) || strMgr.isNotNull(dto.getGodslistTypeOnList())){ 
 				list = this.printGodsOrLastList(dto, TYPE_GODSL); 
@@ -1820,35 +1825,42 @@ public class TransportDispAjaxHandlerController {
 		  logger.info("print CMR-fraktbrev ...");
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
 		  Collection<String> list = new ArrayList<String>();
-		  
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+			 
 		 //check the parent caller for this print (ORDER or TRIP)
 		 if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
-			 urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
 			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd());
 			 urlRequestParamsKeys.append("&wsopd=" + dto.getOpd());
 			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
 			 urlRequestParamsKeys.append("&wspro=&jbk=J&cm=J");
 			 
-		 
-			 //-------------------------------------
-			 //get BASE URL = RPG-PROGRAM for PRINT
-			 //-------------------------------------
-			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
-				
-			 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-			 logger.info("URL: " + BASE_URL);
-			 logger.info("URL PARAMS: " + urlRequestParamsKeys);
-			 //--------------------------------------
-			 //EXECUTE the Print (RPG program) here
-			 //--------------------------------------
-			 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
-			 //Debug --> 
-			 logger.info(jsonPayload);
-			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-			 //END of PRINT here and now
-			 logger.info("Method PRINT END");
-			 list.add("dummy");
+		 }else if (strMgr.isNotNull(dto.getTur())){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd() + "&wsopd=");
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
+			 urlRequestParamsKeys.append("&jbk=J&cm=J");
+			 
 		 }
+		 
+		 //-------------------------------------
+		 //get BASE URL = RPG-PROGRAM for PRINT
+		 //-------------------------------------
+		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
+			
+		 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		 logger.info("URL: " + BASE_URL);
+		 logger.info("URL PARAMS: " + urlRequestParamsKeys);
+		 //--------------------------------------
+		 //EXECUTE the Print (RPG program) here
+		 //--------------------------------------
+		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
+		 //Debug --> 
+		 logger.info(jsonPayload);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		 //END of PRINT here and now
+		 logger.info("Method PRINT END");
+		 list.add("dummy");
+	
 		 
 		 return list;
 		  

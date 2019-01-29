@@ -728,7 +728,6 @@
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
 	  	form.append("sign", jq('#sign'+counterIndex).val());
-	  	//adjust to the only id's the rest-controller knows about (avd/opd)
 	  	form.append("avd", jq('#avd'+counterIndex).val());
 	  	form.append("opd", jq('#opd'+counterIndex).val());
 	  	

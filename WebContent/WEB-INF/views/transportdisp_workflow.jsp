@@ -450,13 +450,21 @@
 								</a>
 								<div style="display: none;" class="clazz_dialogPrint" id="dialogPrint${counter.count}" title="Dialog Print">
 										<form id="printFormOnList${counter.count}">
-											<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${record.tupro}">
+										<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${record.tupro}">
+										<input type="hidden" id="avd${counter.count}" name="avd${counter.count}" value="${record.tuavd}">
+										<input type="hidden" id="sign${counter.count}" name="sign${counter.count}" value="${record.tusg}">
 									 	<table>
 					   						<tr height="3"><td></td></tr>
 					   						<tr>
-												<td class="text14" align="left" >
+												<td colspan="2" class="text14" align="left" >
 													<input type="checkbox" name="fbType${counter.count}" id="fbType${counter.count}" value="fb">
 													Fraktbrev
+												</td>	
+					   						</tr>
+					   						<tr>
+												<td colspan="2" class="text14" align="left" >
+													<input type="checkbox" name="cmrType${counter.count}" id="cmrType${counter.count}" value="cmr">
+													CMR-Fraktbrev
 												</td>	
 					   						</tr>
 					   						<tr>
@@ -1722,16 +1730,20 @@
 		<td>
 			<div id="dialogPrint" title="Dialog Print">
 					<form id="printForm">
-						<input type="hidden" id="avd" name="avd" value="">
-						<input type="hidden" id="opd" name="opd" value="">
-						<input type="hidden" id="tur" name="tur" value="${model.record.tupro}">
+					<input type="hidden" id="tur" name="tur" value="${model.record.tupro}">
 						
 				 	<table>
    						<tr height="3"><td></td></tr>
    						<tr>
-							<td class="text14" align="left" >
+							<td colspan="2" class="text14" align="left" >
 								<input type="checkbox" name="fbType" id="fbType" value="fb">
 								Fraktbrev
+							</td>	
+   						</tr>
+   						<tr>
+							<td colspan="2" class="text14" align="left" >
+								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">
+								CMR-Fraktbrev
 							</td>	
    						</tr>
    						<tr>
@@ -1752,28 +1764,7 @@
 								<img id="imgLastlistePdf" title="LL.PDF" style="vertical-align:middle;cursor:pointer" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
 							</td>	
    						</tr>
-   						<%-- TODO  ... is it the same as in ORDER?
-   						<tr>
-							<td class="text14" align="left" >
-								<input type="checkbox" name="cmrType" id="cmrType" value="cmr">CMR-Fraktbrev
-							</td>
-							<td class="text14" align="left" >	
-								<a tabindex=-1 id="cmrFraktbrevRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderCmrFraktbrev.do?user=${user.user}&wsavd=${Xmodel.record.tuavd}&wsopd=&wstoll=${Xmodel.record.dftoll}">
-   									<img id="imgCmrFraktbrevPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
-								</a>
-							</td>
-   						</tr>
-   						<tr>
-							<td class="text14" align="left" >
-								<input type="checkbox" name="ffType" id="ffType" value="ff">Ferdigmeldte-fakturaer
-							</td>
-							<td class="text14" align="left" >	
-								<a tabindex=-1 id="ffaktRenderPdfLink" target="_blank" href="TODO-transportdisp_mainorderlist_renderFFakt.do?user=${user.user}&wsavd=${Xmodel.record.tuavd}&wsopd=&wstoll=${Xmodel.record.dftoll}">
-   									<img id="imgFFaktPdf" title="CMR.PDF" style="vertical-align:middle;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Ferdigmeld.fakt. PDF">
-								</a>
-							</td>
-   						</tr>
-   						 --%>
+   						
    						<tr height="15"><td></td></tr>
 						<tr>
 							<td colspan="4" class="text14MediumBlue" align="left">
