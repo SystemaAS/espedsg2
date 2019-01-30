@@ -19,6 +19,7 @@ public class JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord ex
 	private String heavd = null;
 	private String heopd = null;
 	private String herfa = null;
+	private String hepro = null;
 	private String henas = null;
 	private String henak = null;
 	private String hevs1 = null;
@@ -34,6 +35,7 @@ public class JsonTransportDispWorkflowShippingPlanningCurrentOrdersListRecord ex
 	private String dftoll = null;
 	private String heklmo = null;
 	private String hedtmo = null;
+	private String hesg = null;
 	private String hesgm = null;
 	private String ttstat = null;
 	private String trsdfd = null;

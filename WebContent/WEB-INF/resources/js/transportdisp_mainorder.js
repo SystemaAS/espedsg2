@@ -2937,7 +2937,7 @@
 		  maxWidth:600,
 	      maxHeight: 600,
 	      width: 350,
-	      height: 250,
+	      height: 300,
 		  modal: true,
 		  dialogClass: 'print-dialog-class'
 			  
@@ -2957,7 +2957,9 @@
 			 id: "dialogSaveTU",	
 			 text: "Direkte til printer",
 			 click: function(){
-				 		if(jq("#fbType").is(':checked') || jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')){
+				 		if(jq("#fbType").is(':checked') || jq("#cmrType").is(':checked') || jq("#ffType").is(':checked') ||
+				 			jq("#aordType").is(':checked')){
+				 			//console.log(jq("#aordType").val());
 				 			//print directly to system printer (AS400-printer)
 				 			doPrintDocuments();
 				 		}
@@ -2972,6 +2974,9 @@
 				 		jq('#fbType').prop('checked', false);
 				 		jq('#cmrType').prop('checked', false);
 				 		jq('#ffType').prop('checked', false);
+				 		jq('#aordType').prop('checked', false);
+				 		jq('#aordDocumentType').val('S');
+				 		
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");
@@ -2994,16 +2999,6 @@
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
 	  	form.append("sign", jq('#hesg').val());
-	  	//
-	  	if(jq("#fbType").is(':checked')){
-	  		form.append("fbType", jq('#fbType').val());
-	  	}
-	  	if(jq("#cmrType"+counterIndex).is(':checked')){
-	  		form.append("cmrType", jq('#cmrType').val());
-	  	}
-	  	if(jq("#ffType"+counterIndex).is(':checked')){
-	  		form.append("ffType", jq('#ffType').val());
-	  	}
 	  	
 	  	var payload = jq('printForm').serialize();
 	  	

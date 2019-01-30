@@ -234,7 +234,7 @@
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.loadMtr"/></th>
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.poNr"/></th>
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.dangerousgoods.adr"/></th>
-		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.fraktbrev"/></th>  
+		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.printDocs"/></th>  
 		                </tr> 
 		                </thead>
 		              
@@ -312,11 +312,122 @@
 			               <td width="2%" align="right" class="text14 tableCellGray">&nbsp;${record.helm}&nbsp;</td>
 			               <td width="2%" class="text14 tableCellGray">&nbsp;${record.herfa}</td>
 			               <td width="2%" align="center" class="text14 tableCell11RedFont">&nbsp;${record.hepoen}</td>
+			               
+			               <td width="2%" align="center" class="textMediumBlue">
+			               		<a title="print Oppd.&nbsp;${record.heopd}" class="printLinkCo" id="printLinkCo${counter.count}" runat="server" href="#">
+									<img style="vertical-align: middle;" src="resources/images/printer3.png" width="20px" height="20px" border="0" alt="Print">
+								</a>
+								<div style="display: none;" class="clazz_dialogPrintCo" id="dialogPrintCo${counter.count}" title="Dialog Print">
+								<form id="printFormCo${counter.count}">
+								<input type="hidden" id="avdCo${counter.count}" name="avdCo${counter.count}" value="${record.heavd}">
+								<input type="hidden" id="opdCo${counter.count}" name="opdCo${counter.count}" value="${record.heopd}">
+								<input type="hidden" id="turCo${counter.count}" name="turCo${counter.count}" value="${Xrecord.hepro}">
+								<input type="hidden" id="signPCo${counter.count}" name="signPCo${counter.count}" value="${record.hesg}">
+							 	
+							 	<table>
+			   						<tr height="3"><td></td></tr>
+			   						<tr>
+										<td class="text14" align="left" >
+											<c:choose>
+											<c:when test="${record.hepk1 == 'J'}">
+												<input type="checkbox" name="fbTypeCo${counter.count}" id="fbTypeCo${counter.count}" value="fb">
+											</c:when>
+											<c:otherwise>
+												&nbsp;<img onMouseOver="showPop('fbTypeCo_info${counter.count}');" onMouseOut="hidePop('fbTypeCo_info${counter.count}');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+								 				<div class="text11" style="position: relative; display:inline;" align="left">
+													<span style="position:absolute; left:0px; top:0px;width:200px;" id="fbTypeCo_info${counter.count}" class="popupWithInputText"  >
+														<font class="text11">
+									           			<b style="color:red;">Direct print out not available</b>
+									           			<div>
+									           			<p>Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+									           			
+									           			</div>
+								           			</font>
+													</span>
+												</div>
+											</c:otherwise>
+											</c:choose>
+											
+											<span class="clazz_alinkFraktbrevPdfCo" id="alinkFraktbrevPdfCo${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Fraktbrev</span>
+										</td>	
+										<td class="text14" align="left" >	
+											<img class="clazz_imgFraktbrevPdfCo" id="imgFraktbrevPdfCo${counter.count}" title="Fraktbr.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="Fraktbr. PDF">
+											
+										</td>
+			   						</tr>
+			   						<tr>
+										<td class="text14" align="left" >
+											<c:choose>
+											<c:when test="${record.hepk7 == 'C'}">
+												<input type="checkbox" name="cmrTypeCo${counter.count}" id="cmrTypeCo${counter.count}" value="cmr">
+											</c:when>
+											<c:otherwise>
+												&nbsp;<img onMouseOver="showPop('cmrTypeCo_info${counter.count}');" onMouseOut="hidePop('cmrTypeCo_info${counter.count}');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/darkbluesquare.png" border="0" alt="info">&nbsp;
+								 				<div class="text11" style="position: relative; display:inline;" align="left">
+													<span style="position:absolute; left:0px; top:0px;width:200px;" id="cmrTypeCo_info${counter.count}" class="popupWithInputText"  >
+														<font class="text11">
+									           			<b style="color:red;">Direct print out not available</b>
+									           			<div>
+									           			<p>CMR-Fraktbrev must be checked (and saved) in order to allow for direct print out</p>
+									           			
+									           			</div>
+								           			</font>
+													</span>
+												</div>
+											</c:otherwise>
+											</c:choose>
+											
+											<span class="clazz_alinkCmrFraktbrevPdfCo" id="alinkCmrFraktbrevPdfCo${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">CMR-Fraktbrev</span>
+										</td>
+										<td class="text14" align="left" >	
+											<img class="clazz_imgCmrFraktbrevPdfCo" id="imgCmrFraktbrevPdfCo${counter.count}" title="CMR.PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="CMR. PDF">
+										</td>
+			   						</tr>
+			   						<tr>
+										<td class="text14" align="left" >
+											<input type="checkbox" name="ffTypeCo${counter.count}" id="ffTypeCo${counter.count}" value="ff">
+											<span class="clazz_alinkFFaktPdfCo" id="alinkFFaktPdfCo${counter.count}" >Ferdigmeldte-fakturaer</span>
+										</td>
+										
+			   						</tr>
+			   						<tr>
+										<td colspan="2" class="text14" align="left" >
+											<input type="checkbox" name="aordTypeCo${counter.count}" id="aordTypeCo${counter.count}" value="aord">
+											<span id="alinkAordPdf" >Arbeidsordre</span>
+											<c:choose>
+											<c:when test="${not empty record.hepro}">
+												<select class="inputTextMediumBlue" style="font-size:11px;background-color:#EEEEEE;" name="aordDocumentTypeCo${counter.count}" id="aordDocumentTypeCo${counter.count}" >
+													<option value="S">Single</option>
+						 							<option value="I">Intern</option>
+						 							<option value="E">Ekstern</option>
+												</select>
+											</c:when>
+											<c:otherwise>
+												<input type="hidden" id="aordDocumentTypeCo${counter.count}" name="aordDocumentTypeCo${counter.count}" value="S">
+											</c:otherwise>
+											</c:choose>
+										</td>
+			   						</tr>
+			   						<tr height="15"><td></td></tr>
+									<tr>
+										<td colspan="4" class="text14MediumBlue" align="left">
+											<label id="printStatusCo${counter.count}"></label>
+										</td>
+									</tr>
+								</table>
+								
+								</form>
+							</div>
+		            		   </td>
+		            		   
+		            		   
+			               <%--
 			               <td width="2%" align="center" class="text14 tableCellGray">
 	           		   			<a target="_blank" href="transportdisp_mainorderlist_renderFraktbrev.do?user=${user.user}&wsavd=${record.heavd}&wsopd=${record.heopd}&wstoll=${record.dftoll}">
   		    						<img title="Fraktbr.PDF" style="vertical-align:bottom;" src="resources/images/pdf.png" width="16" height="16" border="0" alt="Fraktbr. PDF">
    								</a>
            		   			</td>
+          		   			--%>
 			            </tr> 
 			            
 			            </c:forEach>
@@ -616,16 +727,16 @@
 		   						</a>
 		   					</td>
 		   					<td align="center" width="2%" class="textMediumBlue" ><input class="clazz_checkis_openorders" type="checkbox" id="checkis_openorders${counter.count}@user=${user.user}&wmode=A&wstur=${searchFilter.tur}&wsavd=${record.heavd}&wsopd=${record.heopd}"></td>		
-            		   </c:if>
+            		   		</c:if>
             		   
             		   <td width="2%" class="textMediumBlue" nowrap>
-			           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
-			           		<c:choose>
-				           		<c:when test="${empty searchFilter.tur && not empty searchFilter.opd}">
-					           		<a style="cursor:pointer;" id="hepro_${record.hepro}@heavd_${record.heavd}@heopd_${record.heopd}@alinkOpenOrdersListId_${counter.count}" onClick="goToSpecificOrder(this);">
+		           		<div id="davd${record.heavd}_dopd${record.heopd}_linkcontainer${counter.count}" ondrop="drop(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" >
+		           		<c:choose>
+		           		<c:when test="${empty searchFilter.tur && not empty searchFilter.opd}">
+			           		<a style="cursor:pointer;" id="hepro_${record.hepro}@heavd_${record.heavd}@heopd_${record.heopd}@alinkOpenOrdersListId_${counter.count}" onClick="goToSpecificOrder(this);">
 		    		    				<img title="Update" style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="update">
 		    		    				<font class="textMediumBlue">${record.heavd}/${record.heopd}</font>
-		    		    			</a>
+	    		    				</a>
 	    		    			</c:when>
 	    		    			<c:otherwise>
 	    		    				<a style="cursor:pointer;" id="hepro_${searchFilter.tur}@heavd_${record.heavd}@heopd_${record.heopd}@alinkOpenOrdersListId_${counter.count}" onClick="goToSpecificOrder(this);">
@@ -722,6 +833,7 @@
 										<input type="hidden" id="avd${counter.count}" name="avd${counter.count}" value="${record.heavd}">
 										<input type="hidden" id="opd${counter.count}" name="opd${counter.count}" value="${record.heopd}">
 										<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${Xrecord.hepro}">
+										<input type="hidden" id="signP${counter.count}" name="signP${counter.count}" value="${record.hesg}">
 								 	<table>
 				   						<tr height="3"><td></td></tr>
 				   						<tr>
@@ -787,6 +899,24 @@
 												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" >Ferdigmeldte-fakturaer</span>
 											</td>
 											
+				   						</tr>
+				   						<tr>
+											<td colspan="2" class="text14" align="left" >
+												<input type="checkbox" name="aordType${counter.count}" id="aordType${counter.count}" value="aord">
+												<span id="alinkAordPdf" >Arbeidsordre</span>
+												<c:choose>
+												<c:when test="${not empty record.hepro}">
+													<select class="inputTextMediumBlue" style="font-size:11px;background-color:#EEEEEE;" name="aordDocumentType${counter.count}" id="aordDocumentType${counter.count}" >
+														<option value="S">Single</option>
+							 							<option value="I">Intern</option>
+							 							<option value="E">Ekstern</option>
+													</select>
+												</c:when>
+												<c:otherwise>
+													<input type="hidden" id="aordDocumentType${counter.count}" name="aordDocumentType${counter.count}" value="S">
+												</c:otherwise>
+												</c:choose>
+											</td>
 				   						</tr>
 				   						<tr height="15"><td></td></tr>
 										<tr>

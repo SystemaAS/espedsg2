@@ -1703,16 +1703,20 @@ public class TransportDispAjaxHandlerController {
 			logger.info("opd:" + dto.getOpd());
 			logger.info("tur:" + dto.getTur());
 			//
-			logger.info("fbType:" + dto.getFbType());
-			logger.info("cmrType:" + dto.getCmrType());
-			logger.info("ffType:" + dto.getFfType());
+			//logger.info("fbType:" + dto.getFbType());
+			//logger.info("cmrType:" + dto.getCmrType());
+			//logger.info("ffType:" + dto.getFfType());
+			//logger.info("aordType:" + dto.getAordType());
+			//logger.info("aordDocumentType:" + dto.getAordDocumentType());
 			
 			//Print fraktbrev
-			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())){list = this.printFraktbrev(dto); }
+			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())) {list = this.printFraktbrev(dto); }
 			//Print CMR
 			if(strMgr.isNotNull(dto.getCmrType()) && "cmr".equals(dto.getCmrType())){ list = this.printCmrFraktbrev(dto); }
 		    //Print FFakturor
 			if(strMgr.isNotNull(dto.getFfType()) && "ff".equals(dto.getFfType())){ list = this.printFFakt(dto); }
+			//Print Arbeidsordre
+			if(strMgr.isNotNull(dto.getAordType()) && "aord".equals(dto.getAordType())){ list = this.printArbeidsOrdre(dto); }
 			
 			return list;
 			  
@@ -1847,28 +1851,8 @@ public class TransportDispAjaxHandlerController {
 			 urlRequestParamsKeys.append("&jbk=J&cm=J");
 			 
 		 }
+		 return this.executeFellesutskriftService(urlRequestParamsKeys);
 		 
-		 //-------------------------------------
-		 //get BASE URL = RPG-PROGRAM for PRINT
-		 //-------------------------------------
-		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_EXECUTE_FELLESUTSKRIFT_URL;
-			
-		 logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-		 logger.info("URL: " + BASE_URL);
-		 logger.info("URL PARAMS: " + urlRequestParamsKeys);
-		 //--------------------------------------
-		 //EXECUTE the Print (RPG program) here
-		 //--------------------------------------
-		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
-		 //Debug --> 
-		 logger.info(jsonPayload);
-		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-		 //END of PRINT here and now
-		 logger.info("Method PRINT END");
-		 list.add("dummy");
-	
-		 
-		 return list;
 		  
 	  }
 	  
@@ -1882,7 +1866,7 @@ public class TransportDispAjaxHandlerController {
 	   * @return
 	   */
 	  private Collection printFFakt(PrintFormObjectDto dto){
-		  logger.info("print ferdigmeld.fakt ...");
+		  logger.info("print Ferdigmeld.fakt ...");
 		  Collection<String> list = new ArrayList<String>();
 		  
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
@@ -1904,7 +1888,53 @@ public class TransportDispAjaxHandlerController {
 			 urlRequestParamsKeys.append("&FFAK=J");
 			 	 
 		  }
+		  return this.executeFellesutskriftService(urlRequestParamsKeys);
+		  
+		  
+	  }
+	  /**
+	   * På ordre
+	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=127&wspro=&wssg=JOV&cm=&aOrd=S
+	   * 
+	   * @param dto
+	   * @return
+	   */
+	  private Collection printArbeidsOrdre(PrintFormObjectDto dto){
+		  logger.info("print Arbeidsordre ...");
+		  
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+		  
+		  //check the parent caller for this print (ORDER or TRIP)
+		  if(strMgr.isNotNull(dto.getOpd()) && strMgr.isNotNull(dto.getAvd()) ){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd());
+			 urlRequestParamsKeys.append("&wsopd=" + dto.getOpd());
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=");
+			 urlRequestParamsKeys.append("&cm=&aOrd=" + dto.getAordDocumentType());
 			 
+				 
+		  }else if (strMgr.isNotNull(dto.getTur())){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd() + "&wsopd=");
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
+			 urlRequestParamsKeys.append("&FFAK=J");
+			 	 
+		  }
+			
+		  return this.executeFellesutskriftService(urlRequestParamsKeys);
+		 
+		  
+	  }
+	  
+	  /**
+	   * common URL for many print types
+	   * @param urlRequestParamsKeys
+	   * @return
+	   */
+	  private Collection<String> executeFellesutskriftService(StringBuffer urlRequestParamsKeys){
+		  Collection<String> list = new ArrayList<String>();
+		  
 		  //-------------------------------------
 		  //get BASE URL = RPG-PROGRAM for PRINT
 		  //-------------------------------------
@@ -1923,12 +1953,11 @@ public class TransportDispAjaxHandlerController {
 		  //END of PRINT here and now
 		  logger.info("Method PRINT END");
 		  list.add("dummy");
-	
-			 
-		  return list;
 		  
+		  return list;
+			 
 	  }
-	  
+	
 	  /**
 	   * 
 	   * @param dto

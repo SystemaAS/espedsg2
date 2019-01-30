@@ -18,6 +18,9 @@ public class PrintFormObjectDto   {
 	private String fbType;
 	private String cmrType;
 	private String ffType;
+	private String aordType;
+	private String aordDocumentType; //(S=Single/I=Intern/E=Ekstern)
+	
 	private String godslistType;
 	private String lastlistType;
 	//

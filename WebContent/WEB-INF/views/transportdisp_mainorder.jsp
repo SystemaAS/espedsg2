@@ -2988,9 +2988,28 @@
 							</td>
 							
    						</tr>
+   						<tr>
+							<td colspan="2" class="text14" align="left" >
+								<input type="checkbox" name="aordType" id="aordType" value="aord">
+								<span id="alinkAordPdf" >Arbeidsordre</span>
+								<c:choose>
+								<c:when test="${not empty model.record.hepro}">
+									<select id="aordDocumentType" name="aordDocumentType" class="inputTextMediumBlue" style="font-size:11px;background-color:#EEEEEE;"  >
+										<option value="S">Single</option>
+			 							<option value="I">Intern</option>
+			 							<option value="E">Ekstern</option>
+									</select>
+								</c:when>
+								<c:otherwise>
+									<input type="hidden" id="aordDocumentType" name="aordDocumentType" value="S">
+								</c:otherwise>
+								</c:choose>
+							</td>
+							
+   						</tr>
    						<tr height="15"><td></td></tr>
 						<tr>
-							<td colspan="4" class="text14MediumBlue" align="left">
+							<td colspan="3" class="text14MediumBlue" align="left">
 								<label id="printStatus"></label>
 							</td>
 						</tr>
