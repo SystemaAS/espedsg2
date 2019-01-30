@@ -1807,7 +1807,7 @@
 			 text: "Direkte til printer",
 			 click: function(){
 				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked') || 
-				 			jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')){
+				 			jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')|| jq("#aordType").is(':checked')|| jq("#aordTypee").is(':checked')){
 				 			doPrintDocuments();
 				 		}
 		 			}
@@ -1823,6 +1823,8 @@
 				 		jq('#fbType').prop('checked', false);
 				 		jq('#cmrType').prop('checked', false);
 				 		jq('#ffType').prop('checked', false);
+				 		jq('#aordType').prop('checked', false);
+				 		jq('#aordTypee').prop('checked', false);
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");
@@ -1908,7 +1910,7 @@
 	  jq(".printLink").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLink","");
-		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Tur " + jq('#tur'+counterIndex).val() );
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Tur " + jq('#avd'+counterIndex).val() + "/" + jq('#tur'+counterIndex).val() );
 		  //deal with buttons for this modal window
 		  jq("#dialogPrint"+counterIndex).dialog({
 		  
@@ -1918,7 +1920,8 @@
 				 text: "Direkte til printer",
 				 click: function(){
 					 		if(jq("#godslistType"+counterIndex).is(':checked') || jq("#lastlistType"+counterIndex).is(':checked') || jq("#fbType"+counterIndex).is(':checked') ||
-					 				jq("#cmrType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
+					 				jq("#cmrType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')|| jq("#aordType"+counterIndex).is(':checked') || 
+					 				jq("#aordTypee"+counterIndex).is(':checked') || jq("#turkonvoluttType"+counterIndex).is(':checked')){
 					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocumentsFromList(counterIndex);
 					 		}
@@ -1932,8 +1935,13 @@
 					 		jq("#fbType"+counterIndex).prop('checked', false);
 					 		jq("#cmrType"+counterIndex).prop('checked', false);
 					 		jq("#ffType"+counterIndex).prop('checked', false);
+					 		jq("#aordType"+counterIndex).prop('checked', false);
+					 		jq("#aordTypee"+counterIndex).prop('checked', false);
+					 		
 				 			jq("#godslistType"+counterIndex).prop('checked', false);
 					 		jq("#lastlistType"+counterIndex).prop('checked', false);
+					 		jq("#turkonvoluttType"+counterIndex).prop('checked', false);
+					 		
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_success" );
 					 		jq("#printStatus"+counterIndex).text("");
@@ -1981,12 +1989,22 @@
 	  	if(jq("#ffType"+counterIndex).is(':checked')){
 	  		form.append("ffTypeOnList", jq('#ffType'+counterIndex).val());
 	  	}
+	  	if(jq("#aordType"+counterIndex).is(':checked')){
+	  		form.append("aordType", jq('#aordType'+counterIndex).val());
+	  	}
+	  	if(jq("#aordTypee"+counterIndex).is(':checked')){
+	  		form.append("aordTypee", jq('#aordTypee'+counterIndex).val());
+	  	}
 	  	if(jq("#godslistType"+counterIndex).is(':checked')){
 	  		form.append("godslistTypeOnList", jq('#godslistType'+counterIndex).val());
 	  	}
 	  	if(jq("#lastlistType"+counterIndex).is(':checked')){
 	  		form.append("lastlistTypeOnList", jq('#lastlistType'+counterIndex).val());
 	  	}
+	  	if(jq("#turkonvoluttType"+counterIndex).is(':checked')){
+	  		form.append("turkonvoluttType", jq('#turkonvoluttType'+counterIndex).val());
+	  	}
+	  	
 	  	//
 	  	var payload = jq('printFormOnList'+counterIndex).serialize();
 	  	

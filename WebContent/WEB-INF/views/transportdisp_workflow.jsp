@@ -474,6 +474,18 @@
 												</td>	
 					   						</tr>
 					   						<tr>
+												<td colspan="2" class="text14" align="left" >
+													<input type="checkbox" name="aordType${counter.count}" id="aordType${counter.count}" value="I">
+													<span id="alinkAordPdfi" >Arbeidsordre Intern</span>													
+												</td>
+					   						</tr>
+					   						<tr>
+												<td colspan="2" class="text14" align="left" >
+													<input type="checkbox" name="aordTypee${counter.count}" id="aordTypee${counter.count}" value="E">
+													<span id="alinkAordPdfe" >Arbeidsordre Ekstern</span>													
+												</td>
+					   						</tr>
+					   						<tr>
 												<td class="text14" align="left" >
 													<input type="checkbox" name="godslistType${counter.count}" id="godslistType${counter.count}" value="gl">
 													<span class="clazz_alinkGodslistePdf" id="alinkGodslistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Godsliste</span>
@@ -490,6 +502,14 @@
 												<td class="text14" align="left" >	
 													<img class="clazz_imgLastlistePdf" id="imgLastlistePdf${counter.count}" title="LL PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
 												</td>
+					   						</tr>
+					   						
+					   						<tr>
+												<td class="text14" align="left" >
+													<input type="checkbox" name="turkonvoluttType${counter.count}" id="turkonvoluttType${counter.count}" value="ll">
+													<span class="clazz_alinkTurkonvoluttTypePdf" id="alinkTurkonvoluttTypePdf${counter.count}" >Turkonvolutt</span>
+												</td>
+												
 					   						</tr>
 					   						
 					   						<tr height="15"><td></td></tr>

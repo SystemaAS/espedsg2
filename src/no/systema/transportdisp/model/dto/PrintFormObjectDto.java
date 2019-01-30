@@ -20,9 +20,13 @@ public class PrintFormObjectDto   {
 	private String ffType;
 	private String aordType;
 	private String aordDocumentType; //(S=Single/I=Intern/E=Ekstern)
+	//special aordTypee for Trip GUI
+	private String aordTypee;
 	
 	private String godslistType;
 	private String lastlistType;
+	private String turkonvoluttType;
+	
 	//
 	private String fbTypeOnList;
 	private String cmrTypeOnList;

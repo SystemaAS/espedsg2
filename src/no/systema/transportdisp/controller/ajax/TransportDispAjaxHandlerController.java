@@ -113,6 +113,11 @@ public class TransportDispAjaxHandlerController {
 	//private RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
 	private ControllerAjaxCommonFunctionsMgr controllerAjaxCommonFunctionsMgr;
 	private StringManager strMgr = new StringManager();
+	
+	final String  TYPE_GODSL= "G";
+	final String  TYPE_LASTL= "L";
+	final String  TYPE_TURKONVOLUTT= "TK";
+	
 	/**
 	 * Gets the Specific Trip-heading
 	 * 
@@ -1731,8 +1736,6 @@ public class TransportDispAjaxHandlerController {
 		@RequestMapping(path="/printDocumentsTrip_TransportDisp.do", method = RequestMethod.POST)
 		public Collection<String> printDocumentsTrip(@ModelAttribute PrintFormObjectDto dto, BindingResult bindingResult ){
 			Collection list = new ArrayList();
-			final String  TYPE_GODSL= "G";
-			final String  TYPE_LASTL= "L";
 			
 			logger.info("Inside: printDocumentsTrip");
 			
@@ -1745,6 +1748,8 @@ public class TransportDispAjaxHandlerController {
 			if(strMgr.isNotNull(dto.getFbType()) && "fb".equals(dto.getFbType())) {logger.info("fbType:"+ dto.getFbType());}
 			if(strMgr.isNotNull(dto.getCmrType()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrType:"+ dto.getCmrType());}
 			if(strMgr.isNotNull(dto.getFfType()) && "ff".equals(dto.getFfType())) {logger.info("ffType:"+ dto.getFfType());}
+			if(strMgr.isNotNull(dto.getAordType()) && "aordi".equals(dto.getAordType())) {logger.info("aordType:"+ dto.getAordType());}
+			if(strMgr.isNotNull(dto.getAordTypee()) && "aorde".equals(dto.getAordTypee())) {logger.info("aordTypee:"+ dto.getAordTypee());}
 			if(strMgr.isNotNull(dto.getGodslistType()) && "gl".equals(dto.getFbType())) {logger.info("godslistType:"+ dto.getGodslistType());}
 			if(strMgr.isNotNull(dto.getLastlistType()) && "ll".equals(dto.getFbType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
 			//
@@ -1766,13 +1771,21 @@ public class TransportDispAjaxHandlerController {
 			if(strMgr.isNotNull(dto.getFfType()) || strMgr.isNotNull(dto.getFfTypeOnList())){ 
 				list = this.printFFakt(dto); 
 			}
+			//Arbeidsordre intern/extern
+			if(strMgr.isNotNull(dto.getAordType()) || strMgr.isNotNull(dto.getAordTypee())){ 
+				list = this.printArbeidsOrdreFromTrip(dto); 
+			}
 			//Print Godslista
 			if(strMgr.isNotNull(dto.getGodslistType()) || strMgr.isNotNull(dto.getGodslistTypeOnList())){ 
-				list = this.printGodsOrLastList(dto, TYPE_GODSL); 
+				list = this.printGodsListLasteListTurKonvolutt(dto, this.TYPE_GODSL); 
 			}
 			//Print Lastelista
 			if(strMgr.isNotNull(dto.getLastlistType()) || strMgr.isNotNull(dto.getLastlistTypeOnList())){ 
-				list = this.printGodsOrLastList(dto, TYPE_LASTL); 
+				list = this.printGodsListLasteListTurKonvolutt(dto, this.TYPE_LASTL); 
+			}
+			//Print Turkonvolutt
+			if(strMgr.isNotNull(dto.getTurkonvoluttType()) ){ 
+				list = this.printGodsListLasteListTurKonvolutt(dto, this.TYPE_TURKONVOLUTT); 
 			}
 		    
 			return list;
@@ -1784,7 +1797,7 @@ public class TransportDispAjaxHandlerController {
 	   * @param dto
 	   * @return
 	   */
-	  private Collection printFraktbrev(PrintFormObjectDto dto){
+	  private Collection<String> printFraktbrev(PrintFormObjectDto dto){
 		  logger.info("print fraktbrev ...");
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
 		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
@@ -1831,7 +1844,7 @@ public class TransportDispAjaxHandlerController {
 	   * @param dto
 	   * @return
 	   */
-	  private Collection printCmrFraktbrev(PrintFormObjectDto dto){
+	  private Collection<String> printCmrFraktbrev(PrintFormObjectDto dto){
 		  logger.info("print CMR-fraktbrev ...");
 		  Collection<String> list = new ArrayList<String>();
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
@@ -1865,7 +1878,7 @@ public class TransportDispAjaxHandlerController {
 	   * @param dto
 	   * @return
 	   */
-	  private Collection printFFakt(PrintFormObjectDto dto){
+	  private Collection<String> printFFakt(PrintFormObjectDto dto){
 		  logger.info("print Ferdigmeld.fakt ...");
 		  Collection<String> list = new ArrayList<String>();
 		  
@@ -1899,7 +1912,7 @@ public class TransportDispAjaxHandlerController {
 	   * @param dto
 	   * @return
 	   */
-	  private Collection printArbeidsOrdre(PrintFormObjectDto dto){
+	  private Collection<String> printArbeidsOrdre(PrintFormObjectDto dto){
 		  logger.info("print Arbeidsordre ...");
 		  
 		  StringBuffer urlRequestParamsKeys = new StringBuffer();
@@ -1919,6 +1932,84 @@ public class TransportDispAjaxHandlerController {
 			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
 			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
 			 urlRequestParamsKeys.append("&FFAK=J");
+			 	 
+		  }
+			
+		  return this.executeFellesutskriftService(urlRequestParamsKeys);
+		 
+		  
+	  }
+	  
+	  /**
+	   * Arbeidsordre Ekstern
+	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&cm=&aOrd=E
+   	   * Arbeidsordre Intern
+   	   * http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&cm=&aOrd=I
+	   
+	   * @param dto
+	   * @return
+	   */
+	  private Collection<String> printArbeidsOrdreFromTrip(PrintFormObjectDto dto){
+		  logger.info("print Arbeidsordre ...");
+		  Collection<String> list = new ArrayList<String>();
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+		  
+		  if (strMgr.isNotNull(dto.getTur())){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd() + "&wsopd=");
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
+			 String baseParams = urlRequestParamsKeys.toString();
+			 
+			 //Arbeidsordre Intern
+			 if(strMgr.isNotNull(dto.getAordType())){
+				 StringBuffer sb = new StringBuffer(baseParams);
+				 sb.append("&cm=&aOrd=" + dto.getAordType());
+				 list = this.executeFellesutskriftService(sb);
+			 }
+			 //Arbeidsordre Ekstern
+			 if(strMgr.isNotNull(dto.getAordTypee())){
+				 StringBuffer sb = new StringBuffer(baseParams);
+				 sb.append("&cm=&aOrd=" + dto.getAordTypee());
+				 list = this.executeFellesutskriftService(sb);
+			 }
+			 	 
+		  }
+			
+		  return list;
+		 
+		  
+	  }
+	  
+	   
+	  /**
+	   * 
+	   * Godsliste: http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&GoLi=J
+	   * Lasteliste: http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&LaLi=J
+	   * TurKonvolutt: http://gw.systema.no/sycgip/TSYFAPR1.pgm?user=JOVO&wsavd=75&wsopd=&wspro=75000019&wssg=JOV&TuKo=J 
+	   * @param dto
+	   * @return
+	   */
+	  
+	  private Collection<String> printGodsListLasteListTurKonvolutt(PrintFormObjectDto dto, String typeParameter){
+		  logger.info("print GodsLista ...");
+		  
+		  StringBuffer urlRequestParamsKeys = new StringBuffer();
+		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
+		  
+		  if (strMgr.isNotNull(dto.getTur())){
+			 urlRequestParamsKeys.append("&wsavd=" + dto.getAvd() + "&wsopd=");
+			 urlRequestParamsKeys.append("&wssg=" + dto.getSign());
+			 urlRequestParamsKeys.append("&wspro=" + dto.getTur());
+			 if(this.TYPE_GODSL.equals(typeParameter)){
+				 urlRequestParamsKeys.append("&GoLi=J");
+				 
+			 }else if(this.TYPE_LASTL.equals(typeParameter)){
+				 urlRequestParamsKeys.append("&LaLi=J");
+				 
+			 }else if(this.TYPE_TURKONVOLUTT.equals(typeParameter)){
+				 urlRequestParamsKeys.append("&TuKo=J");
+			 }
 			 	 
 		  }
 			
@@ -1958,44 +2049,7 @@ public class TransportDispAjaxHandlerController {
 			 
 	  }
 	
-	  /**
-	   * 
-	   * @param dto
-	   * @param type
-	   * @return
-	   */
-	  private Collection printGodsOrLastList(PrintFormObjectDto dto, String type){
-		  logger.info("print printGodsOrLastList...");
-		  StringBuffer urlRequestParamsKeys = new StringBuffer();
-		  urlRequestParamsKeys.append("user=" + dto.getApplicationUser());
-		  urlRequestParamsKeys.append("&tur=" + dto.getTur() + "&type=" + type);
-		  logger.info("TODO");
-		  //-------------------------------------
-		  //get BASE URL = RPG-PROGRAM for PRINT
-          //-------------------------------------
-		 /*TODO
-			String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_PRINT_OUT_FRAKTBREV;
-			
-			logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-	    	logger.info("URL: " + BASE_URL);
-	    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
-	    	//--------------------------------------
-	    	//EXECUTE the Print (RPG program) here
-	    	//--------------------------------------
-	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
-			//Debug --> 
-	    	logger.info(jsonPayload);
-	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-	    	//END of PRINT here and now
-	    	logger.info("Method PRINT END");
-	    	*/
-		 
-	    	Collection<String> list = new ArrayList<String>();
-			list.add("dummy");
-			
-			return list;
-		  
-	  }
+	  
 	  
 	  /**
 	   * 

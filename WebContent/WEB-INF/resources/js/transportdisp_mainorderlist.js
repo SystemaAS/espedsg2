@@ -682,7 +682,7 @@
 	  jq(".printLinkCo").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLinkCo","");
-		   jq("#dialogPrintCo"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opdCo'+counterIndex).val() );
+		   jq("#dialogPrintCo"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#avdCo'+counterIndex).val() + "/" + jq('#opdCo'+counterIndex).val() );
 		  //deal with buttons for this modal window
 		  jq("#dialogPrintCo"+counterIndex).dialog({
 		  
@@ -804,7 +804,7 @@
 	  jq(".printLink").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLink","");
-		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opd'+counterIndex).val() );
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#avd'+counterIndex).val() + "/" + jq('#opd'+counterIndex).val() );
 		  //deal with buttons for this modal window
 		  jq("#dialogPrint"+counterIndex).dialog({
 		  
