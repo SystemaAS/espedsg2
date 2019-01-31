@@ -1798,7 +1798,7 @@
 	  //jq('input:radio[name="smsType"]').filter('[value="grabber"]').attr('checked', true);
 	  
 	  //setters (add more if needed)
-	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut - Turnr. " + jq("#tuproJS").text() );
+	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut - Turnr. " + jq("#tuavd").val() + "/" + jq("#tuproJS").text() );
 	  //deal with buttons for this modal window
 	  jq('#dialogPrint').dialog({
 		 buttons: [ 
@@ -1807,7 +1807,8 @@
 			 text: "Direkte til printer",
 			 click: function(){
 				 		if(jq("#godslistType").is(':checked') || jq("#lastlistType").is(':checked') || jq("#fbType").is(':checked') || 
-				 			jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')|| jq("#aordType").is(':checked')|| jq("#aordTypee").is(':checked')){
+				 			jq("#cmrType").is(':checked') || jq("#ffType").is(':checked')|| jq("#aordType").is(':checked')|| 
+				 			jq("#aordTypee").is(':checked') || jq("#turkonvoluttType").is(':checked')){
 				 			doPrintDocuments();
 				 		}
 		 			}
@@ -1825,6 +1826,8 @@
 				 		jq('#ffType').prop('checked', false);
 				 		jq('#aordType').prop('checked', false);
 				 		jq('#aordTypee').prop('checked', false);
+				 		jq('#turkonvoluttType').prop('checked', false);
+				 		
 				 		jq("#printStatus").removeClass( "isa_error" );
 				 		jq("#printStatus").removeClass( "isa_success" );
 				 		jq("#printStatus").text("");

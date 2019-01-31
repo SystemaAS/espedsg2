@@ -50,6 +50,7 @@
 	</tr>
 	
 	<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
+	<input type="hidden" name="userHttpJQueryDocRoot" id="userHttpJQueryDocRoot" value='${user.httpJQueryDocRoot}'>
 	<input type="hidden" name="tripNr" id="tripNr" value='${searchFilter.tur}'>
 	<input type="hidden" name="fkeysavd" id="fkeysavd" value='${searchFilter.avd}'>
 	<input type="hidden" name="fkeysopd" id="fkeystur" value='${searchFilter.tur}'>
@@ -517,6 +518,7 @@
 										<input type="hidden" id="avd${counter.count}" name="avd${counter.count}" value="${record.heavd}">
 										<input type="hidden" id="opd${counter.count}" name="opd${counter.count}" value="${record.heopd}">
 										<input type="hidden" id="tur${counter.count}" name="tur${counter.count}" value="${Xrecord.hepro}">
+										<input type="hidden" id="signP${counter.count}" name="signP${counter.count}" value="${record.hesg}">
 								 	<table>
 				   						<tr height="3"><td></td></tr>
 				   						<tr>
@@ -578,10 +580,28 @@
 				   						<tr>
 											<td class="text14" align="left" >
 												<input type="checkbox" name="ffType${counter.count}" id="ffType${counter.count}" value="ff">
-												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Ferdigmeldte-fakturaer</span>
+												<span class="clazz_alinkFFaktPdf" id="alinkFFaktPdf${counter.count}" >Ferdigmeldte-fakturaer</span>
 											</td>
-											
 				   						</tr>
+				   						<tr>
+											<td colspan="2" class="text14" align="left" >
+												<input type="checkbox" name="aordType${counter.count}" id="aordType${counter.count}" value="aord">
+												<span id="alinkAordPdf" >Arbeidsordre</span>
+												<c:choose>
+												<c:when test="${not empty record.hepro}">
+													<select class="inputTextMediumBlue" style="font-size:11px;background-color:#EEEEEE;" name="aordDocumentType${counter.count}" id="aordDocumentType${counter.count}" >
+														<option value="S">Single</option>
+							 							<option value="I">Intern</option>
+							 							<option value="E">Ekstern</option>
+													</select>
+												</c:when>
+												<c:otherwise>
+													<input type="hidden" id="aordDocumentType${counter.count}" name="aordDocumentType${counter.count}" value="S">
+												</c:otherwise>
+												</c:choose>
+											</td>
+				   						</tr>
+				   						
 				   						<tr height="15"><td></td></tr>
 										<tr>
 											<td colspan="4" class="text14MediumBlue" align="left">

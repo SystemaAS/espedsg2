@@ -1752,6 +1752,7 @@ public class TransportDispAjaxHandlerController {
 			if(strMgr.isNotNull(dto.getAordTypee()) && "aorde".equals(dto.getAordTypee())) {logger.info("aordTypee:"+ dto.getAordTypee());}
 			if(strMgr.isNotNull(dto.getGodslistType()) && "gl".equals(dto.getFbType())) {logger.info("godslistType:"+ dto.getGodslistType());}
 			if(strMgr.isNotNull(dto.getLastlistType()) && "ll".equals(dto.getFbType())) {logger.info("lastlistType:"+ dto.getLastlistType());}
+			if(strMgr.isNotNull(dto.getTurkonvoluttType()) && "tk".equals(dto.getFbType())) {logger.info("turkonvoluttType:"+ dto.getTurkonvoluttType());}
 			//
 			if(strMgr.isNotNull(dto.getFbTypeOnList()) && "fb".equals(dto.getFbType())) {logger.info("fbTypeOnList:"+ dto.getFbTypeOnList()); }
 			if(strMgr.isNotNull(dto.getCmrTypeOnList()) && "cmr".equals(dto.getCmrType())) {logger.info("cmrTypeOnList:"+ dto.getCmrTypeOnList()); }

@@ -745,7 +745,7 @@
 	  //jq(".printLink").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("printLink","");
-		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#opd'+counterIndex).val() );
+		   jq("#dialogPrint"+counterIndex).dialog( "option", "title", "Skriv ut - Op. " + jq('#avd'+counterIndex).val() + "/" + jq('#opd'+counterIndex).val() );
 		  //deal with buttons for this modal window
 		  jq("#dialogPrint"+counterIndex).dialog({
 		  
@@ -754,7 +754,8 @@
 				 id: "dialogSaveTU"+counterIndex,	
 				 text: "Direkte til printer",
 				 click: function(){
-					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked')){
+					 		if(jq("#fbType"+counterIndex).is(':checked') || jq("#cmrType"+counterIndex).is(':checked') || jq("#ffType"+counterIndex).is(':checked') ||
+					 				jq("#aordType"+counterIndex).is(':checked') ){
 					 			//print directly to system printer (AS400-printer)
 					 			doPrintDocuments(counterIndex);
 					 		}
@@ -768,6 +769,9 @@
 					 		jq("#fbType"+counterIndex).prop('checked', false);
 					 		jq("#cmrType"+counterIndex).prop('checked', false);
 					 		jq("#ffType"+counterIndex).prop('checked', false);
+					 		jq('#aordType'+counterIndex).prop('checked', false);
+					 		jq('#aordDocumentType'+counterIndex).val('S');
+					 		
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_error" );
 					 		jq("#printStatus"+counterIndex).removeClass( "isa_success" );
 					 		jq("#printStatus"+counterIndex).text("");
@@ -794,9 +798,25 @@
 	  	//all fields in the form MUST exists in the DTO or DAO in the rest-Controller
 	  	form.append("applicationUser", jq('#applicationUser').val());
 	  	//adjust to the only id's the rest-controller knows about (avd/opd)
+	  	form.append("sign", jq('#signP'+counterIndex).val());
 	  	form.append("avd", jq('#avd'+counterIndex).val());
 	  	form.append("opd", jq('#opd'+counterIndex).val());
 	  	
+	  	if(jq("#fbType"+counterIndex).is(':checked')){
+	  		form.append("fbType", jq('#fbType'+counterIndex).val());
+	  	}
+	  	if(jq("#cmrType"+counterIndex).is(':checked')){
+	  		form.append("cmrType", jq('#cmrType'+counterIndex).val());
+	  	}
+	  	if(jq("#ffType"+counterIndex).is(':checked')){
+	  		form.append("ffType", jq('#ffType'+counterIndex).val());
+	  	}
+	  	if(jq("#aordType"+counterIndex).is(':checked')){
+	  		form.append("aordType", jq('#aordType'+counterIndex).val());
+	  		form.append("aordDocumentType", jq('#aordDocumentType'+counterIndex).val());
+	  	}
+	  	
+	  
 	  	var payload = jq('printForm'+counterIndex).serialize();
 	  	
 	    jq.ajax({
@@ -834,40 +854,35 @@
 	  jq(".clazz_alinkFraktbrevPdf").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("alinkFraktbrevPdf","");
-		  renderFraktBrev(counterIndex);
+		  renderFraktBrev(counterIndex, jq('#avd'+counterIndex).val(), jq('#opd'+counterIndex).val());
 	  });
 	  jq(".clazz_imgFraktbrevPdf").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("imgFraktbrevPdf","");
-		  renderFraktBrev(counterIndex);
+		  renderFraktBrev(counterIndex, jq('#avd'+counterIndex).val(), jq('#opd'+counterIndex).val());
 	  });
-	  //CMR-Fraktbrev
+	//CMR-Fraktbrev
 	  jq(".clazz_alinkCmrFraktbrevPdf").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("alinkCmrFraktbrevPdf","");
-		  renderCmrFraktBrev(counterIndex);
+		  renderCmrFraktBrev(counterIndex, jq('#avd'+counterIndex).val(), jq('#opd'+counterIndex).val());
 	  });
 	  jq(".clazz_imgCmrFraktbrevPdf").click(function() {
 		  var id = this.id;
 		  counterIndex = id.replace("imgCmrFraktbrevPdf","");
-		  renderCmrFraktBrev(counterIndex);
+		  renderCmrFraktBrev(counterIndex, jq('#avd'+counterIndex).val(), jq('#opd'+counterIndex).val());
 	  });
-	  //FFakturor
-	  jq(".clazz_alinkFFaktPdf").click(function() {
-		  var id = this.id;
-		  counterIndex = id.replace("alinkFFaktPdf","");
-		  renderFFakturor(counterIndex);
-	  });
-	  
 	  
   });
-  function renderFraktBrev(counterIndex){
-	window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  function renderFraktBrev(counterIndex, avd, opd){
+	//window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+	  window.open('transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + avd + '&wsopd=' + opd, '_blank');
   }
-  function renderCmrFraktBrev(counterIndex){
-	window.open('TODOJOVO-transportdisp_mainorderlist_renderFraktbrev.do?user=' + jq('#applicationUser').val() + '&wsavd=' + jq('#avd'+counterIndex).val() + '&wsopd=' + jq('#opd'+counterIndex).val(), '_blank');
+  function renderCmrFraktBrev(counterIndex, avd, opd){
+	var userIP = jq("#userHttpJQueryDocRoot").val().replace("http://", "");
+	var link = jq("#userHttpJQueryDocRoot").val() + '/sycgip/esop11cm.pgm?user=' + jq("#applicationUser").val() + '&curtur=' + '&UserIP=' + userIP + '&avd=' + avd + '&opd=' + opd;
+	window.open(link, "printDocWinCm", "top=300px,left=50px,height=800px,width=900px,scrollbars=no,status=no,location=no");    
   } 
-  
   //----------------------------
   //END Model dialog Print docs
   //----------------------------

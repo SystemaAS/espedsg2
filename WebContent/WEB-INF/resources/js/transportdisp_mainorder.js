@@ -2949,7 +2949,7 @@
 	  //jq('input:radio[name="smsType"]').filter('[value="grabber"]').attr('checked', true);
 	  
 	  //setters (add more if needed)
-	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut" );
+	  jq('#dialogPrint').dialog( "option", "title", "Skriv ut - Ordre " + jq("#wsavd").val() + "/" + jq("#wsopd").val() );
 	  //deal with buttons for this modal window
 	  jq('#dialogPrint').dialog({
 		 buttons: [ 
