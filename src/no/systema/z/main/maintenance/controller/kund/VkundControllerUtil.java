@@ -39,7 +39,6 @@ public class VkundControllerUtil {
 		return new RestTemplate();
 	}
 	
-	
 	/**
 	 * Inject UrlCgiProxyService for http calls.
 	 * 
@@ -205,12 +204,27 @@ public class VkundControllerUtil {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
 		urlRequestParams.append("?user=" + appUser.getUser());
-		logger.info("Full url: " + BASE_URL +urlRequestParams.toString());
+		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
 
-		ResponseEntity<FirkuDao> response = restTemplate().exchange(BASE_URL + urlRequestParams.toString(),
-				HttpMethod.GET, null, FirkuDao.class);
+		JsonReader<JsonDtoContainer<FirkuDao>> jsonReader = new JsonReader<JsonDtoContainer<FirkuDao>>();
+		jsonReader.set(new JsonDtoContainer<FirkuDao>());
 
-		return response.getBody();
-	}	
+		ResponseEntity<String> jsonPayload = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+
+		logger.info("jsonPayload=" + jsonPayload.getBody());
+		FirkuDao dao = null;
+
+		if (jsonPayload != null) {
+			JsonDtoContainer<FirkuDao> container = (JsonDtoContainer<FirkuDao>) jsonReader.get(jsonPayload.getBody());
+			if (container != null) {
+				for (FirkuDao firku : container.getDtoList()) {
+					dao = firku;
+				}
+			}
+		}
+
+		return dao;
+
+	}
 	
 }
