@@ -226,7 +226,7 @@
     
 }
 	
-}
+
 .dashboardFrameMain{
 	border: 0px solid #ccc;
 	-webkit-border-bottom-right-radius: 5px;
@@ -309,7 +309,7 @@
 	background-color:#FCFFF0;
 	border-style: outset; 
     border-width: 0px 1px 0px 0px; 
-    border-color:##778899
+    border-color:#778899
 }
 
 .headerMenuBlue{
