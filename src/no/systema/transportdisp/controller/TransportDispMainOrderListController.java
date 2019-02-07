@@ -104,7 +104,6 @@ public class TransportDispMainOrderListController {
 		String wstur = request.getParameter("wstur");
 		String wssavd = request.getParameter("wssavd");
 		
-		
 		Map model = new HashMap();
 		//String messageFromContext = this.context.getMessage("user.label",new Object[0], request.getLocale());
 		

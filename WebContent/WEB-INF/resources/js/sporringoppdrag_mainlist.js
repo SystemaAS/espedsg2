@@ -33,6 +33,8 @@
                 //close child window
 				window.close();
               }
+              //make sure to remove the session attribute:cw (flag to use Spørring på Oppdrag as childwindow)
+              session.setItem("cw", "");
 
 		  }
 	  });
@@ -77,8 +79,13 @@
     jq(document).ready(function() {
       //init table (no ajax, no columns since the payload is already there by means of HTML produced on the back-end)
     	  jq('#oppdragMainList').dataTable( {
+              "searchHighlight": true,
+              "jQueryUI": false,
     		  "dom": '<"top"fli>rt<"bottom"p><"clear">',
-    		  "lengthMenu": [ 25, 50, 75, 100, 500, 1000 ]
+              "lengthMenu": [ 25, 50, 100, 500 ],
+              "fnDrawCallback": function( oSettings ) {
+		            jq('.dataTables_filter input').addClass("inputText12LightYellow");
+               }
     	  } );
       //event on input field for search
       jq('input.oppdragMainList_filter').on( 'keyup click', function () {
