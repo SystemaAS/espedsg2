@@ -178,8 +178,13 @@
 									            <td class="text14" align="left" title="todo">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.fsad"/></td>
 									            <td class="text14" align="left" title="iffb">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.inlandflyfraktbrev"/></td>
 									            <td class="text14" align="left" title="loss">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.losselista"/></td>
+									            <td class="text14" align="left" title="loli">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.lastelista"/></td>
+									            <td class="text14" align="left" title="goli">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.godslista"/></td>
+									            
 									            <td class="text14" align="left" title="ffak">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.ffaktura"/></td>
 									       		<td class="text14" align="left" title="cm">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.cmr"/></td>
+												<td class="text14" align="left" title="aord">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.aord"/></td>
+									       						       		
 									       		<td class="text14" align="left" title="sakode/satype">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.sArk"/></td>
 									       		<td class="text14" align="left" title="wssum">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.belopLabels"/></td>
 									       		
@@ -229,6 +234,20 @@
 													</select>
 												</td>
 												<td align="left">
+								        			<select class="inputTextMediumBlue" name="lali" id="lali">
+								 						<option value="">-velg-</option>
+									 				  	<option value="J"<c:if test="${model.record.lali == 'J'}"> selected </c:if> >Ja</option>
+														<option value="N"<c:if test="${model.record.lali == 'N'}"> selected </c:if> >Nei</option>
+													</select>
+												</td>
+												<td align="left">
+								        			<select class="inputTextMediumBlue" name="goli" id="goli">
+								 						<option value="">-velg-</option>
+									 				  	<option value="J"<c:if test="${model.record.goli == 'J'}"> selected </c:if> >Ja</option>
+														<option value="N"<c:if test="${model.record.goli == 'N'}"> selected </c:if> >Nei</option>
+													</select>
+												</td>
+												<td align="left">
 								        			<select class="inputTextMediumBlue" name="ffak" id="ffak">
 								 						<option value="">-velg-</option>
 									 				  	<option value="J"<c:if test="${model.record.ffak == 'J'}"> selected </c:if> >Ja</option>
@@ -243,6 +262,14 @@
 													</select>
 												</td>
 												<td align="left">
+								        			<select class="inputTextMediumBlue" name="aord" id="aord">
+								 						<option value="">-velg-</option>
+									 				  	<option value="S"<c:if test="${model.record.aord == 'S'}"> selected </c:if> >Single</option>
+														<option value="I"<c:if test="${model.record.aord == 'I'}"> selected </c:if> >Intern</option>
+														<option value="E"<c:if test="${model.record.aord == 'E'}"> selected </c:if> >Ekstern</option>
+													</select>
+												</td>
+												<td align="left">
 								        			<input type="text" class="inputTextMediumBlue"  name="sakode" id="sakode" size="4" maxlength="2" value='${model.record.sakode}'>
 								        			<input type="text" class="inputTextMediumBlue"  name="satype" id="satype" size="2" maxlength="1" value='${model.record.satype}'>
 												</td>	
@@ -251,30 +278,33 @@
 								 						<option value="J"<c:if test="${model.record.wssum == 'J' || empty model.record.wssum}"> selected </c:if> >Beløp</option>
 														<option value="L"<c:if test="${model.record.wssum == 'L'}"> selected </c:if> >Labels</option>
 													</select>
-												</td>
-												
-																			
+												</td>						
 									        </tr>
 									        <tr height="10px"><td class="text" align="left"></td></tr>
+									        
 									        <tr>
-									 			<td valign="top" colspan="3">
+									        		<td colspan="20">
+									        		<table >
+									 			<tr>
+									 			<td valign="top" >
 									 				<table >
 									 					<tr>
 									 						<td colspan="3" class="text14" align="left" title="wsms1-6">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.faktoppdtyper"/></td>
 									 					</tr>
 									 					<tr>
-												        	<td align="left">
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms1" id="wsms1" size="4" maxlength="2" value='${model.record.wsms1}'>
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms2" id="wsms2" size="4" maxlength="2" value='${model.record.wsms2}'>
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms3" id="wsms3" size="4" maxlength="2" value='${model.record.wsms3}'>
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms4" id="wsms4" size="4" maxlength="2" value='${model.record.wsms4}'>
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms5" id="wsms5" size="4" maxlength="2" value='${model.record.wsms5}'>
-											        			<input type="text" class="inputTextMediumBlue"  name="wsms6" id="wsms6" size="4" maxlength="2" value='${model.record.wsms6}'>
-											        		</td>		
+													        	<td align="left">
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms1" id="wsms1" size="4" maxlength="2" value='${model.record.wsms1}'>
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms2" id="wsms2" size="4" maxlength="2" value='${model.record.wsms2}'>
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms3" id="wsms3" size="4" maxlength="2" value='${model.record.wsms3}'>
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms4" id="wsms4" size="4" maxlength="2" value='${model.record.wsms4}'>
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms5" id="wsms5" size="4" maxlength="2" value='${model.record.wsms5}'>
+												        			<input type="text" class="inputTextMediumBlue"  name="wsms6" id="wsms6" size="4" maxlength="2" value='${model.record.wsms6}'>
+												        		</td>		
 												        </tr>
 									 				</table>
 									 			</td>
-									 			<td valign="top" colspan="3">
+									 			<td width="40px" class="text" align="left"></td>
+									 			<td valign="top">
 									 				<table >
 									 					<tr>
 									 						<td colspan="3" class="text14" align="left" title="todo">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.utelatoppdtyper"/></td>
@@ -291,10 +321,10 @@
 												        </tr>
 									 				</table>
 									 			</td>
-									 			
-									 			<td valign="top" colspan="3">
+									 			<td width="40px" class="text" align="left"></td>
+									 			<td valign="top" >
 									 				<table class="tableBorderWithRoundCornersLightGray"	>
-									 					<tr>
+									 				<tr>
 									 						<td class="text14MediumBlue" align="left" title="jbk">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.jobbko"/></td>
 									            			<td class="text14MediumBlue" align="left" title="wsprt">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.avskriver"/></td>
 									            			<td class="text14MediumBlue" align="left" title="wsprt2">&nbsp;<spring:message code="systema.transportdisp.fellesutskrift.label.avskriver.mlapp"/></td>
@@ -319,8 +349,10 @@
 									 			<td valign="bottom">
 									 				<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.print"/>'>
 									 			</td>
-									        </tr>
-									        
+									        		</tr>
+									        		</table>
+									        		</td>
+									        		</tr>
 									        
 								        </table>
 							        </td>

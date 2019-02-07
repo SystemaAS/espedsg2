@@ -497,7 +497,7 @@
 					   						<tr>
 												<td class="text14" align="left" >
 													<input type="checkbox" name="lastlistType${counter.count}" id="lastlistType${counter.count}" value="ll">
-													<span class="clazz_alinkLastlistePdf" id="alinkLastlistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Lastelista</span>
+													<span class="clazz_alinkLastlistePdf" id="alinkLastlistePdf${counter.count}" style="text-decoration: underline;" onMouseOver="style='color:lemonchiffon;cursor:pointer;text-decoration: underline;'" onMouseOut="style='color:black;text-decoration: underline;'">Lasteliste</span>
 												</td>
 												<td class="text14" align="left" >	
 													<img class="clazz_imgLastlistePdf" id="imgLastlistePdf${counter.count}" title="LL PDF" style="vertical-align:middle;cursor:pointer;" src="resources/images/pdf.png" width="14" height="14" border="0" alt="LL. PDF">
