@@ -15,8 +15,8 @@
 			  var record = id.split('_');
 			  var avd = record[0];
 			  var opd = record[1];
-			  //opener=TransportDisponering main order list JSP
-			  if(opener.jq('#searchForm').length){ //only way to check if field exists.
+              //opener=TransportDisponering main order list JSP
+              if(opener.jq('#searchForm').length){ //only way to check if field exists.
 				  opener.jq('#avd').val(avd); opener.jq('#opd').val(opd);
 				  opener.jq('#opd').focus();
 				  //emulate a search now
@@ -24,7 +24,16 @@
 				  
 				  //close child window
 				  window.close();
-			  }
+              }
+              //opener=eBooking order JSP
+              if(opener.jq('#ebookingOrderForm').length){ //only way to check if field exists.
+                alert("do something!");
+                //TODO...
+
+                //close child window
+				window.close();
+              }
+
 		  }
 	  });
 	});

@@ -11,8 +11,6 @@
 	
 	<SCRIPT type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></SCRIPT>
 	
-	<%-- for dialog popup --%>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<style type = "text/css">
 	.ui-dialog{font-size:10pt;}
@@ -526,7 +524,7 @@
 	            		   
 	            		   
 	            		   <td width="3%" align="center" class="text14 tableCellGray">
-	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=210px,width=330px,scrollbars=no,status=no,location=no')">	 
+	            		   		<input class="inputFormSubmit11Slim" type="button" value="Upload" name="uplButton${counter.count}" onClick="window.open('transportdisp_workflow_childwindow_uploadFile.do?action=doInit&wstur=${record.tupro}','transpDispWorklistFileUpload','top=300px,left=800px,height=250px,width=330px,scrollbars=no,status=no,location=no')">	 
 	            		   </td>
 	            		   <%--
 	            		   <td align="center" class="text14 tableCellGray">

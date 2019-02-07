@@ -9,8 +9,6 @@
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_mainorderlist_fellesutskrift.js?ver=${user.versionEspedsg}"></SCRIPT>
 	<%--<SCRIPT type="text/javascript" src="resources/js/trorFkeys_landimport.js?ver=${user.versionEspedsg}"></SCRIPT> --%>
 	
-	<%-- for dialog popup --%>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<style type = "text/css">
 	.ui-dialog{font-size:10pt;}

@@ -11,8 +11,6 @@
 	<SCRIPT type="text/javascript" src="resources/js/jquery-ui-timepicker-addon.js"></SCRIPT>
 	<SCRIPT type="text/javascript" src="resources/js/transportdispglobal_edit.js?ver=${user.versionEspedsg}"></SCRIPT>			
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_workflow_ferjeoverfarter.js?ver=${user.versionEspedsg}"></SCRIPT>
-	<%-- for dialog popup --%>
-	<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 	
 	<style type = "text/css">
 	.ui-dialog{font-size:10pt;}
