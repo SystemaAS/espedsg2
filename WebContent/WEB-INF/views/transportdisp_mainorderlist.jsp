@@ -205,7 +205,7 @@
 						<tr class="tableHeaderField" >
 							<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.remove"/></th>   
 		                    <th width="2%" class="text14">
-		            			<input style="cursor:pointer;" type="button" value="M." name="currentordersColumnHeaderButtonRmv" id="currentordersColumnHeaderButtonRmv" onClick="getValidCheckis(this);">
+		            			<input title="Fjerne en eller flere" style="cursor:pointer;" type="button" value="M." name="currentordersColumnHeaderButtonRmv" id="currentordersColumnHeaderButtonRmv" onClick="getValidCheckis(this);">
 		                    </th>
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ourRef"/></th> 
 							<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.ttstat"/></th> 
@@ -223,7 +223,7 @@
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.goodsDesc"/></th>   
 		                    
 		                    <th width="2%" class="text14">
-	                    		<input style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.current.list.search.label.pos"/>" name="currentordersColumnHeaderButtonPos" id="currentordersColumnHeaderButtonPos" onClick="getValidPositions(this);">
+	                    		<input title="Oppd.posisjon..."style="cursor:pointer;" type="button" value="<spring:message code="systema.transportdisp.orders.current.list.search.label.pos"/>" name="currentordersColumnHeaderButtonPos" id="currentordersColumnHeaderButtonPos" onClick="getValidPositions(this);">
 		                    </th> 
 		                    <th width="2%" class="text14" title="faktura status"><spring:message code="systema.transportdisp.orders.current.list.search.label.o"/></th>   
 		                    <th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.current.list.search.label.pcs"/></th>   
@@ -674,7 +674,7 @@
 					<tr class="tableHeaderField" >
 						<c:if test="${not empty searchFilter.tur}">
 							<th width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.pick"/></th>   
-                    		<th width="2%" class="text14"><input style="cursor:pointer;" type="button" value="M." name="openordersColumnHeaderButton" id="openordersColumnHeaderButton" onClick="getValidCheckis(this);"></th>
+                    		<th width="2%" class="text14"><input title="Plukk en eller flere" style="cursor:pointer;" type="button" value="M." name="openordersColumnHeaderButton" id="openordersColumnHeaderButton" onClick="getValidCheckis(this);"></th>
                    		</c:if>
                    		<th title="avd/ordre" width="2%" class="text14"><spring:message code="systema.transportdisp.orders.open.list.search.label.ourRef"/></th> 
                    		<c:if test="${empty searchFilter.tur}">
