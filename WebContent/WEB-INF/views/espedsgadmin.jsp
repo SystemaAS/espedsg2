@@ -70,7 +70,16 @@
 				            <c:forEach var="customer" items="${model.dbObjectList}" varStatus="counter">  
 				               <c:if test="${customer != null}">   
 					               <tr height="20" >
-					               <td class="text14" nowrap ><font class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font></td>
+					               <td class="text14" nowrap >
+					               		<c:choose>
+						               		<c:when test="${fn:containsIgnoreCase(customer.name, 'Toten')}">
+						               			<font title="192.168.1.250" class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font>
+						               		</c:when>
+						               		<c:otherwise>	
+						               			<font class="text14MediumBlue">&nbsp;${customer.name}&nbsp;</font>
+						               		</c:otherwise>
+					               		</c:choose>
+					               	</td>
 			                       <td class="text14" nowrap ><font class="text14MediumBlue">&nbsp;${customer.version}&nbsp;</font></td>
 			                       <c:choose>
 					               		<c:when test="${'DSV' == customer.name || 'DHL' == customer.name || 'Schenker NO' == customer.name}">
