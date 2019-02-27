@@ -448,6 +448,20 @@
 															<tr>
 																<td  class="text14" title="cemail">&nbsp;&nbsp;&nbsp;
 																	<spring:message code="systema.main.maintenance.mainmaintenancecundf.cundc.email"/>:
+														 				<img onMouseOver="showPop('cemail_info');" onMouseOut="hidePop('cemail_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+														 				<div class="text11" style="position: relative;" align="left">
+														 				<span style="position:absolute; top:2px; width:250px;" id="cemail_info" class="popupWithInputText text11">
+																           		<b>
+																           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.cundc.email"/>
+																           		</b>
+																           		<p>
+																           			@ = epost blir ikke sendt
+																           		</p> 
+																           		<p>
+																           			@user = kund send til seg selv
+																           		</p> 
+																		</span>
+																		</div>																	
 																</td>
 																<td>&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" class="inputTextMediumBlue" name="cemail" id="cemail" size="70" maxlength="70" value='${model.record.cemail}'></td>
 															</tr>
