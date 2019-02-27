@@ -178,8 +178,17 @@
 											           		<b>
 											           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.orgnr"/>
 											 	          	</b><br><br>
-											           		Hvis nedlastningknappen till høyre brukes , og addressinformation mangler, lastes information om adresse fra Brønnøysundregistrene.
+											           			Hvis nedlastningknappen till høyre brukes , og addressinformation mangler, lastes information om adresse fra Brønnøysundregistrene.
+											           		<br>
+											           			(adresse forrangsordre: postadresse, forretningsadresse, beliggenhetsadresse)
 															<br><br>
+											           		<b>
+											           			<img style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg">
+											 	          	</b><br><br>
+											 	          		Fylles altid med data direkte fra Brønnøysundregistrene hvis nedlastningknappen till høyre brukes.<br>
+											 	          	<br>
+											 	          		(stenges ved og klikke)
+											 	          	<br>
 													</span>
 													</div>
 												</c:if>
@@ -354,7 +363,7 @@
 											<td colspan="3">&nbsp;</td>
 											<td>&nbsp;
 												<c:if test="${user.filand == 'NO'}">
-								 					&nbsp;<img onMouseOver="showPop('brreg_info');" onMouseOut="hidePop('brreg_info');"style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg" alt="info">
+								 					&nbsp;<img onMouseOver="showPop('brreg_info');" onClick="hidePop('brreg_info');"style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg" alt="info">
 									 				<div class="text11" style="position: relative;" align="left">
 									 				<span style="position:absolute; top:2px; width:300px; left:-60px" id="brreg_info" class="popupWithInputText text11">
 									 					<textarea cols="46" id="ehp">&nbsp;Ikke nedlastet.</textarea>
@@ -362,7 +371,7 @@
 													</div>
 												</c:if>
 											</td>	
-										</tr>										
+										</tr>		
 									</table>
 								</td>
 							</tr>

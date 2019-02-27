@@ -18,12 +18,14 @@
 				ajax : 'true'
 			}, function(data) {
 	
+				console.log("data",data);
+				
 				jq("#knavn").val(data.navn);
 				jq("#knavn").change();
 				jq("#spraak").val("N");
 				jq("#spraak").change();
 
-				if (data.postadresse !== undefined ) {  //Enhet
+				if (data.postadresse !== undefined ) { 
 					jq("#adr1").val(data.postadresse.adresse);
 					jq("#adr1").change();
 					jq("#adr3").val(data.postadresse.poststed);
@@ -32,17 +34,25 @@
 					jq("#postnr").change();
 					jq("#syland").val(data.postadresse.landkode);
 					jq("#syland").change();
-				} else {
-					if (data.beliggenhetsadresse !== undefined ) {  //Underenhet
-						jq("#adr1").val(data.beliggenhetsadresse.adresse);
-						jq("#adr1").change();
-						jq("#adr3").val(data.beliggenhetsadresse.poststed);
-						jq("#adr3").change();
-						jq("#postnr").val(data.beliggenhetsadresse.postnummer);
-						jq("#postnr").change();
-						jq("#syland").val(data.beliggenhetsadresse.landkode);
-						jq("#syland").change();
-					}
+				} else if (data.forretningsadresse !== undefined ) { 
+					jq("#adr1").val(data.forretningsadresse.adresse);
+					jq("#adr1").change();
+					jq("#adr3").val(data.forretningsadresse.poststed);
+					jq("#adr3").change();
+					jq("#postnr").val(data.forretningsadresse.postnummer);
+					jq("#postnr").change();
+					jq("#syland").val(data.forretningsadresse.landkode);
+					jq("#syland").change();
+				}				
+				else if (data.beliggenhetsadresse !== undefined ) { 
+					jq("#adr1").val(data.beliggenhetsadresse.adresse);
+					jq("#adr1").change();
+					jq("#adr3").val(data.beliggenhetsadresse.poststed);
+					jq("#adr3").change();
+					jq("#postnr").val(data.beliggenhetsadresse.postnummer);
+					jq("#postnr").change();
+					jq("#syland").val(data.beliggenhetsadresse.landkode);
+					jq("#syland").change();
 				}
 
 			});
@@ -90,7 +100,7 @@
 		
 		
 jq(function() {
-
+	
     jq('#sylandIdLink').click(function() {
     	jq('#sylandIdLink').attr('target','_blank');
     	window.open('mainmaintenance_vkund_edit_childwindow_codes.do?caller=syland', "codeWin", "top=300px,left=500px,height=600px,width=800px,scrollbars=no,status=no,location=no");

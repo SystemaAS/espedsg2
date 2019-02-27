@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -1258,14 +1260,13 @@ public class MainMaintenanceCundfVkundController {
 		}
 		for (Iterator<JsonMaintMainCundfRecord> iterator = recordList.iterator(); iterator.hasNext();) {
 			record = (JsonMaintMainCundfRecord) iterator.next();
-			fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
-			record.setFmotname(fmotRecord.getKnavn());
+			if (!kundnr.equals(record.getFmot())) { // to avoid circular-ref
+				fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
+				record.setFmotname(fmotRecord.getKnavn());
+			}
 			record.setElma(existInElma(record.getSyrg()));		
 		}
 
-		
-		logger.info("record.getElma()="+record.getElma());
-		
 		return record;
 
 	}
