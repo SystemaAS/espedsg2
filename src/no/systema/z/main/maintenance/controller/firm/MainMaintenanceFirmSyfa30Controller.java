@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import no.systema.main.service.UrlCgiProxyService;
-
+import no.systema.jservices.common.util.StringUtils;
 //application imports
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.util.AppConstants;
@@ -363,6 +363,9 @@ public class MainMaintenanceFirmSyfa30Controller {
 	
 	private int updateRecord(String applicationUser, JsonMaintMainFirmRecord record, String mode, StringBuffer errMsg){
 		int retval = 0;
+
+		//TODO ? Potentially all field suffer of same problem, here just fix of fikufn
+		checkAndFixFikufn(record);
 		
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYFIRMR_DML_UPDATE_URL;
 		String urlRequestParamsKeys = "user=" + applicationUser + "&mode=" + mode;
@@ -392,6 +395,12 @@ public class MainMaintenanceFirmSyfa30Controller {
     	return retval;
 	}
 	
+	private void checkAndFixFikufn(JsonMaintMainFirmRecord record) {
+		if (!StringUtils.hasValue(record.getFikufn())) {
+			record.setFikufn("0");
+		}
+	}
+
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")
 	private UrlCgiProxyService urlCgiProxyService;
