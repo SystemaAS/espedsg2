@@ -101,6 +101,7 @@ public class MainMaintenanceCundfKundeController {
 					} else {
 						kundeSessionParams.setKundnr(savedRecord.getKundnr());
 						kundeSessionParams.setFirma(savedRecord.getFirma());
+						kundeSessionParams.setSonavn(savedRecord.getSonavn());
 						kundeSessionParams.setKnavn(savedRecord.getKnavn());
 
 						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
@@ -216,6 +217,7 @@ public class MainMaintenanceCundfKundeController {
 	private void adjustRecordToValidate(JsonMaintMainCundfRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setFirma(kundeSessionParams.getFirma());
 		recordToValidate.setKundnr(kundeSessionParams.getKundnr());
+//		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 	}
 	
 

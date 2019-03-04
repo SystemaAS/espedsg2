@@ -28,7 +28,7 @@ public class MaintMainCundcValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cfirma", "systema.maint.kunderegister.error.firma"); 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ccompn", "systema.maint.kunderegister.error.kundnr");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cconta", "systema.maint.kunderegister.error.cconta");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sonavn", "systema.maint.kunderegister.error.sonavn");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sonavn", "systema.maint.kunderegister.error.sonavn");
 
 		//Logical (RULES) controls if we passed the NOT NULL errors
 		if (!errors.hasFieldErrors()) {
@@ -51,7 +51,7 @@ public class MaintMainCundcValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cfirma", "systema.maint.kunderegister.error.firma"); 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "ccompn", "systema.maint.kunderegister.error.kundnr");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "cconta", "systema.maint.kunderegister.error.cconta");
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sonavn", "systema.maint.kunderegister.error.sonavn");
+//		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "sonavn", "systema.maint.kunderegister.error.sonavn");
 	}
 
 	

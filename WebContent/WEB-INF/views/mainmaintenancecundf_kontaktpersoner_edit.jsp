@@ -248,6 +248,7 @@
 								<input type="hidden" name="applicationUser" id="applicationUser" value="${user.user}">
 								<input type="hidden" name="updateId" id="updateId" value="${model.updateId}"> 
 								<input type="hidden" name="ccontaorg" id="ccontaorg" value="${model.record.ccontaorg}"> 
+								<input type="hidden" name="ctypeorg" id="ctypeorg" value="${model.record.ctypeorg}"> 
 								<input type="hidden" name="action" id="action" value="doUpdate">
 								<table id="kontakpersonerDetails" width="100%" cellspacing="0" border="0" align="left">
 									<%-- Validation errors --%>

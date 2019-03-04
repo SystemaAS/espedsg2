@@ -248,6 +248,7 @@ function getRecord(record){
 			jq('#cconta').val("");jq('#cconta').val(data[i].cconta);
 			jq('#ccontaorg').val("");jq('#ccontaorg').val(data[i].ccontaorg);
 			jq('#ctype').val("");jq('#ctype').val(data[i].ctype);
+			jq('#ctypeorg').val("");jq('#ctypeorg').val(data[i].ctypeorg);
 			jq('#cphone').val("");jq('#cphone').val(data[i].cphone);
 			jq('#cmobil').val("");jq('#cmobil').val(data[i].cmobil);
 			jq('#cfax').val("");jq('#cfax').val(data[i].cfax);

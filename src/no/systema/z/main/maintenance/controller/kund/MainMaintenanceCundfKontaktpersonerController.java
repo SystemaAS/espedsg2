@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -89,6 +90,9 @@ public class MainMaintenanceCundfKontaktpersonerController {
 		String action = request.getParameter("action");
 		String updateId = request.getParameter("updateId");
 		
+		logger.info("recordToValidate="+ReflectionToStringBuilder.toString(recordToValidate));
+		
+		
 		if (appUser == null) {
 			return this.loginView;
 		} else {
@@ -103,7 +107,12 @@ public class MainMaintenanceCundfKontaktpersonerController {
 			}
 
 			if (bindingResult.hasErrors()) {
-				logger.info("[ERROR Validation] Record does not validate)");
+				logger.error("[ERROR Validation] Record does not validate)");
+//				bindingResult.getAllErrors().forEach(error -> {
+//					logger.error("ERROR:"+error.getDefaultMessage());
+//				});
+				
+				
 				if (updateId != null && !"".equals(updateId)) {
 					// meaning bounced in an Update and not a Create new
 					model.put("updateId", updateId);
@@ -119,17 +128,19 @@ public class MainMaintenanceCundfKontaktpersonerController {
 						dmlRetval = updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_ADD, errMsg);
 					}
 				} else if (MainMaintenanceConstants.ACTION_DELETE.equals(action)) {
+					logger.info("::delete::");
 					dmlRetval = updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_DELETE, errMsg);
+					logger.info("dmlRetval="+dmlRetval);
 				}
 				// check for Update errors
 				if (dmlRetval < 0) {
-					logger.info("[ERROR DML] Record does not validate)");
+					logger.error("[ERROR DML] Record does not validate), errMsg="+errMsg);
 					if (updateId != null && !"".equals(updateId)) {
 						// meaning bounced in an Update and not a Create new
 						model.put("updateId", updateId);
 					}
 					model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
-					model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
+					//model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 				}
 
 			}
@@ -153,6 +164,7 @@ public class MainMaintenanceCundfKontaktpersonerController {
 	private void adjustRecordToValidate(JsonMaintMainCundcRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setCfirma(kundeSessionParams.getFirma());
 		recordToValidate.setCcompn(kundeSessionParams.getKundnr());
+		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 		String cavd = recordToValidate.getCavd1()+recordToValidate.getCavd2()+recordToValidate.getCavd3()+recordToValidate.getCavd4()+
 				 			recordToValidate.getCavd5()+recordToValidate.getCavd6()+recordToValidate.getCavd7()+recordToValidate.getCavd8()+
 				 			recordToValidate.getCavd9()+recordToValidate.getCavd10()+recordToValidate.getCavd11()+recordToValidate.getCavd12()+
