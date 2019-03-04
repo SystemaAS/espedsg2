@@ -153,7 +153,6 @@ public class MainMaintenanceCundfKontaktpersonerController {
 	private void adjustRecordToValidate(JsonMaintMainCundcRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setCfirma(kundeSessionParams.getFirma());
 		recordToValidate.setCcompn(kundeSessionParams.getKundnr());
-		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 		String cavd = recordToValidate.getCavd1()+recordToValidate.getCavd2()+recordToValidate.getCavd3()+recordToValidate.getCavd4()+
 				 			recordToValidate.getCavd5()+recordToValidate.getCavd6()+recordToValidate.getCavd7()+recordToValidate.getCavd8()+
 				 			recordToValidate.getCavd9()+recordToValidate.getCavd10()+recordToValidate.getCavd11()+recordToValidate.getCavd12()+

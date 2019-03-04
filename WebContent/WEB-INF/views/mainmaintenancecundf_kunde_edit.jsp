@@ -1,3 +1,4 @@
+
 <%@page pageEncoding="UTF-8" contentType="text/html; charset=UTF-8"%>
 <%@ include file="/WEB-INF/views/include.jsp" %>
 
@@ -155,6 +156,7 @@
 										<tr>
 											<td class="text14" title="kundnr">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>:
+
 											<c:choose>
 												<c:when test="${model.action == 'doCreate'}">
 													<td><input type="text" class="inputTextMediumBlue"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'></td>
@@ -206,23 +208,80 @@
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>:
 											</td>
 											<td><input type="text" required oninvalid="this.setCustomValidity('Obligatoriskt')" onchange="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="knavn" id="knavn" size="30" maxlength="30" value='${model.record.knavn}'></td>
-											<td class="text14" title="spraak">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language"/>:
+											<td class="text14" title="sonavn">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sonavn"/>:
 											</td>
 											<td>
-												<select name="spraak" id="spraak" > 
-			 					  					<option value="">-<spring:message code="systema.choose"/>-</option>
-			 					  					<option value="N"<c:if test="${model.record.spraak == 'N'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.norway"/></option>
-								  					<option value="E"<c:if test="${ model.record.spraak == 'E'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.england"/></option>
-								  					<option value="T"<c:if test="${ model.record.spraak == 'T'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.germany"/></option>
-								  				</select>
+												<input type="text" class="inputTextMediumBlue" name="sonavn" id="sonavn" size="11" maxlength="10" value='${model.record.sonavn}'>
 											</td>
 										</tr>
 										<tr>
 											<td class="text14" title="adr1">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.address"/>:
+								 					&nbsp;<img onMouseOver="showPop('adr1_info');" onMouseOut="hidePop('adr1_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+									 				<div class="text11" style="position: relative;" align="left">
+									 				<span style="position:absolute; top:2px; width:250px;" id="adr1_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.address"/>
+											 	          	</b><br><br>
+											Merk at adresse 2 IKKE overføres til stykkgodsfraktbrev.<br>
+											På norske kunder bør derfor gateadresse alltid ligge i adresse 1.<br>
+											Om ønskelig kan en legge postadresse i adresse 2 (når denne avviker fra gate adresse - Se også felt "Postnr v/postboks").<br>
+											På den måten sparer en arbeidet med å opprette en egen varaadresse å kunden.<br>
+											(Vareadresse nr 1 = kundens hente/leveringsadresse - vil overstyre i oppdrag  hvis den finnes)<br> 
+													</span>
+													</div>
 											</td>
 											<td><input type="text" class="inputTextMediumBlue" name="adr1" id="adr1" size="30" maxlength="30" value='${model.record.adr1}'></td>
+											<td class="text14" title="adr2">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postbox"/>:
+							 					&nbsp;<img onMouseOver="showPop('adr2_info');" onMouseOut="hidePop('adr2_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="adr2_info" class="popupWithInputText text11"  >
+										           		<b>
+										           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postbox"/>
+										 	          	</b><br><br>
+											Merk at adresse 2 IKKE overføres til stykkgodsfraktbrev. <br>
+											På norske kunder bør derfor gateadresse alltid ligge i adresse 1.<br>
+											Om ønskelig kan en legge postadresse i adresse 2 (når denne avviker fra gate adresse - Se også felt "Postnr v/postboks").<br>
+											På den måten sparer en arbeidet med å opprette en egen varaadresse å kunden.<br>
+											(Vareadresse nr 1 = kundens hente/leveringsadresse - vil overstyre i oppdrag  hvis den finnes)<br> 
+												</span>
+												</div>
+											</td>
+											<td><input type="text" class="inputTextMediumBlue" name="adr2" id="adr2" size="25" maxlength="30" value='${model.record.adr2}'>
+											</td>
+										</tr>
+										<tr>
+											<td class="text14" title="postnr">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/>:
+											</td>
+											<td><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'></td>
+											<td class="text14" title="pnpbku">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postboxnr"/>:
+							 					&nbsp;<img onMouseOver="showPop('pnpbku_info');" onMouseOut="hidePop('pnpbku_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="pnpbku_info" class="popupWithInputText text11"  >
+										           		<b>
+														<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postboxnr"/>:
+										 	          	</b><br><br>
+														Hvis utfylt benyttes dette kun ved print av faktura og lignende dokumenter. <br>
+														Kan benyttes når en ønsker avvikende postnummer på postadresse i forhold til gateadresse.<br> 
+														(uansett om årsaken er postboks eller annet - Så lenge poststed er samme) 
+														<br><br>
+												</span>
+												</div>
+											</td>
+											<td>
+												<input type="text" class="inputTextMediumBlue" name="pnpbku" id="pnpbku" size="10" maxlength="10" value='${model.record.pnpbku}'>
+											</td>
+										</tr>
+										<tr>
+											<td class="text14" title="sypoge">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>:
+											</td>
+											<td><input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'></td>
+
 											<td class="text14" title="spraak">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>:
 											</td>
@@ -234,39 +293,21 @@
 											</td>
 										</tr>
 										<tr>
-											<td class="text14" title="postnr">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/>:
-											</td>
-											<td><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'></td>
-											<td class="text14" title="adr2">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postbox"/>:
-											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="adr2" id="adr2" size="25" maxlength="30" value='${model.record.adr2}'></td>
-										</tr>
-										<tr>
-											<td class="text14" title="sypoge">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>:
-											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'></td>
-											<td class="text14" title="pnpbku">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postboxnr"/>:
-											</td>
-											<td>
-												<input type="text" class="inputTextMediumBlue" name="pnpbku" id="pnpbku" size="10" maxlength="10" value='${model.record.pnpbku}'>
-											</td>
-										</tr>
-										<tr>
 											<td class="text14" title="adr3">&nbsp;<font class="text14RedBold" >*</font>
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.adr3"/>:
 											</td>
 
 											<td><input type="text" required class="inputTextMediumBlueMandatoryField" name="adr3" id="adr3" size="25" maxlength="24" value='${model.record.adr3}'></td>
-		
-											<td class="text14" title="adr21">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.adr21"/>:
+											<td class="text14" title="spraak">&nbsp;
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language"/>:
 											</td>
 											<td>
-												<input type="text" class="inputTextMediumBlue" name="adr21" id="adr21" size="25" maxlength="30" value='${model.record.adr21}'>
+												<select name="spraak" id="spraak" > 
+			 					  					<option value="">-<spring:message code="systema.choose"/>-</option>
+			 					  					<option value="N"<c:if test="${model.record.spraak == 'N'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.norway"/></option>
+								  					<option value="E"<c:if test="${ model.record.spraak == 'E'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.england"/></option>
+								  					<option value="T"<c:if test="${ model.record.spraak == 'T'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.germany"/></option>
+								  				</select>
 											</td>
 										</tr>
 									</table>
@@ -580,6 +621,12 @@
 
 														<c:choose>
 															<c:when test="${model.isAdressCustomer == 'N'}">
+																<select name="aktkod" id="aktkod" >
+												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
+							 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+												  				</select>
+															</c:when>
+															<c:when test="${model.action == 'doCreate'}">
 																<select name="aktkod" id="aktkod" >
 												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 							 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>

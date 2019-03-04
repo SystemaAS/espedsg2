@@ -97,7 +97,15 @@
 	});
 	
  }
-		
+
+ 
+function initCundfSearch() {
+	
+	console.log("initCundfSearch");
+	
+} 
+ 
+ 
 		
 jq(function() {
 	

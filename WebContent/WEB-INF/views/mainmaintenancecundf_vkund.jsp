@@ -99,7 +99,7 @@
 				               <tr class="tableRow" height="20" >
 				               <td width="2%" class="tableCellFirst" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="center">
 									<input type="hidden" name="action" id="action" value="doUpdate">
-					               	<a id="alinkRecordId_${counter.count}" onClick="setBlockUI(this);" href="mainmaintenancecundf_vkund_edit.do?action=doUpdate&kundnr=${record.kundnr}&firma=${record.firma}&knavn=${record.knavn}&sonavn=${record.sonavn}">
+					               	<a id="alinkRecordId_${counter.count}" onClick="setBlockUI(this);" href="mainmaintenancecundf_vkund_edit.do?action=doUpdate&kundnr=${record.kundnr}&firma=${record.firma}&knavn=${record.knavn}">
 	               						<img src="resources/images/update.gif" border="0" alt="edit">
 				               		</a>
 				               </td>

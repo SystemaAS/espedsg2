@@ -18,7 +18,6 @@ public class KundeSessionParams implements Serializable {
 	private String kundnr;
 	private String knavn;
 	private String firma;
-	private String sonavn;
 	private boolean exportNo;
 	private boolean importNo;
 	private boolean exportDk;
@@ -105,14 +104,6 @@ public class KundeSessionParams implements Serializable {
 
 	public void setFirma(String firma) {
 		this.firma = firma;
-	}
-
-	public String getSonavn() {
-		return sonavn;
-	}
-
-	public void setSonavn(String sonavn) {
-		this.sonavn = sonavn;
 	}
 
 

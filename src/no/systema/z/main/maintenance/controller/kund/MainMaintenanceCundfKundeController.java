@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -67,6 +68,8 @@ public class MainMaintenanceCundfKundeController {
 		String action = request.getParameter("action");
 		StringBuffer errMsg = new StringBuffer();
 		JsonMaintMainCundfRecord savedRecord = null;
+		
+		logger.info("recordToValidate="+ReflectionToStringBuilder.toString(recordToValidate));
 
 		if (appUser == null) {
 			return this.loginView;
@@ -76,6 +79,7 @@ public class MainMaintenanceCundfKundeController {
 			
 			if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {  //New
 				// Validate
+	
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
 				if (bindingResult.hasErrors()) {
@@ -97,7 +101,6 @@ public class MainMaintenanceCundfKundeController {
 					} else {
 						kundeSessionParams.setKundnr(savedRecord.getKundnr());
 						kundeSessionParams.setFirma(savedRecord.getFirma());
-						kundeSessionParams.setSonavn(savedRecord.getSonavn());
 						kundeSessionParams.setKnavn(savedRecord.getKnavn());
 
 						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
@@ -179,6 +182,7 @@ public class MainMaintenanceCundfKundeController {
 	
 
 	private JsonMaintMainCundfRecord updateRecord(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
+		logger.info("::updateRecord::");
 		JsonMaintMainCundfRecord savedRecord = null;
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_DML_UPDATE_URL;
 		String urlRequestParamsKeys = "user=" + appUser.getUser() + "&mode=" + mode + "&lang=" +appUser.getUsrLang();
@@ -212,7 +216,6 @@ public class MainMaintenanceCundfKundeController {
 	private void adjustRecordToValidate(JsonMaintMainCundfRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setFirma(kundeSessionParams.getFirma());
 		recordToValidate.setKundnr(kundeSessionParams.getKundnr());
-		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 	}
 	
 

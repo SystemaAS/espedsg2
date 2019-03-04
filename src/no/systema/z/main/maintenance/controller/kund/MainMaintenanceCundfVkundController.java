@@ -163,7 +163,6 @@ public class MainMaintenanceCundfVkundController {
 				kundeSessionParams.setKundnr(kundnr);
 				kundeSessionParams.setKnavn(knavn);
 				kundeSessionParams.setFirma(firma);
-				kundeSessionParams.setSonavn(recordToValidate.getSonavn());
 
 				setInstalledModules(kundeSessionParams, appUser.getUser());
 				
