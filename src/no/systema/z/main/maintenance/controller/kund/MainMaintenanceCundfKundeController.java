@@ -169,8 +169,10 @@ public class MainMaintenanceCundfKundeController {
 			if (container != null) {
 				for (Iterator<JsonMaintMainCundfRecord> iterator = container.getList().iterator(); iterator.hasNext();) {
 					record = (JsonMaintMainCundfRecord) iterator.next();
-					fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
-					record.setFmotname(fmotRecord.getKnavn());
+					if (!kundnr.equals(record.getFmot())) { // to avoid circular-ref
+						fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
+						record.setFmotname(fmotRecord.getKnavn());
+					}
 					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
 					record.setPostnr(leftPaddedPostnr);
 					record.setElma(existInElma(record.getSyrg()));

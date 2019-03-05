@@ -7,11 +7,36 @@
 <!-- =====================end header ==========================-->
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
-	<SCRIPT type="text/javascript" src="resources/js/mainmaintenancecundf_kunde_edit.js?ver=${user.versionEspedsg}"></SCRIPT>	
+<script type="text/javascript" src="resources/js/mainmaintenancecundf_kunde_edit.js?ver=${user.versionEspedsg}"></script>	
 	
-	<style type = "text/css">
-	.ui-datepicker { font-size:9pt;}
-	</style>
+<style type = "text/css">
+.ui-datepicker { font-size:9pt;}
+</style>
+	
+	
+<script type="text/javascript">
+	"use strict";
+	var signatur = "${user.signatur}";
+	var attkode = "&attkode="+signatur;
+	
+	jq(document).ready(function() {
+
+		console.log("document ready");
+		
+// 		initKostaSearch();
+		
+// 		jq('#selectAttkode').append('<option selected="true">${user.signatur}</option>');
+// 		jq('#selectAttkode').prop('selectedIndex', '${user.signatur}');			
+		
+// 		getAttKode('#selectAttkode');
+		
+	});
+
+</script>	
+	
+	
+	
+	
 
 <table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
@@ -146,8 +171,12 @@
 											<td>
 												<select required name="kundetype" id="kundetype" class="inputTextMediumBlueMandatoryField">
 								  					<option value="">-velg-</option>
-								  					<option value="A">Adressekunde</option>
-			 					  					<option value="F">Fakturakunde</option>
+				  									<option value="A"<c:if test="${model.record.kundetype == 'A'}"> selected </c:if>>
+				  										<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype.address"/>
+				  									</option>
+			  										<option value="F"<c:if test="${model.record.kundetype == 'F'}"> selected </c:if>>
+			  											<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype.invoice"/>
+			  										</option>
 								  				</select>
 											</td>
 										</tr>
