@@ -2,7 +2,20 @@
   var jq = jQuery.noConflict();
   var counterIndex = 0;
   
-  function getDataFromBrreg(element){
+ //ENHET
+ //https://data.brreg.no/enhetsregisteret/api/docs/index.html#_eksempel_1_hent_enhet
+ //postadresse verkar vara non-mandatory. Verkar ha postboks
+ //forettningsaddresse verkar vara mandatory. beliggenhetadresse verkar inte finnas
+ //ex. 812884212 
+  
+//UNDERENHET
+ //https://data.brreg.no/enhetsregisteret/api/docs/index.html#_eksempel_1_hent_underenhet
+//postadresse verkar vara non-mandatory. Verkar ha postboks
+//beliggenhetadresse verkar vara mandatory. forettningsaddresse verkar inte finnas
+ //ex. 976551818
+ 
+  
+ function getDataFromBrreg(element){
 		var orgnr = jq('#syrg').val();
 		var knavn = jq('#knavn').val();
 		var adr1 = jq('#adr1').val();
@@ -25,38 +38,63 @@
 				jq("#spraak").val("N");
 				jq("#spraak").change();
 
-				if (data.postadresse !== undefined ) { 
-					jq("#adr1").val(data.postadresse.adresse);
-					jq("#adr1").change();
-					jq("#adr3").val(data.postadresse.poststed);
-					jq("#adr3").change();
-					jq("#postnr").val(data.postadresse.postnummer);
-					jq("#postnr").change();
-					jq("#syland").val(data.postadresse.landkode);
-					jq("#syland").change();
-				} else if (data.forretningsadresse !== undefined ) { 
+				if (data.postadresse !== undefined && data.forretningsadresse !== undefined ) { 
+					//left
 					jq("#adr1").val(data.forretningsadresse.adresse);
 					jq("#adr1").change();
-					jq("#adr3").val(data.forretningsadresse.poststed);
-					jq("#adr3").change();
 					jq("#postnr").val(data.forretningsadresse.postnummer);
 					jq("#postnr").change();
+					jq("#adr3").val(data.forretningsadresse.poststed);
+					jq("#adr3").change();					
+					//right
+					jq("#adr2").val(data.postadresse.adresse);
+					jq("#adr2").change();
+					jq("#pnpbku").val(data.postadresse.postnummer);
+					jq("#pnpbku").change();		
+					jq("#syland").val(data.postadresse.landkode);
+					jq("#syland").change();					
+				
+				}
+				else if (data.postadresse == undefined && data.forretningsadresse !== undefined) {
+					//left
+					jq("#adr1").val(data.forretningsadresse.adresse);
+					jq("#adr1").change();
+					jq("#postnr").val(data.forretningsadresse.postnummer);
+					jq("#postnr").change();
+					jq("#adr3").val(data.forretningsadresse.poststed);
+					jq("#adr3").change();	
 					jq("#syland").val(data.forretningsadresse.landkode);
-					jq("#syland").change();
-				}				
-				else if (data.beliggenhetsadresse !== undefined ) { 
+					jq("#syland").change();					
+				}
+				else if (data.postadresse !== undefined && data.beliggenhetsadresse !== undefined) {
+					//left
 					jq("#adr1").val(data.beliggenhetsadresse.adresse);
 					jq("#adr1").change();
-					jq("#adr3").val(data.beliggenhetsadresse.poststed);
-					jq("#adr3").change();
 					jq("#postnr").val(data.beliggenhetsadresse.postnummer);
 					jq("#postnr").change();
+					jq("#adr3").val(data.beliggenhetsadresse.poststed);
+					jq("#adr3").change();					
+					//right
+					jq("#adr2").val(data.postadresse.adresse);
+					jq("#adr2").change();
+					jq("#pnpbku").val(data.postadresse.postnummer);
+					jq("#pnpbku").change();		
+					jq("#syland").val(data.postadresse.landkode);
+					jq("#syland").change();					
+				}				
+				else if (data.postadresse == undefined && data.beliggenhetsadresse !== undefined) {
+					//left
+					jq("#adr1").val(data.beliggenhetsadresse.adresse);
+					jq("#adr1").change();
+					jq("#postnr").val(data.beliggenhetsadresse.postnummer);
+					jq("#postnr").change();
+					jq("#adr3").val(data.beliggenhetsadresse.poststed);
+					jq("#adr3").change();	
 					jq("#syland").val(data.beliggenhetsadresse.landkode);
-					jq("#syland").change();
-				}
-
+					jq("#syland").change();					
+				}				
+				
 			});
-			
 			
 		}	
 
