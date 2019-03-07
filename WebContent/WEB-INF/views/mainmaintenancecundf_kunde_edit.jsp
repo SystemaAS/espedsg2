@@ -465,9 +465,28 @@
 														</td>
 														<td><input type="text" class="inputTextMediumBlue" name="bankg" id="bankg" size="20" maxlength="15" value='${model.record.bankg}'></td>
 														<td class="text14" title="betbet">&nbsp;
-															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.betbet"/>:
+															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.betbet"/>
+										 					&nbsp;<img onMouseOver="showPop('betbet_info');" onMouseOut="hidePop('betbet_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+											 				<div class="text11" style="position: relative;" align="left">
+											 				<span style="position:absolute; top:2px; width:250px;" id="betbet_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.betbet"/>
+											 	          	</b><br><br>
+																Er obligatorisk hvis kundetype er Fakturakunde.
+															<br><br>
+													</span>
+													</div>
+
 														</td>
-														<td><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="betbet" id="betbet" size="5" maxlength="2" value='${model.record.betbet}'></td>
+														<td>
+															<select name="betbet" id="betbet" class="inputTextMediumBlue">
+										  					<option value="">-velg-</option>
+										  					<c:forEach var="record" items="${model.betbetList}" >
+										 				  		<option value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
+															  </c:forEach>  
+															</select>
+							
+														</td>
 													</tr>
 													<tr>
 														<td class="text14" title="postg">&nbsp;

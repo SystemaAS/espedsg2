@@ -36,6 +36,7 @@ import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCund
 import no.systema.z.main.maintenance.service.MaintMainCundfService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
+import no.systema.z.main.maintenance.util.manager.CodeDropDownMgr;
 import no.systema.z.main.maintenance.validator.MaintMainCundfValidator;
 
 
@@ -55,6 +56,7 @@ public class MainMaintenanceCundfKundeController {
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
+	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
 	
 	@Autowired
 	VkundControllerUtil vkundControllerUtil;	
@@ -63,7 +65,6 @@ public class MainMaintenanceCundfKundeController {
 	public ModelAndView mainmaintenancecundf_vkund_edit(@ModelAttribute ("record") JsonMaintMainCundfRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		ModelAndView successView = new ModelAndView("mainmaintenancecundf_kunde_edit");
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		Map model = new HashMap();
 		String action = request.getParameter("action");
 		StringBuffer errMsg = new StringBuffer();
@@ -121,7 +122,7 @@ public class MainMaintenanceCundfKundeController {
 					model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 				} else {
 					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_UPDATE, errMsg);
-					if (savedRecord == null) {
+					if (savedRecord == null) {            
 						logger.info("[ERROR Validation] Record does not validate)");
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
@@ -137,6 +138,9 @@ public class MainMaintenanceCundfKundeController {
 				model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 			}
 
+
+			populateDropDowns(model, appUser.getUser());
+			
 			model.put("action", action);
 			model.put("kundnr", kundeSessionParams.getKundnr());
 			model.put("firma", kundeSessionParams.getFirma());
@@ -219,7 +223,6 @@ public class MainMaintenanceCundfKundeController {
 	private void adjustRecordToValidate(JsonMaintMainCundfRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setFirma(kundeSessionParams.getFirma());
 		recordToValidate.setKundnr(kundeSessionParams.getKundnr());
-//		recordToValidate.setSonavn(kundeSessionParams.getSonavn());
 	}
 	
 
@@ -231,6 +234,11 @@ public class MainMaintenanceCundfKundeController {
 			return "";
 		}
 	}	
+
+	private void populateDropDowns(Map model, String user) {
+		codeDropDownMgr.populateBetBetDropDown(this.urlCgiProxyService,  model, user);
+	}	
+	
 	
 	@Autowired
 	EntryRequest entryRequest;	

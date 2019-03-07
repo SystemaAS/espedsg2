@@ -23,6 +23,10 @@ import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadFellesKodtlbS
 import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts1Service;
 import no.systema.external.tvinn.sad.z.maintenance.service.MaintSadImportKodts4Service;
 import no.systema.external.tvinn.sad.z.maintenance.url.store.TvinnSadMaintenanceUrlDataStore;
+import no.systema.jservices.common.dao.FirmDao;
+import no.systema.jservices.common.dao.KodafDao;
+import no.systema.jservices.common.json.JsonDtoContainer;
+import no.systema.jservices.common.json.JsonReader;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.JsonDebugger;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainKodtaContainer;
@@ -342,5 +346,44 @@ public class CodeDropDownMgr {
 		model.put(MainMaintenanceConstants.CODE_MGR_CODE_NCTS_EXPORT_DEKLARASJONS_TYPE_LIST, list);
 
 	}	
+	
+	/**
+	 * Get Betalingsbetingelse from KODAF
+	 * 
+	 * @param urlCgiProxyService
+	 * @param model, put "betbetList"
+	 * @param applicationUser
+	 */
+	public void populateBetBetDropDown(UrlCgiProxyService urlCgiProxyService,  Map model, String applicationUser) {
+		JsonReader<JsonDtoContainer<KodafDao>> jsonReader = new JsonReader<JsonDtoContainer<KodafDao>>();
+		jsonReader.set(new JsonDtoContainer<KodafDao>());
+
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_DROPDOWN_GET_KODAF_LIST_URL;
+		StringBuffer urlRequestParams = new StringBuffer();
+		urlRequestParams.append("user=" + applicationUser);
+
+		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
+		logger.info("URL PARAMS: " + urlRequestParams);
+		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		logger.info("jsonPayload="+jsonPayload);
+		List<KodafDao> list = new ArrayList();
+		if (jsonPayload != null) {
+			JsonDtoContainer<KodafDao> container = (JsonDtoContainer<KodafDao>) jsonReader.get(jsonPayload);
+				if (container != null) {
+					if (container.getDtoList().size() > 0) {
+						list = container.getDtoList();
+					} else {
+						logger.error("BetBet list is empty");
+					}
+				} else {
+					logger.info("container is null");
+				}
+				
+		}
+		
+		model.put("betbetList", list);
+
+	}		
 
 }

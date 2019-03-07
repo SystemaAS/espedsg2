@@ -76,6 +76,7 @@ import no.systema.z.main.maintenance.service.MaintMainValufService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 import no.systema.z.main.maintenance.util.MessageSourceHelper;
+import no.systema.z.main.maintenance.util.manager.CodeDropDownMgr;
 /**
  * Gateway for Kunderegister
  * 
@@ -98,10 +99,12 @@ public class MainMaintenanceCundfVkundController {
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private boolean KOFAST_NO_ID = true; 
+	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
 	
 	@Autowired
 	VkundControllerUtil vkundControllerUtil;
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="mainmaintenancecundf_vkund.do", method={RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mainmaintenancecundf_vkund(HttpSession session, HttpServletRequest request){
 		ModelAndView successView = new ModelAndView("mainmaintenancecundf_vkund");
@@ -139,11 +142,11 @@ public class MainMaintenanceCundfVkundController {
 	}
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="mainmaintenancecundf_vkund_edit.do", method={RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView mainmaintenancecundf_vkund_edit(@ModelAttribute ("record") JsonMaintMainCundfRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		ModelAndView successView = new ModelAndView("mainmaintenancecundf_kunde_edit"); //NOTE: not name correlated jsp, default to Kunde tab
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		Map model = new HashMap();
 		String action = request.getParameter("action");
 		String updateId = request.getParameter("updateId");
@@ -175,9 +178,11 @@ public class MainMaintenanceCundfVkundController {
 				model.put("firma", firma);
 				model.put("updateId", updateId);
 				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
-
+				
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
+				
 				model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
+				
 			} else if (MainMaintenanceConstants.ACTION_DELETE.equals(action)) { // Delete from list
 				dmlRetval = deleteRecord(appUser.getUser(), kundnr, firma, MainMaintenanceConstants.MODE_DELETE, errMsg);
 				session.removeAttribute(MainMaintenanceConstants.KUNDE_SESSION_PARAMS);
@@ -190,13 +195,13 @@ public class MainMaintenanceCundfVkundController {
 				}
 			}
 
+			populateDropDowns(model, appUser.getUser());
+
 			session.setAttribute(MainMaintenanceConstants.KUNDE_SESSION_PARAMS, kundeSessionParams);
 			model.put("action", action);
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 
 			return successView;
-
-		
 		}
 
 	}
@@ -228,7 +233,6 @@ public class MainMaintenanceCundfVkundController {
 		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
 		logger.info("URL PARAMS: " + urlRequestParams);
 		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		//logger.info("jsonPayload="+jsonPayload);
 		FirmDao firmDao = null;
 		if (jsonPayload != null) {
 			JsonDtoContainer<FirmDao> container = (JsonDtoContainer<FirmDao>) jsonReader.get(jsonPayload);
@@ -268,6 +272,11 @@ public class MainMaintenanceCundfVkundController {
 		return spaceTotal;
 	}
 
+	@SuppressWarnings("rawtypes")
+	private void populateDropDowns(Map model, String user) {
+		codeDropDownMgr.populateBetBetDropDown(this.urlCgiProxyService,  model, user);
+	}
+	
 
 	/**
 	 * This method serve as data populater for all child windows for Kunderegister - VKUND.
@@ -277,6 +286,7 @@ public class MainMaintenanceCundfVkundController {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@RequestMapping(value="mainmaintenance_vkund_edit_childwindow_codes.do",  method={RequestMethod.GET} )
 	public ModelAndView getCodes(HttpSession session, HttpServletRequest request){
 		ModelAndView successView = new ModelAndView("mainmaintenance_vkund_edit_childwindow_codes");
@@ -313,6 +323,7 @@ public class MainMaintenanceCundfVkundController {
 		}
 	}
 		
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void setLabels(SystemaWebUser appUser, Map model, String caller) {
 		MessageSourceHelper messageSourceHelper = new MessageSourceHelper();
 		Locale locale  = VkundControllerUtil.getLocale(appUser.getUsrLang(), caller);
