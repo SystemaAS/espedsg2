@@ -129,9 +129,11 @@
 			jq('#ehp').attr('cols', cols);	
 			
 		},
-		error : function() {
-			alert('Error loading ...');
-		}
+	  error: function (jqXHR, exception) {
+		  	console.log("Error loading...");
+		    console.log("jqXHR",jqXHR);
+		    console.log("exception",exception);
+	  }	
 	});
 	
  }
@@ -143,9 +145,51 @@ function initCundfSearch() {
 	
 } 
  
- 
-		
+
+function validateOrgnr() {
+	
+	if (jq('#syrg').val() == '') {
+		console.log("return");
+		return;
+	}
+	
+	let orgnrExistUrl = "/syjservicesbcore/syjsSYCUNDFR_ORGNR_EXIST";
+	
+	jq.ajax({
+		type : 'GET',
+		url : orgnrExistUrl,
+		data : {
+			user : jq('#applicationUser').val(),
+			syrg : jq('#syrg').val(),
+			kundnr : jq('#kundnr').val()
+		},
+		dataType : 'text',
+		cache : false,
+		contentType : 'application/json',
+		success : function(data) {
+			console.log("validateOrgnr, data",data);
+			if (data == 'J') {
+				jq("#orgnrmulti").text("finnes på annen kunde");  
+			} else {
+				jq("#orgnrmulti").text("");  
+
+			}
+			
+		},
+		error: function (jqXHR, exception) {
+		  	console.log("Error loading ", orgnrExistUrl);
+		    console.log("jqXHR",jqXHR);
+		    console.log("exception",exception);
+		}	
+
+	});
+	
+	
+}
+
+
 jq(function() {
+	
 	
     jq('#sylandIdLink').click(function() {
     	jq('#sylandIdLink').attr('target','_blank');

@@ -14,30 +14,6 @@
 </style>
 	
 	
-<script type="text/javascript">
-	"use strict";
-	var signatur = "${user.signatur}";
-	var attkode = "&attkode="+signatur;
-	
-	jq(document).ready(function() {
-
-		console.log("document ready");
-		
-// 		initKostaSearch();
-		
-// 		jq('#selectAttkode').append('<option selected="true">${user.signatur}</option>');
-// 		jq('#selectAttkode').prop('selectedIndex', '${user.signatur}');			
-		
-// 		getAttKode('#selectAttkode');
-		
-	});
-
-</script>	
-	
-	
-	
-	
-
 <table width="100%" class="text11" cellspacing="0" border="0" cellpadding="0">
 	<tr height="15"><td>&nbsp;</td></tr>
 	<tr>
@@ -194,7 +170,7 @@
 													<td>
 														<input readonly type="text" class="inputTextReadOnly"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'>
 														<c:if test="${model.isAdressCustomer == 'J'}">
-														<font class="text12BlueGreen">er adressekunde</font>
+															<font class="text12BlueGreen">er adressekunde</font>
 														</c:if>												
 													</td>
 												</c:otherwise>
@@ -210,8 +186,6 @@
 											           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.orgnr"/>
 											 	          	</b><br><br>
 											           			Hvis nedlastningknappen till høyre brukes , og addressinformation mangler, lastes information om adresse fra Brønnøysundregistrene.
-											           		<br>
-											           			(adresse forrangsordre: postadresse, forretningsadresse, beliggenhetsadresse)
 															<br><br>
 											           		<b>
 											           			<img style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg">
@@ -224,12 +198,23 @@
 													</div>
 												</c:if>
 											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="syrg" id="syrg" size="15" maxlength="14" value='${model.record.syrg}'>&nbsp;
+											<td>
+												<input type="text" class="inputTextMediumBlue" onBlur="validateOrgnr();" name="syrg" id="syrg" size="15" maxlength="14" value='${model.record.syrg}'>&nbsp;
 												<c:if test="${user.filand == 'NO'}">
 													<a tabindex="-1" id="brregLink" onClick="getDataFromBrreg(this);">
 														<img style="cursor:pointer;vertical-align: middle;" src="resources/images/request.png" width="14px" height="14px" border="0" title="Last ned data fra Brønnøysundregistrene." >
 													</a> 
 												</c:if>
+
+												<c:choose>
+													<c:when test="${model.orgNrMulti == 'J'}">
+														<font class="text12BlueGreen" id="orgnrmulti">finnes på annen kunde</font>
+													</c:when>
+													<c:otherwise>
+														<font class="text12BlueGreen" id="orgnrmulti"></font>
+													</c:otherwise>
+												</c:choose>
+
 											</td>
 										</tr>
 										<tr>

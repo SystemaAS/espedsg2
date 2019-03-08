@@ -178,6 +178,7 @@ public class MainMaintenanceCundfVkundController {
 				model.put("firma", firma);
 				model.put("updateId", updateId);
 				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
+				model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
 				
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
 				

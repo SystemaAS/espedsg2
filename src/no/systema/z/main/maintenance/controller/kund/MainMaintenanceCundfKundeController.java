@@ -130,7 +130,7 @@ public class MainMaintenanceCundfKundeController {
 						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 						model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
-
+						model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
 					}
 				}
 			} else { // Fetch

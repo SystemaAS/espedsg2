@@ -183,6 +183,57 @@ public class VkundControllerUtil {
 	}
 	
 	/**
+	 * Get info if orgnr already is in use.
+	 * 
+	 * @param syrg orgnr
+	 * @param appUser
+	 * @return J if in use, N if not
+	 */
+	public String orgNrExist(String syrg, SystemaWebUser appUser) {
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_ORGNR_EXIST_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser.getUser());
+		urlRequestParams.append("&syrg=" + syrg);
+		logger.info("Full url: " + BASE_URL +urlRequestParams.toString());
+
+		ResponseEntity<String> response = restTemplate().exchange(BASE_URL + urlRequestParams.toString(),
+				HttpMethod.GET, null, String.class);
+
+		if (response != null) {
+			return response.getBody();
+		} else {
+			return null;
+		}
+	
+	}
+
+	/**
+	 * Get info if orgnr is used multiple times
+	 * 
+	 * @param syrg orgnr
+	 * @param appUser
+	 * @return J if in use, N if not
+	 */	
+	public String orgNrMulti(String syrg, SystemaWebUser appUser) {
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_ORGNR_MULTI_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser.getUser());
+		urlRequestParams.append("&syrg=" + syrg);
+		logger.info("Full url: " + BASE_URL +urlRequestParams.toString());
+
+		ResponseEntity<String> response = restTemplate().exchange(BASE_URL + urlRequestParams.toString(),
+				HttpMethod.GET, null, String.class);
+
+		if (response != null) {
+			return response.getBody();
+		} else {
+			return null;
+		}
+	}	
+	
+	
+	
+	/**
 	 * Check if customer is address customer, if not meaning invoice customer.
 	 * 
 	 * @param appUser
@@ -199,7 +250,7 @@ public class VkundControllerUtil {
 		}
 
 	}
-	
+
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
@@ -226,5 +277,5 @@ public class VkundControllerUtil {
 		return dao;
 
 	}
-	
+
 }
