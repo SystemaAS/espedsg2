@@ -318,8 +318,7 @@
 							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
-						    						${model.record.hesdff}-${model.record.hesdf}
-						    						&nbsp;
+						    						${model.record.hesdff}&nbsp;${model.record.hesdf}
 							    				</label>	
 							    			</div>
 						    			</td>
@@ -327,8 +326,7 @@
 							    		<td class="text14">
 							    			<div class="inputTextForShowLabel">
 							    				<label>
-												${model.record.hesdt}-${model.record.hesdvt}
-												&nbsp;
+												${model.record.hesdt}&nbsp;${model.record.hesdvt}
 							    				</label>
 							    			</div>
 							    		</td>
