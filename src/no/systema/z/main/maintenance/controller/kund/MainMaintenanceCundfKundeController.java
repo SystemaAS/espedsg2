@@ -69,6 +69,7 @@ public class MainMaintenanceCundfKundeController {
 		String action = request.getParameter("action");
 		StringBuffer errMsg = new StringBuffer();
 		JsonMaintMainCundfRecord savedRecord = null;
+		JsonMaintMainCundfRecord record = null;
 		
 		logger.info("recordToValidate="+ReflectionToStringBuilder.toString(recordToValidate));
 
@@ -80,7 +81,6 @@ public class MainMaintenanceCundfKundeController {
 			
 			if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {  //New
 				// Validate
-	
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
 				if (bindingResult.hasErrors()) {
@@ -91,7 +91,6 @@ public class MainMaintenanceCundfKundeController {
 					 
 				} else {
 					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_ADD, errMsg);
-					
 					if (savedRecord == null) {
 						logger.info("[ERROR Validation] Record does not validate)");
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
@@ -105,7 +104,7 @@ public class MainMaintenanceCundfKundeController {
 						kundeSessionParams.setSonavn(savedRecord.getSonavn());
 						kundeSessionParams.setKnavn(savedRecord.getKnavn());
 
-						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 						
 						action = MainMaintenanceConstants.ACTION_UPDATE;
@@ -118,26 +117,23 @@ public class MainMaintenanceCundfKundeController {
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
 				if (bindingResult.hasErrors()) {
-					logger.info("[ERROR Validation] Record does not validate)");
+					logger.error("[ERROR Validation] Record does not validate)");
 					model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 				} else {
 					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 					if (savedRecord == null) {            
-						logger.info("[ERROR Validation] Record does not validate)");
+						logger.error("[ERROR Validation] Record does not validate)");
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 					} else {
-						JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
-						model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
-						model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
 					}
 				}
 			} else { // Fetch
-				JsonMaintMainCundfRecord record = fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+				record = fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 				model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 			}
-
 
 			populateDropDowns(model, appUser.getUser());
 			
@@ -145,11 +141,14 @@ public class MainMaintenanceCundfKundeController {
 			model.put("kundnr", kundeSessionParams.getKundnr());
 			model.put("firma", kundeSessionParams.getFirma());
 			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
-			
+			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
+			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
+
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
 			
 			return successView;		
+
 		}
 
 	}

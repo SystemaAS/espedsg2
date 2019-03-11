@@ -146,13 +146,12 @@
 											</td>
 											<td>
 												<select required name="kundetype" id="kundetype" class="inputTextMediumBlueMandatoryField">
-								  					<option value="">-velg-</option>
-				  									<option value="A"<c:if test="${model.record.kundetype == 'A'}"> selected </c:if>>
-				  										<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype.address"/>
-				  									</option>
 			  										<option value="F"<c:if test="${model.record.kundetype == 'F'}"> selected </c:if>>
 			  											<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype.invoice"/>
 			  										</option>
+				  									<option value="A"<c:if test="${model.record.kundetype == 'A'}"> selected </c:if>>
+				  										<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customertype.address"/>
+				  									</option>
 								  				</select>
 											</td>
 										</tr>
@@ -655,20 +654,20 @@
 														<c:choose>
 															<c:when test="${model.isAdressCustomer == 'N'}">
 																<select name="aktkod" id="aktkod" >
-												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 							 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 												  				</select>
 															</c:when>
 															<c:when test="${model.action == 'doCreate'}">
 																<select name="aktkod" id="aktkod" >
-												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 							 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 												  				</select>
 															</c:when>
 															<c:otherwise>
 																<select disabled name="aktkod" id="aktkod" >
-												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 							 					  					<option value="A"<c:if test="${model.record.aktkod == 'A'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.active"/></option>
+												  					<option value="I"<c:if test="${model.record.aktkod == 'I'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.aktkod.inactive"/></option>
 												  				</select>
 															</c:otherwise>
 														</c:choose>
