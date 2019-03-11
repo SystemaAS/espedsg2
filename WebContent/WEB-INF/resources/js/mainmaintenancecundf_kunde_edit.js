@@ -187,6 +187,35 @@ function validateOrgnr() {
 	
 }
 
+function setPoststed() {
+	let vispnrUrl = "/syjservicesbcore/syjsVISPNR.do";
+	
+	jq.ajax({
+		type : 'GET',
+		url : vispnrUrl,
+		data : {
+			user : jq('#applicationUser').val(),
+			postnr : jq('#postnr').val(),
+			landkode : "NO",
+		},
+		dataType : 'json',
+		cache : false,
+		contentType : 'application/json',
+		success : function(data) {
+			if (data.dtoList != undefined) {
+				jq("#adr3").val(data.dtoList[0].vilkna);  				
+			}
+		},
+		error: function (jqXHR, exception) {
+		  	console.log("Error loading ", vispnrUrl);
+		    console.log("jqXHR",jqXHR);
+		    console.log("exception",exception);
+		}	
+	});
+	
+}
+
+
 
 jq(function() {
 	

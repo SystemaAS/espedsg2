@@ -269,7 +269,7 @@
 											<td class="text14" title="postnr">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/>:
 											</td>
-											<td><input type="text" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'></td>
+											<td><input type="text" onBlur="setPoststed();" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'></td>
 											<td class="text14" title="pnpbku">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postboxnr"/>:
 							 					&nbsp;<img onMouseOver="showPop('pnpbku_info');" onMouseOut="hidePop('pnpbku_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
@@ -464,12 +464,11 @@
 														</td>
 														<td>
 															<select name="betbet" id="betbet" class="inputTextMediumBlue">
-										  					<option value="">-velg-</option>
-										  					<c:forEach var="record" items="${model.betbetList}" >
-										 				  		<option title="${record.bettxt}" value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
-															  </c:forEach>  
-															</select>
-							
+											  					<option value="">-velg-</option>
+											  					<c:forEach var="record" items="${model.betbetList}" >
+											 				  		<option title="${record.bettxt}" value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
+																  </c:forEach>  
+																</select>
 														</td>
 													</tr>
 													<tr>
