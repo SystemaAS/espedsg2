@@ -466,7 +466,7 @@
 															<select name="betbet" id="betbet" class="inputTextMediumBlue">
 										  					<option value="">-velg-</option>
 										  					<c:forEach var="record" items="${model.betbetList}" >
-										 				  		<option value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
+										 				  		<option title="${record.bettxt}" value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
 															  </c:forEach>  
 															</select>
 							
