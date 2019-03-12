@@ -55,16 +55,23 @@
 	 	    	<td width="5%">&nbsp;</td>
 				<td width="100%" class="text14">
 					<form action="mainmaintenancecundf_vkund.do?id=${model.dbTable}" name="formRecord" id="formRecord" method="POST" >
-					<input type="hidden" name="firma" id="firma" value="${user.companyCode}">
-					<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>&nbsp;
-					<input type="text" class="inputTextMediumBlue" name="searchKundnr" id="searchKundnr" size="20" maxlength="35" value='${model.kundnr}'>					
-					&nbsp;
-					<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>&nbsp;
-					<input type="text" class="inputTextMediumBlue" name="searchKnavn" id="searchKnavn" size="20" maxlength="35" value='${model.knavn}'>					
-					
-					
-					&nbsp;&nbsp;<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submitSearch" id="submitSearch" value='<spring:message code="systema.main.maintenance.search"/>'/>
-										
+						<input type="hidden" name="firma" id="firma" value="${user.companyCode}">
+						<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>:&nbsp;
+						<input type="text" class="inputTextMediumBlue" name="searchKundnr" id="searchKundnr" size="10" maxlength="8" value='${model.kundnr}'>					
+						&nbsp;
+						<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>:&nbsp;
+						<input type="text" class="inputTextMediumBlue" name="searchKnavn" id="searchKnavn" size="32" maxlength="30" value='${model.knavn}'>	
+						&nbsp;				
+						<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.orgnr"/>:&nbsp;
+						<input type="text" class="inputTextMediumBlue" name="searchSyrg" id="searchSyrg" size="16" maxlength="14" value='${model.syrg}'>					
+						&nbsp;				
+						<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>:&nbsp;
+						<input type="text" class="inputTextMediumBlue" name="searchSyland" id="searchSyland" size="4" maxlength="2" value='${model.syland}'>					
+						&nbsp;				
+						<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/>:&nbsp;
+						<input type="text" class="inputTextMediumBlue" name="searchPostnr" id="searchPostnr" size="6" maxlength="4" value='${model.postnr}'>					
+						&nbsp;&nbsp;&nbsp;&nbsp;
+						<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submitSearch" id="submitSearch" value='<spring:message code="systema.main.maintenance.search"/>'/>
 					</form>
 				</td>
 			</tr>

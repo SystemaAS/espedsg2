@@ -73,6 +73,10 @@ public class MainMaintenanceCundfKundeController {
 		
 		logger.info("recordToValidate="+ReflectionToStringBuilder.toString(recordToValidate));
 
+
+		try {
+			
+	
 		if (appUser == null) {
 			return this.loginView;
 		} else {
@@ -122,7 +126,7 @@ public class MainMaintenanceCundfKundeController {
 				} else {
 					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 					if (savedRecord == null) {            
-						logger.error("[ERROR Validation] Record does not validate)");
+						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 					} else {
@@ -142,10 +146,21 @@ public class MainMaintenanceCundfKundeController {
 			model.put("firma", kundeSessionParams.getFirma());
 			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
 			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
-			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
+			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(recordToValidate.getSyrg(), appUser));
 
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
+			
+			return successView;		
+
+		}
+		} catch (Exception e) {
+			logger.error("ERROR:", e);
+			String errorMessage = "Teknisk feil. Kontakt helpdesk. Error:"+e;
+			model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
+			model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errorMessage);
+			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
+			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(recordToValidate.getKnavn()));
 			
 			return successView;		
 

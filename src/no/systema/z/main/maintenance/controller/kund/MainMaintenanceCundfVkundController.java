@@ -112,6 +112,10 @@ public class MainMaintenanceCundfVkundController {
 		String dbTable = request.getParameter("id");
 		String kundnr = request.getParameter("searchKundnr");
 		String knavn = request.getParameter("searchKnavn");
+		String syrg = request.getParameter("searchSyrg");
+		String syland = request.getParameter("searchSyland");
+		String postnr = request.getParameter("searchPostnr");
+
 		String firma = request.getParameter("firma");
 	
 		Map model = new HashMap();
@@ -121,18 +125,24 @@ public class MainMaintenanceCundfVkundController {
 
 			Collection<JsonMaintMainCundfRecord> list = new ArrayList<JsonMaintMainCundfRecord>();
 			//search filter. Note: if both are present then we go for the kundnr.
-			if( (kundnr!=null && !"".equals(kundnr)) ){
-				list = this.fetchList(appUser.getUser(), kundnr, firma);
-			}else if( (knavn!=null && !"".equals(knavn)) ){
-				list = this.fetchList(appUser.getUser(), null, null, knavn);
-			} else { //fetch first rows for nice ux
-				list = this.fetchList(appUser.getUser(), null, null);
-			}
+//			if( (kundnr!=null && !"".equals(kundnr)) ){
+//				list = this.fetchList(appUser.getUser(), kundnr, firma);
+//			}else if( (knavn!=null && !"".equals(knavn)) ){
+//				list = this.fetchList(appUser.getUser(), null, null, knavn);
+//			} else { //fetch first rows for nice ux
+//				list = this.fetchList(appUser.getUser(), null, null);
+//			}
 
+			list = fetchList(appUser.getUser(), kundnr, firma, knavn, syrg, syland, postnr);
+			
 			model.put("dbTable", dbTable);
 	    	model.put("knavn", knavn);
 	    	model.put("kundnr", kundnr);
-			model.put("list", list);
+	    	model.put("syrg", syrg);
+	    	model.put("syland", syland);
+	    	model.put("postnr", postnr);
+
+	    	model.put("list", list);
 
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 
@@ -169,7 +179,7 @@ public class MainMaintenanceCundfVkundController {
 
 				setInstalledModules(kundeSessionParams, appUser.getUser());
 				
-				JsonMaintMainCundfRecord record = this.fetchRecord(appUser.getUser(), kundnr, firma);
+				JsonMaintMainCundfRecord record = fetchRecord(appUser.getUser(), kundnr, firma);
 				model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 				
 				successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
@@ -1265,7 +1275,7 @@ public class MainMaintenanceCundfVkundController {
 		Collection<JsonMaintMainCundfRecord> recordList = fetchList(applicationUser, kundnr, firma);
 		if (recordList.size() > 1) {
 			// abort
-			logger.info("Incorrect data when searching for specific CUNDF object, on params kundnr=" + kundnr
+			logger.error("Incorrect data when searching for specific CUNDF object, on params kundnr=" + kundnr
 					+ ", firma=" + firma);
 			return null;
 		}
@@ -1310,17 +1320,28 @@ public class MainMaintenanceCundfVkundController {
 		return list;
 	}
 
-	private Collection<JsonMaintMainCundfRecord> fetchList(String applicationUser, String kundnr, String firma, String knavn) {
+	private Collection<JsonMaintMainCundfRecord> fetchList(String applicationUser, String kundnr, String firma, String knavn, String syrg, String syland, String postnr) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_GET_LIST_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
 		urlRequestParams.append("user=" + applicationUser);
-		if (kundnr != null && firma != null) {
+		if (kundnr != null) {
 			urlRequestParams.append("&kundnr=" + kundnr);
-			urlRequestParams.append("&firma=" + firma);
-		}else{
-			urlRequestParams.append("&knavn=" + knavn);
 		}
-
+		if (firma != null) {
+			urlRequestParams.append("&firma=" + firma);
+		}
+		if (knavn != null) {
+			urlRequestParams.append("&knavn=" + knavn);
+		}		
+		if (syrg != null) {
+			urlRequestParams.append("&syrg=" + syrg);
+		}
+		if (syland != null) {
+			urlRequestParams.append("&syland=" + syland);
+		}
+		if (postnr != null) {
+			urlRequestParams.append("&postnr=" + postnr);
+		}
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
