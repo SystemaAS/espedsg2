@@ -17,6 +17,7 @@ import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
 import no.systema.jservices.common.dao.FirkuDao;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
+import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
@@ -215,6 +216,9 @@ public class VkundControllerUtil {
 	 * @return J if in use, N if not
 	 */	
 	public String orgNrMulti(String syrg, SystemaWebUser appUser) {
+		if (!StringUtils.hasValue(syrg)) {
+			return "N";
+		}
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_ORGNR_MULTI_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
 		urlRequestParams.append("?user=" + appUser.getUser());
@@ -227,6 +231,7 @@ public class VkundControllerUtil {
 		if (response != null) {
 			return response.getBody();
 		} else {
+			logger.error("No response from "+BASE_URL +urlRequestParams.toString());
 			return null;
 		}
 	}	
