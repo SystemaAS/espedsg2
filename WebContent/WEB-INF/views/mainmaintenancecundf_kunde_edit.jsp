@@ -186,6 +186,8 @@
 											 	          	</b><br><br>
 											           			Hvis nedlastningknappen till høyre brukes , og addressinformation mangler, lastes information om adresse fra Brønnøysundregistrene.
 															<br><br>
+																Hvis Org.nr finnes i ELMA, settes <b>Faktura sendes som EHF</b> til Ja.
+															<br><br>
 											           		<b>
 											           			<img style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg">
 											 	          	</b><br><br>
@@ -225,7 +227,7 @@
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sonavn"/>:
 											</td>
 											<td>
-												<input type="text" class="inputTextMediumBlue" name="sonavn" id="sonavn" size="11" maxlength="10" value='${model.record.sonavn}'>
+												<input type="text" class="inputTextMediumBlue" name="sonavn" id="sonavn" size="12" maxlength="10" value='${model.record.sonavn}'>
 											</td>
 										</tr>
 										<tr>

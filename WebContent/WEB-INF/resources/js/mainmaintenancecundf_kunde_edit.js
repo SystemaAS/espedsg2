@@ -98,6 +98,8 @@
 			
 		}	
 
+		existInElma();
+		
 		getDataFromBrregAsText(element);
 		
   }
@@ -186,6 +188,49 @@ function validateOrgnr() {
 	
 	
 }
+
+
+function existInElma() {
+	
+	if (jq('#syrg').val() == '') {
+		console.log("return");
+		return;
+	}
+	
+	let existInElmaUrl = "existInElma.do";
+	
+	jq.ajax({
+		type : 'GET',
+		url : existInElmaUrl,
+		data : {
+			applicationUser : jq('#applicationUser').val(),
+			syrg : jq('#syrg').val()
+		},
+		dataType : 'text',
+		cache : false,
+		//contentType : 'application/text',
+		success : function(data) {
+			if (data == 'J') {
+				jq("#syfr06").val(data);  
+			} 
+		},
+		error: function (jqXHR, exception) {
+		  	console.log("Error loading ", existInElmaUrl);
+		    console.log("jqXHR",jqXHR);
+		    console.log("exception",exception);
+		}	
+
+	});
+	
+}
+
+
+
+
+
+
+
+
 
 function setPoststed() {
 	let vispnrUrl = "/syjservicesbcore/syjsVISPNR.do";

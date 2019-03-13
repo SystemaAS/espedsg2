@@ -21,6 +21,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -31,6 +33,7 @@ import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.JsonDebugger;
 import no.systema.z.main.maintenance.mapper.url.request.UrlRequestParameterMapper;
+import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfRecord;
 import no.systema.z.main.maintenance.service.MaintMainCundfService;
@@ -168,6 +171,21 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 	
+	/**
+	 * Check orgnr in ELMA. 
+	 * 
+	 * @param applicationUser
+	 * @param syrg
+	 * @return J if exist, else N.
+	 */
+	@RequestMapping(value = "existInElma.do", method = { RequestMethod.GET, RequestMethod.POST })
+	@ResponseBody
+	public String existInElma(@RequestParam String applicationUser, @RequestParam String syrg) {
+		
+		return existInElma(syrg); 
+
+	}	
+
 	private JsonMaintMainCundfRecord fetchRecord(String applicationUser, String kundnr, String firma) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_GET_LIST_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
@@ -245,7 +263,7 @@ public class MainMaintenanceCundfKundeController {
 		if (entry != null) {
 			return "J";
 		} else {
-			return "";
+			return "N";
 		}
 	}	
 
