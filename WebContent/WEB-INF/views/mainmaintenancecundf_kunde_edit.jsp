@@ -204,7 +204,7 @@
 												<c:if test="${model.orgNrMulti == 'J'}">
 								 					&nbsp;<img onMouseOver="showPop('syrg_info');" onMouseOut="hidePop('syrg_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
 									 				<div class="text11" style="position: relative;" align="left">
-									 				<span style="position:absolute; top:2px; width:250px;" id="syrg_info" class="popupWithInputText text11"  >
+									 				<span style="position:absolute; top:2px; width:250px;" id="syrg_info" class="popupWithInputTextGrayBg text11"  >
 									           		<b>
 									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.orgnr"/>
 									 	          	</b><br><br>
@@ -306,7 +306,7 @@
 												<c:if test="${model.hasSypogeAndNO == 'J'}">
 								 					&nbsp;<img onMouseOver="showPop('sypoge_info');" onMouseOut="hidePop('sypoge_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
 									 				<div class="text11" style="position: relative;" align="left">
-									 				<span style="position:absolute; top:2px; width:250px;" id="sypoge_info" class="popupWithInputText text11"  >
+									 				<span style="position:absolute; top:2px; width:250px;" id="sypoge_info" class="popupWithInputTextGrayBg text11"  >
 									           		<b>
 									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>
 									 	          	</b><br><br>
