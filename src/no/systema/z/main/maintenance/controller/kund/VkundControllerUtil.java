@@ -255,7 +255,26 @@ public class VkundControllerUtil {
 		}
 
 	}
-
+	
+	
+	/**
+	 * Check if postnr foreign and country=NO, a bit strange....
+	 * 
+	 * @param sypoge
+	 * @param syland
+	 * @param appUser
+	 * @return J if strange combo, N if not.
+	 */
+	public String hasSypogeAndNO(String sypoge, String syland, SystemaWebUser appUser) {
+		String has = "N";
+		if (StringUtils.hasValue(sypoge) && StringUtils.hasValue(syland)) {
+			if ("NO".equals(syland)) {
+				has =  "J";
+			} 
+		}
+		return has;
+	}
+	
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
 		StringBuilder urlRequestParams = new StringBuilder();

@@ -160,7 +160,7 @@
 										<tr>
 											<td class="text14" title="kundnr">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>:
-
+											</td>
 											<c:choose>
 												<c:when test="${model.action == 'doCreate'}">
 													<td><input type="text" class="inputTextMediumBlue"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'></td>
@@ -200,23 +200,29 @@
 												</c:if>
 											</td>
 											<td>
-												<input type="text" class="inputTextMediumBlue" onBlur="validateOrgnr();" name="syrg" id="syrg" size="15" maxlength="14" value='${model.record.syrg}'>&nbsp;
+												<input type="text" class="inputTextMediumBlue" onBlur="validateOrgnr();" name="syrg" id="syrg" size="15" maxlength="14" value='${model.record.syrg}'>
+												<c:if test="${model.orgNrMulti == 'J'}">
+								 					&nbsp;<img onMouseOver="showPop('syrg_info');" onMouseOut="hidePop('syrg_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
+									 				<div class="text11" style="position: relative;" align="left">
+									 				<span style="position:absolute; top:2px; width:250px;" id="syrg_info" class="popupWithInputText text11"  >
+									           		<b>
+									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.orgnr"/>
+									 	          	</b><br><br>
+														Finnes registret på annen kunde.
+													<br><br>
+													</span>
+													</div>
+												</c:if>
+												
+											</td>
+											<td>
 												<c:if test="${user.filand == 'NO'}">
 													<a tabindex="-1" id="brregLink" onClick="getDataFromBrreg(this);">
-														<img style="cursor:pointer;vertical-align: middle;" src="resources/images/request.png" width="14px" height="14px" border="0" title="Last ned data fra Brønnøysundregistrene." >
+														&nbsp;<img style="cursor:pointer;vertical-align:center;" src="resources/images/request.png" width="22px" height="22px" border="0" title="Last ned data fra Brønnøysundregistrene." >
 													</a> 
 												</c:if>
-
-												<c:choose>
-													<c:when test="${model.orgNrMulti == 'J'}">
-														<font class="text12BlueGreen" id="orgnrmulti">finnes på annen kunde</font>
-													</c:when>
-													<c:otherwise>
-														<font class="text12BlueGreen" id="orgnrmulti"></font>
-													</c:otherwise>
-												</c:choose>
-
 											</td>
+											
 										</tr>
 										<tr>
 											<td class="text14" title="knavn">&nbsp;<font class="text14RedBold" >*</font>
@@ -295,10 +301,36 @@
 											<td class="text14" title="sypoge">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>:
 											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'></td>
+											<td>
+												<input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'>
+												<c:if test="${model.hasSypogeAndNO == 'J'}">
+								 					&nbsp;<img onMouseOver="showPop('sypoge_info');" onMouseOut="hidePop('sypoge_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
+									 				<div class="text11" style="position: relative;" align="left">
+									 				<span style="position:absolute; top:2px; width:250px;" id="sypoge_info" class="popupWithInputText text11"  >
+									           		<b>
+									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>
+									 	          	</b><br><br>
+														Ved norsk kunde kan ikke utenlandsk postnummer benyttes.
+													<br><br>
+													</span>
+													</div>
+												</c:if>			
+											</td>
+											
 
 											<td class="text14" title="spraak">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>:
+
+							 					&nbsp;<img onMouseOver="showPop('landkode_info');" onMouseOut="hidePop('landkode_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="landkode_info" class="popupWithInputText text11">
+								           		<b>
+								           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>
+								 	          	</b><br><br>
+													Er obligatorisk hvis Visma.net Financials brukes.
+												<br><br>
+												</span>
+												</div>
 											</td>
 											<td>								
 											    <input type="text" class="inputTextMediumBlue" name="syland" id="syland" size="2" maxlength="2" value='${model.record.syland}'>

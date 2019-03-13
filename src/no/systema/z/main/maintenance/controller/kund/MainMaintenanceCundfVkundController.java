@@ -189,6 +189,8 @@ public class MainMaintenanceCundfVkundController {
 				model.put("updateId", updateId);
 				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
 				model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
+				model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(record.getSypoge(), record.getSyland() , appUser));
+				
 				
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
 				

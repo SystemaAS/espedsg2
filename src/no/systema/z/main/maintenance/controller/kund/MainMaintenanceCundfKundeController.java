@@ -150,7 +150,9 @@ public class MainMaintenanceCundfKundeController {
 			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
 			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
 			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(recordToValidate.getSyrg(), appUser));
+			model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(recordToValidate.getSypoge(), record.getSyland() , appUser));
 
+			
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
 			successView.addObject("tab_knavn_display", VkundControllerUtil.getTrimmedKnav(kundeSessionParams.getKnavn()));
 			
