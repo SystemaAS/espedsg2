@@ -169,7 +169,16 @@
 													<td>
 														<input readonly type="text" class="inputTextReadOnly"  name="kundnr" id="kundnr" size="10" maxlength="8" value='${model.record.kundnr}'>
 														<c:if test="${model.isAdressCustomer == 'J'}">
-															<font class="text12BlueGreen">er adressekunde</font>
+										 					&nbsp;<img onMouseOver="showPop('kundnr_info');" onMouseOut="hidePop('kundnr_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="info">
+											 				<div class="text11" style="position: relative;" align="left">
+											 				<span style="position:absolute; top:2px; width:250px;" id="kundnr_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.customernr"/>
+											 	          	</b><br><br>
+																Kunde er registrert som addressekunde.
+															<br><br>
+															</span>
+															</div>
 														</c:if>												
 													</td>
 												</c:otherwise>
@@ -393,7 +402,16 @@
 												<c:if test="${user.filand == 'NO'}">
 													<c:if test="${model.record.syfr06 == ''}">
 														<c:if test="${model.record.elma == 'J'}">
-															&nbsp;merk: Org.nr er registrert i ELMA.
+										 					&nbsp;<img onMouseOver="showPop('syfr06_info');" onMouseOut="hidePop('syfr06_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="info">
+											 				<div class="text11" style="position: relative;" align="left">
+											 				<span style="position:absolute; top:2px; width:250px;" id="syfr06_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			Faktura sendes som EHF
+											 	          	</b><br><br>
+																Org.nr er registrert i ELMA.
+															<br><br>
+															</span>
+															</div>
 														</c:if>
 													</c:if>
 												</c:if>
