@@ -10,7 +10,6 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import no.systema.jservices.common.elma.entities.Entry;
 import no.systema.jservices.common.elma.proxy.EntryRequest;
+import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.AppConstants;
@@ -211,8 +211,10 @@ public class MainMaintenanceCundfKundeController {
 						fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 						record.setFmotname(fmotRecord.getKnavn());
 					}
-					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
-					record.setPostnr(leftPaddedPostnr);
+					if (StringUtils.hasValue(record.getPostnr())) {
+						String leftPaddedPostnr = org.apache.commons.lang3.StringUtils.leftPad(record.getPostnr(), 4, '0');
+						record.setPostnr(leftPaddedPostnr);
+					}
 					record.setElma(existInElma(record.getSyrg()));
 				}
 			}

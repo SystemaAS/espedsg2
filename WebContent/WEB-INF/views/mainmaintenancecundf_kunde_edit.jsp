@@ -336,7 +336,8 @@
 								           		<b>
 								           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>
 								 	          	</b><br><br>
-													Er obligatorisk hvis Visma.net Financials brukes.
+													Er obligatorisk hvis Visma.net Financials brukes.<br><br>
+													(settes til NO hvis feltet ikke fylles i og <spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/> er norsk.)
 												<br><br>
 												</span>
 												</div>
