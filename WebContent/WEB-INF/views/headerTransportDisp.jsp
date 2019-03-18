@@ -54,10 +54,6 @@
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
 	<input type="hidden" name="language" id=language value="${user.usrLang}">
-	<%-- 
-	<script type="text/javascript" src="//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
-	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
-	--%>
 	
     <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
 		<%--Banner --%>

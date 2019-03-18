@@ -292,7 +292,9 @@
 						 						<td id="dashItem_Skat" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<font class="text18">${record.prTxt}</font>
+				 									<%-- <font class="text18">${record.prTxt}</font> --%>
+				 									<font class="text18"><spring:message code="login.user.label.skat.dashboard"/></font>
+				 									
 								 					<form id="dashForm_Skat" method="post" action="/espedsgskat/logonDashboard.do" >
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
