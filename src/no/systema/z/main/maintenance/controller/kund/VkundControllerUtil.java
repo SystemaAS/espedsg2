@@ -298,7 +298,7 @@ public class VkundControllerUtil {
 	 * @return J if invoice email exist, N if not.
 	 */
 	public JsonMaintMainCundcRecord getInvoiceEmailRecord( String appUser, String firma, String kundnr ) {
-		logger.info("::hasInvoiceEmail::");
+		logger.info("::getInvoiceEmailRecord::");
 		List<JsonMaintMainCundcRecord> list = getInvoiceEmailRows(appUser, firma, kundnr );
 		
 		Collection<JsonMaintMainCundcRecord> singelFaktura, samleFaktura;
