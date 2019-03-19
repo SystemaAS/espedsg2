@@ -33,9 +33,11 @@ import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.JsonDebugger;
 import no.systema.z.main.maintenance.mapper.url.request.UrlRequestParameterMapper;
+import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfRecord;
+import no.systema.z.main.maintenance.service.MaintMainCundcService;
 import no.systema.z.main.maintenance.service.MaintMainCundfService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
@@ -115,7 +117,19 @@ public class MainMaintenanceCundfKundeController {
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 						
 						action = MainMaintenanceConstants.ACTION_UPDATE;
+
+						if (record != null) {
+							if ("J".equals(recordToValidate.getEpost()) && StringUtils.hasValue(recordToValidate.getEpostmott())) {
+								savedRecord.setEpostmott(recordToValidate.getEpostmott());
+								int retval = createCundcInvoicesCtype(appUser, savedRecord, errMsg);
+								if (retval == MainMaintenanceConstants.ERROR_CODE) {
+									logger.error("Could not create invoice ctype for "+record.getEpostmott());
+								}
+							}
+						}
 						
+						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+
 					}
 				}
 
@@ -262,8 +276,52 @@ public class MainMaintenanceCundfKundeController {
 				}
 			}
 		}
-
+		
 		return savedRecord;
+	}
+	
+	private int createCundcInvoicesCtype(SystemaWebUser appUser, JsonMaintMainCundfRecord cundf, StringBuffer errMsg) {
+		logger.info("::createCundcInvoicesCtype::");
+		int retval = 0;
+		JsonMaintMainCundcRecord cundc = new JsonMaintMainCundcRecord();
+		cundc.setCcompn(cundf.getKundnr());
+		cundc.setCfirma(cundf.getFirma());
+		cundc.setCconta(cundf.getEpostmott());
+
+		cundc.setCtype("*SINGELFAKTURA");
+		retval =  createCundc(appUser, cundc, errMsg);
+		
+		cundc.setCtype("*SAMLEFAKTURA");
+		retval =  createCundc(appUser, cundc, errMsg);
+		
+		return retval;
+	}
+	
+	private int createCundc(SystemaWebUser appUser, JsonMaintMainCundcRecord record, StringBuffer errMsg) {
+		logger.info("::createCundc::");
+		int retval = 0;
+	
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_CUNDC_DML_UPDATE_URL;
+		String urlRequestParamsKeys = "user=" + appUser.getUser() + "&mode=" + MainMaintenanceConstants.MODE_ADD + "&lang=" +appUser.getUsrLang();
+		String urlRequestParams = urlRequestParameterMapper.getUrlParameterValidString((record));
+		urlRequestParams = urlRequestParamsKeys + urlRequestParams;
+
+		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
+		logger.info("URL PARAMS: " + urlRequestParams);
+		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
+		if (jsonPayload != null) {
+			JsonMaintMainCundcContainer container = maintMainCundcService.doUpdate(jsonPayload);
+			if (container != null) {
+				if (container.getErrMsg() != null && !"".equals(container.getErrMsg())) {
+						errMsg.append(container.getErrMsg());
+						retval = MainMaintenanceConstants.ERROR_CODE;
+				}
+			}
+		}
+
+		return retval;
+		
 	}
 	
 	private void adjustRecordToValidate(JsonMaintMainCundfRecord recordToValidate, KundeSessionParams kundeSessionParams) {
@@ -307,5 +365,16 @@ public class MainMaintenanceCundfKundeController {
 	public void setMaintMainCundfService (MaintMainCundfService value){ this.maintMainCundfService = value; }
 	public MaintMainCundfService getMaintMainCundfService(){ return this.maintMainCundfService; }
 
+	
+	@Qualifier ("maintMainCundcService")
+	private MaintMainCundcService maintMainCundcService;
+	@Autowired
+	@Required
+	public void setMaintMainCundcService (MaintMainCundcService value){ this.maintMainCundcService = value; }
+	public MaintMainCundcService getMaintMainCundcService(){ return this.maintMainCundcService; }
+	
+	
+	
+	
 }
 

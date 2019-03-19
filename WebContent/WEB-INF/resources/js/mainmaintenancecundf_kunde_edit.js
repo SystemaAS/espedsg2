@@ -272,20 +272,20 @@ jq(function() {
 	    console.log("valueSelected",valueSelected);
 	    
 	    if (valueSelected == 'J') {
-	    	jq('#epost_mott' ).prop( "readonly", false );
-	    	jq('#epost_mott' ).prop( "required", true );
-			jq("#epost_mott").removeClass("inputTextReadOnly");
-			jq("#epost_mott").addClass("inputTextMediumBlueMandatoryField");
+	    	jq('#epostmott' ).prop( "readonly", false );
+	    	jq('#epostmott' ).prop( "required", true );
+			jq("#epostmott").removeClass("inputTextReadOnly");
+			jq("#epostmott").addClass("inputTextMediumBlueMandatoryField");
 	    	
 	    	console.log("epost_mott should be enabled")
 	    }
 	    if (valueSelected == 'N') {
-	    	jq('#epost_mott' ).prop( "readonly", true );
-	    	jq('#epost_mott' ).prop( "required", false );
-			jq("#epost_mott").removeClass("inputTextMediumBlueMandatoryField");
-			jq("#epost_mott").addClass("inputTextReadOnly");
+	    	jq('#epostmott' ).prop( "readonly", true );
+	    	jq('#epostmott' ).prop( "required", false );
+			jq("#epostmott").removeClass("inputTextMediumBlueMandatoryField");
+			jq("#epostmott").addClass("inputTextReadOnly");
 	    	
-	    	console.log("epost_mott should be enabled")
+	    	console.log("epostmott should be enabled")
 	    }	    
 	    
 	    

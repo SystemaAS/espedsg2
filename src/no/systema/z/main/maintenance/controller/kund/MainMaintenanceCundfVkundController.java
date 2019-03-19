@@ -1279,6 +1279,7 @@ public class MainMaintenanceCundfVkundController {
 
 	private JsonMaintMainCundfRecord fetchRecord(String applicationUser, String kundnr, String firma) {
 		logger.info("::fetchRecord::");
+		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		JsonMaintMainCundfRecord record = new JsonMaintMainCundfRecord(), fmotRecord = new JsonMaintMainCundfRecord();
 		Collection<JsonMaintMainCundfRecord> recordList = fetchList(applicationUser, kundnr, firma);
 		if (recordList.size() > 1) {
@@ -1293,8 +1294,10 @@ public class MainMaintenanceCundfVkundController {
 				fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 				record.setFmotname(fmotRecord.getKnavn());
 			}
-			record.setElma(existInElma(record.getSyrg()));		
-			JsonMaintMainCundcRecord cundc = vkundControllerUtil.getInvoiceEmailRecord(applicationUser,firma, kundnr );
+			record.setElma(existInElma(record.getSyrg()));	
+			logger.info("Calling vkundControllerUtil.getInvoiceEmailRecord...");
+			JsonMaintMainCundcRecord cundc = util.getInvoiceEmailRecord(applicationUser,firma, kundnr );
+
 			if (cundc != null) {
 				record.setEpost("J");
 				record.setEpostmott(cundc.getCconta());

@@ -369,8 +369,107 @@
 										</tr>
 									</table>
 								</td>
-								<td width="45%" valign="top">&nbsp;
+								<td width="50%">&nbsp;
 									<table>
+										<tr>
+											<td colspan="4" class="text14">
+												<table>
+												<tr>
+													<td class="text14" title="syfr06">
+														Faktura sendes som EHF:
+														<c:if test="${user.filand == 'NO'}">
+										 					&nbsp;<img onMouseOver="showPop('ehf_info');" onMouseOut="hidePop('ehf_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+											 				<div class="text11" style="position: relative;" align="left">
+											 				<span style="position:absolute; top:2px; width:250px;" id="ehf_info" class="popupWithInputText text11"  >
+													           		<b>
+													           			Faktura sendes som EHF
+													 	          	</b><br><br>
+																	Hvis krysset av sendes EDIfaktura på EHF-formatet. <br>
+																	Merk. EHF er alltid "Single-faktura". <br>
+																	Forutsetning er at kunden er registrert med organisasjonsnummer/foretaksnummer <br>
+																	(som er registrert i det sentrale "ELMA-registeret" som mulig mottaker av EHF.)   <br>  
+																	Om kunden er registrert med et bedriftsnummer (av fortollingshensyn eller annet), <br>
+																	kan en parameter med kode "EHFON" benyttes for å overstyre til det Org.nr som EHF skal sendes til.
+		
+																	<br><br>
+															</span>
+															</div>
+														</c:if>
+													</td>
+													<td class="text12BlueGreen">
+														<select name="syfr06" id="syfr06" >
+										  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
+					 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+										  				</select>
+		
+														<c:if test="${user.filand == 'NO'}">
+															<c:if test="${model.record.syfr06 == ''}">
+																<c:if test="${model.record.elma == 'J'}">
+												 					&nbsp;<img onMouseOver="showPop('syfr06_info');" onMouseOut="hidePop('syfr06_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="info">
+													 				<div class="text11" style="position: relative;" align="left">
+													 				<span style="position:absolute; top:2px; width:250px;" id="syfr06_info" class="popupWithInputText text11"  >
+													           		<b>
+													           			Faktura sendes som EHF
+													 	          	</b><br><br>
+																		Org.nr er registrert i ELMA.
+																	<br><br>
+																	</span>
+																	</div>
+																</c:if>
+															</c:if>
+														</c:if>
+		
+													</td>
+													<td>
+		
+									<c:choose>
+											<c:when test="${model.action == 'doCreate'}">
+														<font class="text14">
+																&nbsp;&nbsp;Faktura sendes som e-post:
+														</font>		
+											</c:when>
+											<c:otherwise>
+														<font class="tabDisabledLink">
+																&nbsp;&nbsp;Faktura sendes som e-post:
+														</font>		
+											</c:otherwise>
+									</c:choose>
+									 					&nbsp;<img onMouseOver="showPop('epost_info');" onMouseOut="hidePop('epost_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+										 				<div class="text11" style="position: relative;" align="left">
+										 				<span style="position:absolute; top:2px; width:250px;" id="epost_info" class="popupWithInputText text11"  >
+											           		<b>
+											           			Faktura sendes som e-post
+											 	          	</b><br><br>
+															Kan fylles i når kunde registreres.<br>
+															<br><br>
+														</span>
+														</div>
+		
+													</td>
+													
+									<c:choose>
+											<c:when test="${model.action == 'doCreate'}">
+													<td>
+														<select name="epost" id="epost" >
+										  					<option value="N"<c:if test="${ model.record.epost == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
+					 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+										  				</select>
+													</td>
+											</c:when>
+											<c:otherwise>
+													<td>
+														<select disabled name="epost" id="epost" >
+										  					<option value="N"<c:if test="${ model.record.epost == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
+					 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+										  				</select>
+													</td>
+											</c:otherwise>
+									</c:choose>
+												</tr>
+												</table>
+											</td>
+										</tr>
+<!--  	
 										<tr>
 											<td class="text14" title="syfr06">
 												Faktura sendes som EHF:
@@ -462,6 +561,13 @@
 									</c:otherwise>
 							</c:choose>
 										</tr>
+-->
+
+
+
+
+
+
 
 										<tr>
 							<c:choose>
@@ -481,7 +587,7 @@
 												</div>
 											</td>
 											<td colspan="3">
-												<input readonly type="text" class="inputTextMediumBlue" name="epost_mott" id="epost_mott" size="60" maxlength="70" value="${model.record.epostmott}">
+												<input readonly type="text" class="inputTextMediumBlue" name="epostmott" id="epostmott" size="60" maxlength="70" value="${model.record.epostmott}">
 											</td>
 
 									</c:when>
@@ -573,7 +679,7 @@
 									</table>
 									<table class="formFramePeachGrayRoundBottom"  width="100%" cellspacing="0" border="0" align="center">
 										<tr> 
-											<td width="45%" >
+											<td width="50%" >
 												<table border="0">
 													<tr>
 														<td class="text14" title="bankg">&nbsp;
@@ -641,7 +747,7 @@
 													</tr>
 												</table>
 											</td>
-											<td width="42%" valign="top">
+											<td width="50%" valign="top">
 												<table border="0">
 													<tr>
 														<td class="text14" title="sysalu">
@@ -719,7 +825,7 @@
 									</table>
 									<table class="formFramePeachGrayRoundBottom"  width="100%" cellspacing="0" border="0" align="center">
 										<tr> 
-											<td width="45%" >
+											<td width="50%" >
 												<table>
 													<tr>
 														<td class="text14" title="syutlp">&nbsp;
@@ -766,7 +872,7 @@
 													</tr>
 												</table>
 											</td>
-											<td width="42%" valign="top">
+											<td width="50%" valign="top">
 												<table>
 													<tr>
 														<td class="text14" title="golk">
@@ -833,7 +939,7 @@
 									</table>
 									<table class="formFramePeachGrayRoundBottom"  width="100%" cellspacing="0" border="0" align="center">
 										<tr> 
-											<td width="45%" >
+											<td width="50%" >
 												<table border="0">
 													<tr>
 														<td class="text14" title="vatkku">&nbsp;
@@ -879,8 +985,8 @@
 													</tr>
 												</table>
 											</td>
-											<td width="42%" valign="top">
-												<table border="0">
+											<td width="50%" valign="top">
+												<table>
 													<tr>
 														<td class="text14" title="syiat1">
 															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.syiat1"/>:

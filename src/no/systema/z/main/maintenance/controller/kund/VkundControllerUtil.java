@@ -1,7 +1,6 @@
 package no.systema.z.main.maintenance.controller.kund;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -9,10 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -30,6 +26,7 @@ import no.systema.main.service.UrlCgiProxyService;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
 import no.systema.z.main.maintenance.service.MaintMainCundcService;
+import no.systema.z.main.maintenance.service.MaintMainCundcServiceImpl;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 
 /**
@@ -51,8 +48,14 @@ public class VkundControllerUtil {
 	}
 	
 	
-	@Autowired
-	MaintMainCundcService maintMainCundcService;
+	@Bean
+	public MaintMainCundcService maintMainCundcService() {
+		return new MaintMainCundcServiceImpl();
+	}
+	
+	
+//	@Autowired
+//	MaintMainCundcService maintMainCundcService;
 	
 	
 	/**
@@ -300,6 +303,10 @@ public class VkundControllerUtil {
 	public JsonMaintMainCundcRecord getInvoiceEmailRecord( String appUser, String firma, String kundnr ) {
 		logger.info("::getInvoiceEmailRecord::");
 		List<JsonMaintMainCundcRecord> list = getInvoiceEmailRows(appUser, firma, kundnr );
+		if (list.isEmpty()) {
+			logger.info("List<JsonMaintMainCundcRecord> list is empty, returning...");
+			return null;
+		}
 		
 		Collection<JsonMaintMainCundcRecord> singelFaktura, samleFaktura;
 		singelFaktura =
@@ -320,7 +327,6 @@ public class VkundControllerUtil {
 		} else {
 			return null;
 		}
-		
 		
 	}	
 	
@@ -356,35 +362,33 @@ public class VkundControllerUtil {
 		logger.info("::getInvoiceEmailRows::");
 		JsonReader<JsonDtoContainer<JsonMaintMainCundcRecord>> jsonReader = new JsonReader<JsonDtoContainer<JsonMaintMainCundcRecord>>();
 		jsonReader.set(new JsonDtoContainer<JsonMaintMainCundcRecord>());
+		List<JsonMaintMainCundcRecord> list = new ArrayList<JsonMaintMainCundcRecord>();
 
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_CUNDC_GET_LIST_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
-		urlRequestParams.append("?user=" + appUser);
+		urlRequestParams.append("user=" + appUser);
 		urlRequestParams.append("&cfirma=" + firma);
 		urlRequestParams.append("&ccompn=" + kundnr);
 
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
-		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-		ResponseEntity<String> jsonPayload = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-//		logger.info("jsonPayload=" + jsonPayload.getBody());
-		
-		List<JsonMaintMainCundcRecord> list = new ArrayList();
+		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		logger.info("jsonPayload=" + jsonPayload);
 		
 		if (jsonPayload != null) {
-			JsonMaintMainCundcContainer container = maintMainCundcService.getList(jsonPayload.getBody());
+			JsonMaintMainCundcContainer container = maintMainCundcService().getList(jsonPayload);
 			if (container != null) {
-				list = (List) container.getList();
-				// for (JsonMaintMainCundcRecord record : list) {
-				// logger.info("RECORD=" + record);
-				// }
+				list =  (List<JsonMaintMainCundcRecord>) container.getList();
+//				 for (JsonMaintMainCundcRecord record : list) {
+//					 logger.info("RECORD=" + record);
+//				 }
+			} else {
+				logger.warn("CONTAINER is empty!");
 			}
 		}
 		
 		return list;
 
 	}
-	
-	
 
 }
