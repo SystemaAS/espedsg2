@@ -265,6 +265,34 @@ function setPoststed() {
 jq(function() {
 	
 	
+	jq('#epost').on('change', function (e) {
+	    var optionSelected = jq("option:selected", this);
+	    var valueSelected = this.value;
+	    
+	    console.log("valueSelected",valueSelected);
+	    
+	    if (valueSelected == 'J') {
+	    	jq('#epost_mott' ).prop( "readonly", false );
+	    	jq('#epost_mott' ).prop( "required", true );
+			jq("#epost_mott").removeClass("inputTextReadOnly");
+			jq("#epost_mott").addClass("inputTextMediumBlueMandatoryField");
+	    	
+	    	console.log("epost_mott should be enabled")
+	    }
+	    if (valueSelected == 'N') {
+	    	jq('#epost_mott' ).prop( "readonly", true );
+	    	jq('#epost_mott' ).prop( "required", false );
+			jq("#epost_mott").removeClass("inputTextMediumBlueMandatoryField");
+			jq("#epost_mott").addClass("inputTextReadOnly");
+	    	
+	    	console.log("epost_mott should be enabled")
+	    }	    
+	    
+	    
+	    
+	});
+	
+	
     jq('#sylandIdLink').click(function() {
     	jq('#sylandIdLink').attr('target','_blank');
     	window.open('mainmaintenance_vkund_edit_childwindow_codes.do?caller=syland', "codeWin", "top=300px,left=500px,height=600px,width=800px,scrollbars=no,status=no,location=no");

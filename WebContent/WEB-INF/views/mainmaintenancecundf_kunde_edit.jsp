@@ -394,7 +394,7 @@
 												</c:if>
 											</td>
 											
-											<td colspan="2" class="text12BlueGreen">
+											<td class="text12BlueGreen">
 												<select name="syfr06" id="syfr06" >
 								  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
 			 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
@@ -417,22 +417,100 @@
 													</c:if>
 												</c:if>
 
+
+							<c:choose>
+									<c:when test="${model.action == 'doCreate'}">
+												<font class="text14">
+														&nbsp;&nbsp;Faktura sendes som e-post:
+												</font>		
+									</c:when>
+									<c:otherwise>
+												<font class="tabDisabledLink">
+														&nbsp;&nbsp;Faktura sendes som e-post:
+												</font>		
+									</c:otherwise>
+							</c:choose>
+							 					&nbsp;<img onMouseOver="showPop('epost_info');" onMouseOut="hidePop('epost_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="epost_info" class="popupWithInputText text11"  >
+									           		<b>
+									           			Faktura sendes som e-post
+									 	          	</b><br><br>
+													Kan fylles i når kunde registreres.<br>
+													<br><br>
+												</span>
+												</div>
+
 											</td>
 											
-											<td colspan="1">&nbsp;</td>
-										</tr>
-										<tr>
-											<td class="text14" title="adr21">
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.eori"/>:
-											</td>
+							<c:choose>
+									<c:when test="${model.action == 'doCreate'}">
 											<td>
-												<input type="text" class="inputTextMediumBlue" name="eori" id="eori" size="15" maxlength="17" value='${model.record.eori}'>
+												<select name="epost" id="epost" >
+								  					<option value="N"<c:if test="${ model.record.epost == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
+			 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+								  				</select>
 											</td>
-											<td class="text14" title="systat">
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.systat"/>:
+									</c:when>
+									<c:otherwise>
+											<td>
+												<select disabled name="epost" id="epost" >
+								  					<option value="N"<c:if test="${ model.record.epost == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
+			 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
+								  				</select>
 											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="systat" id="systat" size="3" maxlength="3" value='${model.record.systat}'></td>
+									</c:otherwise>
+							</c:choose>
 										</tr>
+
+										<tr>
+							<c:choose>
+									<c:when test="${model.action == 'doCreate'}">
+											<td class="text14">
+												E-postmottaker:
+							 					&nbsp;<img onMouseOver="showPop('epost_mott_info');" onMouseOut="hidePop('epost_mott_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="epost_mott_info" class="popupWithInputText text11"  >
+									           		<b>
+									           			E-postmottaker
+									 	          	</b><br><br>
+													Kan fylles i når kunde registreres<br>
+													og <b>E-postfaktura</b>=Ja.
+													<br><br>
+												</span>
+												</div>
+											</td>
+											<td colspan="3">
+												<input readonly type="text" class="inputTextMediumBlue" name="epost_mott" id="epost_mott" size="60" maxlength="70" value="${model.record.epostmott}">
+											</td>
+
+									</c:when>
+									<c:otherwise>
+											<td class="text14">
+												<font class="tabDisabledLink">
+												E-postmottaker:
+												</font>
+							 					&nbsp;<img onMouseOver="showPop('epost_mott_info');" onMouseOut="hidePop('epost_mott_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+								 				<div class="text11" style="position: relative;" align="left">
+								 				<span style="position:absolute; top:2px; width:250px;" id="epost_mott_info" class="popupWithInputText text11"  >
+									           		<b>
+									           			E-postmottaker
+									 	          	</b><br><br>
+													Kan fylles i når kunde registreres<br>
+													og <b>Faktura sendes som e-post</b>=Ja.
+													<br><br>
+												</span>
+												</div>
+											</td>
+											<td colspan="3">
+												<input readonly type="text" class="inputTextReadOnly" name="epost_mott" id="epost_mott" size="60" maxlength="70" value="${model.record.epostmott}">
+											</td>
+									
+									</c:otherwise>
+							</c:choose>
+
+										</tr>
+
 										<tr>
 											<td class="text14" title="kpers">
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.contact"/>:
@@ -453,19 +531,20 @@
 											<td class="text14" title="valkod">
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.currency"/>:
 											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="valkod" id="valkod" size="3" maxlength="3" value='${model.record.valkod}'>
+											<td>
+												<input type="text" class="inputTextMediumBlue" name="valkod" id="valkod" size="3" maxlength="3" value='${model.record.valkod}'>
 												<a tabindex="-1" id="valkodIdLink">
 													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 												</a>
 											</td>
-											<td class="text14" title="kundgr">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.kundgr"/>:
+											<td class="text14" title="adr21">
+												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.eori"/>:
 											</td>
-											<td><input type="text" class="inputTextMediumBlue" name="kundgr" id="kundgr" size="2" maxlength="2" value='${model.record.kundgr}'></td>
+											<td colspan="3">
+												<input type="text" class="inputTextMediumBlue" name="eori" id="eori" size="15" maxlength="17" value='${model.record.eori}'>
+											</td>
 										</tr>
-										<tr>
-											<td colspan="4">&nbsp;</td>
-										</tr>	
+
 										<tr>
 											<td colspan="3">&nbsp;</td>
 											<td>&nbsp;
@@ -517,7 +596,6 @@
 														</td>
 														<td>
 															<select name="betbet" id="betbet" class="inputTextMediumBlue">
-											  					<option value="">-velg-</option>
 											  					<c:forEach var="record" items="${model.betbetList}" >
 											 				  		<option title="${record.bettxt}" value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
 																  </c:forEach>  
@@ -791,9 +869,13 @@
 														<td class="text14" title="syselg">&nbsp;
 															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sell"/>:
 														</td>
-														<td colspan="3">
+														<td >
 															<input type="text" class="inputTextMediumBlue" name="syselg" id="syselg" size="5" maxlength="3" value='${model.record.syselg}'>												
 														</td>
+														<td class="text14" title="kundgr">&nbsp;
+															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.kundgr"/>:
+														</td>
+														<td><input type="text" class="inputTextMediumBlue" name="kundgr" id="kundgr" size="2" maxlength="2" value='${model.record.kundgr}'></td>
 													</tr>
 												</table>
 											</td>
@@ -814,6 +896,7 @@
 														</td>
 														<td><input type="text" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="xxbre" id="xxbre" size="10" maxlength="8" value='${model.record.xxbre}'></td>
 													</tr>
+	
 													<tr>
 														<td class="text14" title="syiat2">
 															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.syiat2"/>:
@@ -827,6 +910,14 @@
 														</td>
 														<td><input type="text" class="inputTextMediumBlue" name="xxlen" id="xxlen" size="10" maxlength="9" value='${model.record.xxlen}'></td>
 													</tr>
+			
+													<tr>
+														<td class="text14" title="systat">
+															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.systat"/>:
+														</td>
+														<td><input type="text" class="inputTextMediumBlue" name="systat" id="systat" size="3" maxlength="3" value='${model.record.systat}'></td>
+													</tr>
+													
 												</table>
 											</td>
 										</tr>

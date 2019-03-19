@@ -1,11 +1,18 @@
 package no.systema.z.main.maintenance.controller.kund;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -20,6 +27,9 @@ import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
+import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
+import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
+import no.systema.z.main.maintenance.service.MaintMainCundcService;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 
 /**
@@ -39,6 +49,11 @@ public class VkundControllerUtil {
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
+	
+	
+	@Autowired
+	MaintMainCundcService maintMainCundcService;
+	
 	
 	/**
 	 * Inject UrlCgiProxyService for http calls.
@@ -274,6 +289,41 @@ public class VkundControllerUtil {
 		}
 		return has;
 	}
+
+	/**
+	 * Check is customer has invoice email set.
+	 * 
+	 * @param kundnr
+	 * @param appUser
+	 * @return J if invoice email exist, N if not.
+	 */
+	public JsonMaintMainCundcRecord getInvoiceEmailRecord( String appUser, String firma, String kundnr ) {
+		logger.info("::hasInvoiceEmail::");
+		List<JsonMaintMainCundcRecord> list = getInvoiceEmailRows(appUser, firma, kundnr );
+		
+		Collection<JsonMaintMainCundcRecord> singelFaktura, samleFaktura;
+		singelFaktura =
+				list
+		        .stream()
+		        .filter(f -> f.getCtype().contains("*SINGELFAKTURA"))
+		        .collect(Collectors.toSet());		
+		samleFaktura =
+				list
+		        .stream()
+		        .filter(f -> f.getCtype().contains("*SAMLEFAKTURA"))
+		        .collect(Collectors.toSet());				
+		
+		if (!singelFaktura.isEmpty()) {
+			return singelFaktura.iterator().next();
+		} else if (!samleFaktura.isEmpty()) {
+			return samleFaktura.iterator().next();
+		} else {
+			return null;
+		}
+		
+		
+	}	
+	
 	
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
@@ -285,7 +335,6 @@ public class VkundControllerUtil {
 		jsonReader.set(new JsonDtoContainer<FirkuDao>());
 
 		ResponseEntity<String> jsonPayload = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-
 		logger.info("jsonPayload=" + jsonPayload.getBody());
 		FirkuDao dao = null;
 
@@ -301,5 +350,41 @@ public class VkundControllerUtil {
 		return dao;
 
 	}
+
+	
+	private List<JsonMaintMainCundcRecord> getInvoiceEmailRows(String appUser,  String firma, String kundnr) {
+		logger.info("::getInvoiceEmailRows::");
+		JsonReader<JsonDtoContainer<JsonMaintMainCundcRecord>> jsonReader = new JsonReader<JsonDtoContainer<JsonMaintMainCundcRecord>>();
+		jsonReader.set(new JsonDtoContainer<JsonMaintMainCundcRecord>());
+
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_CUNDC_GET_LIST_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser);
+		urlRequestParams.append("&cfirma=" + firma);
+		urlRequestParams.append("&ccompn=" + kundnr);
+
+		logger.info("URL: " + BASE_URL);
+		logger.info("PARAMS: " + urlRequestParams.toString());
+		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		ResponseEntity<String> jsonPayload = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+//		logger.info("jsonPayload=" + jsonPayload.getBody());
+		
+		List<JsonMaintMainCundcRecord> list = new ArrayList();
+		
+		if (jsonPayload != null) {
+			JsonMaintMainCundcContainer container = maintMainCundcService.getList(jsonPayload.getBody());
+			if (container != null) {
+				list = (List) container.getList();
+				// for (JsonMaintMainCundcRecord record : list) {
+				// logger.info("RECORD=" + record);
+				// }
+			}
+		}
+		
+		return list;
+
+	}
+	
+	
 
 }

@@ -148,7 +148,9 @@ public class MainMaintenanceCundfKundeController {
 			model.put("kundnr", kundeSessionParams.getKundnr());
 			model.put("firma", kundeSessionParams.getFirma());
 			model.put("invoiceCustomerAllowed", vkundControllerUtil.getInvoiceCustomerAllowed(appUser));
-			model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
+			if (kundeSessionParams.getKundnr() != null) {
+				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundeSessionParams.getKundnr())));
+			}
 			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(recordToValidate.getSyrg(), appUser));
 			model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(recordToValidate.getSypoge(), recordToValidate.getSyland() , appUser));
 
@@ -189,6 +191,7 @@ public class MainMaintenanceCundfKundeController {
 	}	
 
 	private JsonMaintMainCundfRecord fetchRecord(String applicationUser, String kundnr, String firma) {
+		logger.info("::fetchRecord::");
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_GET_LIST_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
 		urlRequestParams.append("user=" + applicationUser);
@@ -211,11 +214,18 @@ public class MainMaintenanceCundfKundeController {
 						fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 						record.setFmotname(fmotRecord.getKnavn());
 					}
-					if (StringUtils.hasValue(record.getPostnr())) {
+					if (StringUtils.hasValueIgnoreZero(record.getPostnr())) {
 						String leftPaddedPostnr = org.apache.commons.lang3.StringUtils.leftPad(record.getPostnr(), 4, '0');
 						record.setPostnr(leftPaddedPostnr);
 					}
 					record.setElma(existInElma(record.getSyrg()));
+					JsonMaintMainCundcRecord cundc = vkundControllerUtil.getInvoiceEmailRecord(applicationUser,firma, kundnr );
+					if (cundc != null) {
+						record.setEpost("J");
+						record.setEpostmott(cundc.getCconta());
+					} else {
+						//not set
+					}
 				}
 			}
 		}
