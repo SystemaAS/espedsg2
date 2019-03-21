@@ -2853,14 +2853,21 @@
   });
   
   function presentEmailDialog(){
+	//Localize
+	  //NO - std
+	  var dlgTitle = "Send Mail"; var btnTextOk = "Send"; var btnTextCancel = "Lukk";
+	  //EN
+	  if(jq("#usrLang").val() == "EN"){
+		  dlgTitle = "Print"; btnTextOk = "Send"; btnTextCancel = "Cancel"; 
+	  }
 	//setters (add more if needed)
-	  jq('#dialogEmail').dialog( "option", "title", "Send Mail" );
+	  jq('#dialogEmail').dialog( "option", "title", dlgTitle );
 	  //deal with buttons for this modal window
 	  jq('#dialogEmail').dialog({
 		 buttons: [ 
             {
 			 id: "dialogSaveTU",	
-			 text: "Send",
+			 text: btnTextOk,
 			 click: function(){
 				 		if(jq("#email").val() != ''){
 				 			sendEmail();
@@ -2869,7 +2876,7 @@
 		 	 },
   			{
 		 	 id: "dialogCancelTU",
-		 	 text: "Lukk", 
+		 	 text: btnTextCancel, 
 			 click: function(){
 				 		//back to initial state of form elements on modal dialog
 				 		//jq("#dialogSaveTU").button("option", "disabled", true);
@@ -2898,7 +2905,8 @@
 	  		  	  opd : jq("#heopd").val(),
 		  		  email : jq("#email").val(),
 		  		  subject : jq("#emailSubject").val(),
-		  		  text : jq("#emailText").val()},
+		  		  text : jq("#emailText").val(),
+		  		  emailLang : jq("#emailLang").val()},
 	  	  dataType: 'json',
 	  	  cache: false,
 	  	  contentType: 'application/json',

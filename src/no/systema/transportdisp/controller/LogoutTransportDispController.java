@@ -39,6 +39,8 @@ public class LogoutTransportDispController {
 			logger.info("Logging out from Systema TransportDisp ...");
 			session.removeAttribute(AppConstants.ASPECT_ERROR_MESSAGE);
 			session.removeAttribute(TransportDispConstants.SESSION_CHILDWINDOW_FLAG);
+			session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP);
+			session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP_HISTORY);
 			view = this.successView;
 		}
 		return view;

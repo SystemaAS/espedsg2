@@ -32,10 +32,10 @@
 		<tr height="25"> 
 			<c:choose>
 				<c:when test="${not empty searchFilter.tur}">
-					<td width="20%" valign="bottom" class="tab" align="center" nowrap>
+					<td width="20%" valign="bottom" class="tabDisabled" align="center" nowrap>
 						<a id="alinkOrderListId" style="display:block;" href="transportdisp_mainorderlist.do?action=doFind&avd=${searchFilter.avd}">
 							<img style="vertical-align:middle;" src="resources/images/bulletGreen.png" width="6px" height="6px" border="0" alt="open orders">
-							<font class="tabLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
+							<font class="tabDisabledLink"><spring:message code="systema.transportdisp.workflow.trip.all.openorders.tab"/></font>&nbsp;<font class="text10Orange">F3</font>
 						</a>
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
@@ -186,6 +186,7 @@
 						<td id="dtuavd${searchFilter.avd}_dtupro${searchFilter.tur}_oncontainer" ondrop="dropX(event)" ondragenter="highlightDropArea(event)" ondragleave="noHighlightDropArea(event)" ondragover="allowDrop(event)" class="text14MediumBlue">
 							<spring:message code="systema.transportdisp.orders.current.header"/>&nbsp;&nbsp;
 							<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+							<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
 						</td>
 					</tr>
 					<c:if test="${not empty model.containerCurrentOrders.maxWarning}">
@@ -1223,6 +1224,56 @@
 			</div>
 		</td>
 		</tr>
+		
+		
+		<%-- ---------------- --%>
+		<%-- DIALOG EMAIL		  --%>
+		<%-- ---------------- --%>
+		<tr>
+		<td>
+			<div id="dialogEmail" title="Dialog">
+				 	<table>
+						<tr>
+							<td colspan="3" class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.manifest.label"/></td>
+   						</tr>
+   						<tr height="10"><td></td></tr>
+   						
+						<tr>
+							<td class="text14" align="left" ><b><spring:message code="systema.transportdisp.workflow.trip.email.email.label"/></b></td>
+							<td class="text14" align="left" >
+								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
+							</td>
+   						</tr>
+   						
+						<tr>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.mark.label"/></td>
+							<td class="text12" align="left" >
+		   						<textarea id="emailText" name="emailText" limit='48,4' cols="50" rows="4"></textarea>
+							</td>
+						</tr>
+						<tr>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.language.label"/></td>
+							<td class="text14" align="left" >
+		   						<select class="inputTextMediumBlue" name="emailLang" id="emailLang">
+		 							<option value="NO" selected><spring:message code="systema.transportdisp.workflow.trip.email.language.no"/></option>
+		 							<option value="EN"><spring:message code="systema.transportdisp.workflow.trip.email.language.en"/></option>
+								</select>
+							</td>
+						</tr>
+						
+
+						<tr height="10"><td></td></tr>
+						<tr>
+							<td colspan="3" class="text14MediumBlue" align="left">
+								<label id="emailStatus"></label>
+							</td>
+						</tr>
+						
+					</table>
+			</div>
+		</td>
+		</tr>
+		
 		
 		
 		

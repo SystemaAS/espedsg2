@@ -53,7 +53,7 @@
 	<script type="text/javascript" src="//bartaz.github.io/sandbox.js/jquery.highlight.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
 	<script type="text/javascript" src="//cdn.datatables.net/plug-ins/1.10.19/features/searchHighlight/dataTables.searchHighlight.min.js"></script>
-	<input type="hidden" name="language" id=language value="${user.usrLang}">
+	<input type="hidden" name="usrLang" id="usrLang" value="${user.usrLang}">
 	
     <table class="noBg" width="100%" border="0" cellspacing="0" cellpadding="0">
 		<%--Banner --%>

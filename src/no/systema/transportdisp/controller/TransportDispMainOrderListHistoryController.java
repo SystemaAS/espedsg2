@@ -126,6 +126,22 @@ public class TransportDispMainOrderListHistoryController {
 			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_TRANSPORT_DISP_HISTORY);
 			//drop downs
     		this.setCodeDropDownMgr(appUser, model);
+    		//----------------------
+    		//Put FILTER in SESSION for further use (within this module) ONLY with: POST method = doFind on search fields
+    		//----------------------
+            if(request.getMethod().equalsIgnoreCase(RequestMethod.POST.toString())){
+    				session.setAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP_HISTORY, recordToValidate);
+            }else{
+            	SearchFilterTransportDispWorkflowShippingPlanningOrdersList sessionFilter = (SearchFilterTransportDispWorkflowShippingPlanningOrdersList)session.getAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP_HISTORY);
+            	if(sessionFilter!=null){
+            		//Use the session filter when applicable
+            		recordToValidate = sessionFilter;
+            	}
+            }
+            //END FILTER in SESSION
+    		
+    		
+    		
 			//-----------
 			//Validation
 			//-----------

@@ -379,7 +379,9 @@
 				 					<td colspan="6" class="text14">
 				 						<c:if test="${not empty model.record.heopd}">
 					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-					 						<%-- hided so far ... <button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button> --%>
+					 						<%-- hided so far ... only missing the AS400 service (JOVO) .. follow the AjaxController ... 
+					 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+					 						--%>
 					 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 									   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
 									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button>
@@ -2696,7 +2698,7 @@
    						<tr height="10"><td></td></tr>
    						
 						<tr>
-							<td class="text14" align="left" ><b>Mail</b>&nbsp;</td>
+							<td class="text14" align="left" ><b><spring:message code="systema.transportdisp.workflow.trip.email.email.label"/></b>&nbsp;</td>
 							<td class="text14" align="left" >
 								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
 							</td>
@@ -2721,12 +2723,21 @@
 						</tr>
 						
 						<tr>
-   							<td class="text14" align="left" >Tekst</td>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.mark.label"/></td>
 							<td class="text12" align="left" >
 		   						<textarea id="emailText" name="emailText" limit='48,4' cols="50" rows="4"></textarea>
 							</td>
 						</tr>
-
+						
+						<tr>
+   							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.language.label"/></td>
+							<td class="text14" align="left" >
+		   						<select class="inputTextMediumBlue" name="emailLang" id="emailLang">
+		 							<option value="NO" selected><spring:message code="systema.transportdisp.workflow.trip.email.language.no"/></option>
+		 							<option value="EN"><spring:message code="systema.transportdisp.workflow.trip.email.language.en"/></option>
+								</select>
+							</td>
+						</tr>
 						<tr height="10"><td></td></tr>
 						<tr>
 							<td colspan="3" class="text14MediumBlue" align="left">

@@ -940,6 +940,38 @@ public class TransportDispAjaxHandlerController {
 			
 			return result;
 	  }
+	  @RequestMapping(value = "sendEmail_TransportDisp.do", method = RequestMethod.GET)
+	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendEmail(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, 
+			  					@RequestParam String email, @RequestParam String subject, @RequestParam String text, @RequestParam String emailLang ) {
+		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
+		  	logger.info("Inside sendEmail...");
+		  	
+		  	//http://gw.systema.no/sycgip/tjfa55mTODO_JOVO.pgm?user=JOVO&avd=75&opd=108&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
+		  	String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_EMAIL_URL;
+			String urlRequestParamsKeys = "user=" + applicationUser + "&avd=" + avd + "&opd=" + opd + "&merk=" + text + "&mail=" + email + "&sprak=" + emailLang;
+			
+			logger.info("URL: " + BASE_URL);
+			logger.info("PARAMS: " + urlRequestParamsKeys);
+			logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+			String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+			//Debug -->
+			logger.info(jsonPayload);
+			logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp"); 
+			
+			if(jsonPayload!=null){
+				JsonTransportDispSendSmsContainer container = this.transportDispChildWindowService.getSendSmsContainer(jsonPayload);
+				if(container!=null){
+					result.add(container);
+				}else{
+					String errMsg = "CONTAINER = NULL in Ajax: sendEmailFromTur_TransportDisp.do";
+					logger.info(errMsg);
+					container = new JsonTransportDispSendSmsContainer();
+					container.setErrMsg(errMsg);
+				}
+			}
+			
+			return result;
+	  }
 	  /**
 	   * 
 	   * @param applicationUser
