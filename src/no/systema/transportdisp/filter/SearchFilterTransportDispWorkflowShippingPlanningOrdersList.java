@@ -132,6 +132,10 @@ public class SearchFilterTransportDispWorkflowShippingPlanningOrdersList {
 	public void setWsfssok(String value) {  this.wsfssok = value; }
 	public String getWsfssok() { return this.wsfssok;}
 	
+	private String faktknr = null;
+	public void setFaktknr(String value) {  this.faktknr = value; }
+	public String getFaktknr() { return this.faktknr;}
+	
 	/**
 	 * Gets the populated values by reflection
 	 * @param searchFilter

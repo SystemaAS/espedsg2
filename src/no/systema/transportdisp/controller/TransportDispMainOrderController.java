@@ -116,7 +116,8 @@ public class TransportDispMainOrderController {
 	private String MESSAGE_NOTE_CONSIGNEE = "R";
 	private String MESSAGE_NOTE_CARRIER = "G";
 	private String MESSAGE_NOTE_INTERNAL = "b";
-	
+	//
+	private int VALID_DATE_LIMIT_SPAN = 30;
 	
 	@PostConstruct
 	public void initIt() throws Exception {
@@ -212,6 +213,9 @@ public class TransportDispMainOrderController {
 	    				this.populateArchiveDocs(appUser, record);
 	    				//set domain objects
 	    				this.setDomainObjectsInView(model, record);
+	    				//set date warning if needed
+	    				this.populateValidDatesWarning(record);
+	    				
 	    				//set in session (used in invoice child)
 	    				session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
 	    			}
@@ -572,6 +576,9 @@ public class TransportDispMainOrderController {
 		    			for (JsonTransportDispWorkflowSpecificOrderRecord record: container.getDspoppdrag()){
 		    				//adjust percentage
 		    				//record.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(record.getHevalp()));
+		    				
+		    				//set date warning if needed
+		    				this.populateValidDatesWarning(record);
 		    				
 		    				//update the order in session since we might go to Invoice tab directly after this
 		    				session.setAttribute(TransportDispConstants.DOMAIN_RECORD_ORDER_TRANSPORT_DISP, record);
@@ -1955,6 +1962,20 @@ public class TransportDispMainOrderController {
 		}
 	}
 	
+	/**
+	 * A warning will be rendered on JSP. If either date is above or below the limit
+	 * 
+	 * @param model
+	 * @param record
+	 */
+	private void populateValidDatesWarning(JsonTransportDispWorkflowSpecificOrderRecord record){
+		if(!dateTimeManager.validTwoDatesWithinSpanISO(record.getWsetdd(), record.getHedtr(), this.VALID_DATE_LIMIT_SPAN)){
+			record.setEtdWarning("1");
+		}
+		if(!dateTimeManager.validTwoDatesWithinSpanISO(record.getWsetad(), record.getHedtr(), this.VALID_DATE_LIMIT_SPAN)){
+			record.setEtaWarning("1");
+		}
+	}
 	
 	//SERVICES
 	@Qualifier ("urlCgiProxyService")

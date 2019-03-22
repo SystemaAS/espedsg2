@@ -183,12 +183,10 @@
 	<%-- ------------------------------- --%>
 		<c:if test="${not empty model.record.heopd}">
 			<tr>
-				<td valign="bottom" >
+				<td valign="top" >
 					<!-- <span style="position:absolute; left:1550px; top:160px; width:550px; height:800px;" id="economyMatrixInfo" class="popupFloating"  -->
 						<div id="dialogDraggableFileUpload" title="File Upload">
-		           		<p>
 		           		<table class="popupFloatingWithRoundCorners3D">
-						    <tr height="2"><td></td></tr>
 					    	<tr>
 							<td valign="top">
 							<form name="uploadFileForm" id="uploadFileForm" method="post" enctype="multipart/form-data">
@@ -202,18 +200,16 @@
 									<table id="containerdatatableTable" cellspacing="2" align="left">
 										<tr>
 											<td colspan="3" class="text14Bold">&nbsp;
-												<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="20" height="20" alt="upload">
+												<img style="vertical-align:bottom;" src="resources/images/upload.png" border="0" width="15" height="15" alt="upload">
 												&nbsp;File Upload&nbsp;							
 											</td>
 										</tr>
 										<tr>
-										<tr height="5"><td></td></tr>
 										<tr>
 										<td>
 											<table>
-											
 											<tr>
-												<td class="text11">&nbsp;Arkiv typen:</td>
+												<td class="text11">&nbsp;Archive type</td>
 												<td class="text11">&nbsp;
 													<select class="inputTextMediumBlue" tabindex=-1 name="wstype" id="wstype">
 														<c:forEach var="record" items="${user.arkivKodOpdList}" >
@@ -223,15 +219,14 @@
 												</td>
 											</tr>
 											<tr>	
-												<td class="text11">&nbsp;Fil:</td>
+												<td class="text11">&nbsp;File</td>
 												<td class="text11">
-					           						&nbsp;<input ondragenter="myFileUploadDragEnter(event)" ondragleave="myFileUploadDragLeave(event)" tabindex=-1 class="tableBorderWithRoundCornersLightYellow3D noFileChosenTransparent" style="width:220px;height:120px;display:block;" type="file" name="file" id="file" />
+					           						&nbsp;<input ondragenter="myFileUploadDragEnter(event)" ondragleave="myFileUploadDragLeave(event)" tabindex=-1 class="tableBorderWithRoundCornersLightYellow3D noFileChosenTransparent" style="width:150px;height:80px;display:block;" type="file" name="file" id="file" />
 					       						</td>
 							           		</tr>
 							           		</table>
 										</td>
 										</tr>
-										<tr height="5"><td></td></tr>
 					       			</table>
 							</form>	
 							</td>
@@ -249,6 +244,7 @@
 			<%-- this table wrapper is necessary to apply the css class with the thin border --%>
 			<form name="transportdispForm" id="transportdispForm" method="post">
 			<input type="hidden" name="parentTrip" id="parentTrip" value="${model.parentTrip}">
+			<input type="hidden" name="hedtr" id="hedtr" value="${model.record.hedtr}">
 		
 			<table style="width:100%" id="wrapperTable" class="tabThinBorderWhite" cellspacing="0">
 			<tr height="10"><td>&nbsp;</td></tr> 
@@ -263,7 +259,11 @@
 								<c:if test="${not empty model.record.trslag}">
 									&nbsp;<b>${model.record.trslag}</b>
 								</c:if>
-								&nbsp;&nbsp;<img style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="edit">
+								<img style="vertical-align:bottom;" src="resources/images/update.gif" border="0" alt="edit">
+								<c:if test="${not empty model.record.heopd}">
+									<font style="color:yellow;font-size:12px">&nbsp;Reg.date:&nbsp;${model.record.hedtr}</font>
+								</c:if>
+								
 								<c:if test="${not empty model.record.hepro}">
 									&nbsp;&nbsp;&nbsp;&nbsp;Turnr&nbsp;${model.record.hepro}
 								</c:if>
@@ -291,7 +291,7 @@
 					<table style="width:99%;" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
 				 		<tr height="10"><td ></td></tr>
 				 		<tr>
-							<td valign="top" >
+							<td colspan="2" valign="top" >
 								<table border="0" >
 								<tr>
 									<td colspan="6" class="text14" >
@@ -340,9 +340,56 @@
 				 							<img id="printImg" name="printImg" title="Print" style="vertical-align: bottom;cursor:pointer;" src="resources/images/printer3.png" width="28px" height="28px" border="0" alt="Print"> 
 				 						</td>
 			 						</c:if>
+			 						<td width="25"></td>
+			 						<td class="text14">
+				 						<c:if test="${not empty model.record.heopd}">
+					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
+					 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
+					 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
+									   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
+									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="buttonGrayWithGreenFrame" type="button" >Hend.logg</button>
+									   		<c:if test="${ not empty model.record.heavd && not empty model.record.heopd }">
+						 				    	<input tabindex=-1 class="inputFormSubmit submitSaveClazz" type="submit" name="submit2" id="submit2" onClick="javascript: form.action='transportdisp_mainorder_update.do';" value='<spring:message code="systema.transportdisp.submit.save"/>'/>
+						 				    	<input title="Lagre og Lukk" onMouseOver="style='cursor:pointer;box-shadow: 0 0 5px rgba(66, 148, 255, 1);border: 5px solid rgba(66, 148, 255, 1);'" onMouseOut="style=''" type="checkbox" name="savecloseFlag2" id="savecloseFlag2" value="1" <c:if test="${model.record.savecloseFlag2 == '1'}"> checked </c:if>></span>						 	
+						 				    	
+						 				    </c:if>
+										</c:if>
+				 					</td>
+			 						
+			 						<td width="15"></td>
+			 						<td class="text14">
+				 						<img onMouseOver="showPop('iu_info');" onMouseOut="hidePop('iu_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						 				<span title="travd1-tropd1/travd2-tropd2"><spring:message code="systema.transportdisp.orders.form.update.label.iu.order"/>&nbsp;</span>
+						 				<div class="text11" style="position: relative;" align="left">
+											<span style="position:absolute; left:0px; top:0px; width:250px" id="iu_info" class="popupWithInputText"  >
+												<font class="text11">
+							           			<b>Innh./Utkj.oppdrag</b>
+							           			<div>
+							           			<p>Dersom utfylt peker det på avdeling og oppdragsnummer for evt. <b>innhenting</b> (foran streken)
+													og/eller <b>utkjøring</b> som er "satt bort" til annen avdeling.
+							           			</p>
+							           			</div>
+						           			</font>
+										</span>
+										</div>
+				 					</td>
+				 					<td class="text14">
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="travd1" id="travd1" size="4" value="${model.record.travd1}">
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tropd1" id="tropd1" size="7" value="${model.record.tropd1}">
+				 						&nbsp;/&nbsp;
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="travd2" id="travd2" size="3" value="${model.record.travd2}">
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tropd2" id="tropd2" size="7" value="${model.record.tropd2}">
+				 						<span title="travd0-tropd0" >&nbsp;Opphav.</span>
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="travd0" id="travd0" size="3" value="${model.record.travd0}">
+				 						<input readonly tabindex=-1 type="text" class="inputTextReadOnly" name="tropd0" id="tropd0" size="7" value="${model.record.tropd0}">
+			 						</td>
+
 							 	</tr>
 							 	</table>	
+							 	
 							</td>
+							
+							<%--
 							<td valign="top">
 								<table >
 								<tr>
@@ -379,9 +426,7 @@
 				 					<td colspan="6" class="text14">
 				 						<c:if test="${not empty model.record.heopd}">
 					 						<button name="smsButton" id="smsButton" class="buttonGrayWithGreenFrame" type="button" >Send SMS</button>
-					 						<%-- hided so far ... only missing the AS400 service (JOVO) .. follow the AjaxController ... 
 					 						<button name="emailButton" id="emailButton" class="buttonGrayWithGreenFrame" type="button" >Send Mail</button>
-					 						--%>
 					 						<button name="budgetButton" id="budgetButton" class="buttonGrayWithGreenFrame" type="button" >Budsjett/rekv.</button>
 									   		&nbsp;<button name="planleggingButton" id="planleggingButton" class="buttonGrayWithGreenFrame" type="button" >Til planlegging</button>
 									   		&nbsp;&nbsp;<button tabindex=-1 name="trackAndTraceButton" id="trackAndTraceButton" class="inputFormSubmitStd" type="button" >Hend.logg</button>
@@ -396,6 +441,7 @@
 				 			
 				 				</table>
 							</td>
+							 --%>
 						</tr>
 						
 						<tr height="5"><td ></td></tr>
@@ -472,8 +518,88 @@
 						 				<input type="hidden" name="varFakknr" id="varFakknr" value="">
 						 				
 				 					</td>
+				 					
+				 					
+				 					<td class="text14"><img onMouseOver="showPop('oType_info');" onMouseOut="hidePop('oType_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+										<span title="heot"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.orderType"/>&nbsp;</span>
+						 				<div class="text11" style="position: relative;" align="left">
+										<span style="position:absolute; left:0px; top:0px; width:350px" id="oType_info" class="popupWithInputText"  >
+											<font class="text11">
+							           			<b>Oppdragstype</b>
+							           			<div>
+							           			<p>Intern klassifisering av oppdraget/tjenesten. Avhengig av oppbygging kan det brukes for forskjellige formål:
+							           			</p>
+							           			<ul>
+							           				<li><b>Splitting</b> av oppdragsmassen i stykkgods, bulkgods, tankgods... (sentralt begrep for valg av hvilke oppdrag en vil ha fram i lasteplanleggingen.)</li>
+							           				<li><b>Ulik prising</b> av ulike tjenester (inngår som begrep i prisavtaleoppbyggingen).</li>
+							           				<li><b>Provisjonssatser</b> for transportøravregning kan nyanseres på oppdragstypenivå.</li>
+							           			</ul>
+							           			</div>
+						           			</font>
+										</span>
+										</div>
+									</td>
+						 			<td class="text14">
+						 				<select class="inputTextMediumBlueMandatoryField" name="heot" id="heot">
+						            		<option value="">-select-</option>
+						 				  	<c:forEach var="record" items="${model.oppdragstypeList}" >
+					                       	 	<option title="${record.beskr}" value="${record.opdTyp}"<c:if test="${model.record.heot == record.opdTyp}"> selected </c:if> >${record.opdTyp}</option>
+											</c:forEach> 
+										</select>	
+										<a tabindex=0 id="heotIdLink" >	
+											<img id="heotImg" tabindex=-1 style="vertical-align: middle;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+										</a>
+						 			</td>
+						 			
+						 												
+									<td class="text14">&nbsp;&nbsp;
+										<img onMouseOver="showPop('incoterms_info');" onMouseOut="hidePop('incoterms_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+						 				<span title="hefr"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.incoterms"/>&nbsp;</span>
+						 				<div class="text11" style="position: relative;" align="left">
+										<span style="position:absolute; left:0px; top:0px; width:350px" id="incoterms_info" class="popupWithInputText"  >
+											<font class="text11">
+							           			<b>Frankatur/Leveringsbetingelser</b>
+							           			<div>
+							           			<p>Vesentlig begrep i prisavtalesystem. Overføres til SAD. <br>
+							           			På trafikker hvor en IKKE er opptatt av frankatur må en eller annen "dummyverdi" opprettes/benyttes.
+							           			</p>
+							           			</div>
+						           			</font>
+										</span>
+										</div>
+									</td>
+						 			<td class="text14" align="left">
+						 				<select class="inputTextMediumBlueMandatoryField" name="hefr" id="hefr">
+							            		<option value="">-select-</option>
+							            		<c:choose>
+							            		<c:when test="${not empty model.record.hefr}">
+								            		<c:forEach var="record" items="${model.incotermsList}" >
+								            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${model.record.hefr == record.franka}"> selected </c:if> >${record.franka}</option>
+													</c:forEach> 
+												</c:when>
+												<c:otherwise>
+													<c:forEach var="record" items="${model.incotermsList}" >
+								            			<option title="${record.beskr}" value="${record.franka}"<c:if test="${record.franka=='S'}"> selected </c:if> >${record.franka}</option>
+													</c:forEach>
+												</c:otherwise>
+												</c:choose>
+										</select>
+										<a tabindex=0 id="hefrIdLink" >
+ 											<img id="imgIncotermsSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+ 										</a>	
+						 			</td>
+						 			<td align="right" class="text14">&nbsp;<span title="hebodt"><spring:message code="systema.transportdisp.orders.form.update.label.booking.date"/></span></td>
+						 			<td class="text14">
+					 					<input type="text" class="inputTextMediumBlue" name="hebodt" id="hebodt" size="9" maxlength="8" value="${model.record.hebodt}">
+						    				
+										&nbsp;<span title="wsbotm"><spring:message code="systema.transportdisp.orders.form.update.label.booking.time"/></span>
+						 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="wsbotm" id="wsbotm" size="4" maxlength="4" value="${model.record.wsbotm}">
+						 				&nbsp;<span title="hestn7"><font <c:if test="${model.record.hestn7 == 'P'}"> style="font-weight:bold;"   </c:if>><spring:message code="systema.transportdisp.orders.form.update.label.prebooking"/></font></span>
+						 				<input style="width:14px; height:14px;" type="checkbox" id="hestn7" name="hestn7" value="P" <c:if test="${model.record.hestn7 == 'P'}"> checked </c:if>>
+						 			</td>	
 				 				</tr>
 				 				
+				 				<%--
 				 				<tr>	
 									<td class="text14"><img onMouseOver="showPop('oType_info');" onMouseOut="hidePop('oType_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 										<span title="heot"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.orderType"/>&nbsp;</span>
@@ -550,10 +676,11 @@
 										&nbsp;<span title="wsbotm"><spring:message code="systema.transportdisp.orders.form.update.label.booking.time"/></span>
 						 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="wsbotm" id="wsbotm" size="4" maxlength="4" value="${model.record.wsbotm}">
 						 				&nbsp;<span title="hestn7"><font <c:if test="${model.record.hestn7 == 'P'}"> style="font-weight:bold;"   </c:if>><spring:message code="systema.transportdisp.orders.form.update.label.prebooking"/></font></span>
-						 				<%-- <input type="text" class="inputTextMediumBlue tableCell" <c:if test="${not empty model.record.hestn7}">style="background-color:#FEEFB3; color:red; font-weight:bold;"</c:if> name="hestn7" id="hestn7" size="1" maxlength="1" value="${model.record.hestn7}"> --%>
+						 				<%-- <input type="text" class="inputTextMediumBlue tableCell" <c:if test="${not empty model.record.hestn7}">style="background-color:#FEEFB3; color:red; font-weight:bold;"</c:if> name="hestn7" id="hestn7" size="1" maxlength="1" value="${model.record.hestn7}"> 
 						 				<input style="width:14px; height:14px;" type="checkbox" id="hestn7" name="hestn7" value="P" <c:if test="${model.record.hestn7 == 'P'}"> checked </c:if>>
 						 			</td>	
 						 		</tr>
+						 		 --%>
 							</table>
 							</td>
 						</tr>
@@ -563,7 +690,8 @@
 						<tr height="5"><td ></td></tr>
 						<tr>
 							<td class="text14Bold">&nbsp;<font class="text16RedBold" >*</font>
-								<spring:message code="systema.transportdisp.orders.form.update.label.shipper"/></td>
+								<spring:message code="systema.transportdisp.orders.form.update.label.shipper"/>
+							</td>
 							<td class="text14Bold">&nbsp;<font class="text16RedBold" >*</font>
 								<spring:message code="systema.transportdisp.orders.form.update.label.consignee"/>
 							</td>
@@ -584,11 +712,18 @@
 									<td class="text14">&nbsp;<span title="wsatdd/wsatdk"><spring:message code="systema.transportdisp.orders.form.update.label.shippingDates.atd"/></span></td>
 									<td class="text14">
 										<input type="text" class="inputTextMediumBlue" name="wsatdd" id="wsatdd" size="9" maxlength="8" value="${model.record.wsatdd}">
-					    			</td>
+						    			</td>
 									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatdk" id="wsatdk" size="4" maxlength="4" value="${model.record.wsatdk}"></td>
+									
+									<c:if test="${not empty model.record.etdWarning}">
+										<td>
+											<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">&nbsp;<spring:message code="systema.transportdisp.orders.form.warning.label.ETD.abovelimit.30" /></font>
+										</td>
+									</c:if>
 								</tr>
 							</table>
 							</td>
+							
 							<td >
 							<table class="tableBorderWithRoundCornersLightGray">
 								<tr>
@@ -604,6 +739,13 @@
 										<input type="text" class="inputTextMediumBlue" name="wsatad" id="wsatad" size="9" maxlength="8" value="${model.record.wsatad}">
 									</td>
 									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatak" id="wsatak" size="4" maxlength="4" value="${model.record.wsatak}"></td>
+
+									<c:if test="${not empty model.record.etaWarning}">
+										<td>
+											<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">&nbsp;<spring:message code="systema.transportdisp.orders.form.warning.label.ETA.abovelimit.30" /></font>
+										</td>
+									</c:if>
+									
 								</tr>
 							</table>
 							</td>		
@@ -1109,17 +1251,20 @@
 						 			</td>
 						 			<c:if test="${not empty model.record.trstaf}">
 							 			<td class="text14" >
-							 				&nbsp;&nbsp;&nbsp;
+							 				&nbsp;
 							 				<label style="color:green;"><b>Innhent.</b>
 							 				<c:choose>
 								 				<c:when test= "${not empty model.record.ffavd}">
-								 					&nbsp;<b>Dup</b>&nbsp;${model.record.ffavd}&nbsp;/&nbsp;${model.record.tropd1}&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 					<b>Dup</b>&nbsp;${model.record.ffavd}&nbsp;/&nbsp;${model.record.tropd1}&nbsp;Bel.&nbsp;${model.record.ffbel}
 								 				</c:when>
 								 				<c:otherwise>
-								 					&nbsp;<b>Rekv.</b>&nbsp;${model.record.ffbnr}&nbsp;Trans.&nbsp;${model.record.fftran}&nbsp;Bel.&nbsp;${model.record.ffbel}
+								 					<b>Rekv.</b>&nbsp;${model.record.ffbnr}&nbsp;Trans.&nbsp;${model.record.fftran}&nbsp;Bel.&nbsp;${model.record.ffbel}
 								 				</c:otherwise>
 							 				</c:choose>
 							 				</label>
+							 				<c:if test="${not empty model.record.ffmerkn ||not empty model.record.vfmerkn }">
+							 					<label style="color:green;">${model.record.ffmerkn}&nbsp;${model.record.vfmerkn}</label>
+							 				</c:if>
 							 			</td>
 						 			</c:if>
 					 			</tr>
@@ -2034,13 +2179,27 @@
 							 				<span title="hestl4"><b>P</b></span>
 							 				<img onMouseOver="showPop('psum_info');" onMouseOut="hidePop('psum_info');" style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 				<div class="text11" style="position: relative; display:inline;" align="left">
-												<span style="position:absolute; left:-80px; top:2px;" id="psum_info" class="popupWithInputText"  >
+												<span style="position:absolute; left:-80px; top:10px;" id="psum_info" class="popupWithInputText"  >
 													<font class="text11">
 								           			<b>P(Protect)</b>
 								           			<div>
 								           			<p> Protect sumlinje<br/> 
 													</p>
 								           			</div>
+							           			</font>
+												</span>
+											</div>
+						 				</td>
+						 				
+						 				<td align="left" class="text14" style="white-space: nowrap;" >
+						 					&nbsp;&nbsp;
+						 					<input type="checkbox" id="hestn8" name="hestn8" value="X" <c:if test="${model.record.hestn8 == 'X'}"> checked </c:if>>
+							 				<span title="hestn8">Ikke ADR samlastkontr.</span>
+							 				<img onMouseOver="showPop('adrkontr_info');" onMouseOut="hidePop('adrkontr_info');" style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+							 				<div class="text11" style="position: relative; display:inline;" align="left">
+												<span style="position:absolute; left:-80px; top:10px;" id="adrkontr_info" class="popupWithInputText"  >
+													<font class="text11">
+								           			<b>Ikke ADR samlastkontr.</b>
 							           			</font>
 												</span>
 											</div>
@@ -2693,7 +2852,7 @@
 			<div id="dialogEmail" title="Dialog">
 				 	<table>
 						<tr>
-							<td colspan="3" class="text14" align="left" >Send Mail </td>
+							<td colspan="3" class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.manifest.label"/></td>
    						</tr>
    						<tr height="10"><td></td></tr>
    						
@@ -2703,6 +2862,7 @@
 								<input type="text" class="inputText" id="email" name="email" size="25" maxlength="20" value=''>
 							</td>
    						</tr>
+   						<%-- TODO
    						<c:if test="${not empty model.record.wssmail || not empty model.record.wskmail}">
    						<tr>
    							<td class="text14" >Hente fra&nbsp;</td>
@@ -2715,13 +2875,8 @@
 							</td>
    						</tr>
    						</c:if>
-   						<tr>
-   							<td class="text14" align="left" >Subject</td>
-							<td class="text14" align="left" >
-		   						<input type="text" class="inputText" id="emailSubject" name="emailSubject" size="25" maxlength="20" value=''>
-							</td>
-						</tr>
-						
+   						 --%>
+   						
 						<tr>
    							<td class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.mark.label"/></td>
 							<td class="text12" align="left" >

@@ -31,6 +31,12 @@
 	  return currentMonthStr;
   }
   
+  jq(function() {
+	  jq("#removeFilterButton").click(function() {
+		  window.location = "transportdisp_mainorderlist_history_clearSearchFilter.do?action=doFind";
+	  });
+  });
+  
   //---------------------------------
   //START - Drag from Orders to Trip 
   //---------------------------------

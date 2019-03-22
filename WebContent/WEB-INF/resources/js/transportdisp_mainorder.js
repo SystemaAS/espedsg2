@@ -2858,7 +2858,7 @@
 	  var dlgTitle = "Send Mail"; var btnTextOk = "Send"; var btnTextCancel = "Lukk";
 	  //EN
 	  if(jq("#usrLang").val() == "EN"){
-		  dlgTitle = "Print"; btnTextOk = "Send"; btnTextCancel = "Cancel"; 
+		  dlgTitle = "Send Mail"; btnTextOk = "Send"; btnTextCancel = "Cancel"; 
 	  }
 	//setters (add more if needed)
 	  jq('#dialogEmail').dialog( "option", "title", dlgTitle );
@@ -2881,7 +2881,7 @@
 				 		//back to initial state of form elements on modal dialog
 				 		//jq("#dialogSaveTU").button("option", "disabled", true);
 				 		jq("#email").val("");
-				 		jq("#emailSubject").text("");
+				 		//jq("#emailSubject").text("");
 				 		jq("#emailStatus").removeClass( "isa_error" );
 				 		jq("#emailStatus").removeClass( "isa_success" );
 		  				jq( this ).dialog( "close" ); 
@@ -2904,7 +2904,6 @@
 	  		  	  avd : jq("#heavd").val(),
 	  		  	  opd : jq("#heopd").val(),
 		  		  email : jq("#email").val(),
-		  		  subject : jq("#emailSubject").val(),
 		  		  text : jq("#emailText").val(),
 		  		  emailLang : jq("#emailLang").val()},
 	  	  dataType: 'json',
@@ -3072,7 +3071,9 @@
         	  jq("#smsStatus").text("");
           }
       });
-			
+	
+	  //focus
+	  jq("#trkdak").focus();
 	  
   });
   
@@ -3080,9 +3081,9 @@
   function showDialogFileUploadDraggable(){
 	  //jq( "#dialogDraggableMatrix" ).removeClass("popup");
 	  jq( "#dialogDraggableFileUpload" ).dialog({
-		  minHeight: 310,
-		  minWidth:380,
-		  position: { my: "right top", at: "right top", of: "#topTableLocal" }
+		  minHeight: 240,
+		  minWidth:290,
+		  position: { my: "right top+22%", at: "right top+22%", of: "#topTableLocal" }
 	  }); 
 	  jq( "#dialogDraggableFileUpload" ).focus();
   }

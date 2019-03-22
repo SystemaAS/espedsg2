@@ -621,6 +621,33 @@ public class TransportDispMainOrderListHistoryController {
 		}
 		
 	}
+	
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_mainorderlist_history_clearSearchFilter.do", params="action=doFind",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doClearFilter(@ModelAttribute ("record") SearchFilterTransportDispWorkflowShippingPlanningOrdersList recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+		
+		
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_mainorderlist_history.do?action=doFind");
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		
+		//check user (should be in session already)
+		if(appUser==null){
+			return loginView;
+			
+		}else{
+			//remove filter from session
+            session.removeAttribute(TransportDispConstants.SESSION_SEARCH_FILTER_TRANSP_DISP_HISTORY);
+		}
+		return successView;
+		
+	}
 	/**
 	 * 
 	 * @param appUser
@@ -723,6 +750,7 @@ public class TransportDispMainOrderListHistoryController {
     		if(!"".equals(recordToValidate.getWsgn())&& recordToValidate.getWsgn()!=null ){ urlRequestParams.append("&wsgn=" + recordToValidate.getWsgn()); }
     		if(!"".equals(recordToValidate.getWstur())&& recordToValidate.getWstur()!=null ){ urlRequestParams.append("&wstur=" + recordToValidate.getWstur()); }
     		if(!"".equals(recordToValidate.getWstra())&& recordToValidate.getWstra()!=null ){ urlRequestParams.append("&wstra=" + recordToValidate.getWstra()); }
+    		if(!"".equals(recordToValidate.getFaktknr())&& recordToValidate.getFaktknr()!=null ){ urlRequestParams.append("&faktknr=" + recordToValidate.getFaktknr()); }
     		//
     		if(!"".equals(recordToValidate.getWssndn())&& recordToValidate.getWssndn()!=null ){ urlRequestParams.append("&wssndn=" + recordToValidate.getWssndn()); }
     		if(!"".equals(recordToValidate.getWsclid())&& recordToValidate.getWsclid()!=null ){ urlRequestParams.append("&wsclid=" + recordToValidate.getWsclid()); }

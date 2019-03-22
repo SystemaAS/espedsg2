@@ -297,9 +297,17 @@
 				        <td>	
 			        		<input type="text" class="inputText" name="wstra" id="wstra" size="10" maxlength="10" value='${searchFilter.wstra}'>
 				        </td>
-				        
 				        <td>	
-				        	<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
+			        		&nbsp;<font title="faktknr" class="text14">Fakt.knr</font>
+				        </td>
+				        <td>	
+			        		<input type="text" class="inputText" name="faktknr" id="faktknr" size="10" maxlength="10" value='${searchFilter.faktknr}'>
+				        </td>
+				        <td>	
+				        		<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search"/>'>
+				        	</td>
+				        	<td>
+				        		<input onClick="setBlockUI(this);" class="inputFormSubmitStd" type="button" name="removeFilterButton" id="removeFilterButton" value='<spring:message code="systema.transportdisp.search.remove.filter"/>'>
 				        </td> 
 				        
 				        </tr>

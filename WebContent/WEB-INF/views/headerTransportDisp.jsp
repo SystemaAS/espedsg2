@@ -59,7 +59,7 @@
 		<%--Banner --%>
 	 	<tr class="clazzTdsBanner" id="tdsBanner" style="visibility:visible">
 	 	 	<%-- class="grayTitanBg" --%>
-		 	<td height="60" class="headerTdsBannerAreaBg" width="100%" align="left" colspan="3"> 
+		 	<td height="40" class="headerTdsBannerAreaBg" width="100%" align="left" colspan="3"> 
 	    			 <table width="100%" border="0" cellspacing="0" cellpadding="0">
 	    			 	<tr>
 				        	<td>&nbsp;</td>
@@ -79,7 +79,7 @@
 											<c:choose>
 												<c:when test="${fn:contains(user.logo, 'systema')}">
 												<td class="text14white" width="10%" align=left valign="bottom" >&nbsp;
-													<img src="resources/images/${user.logo}" border="0" width=80px height=50px>
+													<img src="resources/images/${user.logo}" border="0" width=60px height=40px>
 												</td>
 												</c:when>
 												<c:otherwise>
@@ -105,7 +105,7 @@
 					 		</td>
 				    		<td class="text14" width="10%" align="right" valign="middle" >
 			 					<c:if test="${not empty user.systemaLogo && (user.systemaLogo=='Y')}">
-				 					<img src="resources/images/systema_logo.png" border="0" width=80px height=50px >
+				 					<img src="resources/images/systema_logo.png" border="0" width=60px height=40px >
 				 				</c:if>
 				 			</td>
 				        </tr>

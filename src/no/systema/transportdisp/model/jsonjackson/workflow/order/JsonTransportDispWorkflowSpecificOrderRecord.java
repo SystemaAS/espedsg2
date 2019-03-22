@@ -34,6 +34,15 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	public void setItemsType(String value) {  this.itemsType = value; }
 	public String getItemsType() {return this.itemsType;}
 	
+	private String etdWarning = null;
+	public void setEtdWarning(String value) {  this.etdWarning = value; }
+	public String getEtdWarning() {return this.etdWarning;}
+	
+	private String etaWarning = null;
+	public void setEtaWarning(String value) {  this.etaWarning = value; }
+	public String getEtaWarning() {return this.etaWarning;}
+	
+	
 	private JsonTransportDispOppdragTypeParametersRecord oppdragTypeParameters = null;
 	public void setOppdragTypeParameters(JsonTransportDispOppdragTypeParametersRecord value) {  this.oppdragTypeParameters = value; }
 	public JsonTransportDispOppdragTypeParametersRecord getOppdragTypeParameters() {return this.oppdragTypeParameters;}
@@ -1084,6 +1093,10 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	public void setFfbelk(String value) {  this.ffbelk = value; }
 	public String getFfbelk() {return this.ffbelk;}
 	
+	private String ffmerkn = null;
+	public void setFfmerkn(String value) {  this.ffmerkn = value; }
+	public String getFfmerkn() {return this.ffmerkn;}
+	
 	private String vfavd = null;
 	public void setVfavd(String value) {  this.vfavd = value; }
 	public String getVfavd() {return this.vfavd;}
@@ -1127,6 +1140,11 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	private String vfbelk = null;
 	public void setVfbelk(String value) {  this.vfbelk = value; }
 	public String getVfbelk() {return this.vfbelk;}
+	
+	private String vfmerkn = null;
+	public void setVfmerkn(String value) {  this.vfmerkn = value; }
+	public String getVfmerkn() {return this.vfmerkn;}
+	
 	//END Via-fält
 	
 	

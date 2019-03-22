@@ -942,7 +942,7 @@ public class TransportDispAjaxHandlerController {
 	  }
 	  @RequestMapping(value = "sendEmail_TransportDisp.do", method = RequestMethod.GET)
 	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendEmail(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, 
-			  					@RequestParam String email, @RequestParam String subject, @RequestParam String text, @RequestParam String emailLang ) {
+			  					@RequestParam String email,@RequestParam String text, @RequestParam String emailLang ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendEmail...");
 		  	
