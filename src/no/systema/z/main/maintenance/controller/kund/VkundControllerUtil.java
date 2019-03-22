@@ -18,6 +18,7 @@ import org.springframework.web.client.RestTemplate;
 import no.systema.jservices.common.brreg.proxy.entities.Enhet;
 import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
 import no.systema.jservices.common.dao.FirkuDao;
+import no.systema.jservices.common.dao.VadrDao;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.util.StringUtils;
@@ -52,10 +53,6 @@ public class VkundControllerUtil {
 	public MaintMainCundcService maintMainCundcService() {
 		return new MaintMainCundcServiceImpl();
 	}
-	
-	
-//	@Autowired
-//	MaintMainCundcService maintMainCundcService;
 	
 	
 	/**
@@ -294,11 +291,11 @@ public class VkundControllerUtil {
 	}
 
 	/**
-	 * Check is customer has invoice email set.
+	 * Get CUNDC where filter on ctype  *SINGELFAKTURA and *SAMLEFAKTURA.
 	 * 
 	 * @param kundnr
 	 * @param appUser
-	 * @return J if invoice email exist, N if not.
+	 * @return filtered JsonMaintMainCundcRecord
 	 */
 	public JsonMaintMainCundcRecord getInvoiceEmailRecord( String appUser, String firma, String kundnr ) {
 		logger.info("::getInvoiceEmailRecord::");
@@ -330,7 +327,68 @@ public class VkundControllerUtil {
 		
 	}	
 	
-	
+	/**
+	 * Get VADR for customer. Picking on vadnr=1
+	 * 
+	 * @param appUser
+	 * @param firma
+	 * @param kundnr
+	 * @return VadrDao
+	 */
+	public VadrDao getVareAdressRecordNr1(String appUser, String firma, String kundnr) {
+		logger.info("::getVareAdressRecordNr1::");
+		List<VadrDao> list = getVareAdressRows(appUser, firma, kundnr, "1" );
+		
+		if (list.isEmpty()) {
+			logger.info("List<VadrDao> list  is empty, returning null...");
+			return null;
+		}
+		if (list.size() != 1) {
+			logger.error("List<VadrDao> list not 1 as expected, returning null...");
+			return null;			
+			
+		}
+		
+		return list.get(0);
+		
+	}
+
+	private List<VadrDao> getVareAdressRows(String appUser, String firma, String kundnr, String vadrnr) {
+		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
+		jsonReader.set(new JsonDtoContainer<VadrDao>());
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_GET_VADR_LIST_URL;
+		StringBuffer urlRequestParams = new StringBuffer();
+		urlRequestParams.append("?user=" + appUser);
+		urlRequestParams.append("&kundnr=" + kundnr);
+		urlRequestParams.append("&firma=" + firma);
+		if (StringUtils.hasValue(vadrnr)) {
+			urlRequestParams.append("&vadrnr=" + vadrnr);
+		}
+		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
+
+		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+		String jsonPayload = jsonPayloadResponse.getBody();
+//		logger.info("jsonPayload=" + jsonPayload);
+		
+		List<VadrDao> list = new ArrayList<VadrDao>();
+		if (jsonPayload != null) {
+			JsonDtoContainer<VadrDao> container = (JsonDtoContainer<VadrDao>) jsonReader.get(jsonPayload);
+				if (container != null) {
+					if (container.getDtoList().size() > 0) {
+						list = container.getDtoList();
+					} else {
+						logger.error("Vadr list is empty");
+					}
+				} else {
+					logger.error("container is null");
+				}
+				
+		}
+		
+		return list;
+
+	}
+
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
@@ -341,7 +399,7 @@ public class VkundControllerUtil {
 		jsonReader.set(new JsonDtoContainer<FirkuDao>());
 
 		ResponseEntity<String> jsonPayload = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-		logger.info("jsonPayload=" + jsonPayload.getBody());
+//		logger.info("jsonPayload=" + jsonPayload.getBody());
 		FirkuDao dao = null;
 
 		if (jsonPayload != null) {
@@ -373,7 +431,7 @@ public class VkundControllerUtil {
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
 		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		logger.info("jsonPayload=" + jsonPayload);
+//		logger.info("jsonPayload=" + jsonPayload);
 		
 		if (jsonPayload != null) {
 			JsonMaintMainCundcContainer container = maintMainCundcService().getList(jsonPayload);

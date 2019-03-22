@@ -45,6 +45,7 @@ import no.systema.jservices.common.dao.SvtproDao;
 import no.systema.jservices.common.dao.Svtx03fDao;
 import no.systema.jservices.common.dao.Svtx10fDao;
 import no.systema.jservices.common.dao.TariDao;
+import no.systema.jservices.common.dao.VadrDao;
 import no.systema.jservices.common.dao.ValufDao;
 import no.systema.jservices.common.elma.entities.Entry;
 import no.systema.jservices.common.elma.proxy.EntryRequest;
@@ -125,14 +126,6 @@ public class MainMaintenanceCundfVkundController {
 		} else {
 
 			Collection<JsonMaintMainCundfRecord> list = new ArrayList<JsonMaintMainCundfRecord>();
-			//search filter. Note: if both are present then we go for the kundnr.
-//			if( (kundnr!=null && !"".equals(kundnr)) ){
-//				list = this.fetchList(appUser.getUser(), kundnr, firma);
-//			}else if( (knavn!=null && !"".equals(knavn)) ){
-//				list = this.fetchList(appUser.getUser(), null, null, knavn);
-//			} else { //fetch first rows for nice ux
-//				list = this.fetchList(appUser.getUser(), null, null);
-//			}
 
 			list = fetchList(appUser.getUser(), kundnr, firma, knavn, syrg, syland, postnr);
 			
@@ -191,11 +184,6 @@ public class MainMaintenanceCundfVkundController {
 				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
 				model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
 				model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(record.getSypoge(), record.getSyland() , appUser));
-
-//				if (no.systema.jservices.common.util.StringUtils.hasValue(record.getEpostmott())) {
-//					model.put("hasInvoiceEmail", "J");
-//				}
-				
 				
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
 				
@@ -1278,7 +1266,7 @@ public class MainMaintenanceCundfVkundController {
 	}
 
 	private JsonMaintMainCundfRecord fetchRecord(String applicationUser, String kundnr, String firma) {
-		logger.info("::fetchRecord::");
+		logger.info("::fetchRecord::kundnr="+kundnr);
 		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		JsonMaintMainCundfRecord record = new JsonMaintMainCundfRecord(), fmotRecord = new JsonMaintMainCundfRecord();
 		Collection<JsonMaintMainCundfRecord> recordList = fetchList(applicationUser, kundnr, firma);
@@ -1290,21 +1278,34 @@ public class MainMaintenanceCundfVkundController {
 		}
 		for (Iterator<JsonMaintMainCundfRecord> iterator = recordList.iterator(); iterator.hasNext();) {
 			record = (JsonMaintMainCundfRecord) iterator.next();
-			if (!kundnr.equals(record.getFmot())) { // to avoid circular-ref
+			if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getFmot()) && !kundnr.equals(record.getFmot())) { // to avoid circular-ref
 				fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 				record.setFmotname(fmotRecord.getKnavn());
 			}
 			record.setElma(existInElma(record.getSyrg()));	
-			logger.info("Calling vkundControllerUtil.getInvoiceEmailRecord...");
 			JsonMaintMainCundcRecord cundc = util.getInvoiceEmailRecord(applicationUser,firma, kundnr );
-
 			if (cundc != null) {
 				record.setEpost("J");
-				record.setEpostmott(cundc.getCconta());
+				if (!no.systema.jservices.common.util.StringUtils.hasValue(cundc.getCemail())) {
+					logger.error("Invalid setup of SINGELFAKTURA and SAMLEFAKTURA! email is empty!");
+					record.setEpostmott("varning: epost saknes på SINGELFAKTURA/SAMLEFAKTURA.");
+				} else {
+					record.setEpostmott(cundc.getCemail());
+				}
 			} else {
 				//not set
 			}
-					
+			VadrDao vadrDao = vkundControllerUtil.getVareAdressRecordNr1(applicationUser,firma, kundnr );
+			if (vadrDao != null) {
+				record.setVadrna(vadrDao.getVadrna());
+				record.setVadrn1(vadrDao.getVadrn1());
+				record.setVadrn2(vadrDao.getVadrn2());
+				record.setVadrn3(vadrDao.getVadrn3());
+				record.setValand(vadrDao.getValand());
+			} else {
+				logger.info("vadrDao is null");
+			}
+			
 		}
 
 		return record;

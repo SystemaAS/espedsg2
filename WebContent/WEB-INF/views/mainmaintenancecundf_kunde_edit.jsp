@@ -11,6 +11,39 @@
 	
 <style type = "text/css">
 .ui-datepicker { font-size:9pt;}
+
+
+#accordionVADR .ui-accordion-header {
+	display: block;
+	cursor: pointer;
+	position: relative;
+	margin: 2px 0 0 0;
+	padding: .0em .0em .0em .0em;
+	font-size: 100%;	
+	width: 96%;
+}
+
+#accordionVADR .ui-state-default  {
+	border: 1px solid #cccccc;
+	background: white;
+	font-size: 12px; 
+}
+
+#accordionVADR .ui-state-active {
+	border:1px solid #F3D5BD;
+	background-color:#EEEEEE;
+	
+}
+
+
+#accordionVADR .ui-accordion-content  {
+	padding: 0em 0.0em;
+    width: 100%;
+  	color: #777;
+ 	font-size: 12px; 
+}
+
+
 </style>
 	
 	
@@ -23,7 +56,7 @@
 			<tr height="2"><td></td></tr>
 			<tr height="25"> 
 				<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
-					<a id="alinkMainMaintGate" tabindex=-1 style="display:block;" href="mainmaintenancegate.do">
+					<a id="alinkMainMaintGate" onClick="setBlockUI(this);" tabindex=-1 style="display:block;" href="mainmaintenancegate.do">
 					<font class="tabDisabledLink">&nbsp;
 						<spring:message code="systema.main.maintenance.label"/>
 					</font>
@@ -32,7 +65,7 @@
 				</td>
 				<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 				<td width="15%" valign="bottom" class="tabDisabled" align="center">
-					<a id="alinkMainCundfGate" tabindex=-1 style="display:block;" href="mainmaintenancecundf_vkund.do">
+					<a id="alinkMainCundfGate" onClick="setBlockUI(this);" tabindex=-1 style="display:block;" href="mainmaintenancecundf_vkund.do">
 					<font class="tabDisabledLink">&nbsp;
 						<spring:message code="systema.main.maintenance.customerreg"/>
 					</font>&nbsp;
@@ -87,7 +120,7 @@
 						 <c:if test="${not empty kundeSessionParams.kundnr}">
 	
 								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-									<a id="alinkMainMaintKontaktGate" href="mainmaintenancecundf_kontaktpersoner_list.do">
+									<a id="alinkMainMaintKontaktGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_kontaktpersoner_list.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
 											<spring:message code="systema.main.maintenance.customer.contacts"/>
 										</font>&nbsp;						
@@ -95,21 +128,21 @@
 								</td>
 								
 								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-									<a id="alinkMainMaintFritextGate" href="mainmaintenancecundf_fritekst_edit.do">
+									<a id="alinkMainMaintFritextGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_fritekst_edit.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
 											<spring:message code="systema.main.maintenance.customer.text"/>
 										</font>&nbsp;						
 									</a>
 								</td>
 								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-									<a id="alinkMainMaintParamsGate" href="mainmaintenancecundf_params_list.do">
+									<a id="alinkMainMaintParamsGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_params_list.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
 											<spring:message code="systema.main.maintenance.customer.params"/>
 										</font>&nbsp;						
 									</a>
 								</td>
 								<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-									<a id="alinkMainMaintVareRegGate" href="mainmaintenancecundf_vareregister.do">
+									<a id="alinkMainMaintVareRegGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareregister.do">
 										<font class="tabDisabledLinkMinor">&nbsp;
 											<spring:message code="systema.main.maintenance.customer.vareregister"/>
 										</font>&nbsp;						
@@ -136,7 +169,7 @@
 						<input type="hidden" name="dirty" id=dirty value="">
 						<table class="tabThinBorderWhite" width="100%" cellspacing="0" border="0" align="left">
 							<tr>
-								<td width="50%" >&nbsp;
+								<td width="50%" valign="top">
 									<table>
 								<c:if test="${model.action == 'doCreate'}">
 									<c:if test="${model.invoiceCustomerAllowed == 'J'}">
@@ -367,9 +400,10 @@
 								  				</select>
 											</td>
 										</tr>
+
 									</table>
 								</td>
-								<td width="50%">&nbsp;
+								<td width="50%" valign="top">
 									<table>
 										<tr>
 											<td colspan="4" class="text14">
@@ -405,215 +439,39 @@
 														<c:if test="${user.filand == 'NO'}">
 															<c:if test="${model.record.syfr06 == ''}">
 																<c:if test="${model.record.elma == 'J'}">
-												 					&nbsp;<img onMouseOver="showPop('syfr06_info');" onMouseOut="hidePop('syfr06_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="info">
-													 				<div class="text11" style="position: relative;" align="left">
-													 				<span style="position:absolute; top:2px; width:250px;" id="syfr06_info" class="popupWithInputText text11"  >
-													           		<b>
-													           			Faktura sendes som EHF
-													 	          	</b><br><br>
-																		Org.nr er registrert i ELMA.
-																	<br><br>
-																	</span>
-																	</div>
+																	&nbsp;merk: Org.nr er registrert i ELMA.
 																</c:if>
 															</c:if>
 														</c:if>
 		
 													</td>
-													<td>
-		
-									<c:choose>
-											<c:when test="${model.action == 'doCreate'}">
-														<font class="text14">
-																&nbsp;&nbsp;Faktura sendes som e-post:
-														</font>		
-											</c:when>
-											<c:otherwise>
-														<font class="tabDisabledLink">
-																&nbsp;&nbsp;Faktura sendes som e-post:
-														</font>		
-											</c:otherwise>
-									</c:choose>
-									 					&nbsp;<img onMouseOver="showPop('epost_info');" onMouseOut="hidePop('epost_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-										 				<div class="text11" style="position: relative;" align="left">
-										 				<span style="position:absolute; top:2px; width:250px;" id="epost_info" class="popupWithInputText text11"  >
-											           		<b>
-											           			Faktura sendes som e-post
-											 	          	</b><br><br>
-															Kan fylles i når kunde registreres.<br>
-															<br><br>
-														</span>
-														</div>
-		
-													</td>
 													
-									<c:choose>
-											<c:when test="${model.action == 'doCreate'}">
-													<td>
-														<select name="epost" id="epost" >
-										  					<option value="N"<c:if test="${ model.record.epost == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
-					 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
-										  				</select>
-													</td>
-											</c:when>
-											<c:otherwise>
-													<td>
-														<select disabled name="epost" id="epost" >
-										  					<option value="N"<c:if test="${ model.record.epost == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
-					 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
-										  				</select>
-													</td>
-											</c:otherwise>
-									</c:choose>
 												</tr>
 												</table>
 											</td>
 										</tr>
-<!--  	
-										<tr>
-											<td class="text14" title="syfr06">
-												Faktura sendes som EHF:
-												<c:if test="${user.filand == 'NO'}">
-								 					&nbsp;<img onMouseOver="showPop('ehf_info');" onMouseOut="hidePop('ehf_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-									 				<div class="text11" style="position: relative;" align="left">
-									 				<span style="position:absolute; top:2px; width:250px;" id="ehf_info" class="popupWithInputText text11"  >
-											           		<b>
-											           			Faktura sendes som EHF
-											 	          	</b><br><br>
-															Hvis krysset av sendes EDIfaktura på EHF-formatet. <br>
-															Merk. EHF er alltid "Single-faktura". <br>
-															Forutsetning er at kunden er registrert med organisasjonsnummer/foretaksnummer <br>
-															(som er registrert i det sentrale "ELMA-registeret" som mulig mottaker av EHF.)   <br>  
-															Om kunden er registrert med et bedriftsnummer (av fortollingshensyn eller annet), <br>
-															kan en parameter med kode "EHFON" benyttes for å overstyre til det Org.nr som EHF skal sendes til.
-
-															<br><br>
-													</span>
-													</div>
-												</c:if>
-											</td>
-											
-											<td class="text12BlueGreen">
-												<select name="syfr06" id="syfr06" >
-								  					<option value=""<c:if test="${ model.record.syfr06 == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
-			 					  					<option value="J"<c:if test="${model.record.syfr06 == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
-								  				</select>
-
-												<c:if test="${user.filand == 'NO'}">
-													<c:if test="${model.record.syfr06 == ''}">
-														<c:if test="${model.record.elma == 'J'}">
-										 					&nbsp;<img onMouseOver="showPop('syfr06_info');" onMouseOut="hidePop('syfr06_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/info4.png" border="0" alt="info">
-											 				<div class="text11" style="position: relative;" align="left">
-											 				<span style="position:absolute; top:2px; width:250px;" id="syfr06_info" class="popupWithInputText text11"  >
-											           		<b>
-											           			Faktura sendes som EHF
-											 	          	</b><br><br>
-																Org.nr er registrert i ELMA.
-															<br><br>
-															</span>
-															</div>
-														</c:if>
-													</c:if>
-												</c:if>
-
-
-							<c:choose>
-									<c:when test="${model.action == 'doCreate'}">
-												<font class="text14">
-														&nbsp;&nbsp;Faktura sendes som e-post:
-												</font>		
-									</c:when>
-									<c:otherwise>
-												<font class="tabDisabledLink">
-														&nbsp;&nbsp;Faktura sendes som e-post:
-												</font>		
-									</c:otherwise>
-							</c:choose>
-							 					&nbsp;<img onMouseOver="showPop('epost_info');" onMouseOut="hidePop('epost_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-								 				<div class="text11" style="position: relative;" align="left">
-								 				<span style="position:absolute; top:2px; width:250px;" id="epost_info" class="popupWithInputText text11"  >
-									           		<b>
-									           			Faktura sendes som e-post
-									 	          	</b><br><br>
-													Kan fylles i når kunde registreres.<br>
-													<br><br>
-												</span>
-												</div>
-
-											</td>
-											
-							<c:choose>
-									<c:when test="${model.action == 'doCreate'}">
-											<td>
-												<select name="epost" id="epost" >
-								  					<option value="N"<c:if test="${ model.record.epost == 'N'}"> selected </c:if>><spring:message code="systema.no"/></option>
-			 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
-								  				</select>
-											</td>
-									</c:when>
-									<c:otherwise>
-											<td>
-												<select disabled name="epost" id="epost" >
-								  					<option value="N"<c:if test="${ model.record.epost == ''}"> selected </c:if>><spring:message code="systema.no"/></option>
-			 					  					<option value="J"<c:if test="${model.record.epost == 'J'}"> selected </c:if>><spring:message code="systema.yes"/></option>
-								  				</select>
-											</td>
-									</c:otherwise>
-							</c:choose>
-										</tr>
--->
-
-
-
-
-
-
 
 										<tr>
-							<c:choose>
-									<c:when test="${model.action == 'doCreate'}">
 											<td class="text14">
-												E-postmottaker:
+												Kan sendes som epost:
 							 					&nbsp;<img onMouseOver="showPop('epost_mott_info');" onMouseOut="hidePop('epost_mott_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 								 				<div class="text11" style="position: relative;" align="left">
 								 				<span style="position:absolute; top:2px; width:250px;" id="epost_mott_info" class="popupWithInputText text11"  >
 									           		<b>
-									           			E-postmottaker
+									           			Kan sendes som epost
 									 	          	</b><br><br>
-													Kan fylles i når kunde registreres<br>
-													og <b>E-postfaktura</b>=Ja.
+														Hvis utfylt sendes faktura som epost til gitte adresse.<br>
+														Det skapes automatisk 2 "Kontakter"(se fanen Kontakter) - <br>
+														EN med funksjonen *SAMLEFAKTURA og en med *SINGELFAKTURA <br>
+														Straks disse er opprettet skjer senere vedlikehold via fanen "Kontakter" <br>
+														(Avvik mht hvilke vedlegg som skal medtas/endring av epostadresse / sletting  mm )
 													<br><br>
 												</span>
 												</div>
 											</td>
 											<td colspan="3">
-												<input readonly type="text" class="inputTextMediumBlue" name="epostmott" id="epostmott" size="60" maxlength="70" value="${model.record.epostmott}">
+												<input type="text" class="inputTextMediumBlue" name="epostmott" id="epostmott" size="60" maxlength="70" value="${model.record.epostmott}">
 											</td>
-
-									</c:when>
-									<c:otherwise>
-											<td class="text14">
-												<font class="tabDisabledLink">
-												E-postmottaker:
-												</font>
-							 					&nbsp;<img onMouseOver="showPop('epost_mott_info');" onMouseOut="hidePop('epost_mott_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-								 				<div class="text11" style="position: relative;" align="left">
-								 				<span style="position:absolute; top:2px; width:250px;" id="epost_mott_info" class="popupWithInputText text11"  >
-									           		<b>
-									           			E-postmottaker
-									 	          	</b><br><br>
-													Kan fylles i når kunde registreres<br>
-													og <b>Faktura sendes som e-post</b>=Ja.
-													<br><br>
-												</span>
-												</div>
-											</td>
-											<td colspan="3">
-												<input readonly type="text" class="inputTextReadOnly" name="epost_mott" id="epost_mott" size="60" maxlength="70" value="${model.record.epostmott}">
-											</td>
-									
-									</c:otherwise>
-							</c:choose>
 
 										</tr>
 
@@ -638,7 +496,7 @@
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.currency"/>:
 											</td>
 											<td>
-												<input type="text" class="inputTextMediumBlue" name="valkod" id="valkod" size="3" maxlength="3" value='${model.record.valkod}'>
+												<input type="text" class="inputTextMediumBlue" name="valkod" id="valkod" size="4" maxlength="3" value='${model.record.valkod}'>
 												<a tabindex="-1" id="valkodIdLink">
 													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 												</a>
@@ -652,8 +510,41 @@
 										</tr>
 
 										<tr>
-											<td colspan="3">&nbsp;</td>
-											<td>&nbsp;
+											<td colspan="2">
+											<div id="accordionVADR">
+												<table style="padding-left: 1.0em">
+													<tr>
+														<td class="text14">
+															&nbsp;&nbsp;&nbsp;Vareadresse nr 1
+														</td>
+													</tr>
+												</table>			
+												<table>
+													<tr>
+									           			<td class="text14">Navn:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrna" id="vadrna" size="30" maxlength="30" value='${model.record.vadrna}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 1:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn1" id="vadrn1" size="30" maxlength="30" value='${model.record.vadrn1}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 2:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn2" id="vadrn2" size="30" maxlength="30" value='${model.record.vadrn2}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 3:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn3" id="vadrn3" size="30" maxlength="30" value='${model.record.vadrn3}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Land:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="valand" id="valand" size="30" maxlength="30" value='${model.record.valand}'></td>
+													</tr>
+												</table>
+											</div>	
+											</td>
+											<td>&nbsp;</td>
+											<td valign="top">&nbsp;
 												<c:if test="${user.filand == 'NO'}">
 								 					&nbsp;<img onMouseOver="showPop('brreg_info');" onClick="hidePop('brreg_info');"style="vertical-align:bottom;" width="150px" height="25px" src="http://scf.brreg.no/bilder/brreg_logo.svg" alt="info">
 									 				<div class="text11" style="position: relative;" align="left">
@@ -702,6 +593,7 @@
 														</td>
 														<td>
 															<select name="betbet" id="betbet" class="inputTextMediumBlue">
+						 					  					<option value="NOT_SET">-<spring:message code="systema.choose"/>-</option>
 											  					<c:forEach var="record" items="${model.betbetList}" >
 											 				  		<option title="${record.bettxt}" value="${record.betbet}"<c:if test="${model.record.betbet == record.betbet}"> selected </c:if> >${record.betbet}</option>
 																  </c:forEach>  
@@ -1072,7 +964,7 @@
 							<tr> 
 								<td >&nbsp;</td>
 								<td align="right">
-									<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
+									<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
 								</td>
 							</tr>
 

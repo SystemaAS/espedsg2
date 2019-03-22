@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
+import no.systema.jservices.common.dao.VadrDao;
 import no.systema.jservices.common.elma.entities.Entry;
 import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.jservices.common.util.StringUtils;
@@ -77,8 +79,8 @@ public class MainMaintenanceCundfKundeController {
 		JsonMaintMainCundfRecord record = null;
 		
 		logger.info("recordToValidate="+ReflectionToStringBuilder.toString(recordToValidate));
-
-
+		logger.info("action="+action);
+		
 		try {
 			
 	
@@ -89,6 +91,9 @@ public class MainMaintenanceCundfKundeController {
 			kundeSessionParams = (KundeSessionParams)session.getAttribute(MainMaintenanceConstants.KUNDE_SESSION_PARAMS);
 			
 			if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {  //New
+
+				theBetBetFix(appUser, recordToValidate, action);
+				
 				// Validate
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
@@ -99,7 +104,7 @@ public class MainMaintenanceCundfKundeController {
 					action = MainMaintenanceConstants.ACTION_CREATE;
 					 
 				} else {
-					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_ADD, errMsg);
+					savedRecord = updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_ADD, errMsg);
 					if (savedRecord == null) {
 						logger.info("[ERROR Validation] Record does not validate)");
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
@@ -113,35 +118,27 @@ public class MainMaintenanceCundfKundeController {
 						kundeSessionParams.setSonavn(savedRecord.getSonavn());
 						kundeSessionParams.setKnavn(savedRecord.getKnavn());
 
-						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+						record = fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 						
 						action = MainMaintenanceConstants.ACTION_UPDATE;
-
-						if (record != null) {
-							if ("J".equals(recordToValidate.getEpost()) && StringUtils.hasValue(recordToValidate.getEpostmott())) {
-								savedRecord.setEpostmott(recordToValidate.getEpostmott());
-								int retval = createCundcInvoicesCtype(appUser, savedRecord, errMsg);
-								if (retval == MainMaintenanceConstants.ERROR_CODE) {
-									logger.error("Could not create invoice ctype for "+record.getEpostmott());
-								}
-							}
-						}
 						
-						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
-
+						
 					}
 				}
 
 			} else if (MainMaintenanceConstants.ACTION_UPDATE.equals(action)) { //Update
 				adjustRecordToValidate(recordToValidate, kundeSessionParams);
+	
+				theBetBetFix(appUser, recordToValidate, action);
+				
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
 				if (bindingResult.hasErrors()) {
 					logger.error("[ERROR Validation] Record does not validate)");
 					model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
 				} else {
-					savedRecord = this.updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+					savedRecord = updateRecord(appUser, recordToValidate, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 					if (savedRecord == null) {            
 						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
@@ -154,6 +151,10 @@ public class MainMaintenanceCundfKundeController {
 			} else { // Fetch
 				record = fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 				model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
+				
+				action = MainMaintenanceConstants.ACTION_UPDATE;
+
+				
 			}
 
 			populateDropDowns(model, appUser.getUser());
@@ -189,6 +190,32 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 	
+	/* betbet can has empty or something like it, this one is ugly */
+	private void theBetBetFix(SystemaWebUser appUser, JsonMaintMainCundfRecord recordToValidate, String action) {
+
+		if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {
+			if ("F".equals(recordToValidate.getKundetype())) { // Fakturakunde
+				// validation downstreams
+			} else if ("A".equals(recordToValidate.getKundetype())) { // Adressekunde
+				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
+					recordToValidate.setBetbet("");
+				}
+			}
+
+		}
+
+		if (MainMaintenanceConstants.ACTION_UPDATE.equals(action)) {
+			if ("N".equals(vkundControllerUtil.isAdressCustomer(appUser, new Integer(recordToValidate.getKundnr())))) { // Fakturakunde
+				// validation downstreams
+			} else { // Adressekunde
+				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
+					recordToValidate.setBetbet("");
+				}
+			}
+		}
+
+	}
+
 	/**
 	 * Check orgnr in ELMA. 
 	 * 
@@ -215,7 +242,7 @@ public class MainMaintenanceCundfKundeController {
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		logger.info(jsonPayload);
+//		logger.info(jsonPayload);
 
 		JsonMaintMainCundfRecord record = new JsonMaintMainCundfRecord(), fmotRecord = new JsonMaintMainCundfRecord();
 		if (jsonPayload != null) {
@@ -224,7 +251,7 @@ public class MainMaintenanceCundfKundeController {
 			if (container != null) {
 				for (Iterator<JsonMaintMainCundfRecord> iterator = container.getList().iterator(); iterator.hasNext();) {
 					record = (JsonMaintMainCundfRecord) iterator.next();
-					if (!kundnr.equals(record.getFmot())) { // to avoid circular-ref
+					if (StringUtils.hasValueIgnoreZero(record.getFmot()) && !kundnr.equals(record.getFmot())) { // to avoid circular-ref
 						fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 						record.setFmotname(fmotRecord.getKnavn());
 					}
@@ -236,10 +263,26 @@ public class MainMaintenanceCundfKundeController {
 					JsonMaintMainCundcRecord cundc = vkundControllerUtil.getInvoiceEmailRecord(applicationUser,firma, kundnr );
 					if (cundc != null) {
 						record.setEpost("J");
-						record.setEpostmott(cundc.getCconta());
+						if (!StringUtils.hasValue(cundc.getCemail())) {
+							logger.error("Invalid setup of SINGELFAKTURA and SAMLEFAKTURA! email is empty!");
+							record.setEpostmott("varning: epost saknes på SINGELFAKTURA/SAMLEFAKTURA");
+						} else {
+							record.setEpostmott(cundc.getCemail());
+						}
 					} else {
-						//not set
+						logger.info("cundc is null");
 					}
+					VadrDao vadrDao = vkundControllerUtil.getVareAdressRecordNr1(applicationUser,firma, kundnr );
+					if (vadrDao != null) {
+						record.setVadrna(vadrDao.getVadrna());
+						record.setVadrn1(vadrDao.getVadrn1());
+						record.setVadrn2(vadrDao.getVadrn2());
+						record.setVadrn3(vadrDao.getVadrn3());
+						record.setValand(vadrDao.getValand());
+					} else {
+						logger.info("vadrDao is null");
+					}
+				
 				}
 			}
 		}
@@ -262,7 +305,7 @@ public class MainMaintenanceCundfKundeController {
 
 		List<JsonMaintMainCundfRecord> list = new ArrayList();
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
-		logger.info("jsonPayload=" + jsonPayload);
+	//	logger.info("jsonPayload=" + jsonPayload);
 		if (jsonPayload != null) {
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.doUpdate(jsonPayload);
 			if (container != null) {
@@ -276,8 +319,23 @@ public class MainMaintenanceCundfKundeController {
 				}
 			}
 		}
+
+		logger.info("savedRecord="+ReflectionToStringBuilder.toString(savedRecord, ToStringStyle.MULTI_LINE_STYLE));
+		
+		
+		if (savedRecord != null) {
+			logger.info("record.getEpostmott()="+record.getEpostmott());
+			if (StringUtils.hasValue(record.getEpostmott())) {
+				savedRecord.setEpostmott(record.getEpostmott());
+				int retval = createCundcInvoicesCtype(appUser, savedRecord, errMsg);
+				if (retval == MainMaintenanceConstants.ERROR_CODE) {
+					logger.error("Could not create invoice ctype for "+record.getEpostmott());
+				}
+			}
+		}
 		
 		return savedRecord;
+
 	}
 	
 	private int createCundcInvoicesCtype(SystemaWebUser appUser, JsonMaintMainCundfRecord cundf, StringBuffer errMsg) {
@@ -287,6 +345,7 @@ public class MainMaintenanceCundfKundeController {
 		cundc.setCcompn(cundf.getKundnr());
 		cundc.setCfirma(cundf.getFirma());
 		cundc.setCconta(cundf.getEpostmott());
+		cundc.setCemail(cundf.getEpostmott());
 
 		cundc.setCtype("*SINGELFAKTURA");
 		retval =  createCundc(appUser, cundc, errMsg);

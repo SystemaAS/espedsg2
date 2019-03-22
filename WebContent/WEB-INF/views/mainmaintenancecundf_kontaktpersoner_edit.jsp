@@ -21,7 +21,7 @@
 				<tr height="2"><td><input type="hidden" name="firma" id="firma" value="${kundeSessionParams.firma}"> </td></tr>
 				<tr height="25"> 
 					<td width="15%" valign="bottom" class="tabDisabled" align="center" nowrap>
-						<a id="alinkMainMaintGate" tabindex=-1 style="display:block;" href="mainmaintenancegate.do">
+						<a id="alinkMainMaintGate" onClick="setBlockUI(this);" tabindex=-1 style="display:block;" href="mainmaintenancegate.do">
 						<font class="tabDisabledLink">&nbsp;
 							<spring:message code="systema.main.maintenance.label"/>
 						</font>
@@ -30,7 +30,7 @@
 					</td>
 					<td width="1px" class="tabFantomSpace" align="center" nowrap><font class="tabDisabledLink">&nbsp;</font></td>
 					<td width="15%" valign="bottom" class="tabDisabled" align="center">
-						<a id="alinkMainCundfGate" tabindex=-1 style="display:block;" href="mainmaintenancecundf_vkund.do">
+						<a id="alinkMainCundfGate" onClick="setBlockUI(this);" tabindex=-1 style="display:block;" href="mainmaintenancecundf_vkund.do">
 						<font class="tabDisabledLink">&nbsp;
 							<spring:message code="systema.main.maintenance.customerreg"/>
 						</font>&nbsp;
@@ -127,7 +127,7 @@
  					<table id= "secondTabRow" class="formFrameHeaderTransparent" style="width:100%" cellspacing="0" border="0" cellpadding="0">
 						<tr height="20"> 
 							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-								<a id="alinkMainMaintKundeGate" href="mainmaintenancecundf_kunde_edit.do">
+								<a id="alinkMainMaintKundeGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_kunde_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer"/>
 									</font>
@@ -140,7 +140,7 @@
 							</td>
 							
 							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-								<a id="alinkMainMaintFritextGate" href="mainmaintenancecundf_fritekst_edit.do">
+								<a id="alinkMainMaintFritextGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_fritekst_edit.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.text"/>
 									</font>&nbsp;						
@@ -154,7 +154,7 @@
 								</a>
 							</td>
 							<td width="120" valign="bottom" class="tabDisabledSub" align="center" nowrap>
-								<a id="alinkMainMaintVareRegGate" href="mainmaintenancecundf_vareregister.do">
+								<a id="alinkMainMaintVareRegGate" onClick="setBlockUI(this);" href="mainmaintenancecundf_vareregister.do">
 									<font class="tabDisabledLinkMinor">&nbsp;
 										<spring:message code="systema.main.maintenance.customer.vareregister"/>
 									</font>&nbsp;						
