@@ -92,7 +92,7 @@ public final class TransportDispUrlDataStore {
 	//http://gw.systema.no/sycgip/tjfa55m.pgm?user=JOVO&tur=75000020&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
 	
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_EMAIL_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjop11h.pgm";
-	//http://gw.systema.no/sycgip/tjfa55m.pgm?user=JOVO&avd=75&opd=108&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
+	//http://gw.systema.no/sycgip/tjop11h.pgm?user=OSCAR&avd=75&opd=108&merk=Dette_er_en_merknad&mail=oscar@systema.no&sprak=EN
 	
 	
 		

@@ -2852,7 +2852,7 @@
 			<div id="dialogEmail" title="Dialog">
 				 	<table>
 						<tr>
-							<td colspan="3" class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.manifest.label"/></td>
+							<td colspan="3" class="text14" align="left" ><spring:message code="systema.transportdisp.workflow.trip.email.manifest.label.on.order"/></td>
    						</tr>
    						<tr height="10"><td></td></tr>
    						

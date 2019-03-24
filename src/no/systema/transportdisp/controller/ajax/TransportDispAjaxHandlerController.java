@@ -940,13 +940,23 @@ public class TransportDispAjaxHandlerController {
 			
 			return result;
 	  }
+	  /**
+	   * 
+	   * @param applicationUser
+	   * @param avd
+	   * @param opd
+	   * @param email
+	   * @param text
+	   * @param emailLang
+	   * @return
+	   */
 	  @RequestMapping(value = "sendEmail_TransportDisp.do", method = RequestMethod.GET)
 	  public @ResponseBody Collection<JsonTransportDispSendSmsContainer> sendEmail(@RequestParam String applicationUser, @RequestParam String avd, @RequestParam String opd, 
 			  					@RequestParam String email,@RequestParam String text, @RequestParam String emailLang ) {
 		  	Collection<JsonTransportDispSendSmsContainer> result = new ArrayList<JsonTransportDispSendSmsContainer>();
 		  	logger.info("Inside sendEmail...");
 		  	
-		  	//http://gw.systema.no/sycgip/tjfa55mTODO_JOVO.pgm?user=JOVO&avd=75&opd=108&merk=Dette_er_en_merknad&mail=janottar@systema.no&sprak=EN
+		  	//http://gw.systema.no/sycgip/tjop11h.pgm?user=OSCAR&avd=75&opd=108&merk=Dette_er_en_merknad&mail=oscar@systema.no&sprak=EN
 		  	String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_EMAIL_URL;
 			String urlRequestParamsKeys = "user=" + applicationUser + "&avd=" + avd + "&opd=" + opd + "&merk=" + text + "&mail=" + email + "&sprak=" + emailLang;
 			

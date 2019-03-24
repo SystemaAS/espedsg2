@@ -40,6 +40,10 @@ public class JsonTransportDispSendSmsContainer {
 	public void setSmsnr(String value) {  this.smsnr = value; }
 	public String getSmsnr() { return this.smsnr;}
 	
+	private String mail = null;
+	public void setMail(String value) {  this.mail = value; }
+	public String getMail() { return this.mail;}
+	
 	private String type = null;
 	public void setType(String value) {  this.type = value; }
 	public String getType() { return this.type;}

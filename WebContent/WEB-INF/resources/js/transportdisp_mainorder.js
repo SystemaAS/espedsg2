@@ -2916,11 +2916,11 @@
 	  			if(data[i].errMsg != ''){
 	  				jq("#emailStatus").removeClass( "isa_success" );
 	  				jq("#emailStatus").addClass( "isa_error" );
-	  				jq("#emailStatus").text("Mail error: " + data[i].smsnr + " " + data[i].errMsg);
+	  				jq("#emailStatus").text("Mail error: " + data[i].mail + " " + data[i].errMsg);
 	  			}else{
 	  				jq("#emailStatus").removeClass( "isa_error" );
 	  				jq("#emailStatus").addClass( "isa_success" );
-	  				jq("#emailStatus").text("Mail er sendt ti" + data[i].smsnr + " (loggført i Hendelsesloggen)");
+	  				jq("#emailStatus").text("Mail er sendt til: " + data[i].mail + " (loggført i Hendelsesloggen)");
 	  			}
 	  		}
 	  	  },
