@@ -53,7 +53,13 @@
   //---------------------------------
   	//this drag function is used when the order is the SOURCE of a drag and not the target
 	function drag(ev) {
+		console.log("on drag...");
 	    ev.dataTransfer.setData("text", ev.target.id);
+	    //refresh parent window
+	    setTimeout(refreshOrderListWindow, 9000);
+	}
+	function refreshOrderListWindow(){
+		window.location.reload();
 	}
 	//END Drag
 	

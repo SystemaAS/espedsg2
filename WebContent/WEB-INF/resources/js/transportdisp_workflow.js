@@ -129,7 +129,7 @@
 	}
   //this drag function is used when the order is the TARGET of a drag and not the source
 	function drop(ev) {
-	    ev.preventDefault();
+		ev.preventDefault();
 	    jq("#"+ev.target.id).removeClass('isa_blue');
 	    
 	    var data = ev.dataTransfer.getData("text");
@@ -216,7 +216,7 @@
 		  			alert("Ordre " + opd + " har blitt lagt");
 		  		}else{
 		  			//update != OK
-		  			alert("Error on order update [addTripToOrder_TransportDisp.do]...?");
+		  			alert("Misslykket - sjekk status / farlig-gods-samlasting mm ...(Error on order update [addTripToOrder_TransportDisp.do])...?");
 		  		}
 		  	  },
 		  	  error: function() {
@@ -234,7 +234,6 @@
     //(1) from this same file in the above ajax: setTripOnOrder(trip,avd,opd)
     function reloadParentTrip(trip, avd, opd) {
     	window.location = "transportdisp_mainorderlist.do?action=doFind&wssavd=" + avd + "&wstur=" + trip;
-    	
     	//in case we want to refresh the order list (unlikely)
     	//window.location = "transportdisp_mainorder.do?hepro=" + trip + "&heavd=" + avd + "&heopd=" + opd;
     	
