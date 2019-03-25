@@ -1207,6 +1207,25 @@
 	  
   }
   */
+  
+  function calculateVolume(element) {
+	  var id = element.id;
+	  if(jq("#fvvol").val() == ''){
+		  var counter; var antal; var length; var width; var height; var result;
+		  antal = jq('#fvant').val();
+		  length = jq('#fvlen').val();
+		  width= jq('#fvbrd').val();
+		  height= jq('#fvhoy').val();
+		  	
+		  result = Number(antal)*Number(length)*Number(width)*Number(height);
+		  //Now to the math
+		  if(result>0){
+			  result = result * 0.000001;
+			  jq("#fvvol").val(result.toLocaleString('de-DE', { useGrouping: false }));
+		  }
+	  }
+  }
+  
   //ADR
   function private_sumAdr() {
 	  //element.id;
@@ -1890,6 +1909,7 @@
 	  }
 	  return retval;
   }
+ 
   
   //-------------------------------------------------------
   //Dangerous goods child window (is triggered from jsp)
@@ -2179,12 +2199,26 @@
 	  				jq("#fvhoy").val(data[i].enhoy);
 	  			}
 	  			if(jq("#fvlm").val() == ''){
-	  				jq("#fvlm").val(data[i].enlm);
+	  				var antal; 
+	  				var lm; var result;
+	  				antal = jq('#fvant').val();
+	  				lm = data[i].enlm;
+	  				lm = lm.replace(",",".");
+	  				//math
+	  				result = Number(antal)*Number(lm);
+	  				jq("#fvlm").val(result);
 	  			}
 	  			if(jq("#fvlm2").val() == ''){
-	  				jq("#fvlm2").val(data[i].enlm2);
+	  				var antal; 
+	  				var lm; var result;
+	  				antal = jq('#fvant').val();
+	  				lm = data[i].enlm2;
+	  				lm = lm.replace(",",".");
+	  				//math
+	  				result = Number(antal)*Number(lm);
+	  				jq("#fvlm2").val(result);
 	  			}
-	  			
+
 	  		}
 	  	  }
 	  });
@@ -3038,6 +3072,26 @@
 	    });
 	}
   
+  //ITEM LINE controls 
+  jq(function() { 
+	  var goodsDesc_DIVERSE = "DIVERSE";
+	  jq("#fvvt").blur(function() {
+		  //exists?
+		  if(jq("#lineCounterNum").length){
+			  //set the total desc = "DIVERSE" if there are more than one line
+			  if(jq("#lineCounterNum").val()>0){
+				  if(jq("#hevs1").val() != goodsDesc_DIVERSE){
+					  jq("#hevs1").val(goodsDesc_DIVERSE);
+				  }
+			  }
+	  	  }else{
+	  		  //set the total desc = with first line description
+	  		  if(jq("#hevs1").val()==''){
+	  			  jq("#hevs1").val(jq("#fvvt").val());
+	  		  }
+	  	  }
+	  });
+  });
   
   
   

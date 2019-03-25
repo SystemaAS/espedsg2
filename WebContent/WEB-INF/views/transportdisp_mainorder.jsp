@@ -118,7 +118,7 @@
 	
 	<%-- -------------------------- --%>
 	<%-- Validation errors BACK END --%>
-	<%-- -------------------------- 
+	<%-- -------------------------- --%>
 	<c:if test="${not empty model.containerValidationBackend && not empty model.containerValidationBackend.errMsgListFromValidationBackend}">
 		<tr>
 		<td>
@@ -136,7 +136,7 @@
 		</td>
 		</tr>		
 	</c:if>
-	--%>
+	
 	<%-- -------------------------------------- --%>
 	<%-- Validation errors BACK END independent --%>
 	<%-- Usually Frie sokveier eller DUP        --%>
@@ -1887,9 +1887,11 @@
 						 		</tr>
 						 		</thead>
 						 		<tbody>
+						 		
 						 		<c:forEach items="${model.record.fraktbrevList}" var="fraktbrevRecord" varStatus="counter">
 						 			<c:if test="${not empty fraktbrevRecord.fvlinr}">
 						 				<c:set var="upperCurrentItemlineNr" scope="request" value="${fraktbrevRecord.fvlinr}"/>
+						 				<c:set var = "lineCounter" scope = "request" value = "${counter.count}"/>
 						 			</c:if>
 						 			<input type="hidden" name="lineNr_${counter.count}" id="lineNr_${counter.count}" value="${counter.count}" >   
 							 		<input type="hidden" name="fvlinr_${counter.count}" id="fvlinr_${counter.count}" value="${fraktbrevRecord.fvlinr}" >
@@ -1937,7 +1939,8 @@
 						 			
 					 			</c:forEach>
 					 			</tbody>
-				 			
+					 			<input type="hidden" name="lineCounterNum" id="lineCounterNum" value="${lineCounter}" >   
+							 		
 				 				<%--
 			 					<tr class="tableHeaderField" style="background-color: #F2F5EF ;border-width: 0px 0px 0px 0px;">	
 									<td width="2%" align="left" class="tableCell">&nbsp;</td>
@@ -2062,10 +2065,10 @@
 							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="9" maxlength="9" value="${model.record.fraktbrevRecord.fvvkt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
+							 				<input onBlur="validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvbrd}">
+							 				<input onBlur="validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvbrd}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
 							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvhoy" id="fvhoy" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvhoy}">
@@ -2139,7 +2142,7 @@
 							 				<input type="text" class="inputTextMediumBlueUPPERCASE" name="hegm2" id="hegm2" size="10" maxlength="10" value="${model.record.hegm2}">					 				
 						 				</td>
 						 				
-						 				<td class="text14"><span title="hevs1/hevs2"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc"/>1/2</span></td>
+						 				<td class="text14"><span title="hevs1"><font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.update.label.goodsDesc"/>1/2</span></td>
 						 				<td class="text14">
 						 					<input type="text" class="inputTextMediumBlueMandatoryFieldUPPERCASE" name="hevs1" id="hevs1" size="20" maxlength="25" value="${model.record.hevs1}">
 							 				
@@ -2163,7 +2166,7 @@
 						 				<td class="text14">
 						 					<input type="text" onBlur="checkHelm(this);" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="helm" id="helm" size="5" maxlength="5" value="${fn:replace(model.record.helm,'.',',')}">						 					
 						 				</td>
-						 				<td class="text14"><span title="helm"><spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.la"/></span></td>
+						 				<td class="text14"><span title="helmla"><spring:message code="systema.transportdisp.orders.form.detail.update.label.lm.la"/></span></td>
 						 				<td class="text14">
 						 					<input type="text" onBlur="checkHelmla(this);" onKeyPress="return amountKey(event)" class="inputTextMediumBlue" name="helmla" id="helmla" size="5" maxlength="5" value="${fn:replace(model.record.helmla,'.',',')}">						 					
 						 				</td>							 			

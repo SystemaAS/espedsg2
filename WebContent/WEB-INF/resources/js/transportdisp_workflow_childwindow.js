@@ -413,13 +413,27 @@
 			  if(opener.jq('#fvlen').val()==''){ opener.jq('#fvlen').val(fvlen); }
 			  if(opener.jq('#fvbrd').val()==''){ opener.jq('#fvbrd').val(fvbrd); }
 			  if(opener.jq('#fvhoy').val()==''){ opener.jq('#fvhoy').val(fvhoy); }
-			  if(opener.jq('#fvlm').val()==''){ opener.jq('#fvlm').val(fvlm); }
-			  if(opener.jq('#fvlm2').val()==''){ opener.jq('#fvlm2').val(fvlm2); }
-			  //cosmetics
-			  //opener.jq('#ffunnr' + callerLineCounter).removeClass("isa_warning");opener.jq('#ffembg' + callerLineCounter).removeClass("isa_warning");
-			  //opener.jq('#ffindx' + callerLineCounter).removeClass("isa_warning");
-			  //opener.jq('#ffunnr' + callerLineCounter).removeClass("isa_error");opener.jq('#ffembg' + callerLineCounter).removeClass("isa_error");
-			  //opener.jq('#ffindx' + callerLineCounter).removeClass("isa_error");
+			  if(opener.jq('#fvlm').val()==''){
+	  			 var antal; 
+  				 var lm; var result;
+  				 antal = opener.jq('#fvant').val();
+  				 lm = fvlm;
+  				 lm = lm.replace(",",".");
+  				 //math
+  				 result = Number(antal)*Number(lm);
+  				 opener.jq('#fvlm').val(result); 
+			  }
+			  if(opener.jq('#fvlm2').val()==''){
+				  var antal; 
+  				  var lm; var result;
+  				  antal = opener.jq('#fvant').val();
+  				  lm = fvlm2;
+  				  lm = lm.replace(",",".");
+  				  //math
+  				  result = Number(antal)*Number(lm);
+				  opener.jq('#fvlm2').val(result); 
+			  }
+			 
 		  }
 		  //close child window
 		  window.close();
