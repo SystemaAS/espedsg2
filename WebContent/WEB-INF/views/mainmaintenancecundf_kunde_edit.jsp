@@ -9,9 +9,15 @@
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 <script type="text/javascript" src="resources/js/mainmaintenancecundf_kunde_edit.js?ver=${user.versionEspedsg}"></script>	
 	
+	    <!-- Bootstrap CSS -->
+	    <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
+	
+	
+	
+	
 <style type = "text/css">
-.ui-datepicker { font-size:9pt;}
 
+.ui-datepicker { font-size:9pt;}
 
 #accordionVADR .ui-accordion-header {
 	display: block;
@@ -239,6 +245,12 @@
 											 	          	<br>
 													</span>
 													</div>
+		
+													<div id="existOrgnrDialog" title="Org.nr">
+													  <p>Finnes registret på annen kunde. <br><br>
+													  Det går fortsatt og lagre.</p>
+													</div>
+													
 												</c:if>
 											</td>
 											<td>

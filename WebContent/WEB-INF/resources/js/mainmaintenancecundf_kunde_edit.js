@@ -1,7 +1,7 @@
   //this variable is a global jQuery var instead of using "$" all the time. Very handy
   var jq = jQuery.noConflict();
   var counterIndex = 0;
-  
+
  //ENHET
  //https://data.brreg.no/enhetsregisteret/api/docs/index.html#_eksempel_1_hent_enhet
  //postadresse verkar vara non-mandatory. Verkar ha postboks
@@ -100,6 +100,8 @@
 
 		existInElma();
 		
+		validateAndWarn();
+		
 		getDataFromBrregAsText(element);
 		
   }
@@ -148,6 +150,44 @@ function initCundfSearch() {
 } 
  
 
+function validateAndWarn() {
+	 console.log("validateAndWarn");
+	 
+		if (jq('#syrg').val() == '') {
+			console.log("return");
+			return;
+		}
+		
+		let orgnrExistUrl = "/syjservicesbcore/syjsSYCUNDFR_ORGNR_EXIST";
+		
+		jq.ajax({
+			type : 'GET',
+			url : orgnrExistUrl,
+			data : {
+				user : jq('#applicationUser').val(),
+				syrg : jq('#syrg').val(),
+				kundnr : jq('#kundnr').val()
+			},
+			dataType : 'text',
+			cache : false,
+			contentType : 'application/json',
+			success : function(data) {
+				console.log("validateAndWarn, data",data);
+				if (data == 'J') {
+					 jq( "#existOrgnrDialog" ).dialog("open");
+				} 
+			},
+			error: function (jqXHR, exception) {
+			  	console.log("Error loading ", orgnrExistUrl);
+			    console.log("jqXHR",jqXHR);
+			    console.log("exception",exception);
+			}	
+
+		});
+
+} 
+
+
 function validateOrgnr() {
 	
 	if (jq('#syrg').val() == '') {
@@ -174,9 +214,7 @@ function validateOrgnr() {
 				jq("#orgnrmulti").text("finnes på annen kunde");  
 			} else {
 				jq("#orgnrmulti").text("");  
-
 			}
-			
 		},
 		error: function (jqXHR, exception) {
 		  	console.log("Error loading ", orgnrExistUrl);
@@ -185,7 +223,6 @@ function validateOrgnr() {
 		}	
 
 	});
-	
 	
 }
 
@@ -208,7 +245,6 @@ function existInElma() {
 		},
 		dataType : 'text',
 		cache : false,
-		//contentType : 'application/text',
 		success : function(data) {
 			if (data == 'J') {
 				jq("#syfr06").val(data);  
@@ -271,11 +307,15 @@ jq(document).ready(function() {
 
 jq(function() {
 	
-    jq( "#accordionVADR" ).accordion({
+	jq( "#existOrgnrDialog" ).dialog({
+		  modal: true,
+		  autoOpen: false
+	});
+	
+	jq( "#accordionVADR" ).accordion({
         collapsible: true,
         active: false
     });
-    
     
     jq('#sylandIdLink').click(function() {
     	jq('#sylandIdLink').attr('target','_blank');
