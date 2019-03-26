@@ -75,7 +75,7 @@
 				<td width="18%" valign="bottom" class="tabDisabled" align="center" nowrap>
 					<a id="alinkInvoice" style="display:block;" href="transportdisp_mainorder_invoice.do?action=doFind&hepro=${model.parentTrip}&heavd=${model.record.heavd}&heopd=${model.record.heopd}&itemsType=O">
 						<img title="Add" style="vertical-align:bottom;" src="resources/images/invoice2.png" width="16" hight="16" border="0" alt="invoice">
-						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.tab"/>&nbsp;</font>&nbsp;<font class="text10Orange">F5</font>
+						<font class="tabDisabledLink">&nbsp;<spring:message code="systema.transportdisp.orders.invoice.tab"/>&nbsp;</font>&nbsp;<font class="text10Orange">F4</font>
 					</a>
 				</td>
 			</c:if>
@@ -711,9 +711,10 @@
 									
 									<td class="text14">&nbsp;<span title="wsatdd/wsatdk"><spring:message code="systema.transportdisp.orders.form.update.label.shippingDates.atd"/></span></td>
 									<td class="text14">
-										<input type="text" class="inputTextMediumBlue" name="wsatdd" id="wsatdd" size="9" maxlength="8" value="${model.record.wsatdd}">
+										<input type="text" readonly class="inputTextReadOnly" name="wsatdd" id="wsatdd" size="9" maxlength="8" value="${model.record.wsatdd}">
 						    			</td>
-									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatdk" id="wsatdk" size="4" maxlength="4" value="${model.record.wsatdk}"></td>
+									<td class="text14"><input onKeyPress="return numberKey(event)" type="text" readonly class="inputTextReadOnly" name="wsatdk" id="wsatdk" size="4" maxlength="4" value="${model.record.wsatdk}"></td>
+									<td class="text14"><input type="checkbox" id="ownATDcb" name="ownATDcb" value="1" >
 									
 									<c:if test="${not empty model.record.etdWarning}">
 										<td>
@@ -736,10 +737,10 @@
 									
 									<td class="text14">&nbsp;<span title="wsatad/wsatak"><spring:message code="systema.transportdisp.orders.form.update.label.arrivalDates.ata"/></span></td>
 									<td class="text14">
-										<input type="text" class="inputTextMediumBlue" name="wsatad" id="wsatad" size="9" maxlength="8" value="${model.record.wsatad}">
+										<input type="text" readonly class="inputTextReadOnly" name="wsatad" id="wsatad" size="9" maxlength="8" value="${model.record.wsatad}">
 									</td>
-									<td class="text14"><input type="text" class="inputTextMediumBlue" name="wsatak" id="wsatak" size="4" maxlength="4" value="${model.record.wsatak}"></td>
-
+									<td class="text14"><input onKeyPress="return numberKey(event)" type="text" readonly class="inputTextReadOnly" name="wsatak" id="wsatak" size="4" maxlength="4" value="${model.record.wsatak}"></td>
+									<td class="text14"><input type="checkbox" id="ownATAcb" name="ownATAcb" value="1" >
 									<c:if test="${not empty model.record.etaWarning}">
 										<td>
 											<font class="inputText11" style="background-color: #FFBABA;color: #D8000C;">&nbsp;<spring:message code="systema.transportdisp.orders.form.warning.label.ETA.abovelimit.30" /></font>
@@ -1730,7 +1731,7 @@
 									           			<p>Tast en <b>J</b> her for å lage bilde (trenger ikke å gå innom det) for fraktbrev / tollpass.<br>
 									           			 Dersom det lille (2 tegns) feltet bak koden fylles ut med gyldig<br>
 															tollsted er det et tollpass som opprettes (men felles bilde).<br>
-															Dersom en taster F5-Videre kommer en innom bildet og kan endre /splitte fraktbrevet.
+															Dersom en taster F4-Videre kommer en innom bildet og kan endre /splitte fraktbrevet.
 														</p>
 									           			</div>
 								           			</font>
@@ -2050,7 +2051,7 @@
 						 					<input type="text" class="inputTextMediumBlue" name="fmmrk1" id="fmmrk1" size="15" maxlength="35" value="${model.record.fraktbrevRecord.fmmrk1}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvant" id="fvant" size="7" maxlength="7" value="${model.record.fraktbrevRecord.fvant}">
+							 				<input onBlur="calculateVolume(fvvol);" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvant" id="fvant" size="7" maxlength="7" value="${model.record.fraktbrevRecord.fvant}">
 						 				</td>
 						 				<td align="center" class="text14" nowrap>
 							 				<input type="text" onBlur="searchPackingCodesNewLineOnBlur(this);" class="inputTextMediumBlue" name="fvpakn" id="fvpakn" size="8" maxlength="7" value="${model.record.fraktbrevRecord.fvpakn}">
@@ -2065,10 +2066,10 @@
 							 				<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField" style="text-align:right;" name="fvvkt" id="fvvkt" size="9" maxlength="9" value="${model.record.fraktbrevRecord.fvvkt}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
+							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvlen" id="fvlen" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvlen}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
-							 				<input onBlur="validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvbrd}">
+							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvbrd" id="fvbrd" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvbrd}">
 						 				</td>
 						 				<td align="right" class="text14" nowrap>
 							 				<input onBlur="calculateVolume(fvvol);validateNewItemLine();" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" style="text-align:right;" name="fvhoy" id="fvhoy" size="4" maxlength="4" value="${model.record.fraktbrevRecord.fvhoy}">
