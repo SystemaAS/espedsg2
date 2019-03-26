@@ -142,7 +142,7 @@ public class MainMaintenanceCundfKundeController {
 						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
-					} else if (errMsg != null){
+					} else if (StringUtils.hasValue(errMsg.toString())){
 						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
@@ -273,6 +273,7 @@ public class MainMaintenanceCundfKundeController {
 
 	private JsonMaintMainCundfRecord updateRecord(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
 		logger.info("::updateRecord::");
+		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		JsonMaintMainCundfRecord savedRecord = null;
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_DML_UPDATE_URL;
 		String urlRequestParamsKeys = "user=" + appUser.getUser() + "&mode=" + mode + "&lang=" +appUser.getUsrLang();
@@ -304,7 +305,7 @@ public class MainMaintenanceCundfKundeController {
 
 			manageInvoiceEmail(appUser, record, errMsg, savedRecord);
 
-			VadrDao vadrDao = vkundControllerUtil.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
+			VadrDao vadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
 			if (vadrDao != null) {
 				manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 			} else {
@@ -320,6 +321,7 @@ public class MainMaintenanceCundfKundeController {
 
 	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
 		logger.info("::manageVareAdresseNr1::");
+		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		int retval;
 		VadrDao dao = new VadrDao();
 		dao.setVadrnr(1);
@@ -332,7 +334,7 @@ public class MainMaintenanceCundfKundeController {
 		dao.setKundnr(Integer.parseInt(record.getKundnr()));
 		
 		if (isCleanedByUser(dao)) {
-			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
+			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
 			if (retval == MainMaintenanceConstants.ERROR_CODE) {
 				logger.error("Could not delete VADR for , error="+errMsg);
 			}
@@ -340,13 +342,13 @@ public class MainMaintenanceCundfKundeController {
 		}
 
 		if (mode.equals("A")) {
-			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
+			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
 			if (retval == MainMaintenanceConstants.ERROR_CODE) {
 				logger.error("Could not create VADR , error="+errMsg);
 			}
 			logger.info("ADDED, dao="+ReflectionToStringBuilder.toString(dao));
 		} else if (mode.equals("U")) {
-			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 			if (retval == MainMaintenanceConstants.ERROR_CODE) {
 				logger.error("Could not create VADR for , error="+errMsg);
 			}
@@ -361,8 +363,10 @@ public class MainMaintenanceCundfKundeController {
 			|| StringUtils.hasValue(dao.getVadrn2()) 
 			|| StringUtils.hasValue(dao.getSonavn()) 
 			|| StringUtils.hasValue(dao.getValand())) {
+			logger.info(", false");
 			return false;
 		} else {
+			logger.info(", true");
 			return true;
 		}
 	}

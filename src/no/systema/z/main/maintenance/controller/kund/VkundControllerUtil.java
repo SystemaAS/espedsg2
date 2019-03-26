@@ -363,7 +363,7 @@ public class VkundControllerUtil {
 		jsonReader.set(new JsonDtoContainer<VadrDao>());
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_VADR_DML_UPDATE_URL;
 		StringBuilder urlRequestParams = new StringBuilder();
-		urlRequestParams.append("?user=" + appUser.getUser());
+		urlRequestParams.append("user=" + appUser.getUser());
 		urlRequestParams.append("&mode=" + mode  );
 		urlRequestParams.append("&lang=" +appUser.getUsrLang() );
 		urlRequestParams.append("&kundnr=" +dao.getKundnr() );
@@ -377,9 +377,12 @@ public class VkundControllerUtil {
 
 		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
 
-		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-		String jsonPayload = jsonPayloadResponse.getBody();
+//		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+//		String jsonPayload = jsonPayloadResponse.getBody();
 
+		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		logger.info("jsonPayload="+jsonPayload);
+		
 		if (jsonPayload != null) {
 			JsonDtoContainer<VadrDao> container = (JsonDtoContainer<VadrDao>) jsonReader.get(jsonPayload);
 			if (container != null) {
@@ -398,7 +401,7 @@ public class VkundControllerUtil {
 		jsonReader.set(new JsonDtoContainer<VadrDao>());
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_GET_VADR_LIST_URL;
 		StringBuffer urlRequestParams = new StringBuffer();
-		urlRequestParams.append("?user=" + appUser);
+		urlRequestParams.append("user=" + appUser);
 		urlRequestParams.append("&kundnr=" + kundnr);
 		urlRequestParams.append("&firma=" + firma);
 		if (StringUtils.hasValue(vadrnr)) {
@@ -406,9 +409,10 @@ public class VkundControllerUtil {
 		}
 		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
 
-		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-		String jsonPayload = jsonPayloadResponse.getBody();
-//		logger.info("jsonPayload=" + jsonPayload);
+//		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+//		String jsonPayload = jsonPayloadResponse.getBody();
+		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		logger.info("jsonPayload=" + jsonPayload);
 		
 		List<VadrDao> list = new ArrayList<VadrDao>();
 		if (jsonPayload != null) {
