@@ -366,7 +366,7 @@ public class CodeDropDownMgr {
 		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
 		logger.info("URL PARAMS: " + urlRequestParams);
 		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		logger.info("jsonPayload="+jsonPayload);
+//		logger.info("jsonPayload="+jsonPayload);
 		List<KodafDao> list = new ArrayList();
 		if (jsonPayload != null) {
 			JsonDtoContainer<KodafDao> container = (JsonDtoContainer<KodafDao>) jsonReader.get(jsonPayload);

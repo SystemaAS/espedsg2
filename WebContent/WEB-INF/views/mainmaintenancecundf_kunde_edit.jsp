@@ -8,13 +8,6 @@
 	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
 		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 <script type="text/javascript" src="resources/js/mainmaintenancecundf_kunde_edit.js?ver=${user.versionEspedsg}"></script>	
-	
-	    <!-- Bootstrap CSS -->
-	    <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"-->
-	
-	
-	
-	
 <style type = "text/css">
 
 .ui-datepicker { font-size:9pt;}
@@ -388,7 +381,7 @@
 												</div>
 											</td>
 											<td>								
-											    <input type="text" class="inputTextMediumBlue" name="syland" id="syland" size="2" maxlength="2" value='${model.record.syland}'>
+											    <input type="text" class="inputTextMediumBlue" name="syland" id="syland" size="4" maxlength="2" value='${model.record.syland}'>
 												<a tabindex="-1" id="sylandIdLink">
 													<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
 												</a>
@@ -533,24 +526,31 @@
 												</table>			
 												<table>
 													<tr>
-									           			<td class="text14">Navn:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrna" id="vadrna" size="30" maxlength="30" value='${model.record.vadrna}'></td>
+														<td class="text14" title="knavn">
+															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>:
+														</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrna" id="vadrna" size="32" maxlength="30" value='${model.record.vadrna}'></td>
 													</tr>
 													<tr>
 														<td class="text14">Adresse 1:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn1" id="vadrn1" size="30" maxlength="30" value='${model.record.vadrn1}'></td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn1" id="vadrn1" size="32" maxlength="30" value='${model.record.vadrn1}'></td>
 													</tr>
 													<tr>
 														<td class="text14">Adresse 2:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn2" id="vadrn2" size="30" maxlength="30" value='${model.record.vadrn2}'></td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn2" id="vadrn2" size="32" maxlength="30" value='${model.record.vadrn2}'></td>
 													</tr>
 													<tr>
 														<td class="text14">Adresse 3:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn3" id="vadrn3" size="30" maxlength="30" value='${model.record.vadrn3}'></td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn3" id="vadrn3" size="32" maxlength="30" value='${model.record.vadrn3}'></td>
 													</tr>
 													<tr>
 														<td class="text14">Land:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="valand" id="valand" size="30" maxlength="30" value='${model.record.valand}'></td>
+														<td>
+															<input type="text" class="inputTextMediumBlue" name="valand" id="valand" size="4" maxlength="2" value='${model.record.valand}'>
+															<a tabindex="-1" id="valandIdLink">
+																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
+															</a>
+														</td>
 													</tr>
 												</table>
 											</div>	

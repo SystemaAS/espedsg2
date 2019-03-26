@@ -24,11 +24,13 @@ import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
+import no.systema.z.main.maintenance.mapper.url.request.UrlRequestParameterMapper;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
 import no.systema.z.main.maintenance.service.MaintMainCundcService;
 import no.systema.z.main.maintenance.service.MaintMainCundcServiceImpl;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
+import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 
 /**
  * 
@@ -42,6 +44,7 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 public class VkundControllerUtil {
 	private static final Logger logger = Logger.getLogger(VkundControllerUtil.class.getName());
 	private UrlCgiProxyService cgiProxyService = null;
+	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
 
 	@Bean 
 	public RestTemplate restTemplate() {
@@ -352,7 +355,44 @@ public class VkundControllerUtil {
 		return list.get(0);
 		
 	}
+	
+	public int saveVareAdressRecordNr1(SystemaWebUser appUser, VadrDao dao, String mode, StringBuffer errMsg) {
+		int retval = 0;
+		logger.info("::saveVareAdressRecordNr1::");
+		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
+		jsonReader.set(new JsonDtoContainer<VadrDao>());
+		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_VADR_DML_UPDATE_URL;
+		StringBuilder urlRequestParams = new StringBuilder();
+		urlRequestParams.append("?user=" + appUser.getUser());
+		urlRequestParams.append("&mode=" + mode  );
+		urlRequestParams.append("&lang=" +appUser.getUsrLang() );
+		urlRequestParams.append("&kundnr=" +dao.getKundnr() );
+		urlRequestParams.append("&firma=" +dao.getFirma() );
+		urlRequestParams.append("&vadrnr=" + dao.getVadrnr());
+		urlRequestParams.append("&vadrna=" + dao.getVadrna());
+		urlRequestParams.append("&vadrn1=" + dao.getVadrn1());
+		urlRequestParams.append("&vadrn2=" + dao.getVadrn2());
+		urlRequestParams.append("&vadrn3=" + dao.getVadrn3());
+		urlRequestParams.append("&valand=" + dao.getValand());
 
+		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
+
+		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
+		String jsonPayload = jsonPayloadResponse.getBody();
+
+		if (jsonPayload != null) {
+			JsonDtoContainer<VadrDao> container = (JsonDtoContainer<VadrDao>) jsonReader.get(jsonPayload);
+			if (container != null) {
+				if (StringUtils.hasValue(container.getErrMsg())) {
+					errMsg.append(container.getErrMsg());
+					retval = MainMaintenanceConstants.ERROR_CODE;
+				}
+			}			
+		}
+		
+		return retval;
+	}
+	
 	private List<VadrDao> getVareAdressRows(String appUser, String firma, String kundnr, String vadrnr) {
 		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
 		jsonReader.set(new JsonDtoContainer<VadrDao>());
@@ -437,9 +477,6 @@ public class VkundControllerUtil {
 			JsonMaintMainCundcContainer container = maintMainCundcService().getList(jsonPayload);
 			if (container != null) {
 				list =  (List<JsonMaintMainCundcRecord>) container.getList();
-//				 for (JsonMaintMainCundcRecord record : list) {
-//					 logger.info("RECORD=" + record);
-//				 }
 			} else {
 				logger.warn("CONTAINER is empty!");
 			}

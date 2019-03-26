@@ -356,7 +356,7 @@ public class MainMaintenanceCundfVkundController {
 			list = getFunksjonKoder(appUser, !KOFAST_NO_ID);
 		} else if ("valkod".equals(caller)) { //Valutakod
 			list = getValkoder(appUser);
-		} else if ("syland".equals(caller)) { //Landkode
+		} else if ("syland".equals(caller) || "valand".equals(caller) ) { //Landkode
 			list = getLandkoder(appUser);
 		} else if ("syopdt".equals(caller)) { //Oppdragstype
 			list = getOppdragsTyper(appUser);

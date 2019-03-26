@@ -101,6 +101,7 @@ public class TransportDispMainOrderController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(1000);
 	private static Logger logger = Logger.getLogger(TransportDispMainOrderController.class.getName());
 	
+	private NumberFormatterLocaleAware numberFormatter = new NumberFormatterLocaleAware();
 	private ModelAndView loginView = new ModelAndView("login");
 	private ApplicationContext context;
 	private LoginValidator loginValidator = new LoginValidator();
@@ -490,19 +491,10 @@ public class TransportDispMainOrderController {
 						    			validationOutputContainer = this.specificOrderValidatorBackend.getValidationOutputContainer();
 							    		//ERRORs at the back-end. Abort everything and return to the end-user with the clear error messages
 							    		logger.info("VALIDATION BACK-END ERROR (ORDER LINES)");
-							    		//logger.info(" size:" + validationOutputContainer.getErrMsgListFromValidationBackend().size());
 							    		model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
-							    		//restore percentage GUI-formatted
-							    		//recordToValidate.setHevalp(percentageFormatter.adjustPercentageNotationToFrontEndOnSpecificOrder(recordToValidate.getHevalp()));
-							    		
 							    		//populate children
 										this.populateChildren(appUser, recordToValidate);
-										
-										//reset total values
-										//this.resetFraktbrevTotalsOriginalValues(recordToValidate);
-										
-							    		
-							    		//set domain objects
+										//set domain objects
 							    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
 										returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 										
@@ -511,9 +503,24 @@ public class TransportDispMainOrderController {
 					    			}else{
 					    				logger.info("[START]: processOrderLine (Update)...");
 					    				//Update the order lines
-						    			//OBSOLETE this.processOrderLines(recordToValidate, appUser);
-					    				this.processOrderLine(request, recordToValidate, appUser);
-					    				logger.info("[END]: processOrderLine (Update)");
+						    			List<JsonTransportDispWorkflowSpecificOrderFraktbrevRecord> processOrderLineList = this.processOrderLine(request, recordToValidate, appUser);
+					    				for (JsonTransportDispWorkflowSpecificOrderFraktbrevRecord checkRecord: processOrderLineList){
+					    					if(strMgr.isNotNull(checkRecord.getErrMsg())){
+					    						//Meaning there was an error on UPDATE
+					    						validationOutputContainer.setErrMsg(checkRecord.getErrMsg());
+					    						model.put(TransportDispConstants.DOMAIN_CONTAINER_VALIDATION_BACKEND, validationOutputContainer);
+									    		//populate children
+												this.populateChildren(appUser, recordToValidate);
+												//set domain objects
+									    		this.setDomainObjectsOnValidationErrors(appUser, recordToValidate, model, parentTrip);
+												returnView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+												
+												return returnView;
+					    					}else{
+					    						logger.info("[END]: processOrderLine (Update): OK");
+					    					}
+					    				}
+					    				
 					    				
 					    				//[2] Get the new the totals and execute the update of order in order to get the Fb.vekt
 					    				//Fb.vekt is related to the order line totals and therefore related to the new 
@@ -1492,6 +1499,11 @@ public class TransportDispMainOrderController {
 						totHem3 = totHem3 + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvvol()));
 						totHelm = totHelm + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm()));
 						totHelmla = totHelmla + Double.parseDouble(strMgr.adjustNullStringToDecimalForDbUpdate(fraktbrevRecord.getFvlm2()));
+						//format to 2 decimals
+						totHem3 = this.numberFormatter.getDouble(totHem3, 2);
+						totHelm = this.numberFormatter.getDouble(totHelm, 2);
+						totHelmla = this.numberFormatter.getDouble(totHelmla, 2);
+						
 					}
 		    		//set TOTALS only if applicable
 		    		if(!"P".equals(orderRecord.getHestl4())){

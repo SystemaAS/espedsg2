@@ -53,7 +53,7 @@
 	  			setBlockUIKeys();
 	  			window.location.href = "transportdisp_mainorderlist.do?action=doFind&avd=" + jq('#fkeysavd').val(); 
 	  		 
-	  		 }else if (charCode == f5){
+	  		 }else if (charCode == f4){
 	  			if( jq('#alinkInvoice').length ){ 
 	  				setBlockUIKeys();
 	  				window.location.href = "transportdisp_mainorder_invoice.do?action=doFind&hepro=" + jq('#fkeystur').val() + "&heavd=" + jq('#fkeysavd').val() + "&heopd=" + jq('#fkeysopd').val() + "&itemsType=O"

@@ -1,7 +1,6 @@
 package no.systema.z.main.maintenance.controller.kund;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -143,9 +142,15 @@ public class MainMaintenanceCundfKundeController {
 						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
 						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, recordToValidate);
+					} else if (errMsg != null){
+						logger.error("[ERROR Update] Record could not be updated, errMsg="+errMsg.toString());
+						model.put(MainMaintenanceConstants.ASPECT_ERROR_MESSAGE, errMsg.toString());
+						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
+						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
 					} else {
 						record = this.fetchRecord(appUser.getUser(), kundeSessionParams.getKundnr(), kundeSessionParams.getFirma());
 						model.put(MainMaintenanceConstants.DOMAIN_RECORD, record);
+						
 					}
 				}
 			} else { // Fetch
@@ -190,31 +195,6 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 	
-	/* betbet can has empty or something like it, this one is ugly */
-	private void theBetBetFix(SystemaWebUser appUser, JsonMaintMainCundfRecord recordToValidate, String action) {
-
-		if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {
-			if ("F".equals(recordToValidate.getKundetype())) { // Fakturakunde
-				// validation downstreams
-			} else if ("A".equals(recordToValidate.getKundetype())) { // Adressekunde
-				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
-					recordToValidate.setBetbet("");
-				}
-			}
-
-		}
-
-		if (MainMaintenanceConstants.ACTION_UPDATE.equals(action)) {
-			if ("N".equals(vkundControllerUtil.isAdressCustomer(appUser, new Integer(recordToValidate.getKundnr())))) { // Fakturakunde
-				// validation downstreams
-			} else { // Adressekunde
-				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
-					recordToValidate.setBetbet("");
-				}
-			}
-		}
-
-	}
 
 	/**
 	 * Check orgnr in ELMA. 
@@ -299,7 +279,6 @@ public class MainMaintenanceCundfKundeController {
 		String urlRequestParams = urlRequestParameterMapper.getUrlParameterValidString((record));
 		urlRequestParams = urlRequestParamsKeys + urlRequestParams;
 
-		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
 		logger.info("URL PARAMS: " + urlRequestParams);
 
@@ -321,21 +300,84 @@ public class MainMaintenanceCundfKundeController {
 		}
 
 		logger.info("savedRecord="+ReflectionToStringBuilder.toString(savedRecord, ToStringStyle.MULTI_LINE_STYLE));
-		
-		
-		if (savedRecord != null) {
-			logger.info("record.getEpostmott()="+record.getEpostmott());
-			if (StringUtils.hasValue(record.getEpostmott())) {
-				savedRecord.setEpostmott(record.getEpostmott());
-				int retval = createCundcInvoicesCtype(appUser, savedRecord, errMsg);
-				if (retval == MainMaintenanceConstants.ERROR_CODE) {
-					logger.error("Could not create invoice ctype for "+record.getEpostmott());
-				}
+		if (savedRecord != null) {  
+
+			manageInvoiceEmail(appUser, record, errMsg, savedRecord);
+
+			VadrDao vadrDao = vkundControllerUtil.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
+			if (vadrDao != null) {
+				manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+			} else {
+				manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_ADD, errMsg);
 			}
+			
 		}
 		
 		return savedRecord;
 
+	}
+
+
+	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
+		logger.info("::manageVareAdresseNr1::");
+		int retval;
+		VadrDao dao = new VadrDao();
+		dao.setVadrnr(1);
+		dao.setVadrna(record.getVadrna());
+		dao.setVadrn1(record.getVadrn1());
+		dao.setVadrn2(record.getVadrn2());
+		dao.setVadrn3(record.getVadrn3());
+		dao.setValand(record.getValand());
+		dao.setFirma(record.getFirma());
+		dao.setKundnr(Integer.parseInt(record.getKundnr()));
+		
+		if (isCleanedByUser(dao)) {
+			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
+			if (retval == MainMaintenanceConstants.ERROR_CODE) {
+				logger.error("Could not delete VADR for , error="+errMsg);
+			}
+			return;
+		}
+
+		if (mode.equals("A")) {
+			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
+			if (retval == MainMaintenanceConstants.ERROR_CODE) {
+				logger.error("Could not create VADR , error="+errMsg);
+			}
+			logger.info("ADDED, dao="+ReflectionToStringBuilder.toString(dao));
+		} else if (mode.equals("U")) {
+			retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+			if (retval == MainMaintenanceConstants.ERROR_CODE) {
+				logger.error("Could not create VADR for , error="+errMsg);
+			}
+			logger.info("UPDATED, dao="+ReflectionToStringBuilder.toString(dao));
+		}
+	}
+
+	private boolean isCleanedByUser(VadrDao dao) {
+		logger.info("::isCleanedByUser::");
+		if (   StringUtils.hasValue(dao.getVadrna()) 
+			|| StringUtils.hasValue(dao.getVadrn1()) 
+			|| StringUtils.hasValue(dao.getVadrn2()) 
+			|| StringUtils.hasValue(dao.getSonavn()) 
+			|| StringUtils.hasValue(dao.getValand())) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
+	private void manageInvoiceEmail(SystemaWebUser appUser, JsonMaintMainCundfRecord record, StringBuffer errMsg, JsonMaintMainCundfRecord savedRecord) {
+		logger.info("::manageInvoiceEmail::");
+		int retval;
+		JsonMaintMainCundcRecord cundInvoiceRecord = vkundControllerUtil.getInvoiceEmailRecord(appUser.getUser(),savedRecord.getFirma(), savedRecord.getKundnr() );
+		if (StringUtils.hasValue(record.getEpostmott()) && cundInvoiceRecord == null) {
+			savedRecord.setEpostmott(record.getEpostmott());
+			retval = createCundcInvoicesCtype(appUser, savedRecord, errMsg);
+			if (retval == MainMaintenanceConstants.ERROR_CODE) {
+				logger.error("Could not create invoice ctype for "+record.getEpostmott());
+			}
+		}
 	}
 	
 	private int createCundcInvoicesCtype(SystemaWebUser appUser, JsonMaintMainCundfRecord cundf, StringBuffer errMsg) {
@@ -344,13 +386,14 @@ public class MainMaintenanceCundfKundeController {
 		JsonMaintMainCundcRecord cundc = new JsonMaintMainCundcRecord();
 		cundc.setCcompn(cundf.getKundnr());
 		cundc.setCfirma(cundf.getFirma());
-		cundc.setCconta(cundf.getEpostmott());
 		cundc.setCemail(cundf.getEpostmott());
 
 		cundc.setCtype("*SINGELFAKTURA");
+		cundc.setCconta(cundf.getEpostmott());
 		retval =  createCundc(appUser, cundc, errMsg);
 		
 		cundc.setCtype("*SAMLEFAKTURA");
+		cundc.setCconta(cundf.getEpostmott());
 		retval =  createCundc(appUser, cundc, errMsg);
 		
 		return retval;
@@ -359,13 +402,11 @@ public class MainMaintenanceCundfKundeController {
 	private int createCundc(SystemaWebUser appUser, JsonMaintMainCundcRecord record, StringBuffer errMsg) {
 		logger.info("::createCundc::");
 		int retval = 0;
-	
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_CUNDC_DML_UPDATE_URL;
 		String urlRequestParamsKeys = "user=" + appUser.getUser() + "&mode=" + MainMaintenanceConstants.MODE_ADD + "&lang=" +appUser.getUsrLang();
 		String urlRequestParams = urlRequestParameterMapper.getUrlParameterValidString((record));
 		urlRequestParams = urlRequestParamsKeys + urlRequestParams;
 
-		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 		logger.info("URL: " + jsonDebugger.getBASE_URL_NoHostName(BASE_URL));
 		logger.info("URL PARAMS: " + urlRequestParams);
 		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
@@ -382,6 +423,31 @@ public class MainMaintenanceCundfKundeController {
 		return retval;
 		
 	}
+	
+	/* betbet can has empty or something like it, this one is ugly */
+	private void theBetBetFix(SystemaWebUser appUser, JsonMaintMainCundfRecord recordToValidate, String action) {
+		if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {
+			if ("F".equals(recordToValidate.getKundetype())) { // Fakturakunde
+				// validation downstreams
+			} else if ("A".equals(recordToValidate.getKundetype())) { // Adressekunde
+				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
+					recordToValidate.setBetbet("");
+				}
+			}
+		}
+
+		if (MainMaintenanceConstants.ACTION_UPDATE.equals(action)) {
+			if ("N".equals(vkundControllerUtil.isAdressCustomer(appUser, new Integer(recordToValidate.getKundnr())))) { // Fakturakunde
+				// validation downstreams
+			} else { // Adressekunde
+				if ("NOT_SET".equals(recordToValidate.getBetbet())) {
+					recordToValidate.setBetbet("");
+				}
+			}
+		}
+
+	}
+	
 	
 	private void adjustRecordToValidate(JsonMaintMainCundfRecord recordToValidate, KundeSessionParams kundeSessionParams) {
 		recordToValidate.setFirma(kundeSessionParams.getFirma());
