@@ -643,7 +643,7 @@
 	            			<%-- <input type="hidden" name="tuavd" id="tuavd" value='${model.record.tuavd}'> --%>
 	            			<input type="hidden" name="tupro" id="tupro" value='${model.record.tupro}'>
 	            			<input type="hidden" name="turund" id="turund" value='${model.record.turund}'>
-	            			
+	            			<input type="hidden" name="tutref" id="tutref" value='${model.record.tutref}'>
 	            			<input type="hidden" name="originalAvd" id="originalAvd" value='${searchFilter.wssavd}'>
 	            			<table width="98%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
 					 		<tr height="10"><td ></td></tr>

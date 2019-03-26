@@ -1094,7 +1094,7 @@
 			  			jq('#tusg').val(""); jq('#tusg').val(data[i].tusg);
 			  			jq('#turund').val(""); jq('#turund').val(data[i].turund);
 			  			jq('#turundJS').text(""); jq('#turundJS').text(data[i].turund);
-			  			
+			  			jq('#tutref').val(""); jq('#tutref').val(data[i].tutref);
 			  			//Trip nr is required for some GUI aspects
 			  			if(data[i].tupro!=""){
 			  				if(status=='close'){ //only the active trips are allowed to have this option (tur planning)
