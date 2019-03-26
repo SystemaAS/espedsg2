@@ -923,7 +923,13 @@
 		 									</a>
 								    		</td>
 								    		<td colspan="3"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
-  								 			<td class="text14" align="left">
+  								 		<td class="text14" align="left"> 
+  								 			<input readonly tabindex=-1 type="text" class="inputTextMediumBlue inputTextReadOnly" name="tnrType" id="tnrType" size="35" maxlength="40" value="${model.record.typKod}&nbsp;${model.record.typTxt}">
+  								 		</td>
+							 		</tr>
+								    	
+								    	<tr>
+								    		<td class="text14" align="left">
   								 				<img onMouseOver="showPop('tutrma_info');" onMouseOut="hidePop('tutrma_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 					<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></span>
 							 					<div class="text11" style="position: relative;" align="left" >
@@ -948,8 +954,9 @@
 												<a tabindex=0 id="tutrmaIdLink" >
 		 											<img id="imgTransportTypeSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
 		 										</a>	
-								 			</td>
+								 			</td>	
 								    	</tr>
+								    	
 							    		<tr height="5"><td ></td></tr>
 								    	<tr>
 								    		<td class="text14">

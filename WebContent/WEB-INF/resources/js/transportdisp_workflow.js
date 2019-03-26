@@ -359,6 +359,7 @@
 	  //ALL GREY FIELDS (READ-ONLY) must block the std. behavior of the input field (lightyellow) when focus
 	  jq('#tusg').focus(function(){ jq(jq("#tusg")).css({ "background-color": "lightgrey"}); });
 	  jq('#tunat').focus(function(){ jq(jq("#tunat")).css({ "background-color": "lightgrey"}); });
+	  jq('#tnrType').focus(function(){ jq(jq("#tnrType")).css({ "background-color": "lightgrey"}); });
 	  jq('#tusdf').focus(function(){ jq(jq("#tusdf")).css({ "background-color": "lightgrey"}); });
 	  jq('#tusdt').focus(function(){ jq(jq("#tusdt")).css({ "background-color": "lightgrey"}); });
 	  
@@ -494,11 +495,15 @@
     				if (len > 0){
 	    				for ( var i = 0; i < len; i++) {
 	    					jq('#tunat').val(data[i].navn);
+	    					jq('#tnrType').val(data[i].typKod + ' ' + data[i].typTxt);
+	    					//
 	    					jq("#tunat").removeClass( "isa_error" );
+	    					jq("#tnrType").removeClass( "isa_error" );
 	    				}
     				}else{
     					jq('#tunat').val("?");
     					jq("#tunat").addClass( "isa_error" );
+    					jq("#tnrType").addClass( "isa_error" );
     				}
     			});
     		}
@@ -616,7 +621,8 @@
 					if(jq('#tuknt2').val()==''){
 						jq('#tuknt2').val(data[i].untran);
 						jq('#tunat').val(data[i].vmnavn);
-				}
+						jq('#tnrType').val(data[i].typKod + ' ' + data[i].typTxt);
+					}
 					if(jq('#tusja1').val()==''){jq('#tusja1').val(data[i].unretu);}
 					if(jq('#tusjn1').val()==''){jq('#tusjn1').val(data[i].unretunavn);}
 					//Lorry capacity matrix: SET LABELS
@@ -1280,6 +1286,7 @@
 			  			//Truck No.
 			  			jq('#tuknt2').val(""); jq('#tuknt2').val(data[i].tuknt2);
 			  			jq('#tunat').val(""); jq('#tunat').val(data[i].tunat); jq('#tunat').removeClass("isa_error"); 
+			  			jq('#tnrType').val(""); jq('#tnrType').val(data[i].typKod + ' ' + data[i].typTxt); jq('#tnrType').removeClass("isa_error");
 			  			//Truck type
 			  			jq('#tubilk').val(""); jq('#tubilk').val(data[i].tubilk);
 			  			//Order type

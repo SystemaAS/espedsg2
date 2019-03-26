@@ -322,8 +322,15 @@
 								 		</c:choose>
 								 		
 								 		<c:if test="${not empty model.record.heopd}">
-								 			&nbsp;<button name="frisokveiButton" id="frisokveiButton" class="buttonGrayWithGreenFrame" type="button" >Frie søkeveier</button>
-								 			
+								 			<c:choose>
+									 			<c:when test="${empty model.fsokRedFlag}">
+									 				&nbsp;<button name="frisokveiButton" id="frisokveiButton" class="buttonGrayWithGreenFrame" type="button" >Frie søkeveier</button>
+									 			</c:when>
+									 			<c:otherwise>
+									 				&nbsp;<button name="frisokveiButton" id="frisokveiButton" class="buttonRedWithRedFrame" type="button" >Frie søkeveier</button>
+									 				<span title="Obligatorisk"><img style="vertical-align:middle;" src="resources/images/redFlag.png" width="16" height="21" border="0" alt="mandatory"></span>
+									 			</c:otherwise>
+								 			</c:choose>
 								 		</c:if>
 								 		<c:if test="${not empty model.record.hesgm}">
 								 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<font title="hesgm" class="inputText11" style="background-color: #DFF2BF;color: #4F8A10;">Levert:&nbsp;${model.record.hesgm}&nbsp;-&nbsp;${model.record.hedtmo}:${model.record.heklmo}</font>

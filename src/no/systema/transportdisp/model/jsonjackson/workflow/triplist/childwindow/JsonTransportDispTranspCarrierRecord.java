@@ -23,6 +23,14 @@ public class JsonTransportDispTranspCarrierRecord extends JsonAbstractGrandFathe
 	public void setNavn(String value) {  this.navn = value; }
 	public String getNavn() {return this.navn;}
 	
+	private String typKod = null;
+	public void setTypKod(String value) {  this.typKod = value; }
+	public String getTypKod() {return this.typKod;}
+	
+	private String typTxt = null;
+	public void setTypTxt(String value) {  this.typTxt = value; }
+	public String getTypTxt() {return this.typTxt;}
+
 	
 	/**
 	 * Used for java reflection in other classes

@@ -1506,6 +1506,23 @@
 	cursor:pointer;
 	
 }
+.buttonRedWithRedFrame{
+	border: 2px solid red;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	font-size: 14px;
+	font-weight: normal;
+	background-color:#FFBABA;
+	color:#D8000C;
+	padding: 2px 4px;
+	outline: 0;
+	cursor:pointer;
+}
+.buttonRedWithRedFrame:focus{
+	color:#000000;
+	background-color: lightyellow;
+}
 .buttonGrayWithGreenFrame{
 	border: 2px solid #3F9E4D;
 	-moz-border-radius: 5px;

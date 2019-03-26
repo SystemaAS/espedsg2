@@ -70,6 +70,8 @@ import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTran
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeParametersRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.frisokvei.JsonTransportDispWorkflowSpecificOrderFrisokveiContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.frisokvei.JsonTransportDispWorkflowSpecificOrderFrisokveiRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderMessageNoteContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderMessageNoteRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevContainer;
@@ -242,6 +244,10 @@ public class TransportDispMainOrderController {
 			this.setCodeDropDownMgr(appUser, model);
 			this.setDropDownsFromFiles(model);
 			this.setDropDownsFromJsonString(model, appUser);
+			//Check if the frisok-mandatory krav is present
+			if(this.isInfectedFrisokveiItemLines(appUser, recordToValidate.getHeavd(), recordToValidate.getHeopd())){
+				model.put("fsokRedFlag", "1");
+			}
     		//--------------------------------------
 			//Final successView with domain objects
 			//--------------------------------------
@@ -604,6 +610,10 @@ public class TransportDispMainOrderController {
 		    				this.setDomainObjectsInView(model, record);
 		    				this.setCodeDropDownMgr(appUser, model);
 		    				this.setDropDownsFromFiles(model);
+		    				//Check if the frisok-mandatory krav is present
+		    				if(this.isInfectedFrisokveiItemLines(appUser, recordToValidate.getHeavd(), recordToValidate.getHeopd())){
+		    					model.put("fsokRedFlag", "1");
+		    				}
 		    			}
 		    		}
 		    		//--------------------------------------
@@ -618,6 +628,46 @@ public class TransportDispMainOrderController {
 		    }
 			return returnView;
 		}
+	}
+	/**
+	 * This method returns true if the frisokvei-list of items demands an action (has a mandatory requirement)
+	 * 
+	 * @param appUser
+	 * @param avd
+	 * @param opd
+	 * @param model
+	 * @param session
+	 */
+	private boolean isInfectedFrisokveiItemLines(SystemaWebUser appUser, String avd, String opd){
+		boolean retval = false;
+		logger.info("Inside:  isInfectedFrisokveiItemLines();...");
+		List<JsonTransportDispWorkflowSpecificOrderFrisokveiRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderFrisokveiRecord>();
+		final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_FRISOKVEI_URL;
+		//add URL-parameters
+		StringBuffer urlRequestParams = new StringBuffer();
+		urlRequestParams.append("user=" + appUser.getUser());
+		urlRequestParams.append("&avd=" + avd); 
+		urlRequestParams.append("&opd=" + opd);
+		
+		logger.info("URL: " + BASE_URL);
+		logger.info("PARAMS: " + urlRequestParams.toString());
+		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		logger.debug(this.jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		if(jsonPayload!=null){
+			JsonTransportDispWorkflowSpecificOrderFrisokveiContainer container = this.transportDispWorkflowSpecificOrderService.getOrderFrisokveiContainer(jsonPayload);
+			if(container!=null){
+				//Only with krav=2 in any of the lines will infect the method
+				for(JsonTransportDispWorkflowSpecificOrderFrisokveiRecord record: container.getAwblinelist()){
+					if("2".equals(record.getKrav())){
+						logger.info("OBS! Frisokvei is infected. There is a mandatory reuirement on one of the item lines...");
+						retval = true;
+						break;
+					}
+				}
+			}	
+		}
+		return retval;
 	}
 	/**
 	 * 

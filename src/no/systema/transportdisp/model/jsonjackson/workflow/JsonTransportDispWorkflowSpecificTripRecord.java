@@ -63,6 +63,14 @@ public class JsonTransportDispWorkflowSpecificTripRecord extends JsonAbstractGra
 	public void setTunat(String value) {  this.tunat = value; }
 	public String getTunat() {return this.tunat;}
 
+	private String typKod = null;
+	public void setTypKod(String value) {  this.typKod = value; }
+	public String getTypKod() {return this.typKod;}
+	
+	private String typTxt = null;
+	public void setTypTxt(String value) {  this.typTxt = value; }
+	public String getTypTxt() {return this.typTxt;}
+
 	private String tuad1t = null;
 	public void setTuad1t(String value) {  this.tuad1t = value; }
 	public String getTuad1t() {return this.tuad1t;}
