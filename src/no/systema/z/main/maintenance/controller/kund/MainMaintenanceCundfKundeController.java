@@ -305,17 +305,7 @@ public class MainMaintenanceCundfKundeController {
 
 			manageInvoiceEmail(appUser, record, errMsg, savedRecord);
 
-//			VadrDao vadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
-//			if (vadrDao != null) {
-//				if(isCleanedByUser(record)) {
-//					manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_DELETE, errMsg);
-//				} else {
-//					manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_UPDATE, errMsg);
-//				}
-//			
-//			} else {
-				manageVareAdresseNr1(appUser, record,  errMsg);
-//			}
+			manageVareAdresseNr1(appUser, record,  errMsg, savedRecord);
 			
 		}
 		
@@ -323,12 +313,11 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 
-
-	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record,  StringBuffer errMsg) {
+	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record,  StringBuffer errMsg, JsonMaintMainCundfRecord savedRecord) {
 		logger.info("::manageVareAdresseNr1::");
 		int retval;
 		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
-		VadrDao existVadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
+		VadrDao existVadrDao = util.getVareAdressRecordNr1(appUser.getUser(),savedRecord.getFirma(), savedRecord.getKundnr() );
 
 		VadrDao dao = new VadrDao();
 		dao.setVadrnr(1);
@@ -337,8 +326,8 @@ public class MainMaintenanceCundfKundeController {
 		dao.setVadrn2(record.getVadrn2());
 		dao.setVadrn3(record.getVadrn3());
 		dao.setValand(record.getValand());
-		dao.setFirma(record.getFirma());
-		dao.setKundnr(Integer.parseInt(record.getKundnr()));
+		dao.setFirma(savedRecord.getFirma());
+		dao.setKundnr(Integer.parseInt(savedRecord.getKundnr()));
 		
 		if (existVadrDao == null) {
 			if (isEmpty(dao)) {
