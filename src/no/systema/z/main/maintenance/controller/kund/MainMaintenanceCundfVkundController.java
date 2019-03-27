@@ -1330,8 +1330,10 @@ public class MainMaintenanceCundfVkundController {
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.getList(jsonPayload);
 			if (container != null) {
 		        for(JsonMaintMainCundfRecord record : container.getList()){
-					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
-					record.setPostnr(leftPaddedPostnr);
+					if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getPostnr())) {
+			        	String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
+						record.setPostnr(leftPaddedPostnr);
+					}
 					list.add(record);
 		        }	
 			}
@@ -1371,8 +1373,10 @@ public class MainMaintenanceCundfVkundController {
 			JsonMaintMainCundfContainer container = this.maintMainCundfService.getList(jsonPayload);
 			if (container != null) {
 		        for(JsonMaintMainCundfRecord record : container.getList()){
-					String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
-					record.setPostnr(leftPaddedPostnr);
+					if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getPostnr())) {
+			        	String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
+						record.setPostnr(leftPaddedPostnr);
+					}
 					list.add(record);
 		        }	
 			}

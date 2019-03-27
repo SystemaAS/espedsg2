@@ -305,12 +305,17 @@ public class MainMaintenanceCundfKundeController {
 
 			manageInvoiceEmail(appUser, record, errMsg, savedRecord);
 
-			VadrDao vadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
-			if (vadrDao != null) {
-				manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_UPDATE, errMsg);
-			} else {
-				manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_ADD, errMsg);
-			}
+//			VadrDao vadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
+//			if (vadrDao != null) {
+//				if(isCleanedByUser(record)) {
+//					manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_DELETE, errMsg);
+//				} else {
+//					manageVareAdresseNr1(appUser, record, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+//				}
+//			
+//			} else {
+				manageVareAdresseNr1(appUser, record,  errMsg);
+//			}
 			
 		}
 		
@@ -319,10 +324,12 @@ public class MainMaintenanceCundfKundeController {
 	}
 
 
-	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
+	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record,  StringBuffer errMsg) {
 		logger.info("::manageVareAdresseNr1::");
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		int retval;
+		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
+		VadrDao existVadrDao = util.getVareAdressRecordNr1(appUser.getUser(),record.getFirma(), record.getKundnr() );
+
 		VadrDao dao = new VadrDao();
 		dao.setVadrnr(1);
 		dao.setVadrna(record.getVadrna());
@@ -333,40 +340,44 @@ public class MainMaintenanceCundfKundeController {
 		dao.setFirma(record.getFirma());
 		dao.setKundnr(Integer.parseInt(record.getKundnr()));
 		
-		if (isCleanedByUser(dao)) {
-			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
-			if (retval == MainMaintenanceConstants.ERROR_CODE) {
-				logger.error("Could not delete VADR for , error="+errMsg);
+		if (existVadrDao == null) {
+			if (isEmpty(dao)) {
+				//do nothing
+			} else {
+				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
+				if (retval == MainMaintenanceConstants.ERROR_CODE) {
+					logger.error("Could not create VADR , error="+errMsg);
+				}
+				logger.info("ADDED, dao="+ReflectionToStringBuilder.toString(dao));
 			}
-			return;
-		}
 
-		if (mode.equals("A")) {
-			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
-			if (retval == MainMaintenanceConstants.ERROR_CODE) {
-				logger.error("Could not create VADR , error="+errMsg);
+		} else  {
+			if (isEmpty(dao)) {
+				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
+				if (retval == MainMaintenanceConstants.ERROR_CODE) {
+					logger.error("Could not delete VADR for , error="+errMsg);
+				}
+				logger.info("DELETED, dao="+ReflectionToStringBuilder.toString(dao));
+			} else {
+				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+				if (retval == MainMaintenanceConstants.ERROR_CODE) {
+					logger.error("Could not update VADR for , error="+errMsg);
+				}
+				logger.info("UPDATED, dao="+ReflectionToStringBuilder.toString(dao));
 			}
-			logger.info("ADDED, dao="+ReflectionToStringBuilder.toString(dao));
-		} else if (mode.equals("U")) {
-			retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
-			if (retval == MainMaintenanceConstants.ERROR_CODE) {
-				logger.error("Could not create VADR for , error="+errMsg);
-			}
-			logger.info("UPDATED, dao="+ReflectionToStringBuilder.toString(dao));
-		}
+		} 
 	}
 
-	private boolean isCleanedByUser(VadrDao dao) {
-		logger.info("::isCleanedByUser::");
+	private boolean isEmpty(VadrDao dao) {
 		if (   StringUtils.hasValue(dao.getVadrna()) 
 			|| StringUtils.hasValue(dao.getVadrn1()) 
 			|| StringUtils.hasValue(dao.getVadrn2()) 
 			|| StringUtils.hasValue(dao.getSonavn()) 
 			|| StringUtils.hasValue(dao.getValand())) {
-			logger.info(", false");
+			logger.info("::isEmpty, false::");
 			return false;
 		} else {
-			logger.info(", true");
+			logger.info("::isEmpty, true::");
 			return true;
 		}
 	}
