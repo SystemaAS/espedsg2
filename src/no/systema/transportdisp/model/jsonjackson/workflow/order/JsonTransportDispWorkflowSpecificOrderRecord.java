@@ -5,6 +5,7 @@ package no.systema.transportdisp.model.jsonjackson.workflow.order;
 
 import java.util.*;
 import java.lang.reflect.Field;
+
 import no.systema.main.model.jsonjackson.general.JsonAbstractGrandFatherRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.oppdragstype.JsonTransportDispOppdragTypeParametersRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingContainer;
@@ -92,6 +93,24 @@ public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGr
 	private String messageNoteInternalOriginal = null;
 	public void setMessageNoteInternalOriginal(String value) {  this.messageNoteInternalOriginal = value; }
 	public String getMessageNoteInternalOriginal() {return this.messageNoteInternalOriginal;}
+	
+	private String messageNoteDate = null;
+	public void setMessageNoteDate(String value) {  this.messageNoteDate = this.toUpperCase(value); }
+	public String getMessageNoteDate() {return this.messageNoteDate;}
+
+	//Auxiliary raw Free texts (in order to handle frtli (line nr)
+	private List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteConsigneeRaw = null;
+	public void setMessageNoteConsigneeRaw(List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> value) {  this.messageNoteConsigneeRaw = value; }
+	public List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> getMessageNoteConsigneeRaw() {return this.messageNoteConsigneeRaw;}
+	
+	private List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteCarrierRaw = null;
+	public void setMessageNoteCarrierRaw(List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> value) {  this.messageNoteCarrierRaw = value; }
+	public List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> getMessageNoteCarrierRaw() {return this.messageNoteCarrierRaw;}
+	
+	private List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteInternalRaw = null;
+	public void setMessageNoteInternalRaw(List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> value) {  this.messageNoteInternalRaw = value; }
+	public List<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> getMessageNoteInternalRaw() {return this.messageNoteInternalRaw;}
+	
 	
 	private String wsatad = null;
 	public void setWsatad(String value) {  this.wsatad = value; }

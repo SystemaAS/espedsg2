@@ -2047,7 +2047,11 @@
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
-							 			
+							 			<%-- ADR COVI on-going 
+							 			<td align="center" class="tableHeaderField" style="font-size: 12px">
+							 				<input id="dangerousGoodsButton" tabindex=-1 class="inputFormSubmitStd11" style="background-color:darkgrey;color:yellow" type="button" value='ADR (flere)'>
+							 			</td>
+							 			--%>
 							 		</tr>
 							 		<tr >
 							 			<td align="center" class="text14">
@@ -2119,7 +2123,7 @@
 											</select>
 						 				</td>
 						 				
-						 				<td align="center"><input onClick="clearItemLineValues();" class="inputFormSubmitStd11" type="button" value='<spring:message code="systema.transportdisp.orders.form.detail.update.removeItemLineValues"/>'></td>
+						 				<td align="center"><input tabindex=-1 onClick="clearItemLineValues();" class="inputFormSubmitStd11" type="button" value='<spring:message code="systema.transportdisp.orders.form.detail.update.removeItemLineValues"/>'></td>
 						 			</tr>
 						 			<tr></tr>
 						 			</table>
@@ -2286,19 +2290,43 @@
 								<tr>
 						 			<td class="text14"><spring:message code="systema.transportdisp.orders.form.update.label.messageConsignee"/></td>
 						 			<td class="text14">
-						 				<textarea class="text14UPPERCASE" id="messageNoteConsignee" name="messageNoteConsignee" limit='70,2' cols="75" rows="2">${model.record.messageNoteConsignee}</textarea>
+						 				<%-- this is used ONLY for the delete line operation (mandatory date/linenr) --%>
+						 				<c:forEach items="${model.record.messageNoteConsigneeRaw}" var="freeTextRecord" varStatus="counter">
+						 					<c:if test="${not empty freeTextRecord.frtli}">
+						 						<%-- DEBUG <input type="text" id="ownMessageNoteReceiverLineNr_${freeTextRecord.frtli}" name="ownMessageNoteReceiverLineNr_${freeTextRecord.frtli}" value="${freeTextRecord.frtli}@${freeTextRecord.frtdt}">  --%>
+						 						<input type="hidden" id="ownMessageNoteReceiverLineNr_${freeTextRecord.frtli}" name="ownMessageNoteReceiverLineNr_${freeTextRecord.frtli}" value="${freeTextRecord.frtli}@${freeTextRecord.frtdt}">
+						 					</c:if>
+						 				</c:forEach>
+						 				<%-- this is ONLY for presentation issues and the INSERT DML  --%>
+						 				
+						 				<textarea class="text14UPPERCASE" style="resize: none;overflow-y: scroll;" id="messageNoteConsignee" name="messageNoteConsignee" limit='65,4' cols="80" rows="4" >${model.record.messageNoteConsignee}</textarea>
 					 				</td>
+					 				
 				 				</tr>
 								<tr>
 						 			<td class="text14"><spring:message code="systema.transportdisp.orders.form.update.label.messageCarrier"/></td>
 						 			<td class="text14">
-						 				<textarea class="text14UPPERCASE" id="messageNoteCarrier" name="messageNoteCarrier" limit='70,2' cols="75" rows="2">${model.record.messageNoteCarrier}</textarea>
+						 				<%-- this is used ONLY for the delete line operation (mandatory date/linenr) --%>
+						 				<c:forEach items="${model.record.messageNoteCarrierRaw}" var="freeTextRecord" varStatus="counter">
+						 					<c:if test="${not empty freeTextRecord.frtli}">
+						 						<input type="hidden" id="ownMessageNoteCarrierLineNr_${freeTextRecord.frtli}" name="ownMessageNoteCarrierLineNr_${freeTextRecord.frtli}" value="${freeTextRecord.frtli}@${freeTextRecord.frtdt}">
+						 					 </c:if>
+						 				</c:forEach>
+						 				<%-- this is ONLY for presentation issues and the INSERT DML  --%>
+						 				<textarea class="text14UPPERCASE" style="resize: none;overflow-y: scroll;" id="messageNoteCarrier" name="messageNoteCarrier" limit='65,4' cols="80" rows="4">${model.record.messageNoteCarrier}</textarea>
 					 				</td>
 				 				</tr>
 				 				<tr>
 						 			<td class="text14"><spring:message code="systema.transportdisp.orders.form.update.label.messageInternal"/></td>
 						 			<td class="text14">
-						 				<textarea class="text14UPPERCASE" id="messageNoteInternal" name="messageNoteInternal" limit='70,2' cols="75" rows="2">${model.record.messageNoteInternal}</textarea>
+						 				<%-- this is used ONLY for the delete line operation (mandatory date/linenr) --%>
+						 				<c:forEach items="${model.record.messageNoteInternalRaw}" var="freeTextRecord" varStatus="counter">
+						 					<c:if test="${not empty freeTextRecord.frtli}">
+						 						<input type="hidden" id="ownMessageNoteInternalLineNr_${freeTextRecord.frtli}" name="ownMessageNoteInternalLineNr_${freeTextRecord.frtli}" value="${freeTextRecord.frtli}@${freeTextRecord.frtdt}">
+						 					</c:if> 
+						 				</c:forEach>
+						 				<%-- this is ONLY for presentation issues and the INSERT DML  --%>
+						 				<textarea class="text14UPPERCASE" style="resize: none;overflow-y: scroll;" id="messageNoteInternal" name="messageNoteInternal" limit='65,4' cols="80" rows="4">${model.record.messageNoteInternal}</textarea>
 					 				</td>
 				 				</tr>
 			 				</table>

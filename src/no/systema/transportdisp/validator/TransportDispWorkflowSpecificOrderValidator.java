@@ -44,7 +44,7 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "trknfa", "systema.transportdisp.orders.form.error.null.oppdgiv.nr.trknfa"); 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "henaa", "systema.transportdisp.orders.form.error.null.oppdgiv.name.henaa"); 
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "heot", "systema.transportdisp.orders.form.error.null.oppdtype.heot"); 
-		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hefr", "systema.transportdisp.orders.form.error.null.frankatur.hefr"); 
+		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "hefr", "systema.transportdisp.orders.form.error.null.frankatur.hefr");  
 		
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "henas", "systema.transportdisp.orders.form.error.null.shipper.name.henas");
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "heads1", "systema.transportdisp.orders.form.error.null.shipper.address.heads1");

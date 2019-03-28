@@ -239,50 +239,48 @@
 					<table id="workflowTrips" class="display compact cell-border">
 						<thead>
 						<tr class="tableHeaderField" height="20">
-						    <th class="text14" width="2%"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.update"/></th>
-						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
-						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
-						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
-		                    <th class="text14"><span title="Trip">
+						    <th title="Update" width="2%" class="text14" width="2%"><spring:message code="systema.transportdisp.workflow.trip.list.search.label.update"/></th>
+						    <th title="Avd." width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.department"/>&nbsp;</th>
+						    <th title="Tur" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trip"/>&nbsp;</th>
+						    <th title="Signatur" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.sign"/>&nbsp;</th>  
+		                    <th title="Bilnr." width="2%" class="text14">
 		                    		<img style="vertical-align: bottom;" src="resources/images/lorry_green.png" width="15px" height="15px" border="0" alt="lorry no.">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.trucknr"/>
-		                    		</span>
                     		</th>
-                    		<th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
-						    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
-						    <th class="text14" nowrap><span title="postal code">
+                    		<th title="Oppdragstype" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.ordertype"/>&nbsp;</th>
+						    <th title="PDA status" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.pda.status"/>&nbsp;</th>
+						    <th title="Fra" width="2%" class="text14" nowrap>
 			                    	<spring:message code="systema.transportdisp.workflow.trip.list.search.label.from"/>
-			                    	</span>
+
 			                </th>
-		                    <th class="text14">
+		                    <th title="Fra dato" width="2%" class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
 	                    	</th>
-   		                    <th class="text14">
+   		                    <th title="Fra kl" width="2%" class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
    		            		</th> 
-		                    <th class="text14" nowrap><span title="postal code">
+		                    <th title="Til" width="2%" class="text14" nowrap>
 	                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.to"/>
-	                    		</span>
 		                    </th>
-		                    <th class="text14">
+		                    <th title="Til dato" width="2%" class="text14">
 		                    		<spring:message code="systema.transportdisp.workflow.trip.list.search.label.date"/>&nbsp;
                     		</th>
-   		                    <th class="text14">
+   		                    <th title="Til kl" width="2%" class="text14">
 	                    		<img style="vertical-align:bottom;" src="resources/images/clock2.png" width="12" height="12" border="0" alt="time">&nbsp;
   		            		</th> 
 		                    
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
+		                    <th title="Antall opd" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antopd"/>&nbsp;</th>
+		                    <th title="Antall pod" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.antpod"/>&nbsp;</th>
 		                    
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
-		                    <th width="2%" align="right" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
-		                    <th width="1%" align="left" class="text14">&nbsp;</th>
+		                    <th title="Vekt" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.weight"/>&nbsp;</th>
+		                    <th title="M3" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.m3"/>&nbsp;</th>
+		                    <th title="Lastemeter" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.lm"/>&nbsp;</th>
+		                    <th title="Farliggods" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.fg"/>&nbsp;</th>
+		                    <th title="Resultat i %" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.res"/>&nbsp;</th>
+		                    <th title="Rundtur" width="2%" align="right" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.roundTrip"/>&nbsp;</th>
+		                    <th title="Kopi Tur" width="2%" width="1%" align="left" class="text14">&nbsp;</th>
 		                    
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
+		                    <th title="Close/Open" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.closeopen"/>&nbsp;</th>
 	                    	<%--
 		                    <c:if test="${empty searchFilter.wssst || searchFilter.wssst != 'Z'}"> 
 		                    	<th width="2%" class=text14>
@@ -291,12 +289,12 @@
 		                    </c:if>
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.glist"/>&nbsp;</th>
 		                     --%>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
+		                    <th title="Godsliste print status" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.gp"/>&nbsp;</th>
 		                    <%--
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.llist"/>&nbsp;</th>
 		                     --%>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.printDocs"/>&nbsp;</th>
-		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
+		                    <th title="Print" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.printDocs"/>&nbsp;</th>
+		                    <th title="Upload" width="2%" class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;</th>
 		                    <%--
 		                    <th class="text14">&nbsp;<spring:message code="systema.transportdisp.workflow.trip.list.search.label.upl"/>&nbsp;2</th>
 		                     --%>
@@ -871,7 +869,7 @@
 								    		</td>
 								    		<td class="text14" align="left">
 								    			<select class="inputText14" name="tulkc2" id="tulkc2">
-						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default"></spring:message></option>
+						 						<option value=""><spring:message code="systema.transportdisp.dropdown.default" /></option>
 							 				  	<c:forEach var="country" items="${model.countryCodeList}" >
 							 				  		<option value="${country.zkod}"<c:if test="${model.record.tulkc2 == country.zkod}"> selected </c:if> >${country.zkod}</option>
 												</c:forEach>  
@@ -924,14 +922,23 @@
 								    		</td>
 								    		<td colspan="3"><input readonly tabindex=-1 type="text" class="inputTextMediumBlueUPPERCASE inputTextReadOnly" name="tunat" id="tunat" size="35" maxlength="30" value="${model.record.tunat}"></td>
   								 		<td class="text14" align="left"> 
-  								 			<input readonly tabindex=-1 type="text" class="inputTextMediumBlue inputTextReadOnly" name="tnrType" id="tnrType" size="35" maxlength="40" value="${model.record.typKod}&nbsp;${model.record.typTxt}">
+  								 			<input readonly tabindex=-1 type="text" class="inputTextMediumBlue inputTextReadOnly" name="tnrType" id="tnrType" size="15" maxlength="40" value="${model.record.typKod}&nbsp;${model.record.typTxt}">
   								 		</td>
-							 		</tr>
-								    	
-								    	<tr>
-								    		<td class="text14" align="left">
+  								 		
+  								 		
+  								 		<td class="text14" align="left">
   								 				<img onMouseOver="showPop('tutrma_info');" onMouseOut="hidePop('tutrma_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 							 					<span title="tutrma"><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></span>
+							 					<select class="inputTextMediumBlue" name="tutrma" id="tutrma">
+									            		<option value=""><spring:message code="systema.transportdisp.dropdown.default" /></option>
+									            		<c:forEach var="record" items="${model.transporttypeList}" >
+									            			<option title="${record.ks4ftx}" value="${record.ks4trm}"<c:if test="${model.record.tutrma == record.ks4trm}"> selected </c:if> >${record.ks4trm}</option>
+													</c:forEach>	
+												</select>
+												<a tabindex=0 id="tutrmaIdLink" >
+		 											<img id="imgTransportTypeSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
+		 										</a>	
+							 					
 							 					<div class="text11" style="position: relative;" align="left" >
 									 				<span style="position:absolute; top:2px; width:200px;" id="tutrma_info" class="popupWithInputText text11"  >
 										           		<p><b><spring:message code="systema.transportdisp.workflow.trip.form.label.truckersno.transportType"/></b></p> 
@@ -944,21 +951,8 @@
 													</span>	
 												</div>
   								 			</td>	
-  								 			<td class="text14" align="left">
-								 				<select class="inputTextMediumBlue" name="tutrma" id="tutrma">
-									            		<option value="">-select-</option>
-									            		<c:forEach var="record" items="${model.transporttypeList}" >
-									            			<option title="${record.ks4ftx}" value="${record.ks4trm}"<c:if test="${model.record.tutrma == record.ks4trm}"> selected </c:if> >${record.ks4trm}</option>
-														</c:forEach>	
-												</select>
-												<a tabindex=0 id="tutrmaIdLink" >
-		 											<img id="imgTransportTypeSearch" align="bottom" style="cursor:pointer;" src="resources/images/find.png" width="13px" height="13px" border="0" alt="search">
-		 										</a>	
-								 			</td>	
-								    	</tr>
-								    	
-							    		<tr height="5"><td ></td></tr>
-								    	<tr>
+  									</tr>
+									<tr>
 								    		<td class="text14">
 								    			<span title="tusja1/tusjn1">
 								    				&nbsp;<img style="vertical-align: bottom;" src="resources/images/appUserOg.gif" height="16px" width="16px" border="0" alt="edit">

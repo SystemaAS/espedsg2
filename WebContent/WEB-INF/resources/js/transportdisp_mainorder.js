@@ -179,6 +179,13 @@
   	jq('#frisokveiButton').click(function() {
   		window.open('transportdisp_workflow_frisokvei.do?avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val() + "&tur=" + jq('#tripNr').val(), 'frisokveiWin','top=120px,left=100px,height=600px,width=900px,scrollbars=no,status=no,location=no');
   	});
+  	
+  	jq('#dangerousGoodsButton').click(function() {
+  		if(jq('#linNr').text()!=''){
+  			window.open('transportdisp_workflow_dangerousgoods.do?avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val() + "&linNr=" + jq('#linNr').text(), 'DangerousgoodsWin','top=120px,left=100px,height=600px,width=900px,scrollbars=no,status=no,location=no');
+  		}
+  	});
+  	
   });
   
   
@@ -1851,7 +1858,7 @@
 			  				//alert(data[i].errMsg);
 			  				var errorPrefix = "[ERROR] FATAL on line:" + lineNr;
 				  			jq('#orderLineErrMsgPlaceHolder').text(errorPrefix + " -->" + data[j].errMsg);
-				  			jq('#fvvkt_' + j).focus(); //always to weight column otherwise we lose control
+				  			//jq('#fvvkt_' + j).focus(); //always to weight column otherwise we lose control
 				  			retval = false;
 			  			}else{
 			  				jq('#orderLineErrMsgPlaceHolder').text("");
@@ -1879,7 +1886,7 @@
 				    title: 'Line ERROR',
 				    content: 'Antall, Vareslag, Vekt er obligatoriske',
 			  });
-			  
+			  /*
 			  if(ant==''){
 				  jq('#fvant_' + i).focus();  
 			  }else if (description==''){
@@ -1887,6 +1894,7 @@
 			  }else if (weight==''){
 				  jq('#fvvkt_' + i).focus();
 			  }
+			  */
 			  retval = false;
 		  }
 	  }
@@ -1931,7 +1939,7 @@
 		  				//alert(data[i].errMsg);
 		  				var errorPrefix = "[ERROR] FATAL on new line:";
 			  			jq('#orderLineErrMsgPlaceHolder').text(errorPrefix + " -->" + data[j].errMsg);
-			  			jq('#fvvkt').focus(); //always to weight column otherwise we lose control
+			  			//BRINGs bug removed: 20190328 after upgrade ...jq('#fvvkt').focus(); //always to weight column otherwise we lose control
 		  			}else{
 		  				jq('#orderLineErrMsgPlaceHolder').text("");
 		  				//here we take care of the parameters that will complete some values
@@ -1949,14 +1957,14 @@
 		  });
 	  }else{
 		  alert("Missing mandatory fields for new line...");
-		  
+		  /*
 		  if(ant==''){
 			  jq('#fvant').focus();  
 		  }else if (weight==''){
 			  jq('#fvvkt').focus();
 		  }else if (description==''){
 			  jq('#fvvt').focus();
-		  }
+		  }*/
 	  }
 	  return retval;
   }

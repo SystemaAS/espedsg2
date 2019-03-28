@@ -30,7 +30,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.web.bind.ServletRequestDataBinder;
 
-
 //application imports
 import no.systema.main.context.TdsAppContext;
 import no.systema.main.service.UrlCgiProxyService;
@@ -483,6 +482,9 @@ public class TransportDispMainOrderController {
 					    	}else{
 					    		//Update successfully done!
 					    		logger.info("[INFO] Record successfully updated, OK ");
+					    		logger.info("[START]: process children <meessageNotes>, <itemLines>, etc update... ");
+					    		//Update the message notes (2 steps: 1.Delete the original ones, 2.Create the new ones)
+					    		this.processNewMessageNotes(model, recordToValidate, appUser, request, null );
 					    		
 					    		//-------------------------------------------------------
 					    		//START ITEM LINE UPDATE
@@ -1087,7 +1089,8 @@ public class TransportDispMainOrderController {
 	 * @param recordToValidate
 	 * @param appUser
 	 */
-	private void processNewMessageNotes(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, SystemaWebUser appUser){
+	/*
+	private void processNewMessageNotesORIG(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, SystemaWebUser appUser){
 		if(recordToValidate !=null){
 			//CONSIGNEE (RECEIVER)
 			if(recordToValidate.getMessageNoteConsignee()!=null && !"".equals(recordToValidate.getMessageNoteConsignee())){
@@ -1133,29 +1136,181 @@ public class TransportDispMainOrderController {
 			}
 		}
 	}
+	*/
+	/**
+	 * 
+	 * @param model
+	 * @param recordToValidate
+	 * @param appUser
+	 * @param request
+	 * @param dmlModeCreateNew
+	 */
+	private void processNewMessageNotes(Map model, JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, SystemaWebUser appUser, HttpServletRequest request, String dmlModeCreateNew){
+		//-------------------------------------------------------
+		//get the key values for a DML operation in messageNote
+		//-------------------------------------------------------
+		List<String> ownMessageNoteReceiverLineNrRawList = new ArrayList<String>();
+		List<String> ownMessageNoteCarrierLineNrRawList = new ArrayList<String>();
+		List<String> ownMessageNoteInternalLineNrRawList = new ArrayList<String>();
+		
+		for (Map.Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
+		    String name = entry.getKey();
+		    String value = entry.getValue()[0];
+		    if(name.contains("ownMessageNoteReceiverLineNr")){
+		    	logger.info("Mottaker msg:" + value);
+		    	ownMessageNoteReceiverLineNrRawList.add(value); 
+		    }
+		    if(name.contains("ownMessageNoteCarrierLineNr")){ 
+		    	logger.info("Transportør msg:" + value);
+		    	ownMessageNoteCarrierLineNrRawList.add(value); 
+		    }
+		    if(name.contains("ownMessageNoteInternalLineNr")){ 
+		    	logger.info("Internal msg:" + value);
+		    	ownMessageNoteInternalLineNrRawList.add(value); 
+		    }
+		}
+				
+		if(recordToValidate !=null){
+			String messageNoteConsigneeOriginal = request.getParameter("messageNoteConsigneeOriginal");
+			if(!messageNoteConsigneeOriginal.equals(recordToValidate.getMessageNoteConsignee())){
+				logger.info("CONSIGNEE NOT EQUAL" + messageNoteConsigneeOriginal + "XX" + recordToValidate.getMessageNoteConsignee());
+				logger.info("AA:" + ownMessageNoteReceiverLineNrRawList.size());
+				//CONSIGNEE (RECEIVER)
+				//Delete all values
+				this.deleteOriginalMessageNote(this.MESSAGE_NOTE_CONSIGNEE, recordToValidate, appUser, ownMessageNoteReceiverLineNrRawList);
+				//Add new values
+				String [] messageNoteConsignee = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteConsignee());
+				this.updateMessageNote(model, messageNoteConsignee, this.MESSAGE_NOTE_CONSIGNEE, recordToValidate, appUser);
+				//init values
+				//recordToValidate.setMessageNoteConsigneeOriginal(recordToValidate.getMessageNoteConsignee());
+				
+			}else{
+				logger.info("CONSIGNEE EQUAL"); 
+				if(dmlModeCreateNew!=null){
+					//Add new values
+					String [] messageNoteConsignee = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteConsignee());
+					this.updateMessageNote(model, messageNoteConsignee, this.MESSAGE_NOTE_CONSIGNEE, recordToValidate, appUser);
+				}else{
+					//do not update
+				}	
+			}
+			
+			//CARRIER
+			String messageNoteCarrierOriginal = request.getParameter("messageNoteCarrierOriginal");
+			if(!messageNoteCarrierOriginal.equals(recordToValidate.getMessageNoteCarrier())){
+				logger.info("CARRIER NOT EQUAL");
+				//CARRIER
+				//Delete all values
+				this.deleteOriginalMessageNote(this.MESSAGE_NOTE_CARRIER, recordToValidate, appUser, ownMessageNoteCarrierLineNrRawList);
+				//Add new values
+				String [] messageNoteCarrier = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteCarrier());
+				this.updateMessageNote(model, messageNoteCarrier, this.MESSAGE_NOTE_CARRIER, recordToValidate, appUser);
+			}else{
+				logger.info("CARRIER EQUAL"); 
+				if(dmlModeCreateNew!=null){
+					//Add new values
+					String [] messageNoteCarrier = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteCarrier());
+					this.updateMessageNote(model, messageNoteCarrier, this.MESSAGE_NOTE_CARRIER, recordToValidate, appUser);
+				}else{
+					//do not update
+				}
+			}
+			
+			
+			String messageNoteInternalOriginal = request.getParameter("messageNoteInternalOriginal");
+			if(!messageNoteInternalOriginal.equals(recordToValidate.getMessageNoteInternal())){
+				logger.info("INTERNAL NOT EQUAL");
+				//INTERNAL
+				//Delete all values
+				this.deleteOriginalMessageNote(this.MESSAGE_NOTE_INTERNAL, recordToValidate, appUser, ownMessageNoteInternalLineNrRawList);
+				//Add new values
+				String [] messageNoteInternal = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteInternal());
+				this.updateMessageNote(model, messageNoteInternal, this.MESSAGE_NOTE_INTERNAL, recordToValidate, appUser);
+			}else{
+				logger.info("INTERNAL EQUAL"); 
+				if(dmlModeCreateNew!=null){
+					//Add new values
+					String [] messageNoteInternal = this.messageNoteMgr.getChunksOfMessageNote(recordToValidate.getMessageNoteInternal());
+					this.updateMessageNote(model, messageNoteInternal, this.MESSAGE_NOTE_INTERNAL, recordToValidate, appUser);
+				}else{
+					//do not update
+				}
+			}
+		}
+	}
 	
 	/**
 	 * 
+	 * @param model
 	 * @param messageNote
-	 * @param messageParty (r=receiver,consignee  ; g=carrier  ; b=internal)
+	 * @param messageParty
 	 * @param record
 	 * @param appUser
 	 */
-	private void updateMessageNote(String[] messageNote, String messageParty, JsonTransportDispWorkflowSpecificOrderRecord record, SystemaWebUser appUser){
+	private void updateMessageNote(Map model, String[] messageNote, String messageParty, JsonTransportDispWorkflowSpecificOrderRecord record, SystemaWebUser appUser){
 		String CARRIAGE_RETURN = "[\n\r]";
 		List<String> messageNotePayload = Arrays.asList(messageNote);
-		int lineNr = 0;
-		
+		//logger.info("A" + messageNotePayload);
 		for(String linePayload: messageNotePayload){
 			linePayload = linePayload.replaceAll(CARRIAGE_RETURN, "");
-			linePayload = linePayload.trim();
-			lineNr++;
+			//linePayload = linePayload.trim();
 			//---------------------------
 			//get BASE URL = RPG-PROGRAM
 	        //---------------------------
 			if(linePayload!=null && !"".equals(linePayload)){
 				String BASE_URL_UPDATE = MainUrlDataStore.SYSTEMA_NOTIS_BLOCK_UPDATE_ITEMLINE_URL;
-				boolean doUpdate = false;
+				//------------------
+				//add URL-parameter
+				//------------------
+				//no line no parameter is required
+				StringBuffer urlRequestParamsKeysBuffer = new StringBuffer();
+				urlRequestParamsKeysBuffer.append("user=" + appUser.getUser());
+				urlRequestParamsKeysBuffer.append("&frtavd=" + record.getHeavd());
+				urlRequestParamsKeysBuffer.append("&frtopd=" + record.getHeopd());
+				//urlRequestParamsKeysBuffer.append("&frtli=" + ?);
+				urlRequestParamsKeysBuffer.append("&frttxt=" + linePayload);
+				urlRequestParamsKeysBuffer.append("&frtkod=" + messageParty);		 
+				urlRequestParamsKeysBuffer.append("&mode=A");
+				
+				String urlRequestParams = urlRequestParamsKeysBuffer.toString();
+				logger.info("URL: " + BASE_URL_UPDATE);
+				logger.info("PARAMS: " + urlRequestParams);
+				//logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+				String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL_UPDATE, urlRequestParams);
+				//logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+				//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+				 
+				JsonNotisblockContainer jsonNotisblockContainer = this.notisblockService.getNotisblockListContainer(jsonPayload);
+				//logger.info("JsonNotisblockContainer:" + jsonNotisblockContainer);
+				if(jsonNotisblockContainer!=null){
+					//logger.info("A:" + jsonNotisblockContainer.getErrMsg());
+					if( !"".equals(jsonNotisblockContainer.getErrMsg()) ){
+						//Debug
+						String fatalError = "[ERROR]:" + jsonNotisblockContainer.getErrMsg(); 
+						model.put(TransportDispConstants.ASPECT_ERROR_MESSAGE, fatalError);
+						logger.info(fatalError);
+					}
+				}
+
+			}
+		}
+	}
+	/**
+	 * 
+	 * @param messageParty
+	 * @param record
+	 * @param appUser
+	 * @param ownMessageNoteLineNrRawList
+	 */
+	private void deleteOriginalMessageNote( String messageParty, JsonTransportDispWorkflowSpecificOrderRecord record, SystemaWebUser appUser, List<String> ownMessageNoteLineNrRawList){
+		logger.info("LIST:" + ownMessageNoteLineNrRawList);
+		for(String msgNoteRawRecord : ownMessageNoteLineNrRawList){
+			String [] msgNoteRecord = msgNoteRawRecord.split("@");
+			if(msgNoteRecord!=null && msgNoteRecord.length==2){
+				//---------------------------
+				//get BASE URL = RPG-PROGRAM
+		        //---------------------------
+				String BASE_URL_UPDATE = MainUrlDataStore.SYSTEMA_NOTIS_BLOCK_UPDATE_ITEMLINE_URL;
 				//------------------
 				//add URL-parameter
 				//------------------
@@ -1163,119 +1318,26 @@ public class TransportDispMainOrderController {
 				urlRequestParamsKeysBuffer.append("user=" + appUser.getUser());
 				urlRequestParamsKeysBuffer.append("&frtavd=" + record.getHeavd());
 				urlRequestParamsKeysBuffer.append("&frtopd=" + record.getHeopd());
-				if(this.MESSAGE_NOTE_CONSIGNEE.equals(messageParty)){
-					if(lineNr==1){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=" + lineNr);
-					}else if (lineNr==2){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=" + lineNr);
-					}
-				}else if(this.MESSAGE_NOTE_CARRIER.equals(messageParty)){
-					if(lineNr==1){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=3"); //always 1:st line for carrier
-					}else if(lineNr==2){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=4"); //always 2:nd line for carrier
-					}
-				}else if(this.MESSAGE_NOTE_INTERNAL.equals(messageParty)){
-					if(lineNr==1){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=5"); //always 1:st line for internal
-					}else if(lineNr==2){
-						doUpdate = true;
-						urlRequestParamsKeysBuffer.append("&frtli=6"); //always 2:nd line for internal
-					}
-				}else{
-					//nothing
-				}
+				urlRequestParamsKeysBuffer.append("&frtli=" + msgNoteRecord[0]);
+				urlRequestParamsKeysBuffer.append("&frtdt=" + msgNoteRecord[1]);
+				urlRequestParamsKeysBuffer.append("&mode=D");
 				
-				urlRequestParamsKeysBuffer.append("&frttxt=" + linePayload);
-				urlRequestParamsKeysBuffer.append("&frtkod=" + messageParty);		 
-				urlRequestParamsKeysBuffer.append("&mode=A");
-				if(doUpdate){
-					String urlRequestParams = urlRequestParamsKeysBuffer.toString();
-					logger.info("URL: " + BASE_URL_UPDATE);
-					logger.info("PARAMS: " + urlRequestParams);
-					//logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-					String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL_UPDATE, urlRequestParams);
-					logger.info(jsonPayload);
-					//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-					 
-					JsonNotisblockContainer jsonNotisblockContainer = this.notisblockService.getNotisblockListContainer(jsonPayload);
-					//logger.info("JsonNotisblockContainer:" + jsonNotisblockContainer);
-					if(jsonNotisblockContainer!=null){
-						//logger.info("A:" + jsonNotisblockContainer.getErrMsg());
-						if( !"".equals(jsonNotisblockContainer.getErrMsg()) ){
-							//Debug
-							logger.info("[ERROR]:" + jsonNotisblockContainer.getErrMsg());
-						}
-					}
-				}
-			}
-		}
-	}
-	/**
-	 * The unique KEY is comprised of: avd, opd, linenr
-	 * This affects the way we update. Each party has a slot of 2 lines: Consignee (lines:1-2), Carrier(lines:3-4), Internal(lines:5-6)
-	 * @param messageParty (r=receiver,consignee  ; g=carrier  ; b=internal)
-	 * @param record
-	 * @param appUser
-	 */
-	private void deleteOriginalMessageNote( String messageParty, JsonTransportDispWorkflowSpecificOrderRecord record, SystemaWebUser appUser){
-		//we do this in order to secure a total delete no matter how many lines, otherwise it gets complex in case validation errors arise
-		int TOTAL_NUMBER_OF_LINES_CEILING_FOR_DELETE_LOOP = 10;
-		for(int lineNr=1; lineNr<=TOTAL_NUMBER_OF_LINES_CEILING_FOR_DELETE_LOOP;lineNr++){
-			boolean doUpdate = false;
-			//---------------------------
-			//get BASE URL = RPG-PROGRAM
-	        //---------------------------
-			String BASE_URL_UPDATE = MainUrlDataStore.SYSTEMA_NOTIS_BLOCK_UPDATE_ITEMLINE_URL;
-			//------------------
-			//add URL-parameter
-			//------------------
-			StringBuffer urlRequestParamsKeysBuffer = new StringBuffer();
-			urlRequestParamsKeysBuffer.append("user=" + appUser.getUser());
-			urlRequestParamsKeysBuffer.append("&frtavd=" + record.getHeavd());
-			urlRequestParamsKeysBuffer.append("&frtopd=" + record.getHeopd());
-			if(this.MESSAGE_NOTE_CONSIGNEE.equals(messageParty)){
-				if(lineNr==1 || lineNr==2){
-					doUpdate = true;
-					urlRequestParamsKeysBuffer.append("&frtli=" + lineNr);
-				}
-			}else if(this.MESSAGE_NOTE_CARRIER.equals(messageParty)){
-				if(lineNr==3 || lineNr==4){
-					doUpdate = true;
-					urlRequestParamsKeysBuffer.append("&frtli=" + lineNr);
-				}
-			}else if(this.MESSAGE_NOTE_INTERNAL.equals(messageParty)){
-				if(lineNr==5 || lineNr==6){
-					doUpdate = true;
-					urlRequestParamsKeysBuffer.append("&frtli=" + lineNr);
-				}
-			}else{
-				//nothing
-			}
-			//N/A -->urlRequestParamsKeysBuffer.append("&frtkod=" + messageParty);
-			urlRequestParamsKeysBuffer.append("&mode=D");
-			String urlRequestParams = urlRequestParamsKeysBuffer.toString();
-			//DEBUG
-			if(doUpdate){
+				String urlRequestParams = urlRequestParamsKeysBuffer.toString();
+				//DEBUG
 				logger.info("URL: " + BASE_URL_UPDATE);
 				logger.info("PARAMS: " + urlRequestParams);
-				logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+				//logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
 				String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL_UPDATE, urlRequestParams);
-				//DEBUG only 5
-				logger.info(jsonPayload);
-				logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+				//DEBUG
+				//logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+				//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 				JsonNotisblockContainer jsonNotisblockContainer = this.notisblockService.getNotisblockListContainer(jsonPayload);
 				//logger.info("JsonNotisblockContainer:" + jsonNotisblockContainer);
 				if(jsonNotisblockContainer!=null){
 					//logger.info("A:" + jsonNotisblockContainer.getErrMsg());
 					if( !"".equals(jsonNotisblockContainer.getErrMsg()) ){
 						//Debug
-						logger.info("[WARNING (delete lines)]:" + jsonNotisblockContainer.getErrMsg());
+						logger.info("[WARNING (delete lines)]:" + jsonNotisblockContainer.getErrMsg() + msgNoteRecord[0] + "/" + msgNoteRecord[1] + "(heunik:" + record.getHeunik()+"hereff:"+ record.getHereff() + ")");
 					}
 				}
 			}
@@ -1301,11 +1363,11 @@ public class TransportDispMainOrderController {
 		urlRequestParamsKeys.append("&avd=" + avd);urlRequestParamsKeys.append("&mode=" + TransportDispConstants.MODE_ADD);
 		
 		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
-	    	logger.info("URL: " + BASE_URL);
-	    	logger.info("URL PARAMS: " + urlRequestParamsKeys.toString());
-	    	//----------------------------------------------------------------------------
-	    	//EXECUTE the UPDATE (RPG program) here (STEP [2] when creating a new record)
-	    	//----------------------------------------------------------------------------
+    	logger.info("URL: " + BASE_URL);
+    	logger.info("URL PARAMS: " + urlRequestParamsKeys.toString());
+    	//----------------------------------------------------------------------------
+    	//EXECUTE the UPDATE (RPG program) here (STEP [2] when creating a new record)
+    	//----------------------------------------------------------------------------
 	    String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys.toString());
 	    	//Debug --> 
 	    	logger.info("Checking errMsg in rpgReturnPayload [CREATE NEW]:" + rpgReturnPayload);
@@ -1474,6 +1536,7 @@ public class TransportDispMainOrderController {
 	 * @param orderRecord
 	 */
 	private void populateMessageNotes(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderRecord orderRecord){
+		logger.info("Inside populateMessageNotes");
 		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteConsignee = null;
 		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteCarrier = null;
 		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> messageNoteInternal = null;
@@ -1484,21 +1547,38 @@ public class TransportDispMainOrderController {
 		
 		StringBuffer brConsignee = new StringBuffer();
 		for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: messageNoteConsignee ){
-			brConsignee.append(record.getFrttxt() + "\n");
+			if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
+				brConsignee.append(record.getFrttxt() + "\n");
+			}
 		}
 		StringBuffer brCarrier = new StringBuffer();
 		for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: messageNoteCarrier ){
-			brCarrier.append(record.getFrttxt() + "\n");
+			if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
+				brCarrier.append(record.getFrttxt() + "\n");
+			}
 		}
 		StringBuffer brInternal = new StringBuffer();
 		for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: messageNoteInternal ){
-			brInternal.append(record.getFrttxt() + "\n");
+			if(record.getFrtkod()==null || "".equals(record.getFrtkod())){ //since we must filter in this specific type (blank)
+				if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
+					brInternal.append(record.getFrttxt() + "\n");
+				}
+			}
 		}
 		//populate final message notes now
 		orderRecord.setMessageNoteConsignee(brConsignee.toString());
 		orderRecord.setMessageNoteCarrier(brCarrier.toString());
 		orderRecord.setMessageNoteInternal(brInternal.toString());
 		
+		//populate original
+		orderRecord.setMessageNoteConsigneeOriginal(brConsignee.toString());
+		orderRecord.setMessageNoteCarrierOriginal(brCarrier.toString());
+		orderRecord.setMessageNoteInternalOriginal(brInternal.toString());
+		//populate auxiliary arrays
+		orderRecord.setMessageNoteConsigneeRaw((List)messageNoteConsignee);
+		orderRecord.setMessageNoteCarrierRaw((List)messageNoteCarrier);
+		orderRecord.setMessageNoteInternalRaw((List)messageNoteInternal);
+				
 	}
 	/**
 	 * 
@@ -1745,19 +1825,25 @@ public class TransportDispMainOrderController {
     		if(orderRecord.getHeopd()!=null && !"".equals(orderRecord.getHeopd())){ urlRequestParams.append("&opd=" + orderRecord.getHeopd()); }
     		if(type!=null && !"".equals(type)){ urlRequestParams.append("&kod=" + type); }
     		
-    		
-    		logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
     		logger.info("URL: " + BASE_LIST_URL);
 	    	logger.info("URL PARAMS: " + urlRequestParams);
 	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_LIST_URL, urlRequestParams.toString());
 	    	//Debug --> 
-	    	//logger.debug(jsonPayload);
-	    	//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+	    	logger.debug(jsonPayload);
+	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 	    	if(jsonPayload!=null){
 	    		JsonTransportDispWorkflowSpecificOrderMessageNoteContainer messageNoteContainer = this.transportDispWorkflowSpecificOrderService.getMessageNoteContainer(jsonPayload);
-	    		outputList = messageNoteContainer.getFreetextlistA();
-	    		for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord note: outputList){
-	    			//logger.info(note.getFrttxt());
+	    		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> tmpList = messageNoteContainer.getFreetextlistA();
+	    		if(type!=null && !"".equals(type)){
+	    			outputList = tmpList;
+	    		}else{
+	    			for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: tmpList){
+	    				if(record.getFrtkod()==null || "".equals(record.getFrtkod())){ //since we must filter in this specific type (blank)
+		    				if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
+		    					outputList.add(record);		    					
+		    				}
+		    			}	
+		    		}
 	    		}
 			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
 		}
