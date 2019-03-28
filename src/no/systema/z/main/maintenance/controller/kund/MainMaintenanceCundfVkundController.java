@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -184,6 +185,8 @@ public class MainMaintenanceCundfVkundController {
 				model.put("isAdressCustomer", vkundControllerUtil.isAdressCustomer(appUser, new Integer(kundnr)));
 				model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(record.getSyrg(), appUser));
 				model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(record.getSypoge(), record.getSyland() , appUser));
+				model.put("hasVareAddresseNr1", vkundControllerUtil.hasVadrValues(record));
+				
 				
 			} else if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) { // Lage ny
 				
@@ -1333,6 +1336,8 @@ public class MainMaintenanceCundfVkundController {
 					if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getPostnr())) {
 			        	String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
 						record.setPostnr(leftPaddedPostnr);
+					} else if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getSypoge())) {
+						record.setPostnr(record.getSypoge());
 					}
 					list.add(record);
 		        }	
@@ -1376,7 +1381,10 @@ public class MainMaintenanceCundfVkundController {
 					if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getPostnr())) {
 			        	String leftPaddedPostnr = StringUtils.leftPad(record.getPostnr(), 4, '0');
 						record.setPostnr(leftPaddedPostnr);
+					} else if (no.systema.jservices.common.util.StringUtils.hasValueIgnoreZero(record.getSypoge())) {
+						record.setPostnr(record.getSypoge());
 					}
+
 					list.add(record);
 		        }	
 			}

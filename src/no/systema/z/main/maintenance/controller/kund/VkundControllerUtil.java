@@ -27,6 +27,7 @@ import no.systema.main.service.UrlCgiProxyService;
 import no.systema.z.main.maintenance.mapper.url.request.UrlRequestParameterMapper;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
+import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfRecord;
 import no.systema.z.main.maintenance.service.MaintMainCundcService;
 import no.systema.z.main.maintenance.service.MaintMainCundcServiceImpl;
 import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
@@ -376,10 +377,7 @@ public class VkundControllerUtil {
 		urlRequestParams.append("&valand=" + dao.getValand());
 
 		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
-
-//		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
-//		String jsonPayload = jsonPayloadResponse.getBody();
-
+		
 		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		logger.info("jsonPayload="+jsonPayload);
 		
@@ -395,6 +393,14 @@ public class VkundControllerUtil {
 		
 		return retval;
 	}
+	
+	
+	public Object hasVareAdresseNr1(JsonMaintMainCundfRecord record, SystemaWebUser appUser) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	
 	
 	private List<VadrDao> getVareAdressRows(String appUser, String firma, String kundnr, String vadrnr) {
 		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
@@ -432,6 +438,23 @@ public class VkundControllerUtil {
 		return list;
 
 	}
+	
+	public String hasVadrValues(JsonMaintMainCundfRecord record) {
+		if (   StringUtils.hasValue(record.getVadrna()) 
+			|| StringUtils.hasValue(record.getVadrn1()) 
+			|| StringUtils.hasValue(record.getVadrn2()) 
+			|| StringUtils.hasValue(record.getVadrn3()) 
+			|| StringUtils.hasValue(record.getValand())) {
+			logger.info("::hasVadrValues, J::");
+			return "J";
+		} else {
+			logger.info("::hasVadrValues, N::");
+			return "N";
+		}
+	}
+
+	
+	
 
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
@@ -489,5 +512,6 @@ public class VkundControllerUtil {
 		return list;
 
 	}
+
 
 }

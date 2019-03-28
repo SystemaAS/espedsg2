@@ -326,7 +326,23 @@
 											<td class="text14" title="postnr">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postnr"/>:
 											</td>
-											<td><input type="text" onBlur="setPoststed();" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'></td>
+											<td class="text14">
+												<input type="text" onBlur="setPoststed();" onKeyPress="return numberKey(event)" class="inputTextMediumBlue" name="postnr" id="postnr" size="5" maxlength="4" value='${model.record.postnr}'>
+												&nbsp;&nbsp;(utl.):&nbsp;&nbsp;<input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'>
+												<c:if test="${model.hasSypogeAndNO == 'J'}">
+								 					&nbsp;<img onMouseOver="showPop('sypoge_info');" onMouseOut="hidePop('sypoge_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
+									 				<div class="text11" style="position: relative;" align="left">
+									 				<span style="position:absolute; top:2px; width:250px;" id="sypoge_info" class="popupWithInputTextGrayBg text11"  >
+									           		<b>
+									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>
+									 	          	</b><br><br>
+														Ved norsk kunde kan ikke utenlandsk postnummer benyttes.
+													<br><br>
+													</span>
+													</div>
+												</c:if>			
+											</td>
+
 											<td class="text14" title="pnpbku">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.postboxnr"/>:
 							 					&nbsp;<img onMouseOver="showPop('pnpbku_info');" onMouseOut="hidePop('pnpbku_info');"style="vertical-align:bottom;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
@@ -347,6 +363,65 @@
 											</td>
 										</tr>
 										<tr>
+											<td colspan="2">
+											<div id="accordionVADR">
+												<table style="padding-left: 1.0em">
+													<tr>
+														<td class="text14" width="50%">
+															&nbsp;&nbsp;&nbsp;Vareadresse nr 1 
+														</td>
+														<td width="35%"></td>
+														<td width="15%" align="right" style="text-decoration: underline">
+															<c:choose>
+																<c:when test="${model.hasVareAddresseNr1 == 'J'}">
+																	Vis&nbsp;frem
+																</c:when>
+																<c:otherwise>
+																	Lag&nbsp;ny
+																</c:otherwise>
+															</c:choose>
+														</td>
+													</tr>
+												</table>			
+												<table>
+													<tr>
+														<td class="text14" title="knavn">
+															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>:
+														</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrna" id="vadrna" size="32" maxlength="30" value='${model.record.vadrna}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 1:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn1" id="vadrn1" size="32" maxlength="30" value='${model.record.vadrn1}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 2:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn2" id="vadrn2" size="32" maxlength="30" value='${model.record.vadrn2}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Adresse 3:</td>
+														<td><input type="text" class="inputTextMediumBlue" name="vadrn3" id="vadrn3" size="32" maxlength="30" value='${model.record.vadrn3}'></td>
+													</tr>
+													<tr>
+														<td class="text14">Land:</td>
+														<td>
+															<input type="text" class="inputTextMediumBlue" name="valand" id="valand" size="4" maxlength="2" value='${model.record.valand}'>
+															<a tabindex="-1" id="valandIdLink">
+																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
+															</a>
+														</td>
+													</tr>
+												</table>
+											</div>												
+											
+											
+											
+											
+											
+											
+											
+											</td>
+<!--  
 											<td class="text14" title="sypoge">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>:
 											</td>
@@ -365,7 +440,7 @@
 													</div>
 												</c:if>			
 											</td>
-											
+-->									
 
 											<td class="text14" title="spraak">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>:
@@ -518,6 +593,7 @@
 
 										<tr>
 											<td colspan="2">
+<!--  
 											<div id="accordionVADR">
 												<table style="padding-left: 1.0em">
 													<tr>
@@ -556,6 +632,7 @@
 													</tr>
 												</table>
 											</div>	
+-->
 											</td>
 											<td>&nbsp;</td>
 											<td valign="top">&nbsp;
@@ -978,7 +1055,7 @@
 							<tr> 
 								<td >&nbsp;</td>
 								<td align="right">
-									<input onClick="setBlockUI(this);" class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
+									<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.save"/>'/>
 								</td>
 							</tr>
 

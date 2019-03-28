@@ -92,6 +92,9 @@ public class MainMaintenanceCundfKundeController {
 			if (MainMaintenanceConstants.ACTION_CREATE.equals(action)) {  //New
 
 				theBetBetFix(appUser, recordToValidate, action);
+	
+				specialRules(recordToValidate);
+				
 				
 				// Validate
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
@@ -127,9 +130,13 @@ public class MainMaintenanceCundfKundeController {
 				}
 
 			} else if (MainMaintenanceConstants.ACTION_UPDATE.equals(action)) { //Update
+
 				adjustRecordToValidate(recordToValidate, kundeSessionParams);
 	
 				theBetBetFix(appUser, recordToValidate, action);
+	
+				specialRules(recordToValidate);
+				
 				
 				MaintMainCundfValidator validator = new MaintMainCundfValidator();
 				validator.validate(recordToValidate, bindingResult);
@@ -173,6 +180,9 @@ public class MainMaintenanceCundfKundeController {
 			}
 			model.put("orgNrMulti", vkundControllerUtil.orgNrMulti(recordToValidate.getSyrg(), appUser));
 			model.put("hasSypogeAndNO", vkundControllerUtil.hasSypogeAndNO(recordToValidate.getSypoge(), recordToValidate.getSyland() , appUser));
+			if(record != null) {
+				model.put("hasVareAddresseNr1", vkundControllerUtil.hasVadrValues(record));
+			}
 
 			
 			successView.addObject(MainMaintenanceConstants.DOMAIN_MODEL, model);
@@ -195,6 +205,8 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 	
+
+
 
 	/**
 	 * Check orgnr in ELMA. 
@@ -361,7 +373,7 @@ public class MainMaintenanceCundfKundeController {
 		if (   StringUtils.hasValue(dao.getVadrna()) 
 			|| StringUtils.hasValue(dao.getVadrn1()) 
 			|| StringUtils.hasValue(dao.getVadrn2()) 
-			|| StringUtils.hasValue(dao.getSonavn()) 
+			|| StringUtils.hasValue(dao.getVadrn3()) 
 			|| StringUtils.hasValue(dao.getValand())) {
 			logger.info("::isEmpty, false::");
 			return false;
@@ -458,6 +470,14 @@ public class MainMaintenanceCundfKundeController {
 		recordToValidate.setKundnr(kundeSessionParams.getKundnr());
 	}
 	
+	private void specialRules(JsonMaintMainCundfRecord recordToValidate) {
+		logger.info("::specialRules::");
+		if ("J".equals(recordToValidate.getSyfr06())) {
+			logger.info("Removing sfakt value");
+			recordToValidate.setSfakt("");
+		}
+		
+	}
 
 	private String existInElma(String orgnr) {
 		Entry entry = entryRequest.getElmaEntry(orgnr);

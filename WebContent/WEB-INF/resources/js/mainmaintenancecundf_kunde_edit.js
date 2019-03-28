@@ -302,10 +302,11 @@ jq(document).ready(function() {
 	
 });
 
-
-
-
 jq(function() {
+
+	jq("#formRecord").submit(function() {
+		setBlockUI();	
+	});
 	
 	jq( "#existOrgnrDialog" ).dialog({
 		  modal: true,
@@ -354,5 +355,16 @@ jq(function() {
     });      
     
     
-}); 
+});
+
+window.addEventListener('error', function(e) {
+	var error = e.error;
+	jq.unblockUI();
+	console.log("Event e", e);
+
+	alert('Uforutsett fel har intreffet. \n Error: '+error);
+
+});
+
+
   
