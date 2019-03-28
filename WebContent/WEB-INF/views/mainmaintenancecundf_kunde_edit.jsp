@@ -5,10 +5,7 @@
 <!-- ======================= header ===========================-->
 <jsp:include page="/WEB-INF/views/headerMainMaintenance.jsp" />
 <!-- =====================end header ==========================-->
-	<%-- specific jQuery functions for this JSP (must reside under the resource map since this has been
-		specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 <script type="text/javascript" src="resources/js/mainmaintenancecundf_kunde_edit.js?ver=${user.versionEspedsg}"></script>	
-	
 	
 <style type = "text/css">
 
@@ -413,34 +410,7 @@
 													</tr>
 												</table>
 											</div>												
-											
-											
-											
-											
-											
-											
-											
 											</td>
-<!--  
-											<td class="text14" title="sypoge">&nbsp;
-												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>:
-											</td>
-											<td>
-												<input type="text" class="inputTextMediumBlue" name="sypoge" id="sypoge" size="10" maxlength="9" value='${model.record.sypoge}'>
-												<c:if test="${model.hasSypogeAndNO == 'J'}">
-								 					&nbsp;<img onMouseOver="showPop('sypoge_info');" onMouseOut="hidePop('sypoge_info');"style="vertical-align:center;" width="12px" height="12px" src="resources/images/warning.png" border="0" alt="info">
-									 				<div class="text11" style="position: relative;" align="left">
-									 				<span style="position:absolute; top:2px; width:250px;" id="sypoge_info" class="popupWithInputTextGrayBg text11"  >
-									           		<b>
-									           			<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.sypoge"/>
-									 	          	</b><br><br>
-														Ved norsk kunde kan ikke utenlandsk postnummer benyttes.
-													<br><br>
-													</span>
-													</div>
-												</c:if>			
-											</td>
--->									
 
 											<td class="text14" title="spraak">&nbsp;
 												<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.landcode"/>:
@@ -592,48 +562,7 @@
 										</tr>
 
 										<tr>
-											<td colspan="2">
-<!--  
-											<div id="accordionVADR">
-												<table style="padding-left: 1.0em">
-													<tr>
-														<td class="text14">
-															&nbsp;&nbsp;&nbsp;Vareadresse nr 1
-														</td>
-													</tr>
-												</table>			
-												<table>
-													<tr>
-														<td class="text14" title="knavn">
-															<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.name"/>:
-														</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrna" id="vadrna" size="32" maxlength="30" value='${model.record.vadrna}'></td>
-													</tr>
-													<tr>
-														<td class="text14">Adresse 1:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn1" id="vadrn1" size="32" maxlength="30" value='${model.record.vadrn1}'></td>
-													</tr>
-													<tr>
-														<td class="text14">Adresse 2:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn2" id="vadrn2" size="32" maxlength="30" value='${model.record.vadrn2}'></td>
-													</tr>
-													<tr>
-														<td class="text14">Adresse 3:</td>
-														<td><input type="text" class="inputTextMediumBlue" name="vadrn3" id="vadrn3" size="32" maxlength="30" value='${model.record.vadrn3}'></td>
-													</tr>
-													<tr>
-														<td class="text14">Land:</td>
-														<td>
-															<input type="text" class="inputTextMediumBlue" name="valand" id="valand" size="4" maxlength="2" value='${model.record.valand}'>
-															<a tabindex="-1" id="valandIdLink">
-																<img style="cursor:pointer;vertical-align: middle;" src="resources/images/find.png" width="14px" height="14px" border="0" alt="Søk" >
-															</a>
-														</td>
-													</tr>
-												</table>
-											</div>	
--->
-											</td>
+											<td colspan="2"></td>
 											<td>&nbsp;</td>
 											<td valign="top">&nbsp;
 												<c:if test="${user.filand == 'NO'}">

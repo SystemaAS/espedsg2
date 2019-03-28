@@ -394,14 +394,6 @@ public class VkundControllerUtil {
 		return retval;
 	}
 	
-	
-	public Object hasVareAdresseNr1(JsonMaintMainCundfRecord record, SystemaWebUser appUser) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-	
 	private List<VadrDao> getVareAdressRows(String appUser, String firma, String kundnr, String vadrnr) {
 		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
 		jsonReader.set(new JsonDtoContainer<VadrDao>());
@@ -452,9 +444,6 @@ public class VkundControllerUtil {
 			return "N";
 		}
 	}
-
-	
-	
 
 	private FirkuDao getFirku(SystemaWebUser appUser) {
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_FIRKU_URL;
