@@ -661,7 +661,7 @@ public class TransportDispMainOrderController {
 			if(container!=null){
 				//Only with krav=2 in any of the lines will infect the method
 				for(JsonTransportDispWorkflowSpecificOrderFrisokveiRecord record: container.getAwblinelist()){
-					if("2".equals(record.getKrav())){
+					if("2".equals(record.getKrav()) && strMgr.isNull(record.getFssok())){
 						logger.info("OBS! Frisokvei is infected. There is a mandatory reuirement on one of the item lines...");
 						retval = true;
 						break;

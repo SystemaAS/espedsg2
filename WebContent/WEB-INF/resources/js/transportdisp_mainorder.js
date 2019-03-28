@@ -1105,181 +1105,22 @@
 	        .keyup(limit);
   });
 
-  //------------
-  //SUM fields
-  //------------
-  /*
-  function sumAntal(element) {
-	  //element.id;
-	  var sum = 0;
-	  jq( ".clazzAntMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvant_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hent').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-  }
- 
-  function sumVareslag(element){
-	  var id = element.id;
-	  var counter = id.replace("fvvt_","");
-	  var targetStr = "";
-	  //This feature is required only IF and only IF there is just a single line in the matrix. 
-	  //Otherwise, the end-user must enter the total vareslag him/herself
-	  if(counter=='1'){
-		  var fvpakn = jq('#fvpakn_' + counter).val();
-		  var fvvt = jq('#fvvt_' + counter).val();
-		  var fvant = jq('#fvant_' + counter).val();
-		  if(fvvt!='' && fvant!=''){
-			  targetStr = fvpakn + " " + fvvt;
-		  }
-		  if(!jq('#hestl4').prop('checked')){
-			  /*if(jq('#hevs1').val()==''){
-				  jq('#hevs1').val(targetStr);
-			  }
-		  }
-	  }
-  } 
   
-  function sumWeight(element) {
-	  //element.id;
-	  var sum = 0;
-	  jq( ".clazzWeightMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvkt_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  sum += Number(value);
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hevkt').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-  }
-  
-  function sumVolume(element) {
-	  //element.id;
-	  var MAX_VALUE = 9999.99;
-	  var sum = 0;
-	  jq( ".clazzVolMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvvol_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  var dblValue = Number(value);
-			  if(dblValue > MAX_VALUE){
-				  jq('#fvvol_' + counter).addClass( "isa_error" );
-			  }else{
-				  sum += Number(value);
-				  jq('#fvvol_' + counter).removeClass( "isa_error" );
-			  }
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#hem3').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-  }
-  function calculateVolume(element) {
-	  var id = element.id;
-	  if(jq(element).val()==''){
-		  var counter; var antal; var length; var width; var height; var result;
-		  if(id.indexOf("_") > -1){
-			  counter = id.replace("fvvol_","");
-			  //now get all parameters
-			  antal = jq('#fvant_'+counter).val();
-			  length = jq('#fvlen_'+counter).val();
-			  width= jq('#fvbrd_'+counter).val();
-			  height= jq('#fvhoy_'+counter).val();
-			  
-		  }else{
-			  antal = jq('#fvant').val();
-			  length = jq('#fvlen').val();
-			  width= jq('#fvbrd').val();
-			  height= jq('#fvhoy').val();
-		  }	
-		  result = Number(antal)*Number(length)*Number(width)*Number(height);
-		  //Now to the math
-		  if(result>0){
-			  result = result * 0.000001;
-			  jq(element).val(result.toLocaleString('de-DE', { useGrouping: false }));
-		  }
-	  }
-  }
-  function sumLm() {
-	  var MAX_VALUE = 99.99;
-	  var sum = 0;
-	  jq( ".clazzLmMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  var dblValue = Number(value);
-			  if(dblValue > MAX_VALUE){
-				  jq('#fvlm_' + counter).addClass( "isa_error" );
-			  }else{
-				  sum += Number(value);
-				  jq('#fvlm_' + counter).removeClass( "isa_error" );
-				  //AUTO FILL Lmla (if applicable)
-				  if(jq('#fvlm2_' + counter).val()==''){
-					  jq('#fvlm2_' + counter).val(jq('#fvlm_' + counter).val());
-				  }
-			  }
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helm').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  
-	  
-  }
-  function sumLmla() {
-	  var MAX_VALUE = 99.99;
-	  var sum = 0;
-	  jq( ".clazzLmlaMathAware" ).each(function( i ) {
-		  var id = this.id;
-		  var counter = i + 1;
-		  var value = jq('#fvlm2_' + counter).val();
-		  if(value!=''){
-			  value = value.replace(",",".");
-			  var dblValue = Number(value);
-			  if(dblValue > MAX_VALUE){
-				  jq('#fvlm2_' + counter).addClass( "isa_error" );
-			  }else{
-				  sum += Number(value);
-				  jq('#fvlm2_' + counter).removeClass( "isa_error" );
-			  }
-		  }
-	  });
-	  if(!jq('#hestl4').prop('checked')){
-		  jq('#helmla').val(sum.toLocaleString('de-DE', { useGrouping: false }));
-	  }
-	  
-  }
-  */
-  
-  function calculateVolume(element) {
-	  var id = element.id;
+  function calculateVolume() {
 	  if(jq("#fvvol").val() == ''){
 		  var counter; var antal; var length; var width; var height; var result;
 		  antal = jq('#fvant').val();
 		  length = jq('#fvlen').val();
 		  width= jq('#fvbrd').val();
 		  height= jq('#fvhoy').val();
-		  	
-		  result = Number(antal)*Number(length)*Number(width)*Number(height);
-		  //Now to the math
-		  if(result>0){
-			  result = result * 0.000001;
-			  jq("#fvvol").val(result.toLocaleString('de-DE', { useGrouping: false }));
+		  
+		  if(antal!='' && length!='' && width!='' && height!=''){
+			  result = Number(antal)*Number(length)*Number(width)*Number(height);
+			  //Now to the math
+			  if(result>0){
+				  result = result * 0.000001;
+				  jq("#fvvol").val(result.toLocaleString('de-DE', { useGrouping: false }));
+			  }
 		  }
 	  }
   }
@@ -1309,6 +1150,8 @@
   // CHECK functions
   //------------------
   function checkVolumeNewLine() {
+	  var retval = true;
+	  
 	  var MAX_VALUE = 9999.99;
 	  var sum = 0;
 	  var value = jq('#fvvol').val();
@@ -1317,15 +1160,99 @@
 		  var dblValue = Number(value);
 		  if(dblValue > MAX_VALUE){
 			  jq('#fvvol').addClass( "isa_error" );
+			  //
+			  retval = false;
 		  }else{
 			  sum += Number(value);
 			  jq('#fvvol').removeClass( "isa_error" );
 		  }
 	  }
+	  return retval;
   }
+  
+  
+  jq(function() { 
+	  	//fvant
+	  	jq('#fvant').blur(function() {
+	    	//fvlen, fvbrd, fvhoy
+	  		if( isValidNewLineDimensionFields() ){
+	  			calculateVolume();
+	  		}
+		});
+	  	//fvlen
+	    jq('#fvlen').blur(function() {
+	    	//fvlen, fvbrd, fvhoy
+    		if( isValidNewLineDimensionFields() ){
+    			calculateVolume();
+    			validateNewItemLine();
+    		}
+		});
+	    jq('#fvbrd').blur(function() {
+	    	//fvlen, fvbrd, fvhoy
+    		if( isValidNewLineDimensionFields() ){
+    			calculateVolume();
+    			validateNewItemLine();
+    		}
+		});
+	    jq('#fvhoy').blur(function() {
+	    	//fvlen, fvbrd, fvhoy
+    		if( isValidNewLineDimensionFields() ){
+    			calculateVolume();
+    			validateNewItemLine();
+    		}
+		});
+	    
+	    //fvvol	
+	    jq('#fvvol').focus(function() {	
+	    	if( isValidNewLineDimensionFields() ){
+	    		calculateVolume();
+	    	}
+	    });
+	    jq('#fvvol').blur(function() {	
+	    	checkVolumeNewLine();
+	    });
+	    
+	  	//fvlm
+	    jq('#fvlm').blur(function() {
+	    	if(jq('#fvlm').val()!=''){
+	    		checkLmNewLine();
+	    	}else{
+	    		//fvlen, fvbrd, fvhoy
+	    		if( isValidNewLineDimensionFields() ){
+	    			if(checkLmNewLine()){
+	    				validateNewItemLine();
+	    			}
+	    		}
+	    	}
+		});
+	    //fvlm2
+	    jq('#fvlm2').blur(function() {
+	    	if(jq('#fvlm2').val()!=''){
+	    		checkLm2NewLine();
+	    	}else{
+	    		//fvlen, fvbrd, fvhoy
+	    		if( isValidNewLineDimensionFields() ){
+	    			if(checkLm2NewLine()){
+	    				validateNewItemLine();
+	    			}
+	    		}
+	    	}
+		});
+  });
+  
+  function isValidNewLineDimensionFields(){
+	  var retval = false
+	  if(jq('#fvlen').val()!='' && jq('#fvbrd').val()!='' && jq('#fvhoy').val()!='' ){
+		  retval = true;
+	  }
+	  return retval;
+  }
+  
+  
   function checkLmNewLine() {
-	  jq('#fvlm').removeClass( "isa_error" );
+	  var retval = true;
 	  
+	  jq('#fvlm').removeClass( "isa_error" );
 	  var MAX_VALUE = 99.99;
 	  var sum = 0;
 	  var value = jq('#fvlm').val();
@@ -1334,6 +1261,8 @@
 		  var dblValue = Number(value);
 		  if(dblValue > MAX_VALUE){
 			  jq('#fvlm').addClass( "isa_error" );
+			  //
+			  retval = false;
 		  }else{
 			  sum += Number(value);
 			  jq('#fvlm').removeClass( "isa_error" );
@@ -1343,8 +1272,13 @@
 			  }
 		  }
 	  }
+	  return retval;
   }
+  
   function checkLm2NewLine() {
+	  var retval = true;
+	  
+	  jq('#fvlm2').removeClass( "isa_error" );
 	  var MAX_VALUE = 99.99;
 	  var sum = 0;
 	  var value = jq('#fvlm2').val();
@@ -1353,6 +1287,8 @@
 		  var dblValue = Number(value);
 		  if(dblValue > MAX_VALUE){
 			  jq('#fvlm2').addClass( "isa_error" );
+			  //
+			  retval = false;
 		  }else{
 			  sum += Number(value);
 			  jq('#fvlm2').removeClass( "isa_error" );
@@ -1363,7 +1299,9 @@
 			  jq('#fvlm2').val(jq('#fvlm').val());
 		  }
 	  }
+	  return retval;
   }
+  
   function checkHem3() {
 	  var MAX_VALUE = 9999.999;
 	  var sum = 0;
@@ -1719,136 +1657,35 @@
 	    
 	});
   
-
-  //--------------------------
-  //Add Item line (in Order)
-  //--------------------------
-  /*
-  function addItemLine() {
-	  //[1] Validate new line first
-	  //if(private_validateNewItemLine()){
-	  
-		  //[2] At this point we are ready to prepare and execute the add line implementation
-		  var newLineNr = Number(jq('#upperCurrentItemlineNr').val()) + 1;
-		  //Build the request string here (new line)
-		  //user=JOVO&avd=75&opd=11&fbn=1&lin=2&mode=A&fvant=11&fvvkt=15
-		  var requestString = "user=" + jq('#applicationUser').val() + "&avd=" + jq('#heavd').val() + 
-		  					 "&opd=" + jq('#heopd').val() + "&fbn=1" + "&lin=" +  newLineNr + "&mode=A" +
-		  					 "&fmmrk1=" + jq('#fmmrk1').val() + "&fvant=" +  jq('#fvant').val() + "&fvpakn=" +  jq('#fvpakn').val() +	
-		  					 "&fvvt=" + jq('#fvvt').val() + "&fvvkt=" +  jq('#fvvkt').val() + "&fvlen=" +  jq('#fvlen').val() +
-		  					 "&fvbrd=" + jq('#fvbrd').val() + "&fvhoy=" +  jq('#fvhoy').val() + "&fvvol=" +  jq('#fvvol').val() +
-		  					 "&fvlm=" + jq('#fvlm').val() + "&fvlm2=" +  jq('#fvlm2').val() + "&ffunnr=" +  jq('#ffunnr').val() +
-		  					 "&ffembg=" + jq('#ffembg').val() + jq('#ffindx').val() + "&ffantk=" +  jq('#ffantk').val() + "&ffante=" +  jq('#ffante').val() +
-		  					 "&ffenh=" + jq('#ffenh').val();
-		  
-		  
-		  var ant = jq('#fvant').val();
-		  var weight = jq('#fvvkt').val();
-		  var description = jq('#fvvt').val();
-		  //mandatory fields
-		  if ( ant!='' && weight!='' && description !='' ){
-			  //-------------------------
-			  //[1] update totals on GUI
-			  //-------------------------
-			  updateOrderLineTotalsBeforeAdd();
-			  //Prepare the total records in order to update the order record with these
-			  var orderLinesTotalString = "@hent_" + jq('#hent').val() + "@hevkt_" + jq('#hevkt').val() + "@hem3_" + jq('#hem3').val() + "@helm_" + jq('#helm').val() + 
-			  							  "@helmla_" + jq('#helmla').val() + "@hepoen_" + jq('#hepoen').val();
-										  //append the protect checkbox value (if applicable)
-										  if(jq('#hestl4').prop('checked')){ orderLinesTotalString += "@hestl4_" + jq('#hestl4').val();}
-										  else{ orderLinesTotalString += "@hestl4_"; }
+  //-------------------------
+  //NEW Item line validation
+  //-------------------------
+  function validateNewItemLine() {
+	  var retval = false;
+	  if ( jq('#fvant').val()!='' && jq('#fvvkt').val()!='' && jq('#fvvt').val()!='' &&  jq('#fvlen').val()!='' && jq('#fvbrd').val() && jq('#fvhoy').val()!=''){
+		  if(jq('#fvlm').val()=='' && jq('#fvlm2').val()=='' ){
 			  
-			  //-----------------------------
-			  //[2] now to the add line impl.
-			  //-----------------------------
-			  jq.ajax({
-			  	  type: 'GET',
-			  	  url: 'addNewOrderDetailLine_TransportDisp.do',
-			  	  data: { applicationUser : jq('#applicationUser').val(), 
-			  		  	  requestString : requestString }, 
-			  	  dataType: 'json',
-			  	  cache: false,
-			  	  contentType: 'application/json',
-			  	  success: function(data) {
-			  		var len = data.length;
-			  		for ( var i = 0; i < len; i++) {
-			  			//we send the redirect after a successfull creation in order to refresh...
-			  			//success code = 1
-			  			if(data[i].fvlinr=='1'){
-			  				//jq('#submit').click(); //doUpdate
-			  				//doFind on redirect...with extra order line total fields in order to update them there...
-			  				//Note: the reason for updating the totals in doFind is because no session object is possible to hand in an ajax call.
-			  				//For the above reason we then use the doFind method in order to get the whole record and update its total fields once there.
-			  				//There is no other way to do the update without breaking the Ajax design in Spring and good healthy session handling in the web infrastructure
-				  			window.location = "transportdisp_mainorder.do?hepro=" + jq('#tripNr').val() + "&heavd=" + jq('#heavd').val() + 
-				  								"&heopd=" + jq('#heopd').val() + "&oltotals=" + orderLinesTotalString;
-				  			
-			  			}else{
-			  				alert("[ERROR] when creating the order line...?");
-			  			}
-			  		}
-			  	  },
-			  	  error: function() {
-				  	    alert('Error loading ...');
-			    
-			  	  }
-			  });
+			  //Build the request string here (new line)
+			  //user=JOVO&avd=75&opd=19&fmmrk1=&fvant=1&fvpakn=&fvvt=TEST&fvvkt=1000&fvvol=&fvlm=&fvlm2=&fvlen=&fvbrd=&fvhoy=&ffunnr=1234&ffemb=&ffantk=1&ffante=1&ffenh=KGM
+			  var requestString = "user=" + jq('#applicationUser').val() + "&avd=" + jq('#heavd').val() + "&opdtyp=" + jq('#heot').val() +
+					 "&opd=" + jq('#heopd').val() + "&fmmrk1=" + jq('#fmmrk1').val() + "&fvant=" +  jq('#fvant').val() + "&fvpakn=" +  jq('#fvpakn').val() +	
+					 "&fvvt=" + jq('#fvvt').val() + "&fvvkt=" +  jq('#fvvkt').val() + "&fvlen=" +  jq('#fvlen').val() +
+					 "&fvbrd=" + jq('#fvbrd').val() + "&fvhoy=" +  jq('#fvhoy').val() + "&fvvol=" +  jq('#fvvol').val() +
+					 "&fvlm=" + jq('#fvlm').val() + "&fvlm2=" +  jq('#fvlm2').val() + "&ffunnr=" +  jq('#ffunnr').val() +
+					 "&ffembg=" + jq('#ffembg').val() + "&ffindx=" + jq('#ffindx').val() + "&ffantk=" +  jq('#ffantk').val() + "&ffante=" +  jq('#ffante').val() +
+					 "&ffenh=" + jq('#ffenh').val();
 			  
-		  }else{
-			  alert("[ERROR] missing mandatory fields for new line...");
-		  }
-	  //}
-	  
-  }
-  */
-  //----------------------------------
-  //Add Item line (in existent Order)
-  //----------------------------------
-  function validateItemLineExtensionLmLma(element) { 
-	  var id = element.id;
-	  var record = id.split('_');
-	  var lineNr = record[1];
-	  if(record[0].startsWith('fvlm')){
-		  if(jq('#fvlm_' + lineNr).val()==''){
-			  validateItemLine(lineNr);  
-		  }
-	  }
-	  if(record[0].startsWith('fvlm2')){
-		  if(jq('#fvlm2_' + lineNr).val()==''){
-			  validateItemLine(lineNr);  
-		  }
-	  }
-	  
-  }
-  function validateItemLine(lineNr) {
-	  var retval = true;
-	  var i = Number(lineNr);
-	  //Build the request string here (new line)
-	  //user=JOVO&avd=75&opd=19&fmmrk1=&fvant=1&fvpakn=&fvvt=TEST&fvvkt=1000&fvvol=&fvlm=&fvlm2=&fvlen=&fvbrd=&fvhoy=&ffunnr=1234&ffemb=&ffantk=1&ffante=1&ffenh=KGM
-	  var requestString = "user=" + jq('#applicationUser').val() + "&avd=" + jq('#heavd').val() + "&opdtyp=" + jq('#heot').val() +
-			 "&opd=" + jq('#heopd').val() + "&fmmrk1=" + jq('#fmmrk1_' + i).val() + "&fvant=" +  jq('#fvant_' + i).val() + "&fvpakn=" +  jq('#fvpakn_' + i).val() +	
-			 "&fvvt=" + jq('#fvvt_' + i).val() + "&fvvkt=" +  jq('#fvvkt_' + i).val() + "&fvlen=" +  jq('#fvlen_' + i).val() +
-			 "&fvbrd=" + jq('#fvbrd_' + i).val() + "&fvhoy=" +  jq('#fvhoy_' + i).val() + "&fvvol=" +  jq('#fvvol_' + i).val() +
-			 "&fvlm=" + jq('#fvlm_' + i).val() + "&fvlm2=" +  jq('#fvlm2_' + i).val() + "&ffunnr=" +  jq('#ffunnr_' + i).val() +
-			 "&ffembg=" + jq('#ffembg_' + i).val() + "&ffindx=" + jq('#ffindx_' + i).val() + "&ffantk=" +  jq('#ffantk_' + i).val() + "&ffante=" +  jq('#ffante_' + i).val() +
-			 "&ffenh=" + jq('#ffenh_' + i).val();
-	  //alert(requestString);
-	  //mandatory fields
-	  var ant = jq('#fvant_' + i).val(); var weight = jq('#fvvkt_' + i).val(); var description = jq('#fvvt_' + i).val();
-	  if ( ant!='' && weight!='' && description !='' ){
-		  //Only for existent orders.New orders are handled in the reflection mechanism at the controller
-		  var lineNrParam = lineNr;
-		  if(jq('#fvlinr_' + i).val()==''){ lineNrParam = null; }
-		  //if(jq('#heopd').val()!=''){
+			  
 			  jq.ajax({
 			  	  type: 'GET',
 			  	  url: 'validateCurrentOrderDetailLine_TransportDisp.do',
 			  	  data: { applicationUser : jq('#applicationUser').val(), 
 			  		  	  requestString : requestString,
-			  		  	  lineNr : lineNrParam },
+			  		  	  lineNr : null },
 			  	  dataType: 'json',
 			  	  cache: false,
 			  	  contentType: 'application/json',
+			  	  async: false, //only way to make synchronous calls. Otherwise will all ajax dependent functions will execute asynchronously
 			  	  success: function(data) {
 			  		var len = data.length;
 			  		for ( var j = 0; j < len; j++) {
@@ -1856,115 +1693,25 @@
 			  			//success code = 1
 			  			if(data[j].errMsg!=null && data[j].errMsg!=''){
 			  				//alert(data[i].errMsg);
-			  				var errorPrefix = "[ERROR] FATAL on line:" + lineNr;
+			  				var errorPrefix = "[ERROR] FATAL on new line:";
 				  			jq('#orderLineErrMsgPlaceHolder').text(errorPrefix + " -->" + data[j].errMsg);
-				  			//jq('#fvvkt_' + j).focus(); //always to weight column otherwise we lose control
-				  			retval = false;
+				  			//BRINGs bug removed: 20190328 after upgrade ...jq('#fvvkt').focus(); //always to weight column otherwise we lose control
 			  			}else{
 			  				jq('#orderLineErrMsgPlaceHolder').text("");
 			  				//here we take care of the parameters that will complete some values
-			  				if(jq('#fvlm_' + i).val()==''){ jq('#fvlm_' + i).val(data[j].fvlm); }
-			  				if(jq('#fvlm2_' + i).val()==''){ jq('#fvlm2_' + i).val(data[j].fvlm2); }
+			  				if(jq('#fvlm').val()==''){ jq('#fvlm').val(data[j].fvlm); }
+			  				if(jq('#fvlm2').val()==''){ jq('#fvlm2').val(data[j].fvlm2); }
 			  				//trigger local function to keep in sync the math
-			  				sumLm();sumLmla();
+			  				retval = true;
+			  						  				
 			  			}	
 			  		}
-			  		
 			  	  },
 			  	  error: function() {
-				  	    alert('Error loading ...');
-				  	    retval = false;
+				  	  alert('Error loading ...');
 			  	  }
 			  });
-		  //}
-	  }else{
-		  var fvlinrExists = jq('#fvlinr_' + i).val(); 
-		  if(fvlinrExists!='' || (ant!='' || weight!='' || description !='')  ){
-			  //alert("[Linje ERROR] Antall, Vareslag, Vekt er obligatoriske");
-			 
-			  jq.alert({
-				    title: 'Line ERROR',
-				    content: 'Antall, Vareslag, Vekt er obligatoriske',
-			  });
-			  /*
-			  if(ant==''){
-				  jq('#fvant_' + i).focus();  
-			  }else if (description==''){
-				  jq('#fvvt_' + i).focus();
-			  }else if (weight==''){
-				  jq('#fvvkt_' + i).focus();
-			  }
-			  */
-			  retval = false;
 		  }
-	  }
-	  return retval;
-	  
-  }
-  
-  //----------------------------------
-  //NEW Item line
-  //----------------------------------
-  function validateNewItemLine() {
-	  var retval = false;
-	  //Build the request string here (new line)
-	  //user=JOVO&avd=75&opd=19&fmmrk1=&fvant=1&fvpakn=&fvvt=TEST&fvvkt=1000&fvvol=&fvlm=&fvlm2=&fvlen=&fvbrd=&fvhoy=&ffunnr=1234&ffemb=&ffantk=1&ffante=1&ffenh=KGM
-	  var requestString = "user=" + jq('#applicationUser').val() + "&avd=" + jq('#heavd').val() + "&opdtyp=" + jq('#heot').val() +
-			 "&opd=" + jq('#heopd').val() + "&fmmrk1=" + jq('#fmmrk1').val() + "&fvant=" +  jq('#fvant').val() + "&fvpakn=" +  jq('#fvpakn').val() +	
-			 "&fvvt=" + jq('#fvvt').val() + "&fvvkt=" +  jq('#fvvkt').val() + "&fvlen=" +  jq('#fvlen').val() +
-			 "&fvbrd=" + jq('#fvbrd').val() + "&fvhoy=" +  jq('#fvhoy').val() + "&fvvol=" +  jq('#fvvol').val() +
-			 "&fvlm=" + jq('#fvlm').val() + "&fvlm2=" +  jq('#fvlm2').val() + "&ffunnr=" +  jq('#ffunnr').val() +
-			 "&ffembg=" + jq('#ffembg').val() + "&ffindx=" + jq('#ffindx').val() + "&ffantk=" +  jq('#ffantk').val() + "&ffante=" +  jq('#ffante').val() +
-			 "&ffenh=" + jq('#ffenh').val();
-	  //alert(requestString);
-	  //mandatory fields
-	  var ant = jq('#fvant').val(); var weight = jq('#fvvkt').val(); var description = jq('#fvvt').val();
-	  if ( ant!='' && weight!='' && description !='' ){
-		  jq.ajax({
-		  	  type: 'GET',
-		  	  url: 'validateCurrentOrderDetailLine_TransportDisp.do',
-		  	  data: { applicationUser : jq('#applicationUser').val(), 
-		  		  	  requestString : requestString,
-		  		  	  lineNr : null },
-		  	  dataType: 'json',
-		  	  cache: false,
-		  	  contentType: 'application/json',
-		  	  async: false, //only way to make synchronous calls. Otherwise will all ajax dependent functions will execute asynchronously
-		  	  success: function(data) {
-		  		var len = data.length;
-		  		for ( var j = 0; j < len; j++) {
-		  			//we send the redirect after a successfull creation in order to refresh...
-		  			//success code = 1
-		  			if(data[j].errMsg!=null && data[j].errMsg!=''){
-		  				//alert(data[i].errMsg);
-		  				var errorPrefix = "[ERROR] FATAL on new line:";
-			  			jq('#orderLineErrMsgPlaceHolder').text(errorPrefix + " -->" + data[j].errMsg);
-			  			//BRINGs bug removed: 20190328 after upgrade ...jq('#fvvkt').focus(); //always to weight column otherwise we lose control
-		  			}else{
-		  				jq('#orderLineErrMsgPlaceHolder').text("");
-		  				//here we take care of the parameters that will complete some values
-		  				if(jq('#fvlm').val()==''){ jq('#fvlm').val(data[j].fvlm); }
-		  				if(jq('#fvlm2').val()==''){ jq('#fvlm2').val(data[j].fvlm2); }
-		  				//trigger local function to keep in sync the math
-		  				retval = true;
-		  						  				
-		  			}	
-		  		}
-		  	  },
-		  	  error: function() {
-			  	  alert('Error loading ...');
-		  	  }
-		  });
-	  }else{
-		  alert("Missing mandatory fields for new line...");
-		  /*
-		  if(ant==''){
-			  jq('#fvant').focus();  
-		  }else if (weight==''){
-			  jq('#fvvkt').focus();
-		  }else if (description==''){
-			  jq('#fvvt').focus();
-		  }*/
 	  }
 	  return retval;
   }
