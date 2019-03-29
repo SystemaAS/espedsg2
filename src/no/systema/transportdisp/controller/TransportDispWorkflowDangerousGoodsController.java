@@ -1,23 +1,16 @@
 package no.systema.transportdisp.controller;
 
-import java.io.BufferedOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
 import java.util.*;
 
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -27,16 +20,13 @@ import org.springframework.context.annotation.Scope;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import org.springframework.web.bind.ServletRequestDataBinder;
 
 //application imports
 import no.systema.main.context.TdsAppContext;
 import no.systema.main.service.UrlCgiProxyService;
-import no.systema.main.service.UrlCgiProxyServiceImpl;
 import no.systema.main.validator.LoginValidator;
 import no.systema.main.util.AppConstants;
 import no.systema.main.util.DateTimeManager;
-import no.systema.main.util.EncodingTransformer;
 import no.systema.main.util.JsonDebugger;
 import no.systema.main.util.StringManager;
 import no.systema.main.model.SystemaWebUser;
@@ -50,12 +40,10 @@ import no.systema.transportdisp.mapper.url.request.UrlRequestParameterMapper;
 
 import no.systema.transportdisp.util.manager.CodeDropDownMgr;
 import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
-import no.systema.transportdisp.model.jsonjackson.workflow.order.frisokvei.JsonTransportDispWorkflowSpecificOrderFrisokveiContainer;
-import no.systema.transportdisp.model.jsonjackson.workflow.order.frisokvei.JsonTransportDispWorkflowSpecificOrderFrisokveiRecord;
-import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiGiltighetsListContainer;
-import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiGiltighetsListRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.dangerousgoods.JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.dangerousgoods.JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord;
 
-import no.systema.transportdisp.validator.TransportDispWorkflowSpecificFrisokveiValidator;
+import no.systema.transportdisp.validator.TransportDispWorkflowSpecificDangerousgoodsValidator;
 
 import no.systema.transportdisp.util.TransportDispConstants;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
@@ -101,7 +89,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @return
 	 */
 	@RequestMapping(value="transportdisp_workflow_dangerousgoods.do", method={RequestMethod.GET} )
-	public ModelAndView doInit(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+	public ModelAndView doInit(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		this.context = TdsAppContext.getApplicationContext();
 		Map model = new HashMap();
 		
@@ -139,7 +127,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @return
 	 */
 	@RequestMapping(value="transportdisp_workflow_dangerousgoods_edit.do",  method={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView doEditFrisokevei(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+	public ModelAndView doEditFrisokevei(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		this.context = TdsAppContext.getApplicationContext();
 		Map model = new HashMap();
 		
@@ -156,8 +144,9 @@ public class TransportDispWorkflowDangerousGoodsController {
 		//Params
 		StringBuffer params = new StringBuffer();
 		//params.append("&bnr=" + lineId);
-		if(avd!=null && !"".equals(avd)){ params.append("&avd=" + avd); }
-		if(opd!=null && !"".equals(opd)){ params.append("&opd=" + opd); }
+		if(strMgr.isNotNull(avd)){ params.append("&avd=" + avd); }
+		if(strMgr.isNotNull(opd)){ params.append("&opd=" + opd); }
+		if(strMgr.isNotNull(linNr)){ params.append("&linNr=" + linNr); }
 		
 		logger.info("ACTION: " + action);
 		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_dangerousgoods.do?action=doFind" + params.toString() );
@@ -173,7 +162,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 			
 			if(TransportDispConstants.ACTION_UPDATE.equals(action)){
 				logger.info("[INFO] doUpdate action ...");
-				//TODO TransportDispWorkflowSpecificFrisokveiValidator validator = new TransportDispWorkflowSpecificFrisokveiValidator();
+				TransportDispWorkflowSpecificDangerousgoodsValidator validator = new TransportDispWorkflowSpecificDangerousgoodsValidator();
 				
 				//Validate
 				//TODO validator.validate(recordToValidate, bindingResult);
@@ -182,7 +171,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 					logger.info("[ERROR Validation] Record does not validate)");
 			    	logger.info("[INFO Kod/sokText] " + recordToValidate.getFskode() + " " + recordToValidate.getFssok());
 			    	//fetch of lines
-					this.fetchItemLines(appUser, avd, opd, model, session);
+					this.fetchItemLines(appUser, avd, opd, linNr, model, session);
 					model.put("record", recordToValidate);
 			    	
 					errorView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
@@ -277,7 +266,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 				
 			}
 			//fetch of lines
-			this.fetchItemLines(appUser, avd, opd, model, session);
+			this.fetchItemLines(appUser, avd, opd, linNr, model, session);
 			
 	    	return successView;
 		}
@@ -292,8 +281,8 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @param opd
 	 * @return
 	 */
-	private JsonTransportDispWorkflowSpecificOrderFrisokveiContainer executeUpdateLine(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, String mode,String avd, String opd){
-		JsonTransportDispWorkflowSpecificOrderFrisokveiContainer retval = null;
+	private JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer executeUpdateLine(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord recordToValidate, String mode,String avd, String opd){
+		JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer retval = null;
 		
 		logger.info("[INFO] EXECUTE Update(D/A/U) line nr:" + recordToValidate.getFskode() + " start process... ");
 		String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_UPDATE_MAIN_ORDER_FRISOKVEI_URL;
@@ -331,7 +320,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 	
 		if(jsonPayload!=null){
-			JsonTransportDispWorkflowSpecificOrderFrisokveiContainer container = this.transportDispWorkflowSpecificOrderService.getOrderFrisokveiContainer(jsonPayload);
+			JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer container = this.transportDispWorkflowSpecificOrderService.getOrderDangerousgoodsContainer(jsonPayload);
 			retval = container;
 			if(container.getErrMsg()!=null){
 				logger.info(container.getErrMsg());
@@ -339,101 +328,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 		}
 		return retval;
 	}
-	/**
-	 * 
-	 * @param list
-	 * @param codeToMatch
-	 * @return
-	 */
-	private boolean isValidGiltihetsKode(Collection<JsonTransportDispFrisokveiGiltighetsListRecord> list, String codeToMatch){
-		boolean retval = false; 
-		if(list!=null && list.size()>0){
-			for(JsonTransportDispFrisokveiGiltighetsListRecord record : list){
-				if(codeToMatch.equals(record.getCofri())){
-					retval = true;
-				}
-			}
-		}else{
-			//if the list is empty and without errors then the user could save whatever text he/she wants.
-			retval = true;
-		}
-		return retval;
-	}
-	/**
-	 * 
-	 * @param appUser
-	 * @param recordToValidate
-	 * @param mode
-	 * @param avd
-	 * @param opd
-	 * @return
-	 */
-	private JsonTransportDispFrisokveiGiltighetsListContainer getGiltihetsList(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, String avd, String opd){
-		JsonTransportDispFrisokveiGiltighetsListContainer retval = null;
-		
-		logger.info("[INFO] getGiltihetsList:" + recordToValidate.getFskode() + " start process... ");
-		String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_FRISOKVEI_VALID_LIST_URL;
-    	//add URL-parameters
-		StringBuffer urlRequestParams = new StringBuffer();
-		urlRequestParams.append("user=" + appUser.getUser());
-		urlRequestParams.append("&avd=" + avd);
-		urlRequestParams.append("&opd=" + opd);
-		urlRequestParams.append("&kode=" + recordToValidate.getFskode());
-		
-		logger.info("URL: " + BASE_URL);
-		logger.info("PARAMS: " + urlRequestParams);
-		logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		//Debug -->
-		logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
-		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 	
-		if(jsonPayload!=null){
-			JsonTransportDispFrisokveiGiltighetsListContainer container = this.transportDispChildWindowService.getOrderFrisokveiContainerGiltighetsLista(jsonPayload);
-			retval = container;
-		}
-		return retval;
-	}
-	/**
-	 * 
-	 * @param appUser
-	 * @param recordToValidate
-	 * @param avd
-	 * @param opd
-	 * @return
-	 */
-	private JsonTransportDispFrisokveiGiltighetsListContainer validateCodeTowardsGiltihetsList(SystemaWebUser appUser, JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, String avd, String opd){
-		JsonTransportDispFrisokveiGiltighetsListContainer retval = null;
-		
-		logger.info("[INFO] Validating code towards giltighetsList:" + recordToValidate.getFskode() + " start process... ");
-		String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_FRISOKVEI_VALID_LIST_URL;
-    	//add URL-parameters
-		StringBuffer urlRequestParams = new StringBuffer();
-		urlRequestParams.append("user=" + appUser.getUser());
-		urlRequestParams.append("&avd=" + avd);
-		urlRequestParams.append("&opd=" + opd);
-		urlRequestParams.append("&kode=" + recordToValidate.getFskode());
-		urlRequestParams.append("&cofri=" + recordToValidate.getFssok());
-
-		
-		logger.info("URL: " + BASE_URL);
-		logger.info("PARAMS: " + urlRequestParams);
-		logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-		String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
-		//Debug -->
-		logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
-		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-	
-		if(jsonPayload!=null){
-			JsonTransportDispFrisokveiGiltighetsListContainer container = this.transportDispChildWindowService.getOrderFrisokveiContainerGiltighetsLista(jsonPayload);
-			retval = container;
-			if(container.getErrMsg()!=null){
-				logger.info(container.getErrMsg());
-			}
-		}
-		return retval;
-	}
-
 	
 	
 	/**
@@ -444,13 +339,14 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @param model
 	 * @param session
 	 */
-	private void fetchItemLines(SystemaWebUser appUser, String avd, String opd, Map model, HttpSession session ){
+	private void fetchItemLines(SystemaWebUser appUser, String avd, String opd, String linNr, Map model, HttpSession session ){
 		final String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_FETCH_MAIN_ORDER_FRISOKVEI_URL;
 		//add URL-parameters
 		StringBuffer urlRequestParams = new StringBuffer();
 		urlRequestParams.append("user=" + appUser.getUser());
 		urlRequestParams.append("&avd=" + avd); 
 		urlRequestParams.append("&opd=" + opd);
+		urlRequestParams.append("&todo=" + linNr);
 		
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
@@ -458,7 +354,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 		logger.debug(this.jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
 		logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 		if(jsonPayload!=null){
-			JsonTransportDispWorkflowSpecificOrderFrisokveiContainer container = this.transportDispWorkflowSpecificOrderService.getOrderFrisokveiContainer(jsonPayload);
+			JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer container = this.transportDispWorkflowSpecificOrderService.getOrderDangerousgoodsContainer(jsonPayload);
 			if(container!=null){
 				this.setDomainObjectsInView(model, container, session);
 			}	
@@ -474,7 +370,7 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @param parentTrip
 	 * @param session
 	 */
-	private void populateAspectsOnBackendError(SystemaWebUser appUser, String errorMessage, JsonTransportDispWorkflowSpecificOrderFrisokveiRecord recordToValidate, Map model, HttpSession session ){
+	private void populateAspectsOnBackendError(SystemaWebUser appUser, String errorMessage, JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord recordToValidate, Map model, HttpSession session ){
 		model.put(TransportDispConstants.ASPECT_ERROR_MESSAGE, "Kode/sokText:[" + recordToValidate.getFskode() + " " +  recordToValidate.getFssok() + "] " +  errorMessage);
 		
     	//return objects on validation errors
@@ -508,8 +404,8 @@ public class TransportDispWorkflowDangerousGoodsController {
 	 * @param container
 	 * @param session
 	 */
-	private void setDomainObjectsInView(Map model, JsonTransportDispWorkflowSpecificOrderFrisokveiContainer container, HttpSession session){
-		Collection<JsonTransportDispWorkflowSpecificOrderFrisokveiRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderFrisokveiRecord>();
+	private void setDomainObjectsInView(Map model, JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer container, HttpSession session){
+		Collection<JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderDangerousgoodsRecord>();
 		//could be two options
 		if(container.getAwblinelist()!=null){
 			list = container.getAwblinelist();

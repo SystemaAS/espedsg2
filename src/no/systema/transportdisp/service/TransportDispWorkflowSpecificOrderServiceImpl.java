@@ -13,6 +13,7 @@ import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpec
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificOrderLoggingMapper;
 import no.systema.transportdisp.mapper.jsonjackson.validationbackend.JsonTransportDispWorkflowSpecificOrderValidationBackendMapper;
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificOrderFrisokveiMapper;
+import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificOrderDangerousgoodsMapper;
 
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispCustomerDeliveryAddressContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderArchivedDocsContainer;
@@ -21,6 +22,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDi
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderFraktbrevPdfContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.JsonTransportDispWorkflowSpecificOrderMessageNoteContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiGiltighetsListContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.dangerousgoods.JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.frisokvei.JsonTransportDispWorkflowSpecificOrderFrisokveiContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.JsonTransportDispWorkflowSpecificOrderInvoiceContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.JsonTransportDispWorkflowSpecificOrderInvoiceReadyMarkContainer;
@@ -221,6 +223,21 @@ public class TransportDispWorkflowSpecificOrderServiceImpl implements TransportD
 		
 		return container;
 	}
-	
+	/**
+	 * 
+	 */
+	public JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer getOrderDangerousgoodsContainer(String utfPayload){
+		JsonTransportDispWorkflowSpecificOrderDangerousgoodsContainer container = null;
+		try{
+			JsonTransportDispWorkflowSpecificOrderDangerousgoodsMapper mapper = new JsonTransportDispWorkflowSpecificOrderDangerousgoodsMapper();
+			container = mapper.getContainer(utfPayload);
+		}catch(Exception e){
+			StringWriter errors = new StringWriter();
+			e.printStackTrace(new PrintWriter(errors));
+			logger.info(errors);
+		}
+		
+		return container;
+	}
 	
 }

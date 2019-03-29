@@ -2047,7 +2047,7 @@
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
-							 			<%-- ADR COVI on-going 
+							 			<%-- ADR COVI on-going JOVO är skyldig några service-pgm för att ändra Controller + Model i Spring ! 
 							 			<td align="center" class="tableHeaderField" style="font-size: 12px">
 							 				<input id="dangerousGoodsButton" tabindex=-1 class="inputFormSubmitStd11" style="background-color:darkgrey;color:yellow" type="button" value='ADR (flere)'>
 							 			</td>
