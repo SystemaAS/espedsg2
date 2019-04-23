@@ -2012,7 +2012,9 @@
 	  				lm = lm.replace(",",".");
 	  				//math
 	  				result = Number(antal)*Number(lm);
-	  				jq("#fvlm").val(result);
+	  				var rs = result.toString();
+	  				rs = rs.replace(".", ",");
+	  				jq("#fvlm").val(rs);
 	  			}
 	  			if(jq("#fvlm2").val() == ''){
 	  				var antal; 
@@ -2022,7 +2024,9 @@
 	  				lm = lm.replace(",",".");
 	  				//math
 	  				result = Number(antal)*Number(lm);
-	  				jq("#fvlm2").val(result);
+	  				var rs = result.toString();
+	  				rs = rs.replace(".", ",");
+	  				jq("#fvlm2").val(rs);
 	  			}
 
 	  		}
@@ -2864,6 +2868,11 @@
 	        			jq("#printStatus").removeClass( "isa_error" );
      	  				jq("#printStatus").addClass( "isa_success" );
      	  				jq("#printStatus").text("Print = OK (loggført i Hendelsesloggen)");
+     	  				//reload
+     	  				//var avd = jq("#wsavd").val();
+    				  	//var opd = jq("#wsopd").val();
+    				  	//setTimeout(reloadCallerParentOrder('',avd,opd), 5000);
+    				  	
 	        		}else{
 	        			jq("#printStatus").removeClass( "isa_success" );
      	  				jq("#printStatus").addClass( "isa_error" );

@@ -421,7 +421,9 @@
   				 lm = lm.replace(",",".");
   				 //math
   				 result = Number(antal)*Number(lm);
-  				 opener.jq('#fvlm').val(result); 
+  				 var rs = result.toString();
+  				 rs = rs.replace(".", ",");
+  				 opener.jq('#fvlm').val(rs); 
 			  }
 			  if(opener.jq('#fvlm2').val()==''){
 				  var antal; 
@@ -431,7 +433,9 @@
   				  lm = lm.replace(",",".");
   				  //math
   				  result = Number(antal)*Number(lm);
-				  opener.jq('#fvlm2').val(result); 
+  				  var rs = result.toString();
+  				  rs = rs.replace(".", ",");
+				  opener.jq('#fvlm2').val(rs); 
 			  }
 			 
 		  }
