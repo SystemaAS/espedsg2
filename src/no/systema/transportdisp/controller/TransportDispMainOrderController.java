@@ -1833,19 +1833,21 @@ public class TransportDispMainOrderController {
 	    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
 	    	if(jsonPayload!=null){
 	    		JsonTransportDispWorkflowSpecificOrderMessageNoteContainer messageNoteContainer = this.transportDispWorkflowSpecificOrderService.getMessageNoteContainer(jsonPayload);
-	    		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> tmpList = messageNoteContainer.getFreetextlistA();
-	    		if(type!=null && !"".equals(type)){
-	    			outputList = tmpList;
-	    		}else{
-	    			for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: tmpList){
-	    				if(record.getFrtkod()==null || "".equals(record.getFrtkod())){ //since we must filter in this specific type (blank)
-		    				if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
-		    					outputList.add(record);		    					
-		    				}
-		    			}	
+	    		if(messageNoteContainer!=null){
+		    		Collection<JsonTransportDispWorkflowSpecificOrderMessageNoteRecord> tmpList = messageNoteContainer.getFreetextlistA();
+		    		if(type!=null && !"".equals(type)){
+		    			outputList = tmpList;
+		    		}else{
+		    			for(JsonTransportDispWorkflowSpecificOrderMessageNoteRecord record: tmpList){
+		    				if(record.getFrtkod()==null || "".equals(record.getFrtkod())){ //since we must filter in this specific type (blank)
+			    				if(record.getFrtli()!=null || !"".equals(record.getFrtli())){
+			    					outputList.add(record);		    					
+			    				}
+			    			}	
+			    		}
 		    		}
 	    		}
-			logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
+	    		logger.info(Calendar.getInstance().getTime() + " CONTROLLER end - timestamp");
 		}
 	    
 	    	return outputList;
