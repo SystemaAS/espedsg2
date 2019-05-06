@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -23,7 +22,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodtlikContainer;
@@ -48,8 +46,6 @@ import no.systema.jservices.common.dao.Svtx10fDao;
 import no.systema.jservices.common.dao.TariDao;
 import no.systema.jservices.common.dao.VadrDao;
 import no.systema.jservices.common.dao.ValufDao;
-import no.systema.jservices.common.elma.entities.Entry;
-import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.values.FasteKoder;
@@ -1270,7 +1266,7 @@ public class MainMaintenanceCundfVkundController {
 
 	private JsonMaintMainCundfRecord fetchRecord(String applicationUser, String kundnr, String firma) {
 		logger.info("::fetchRecord::kundnr="+kundnr);
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
+//		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		JsonMaintMainCundfRecord record = new JsonMaintMainCundfRecord(), fmotRecord = new JsonMaintMainCundfRecord();
 		Collection<JsonMaintMainCundfRecord> recordList = fetchList(applicationUser, kundnr, firma);
 		if (recordList.size() > 1) {
@@ -1285,8 +1281,8 @@ public class MainMaintenanceCundfVkundController {
 				fmotRecord= fetchRecord(applicationUser,record.getFmot(),firma);
 				record.setFmotname(fmotRecord.getKnavn());
 			}
-			record.setElma(existInElma(record.getSyrg()));	
-			JsonMaintMainCundcRecord cundc = util.getInvoiceEmailRecord(applicationUser,firma, kundnr );
+			record.setElma(vkundControllerUtil.existInElma(record.getSyrg()));	
+			JsonMaintMainCundcRecord cundc = vkundControllerUtil.getInvoiceEmailRecord(applicationUser,firma, kundnr );
 			if (cundc != null) {
 				record.setEpost("J");
 				if (!no.systema.jservices.common.util.StringUtils.hasValue(cundc.getCemail())) {
@@ -1419,21 +1415,6 @@ public class MainMaintenanceCundfVkundController {
 		return retval;
 	}
 
-	private String existInElma(String orgnr) {
-		Entry entry = entryRequest.getElmaEntry(orgnr);
-		if (entry != null) {
-			return "J";
-		} else {
-			return "";
-		}
-	}		
-	
-	@Autowired
-	EntryRequest entryRequest;		
-	
-	@Autowired
-	RestTemplate restTemplate;
-	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")
 	private UrlCgiProxyService urlCgiProxyService;

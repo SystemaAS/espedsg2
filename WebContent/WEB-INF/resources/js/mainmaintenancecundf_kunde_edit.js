@@ -22,9 +22,8 @@
 		var adr3 = jq('#adr3').val();
 		var postnr = jq('#postnr').val();
 		var syland = jq('#syland').val();
-		var spraak = jq('#spraak').val();
 		
-		if (orgnr != ""&& (knavn == '' && adr1 == '' && adr3 == ''&& postnr == '' && syland == '' && spraak == '')) {
+		if (orgnr != "" && (knavn == '' && adr1 == '' && adr3 == ''&& postnr == '' && syland == '')) {
 			jq.getJSON('getSpecificRecord_enhet_brreg.do', {
 				applicationUser : jq('#applicationUser').val(),
 				orgnr : orgnr,
@@ -35,8 +34,6 @@
 				
 				jq("#knavn").val(data.navn);
 				jq("#knavn").change();
-				jq("#spraak").val("N");
-				jq("#spraak").change();
 
 				if (data.postadresse !== undefined && data.forretningsadresse !== undefined ) { 
 					//left

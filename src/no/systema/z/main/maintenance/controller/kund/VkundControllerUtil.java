@@ -9,6 +9,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
@@ -19,12 +20,13 @@ import no.systema.jservices.common.brreg.proxy.entities.Enhet;
 import no.systema.jservices.common.brreg.proxy.entities.IEnhet;
 import no.systema.jservices.common.dao.FirkuDao;
 import no.systema.jservices.common.dao.VadrDao;
+import no.systema.jservices.common.elma.entities.Entry;
+import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.jservices.common.json.JsonDtoContainer;
 import no.systema.jservices.common.json.JsonReader;
 import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
-import no.systema.z.main.maintenance.mapper.url.request.UrlRequestParameterMapper;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcContainer;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundcRecord;
 import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCundfRecord;
@@ -43,31 +45,24 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
  */
 @Service
 public class VkundControllerUtil {
+
 	private static final Logger logger = Logger.getLogger(VkundControllerUtil.class.getName());
-	private UrlCgiProxyService cgiProxyService = null;
-	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
 
 	@Bean 
 	public RestTemplate restTemplate() {
 		return new RestTemplate();
 	}
 	
-	
 	@Bean
 	public MaintMainCundcService maintMainCundcService() {
 		return new MaintMainCundcServiceImpl();
 	}
+
+	@Autowired
+	EntryRequest entryRequest;
 	
-	
-	/**
-	 * Inject UrlCgiProxyService for http calls.
-	 * 
-	 * @param cgiProxyService
-	 */
-	public VkundControllerUtil(UrlCgiProxyService cgiProxyService) {
-		this.cgiProxyService = cgiProxyService;
-	}
-	
+	@Autowired
+	UrlCgiProxyService urlCgiProxyService;
 	
 	/**
 	 * For UI. Trimming knavn to fit in tab
@@ -128,7 +123,7 @@ public class VkundControllerUtil {
 
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
-		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 //		logger.info("jsonPayload="+jsonPayload);
 
 		JsonDtoContainer<IEnhet> container =  (JsonDtoContainer<IEnhet> )jsonReader.get(jsonPayload);
@@ -378,7 +373,7 @@ public class VkundControllerUtil {
 
 		logger.info("Full url: " + BASE_URL + urlRequestParams.toString());
 		
-		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		logger.info("jsonPayload="+jsonPayload);
 		
 		if (jsonPayload != null) {
@@ -393,6 +388,27 @@ public class VkundControllerUtil {
 		
 		return retval;
 	}
+	
+	/**
+	 * Check i orgnr exist in ELMA-register.
+	 * 
+	 * @param orgnr
+	 * @return "J" if exist, else "N";
+	 */
+	public String existInElma(String orgnr) {
+		//Sanity check
+		if(!StringUtils.hasValue(orgnr)) {
+			return "N" ;
+		}
+
+		Entry entry = entryRequest.getElmaEntry(orgnr);
+		if (entry != null) {
+			return "J";
+		} else {
+			return "N";
+		}
+	}	
+	
 	
 	private List<VadrDao> getVareAdressRows(String appUser, String firma, String kundnr, String vadrnr) {
 		JsonReader<JsonDtoContainer<VadrDao>> jsonReader = new JsonReader<JsonDtoContainer<VadrDao>>();
@@ -409,7 +425,7 @@ public class VkundControllerUtil {
 
 //		ResponseEntity<String> jsonPayloadResponse = restTemplate().exchange(BASE_URL + urlRequestParams.toString(), HttpMethod.GET, null, String.class);
 //		String jsonPayload = jsonPayloadResponse.getBody();
-		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		logger.info("jsonPayload=" + jsonPayload);
 		
 		List<VadrDao> list = new ArrayList<VadrDao>();
@@ -486,7 +502,7 @@ public class VkundControllerUtil {
 
 		logger.info("URL: " + BASE_URL);
 		logger.info("PARAMS: " + urlRequestParams.toString());
-		String jsonPayload = cgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
+		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 //		logger.info("jsonPayload=" + jsonPayload);
 		
 		if (jsonPayload != null) {
@@ -501,6 +517,6 @@ public class VkundControllerUtil {
 		return list;
 
 	}
-
+	
 
 }
