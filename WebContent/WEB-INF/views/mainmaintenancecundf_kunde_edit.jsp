@@ -393,8 +393,7 @@
 												
 												&nbsp;<spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language"/>:
 												&nbsp;<select name="spraak" id="spraak" > 
-			 					  					<option value="">-<spring:message code="systema.choose"/>-</option>
-			 					  					<option value="N"<c:if test="${model.record.spraak == 'N'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.norway"/></option>
+			 					  					<option value="N"<c:if test="${model.record.spraak == ''}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.norway"/></option>
 								  					<option value="E"<c:if test="${ model.record.spraak == 'E'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.england"/></option>
 								  					<option value="T"<c:if test="${ model.record.spraak == 'T'}"> selected </c:if> ><spring:message code="systema.main.maintenance.mainmaintenancecundf.customer.language.germany"/></option>
 								  				</select>

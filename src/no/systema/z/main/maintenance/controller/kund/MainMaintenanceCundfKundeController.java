@@ -22,12 +22,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
 import no.systema.jservices.common.dao.VadrDao;
-import no.systema.jservices.common.elma.entities.Entry;
-import no.systema.jservices.common.elma.proxy.EntryRequest;
 import no.systema.jservices.common.util.StringUtils;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
@@ -205,9 +202,6 @@ public class MainMaintenanceCundfKundeController {
 
 	}
 	
-
-
-
 	/**
 	 * Check orgnr in ELMA. 
 	 * 
@@ -218,8 +212,7 @@ public class MainMaintenanceCundfKundeController {
 	@RequestMapping(value = "existInElma.do", method = { RequestMethod.GET, RequestMethod.POST })
 	@ResponseBody
 	public String existInElma(@RequestParam String applicationUser, @RequestParam String syrg) {
-		
-		return existInElma(syrg); 
+		return vkundControllerUtil.existInElma(syrg); 
 
 	}	
 
@@ -251,7 +244,7 @@ public class MainMaintenanceCundfKundeController {
 						String leftPaddedPostnr = org.apache.commons.lang3.StringUtils.leftPad(record.getPostnr(), 4, '0');
 						record.setPostnr(leftPaddedPostnr);
 					}
-					record.setElma(existInElma(record.getSyrg()));
+					record.setElma(vkundControllerUtil.existInElma(record.getSyrg()));
 					JsonMaintMainCundcRecord cundc = vkundControllerUtil.getInvoiceEmailRecord(applicationUser,firma, kundnr );
 					if (cundc != null) {
 						record.setEpost("J");
@@ -285,7 +278,6 @@ public class MainMaintenanceCundfKundeController {
 
 	private JsonMaintMainCundfRecord updateRecord(SystemaWebUser appUser, JsonMaintMainCundfRecord record, String mode, StringBuffer errMsg) {
 		logger.info("::updateRecord::");
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		JsonMaintMainCundfRecord savedRecord = null;
 		String BASE_URL = MaintenanceMainUrlDataStore.MAINTENANCE_MAIN_BASE_SYCUNDFR_DML_UPDATE_URL;
 		String urlRequestParamsKeys = "user=" + appUser.getUser() + "&mode=" + mode + "&lang=" +appUser.getUsrLang();
@@ -328,8 +320,7 @@ public class MainMaintenanceCundfKundeController {
 	private void manageVareAdresseNr1(SystemaWebUser appUser, JsonMaintMainCundfRecord record,  StringBuffer errMsg, JsonMaintMainCundfRecord savedRecord) {
 		logger.info("::manageVareAdresseNr1::");
 		int retval;
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
-		VadrDao existVadrDao = util.getVareAdressRecordNr1(appUser.getUser(),savedRecord.getFirma(), savedRecord.getKundnr() );
+		VadrDao existVadrDao = vkundControllerUtil.getVareAdressRecordNr1(appUser.getUser(),savedRecord.getFirma(), savedRecord.getKundnr() );
 
 		VadrDao dao = new VadrDao();
 		dao.setVadrnr(1);
@@ -345,7 +336,7 @@ public class MainMaintenanceCundfKundeController {
 			if (isEmpty(dao)) {
 				//do nothing
 			} else {
-				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
+				retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_ADD, errMsg);
 				if (retval == MainMaintenanceConstants.ERROR_CODE) {
 					logger.error("Could not create VADR , error="+errMsg);
 				}
@@ -354,13 +345,13 @@ public class MainMaintenanceCundfKundeController {
 
 		} else  {
 			if (isEmpty(dao)) {
-				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
+				retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_DELETE, errMsg);
 				if (retval == MainMaintenanceConstants.ERROR_CODE) {
 					logger.error("Could not delete VADR for , error="+errMsg);
 				}
 				logger.info("DELETED, dao="+ReflectionToStringBuilder.toString(dao));
 			} else {
-				retval = util.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
+				retval = vkundControllerUtil.saveVareAdressRecordNr1(appUser,dao, MainMaintenanceConstants.MODE_UPDATE, errMsg);
 				if (retval == MainMaintenanceConstants.ERROR_CODE) {
 					logger.error("Could not update VADR for , error="+errMsg);
 				}
@@ -479,25 +470,9 @@ public class MainMaintenanceCundfKundeController {
 		
 	}
 
-	private String existInElma(String orgnr) {
-		Entry entry = entryRequest.getElmaEntry(orgnr);
-		if (entry != null) {
-			return "J";
-		} else {
-			return "N";
-		}
-	}	
-
 	private void populateDropDowns(Map model, String user) {
 		codeDropDownMgr.populateBetBetDropDown(this.urlCgiProxyService,  model, user);
 	}	
-	
-	
-	@Autowired
-	EntryRequest entryRequest;	
-	
-	@Autowired
-	RestTemplate restTemplate;
 	
 	//Wired - SERVICES
 	@Qualifier ("urlCgiProxyService")

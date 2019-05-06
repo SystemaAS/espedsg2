@@ -54,6 +54,9 @@ public class MaintMaintenanceVkundAjaxHandlerController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private static final Logger logger = Logger.getLogger(MaintMaintenanceVkundAjaxHandlerController.class.getName());
 
+	@Autowired
+	VkundControllerUtil vkundControllerUtil;
+	
 	@RequestMapping(value = "getSpecificRecord_sviw.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody Collection<SviwDao> getRecordSviw(@RequestParam String applicationUser, @RequestParam String sviw_knnr, String sviw_knso) {
 		final String METHOD = "[DEBUG] getSpecificRecord_sviw ";
@@ -105,11 +108,10 @@ public class MaintMaintenanceVkundAjaxHandlerController {
 	
 	@RequestMapping(value = "getSpecificRecord_enhet_brreg.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public @ResponseBody IEnhet getRecordHovedEnhetBrreg(@RequestParam String applicationUser, @RequestParam String orgnr) {
-		VkundControllerUtil util = new VkundControllerUtil(urlCgiProxyService);
 		final String METHOD = "[DEBUG] getSpecificRecord_enhet_brreg ";
 		logger.info(METHOD + " applicationUser=" + applicationUser + ", orgnr=" + orgnr );
 
-		List<IEnhet> list =  util.fetchSpecificEnhet(applicationUser, orgnr);
+		List<IEnhet> list =  vkundControllerUtil.fetchSpecificEnhet(applicationUser, orgnr);
 		
 		if (list != null && !list.isEmpty()) {
 			IEnhet i_enhet =  list.get(0);
