@@ -173,7 +173,7 @@
   	
   	jq('#trackAndTraceButton').click(function() {
   		//alert('A');
-  		window.open('transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val(), 'ttraceWin','top=120px,left=100px,height=800px,width=1200px,scrollbars=no,status=no,location=no');
+  		window.open('transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd='+ jq('#heavd').val() + '&opd=' + jq('#heopd').val(), 'ttraceWin','top=120px,left=100px,height=900px,width=1200px,scrollbars=no,status=no,location=no');
   	});
   	
   	jq('#frisokveiButton').click(function() {

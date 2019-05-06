@@ -71,6 +71,35 @@ public class JsonTransportDispWorkflowSpecificOrderLoggingRecord {
 	public void setCreateTime(String value) {  this.createTime = value; }
 	public String getCreateTime() {return this.createTime;}
 	
+	private String tripNo = null;
+	public void setTripNo(String value) {  this.tripNo = value; }
+	public String getTripNo() {return this.tripNo;}
+	
+	private String locCode = null;
+	public void setLocCode(String value) {  this.locCode = value; }
+	public String getLocCode() {return this.locCode;}
+	
+	private String locText = null;
+	public void setLocText(String value) {  this.locText = value; }
+	public String getLocText() {return this.locText;}
+	
+	private String latitude = null;
+	public void setLatitude(String value) {  this.latitude = value; }
+	public String getLatitude() {return this.latitude;}
+	
+	private String longitude = null;
+	public void setLongitude(String value) {  this.longitude = value; }
+	public String getLongitude() {return this.longitude;}
+	
+	private String eventURL = null;
+	public void setEventURL(String value) {  this.eventURL = value; }
+	public String getEventURL() {return this.eventURL;}
+	
+	private String manualCode = null;
+	public void setManualCode(String value) {  this.manualCode = value; }
+	public String getManualCode() {return this.manualCode;}
+	
+	
 	/**
 	 * Used for java reflection in other classes
 	 * @return

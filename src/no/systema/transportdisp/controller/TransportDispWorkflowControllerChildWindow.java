@@ -278,7 +278,7 @@ public class TransportDispWorkflowControllerChildWindow {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="transportdisp_workflow_childwindow_trackandtrace.do", params="action=doInit",  method={RequestMethod.GET} )
+	@RequestMapping(value="transportdisp_workflow_childwindow_trackandtrace.do", params="action=doInit",  method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doInitTrackAndTrace(HttpSession session, HttpServletRequest request){
 		this.context = TdsAppContext.getApplicationContext();
 		logger.info("Inside: doInitTrackAndTrace");
@@ -287,6 +287,9 @@ public class TransportDispWorkflowControllerChildWindow {
 		
 		String avd = request.getParameter("avd");
 		String opd = request.getParameter("opd");
+		model.put("avd", avd);
+		model.put("opd", opd);
+		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
 		//check user (should be in session already)
 		if(appUser==null){
