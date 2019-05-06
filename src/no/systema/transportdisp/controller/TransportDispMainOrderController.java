@@ -836,7 +836,7 @@ public class TransportDispMainOrderController {
 				//this line is new!
 				lineNr = String.valueOf(i);
 			}
-			if(this.validMandatoryFieldsFraktbrev(fraktbrevRecord)){
+			if(this.validMandatoryFieldsFraktbrev(recordToValidate, fraktbrevRecord)){
 				//Start with the update (mode=(A)dd,(D)elete,(U)pdate)
 				String BASE_URL_UPDATE = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_UPDATE_LINE_MAIN_ORDER_FRAKTBREV_URL;
 				//------------------
@@ -917,7 +917,7 @@ public class TransportDispMainOrderController {
 					lineNr = "1";
 				}
 			}
-			if(this.validMandatoryFieldsFraktbrev(fraktbrevRecord)){
+			if(this.validMandatoryFieldsFraktbrev(recordToValidate, fraktbrevRecord)){
 				//Start with the update (mode=(A)dd,(D)elete,(U)pdate)
 				String BASE_URL_UPDATE = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_WORKFLOW_UPDATE_LINE_MAIN_ORDER_FRAKTBREV_URL;
 				//------------------
@@ -1034,19 +1034,24 @@ public class TransportDispMainOrderController {
 	 * @param counter
 	 * @return
 	 */
-	private boolean validMandatoryFieldsFraktbrev(JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord){
+	private boolean validMandatoryFieldsFraktbrev(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, JsonTransportDispWorkflowSpecificOrderFraktbrevRecord fraktbrevRecord){
 		boolean retval = false;
 		String ant = fraktbrevRecord.getFvant();
 		String vkt = fraktbrevRecord.getFvvkt();
 		String desc = fraktbrevRecord.getFvvt();
 		
-		if( (ant!=null && !"".equals(ant))  && 
-			(vkt!=null && !"".equals(vkt))  && 
-			(desc!=null && !"".equals(desc))){
-			
+		if(strMgr.isNull(recordToValidate.getLineValidationOffset())){
+			if( (ant!=null && !"".equals(ant))  && 
+				(vkt!=null && !"".equals(vkt))  && 
+				(desc!=null && !"".equals(desc))){
+				
+				retval = true;
+			}
+		}else{
+			//the offset indicates for "go". A line with this offset should be able to be saved... (Bring requirement: 06.Maj.2019)
 			retval = true;
-			
 		}
+		
 		return retval;
 	}
 	/**
@@ -1385,20 +1390,7 @@ public class TransportDispMainOrderController {
 	    	}
 	    	return map;
 	}
-	/** fill in order lines- fraktbrevs linjer for validation
-	 * 
-	 * @param recordToValidate
-	 * @param request
-	 */
-	private void populateOrderLineForValidation(JsonTransportDispWorkflowSpecificOrderRecord recordToValidate, HttpServletRequest request){
-		JsonTransportDispWorkflowSpecificOrderFraktbrevRecord line = new JsonTransportDispWorkflowSpecificOrderFraktbrevRecord();
-		line.setFvlinr(request.getParameter("updateLinNr"));
-		line.setFvant(request.getParameter("fvant"));
-		line.setFvvt(request.getParameter("fvvt"));
-		line.setFvvkt(request.getParameter("fvvkt"));
-		recordToValidate.setFraktbrevRecord(line);
-		
-	}
+	
 	/**
 	 * Adjusts some fields to comply with back-end requirements (ISO-dates, etc)
 	 * @param recordToValidate

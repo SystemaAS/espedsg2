@@ -19,6 +19,11 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTra
  */
 public class JsonTransportDispWorkflowSpecificOrderRecord extends JsonAbstractGrandFatherRecord{
 
+	private String lineValidationOffset = null;
+	public void setLineValidationOffset(String value) {  this.lineValidationOffset = value; }
+	public String getLineValidationOffset() { return this.lineValidationOffset;}
+	
+	
 	//Kingsr NO ville ha en Lagre och LUKK knapp men vi skapar en flagga istället.
 	private String savecloseFlag = null;
 	public void setSavecloseFlag(String value) {  this.savecloseFlag = value; }

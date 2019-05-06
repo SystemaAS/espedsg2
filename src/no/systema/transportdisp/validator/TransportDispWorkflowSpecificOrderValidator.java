@@ -227,9 +227,14 @@ public class TransportDispWorkflowSpecificOrderValidator implements Validator {
 				
 				//Order line (only on update)
 				if(strMgr.isNotNull(record.getHeopd())){
-					if(!this.isValidOrderLine(record.getFraktbrevRecord())){
-						//dummy hent since we lack item lines variables.
-						errors.rejectValue("hent", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
+					//There could be item lines that have ONLY a description. These are not subjected to front-end validation.
+					//Bring has these requirement (06.May.2019). It is used as an extra description of line nr 1. Any back-end validation should be still active (as a last resort)
+					if(strMgr.isNull(record.getLineValidationOffset())){
+						logger.info("INFO! LineValidationOffset:" + record.getLineValidationOffset());
+						if(!this.isValidOrderLine(record.getFraktbrevRecord())){
+							//dummy hent since we lack item lines variables.
+							errors.rejectValue("hent", "systema.transportdisp.orders.form.error.rule.mandatory.fields.orderlines.invalid");
+						}
 					}
 				}
 				

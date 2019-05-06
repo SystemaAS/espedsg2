@@ -2033,7 +2033,26 @@
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fmmrk1">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.marks"/></span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvant/hent(Tot)">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.antal"/>&nbsp;</span></td>
 							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvpakn">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.forpak"/></span></td>
-							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvvt">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.goodsDesc"/></span></td>
+							 			<td align="center" valign="bottom" class="tableHeaderField"><span title="fvvt">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.goodsDesc"/></span>
+							 				&nbsp;&nbsp;
+							 				<input type="checkbox" id="lineValidationOffset" name="lineValidationOffset" value="1" ><img onMouseOver="showPop('lineValidationOffset_info');" onMouseOut="hidePop('lineValidationOffset_info');" style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+							 				<div class="text11" style="position: relative;" align="left">
+												<span style="position:absolute; left:50px; top:2px;" id="lineValidationOffset_info" class="popupWithInputText"  >
+												<font class="text11">
+								           			<b>Validation offset</b>
+								           			<div>
+								           			<p>Deaktiverer linjevalidering:
+									           			<ol>
+									           				<li>Antall</li>
+									           				<li>Vekt</li>
+									           			</ol>	
+							           				</p>
+								           			</div>
+							           			</font>
+												</span>
+											</div>
+							 				
+							 			</td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvvkt/hevkt(Tot)">&nbsp;<font class="text14RedBold" >*</font><spring:message code="systema.transportdisp.orders.form.detail.update.label.weight"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvlen">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.length"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField"><span title="fvbrd">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.width"/>&nbsp;</span></td>
@@ -2047,6 +2066,7 @@
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffantk">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.ant2"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffante">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.mengd"/>&nbsp;</span></td>
 							 			<td align="right" valign="bottom" class="tableHeaderField" style="font-size: 12px"><span title="ffenh">&nbsp;<spring:message code="systema.transportdisp.orders.form.detail.update.label.unit"/>&nbsp;</span></td>
+							 			
 							 			<%-- ADR COVI on-going JOVO är skyldig några service-pgm för att ändra Controller + Model i Spring ! 
 							 			<td align="center" class="tableHeaderField" style="font-size: 12px">
 							 				<input id="dangerousGoodsButton" tabindex=-1 class="inputFormSubmitStd11" style="background-color:darkgrey;color:yellow" type="button" value='ADR (flere)'>
