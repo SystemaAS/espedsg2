@@ -15,6 +15,15 @@
  //ex. 976551818
  
   
+ // 
+//  mainmaintenancecundf…=20190507-133822:65 data.forretningsadresse.adresse 
+//  (2) ["c/o Marianne Barlien Berge", "Føssesvingen 7"]
+//  0: "c/o Marianne Barlien Berge"
+//  1: "Føssesvingen 7"
+//  length: 2
+//  __proto__: Array(0)
+//  
+  
  function getDataFromBrreg(element){
 		var orgnr = jq('#syrg').val();
 		var knavn = jq('#knavn').val();
@@ -32,61 +41,89 @@
 	
 				console.log("data",data);
 				
-				jq("#knavn").val(data.navn);
+				let knavn = data.navn;
+				jq("#knavn").val(knavn);
+				jq("#knavn").val(jq("#knavn").val().substr(0, 30));
 				jq("#knavn").change();
 
 				if (data.postadresse !== undefined && data.forretningsadresse !== undefined ) { 
 					//left
-					jq("#adr1").val(data.forretningsadresse.adresse);
+					let adresse = data.forretningsadresse.adresse;
+					jq("#adr1").val(adresse);  //30
+					jq("#adr1").val(jq("#adr1").val().substr(0, 30));
 					jq("#adr1").change();
-					jq("#postnr").val(data.forretningsadresse.postnummer);
+
+					jq("#postnr").val(data.forretningsadresse.postnummer); //4
 					jq("#postnr").change();
-					jq("#adr3").val(data.forretningsadresse.poststed);
+			
+					jq("#adr3").val(data.forretningsadresse.poststed); //24
 					jq("#adr3").change();					
 					//right
-					jq("#adr2").val(data.postadresse.adresse);
+					let postAdresse = data.postadresse.adresse;
+					jq("#adr2").val(postAdresse); //30
+					jq("#adr2").val(jq("#adr2").val().substr(0, 30));
 					jq("#adr2").change();
-					jq("#pnpbku").val(data.postadresse.postnummer);
+
+					jq("#pnpbku").val(data.postadresse.postnummer); //10
 					jq("#pnpbku").change();		
-					jq("#syland").val(data.postadresse.landkode);
+
+					jq("#syland").val(data.postadresse.landkode); //2
 					jq("#syland").change();					
 				
 				}
 				else if (data.postadresse == undefined && data.forretningsadresse !== undefined) {
 					//left
-					jq("#adr1").val(data.forretningsadresse.adresse);
+					let adresse = data.forretningsadresse.adresse;
+					jq("#adr1").val(adresse);  //30
+					jq("#adr1").val(jq("#adr1").val().substr(0, 30));
 					jq("#adr1").change();
+
 					jq("#postnr").val(data.forretningsadresse.postnummer);
 					jq("#postnr").change();
+	
 					jq("#adr3").val(data.forretningsadresse.poststed);
 					jq("#adr3").change();	
+
 					jq("#syland").val(data.forretningsadresse.landkode);
 					jq("#syland").change();					
 				}
 				else if (data.postadresse !== undefined && data.beliggenhetsadresse !== undefined) {
 					//left
-					jq("#adr1").val(data.beliggenhetsadresse.adresse);
+					let beligenhetsAdresse = data.beliggenhetsadresse.adresse;
+					jq("#adr1").val(beligenhetsAdresse);  //30
+					jq("#adr1").val(jq("#adr1").val().substr(0, 30));
 					jq("#adr1").change();
+
 					jq("#postnr").val(data.beliggenhetsadresse.postnummer);
 					jq("#postnr").change();
+
 					jq("#adr3").val(data.beliggenhetsadresse.poststed);
 					jq("#adr3").change();					
 					//right
-					jq("#adr2").val(data.postadresse.adresse);
+					let postAdresse = data.postadresse.adresse;
+					jq("#adr2").val(postAdresse); //30
+					jq("#adr2").val(jq("#adr2").val().substr(0, 30));
 					jq("#adr2").change();
+
 					jq("#pnpbku").val(data.postadresse.postnummer);
 					jq("#pnpbku").change();		
+
 					jq("#syland").val(data.postadresse.landkode);
 					jq("#syland").change();					
 				}				
 				else if (data.postadresse == undefined && data.beliggenhetsadresse !== undefined) {
 					//left
-					jq("#adr1").val(data.beliggenhetsadresse.adresse);
+					let beligenhetsAdresse = data.beliggenhetsadresse.adresse;
+					jq("#adr1").val(beligenhetsAdresse);  //30
+					jq("#adr1").val(jq("#adr1").val().substr(0, 30));
 					jq("#adr1").change();
+
 					jq("#postnr").val(data.beliggenhetsadresse.postnummer);
 					jq("#postnr").change();
+
 					jq("#adr3").val(data.beliggenhetsadresse.poststed);
 					jq("#adr3").change();	
+
 					jq("#syland").val(data.beliggenhetsadresse.landkode);
 					jq("#syland").change();					
 				}				
