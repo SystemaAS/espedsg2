@@ -11,11 +11,14 @@ import java.io.StringWriter;
 import no.systema.main.mapper.jsonjackson.general.PostalCodesMapper;
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispChildWindowMapper;
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificOrderFrisokveiMapper;
+import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispWorkflowSpecificOrderLoggingMapper;
+
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispCustomerContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispLoadUnloadPlacesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispDangerousGoodsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispPackingCodesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispSendSmsContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispTTraceCodesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispTollstedCodesContainer;
 
 import no.systema.transportdisp.model.jsonjackson.workflow.triplist.childwindow.JsonTransportDispAvdContainer;
@@ -30,7 +33,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwi
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiCodesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiDocCodesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiGiltighetsListContainer;
-
+import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispTTraceCodesContainer;
 /**
  * 
  * @author oscardelatorre
@@ -285,6 +288,24 @@ public class TransportDispChildWindowServiceImpl implements TransportDispChildWi
 		try{
 			JsonTransportDispWorkflowSpecificOrderFrisokveiMapper mapper = new JsonTransportDispWorkflowSpecificOrderFrisokveiMapper();
 			container = mapper.getContainerGiltighetsLista(utfPayload);
+		}catch(Exception e){
+			StringWriter errors = new StringWriter();
+			e.printStackTrace(new PrintWriter(errors));
+		}
+		
+		return container;
+	}
+	
+	/**
+	 * 
+	 * @param utfPayload
+	 * @return
+	 */
+	public JsonTransportDispTTraceCodesContainer getEventCodeContainer(String utfPayload){
+		JsonTransportDispTTraceCodesContainer container = null;
+		try{
+			JsonTransportDispWorkflowSpecificOrderLoggingMapper mapper = new JsonTransportDispWorkflowSpecificOrderLoggingMapper();
+			container = mapper.getEventCodeContainer(utfPayload);
 		}catch(Exception e){
 			StringWriter errors = new StringWriter();
 			e.printStackTrace(new PrintWriter(errors));

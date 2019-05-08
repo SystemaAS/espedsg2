@@ -3,7 +3,32 @@
 	//============================================================
 	//this variable is a global jQuery var instead of using "$" all the time. Very handy
   	var jq = jQuery.noConflict();
+  	var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
   	
+  	jq(function() {
+  		jq("#ttdate").datepicker({ 
+  		  onSelect: function(date) {
+  		  	this.focus();
+  	      },
+  		  dateFormat: 'yymmdd',
+  		  firstDay: 1 //monday
+  		});
+  	
+  		jq('#ttdate').focus(function() {
+  	    	if(jq('#ttdate').val()!=''){
+  	    		refreshCustomValidity(jq('#ttdate')[0]);
+  	  		}
+  	 	 });
+  		
+  		
+  	});
+  	
+  	jq(function () {
+  	  //FORM submit 
+  	  jq( "#transportdispUpdateTracktForm" ).submit(function( event ) {
+  		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+  	  });
+  	});
   	
   	jq(function() {
   		//Triggers on drag-and-drop to upload

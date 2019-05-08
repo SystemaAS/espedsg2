@@ -40,8 +40,10 @@ public class JsonTransportDispWorkflowSpecificOrderMapper extends ObjectMapperAb
 		//At this point we now have an UTF-8 payload
 		JsonTransportDispWorkflowSpecificOrderContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispWorkflowSpecificOrderContainer.class); 
 		//logger.info("[JSON-String payload status=OK]  " + container.getUser());
-		for (JsonTransportDispWorkflowSpecificOrderRecord record : container.getDspoppdrag()){
+		if(container!=null){
+			for (JsonTransportDispWorkflowSpecificOrderRecord record : container.getDspoppdrag()){
 			//DEBUG
+			}
 		}
 		return container;
 	}

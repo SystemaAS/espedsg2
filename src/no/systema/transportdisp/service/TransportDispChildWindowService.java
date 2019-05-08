@@ -21,6 +21,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.Jso
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiDocCodesContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispFrisokveiGiltighetsListContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispSendSmsContainer;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispTTraceCodesContainer;
 
 
 
@@ -51,6 +52,6 @@ public interface TransportDispChildWindowService {
 	public JsonTransportDispFrisokveiDocCodesContainer getFrisokveiDocCodesContainer(String utfPayload);
 	public JsonTransportDispSendSmsContainer getSendSmsContainer(String utfPayload);
 	public JsonTransportDispFrisokveiGiltighetsListContainer getOrderFrisokveiContainerGiltighetsLista(String utfPayload);
-	
+	public JsonTransportDispTTraceCodesContainer getEventCodeContainer(String utfPayload);
 	
 }

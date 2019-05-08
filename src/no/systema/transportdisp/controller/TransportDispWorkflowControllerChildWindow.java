@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Scope;
 
+import no.systema.transportdisp.util.RpgReturnResponseHandler;
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -53,10 +54,12 @@ import no.systema.transportdisp.util.manager.ControllerAjaxCommonFunctionsMgr;
 import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesContainer;
 import no.systema.main.model.jsonjackson.general.postalcodes.JsonPostalCodesRecord;
 import no.systema.transportdisp.filter.SearchFilterTransportDispWorkflowTripList;
+import no.systema.transportdisp.mapper.url.request.UrlRequestParameterMapper;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowListContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowListRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.JsonTransportDispWorkflowSpecificTripRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.budget.JsonTransportDispWorkflowSpecificBudgetRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.codes.JsonTransportDispCodeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispCustomerContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispCustomerRecord;
@@ -73,6 +76,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwi
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispSupplierRecord;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.invoice.childwindow.JsonTransportDispGebyrCodeRecord;
 
@@ -126,6 +130,9 @@ public class TransportDispWorkflowControllerChildWindow {
 	private DateTimeManager dateTimeManager = new DateTimeManager();
 	private StringManager strMgr = new StringManager();
 	private CodeDropDownMgr codeDropDownMgr = new CodeDropDownMgr();
+	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
+	private RpgReturnResponseHandler rpgReturnResponseHandler = new RpgReturnResponseHandler();
+	
 	//customer
 	private final String DATATABLE_AVD_LIST = "avdList";
 	private final String DATATABLE_BILNR_LIST = "bilNrList";
@@ -323,6 +330,67 @@ public class TransportDispWorkflowControllerChildWindow {
 				model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, list);
 				
 			 }
+			 //drop-downs
+			 this.codeDropDownMgr.populateHtmlDropDownsFromJsonTrackTraceEventCode(urlCgiProxyService, transportDispChildWindowService, model, appUser);
+			 
+			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+		}
+		return successView;
+	}	
+	/**
+	 * 
+	 * @param recordToValidate
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping(value="transportdisp_workflow_childwindow_trackandtrace_edit.do",  method={RequestMethod.GET, RequestMethod.POST} )
+	public ModelAndView doEditTrackAndTrace(JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+		this.context = TdsAppContext.getApplicationContext();
+		logger.info("Inside: doEditTrackAndTrace");
+		Map model = new HashMap();
+		String avd = recordToValidate.getTtavd();
+		String opd = recordToValidate.getTtopd();
+		model.put("avd", avd);
+		model.put("opd", opd);
+		
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd=" + avd + "&opd=" + opd);
+		
+		
+		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
+		//check user (should be in session already)
+		if(appUser==null){
+			return this.loginView;
+			
+		}else{
+		
+			 //=============
+			 //Create record
+			 //=============
+			 //prepare the access CGI with RPG back-end
+			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_EDIT_URL;
+			 String urlRequestParamsKeys = "user=" + appUser.getUser();// + "&ttavd=" + avd + "&ttopd=" + opd;
+			 String urlRequestParamsRecord = this.urlRequestParameterMapper.getUrlParameterValidString(recordToValidate);
+			 String urlRequestParams = urlRequestParamsKeys + urlRequestParamsRecord;
+			 logger.info("URL: " + BASE_URL);
+			 logger.info("PARAMS: " + urlRequestParams);
+
+			 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+			 /*
+			 String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
+		     
+			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+			 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(rpgReturnPayload));
+			 
+			 if(rpgReturnPayload!=null){
+				 rpgReturnResponseHandler.evaluateRpgResponseOnEditSpecificOrder(rpgReturnPayload);
+			    	if(rpgReturnResponseHandler.getErrorMessage()!=null && !"".equals(rpgReturnResponseHandler.getErrorMessage())){
+			    		rpgReturnResponseHandler.setErrorMessage("[ERROR] FATAL on UPDATE: " + rpgReturnResponseHandler.getErrorMessage());
+			    		//TODO --> this.setFatalError(model, rpgReturnResponseHandler, recordToValidate);
+			    	}
+			 }
+			 */
 			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
 		}
 		return successView;

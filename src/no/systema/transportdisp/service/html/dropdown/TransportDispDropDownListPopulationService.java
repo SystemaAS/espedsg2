@@ -17,6 +17,7 @@ import no.systema.transportdisp.mapper.jsonjackson.frankatur.JsonTransportDispFr
 import no.systema.transportdisp.mapper.jsonjackson.oppdragstype.JsonTransportDispOppdragTypeMapper;
 import no.systema.transportdisp.mapper.jsonjackson.JsonTransportDispChildWindowMapper;
 
+
 import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispSignatureContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.avdsignature.JsonTransportDispAvdGroupsContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.frankatur.JsonTransportDispFrankaturContainer;
@@ -53,7 +54,6 @@ public class TransportDispDropDownListPopulationService {
 	private JsonTransportDispFrankaturMapper frankaturMapper = new JsonTransportDispFrankaturMapper();
 	private JsonTransportDispOppdragTypeMapper oppdragTypeMapper = new JsonTransportDispOppdragTypeMapper();
 	private JsonTransportDispChildWindowMapper childWindowMapper = new JsonTransportDispChildWindowMapper();
-	
 	/**
 	 * Years
 	 * @return
@@ -159,5 +159,7 @@ public class TransportDispDropDownListPopulationService {
 	public JsonTransportDispGebyrCodeContainer getGebyrCodeContainer(String utfPayload) throws Exception{
 		return this.childWindowMapper.getGebyrContainer(utfPayload);
 	}
+	
+	
 	
 }

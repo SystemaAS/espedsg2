@@ -3,7 +3,7 @@
   var counterIndex = 0;
   var BLOCKUI_OVERLAY_MESSAGE_DEFAULT = "Please wait...";
 
-//BlockUI behaviour
+  //BlockUI behaviour
   function setBlockUI(element){
 	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
   }

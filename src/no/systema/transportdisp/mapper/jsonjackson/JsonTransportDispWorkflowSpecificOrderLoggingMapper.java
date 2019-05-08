@@ -10,6 +10,8 @@ import no.systema.main.mapper.jsonjackson.general.ObjectMapperAbstractGrandFathe
 //application library
 import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingContainer;
 import no.systema.transportdisp.model.jsonjackson.workflow.order.logging.JsonTransportDispWorkflowSpecificOrderLoggingRecord;
+import no.systema.transportdisp.model.jsonjackson.workflow.order.childwindow.JsonTransportDispTTraceCodesContainer;
+
 
 
 /**
@@ -34,5 +36,17 @@ public class JsonTransportDispWorkflowSpecificOrderLoggingMapper extends ObjectM
 		}
 		return container;
 	}
+	
+	
+	public JsonTransportDispTTraceCodesContainer getEventCodeContainer(String utfPayload) throws Exception{
+		//At this point we now have an UTF-8 payload
+		JsonTransportDispTTraceCodesContainer container = super.getObjectMapper().readValue(utfPayload.getBytes(), JsonTransportDispTTraceCodesContainer.class); 
+		//logger.info("[JSON-String payload status=OK]  " + container.getUser());
+		
+		return container;
+	}
+	
+	
+	
 	
 }
