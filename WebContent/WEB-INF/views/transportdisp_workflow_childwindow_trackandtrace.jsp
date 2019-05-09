@@ -57,7 +57,10 @@
 		                    <th class="text14" title="EDI Event kode" >&nbsp;Ec&nbsp;</th>
 		                    <th class="text14" title="EDI Reason kode" >&nbsp;Rc&nbsp;</th>
 		                    <th class="text14" title="Manuell Opprettet/Auto Opprettet">&nbsp;Oppr.&nbsp;
+		                    <th class="text14" title="Status: (S)end, (F)erdig">&nbsp;St.&nbsp;
 		                    <th class="text14" title="Sted i google maps...">&nbsp;Sted&nbsp;</th>
+		                    <th class="text14" >&nbsp;Depo&nbsp;</th>
+		                    <th class="text14" >&nbsp;Navn&nbsp;</th>
 		                    <th class="text14" >&nbsp;Bruker&nbsp;</th>
 		                    
 		                    
@@ -85,6 +88,24 @@
 				               		</c:choose>
 				               	</td>
 				               	<td width="2%" class="tableCell" >
+				               		<if test="${not empty record.status}">
+					               		<c:choose>
+					               			<c:when test="${record.status == 'S' || record.status == 'F' }">
+						               			<c:if test="${record.status == 'S'}">
+						               				&nbsp;Send
+						               			</c:if>
+						               			<c:if test="${record.status == 'F'}">
+						               				&nbsp;Ferdig
+						               			</c:if>
+					               			</c:when>
+					               			<c:otherwise>
+					               				&nbsp;${record.status}
+					               			</c:otherwise>
+				               			</c:choose>
+				               		</if>
+				               		
+				               	</td>
+				               	<td width="2%" class="tableCell" >
 				               		<%--
 				               		<a target="_blank" href="https://www.google.no/maps/?q=60.279938,5.236414&t=h">
 				               			test
@@ -103,6 +124,8 @@
 				               			</c:choose>
 				               		</c:if>
 				               	</td>
+				               	<td width="2%" class="tableCell" >&nbsp;${record.depot}</td>
+				               	<td width="2%" class="tableCell" >&nbsp;${record.name}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.user}</td>
 				               	
 		           			</tr>
