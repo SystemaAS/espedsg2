@@ -9,27 +9,6 @@
 	specified in servlet.xml as static <mvc:resources mapping="/resources/**" location="WEB-INF/resources/" order="1"/> --%>
 	<SCRIPT type="text/javascript" src="resources/js/transportdisp_workflow_childwindow.js?ver=${user.versionEspedsg}"></SCRIPT>
 	
-	
-	<style type = "text/css">
-	.ui-dialog{font-size:11pt;}
-	.ui-datepicker { font-size:9pt;}
-	.ui-timepicker-div .ui-widget-header { margin-bottom: 8px; }
-	.ui-timepicker-div dl { text-align: left; }
-	.ui-timepicker-div dl dt { float: left; clear:left; padding: 0 0 0 5px; }
-	.ui-timepicker-div dl dd { margin: 0 10px 10px 40%; }
-	.ui-timepicker-div td { font-size: 90%; }
-	.ui-tpicker-grid-label { background: none; border: none; margin: 0; padding: 0; }
-	
-	.ui-timepicker-rtl{ direction: rtl; }
-	.ui-timepicker-rtl dl { text-align: right; padding: 0 5px 0 0; }
-	.ui-timepicker-rtl dl dt{ float: right; clear: right; }
-	.ui-timepicker-rtl dl dd { margin: 0 40% 10px 10px; }
-	
-	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
-	.print-dialog-class .ui-widget-content{ background-color:lightsteelblue } 
-	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
-
-	</style>
 	<table width="90%" height="500px" class="tableBorderWithRoundCorners3D_RoundOnlyOnBottom" cellspacing="0" border="0" cellpadding="0">
 		<tr height="5"><td colspan="2"></td></tr>
 		<tr>
@@ -107,7 +86,26 @@
 		</td>
 	</tr>
 	</spring:hasBindErrors>							
-						
+	
+	<%-- -------------------------- --%>
+	<%-- Validation errors BACK END --%>
+	<%-- -------------------------- --%>
+	<c:if test="${not empty model.errorMessage}">
+		<tr>
+		<td>
+           	<table class="tabThinBorderWhiteWithSideBorders" width="100%" align="left" border="0" cellspacing="0" cellpadding="0">
+           	<tr>
+			<td valign="bottom" class="textError">					
+	            <ul>
+	            	<li >${model.errorMessage}</li>
+	            </ul>
+			</td>
+			</tr>
+			</table>
+		</td>
+		</tr>		
+	</c:if>
+			
 	<%-- ------------------------------------------------- --%>
     	<%-- DETAIL Section - Create Item line PRIMARY SECTION --%>
     	<%-- ------------------------------------------------- --%>
@@ -155,11 +153,11 @@
 					            	<img onMouseOver="showPop('ttacti_info');" onMouseOut="hidePop('ttacti_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			            			<span title="ttacti"><font class="text14RedBold" >*</font>Kode</span>
 									<div class="text14" style="position: relative;" align="left">
-										<span style="position:absolute; left:25px; top:2px; width:250px" id="ttacti_info" class="popupWithInputText"  >
+										<span style="position:absolute; left:30px; top:-500px; width:250px" id="ttacti_info" class="popupWithInputText"  >
 											<font class="text14">
 						           			<b>Kode</b>
 						           			<ul>
-						           				<c:forEach var="record" items="${model.genericList}" varStatus="counter">
+						           				<c:forEach var="record" items="${model.codeList}" varStatus="counter">
 						           					<li><font class="text10"><b>${record.kfkod}</b>&nbsp;${record.kftxt}</font></li>
 						           				</c:forEach>
 						           			</ul>
@@ -173,13 +171,11 @@
 			            			<img onMouseOver="showPop('ttedev_info');" onMouseOut="hidePop('ttedev_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
 			            			<span title="ttedev">Event code</span>
 									<div class="text14" style="position: relative;" align="left">
-										<span style="position:absolute; left:30px; top:-500px; width:250px" id="ttedev_info" class="popupWithInputText"  >
+										<span style="position:absolute; left:30px; top:2px; width:250px" id="ttedev_info" class="popupWithInputText"  >
 											<font class="text14">
 						           			<b>Event code</b>
 						           			<ul>
-						           				<c:forEach var="record" items="${model.eventCodeList}" varStatus="counter">
-						           					<li><font class="text10"><b>${record.kfkod}</b>&nbsp;${record.kftxt}</font></li>
-						           				</c:forEach>
+						           				todo
 						           			</ul>
 					           			</font>
 										</span>
@@ -193,9 +189,7 @@
 											<font class="text14">
 						           			<b>Reason code</b>
 						           			<ul>
-						           				<c:forEach var="record" items="${model.genericList}" varStatus="counter">
-						           					<li><font class="text10"><b>${record.kfkod}</b>&nbsp;${record.kftxt}</font></li>
-						           				</c:forEach>
+						           				todo
 						           			</ul>
 					           			</font>
 										</span>
@@ -203,39 +197,39 @@
 			            		</td>
 					        </tr>
 					        <tr>
-				        		<td class="text14" align="left" >&nbsp;<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="ttfbnr" id="ttfbnr" size="4" maxlength="3" value="<c:if test="${Xmodel.record.ttfbnr > 0}">${Xmodel.record.ttfbnr}</c:if>"/></td>
+				        		<td class="text14" align="left" >&nbsp;<input onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlue" name="ttfbnr" id="ttfbnr" size="4" maxlength="3" value="${model.record.ttfbnr}"></td>
 					            <td class="text14" align="left" >
 					            	<select required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="ttacti" id="ttacti" >
 					 				  <option value="">-velg-</option>
-					 				  <option value="ZX1">ZX1</option>
-					 				  
-									  <c:forEach var="record" items="${model.genericList}" >
-					 				  		<option value="${record.kfkod}"<c:if test="${Xmodel.record.ttacti == record.kfkod}"> selected </c:if> >${record.kfkod}</option>
-									  </c:forEach> 
+					 				  <c:forEach var="record" items="${model.codeList}" >
+					 				  		<option title="${record.kftxt}" value="${record.kfkod}"<c:if test="${model.record.ttacti == record.kfkod && (not empty model.record.ttacti)}"> selected </c:if> >${record.kfkod}</option>
+									  </c:forEach>
 									</select>							            	
 					            </td>
-					            <td nowrap width="5%" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="ttdate" id="ttdate" size="10" maxlength="8" value="<c:if test="${Xmodel.record.ttdate > 0}">${Xmodel.record.ttdate}</c:if>"/>
-					 			&nbsp;Kl:<input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="tttime" id="tttime" size="7" maxlength="6" value="<c:if test="${Xmodel.record.tttime > 0}">${Xmodel.record.tttime}</c:if>"/></td>	
+					            <td nowrap width="5%" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="ttdate" id="ttdate" size="10" maxlength="8" value="${model.record.ttdate}">
+					 			&nbsp;Kl:<input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="tttime" id="tttime" size="7" maxlength="6" value="${model.record.tttime}"></td>	
 					            	
 					            <td class="text14" align="left" >
-					            	<select class="inputTextMediumBlue" name="ttmanu" id="ttmanu" >
-					 				  <%--
-									  <option value="S"<c:if test="${Xmodel.record.ttmanu == 'S'}"> selected </c:if> >Send</option>
-									  <option value="F"<c:if test="${Xmodel.record.ttmanu == 'F'}"> selected </c:if> >Ferdig</option>
-									  --%> 
-									  <option value="J">Manuelt</option>
-									</select>
+				            		  <select class="inputTextMediumBlue" name="ttmanu" id="ttmanu" >
+					 				  <option value="X" <c:if test="${model.record.ttmanu == 'X'}"> selected </c:if> >X</option>
+					 				  <option value="J" <c:if test="${model.record.ttmanu == 'J'}"> selected </c:if> >Manuelt</option>
+									  <option value="S"<c:if test="${model.record.ttmanu == 'S'}"> selected </c:if> >Send</option>
+									  <option value="F"<c:if test="${model.record.ttmanu == 'F'}"> selected </c:if> >Ferdig</option>
+								  </select>
 					            </td>	
 					            <td class="text14" align="left" >
+					            <input type="text" class="inputTextMediumBlue"  name="ttedev" id="ttedev" size="4" maxlength="3" value='${model.record.ttedev}'>
+					            	<%--
 					            	<select class="inputTextMediumBlue" name="ttedev" id="ttedev" >
 					 				  <option value="">-velg-</option>
 									  <c:forEach var="record" items="${model.eventCodeList}" >
-					 				  		<option title="${record.kftxt}" value="${record.kfkod}"<c:if test="${'*LE' == record.kfkod}"> selected </c:if> >${record.kfkod}</option>
+					 				  		<option title="${record.kftxt}" value="${record.kfkod}"<c:if test="${'*LA' == record.kfkod}"> selected </c:if> >${record.kfkod}</option>
 									  </c:forEach> 
-									</select>
+								</select>
+								 --%>
 					            </td>	
 					            <td class="text14" align="left" >
-					            <input type="text" class="inputTextMediumBlue"  name="ttedre" id="ttedre" size="5" maxlength="5" value='${Xmodel.record.tttexl}'>
+					            <input type="text" class="inputTextMediumBlue"  name="ttedre" id="ttedre" size="5" maxlength="5" value='${model.record.ttedre}'>
 					            <%-- 
 					            	<select class="inputTextMediumBlue" name="ttedre" id="ttedre" >
 					 				  <option value="">-velg-</option>
@@ -249,20 +243,20 @@
 					        <tr height="5"><td class="text" align="left"></td></tr>
 					        <tr >
 				 				<td class="text14" align="left"><span title="tttexl"><font class="text14RedBold" >*</font>NO tekst</span></td>
-				 				<td colspan="10" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" type="text" class="inputTextMediumBlueMandatoryField"  name="tttexl" id="tttexl" size="75" maxlength="71" value='${Xmodel.record.tttexl}'></td>
+				 				<td colspan="10" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" type="text" class="inputTextMediumBlueMandatoryField"  name="tttexl" id="tttexl" size="75" maxlength="71" value='${model.record.tttexl}'></td>
 					        </tr>
 					        <tr >
 				 				<td class="text14" align="left"><span title="tttext">&nbsp;EN tekst</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="tttext" id="tttext" size="75" maxlength="71" value='${Xmodel.record.tttext}'></td>
+				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="tttext" id="tttext" size="75" maxlength="71" value='${model.record.tttext}'></td>
 					        </tr>
 					        <tr height="5"><td class="text" align="left"></td></tr>
 					        <tr >
 				 				<td class="text14" align="left"><span title="ttdepo">&nbsp;Depot/term</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttdepo" id="ttdepo" size="12" maxlength="10" value='${Xmodel.record.ttdepo}'></td>
+				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttdepo" id="ttdepo" size="12" maxlength="10" value='${model.record.ttdepo}'></td>
 					        </tr>
 					        <tr >
 				 				<td class="text14" align="left"><span title="ttname">&nbsp;Name</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttname" id="ttname" size="12" maxlength="10" value='${Xmodel.record.ttname}'></td>
+				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttname" id="ttname" size="12" maxlength="10" value='${model.record.ttname}'></td>
 					        </tr>
 					        <tr height="10"><td class="text" align="left"></td></tr>
 					              
@@ -276,8 +270,8 @@
 					 			<td class="text14" align="left"><span title="ttuser">&nbsp;Av bruker ID</span></td>
 				 				<td class="text14" align="left">
 				 					<c:choose>
-				 					<c:when test="${not empty Xmodel.record.ttuser}">
-				 						<input readonly type="text" class="inputTextReadOnly"  name="ttuser" id="ttuser" size="8" maxlength="10" value='${Xmodel.record.ttuser}'>
+				 					<c:when test="${not empty model.record.ttuser}">
+				 						<input readonly type="text" class="inputTextReadOnly"  name="ttuser" id="ttuser" size="8" maxlength="10" value='${model.record.ttuser}'>
 				 					</c:when>
 				 					<c:otherwise>
 				 						<input readonly type="text" class="inputTextReadOnly"  name="ttuser" id="ttuser" size="8" maxlength="10" value='${user.user}'>

@@ -108,7 +108,7 @@ import no.systema.transportdisp.model.jsonjackson.workflow.triplist.childwindow.
 import no.systema.transportdisp.util.TransportDispConstants;
 import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
 import no.systema.transportdisp.validator.TransportDispWorkflowTripListValidator;
-
+import no.systema.transportdisp.validator.TransportDispWorkflowSpecificTrackTraceValidator;
 
 
 
@@ -303,40 +303,20 @@ public class TransportDispWorkflowControllerChildWindow {
 			return this.loginView;
 			
 		}else{
-		
-			 //===========
-			 //FETCH LIST
-			 //===========
-			 logger.info("Inside: populateTrackAndTrace");
-			 //prepare the access CGI with RPG back-end
-			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_URL;
-			 String urlRequestParamsKeys = "user=" + appUser.getUser() + "&avd=" + avd + "&opd=" + opd;
-			 logger.info("URL: " + BASE_URL);
-			 logger.info("PARAMS: " + urlRequestParamsKeys);
-			 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-			 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
-			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-			 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+			model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, this.getTTraceList(appUser, avd, opd));
 			 
-			 Collection<JsonTransportDispWorkflowSpecificOrderLoggingRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderLoggingRecord>();
-			 if(jsonPayload!=null){
-		 		JsonTransportDispWorkflowSpecificOrderLoggingContainer container = this.transportDispWorkflowSpecificOrderService.getOrderLoggingContainer(jsonPayload);
-				if(container!=null){
-					list = container.getTrackTraceEvents();
-					for(JsonTransportDispWorkflowSpecificOrderLoggingRecord record : list){
-						//DEBUG -->logger.info("####Link:" + record.getDoclnk());
-					}
-				}
-				model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, list);
-				
-			 }
-			 //drop-downs
-			 this.codeDropDownMgr.populateHtmlDropDownsFromJsonTrackTraceEventCode(urlCgiProxyService, transportDispChildWindowService, model, appUser);
-			 
-			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+			//drop-downs and default values for the end user
+			this.codeDropDownMgr.populateHtmlDropDownsFromJsonTrackTraceCodeList(urlCgiProxyService, transportDispChildWindowService, model, appUser);
+			JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit record = new JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit();
+			record.setTtedev("*LE");
+			model.put(TransportDispConstants.DOMAIN_RECORD, record);
+			//view
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
 		}
 		return successView;
-	}	
+	}
+	
+	
 	/**
 	 * 
 	 * @param recordToValidate
@@ -346,9 +326,11 @@ public class TransportDispWorkflowControllerChildWindow {
 	 * @return
 	 */
 	@RequestMapping(value="transportdisp_workflow_childwindow_trackandtrace_edit.do",  method={RequestMethod.GET, RequestMethod.POST} )
-	public ModelAndView doEditTrackAndTrace(JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
+	public ModelAndView doEditTrackAndTrace(@ModelAttribute ("record") JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit recordToValidate, BindingResult bindingResult, HttpSession session, HttpServletRequest request){
 		this.context = TdsAppContext.getApplicationContext();
 		logger.info("Inside: doEditTrackAndTrace");
+		boolean validBackEnd = true;
+		
 		Map model = new HashMap();
 		String avd = recordToValidate.getTtavd();
 		String opd = recordToValidate.getTtopd();
@@ -356,6 +338,7 @@ public class TransportDispWorkflowControllerChildWindow {
 		model.put("opd", opd);
 		
 		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd=" + avd + "&opd=" + opd);
+		ModelAndView errorView = new ModelAndView("transportdisp_workflow_childwindow_trackandtrace");
 		
 		
 		SystemaWebUser appUser = this.loginValidator.getValidUser(session);
@@ -364,38 +347,107 @@ public class TransportDispWorkflowControllerChildWindow {
 			return this.loginView;
 			
 		}else{
-		
-			 //=============
-			 //Create record
-			 //=============
-			 //prepare the access CGI with RPG back-end
-			 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_EDIT_URL;
-			 String urlRequestParamsKeys = "user=" + appUser.getUser();// + "&ttavd=" + avd + "&ttopd=" + opd;
-			 String urlRequestParamsRecord = this.urlRequestParameterMapper.getUrlParameterValidString(recordToValidate);
-			 String urlRequestParams = urlRequestParamsKeys + urlRequestParamsRecord;
-			 logger.info("URL: " + BASE_URL);
-			 logger.info("PARAMS: " + urlRequestParams);
-
-			 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
-			 /*
-			 String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
-		     
-			 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
-			 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(rpgReturnPayload));
-			 
-			 if(rpgReturnPayload!=null){
-				 rpgReturnResponseHandler.evaluateRpgResponseOnEditSpecificOrder(rpgReturnPayload);
+			TransportDispWorkflowSpecificTrackTraceValidator validator = new TransportDispWorkflowSpecificTrackTraceValidator();
+			//Validate
+			validator.validate(recordToValidate, bindingResult);
+			//check for ERRORS
+			if(bindingResult.hasErrors()){
+				logger.info("[ERROR Validation] Record does not validate)");
+		    	
+				//drop-downs and default values for the end user
+				this.codeDropDownMgr.populateHtmlDropDownsFromJsonTrackTraceCodeList(urlCgiProxyService, transportDispChildWindowService, model, appUser);
+				model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, this.getTTraceList(appUser, avd, opd));
+				model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate); 
+				
+				errorView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+		    	
+		    	return errorView;
+		    	
+			}else{
+			
+				 //=============
+				 //Create record
+				 //=============
+				 //prepare the access CGI with RPG back-end
+				 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_EDIT_URL;
+				 String urlRequestParamsKeys = "user=" + appUser.getUser();// + "&ttavd=" + avd + "&ttopd=" + opd;
+				 String urlRequestParamsRecord = this.urlRequestParameterMapper.getUrlParameterValidString(recordToValidate);
+				 String urlRequestParams = urlRequestParamsKeys + urlRequestParamsRecord;
+				 logger.info("URL: " + BASE_URL);
+				 logger.info("PARAMS: " + urlRequestParams);
+	
+				 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+				 
+				 String rpgReturnPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams);
+			     
+				 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+				 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(rpgReturnPayload));
+				 
+				 if(rpgReturnPayload!=null){
+					rpgReturnResponseHandler.evaluateRpgResponseOnEditSpecificOrder(rpgReturnPayload);
 			    	if(rpgReturnResponseHandler.getErrorMessage()!=null && !"".equals(rpgReturnResponseHandler.getErrorMessage())){
 			    		rpgReturnResponseHandler.setErrorMessage("[ERROR] FATAL on UPDATE: " + rpgReturnResponseHandler.getErrorMessage());
-			    		//TODO --> this.setFatalError(model, rpgReturnResponseHandler, recordToValidate);
+			    		model.put(TransportDispConstants.ASPECT_ERROR_MESSAGE, rpgReturnResponseHandler.getErrorMessage());
+			    		validBackEnd = false;
 			    	}
+				 }
+			 
 			 }
-			 */
-			 successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+			 
 		}
-		return successView;
+		
+		//Check if there were backEnd errors ...
+		if(!validBackEnd){
+			//drop-downs and default values for the end user
+			this.codeDropDownMgr.populateHtmlDropDownsFromJsonTrackTraceCodeList(urlCgiProxyService, transportDispChildWindowService, model, appUser);
+			model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, this.getTTraceList(appUser, avd, opd));
+			model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate); 
+			
+			errorView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
+	    	return errorView;
+	    	
+		}else{
+			successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+			return successView;
+		}
+		
 	}	
-	
+	/**
+	 * 
+	 * @param appUser
+	 * @param avd
+	 * @param opd
+	 * @return
+	 */
+	private Collection<JsonTransportDispWorkflowSpecificOrderLoggingRecord> getTTraceList(SystemaWebUser appUser, String avd, String opd){
+		
+		Collection<JsonTransportDispWorkflowSpecificOrderLoggingRecord> list = new ArrayList<JsonTransportDispWorkflowSpecificOrderLoggingRecord>();
+		  
+		//==================
+		 //FETCH T&Trace LIST
+		 //==================
+		 logger.info("Inside: populateTrackAndTrace");
+		 //prepare the access CGI with RPG back-end
+		 String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_GENERAL_TRACK_AND_TRACE_URL;
+		 String urlRequestParamsKeys = "user=" + appUser.getUser() + "&avd=" + avd + "&opd=" + opd;
+		 logger.info("URL: " + BASE_URL);
+		 logger.info("PARAMS: " + urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp");
+		 String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+		 logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
+		 logger.debug(jsonDebugger.debugJsonPayloadWithLog4J(jsonPayload));
+		 
+		 if(jsonPayload!=null){
+	 		JsonTransportDispWorkflowSpecificOrderLoggingContainer container = this.transportDispWorkflowSpecificOrderService.getOrderLoggingContainer(jsonPayload);
+			if(container!=null){
+				list = container.getTrackTraceEvents();
+				for(JsonTransportDispWorkflowSpecificOrderLoggingRecord record : list){
+					//DEBUG -->logger.info("####Link:" + record.getDoclnk());
+				}
+			}
+		 }
+		 return list;
+	}
 	/**
 	 * 
 	 * @param session

@@ -80,7 +80,7 @@ public final class TransportDispUrlDataStore {
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_FRISOKVEI_DOCCODES_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJGE32R.pgm";
 	//http://gw.systema.no/sycgip/tjge32r.pgm?user=JOVO&kftyp=FSDOKK
 	
-	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_TTRACE_EVENTCODES_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJINQTTA.pgm";
+	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_TTRACE_CODES_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/TJINQTTA.pgm";
 	//http://gw.systema.no/sycgip/TJINQTTA.pgm?user=JOVO&sokkod=A ... om sokkod er blank får du alle
 	
 	static public String TRANSPORT_DISP_BASE_CHILDWINDOW_SEND_SMS_URL = AppConstants.HTTP_ROOT_CGI + "/sycgip/tjop11hs.pgm";

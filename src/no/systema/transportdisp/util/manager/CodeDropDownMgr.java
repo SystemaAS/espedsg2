@@ -335,12 +335,12 @@ public class CodeDropDownMgr {
 		 * @param model
 		 * @param appUser
 		 */
-		public void populateHtmlDropDownsFromJsonTrackTraceEventCode(UrlCgiProxyService urlCgiProxyService, TransportDispChildWindowService listPopulationService,
+		public void populateHtmlDropDownsFromJsonTrackTraceCodeList(UrlCgiProxyService urlCgiProxyService, TransportDispChildWindowService listPopulationService,
 				Map model, SystemaWebUser appUser){
 				//fill in html lists here
-				String EVENT_CODE_DROPDOWN_LIST = "eventCodeList";
+				String EVENT_CODE_DROPDOWN_LIST = "codeList";
 				try{
-					String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_TTRACE_EVENTCODES_URL;
+					String BASE_URL = TransportDispUrlDataStore.TRANSPORT_DISP_BASE_CHILDWINDOW_TTRACE_CODES_URL;
 					String urlRequestParamsKeys = "user=" + appUser.getUser();
 		    		logger.info("URL: " + BASE_URL);
 		    		logger.info("PARAMS: " + urlRequestParamsKeys);
