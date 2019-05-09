@@ -347,6 +347,7 @@ public class TransportDispWorkflowControllerChildWindow {
 			return this.loginView;
 			
 		}else{
+			
 			TransportDispWorkflowSpecificTrackTraceValidator validator = new TransportDispWorkflowSpecificTrackTraceValidator();
 			//Validate
 			validator.validate(recordToValidate, bindingResult);
@@ -364,6 +365,8 @@ public class TransportDispWorkflowControllerChildWindow {
 		    	return errorView;
 		    	
 			}else{
+				//adjust time if needed
+				this.adjustTTraceTime(recordToValidate);
 			
 				 //=============
 				 //Create record
@@ -391,9 +394,8 @@ public class TransportDispWorkflowControllerChildWindow {
 			    		validBackEnd = false;
 			    	}
 				 }
-			 
+				
 			 }
-			 
 		}
 		
 		//Check if there were backEnd errors ...
@@ -411,7 +413,16 @@ public class TransportDispWorkflowControllerChildWindow {
 			return successView;
 		}
 		
-	}	
+	}
+	/**
+	 * 
+	 * @param recordToValidate
+	 */
+	private void adjustTTraceTime(JsonTransportDispWorkflowSpecificOrderLoggingRecordEdit recordToValidate){
+		//we must deliver time format = 6 numbers: HHmmss: 083000 to the back-end
+		recordToValidate.setTttime(this.dateTimeManager.adjustUserTimeToHHmm(recordToValidate.getTttime() + "00"));
+		
+	}
 	/**
 	 * 
 	 * @param appUser

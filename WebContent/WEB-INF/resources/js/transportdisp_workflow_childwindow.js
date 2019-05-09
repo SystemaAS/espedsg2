@@ -20,6 +20,18 @@
   	  		}
   	 	 });
   		
+  		jq("#tttime").blur(function(){
+  		  //now check the user input alternatives
+  		  var str = jq("#tttime").val();
+  		  if(str!=''){
+  			  var length = str.length;
+  			  if(length==2){
+  				  jq("#tttime").val(str + '00');  
+  			  }else if (length==1){
+  				  jq("#tttime").val('0' + str + '00');
+  			  }
+  		  }
+  	  });
   		
   	});
   	
