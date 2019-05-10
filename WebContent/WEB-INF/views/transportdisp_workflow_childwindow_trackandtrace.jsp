@@ -140,7 +140,6 @@
 		</td>
 		</tr>
 		
-	<tr height="5px"><td class="text" align="left"></td></tr>
 						
 	<%-- --------------------------- --%>
 	<%-- Validation errors FRONT END --%>
@@ -188,135 +187,165 @@
 	<%-- ------------------------------------------------- --%>
     	<%-- DETAIL Section - Create Item line PRIMARY SECTION --%>
     	<%-- ------------------------------------------------- --%>
-    	<tr>
-		<td class="text14" align="left" >
-			<form name="createNewLineForm" id="createNewLineForm" method="post" action="transportdisp_workflow_childwindow_trackandtrace.do">
-				<input type="hidden" name="action" id="action" value='doInit'>
-				<input type="hidden" name="avd" id="avd" value='${model.avd}'>
-				<input type="hidden" name="opd" id="opd" value='${model.opd}'>
-				<input tabindex=-1 class="inputFormSubmitStd" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.search.remove.filter"/>'>
-			</form>
-		</td>
-	</tr>
-	<tr height="5"><td class="text14" align="left" ></td></tr>
-    	<tr>
-			<td >
-			<form action="transportdisp_workflow_childwindow_trackandtrace_edit.do" name="transportdispUpdateTracktForm" id="transportdispUpdateTracktForm" method="post">
-		 	<%--Required key parameters from the Topic parent --%>
-		 	<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
-		 	<input type="hidden" name="action" id="action" value='doUpdate'/>
-		 	<input type="hidden" name="ttuser" id="ttuser" value='${user.user}'>
-			<input type="hidden" name="ttavd" id="ttavd" value='${model.avd}'>
-			<input type="hidden" name="ttopd" id="ttopd" value='${model.opd}'>
-			<input type="hidden" name="updateId" id="updateId" value="${model.updateId}">
-			
-		 	<%-- Record CREATE --%>
-				<table width="80%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
-					
-		 		<tr height="15">
-		 			<td class="text14White" align="left" >
-		 				<b>&nbsp;&nbsp;Logglinje&nbsp;</b>
-							<img onClick="showPop('updateInfo');" src="resources/images/update.gif" border="0" alt="edit">&nbsp;&nbsp;<font id="editLineNr"></font>
-	 				</td>
- 				</tr>
-				</table>
-			<table width="80%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
-		 		<tr height="12"><td class="text" align="left"></td></tr>
-		 		<tr>
-			 		<td>
-				 		<table  class="tableBorderWithRoundCornersGray" width="80%" border="0" cellspacing="0" cellpadding="0">
-				 			<tr height="5"><td class="text" align="left"></td></tr>
-				 			<tr >
-				 				<td class="text14" align="left">&nbsp;</td>
-				                <td class="text14" align="left">
-					            	<img onMouseOver="showPop('ttacti_info');" onMouseOut="hidePop('ttacti_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			            			<span title="ttacti"><font class="text14RedBold" >*</font>Kode</span>
-									<div class="text14" style="position: relative;" align="left">
-										<span style="position:absolute; left:30px; top:-500px; width:250px" id="ttacti_info" class="popupWithInputText"  >
-											<font class="text14">
-						           			<b>Kode</b>
-						           			<ul>
-						           				<c:forEach var="record" items="${model.codeList}" varStatus="counter">
-						           					<li><font class="text10"><b>${record.kfkod}</b>&nbsp;${record.kftxt}</font></li>
-						           				</c:forEach>
-						           			</ul>
-					           			</font>
-										</span>
-									</div>	
-					            </td>
-			            		<td width="5%" class="text14" align="left"><span title="ttdate/tttime"><font class="text14RedBold" >*</font>Hendelsestidspunkt</span></td>
-			            		<td class="text14" align="left">
-			            			<img onMouseOver="showPop('ttedev_info');" onMouseOut="hidePop('ttedev_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
-			            			<span title="ttedev">Event code</span>
-									<div class="text14" style="position: relative;" align="left">
-										<span style="position:absolute; left:30px; top:2px; width:250px" id="ttedev_info" class="popupWithInputText"  >
-											<font class="text14">
-						           			<b>Event code</b>
-						           			<ul>
-						           				todo
-						           			</ul>
-					           			</font>
-										</span>
-									</div>	
-		            			</td>
-			            		
-					        </tr>
-					        <tr>
-					        		<td class="text14" align="left">&nbsp;</td>
-				        		    <td class="text14" align="left" >
-					            	<select required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="ttacti" id="ttacti" >
-					 				  <option value="">-velg-</option>
-					 				  <c:forEach var="record" items="${model.codeList}" >
-					 				  		<option title="${record.kftxt}" value="${record.kfkod}"<c:if test="${model.record.ttacti == record.kfkod && (not empty model.record.ttacti)}"> selected </c:if> >${record.kfkod}</option>
-									  </c:forEach>
-									</select>							            	
-					            </td>
-					            <td nowrap width="5%" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="ttdate" id="ttdate" size="10" maxlength="8" value="${model.record.ttdate}">
-					 			&nbsp;Kl:<input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="tttime" id="tttime" size="5" maxlength="4" value="${model.record.tttime}">
-					 			</td>	
-					            	
-					            	
-					            <td class="text14" align="left" >
-					            <input type="text" class="inputTextMediumBlue"  name="ttedev" id="ttedev" size="4" maxlength="3" value='${model.record.ttedev}'>
-					            
-					            </td>	
-					            							            
-					        </tr>
-					        <tr height="5"><td class="text" align="left"></td></tr>
-					        <tr >
-				 				<td class="text14" align="left"><span title="tttexl"><font class="text14RedBold" >*</font>NO tekst</span></td>
-				 				<td colspan="10" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" type="text" class="inputTextMediumBlueMandatoryField"  name="tttexl" id="tttexl" size="75" maxlength="71" value='${model.record.tttexl}'></td>
-					        </tr>
-					        <tr >
-				 				<td class="text14" align="left"><span title="tttext">&nbsp;EN tekst</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="tttext" id="tttext" size="75" maxlength="71" value='${model.record.tttext}'></td>
-					        </tr>
-					        <tr height="5"><td class="text" align="left"></td></tr>
-					        <tr >
-				 				<td class="text14" align="left"><span title="ttdepo">&nbsp;Depot/term</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttdepo" id="ttdepo" size="12" maxlength="10" value='${model.record.ttdepo}'></td>
-					        </tr>
-					        <tr >
-				 				<td class="text14" align="left"><span title="ttname">&nbsp;Name</span></td>
-				 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttname" id="ttname" size="12" maxlength="10" value='${model.record.ttname}'></td>
-					        </tr>
-					        <tr height="10"><td class="text" align="left"></td></tr>
-					        
-				        </table>
-			        </td>
-		        </tr>
-			    <tr height="10"><td colspan="2" ></td></tr>
-			    <tr>	
-				    <td align="left" colspan="5">
-				    	<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.createnew"/>'>
-					</td>
-		        </tr>
-      	        </table>
-         	</form>
-        </td>
+    	<c:if test="${empty doUpdated }">
+	<tr>
+    <td>
+    		<button name="inputShowFormButton" id="inputShowFormButton" class="buttonGrayWithGreenFrame" type="button" ><spring:message code="systema.transportdisp.createnew"/></button>
+    </td>
     </tr>
-
-	<tr height="10"><td ></td></tr>
+    </c:if>
+    
+    <tr height="5px"><td class="text" align="left"></td></tr>
+	
+    <tr>
+    <td>
+    
+    	<c:choose>
+		<c:when test="${empty doUpdated }">
+	    <div id="divInputForm" style="display:none">
+	    </c:when>
+	    <c:otherwise>
+	    <div id="divInputForm" style="display:inline">
+	    </c:otherwise>
+    </c:choose>
+    
+	<table style="width:80" >
+	    	<tr>
+			<td class="text14" align="left" >
+				<form name="createNewLineForm" id="createNewLineForm" >
+					<input type="hidden" name="action" id="action" value='doInit'>
+					<input type="hidden" name="avd" id="avd" value='${model.avd}'>
+					<input type="hidden" name="opd" id="opd" value='${model.opd}'>
+					<button id="clearNewLineFormValuesButton" tabindex=-1 class="inputFormSubmitStd" type="button"><spring:message code="systema.transportdisp.search.remove.filter"/></button> 
+					<c:if test="${empty doUpdated }">
+						<img id="inputShowFormImage" src="resources/images/sort_down.png" border="0" width="8px" height="8px" alt="edit">
+					</c:if>
+				</form>
+			</td>
+		</tr>
 		
+		<tr height="5"><td class="text14" align="left" ></td></tr>
+	    	<tr>
+				<td >
+				<form action="transportdisp_workflow_childwindow_trackandtrace_edit.do" name="transportdispUpdateTracktForm" id="transportdispUpdateTracktForm" method="post">
+			 	<%--Required key parameters from the Topic parent --%>
+			 	<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
+			 	<input type="hidden" name="action" id="action" value='doUpdate'/>
+			 	<input type="hidden" name="ttuser" id="ttuser" value='${user.user}'>
+				<input type="hidden" name="ttavd" id="ttavd" value='${model.avd}'>
+				<input type="hidden" name="ttopd" id="ttopd" value='${model.opd}'>
+				<input type="hidden" name="updateId" id="updateId" value="${model.updateId}">
+				
+			 	<%-- Record CREATE --%>
+					<table width="100%" align="left" class="formFrameHeader" border="0" cellspacing="0" cellpadding="0">
+						
+			 		<tr height="15">
+			 			<td class="text14White" align="left" >
+			 				<b>&nbsp;&nbsp;Logglinje&nbsp;</b>
+								<img onClick="showPop('updateInfo');" src="resources/images/update.gif" border="0" alt="edit">&nbsp;&nbsp;<font id="editLineNr"></font>
+		 				</td>
+	 				</tr>
+					</table>
+				<table width="100%" align="left" class="formFrame" border="0" cellspacing="0" cellpadding="0">
+			 		<tr height="12"><td class="text" align="left"></td></tr>
+			 		<tr>
+				 		<td>
+					 		<table  class="tableBorderWithRoundCornersGray" width="99%" border="0" cellspacing="0" cellpadding="0">
+					 			<tr height="5"><td class="text" align="left"></td></tr>
+					 			<tr >
+					 				<td class="text14" align="left">&nbsp;</td>
+					                <td class="text14" align="left">
+						            	<img onMouseOver="showPop('ttacti_info');" onMouseOut="hidePop('ttacti_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+				            			<span title="ttacti"><font class="text14RedBold" >*</font>Kode</span>
+										<div class="text14" style="position: relative;" align="left">
+											<span style="position:absolute; left:30px; top:-500px; width:250px" id="ttacti_info" class="popupWithInputText"  >
+												<font class="text14">
+							           			<b>Kode</b>
+							           			<ul>
+							           				<c:forEach var="record" items="${model.codeList}" varStatus="counter">
+							           					<li><font class="text10"><b>${record.kfkod}</b>&nbsp;${record.kftxt}</font></li>
+							           				</c:forEach>
+							           			</ul>
+						           			</font>
+											</span>
+										</div>	
+						            </td>
+				            		<td width="5%" class="text14" align="left"><span title="ttdate/tttime"><font class="text14RedBold" >*</font>Hendelsestidspunkt</span></td>
+				            		<td class="text14" align="left">
+				            			<img onMouseOver="showPop('ttedev_info');" onMouseOut="hidePop('ttedev_info');"style="vertical-align:middle;" width="12px" height="12px" src="resources/images/info3.png" border="0" alt="info">
+				            			<span title="ttedev">Event code</span>
+										<div class="text14" style="position: relative;" align="left">
+											<span style="position:absolute; left:30px; top:2px; width:250px" id="ttedev_info" class="popupWithInputText"  >
+												<font class="text14">
+							           			<b>Event code</b>
+							           			<ul>
+							           				todo
+							           			</ul>
+						           			</font>
+											</span>
+										</div>	
+			            			</td>
+				            		
+						        </tr>
+						        <tr>
+						        		<td class="text14" align="left">&nbsp;</td>
+					        		    <td class="text14" align="left" >
+						            	<select required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" class="inputTextMediumBlueMandatoryField" name="ttacti" id="ttacti" >
+						 				  <option value="">-velg-</option>
+						 				  <c:forEach var="record" items="${model.codeList}" >
+						 				  		<option title="${record.kftxt}" value="${record.kfkod}"<c:if test="${model.record.ttacti == record.kfkod && (not empty model.record.ttacti)}"> selected </c:if> >${record.kfkod}</option>
+										  </c:forEach>
+										</select>							            	
+						            </td>
+						            <td nowrap width="5%" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="ttdate" id="ttdate" size="10" maxlength="8" value="${model.record.ttdate}">
+						 			&nbsp;Kl:<input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" onKeyPress="return numberKey(event)" type="text" class="inputTextMediumBlueMandatoryField"  name="tttime" id="tttime" size="5" maxlength="4" value="${model.record.tttime}">
+						 			</td>	
+						            	
+						            	
+						            <td class="text14" align="left" >
+						            <input type="text" class="inputTextMediumBlue"  name="ttedev" id="ttedev" size="4" maxlength="3" value='${model.record.ttedev}'>
+						            
+						            </td>	
+						            							            
+						        </tr>
+						        <tr height="5"><td class="text" align="left"></td></tr>
+						        <tr >
+					 				<td class="text14" align="left"><span title="tttexl"><font class="text14RedBold" >*</font>NO tekst</span></td>
+					 				<td colspan="10" class="text14" align="left"><input required oninvalid="this.setCustomValidity('Obligatorisk')" oninput="setCustomValidity('')" type="text" class="inputTextMediumBlueMandatoryField"  name="tttexl" id="tttexl" size="75" maxlength="71" value='${model.record.tttexl}'></td>
+						        </tr>
+						        <tr >
+					 				<td class="text14" align="left"><span title="tttext">&nbsp;EN tekst</span></td>
+					 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="tttext" id="tttext" size="75" maxlength="71" value='${model.record.tttext}'></td>
+						        </tr>
+						        <tr height="5"><td class="text" align="left"></td></tr>
+						        <tr >
+					 				<td class="text14" align="left"><span title="ttdepo">&nbsp;Depot/term</span></td>
+					 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttdepo" id="ttdepo" size="12" maxlength="10" value='${model.record.ttdepo}'></td>
+						        </tr>
+						        <tr >
+					 				<td class="text14" align="left"><span title="ttname">&nbsp;Name</span></td>
+					 				<td colspan="10" class="text14" align="left"><input type="text" class="inputTextMediumBlue"  name="ttname" id="ttname" size="12" maxlength="10" value='${model.record.ttname}'></td>
+						        </tr>
+						        <tr height="10"><td class="text" align="left"></td></tr>
+						        
+					        </table>
+				        </td>
+			        </tr>
+				    <tr height="10"><td colspan="2" ></td></tr>
+				    <tr>	
+					    <td align="left" colspan="5">
+					    	<input class="inputFormSubmit" type="submit" name="submit" id="submit" value='<spring:message code="systema.transportdisp.createnew"/>'>
+						</td>
+			        </tr>
+	      	        </table>
+	         	</form>
+	        </td>
+	    </tr>
+		
+		<tr height="10"><td ></td></tr>
+		</table>
+	</div>
+	</td>
+	</tr>	
 		
 	</table> 

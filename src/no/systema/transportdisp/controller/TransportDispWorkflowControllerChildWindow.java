@@ -294,6 +294,7 @@ public class TransportDispWorkflowControllerChildWindow {
 		
 		String avd = request.getParameter("avd");
 		String opd = request.getParameter("opd");
+		String doUpdated = request.getParameter("doUpdated"); //in order to deal with the hide/show input form issue
 		model.put("avd", avd);
 		model.put("opd", opd);
 		
@@ -312,6 +313,8 @@ public class TransportDispWorkflowControllerChildWindow {
 			model.put(TransportDispConstants.DOMAIN_RECORD, record);
 			//view
 			successView.addObject(TransportDispConstants.DOMAIN_MODEL, model);
+			successView.addObject("doUpdated", doUpdated);
+			
 		}
 		return successView;
 	}
@@ -337,7 +340,7 @@ public class TransportDispWorkflowControllerChildWindow {
 		model.put("avd", avd);
 		model.put("opd", opd);
 		
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd=" + avd + "&opd=" + opd);
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&doUpdated=1&avd=" + avd + "&opd=" + opd);
 		ModelAndView errorView = new ModelAndView("transportdisp_workflow_childwindow_trackandtrace");
 		
 		
@@ -360,6 +363,7 @@ public class TransportDispWorkflowControllerChildWindow {
 				model.put(this.DATATABLE_TRACK_AND_TRACE_LIST, this.getTTraceList(appUser, avd, opd));
 				model.put(TransportDispConstants.DOMAIN_RECORD, recordToValidate); 
 				
+				errorView.addObject("doUpdated", 1); //in order to deal with the hide/show input form issue
 				errorView.addObject(TransportDispConstants.DOMAIN_MODEL , model);
 		    	
 		    	return errorView;

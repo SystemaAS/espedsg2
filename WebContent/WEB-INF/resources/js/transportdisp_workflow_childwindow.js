@@ -36,11 +36,39 @@
   	});
   	
   	jq(function () {
-  	  //FORM submit 
-  	  jq( "#transportdispUpdateTracktForm" ).submit(function( event ) {
-  		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-  	  });
+	  	  //FORM submit 
+	  	  jq( "#transportdispUpdateTracktForm" ).submit(function( event ) {
+	  		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+	  	  });
+	  	  
+	  	  //Clear values
+	  	  jq('#clearNewLineFormValuesButton').click(function(){
+	  		  jq('#ttacti').val('');
+	  		  jq('#ttdate').val('');
+	  		  jq('#tttime').val('');
+	  		  jq('#ttedev').val('');
+	  		  jq('#tttexl').val('');
+	  		  jq('#tttext').val('');
+	  		  jq('#ttdepo').val('');
+	  		  jq('#ttname').val('');
+	  	  });
+	  	  
+	  	  //Hide/Show Edit Form: Accordion behavior - to be change with jQuery's accordion
+	  	  jq('#inputShowFormButton').click(function(){
+	  	  		if(jq('#divInputForm').css('display') == 'none'){
+	  	  			jq('#divInputForm').css('display','inline');
+	  	  			jq('#inputShowFormButton').css('display','none');
+	  	  		}
+	  	  }) 
+	  	  jq('#inputShowFormImage').click(function(){
+	  	  		if(jq('#divInputForm').css('display') == 'inline'){
+	  	  			jq('#divInputForm').css('display','none');
+	  	  			jq('#inputShowFormButton').css('display','inline');
+	  	  		}
+	  	  }) 
   	});
+  	
+  	
   	
   	jq(function() {
   		//Triggers on drag-and-drop to upload
