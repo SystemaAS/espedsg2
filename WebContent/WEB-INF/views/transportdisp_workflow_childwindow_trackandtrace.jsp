@@ -218,7 +218,7 @@
 					<input type="hidden" name="opd" id="opd" value='${model.opd}'>
 					<button id="clearNewLineFormValuesButton" tabindex=-1 class="inputFormSubmitStd" type="button"><spring:message code="systema.transportdisp.search.remove.filter"/></button> 
 					<c:if test="${empty doUpdated }">
-						<img id="inputShowFormImage" src="resources/images/sort_down.png" border="0" width="8px" height="8px" alt="edit">
+						<img id="inputShowFormImage" style="cursor:pointer;" src="resources/images/sort_down.png" border="0" width="12px" height="12px" alt="edit">
 					</c:if>
 				</form>
 			</td>
