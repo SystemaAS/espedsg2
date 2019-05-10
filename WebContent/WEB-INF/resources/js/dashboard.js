@@ -26,11 +26,17 @@
     		setBlockUI();
     		
 	    });
+    	/*
     	jq("td#dashItem_Vedlikehold").bind("click",function() {
     		window.location = "mainmaintenancegate.do?lang=" + jq("#usrLang").val();
     		setBlockUI();
-    		
 	    });
+	    */
+    	jq("td#dashItem_Vedlikehold").bind("click",function() {
+    		jq("#dashForm_Vedlikehold").submit();
+    		setBlockUI();
+	    });
+    	
     	jq("td#dashItem_Sporroppdrag").bind("click",function() {
     		window.location = "sporringoppdraggate.do?lang=" + jq("#usrLang").val();
     		setBlockUI();
@@ -46,6 +52,7 @@
     		setBlockUI();
     		
 	    });
+    	
     	jq("td#dashItem_Kvalitet").bind("click",function() {
     		jq("#dashForm_Kvalitet").submit();
     		setBlockUI();

@@ -232,11 +232,22 @@
 		 										</c:if> 
 						 					</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-VEDLIKEHOLD') }">
+						 						<%--old version
 						 						<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
 				 									<br/>
-				 									<%-- <font class="text18">${record.prTxt}</font> --%>
 				 									<font class="text18"><spring:message code="login.user.label.maintenance.dashboard"/></font>
+												</td>
+												--%>
+												<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+				 									<br/>
+				 									<font class="text18">${record.prTxt}</font>
+						 							<form id="dashForm_Vedlikehold" method="post" action="/espedsgmmaint/logonDashboard.do" >
+													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+													    <input type="hidden" name="lang" value="${user.usrLang}" />
+													</form>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
