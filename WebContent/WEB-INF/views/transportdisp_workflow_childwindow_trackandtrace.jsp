@@ -53,12 +53,14 @@
 		                    <th class="text14" >&nbsp;Dato&nbsp;</th>
 		                    <th class="text14" >&nbsp;Tid&nbsp;</th>
 		                    <th class="text14" >&nbsp;Kode&nbsp;</th>
-		                    <th class="text14" >&nbsp;Tekst&nbsp;</th>
+		                    <th nowrap class="text14" >&nbsp;Tekst&nbsp;</th>
 		                    <th class="text14" title="EDI Event kode" >&nbsp;Ec&nbsp;</th>
 		                    <th class="text14" title="EDI Reason kode" >&nbsp;Rc&nbsp;</th>
-		                    <th class="text14" title="Manuell Opprettet/Auto Opprettet">&nbsp;Oppr.&nbsp;
-		                    <th class="text14" title="Status: (S)end, (F)erdig">&nbsp;St.&nbsp;
-		                    <th class="text14" title="Sted i google maps...">&nbsp;Sted&nbsp;</th>
+		                    <th class="text14" title="Manuell Opprettet/Auto Opprettet">&nbsp;Oppr.&nbsp;</th>
+		                    <th class="text14" title="Status&#13;S=(S)end IFTSTA el.l (hvis parter i oppdraget skal ha)&#13;F=(F)erdig sendt IFTSTA e.l.(kanskje også advisering)&#13;A=(A)dvisering  er sendt (men ikke IFTSTA el.l);&#13;X=Ingen parter skulle ha IFTSTA/Advis. el.">
+		                    		&nbsp;St.&nbsp;
+		                    </th>
+		                    <th nowrap class="text14" title="Sted i google maps...">&nbsp;Sted&nbsp;</th>
 		                    <th class="text14" >&nbsp;Depo&nbsp;</th>
 		                    <th class="text14" >&nbsp;Navn&nbsp;</th>
 		                    <th class="text14" >&nbsp;Bruker&nbsp;</th>
@@ -74,38 +76,12 @@
 				               	<td width="2%" class="tableCell" >&nbsp;${record.date}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.time}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.event}</td>
-				               	<td class="tableCell" >&nbsp;${record.textLoc}</td>
+				               	<td nowrap class="tableCell" >&nbsp;${record.textLoc}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.ediCode}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.ediReason}</td>
-				               	<td width="2%" class="tableCell"  >
-				               		<c:choose>
-				               		<c:when test="${record.manualCode == 'J'}">
-				               			Man.
-				               		</c:when>
-				               		<c:otherwise>
-				               			Auto
-				               		</c:otherwise>
-				               		</c:choose>
-				               	</td>
-				               	<td width="2%" class="tableCell" >
-				               		<if test="${not empty record.status}">
-					               		<c:choose>
-					               			<c:when test="${record.status == 'S' || record.status == 'F' }">
-						               			<c:if test="${record.status == 'S'}">
-						               				&nbsp;Send
-						               			</c:if>
-						               			<c:if test="${record.status == 'F'}">
-						               				&nbsp;Ferdig
-						               			</c:if>
-					               			</c:when>
-					               			<c:otherwise>
-					               				&nbsp;${record.status}
-					               			</c:otherwise>
-				               			</c:choose>
-				               		</if>
-				               		
-				               	</td>
-				               	<td width="2%" class="tableCell" >
+				               	<td width="2%" class="tableCell"  >&nbsp;${record.manualCode}</td>
+				               	<td width="2%" class="tableCell" >&nbsp;${record.status}</td>
+				               	<td nowrap width="2%" class="tableCell" >
 				               		<%--
 				               		<a target="_blank" href="https://www.google.no/maps/?q=60.279938,5.236414&t=h">
 				               			test
@@ -114,9 +90,12 @@
 				               		<c:if test="${not empty record.locCode && not empty record.locText}">
 				               			<c:choose>
 				               			<c:when test="${not empty record.latitude && not empty record.longitude}">
-					               			<a target="_blank" href="https://www.google.no/maps/?q=${record.latitude},${record.longitude}&t=h">
-					               				${record.locCode}&nbsp;${record.locText}
-					               			</a>
+					               			<a href="javascript:window.open('https://www.google.no/maps/?q=${record.latitude},${record.longitude}&t=h','mylittlewindow','top=500px,left=1000px,width=300,height=400')">${record.locCode}&nbsp;${record.locText}</a>
+					               			
+					               			<%--
+					               			<a href="javascript:window.open('document.aspx','mywindowtitle','width=500,height=150')">open window</a>
+					               			 --%>
+					               			
 				               			</c:when>
 				               			<c:otherwise>
 				               				${record.locCode}&nbsp;${record.locText}
@@ -190,13 +169,11 @@
     	<c:if test="${empty doUpdated }">
 	<tr>
     <td>
-    		<button name="inputShowFormButton" id="inputShowFormButton" class="buttonGrayWithGreenFrame" type="button" ><spring:message code="systema.transportdisp.createnew"/></button>
+    		<button name="inputShowFormButton" id="inputShowFormButton" class="inputFormSubmit" type="button" ><spring:message code="systema.transportdisp.createnew"/>&nbsp;&nbsp;&nbsp;&nbsp;<font class="text10" style="text-decoration: underline;">Vis frem</font></button>
     </td>
     </tr>
     </c:if>
-    
-    <tr height="5px"><td class="text" align="left"></td></tr>
-	
+    <tr height="10px"><td class="text" align="left"></td></tr>
     <tr>
     <td>
     
@@ -218,7 +195,7 @@
 					<input type="hidden" name="opd" id="opd" value='${model.opd}'>
 					<button id="clearNewLineFormValuesButton" tabindex=-1 class="inputFormSubmitStd" type="button"><spring:message code="systema.transportdisp.search.remove.filter"/></button> 
 					<c:if test="${empty doUpdated }">
-						<img id="inputShowFormImage" style="cursor:pointer;" src="resources/images/sort_down.png" border="0" width="12px" height="12px" alt="edit">
+						<img title="skjul elementer..." id="inputShowFormImage" style="cursor:pointer;" src="resources/images/sort_down.png" border="0" width="12px" height="12px" alt="edit">
 					</c:if>
 				</form>
 			</td>

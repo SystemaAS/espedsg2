@@ -340,7 +340,7 @@ public class TransportDispWorkflowControllerChildWindow {
 		model.put("avd", avd);
 		model.put("opd", opd);
 		
-		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&doUpdated=1&avd=" + avd + "&opd=" + opd);
+		ModelAndView successView = new ModelAndView("redirect:transportdisp_workflow_childwindow_trackandtrace.do?action=doInit&avd=" + avd + "&opd=" + opd);
 		ModelAndView errorView = new ModelAndView("transportdisp_workflow_childwindow_trackandtrace");
 		
 		
