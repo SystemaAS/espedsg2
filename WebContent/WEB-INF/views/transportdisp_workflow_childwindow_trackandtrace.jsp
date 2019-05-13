@@ -50,10 +50,10 @@
 						<thead>
 						<tr class="tableHeaderField" height="20">
 							<th class="text14" title="Fraktbrev" >&nbsp;F.b.&nbsp;</th>
-		                    <th class="text14" >&nbsp;Dato&nbsp;</th>
-		                    <th class="text14" >&nbsp;Tid&nbsp;</th>
-		                    <th class="text14" >&nbsp;Kode&nbsp;</th>
-		                    <th nowrap class="text14" >&nbsp;Tekst&nbsp;</th>
+		                    <th class="text14" title="Dato">&nbsp;Dato&nbsp;</th>
+		                    <th class="text14" title="Tid">&nbsp;Tid&nbsp;</th>
+		                    <th class="text14" title="Kode">&nbsp;Kode&nbsp;</th>
+		                    <th nowrap class="text14" title="Tekst">&nbsp;Tekst&nbsp;</th>
 		                    <th class="text14" title="EDI Event kode" >&nbsp;Ec&nbsp;</th>
 		                    <th class="text14" title="EDI Reason kode" >&nbsp;Rc&nbsp;</th>
 		                    <th class="text14" title="Manuell Opprettet/Auto Opprettet">&nbsp;Oppr.&nbsp;</th>
@@ -61,11 +61,9 @@
 		                    		&nbsp;St.&nbsp;
 		                    </th>
 		                    <th nowrap class="text14" title="Sted i google maps...">&nbsp;Sted&nbsp;</th>
-		                    <th class="text14" >&nbsp;Depo&nbsp;</th>
-		                    <th class="text14" >&nbsp;Navn&nbsp;</th>
-		                    <th class="text14" >&nbsp;Bruker&nbsp;</th>
-		                    
-		                    
+		                    <th class="text14" title="Depo">&nbsp;Depo&nbsp;</th>
+		                    <th class="text14" title="Navn">&nbsp;Navn&nbsp;</th>
+		                    <th class="text14" title="Bruker">&nbsp;Bruker&nbsp;</th>                    	                    
 		                </tr> 
 		                </thead>
 		                
@@ -81,7 +79,7 @@
 				               	<td width="2%" class="tableCell" >&nbsp;${record.ediReason}</td>
 				               	<td width="2%" class="tableCell"  >&nbsp;${record.manualCode}</td>
 				               	<td width="2%" class="tableCell" >&nbsp;${record.status}</td>
-				               	<td nowrap width="2%" class="tableCell" >
+				               	<td nowrap width="2%" title="${record.latitude}&nbsp;${record.longitude}" class="tableCell" >
 				               		<%--
 				               		<a target="_blank" href="https://www.google.no/maps/?q=60.279938,5.236414&t=h">
 				               			test
