@@ -1348,7 +1348,7 @@
 						 			</td>
 						 			<c:if test="${not empty model.record.trstae}">
 							 			<td class="text14" >
-							 				&nbsp;&nbsp;&nbsp;
+							 				&nbsp;
 							 				<label style="color:green;"><b>Utkjør.</b>
 							 				<c:choose>
 								 				<c:when test= "${not empty model.record.vfavd}">
