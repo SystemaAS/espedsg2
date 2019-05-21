@@ -2902,9 +2902,12 @@
 			  }*/
 	  	  }else{
 	  		  //set the total desc = with first line description
-	  		  if(jq("#hevs1").val()==''){
+	  		  if(jq("#hevs1").val() == ''){
 	  			  if(jq("#fvpakn").val() != '' && jq("#fvvt").val() != ''){
 	  				  var str = jq("#fvpakn").val() + " " + jq("#fvvt").val();
+	  				  jq("#hevs1").val(str);
+	  			  }else if (jq("#fvvt").val() != ''){
+	  				  var str = jq("#fvvt").val();
 	  				  jq("#hevs1").val(str);
 	  			  }
 	  		  }
