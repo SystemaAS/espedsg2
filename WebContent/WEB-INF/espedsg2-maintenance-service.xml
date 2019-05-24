@@ -58,28 +58,7 @@ http://www.springframework.org/schema/context/spring-context-3.0.xsd">
 	<bean id="maintMainTrustdService" class="no.systema.z.main.maintenance.service.sad.MaintMainTrustdServiceImpl"/>
 	<bean id="maintMainTrustdfvService" class="no.systema.z.main.maintenance.service.sad.MaintMainTrustdfvServiceImpl"/>
 	
-	<!-- SKAT external packages maintenance -->
-	<bean id="maintDktvkService" class="no.systema.external.skat.z.maintenance.service.MaintDktvkServiceImpl"/>
-	<bean id="maintDkxkodfService" class="no.systema.external.skat.z.maintenance.service.MaintDkxkodfServiceImpl"/>
 	
-	<!-- SKAT avd maintenance -->
-	<bean id="maintMainDkxstdService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkxstdServiceImpl"/>
-	<bean id="maintMainDkxstdfvService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkxstdfvServiceImpl"/>
-	<bean id="maintMainDknstdService" class="no.systema.z.main.maintenance.service.skat.MaintMainDknstdServiceImpl"/>
-	<bean id="maintMainDkeaService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkeaServiceImpl"/>
-	<bean id="maintMainDkiaService" class="no.systema.z.main.maintenance.service.skat.MaintMainDkiaServiceImpl"/>
-	
-	<!-- TDS external packages maintenance -->
-	<bean id="maintSvxkodfService" class="no.systema.external.tds.z.maintenance.service.MaintSvxkodfServiceImpl"/>
-	<bean id="maintSvtvkService" class="no.systema.external.tds.z.maintenance.service.MaintSvtvkServiceImpl"/>
-	<bean id="maintSvthaService" class="no.systema.external.tds.z.maintenance.service.MaintSvthaServiceImpl"/>
-	
-	<!-- TDS avd maintenance -->
-	<bean id="maintMainSvxstdService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvxstdServiceImpl"/>
-	<bean id="maintMainSvxstdfvService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvxstdfvServiceImpl"/>
-	<bean id="maintMainSveaService" class="no.systema.z.main.maintenance.service.tds.MaintMainSveaServiceImpl"/>
-	<bean id="maintMainSviaService" class="no.systema.z.main.maintenance.service.tds.MaintMainSviaServiceImpl"/>
-	<bean id="maintMainSvnstdService" class="no.systema.z.main.maintenance.service.tds.MaintMainSvnstdServiceImpl"/>
 	
 	
 	
