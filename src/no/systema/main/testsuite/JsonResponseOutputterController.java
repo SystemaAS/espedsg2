@@ -9,8 +9,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import no.systema.main.url.store.MainUrlDataStore;
-import no.systema.transportdisp.url.store.TransportDispUrlDataStore;
-import no.systema.sporringoppdrag.url.store.SporringOppdragUrlDataStore;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -169,12 +167,12 @@ public class JsonResponseOutputterController {
 	private List<Object> getUrlObjectListTranspDisp(){
 		List<Object> listObj= new ArrayList<Object>();
 		Object urlStoreObj = null;
-		
+		/*
 		urlStoreObj = new TransportDispUrlDataStore();
 		listObj.add(urlStoreObj);
 		urlStoreObj = new MainUrlDataStore();
 		listObj.add(urlStoreObj);
-		
+		*/
 		
 			
 		return listObj;
@@ -186,12 +184,12 @@ public class JsonResponseOutputterController {
 	private List<Object> getUrlObjectListSporrOppd(){
 		List<Object> listObj= new ArrayList<Object>();
 		Object urlStoreObj = null;
-		
+		/*
 		urlStoreObj = new SporringOppdragUrlDataStore();
 		listObj.add(urlStoreObj);
 		urlStoreObj = new MainUrlDataStore();
 		listObj.add(urlStoreObj);
-		
+		*/
 		
 			
 		return listObj;
