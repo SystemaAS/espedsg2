@@ -228,10 +228,10 @@ public class JsonEspedsgTestersuiteController {
 			retval = "/espedsgebook/sytsuite.do";
 			
 		}else if(this.TEST_MODULE_LASTETORG.equalsIgnoreCase(testModule)){
-			retval = "/espedsg2/sytsuite_transpDisp.do";
+			retval = "/espedsgtranspdisp/sytsuite_transpDisp.do";
 			
 		}else if(this.TEST_MODULE_SPORROPPD.equalsIgnoreCase(testModule)){
-			retval = "/espedsg2/sytsuite_sporroppd.do";
+			retval = "/espedsgtranspdisp/sytsuite_sporroppd.do";
 			
 		}else if(this.TEST_MODULE_OPPDREG.equalsIgnoreCase(testModule)){
 			retval = "/espedsgtror/sytsuite.do";
