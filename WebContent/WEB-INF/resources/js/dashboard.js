@@ -37,21 +37,34 @@
     		setBlockUI();
 	    });
     	
+    	
+    	/*
     	jq("td#dashItem_Sporroppdrag").bind("click",function() {
     		window.location = "sporringoppdraggate.do?lang=" + jq("#usrLang").val();
     		setBlockUI();
     		
+	    });*/
+    	jq("td#dashItem_Sporroppdrag").bind("click",function() {
+    		jq("#dashForm_Sporroppdrag").submit();
+    		setBlockUI();
 	    });
+    	
     	jq("td#dashItem_Testsuites").bind("click",function() {
     		window.location = "aespedsgtestersuite.do?lang=" + jq("#usrLang").val();
     		setBlockUI();
     		
 	    });
+    	/*
     	jq("td#dashItem_Transpdisp").bind("click",function() {
     		window.location = "transportdisp_mainorderlist.do?lang=" + jq("#usrLang").val() + "&action=doFind";
     		setBlockUI();
     		
+	    });*/
+    	jq("td#dashItem_Transpdisp").bind("click",function() {
+    		jq("#dashForm_Transpdisp").submit();
+    		setBlockUI();
 	    });
+    	
     	
     	jq("td#dashItem_Kvalitet").bind("click",function() {
     		jq("#dashForm_Kvalitet").submit();
