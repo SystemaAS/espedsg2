@@ -70,6 +70,7 @@ public class JsonEspedsgTestersuiteController {
 	private final String TEST_MODULE_SPORROPPD = "sporroppd";
 	private final String TEST_MODULE_ALTINN = "altinn";
 	private final String TEST_MODULE_STATS = "stats";
+	private final String TEST_MODULE_GODSREGNO = "godsno";
 	
 	//
 	private final String TEST_LIST = "list";
@@ -238,7 +239,11 @@ public class JsonEspedsgTestersuiteController {
 			
 		}else if(this.TEST_MODULE_STATS.equalsIgnoreCase(testModule)){
 			retval = "/espedsgstats/sytsuite.do";
+			
+		}else if(this.TEST_MODULE_GODSREGNO.equalsIgnoreCase(testModule)){
+			retval = "/espedsggodsno/sytsuite.do";
 		}
+		
 		
 		
 		return retval;
@@ -306,6 +311,14 @@ public class JsonEspedsgTestersuiteController {
 			obj.setText(this.TEST_MODULE_SKAT);
 			list.add(obj);
 		//
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Godsregistrering");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_GODSREGNO);
+			list.add(obj);
+
+			//
 			obj = new JsonTestersuiteObjectRecord();
 			obj.setId("s");obj.setModuleName("Lastetorg");
 			obj.setStatus(GREEN_STATUS);
@@ -422,6 +435,15 @@ public class JsonEspedsgTestersuiteController {
 			list.add(obj);
 		}
 		//
+		if(this.moduleExists("GODSREGNO", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Godsregistrering NO");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_GODSREGNO);
+			list.add(obj);
+		}
+		//
 		if(this.moduleExists("WRKTRIPS", appUser)){
 			obj = new JsonTestersuiteObjectRecord();
 			obj.setId("s");obj.setModuleName("Lastetorg");
@@ -458,15 +480,6 @@ public class JsonEspedsgTestersuiteController {
 			list.add(obj);
 		}
 		//
-		if(this.moduleExists("UFORTOPPD", appUser)){
-			obj = new JsonTestersuiteObjectRecord();
-			obj.setId("s");obj.setModuleName("Ufortollede oppdrag");
-			obj.setStatus(GREEN_STATUS);
-			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
-			obj.setText(this.TEST_MODULE_UFORTOLL);
-			list.add(obj);
-		}
-		//
 		if(this.moduleExists("RAPPORTER", appUser)){
 			obj = new JsonTestersuiteObjectRecord();
 			obj.setId("s");obj.setModuleName("Stats");
@@ -475,6 +488,16 @@ public class JsonEspedsgTestersuiteController {
 			obj.setText(this.TEST_MODULE_STATS);
 			list.add(obj);
 		}
+		//
+		if(this.moduleExists("UFORTOPPD", appUser)){
+			obj = new JsonTestersuiteObjectRecord();
+			obj.setId("s");obj.setModuleName("Ufortollede oppdrag");
+			obj.setStatus(GREEN_STATUS);
+			obj.setServiceUrl(CONTROLLER_TEST_MODULE_URL);
+			obj.setText(this.TEST_MODULE_UFORTOLL);
+			list.add(obj);
+		}
+		
 		return list;
 	}
 	/**
