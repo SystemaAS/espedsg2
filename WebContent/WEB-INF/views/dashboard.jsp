@@ -193,6 +193,7 @@
 													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
+													    
 													</form>
 												</td>
 												<c:if test="${counterTOMCATAPPS%5==0}">

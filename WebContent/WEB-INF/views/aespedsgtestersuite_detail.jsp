@@ -59,6 +59,7 @@
 							<tr>
 								<th nowrap width="2%" class="tableHeaderFieldFirst" align="center" >&nbsp;<spring:message code="systema.testersuite.module.child.status"/>&nbsp;</th>
 								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.testersuite.module.child.serviceName"/></th>
+			                    <th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.testersuite.module.child.description"/></th>
 			                    <th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.testersuite.module.child.error.description"/></th>
 			                    
 			                </tr>  
@@ -81,6 +82,11 @@
 				               		<a style="cursor:pointer" onClick="window.open('${record.serviceUrl}', 'testwindow', 'width=700,height=200,top=400,left=400,toolbar=no,location=no,directories=no,status=no,menubar=no,scrollbars=yes,copyhistory=no,resizable=yes')" target="_blank">
 				               			<font class="text16">&nbsp;${record.serviceName}</font>
 				               		</a>
+				               </td>
+				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
+				               		<c:if test="${not empty record.description && record.description!='null'}">
+				               			<font class="text14SkyBlue">&nbsp;${record.description}</font>
+				               		</c:if>
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" ><font class="text16">&nbsp;<c:if test="${not empty record.errMsg && record.errMsg != 'null'}">${record.errMsg}</c:if></font></td>
 				               
