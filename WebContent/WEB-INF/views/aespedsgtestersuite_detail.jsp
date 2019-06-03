@@ -85,7 +85,7 @@
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
 				               		<c:if test="${not empty record.description && record.description!='null'}">
-				               			<font class="text14SkyBlue">&nbsp;${record.description}</font>
+				               			<font class="text14SkyBlue">${record.description}</font>
 				               		</c:if>
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" ><font class="text16">&nbsp;<c:if test="${not empty record.errMsg && record.errMsg != 'null'}">${record.errMsg}</c:if></font></td>
