@@ -20,7 +20,7 @@
     <body>
 		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
         
-        <h1>Tomcat logins</h1>
+        <h1>Tomcat logins - espedsg2</h1>
 		<div><button name="metricsButton" id="metricsButton" class="buttonGrayWithGreenFrame" type="button" >Refresh</button></div>
         <div name="mainGraph" id="mainGraph">
 

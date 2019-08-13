@@ -43,12 +43,12 @@
 	    //plot
 	    MG.data_graphic({
 	        title: "Activity graph",
-	        description: "This is an example.",
+	        //description: "This is an example.",
 	        data: jsonData,
 	        //chart_type: 'point',
 	        //interpolate: d3.curveLinear,
-	        width: 650,
-	        height: 350,
+	        width: 750,
+	        height: 300,
 	        //right: 10,
 	        x_accessor: 'date',
 	        y_accessor: 'logins',
