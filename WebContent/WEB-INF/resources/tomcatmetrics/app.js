@@ -37,8 +37,9 @@
 	function buildGraph(data){
 		var jsonData = data;
 		
+		//var jsonData = [{"date": "2019-07-09 09:00:50", "logins": 10, "hours": 15},{"date": "2015-07-09 10:00:40", "logins": 21, "hours": 15}];
 		//convert string dates into date formats                
-		jsonData = MG.convert.date(jsonData, 'date', "%Y-%m-%d %H:%M" );
+		jsonData = MG.convert.date(jsonData, 'date', "%Y-%m-%d %H:%M:%S" );
 	    //plot
 	    MG.data_graphic({
 	        title: "Activity graph",
