@@ -13,6 +13,12 @@
      }
   	
     jq(function() { 
+    	jq("#metricsIdLink").click(function() {
+    		jq('#metricsIdLink').attr('target','_blank');
+	    	window.open('renderTomcatMetrics.do', "TomcatMetricsWin", "top=300px,left=350px,height=700px,width=1000px,scrollbars=no,status=no,location=no");
+    		//setBlockUI();
+	    });
+    	
     	jq("td#dashItem_VismaInt").bind("click",function() {
     		jq("#dashForm_VismaInt").submit();
     		setBlockUI();

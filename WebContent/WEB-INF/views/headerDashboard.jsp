@@ -128,6 +128,10 @@
 		    					<font class="text14" onMouseOver="style='color:lemonchiffon;'" onMouseOut="style='color:black;'" ><spring:message code="dashboard.menu.change.password"/></font>
 		    				</font>
 		    				<font color="#FCFFF0"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
+		    				<a title="Tomcat metrics" tabindex=0 id="metricsIdLink" >
+		    					<img id="imgMetrics" style="vertical-align:bottom;cursor:pointer;" src="resources/images/metrics.png" width="14px" height="14px" border="0" >
+		    				</a>
+		    				<font color="#FCFFF0"; style="font-weight: bold;">&nbsp;|&nbsp;</font>
 	      					<font class="headerMenuGreenNoPointer">
 	      						<img title="${user.logo}" src="resources/images/appUser.gif" border="0" onClick="showPop('specialInformationAdmin');">&nbsp;
       							<font class="text14">${user.user}&nbsp;</font>${user.usrLang}&nbsp;
