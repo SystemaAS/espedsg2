@@ -125,6 +125,7 @@ public class TomcatAjaxMetricsController {
 			//now wash (filter and accumulate logins per hour) the list
 			//DEBUG
 			int sum = 0;
+			int totalSum = 0;
 			TomcatMetrics newTomcatMetrics = new TomcatMetrics();
 			int prevHour = 0;
 			//try to accumulate per hour
@@ -140,6 +141,7 @@ public class TomcatAjaxMetricsController {
 					sum = 0;
 				}
 				sum = sum + record.getLogins();
+				totalSum = totalSum + record.getLogins();
 				newTomcatMetrics.setDate(record.getDate());
 				newTomcatMetrics.setHour(record.getHour());
 				newTomcatMetrics.setLogins(sum);
@@ -147,7 +149,8 @@ public class TomcatAjaxMetricsController {
 				prevHour = record.getHour();
 				
 			}
-			//last iteration
+			//last iteration and only object med totalSum since this is the grand total of all records
+			newTomcatMetrics.setTotalSum(totalSum);
 			outputList.add(newTomcatMetrics);
 			
 			logger.info("<END> OK");

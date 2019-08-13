@@ -21,7 +21,10 @@
 		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
         
         <h1>Tomcat logins - espedsg2</h1>
-		<div><button name="metricsButton" id="metricsButton" class="buttonGrayWithGreenFrame" type="button" >Refresh</button></div>
+		<div>
+			<button name="metricsButton" id="metricsButton" class="buttonGrayWithGreenFrame" type="button" >Refresh</button>
+			&nbsp;&nbsp;&nbsp;Total:&nbsp;<b><label style="color:blue;" name="totalSum" id="totalSum"></label></b>
+		</div>
         <div name="mainGraph" id="mainGraph">
 
             

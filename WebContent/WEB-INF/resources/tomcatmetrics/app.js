@@ -22,10 +22,16 @@
 		  	  cache: false,
 		  	  contentType: 'application/json',
 		  	  success: function(data) {
-		  		//build graph  
-		  		console.log("fetch DATA OK....");  
-		  		buildGraph(data);
-		  		
+		  		var len = data.length;
+		  		for ( var i = 0; i < len; i++) {
+		  			if(data[i].totalSum>0){
+		  				console.log(data[i].totalSum);
+		  				$("#totalSum").text(data[i].totalSum);
+		  			}
+		  		}
+		  		console.log("fetch DATA OK....");
+		  		//build graph
+	  			buildGraph(data);
 		  	  },
 		  	  error: function() {
 		  		  console.log('ERROR!!! Error loading ...');
