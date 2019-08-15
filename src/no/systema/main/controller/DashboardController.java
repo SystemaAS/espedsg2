@@ -136,6 +136,7 @@ public class DashboardController {
 				
 				logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 			    	logger.info("URL: " + BASE_URL);
+			    	logger.info("symn0J.pgm_primary_login");
 			    	//don't show the pwd
 			    	//int pwd = urlRequestParamsKeys.indexOf("&pwd");
 			    	//String credentailsPwd = urlRequestParamsKeys.substring(pwd + 5);

@@ -69,7 +69,7 @@ public class TomcatAjaxMetricsController {
 	 */
 	@RequestMapping(value="getTomcatMetricsData.do", method={ RequestMethod.GET })
 	public @ResponseBody List getTomcatMetricsData(@RequestParam String user, HttpSession session){
-		
+		String MATCH_STRING_SYMN01_PRIMARY = "symn0J.pgm_primary_login";
 		logger.info("Inside getTomcatMetricsData...");
 		List<TomcatMetrics> rawList = new ArrayList<TomcatMetrics>();
 		List<TomcatMetrics> outputList = new ArrayList<TomcatMetrics>();
@@ -97,7 +97,7 @@ public class TomcatAjaxMetricsController {
 					   
 					   //do some things ...
 					   while ((readLine = b.readLine()) != null) {
-						   if(readLine!=null && readLine.contains("symn0J.pgm")){  
+						   if(readLine!=null && readLine.contains(MATCH_STRING_SYMN01_PRIMARY)){  
 							 //logger.info("################:" + readLine);
 							 tmp = readLine.substring(0,19);
 							 tomcatMetrics = new TomcatMetrics();
