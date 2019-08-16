@@ -166,6 +166,7 @@ public class DashboardController {
 				    				this.setDashboardMenuObjectsInSession(session, jsonSystemaUserContainer);
 				    				//hand-over to appUser from JsonUser
 				    				this.doHandOverToSystemaWebUser(request, appUser, jsonSystemaUserContainer, companyCode);
+				    				logger.info("symn0J.pgm_ok_login");
 				    			}
 				    		}
 				    	}else{

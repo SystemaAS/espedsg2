@@ -20,18 +20,22 @@
     <body>
 		<input type="hidden" name="applicationUser" id="applicationUser" value='${user.user}'>
         
-        <h1>Tomcat logins - espedsg2</h1>
+        <h2>Tomcat login attempts - espedsg2</h2>
 		<div>
 			<button name="metricsButton" id="metricsButton" class="buttonGrayWithGreenFrame" type="button" >Refresh</button>
-			&nbsp;&nbsp;&nbsp;Total:&nbsp;<b><label style="color:blue;" name="totalSum" id="totalSum"></label></b>
 		</div>
-        <div name="mainGraph" id="mainGraph">
-
-            
-        </div>
+		<div>
+			<p>Totals</p>
+			Login attempts:&nbsp;<b><label style="color:blue;" name="totalSum" id="totalSum"></label></b><br>
+			Successful attempts:&nbsp;<b><label style="color:mediumseagreen;" name="totalSuccessSum" id="totalSuccessSum"></label></b>
+		</div>
+		
+        <div name="mainGraph" id="mainGraph"></div>
+        <div height="10"></div>
+        <div name="consolidatedGraph" id="consolidatedGraph"></div>
         
         
-        <script src="resources/tomcatmetrics/app.js"></script>
+        <script src="resources/tomcatmetrics/app.js?ver=${user.versionEspedsg}"></script>
         
     </body>
 </html>
