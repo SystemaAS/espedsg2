@@ -25,12 +25,12 @@
 		  		var len = data.length;
 		  		
 		  		for ( var i = 0; i < len; i++) {
-		  			//(1) isolate the simple graph (graph 1 data) json (only first list)
-		  			if(i == 0){
-		  				jsonDataForSimpleGraph = data[i];
-		  			}
-		  			//(2) deal with the consolidated graph (graph 2 data  = several json lists)
 		  			for ( var j = 0; j < data[i].length; j++) {
+		  				//(1) isolate the simple graph (graph 1 data) json (only first list)
+			  			if(i == 0){
+			  				jsonDataForSimpleGraph = data[i];
+			  			}
+			  			
 			  			if(data[i][j].totalSum>0){
 			  				console.log(data[i][j].totalSum);
 			  				if(i == 0){
@@ -55,11 +55,14 @@
 
 	//GRAPH plot
 	function buildGraphs(jsonDataForSimpleGraph, data){
+		var TIME_MASK = '%Y-%m-%d %H:%M';
+		var josnSimpleData = jsonDataForSimpleGraph;
 		var jsonConsolidatedData = data;
+		
 		
 	    //CONSOLIDATED GRAPH
 	    for (var i = 0; i < jsonConsolidatedData.length; i++) {
-	    	jsonConsolidatedData[i] = MG.convert.date(jsonConsolidatedData[i], 'date', '%Y-%m-%d %H:%M:%S');
+	    	jsonConsolidatedData[i] = MG.convert.date(jsonConsolidatedData[i], 'date', TIME_MASK);
 	    }
 		MG.data_graphic({
 	        title: "Activity graph - detailed",
@@ -77,17 +80,19 @@
 	        legend_target: '.legend'
 	    });
 	    
+		
+		
 		//SIMPLE GRAPH
 		//console.log(jsonDataForSimpleGraph);
-		//jsonData = [{"date": "2019-07-09 09:00:50", "logins": 10, "hours": 15},{"date": "2015-07-09 10:00:40", "logins": 21, "hours": 15}];
+		//jsonData = [{"date": "2019-07-09 09:00", "logins": 10, "hours": 15},{"date": "2015-07-09 10:00", "logins": 21, "hours": 15}];
 		//this causes an ERROR ? ---> maybe since we have 2 graphs and we already handle date conversion??
-		//jsonDataForSimpleGraph = MG.convert.date(jsonDataForSimpleGraph, 'date', '%Y-%m-%d %H:%M:%S' );
+		//josnSimpleData = MG.convert.date(josnSimpleData, 'date', TIME_MASK );
 	    
 		//plot
 	    MG.data_graphic({
 	        title: "Activity graph",
 	        //description: "This is an example.",
-	        data: jsonDataForSimpleGraph,
+	        data: josnSimpleData,
 	        //linked: true,
 	        //chart_type: 'point',
 	        //interpolate: d3.curveLinear,
@@ -109,6 +114,8 @@
 	        //mouseover: function(d, i) { console.log(d,i); },
 	        //y_rug: true
 	    });
+		
+		
 	    
 	}
 	

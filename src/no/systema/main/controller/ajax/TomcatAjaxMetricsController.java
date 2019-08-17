@@ -104,7 +104,7 @@ public class TomcatAjaxMetricsController {
 					   while ((readLine = b.readLine()) != null) {
 						   if(readLine!=null && readLine.contains(MATCH_STRING_SYMN01_PRIMARY)){  
 								 //logger.info("################:" + readLine);
-								 tmp = readLine.substring(0,19);
+								 tmp = readLine.substring(0,16);
 								 tomcatMetrics = new TomcatMetrics();
 								 tomcatMetrics.setDate(tmp);
 								 //now to the counter of logins during this same hour
@@ -115,7 +115,7 @@ public class TomcatAjaxMetricsController {
 								 rawListAttempts.add(tomcatMetrics);
 							 
 							}else if(readLine!=null && readLine.contains(MATCH_STRING_SYMN01_PRIMARY_OK_LOGIN)){
-								 tmp = readLine.substring(0,19);
+								 tmp = readLine.substring(0,16);
 								 tomcatMetrics = new TomcatMetrics();
 								 tomcatMetrics.setDate(tmp);
 								 //now to the counter of logins during this same hour
