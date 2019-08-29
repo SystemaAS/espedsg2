@@ -12,11 +12,24 @@ public class RegExTester {
 		DateValidator dateValidator = new DateValidator();
 		System.out.println(dateValidator.validateDateIso203_YYYYMMDDhhmm("201408221200"));
 		*/
-		String text = "   J         ";
-		String newT = trimEnd(text);
-		System.out.println(newT);
+		
+		String value = "AADZ1234568";
+		//String nameRegex = "^(\\d{4})$";
+        //String nameRegex = "^\\w{2}\\d{9}\\w{3}$";
+    	String nameRegex = "[A-Z]{4}[0-9]{7}";
+        Pattern namePattern = Pattern.compile(nameRegex);
+        Matcher nameMatcher = namePattern.matcher(value);
+        boolean matchFound = nameMatcher.find();
+        if (matchFound) {
+            System.out.println("MATCH!");
+        } else {
+        	System.out.println("NO MATCH");
+        }
+		
     }
 	
+	
+	/*
 	private static String trimEnd(String s){
 	      int i = s.length()-1;
 	      while(s.charAt(i)==' '){
@@ -24,7 +37,7 @@ public class RegExTester {
 	      }
 	      return s.substring(0, i+1);
 	   }
-	/*
+	
 	private boolean checkDate(String value){
 		boolean retval = true;
 		String nameRegex = "^\\d{4}\\d{2}\\d{2}\\d{2}\\d{2}\\d{2}$";

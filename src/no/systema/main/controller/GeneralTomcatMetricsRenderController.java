@@ -39,17 +39,7 @@ public class GeneralTomcatMetricsRenderController {
 	//OBSOLETE:  static final ResourceBundle resources = AppResources.getBundle();
 	
 	private static final Logger logger = Logger.getLogger(GeneralTomcatMetricsRenderController.class.getName());
-	private PayloadContentFlusher payloadContentFlusher = new PayloadContentFlusher();
-	
-	private final String RELATIVE_LOGFILE_PATH = "logs/" + ApplicationPropertiesUtil.getProperty("log4j.logger.file");   //OBSOLETE: resources.getString("log4j.logger.file");
-	private final String SERVLET_CONTEXT_WEBAPPS_ROOT = "webapps";
-	//Special case Transport Module
-	private final String RELATIVE_LOGFILE_PATH_TRANSPORT_MODULE = "logs/log4j_espedsg2_transportModule.log"; 
-	
 	private ModelAndView loginView = new ModelAndView("login");
-	
-	private ApplicationContext context;
-	//
 	private StringManager strMgr = new StringManager();
 	
 	
@@ -68,8 +58,9 @@ public class GeneralTomcatMetricsRenderController {
 			return this.loginView;
 			
 		}else{
+			//the method redirects you to the JSP and from there a java script is executed. Look then on the AJAX: TomcatAjaxMetricsController
 			ModelAndView tomcatMetricsView = new ModelAndView("tomcatMetrics");
-            return(tomcatMetricsView);
+			return(tomcatMetricsView);
 			
 		}
 			

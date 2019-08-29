@@ -1,23 +1,50 @@
 	var jsonDataForSimpleGraph;
+	var today = '';
 	//-----------------
 	//functions section
 	//-----------------
 	$(document).ready(function() {
-		init();
+		run(today);
 	});
 
 	//button click
 	$('#metricsButton').click(function() { 
-		init();
+		if($('#date').val() == ''){
+			run(today);
+		}else{
+			run($('#date').val());
+		}
 	});
 	
+	$(function() {
+		$('#date').datepicker({ 
+			dateFormat: 'yy-mm-dd',
+			onSelect: function (selected) {
+				run(selected);
+			}
+		});
+	});
 	
 	//get rest services
-	function init(){
+	function run(dateParam){
+		console.log("dateParam:" + dateParam);
+		var date = '';
+		if(dateParam != ''){
+			var tmp = new Date(dateParam);
+			date = moment(tmp).format('YYYY-MM-DD');
+			console.log("date:" + date);
+			
+		}
+		//init total sums
+		$("#totalSum").text('0');
+		$("#totalSuccessSum").text('0');
+		
+		//start
 		$.ajax({
 		  	  type: 'GET',
 		  	  url: 'getTomcatMetricsData.do',
-		  	  data: { user : $('#applicationUser').val() },
+		  	  data: { user : $('#applicationUser').val(),
+		  		  	date : date},
 		  	  dataType: 'json',
 		  	  cache: false,
 		  	  contentType: 'application/json',
