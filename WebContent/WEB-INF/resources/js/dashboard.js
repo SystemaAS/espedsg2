@@ -60,6 +60,14 @@
     		setBlockUI();
     		
 	    });
+    	
+    	jq("td#dashItem_AltinnRunnersuites").bind("click",function() {
+    		window.location = "altinnrunnersuite.do?lang=" + jq("#usrLang").val();
+    		setBlockUI();
+    		
+	    });
+    	
+    	
     	/*
     	jq("td#dashItem_Transpdisp").bind("click",function() {
     		window.location = "transportdisp_mainorderlist.do?lang=" + jq("#usrLang").val() + "&action=doFind";

@@ -44,12 +44,15 @@
 							<thead>
 							<tr>
 								<th width="2%" class="tableHeaderFieldFirst" align="center" >&nbsp;<spring:message code="systema.altinnrunnersuite.id"/>&nbsp;</th>
-								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.altinnrunnersuite.moduleName"/></th>
-			                    <th nowrap width="2%" class="tableHeaderField" align="center" >&nbsp;<spring:message code="systema.altinnrunnersuite.testEngine"/>&nbsp;</th>
+								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.altinnrunnersuite.customer"/></th>
+								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.altinnrunnersuite.module.inbox"/></th>
+								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.altinnrunnersuite.module.log1"/></th>
+								<th class="tableHeaderField" align="left" >&nbsp;<spring:message code="systema.altinnrunnersuite.module.log2"/></th>
+								
 			                </tr>  
 			                </thead> 
 			                <tbody >  
-				            <c:forEach var="record" items="${Xmodel.list}" varStatus="counter">   
+				            <c:forEach var="record" items="${model.list}" varStatus="counter">   
 				               <tr class="tableRow" height="20" >
 				              
 				               <td width="2%" class="tableCellFirst" style="border-style: solid;border-width: 0px 1px 1px 1px;border-color:#FAEBD7;" align="center" >
@@ -57,21 +60,29 @@
 				               		<img src="resources/images/leaf.png" height="18px" width="18px" border="0" alt="test module">
 				               </td>
 				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
-				               		<c:choose>
-					               		<c:when test="${not empty record.serviceUrl}">
-					               			<a onClick="setBlockUI(this);" href="${record.serviceUrl}.do?tm=${record.text}" >
-					               				<font class="text16SkyBlue">&nbsp;${record.moduleName}</font>
-					               			</a>
-					               		</c:when>
-					               		<c:otherwise>
-					               			<font class="text16">&nbsp;${record.moduleName}</font>
-					               		</c:otherwise>
-				               		</c:choose>
+				               		<font class="text16">&nbsp;${record.name}</font>
 				               </td>
-				               	
-				               <td width="2%" class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="center">
-				               		<img src="resources/images/engines.png" height="22px" width="22px" border="0" alt="in process">
+				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
+				               		<a target="_blank"  href="${record.url}altinn-proxy/readInnboks.do?user=SYSTEMA" >
+					               		&nbsp;<img src="resources/images/checkmarkOK.png" height="18px" width="18px" border="0" alt="inbox">
+					               		&nbsp;<font class="text16SkyBlue">&nbsp;.../readInnboks</font>
+					               	</a>
 				               </td>
+				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
+				               		<a target="_blank"  href="${record.url}altinn-proxy/showHistory.do?user=SYSTEMA&filename=log4j_altinn-proxy-history.log" >
+					               		&nbsp;<img src="resources/images/log-iconLOG.png" height="22px" width="22px" border="0" alt="history today">
+					               		&nbsp;<font class="text16SkyBlue">&nbsp;.../showHistory</font>
+					               	</a>
+					               		
+				               </td>
+				               <td class="tableCell" style="border-style: solid;border-width: 0px 1px 1px 0px;border-color:#FAEBD7;" align="left" >
+				               		<a target="_blank"  href="${record.url}altinn-proxy/showHistory.do?user=SYSTEMA&filename=log4j_altinn-proxy-history.log.${model.yesterday}" >
+					               		&nbsp;<img src="resources/images/log-iconLOG.png" height="22px" width="22px" border="0" alt="inbox">
+					               		&nbsp;<font class="text16SkyBlue">&nbsp;.../showHistory-2</font>
+					               	</a>
+					               		
+				               </td>
+				               
 				            </tr> 
 				            </c:forEach>
 				            </tbody>

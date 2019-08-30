@@ -5,33 +5,22 @@ package no.systema.altinnrunnersuite.model;
 import java.lang.reflect.Field;
 import java.util.*;
 import no.systema.main.model.jsonjackson.general.JsonAbstractGrandFatherRecord;
+import lombok.Data;
 
 /**
  * @author oscardelatorre
- * @date Feb 16, 2018
+ * @date Aug 2019
  * 
  */
-public class JsonRunnersuiteObjectRecord extends JsonAbstractGrandFatherRecord {
+@Data
+public class JsonRunnersuiteObjectRecord {
 	
 	private String id = null; 
-	public void setId(String value) {  this.id = value; }
-	public String getId() { return this.id;}
-	
-	private String moduleName = null; 
-	public void setModuleName(String value) {  this.moduleName = value; }
-	public String getModuleName() {  return this.moduleName; }
-	
+	private String companyName = null; 
+	private String ipaddress = null; 
 	private String text = null; 
-	public void setText(String value) {  this.text = value; }
-	public String getText() { return this.text;}
-	
 	private String status = null; 
-	public void setStatus(String value) {  this.status = value; }
-	public String getStatus() { return this.status;}
-	
 	private String description = null; 
-	public void setDescription(String value) {  this.description = value; }
-	public String getDescription() { return this.description;}
 	//
 	private String serviceName = null; 
 	public void setServiceName(String value) {  this.serviceName = value; }
@@ -45,25 +34,8 @@ public class JsonRunnersuiteObjectRecord extends JsonAbstractGrandFatherRecord {
 	}
 	
 	private String serviceUrl = null; 
-	public void setServiceUrl(String value) {  this.serviceUrl = value; }
-	public String getServiceUrl() { return this.serviceUrl;}
 	
 	public String errMsg = null;
-	public void setErrMsg(String value) {  this.errMsg = value; }
-	public String getErrMsg() { return this.errMsg;}
 	
-	/**
-	 * User for java reflection in other classes
-	 * @return
-	 * @throws Exception
-	 */
-	public List<Field> getFields() throws Exception{
-		Class cl = Class.forName(this.getClass().getCanonicalName());
-		Field[] fields = cl.getDeclaredFields();
-		List<Field> list = Arrays.asList(fields);
 		
-		return list;
-	}
-	
-	
 }

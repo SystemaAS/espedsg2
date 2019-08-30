@@ -48,7 +48,7 @@
 				 	<tr>
 				 		<td class="text12white" width="10%" align=left valign="bottom" >&nbsp;</td>
 				 		<td class="text32Bold" width="80%" align="middle" valign="middle" style="color:#778899;" >
-				 			eSped<font style="color:#003300;">sg</font> - <spring:message code="systema.testersuite.banner"/>
+				 			eSped<font style="color:#003300;">sg</font> - <spring:message code="systema.altinnrunnersuite.banner"/>
 				 			
 				 		</td>
 				 		 
@@ -73,10 +73,10 @@
 			    			<%-- --------------------- --%>
 			    			<%-- MAINTENANCE MENU --%>
 			    			<%-- --------------------- --%>
-			    			<a id="alinkTopicListMenuExp" tabindex=-1 href="aespedsgtestersuite.do">
+			    			<a id="alinkTopicListMenuExp" tabindex=-1 href="altinnrunnersuite.do">
 			    				&nbsp;<font 
 			    				<c:choose>           
-		                   			<c:when test="${user.activeMenu=='TEST_SUITES'}">
+		                   			<c:when test="${user.activeMenu=='ALTINN_RUNNER_SUITES'}">
 		                       			class="headerMenuOrange"
 		                   			</c:when>
 		                   			<c:otherwise>   
@@ -84,16 +84,16 @@
 		                   			</c:otherwise>
 		               			</c:choose>
 			    				
-			    				>&nbsp;<spring:message code="systema.testersuite.label"/>&nbsp;</font>
+			    				>&nbsp;<spring:message code="systema.altinnrunnersuite.label"/>&nbsp;</font>
 			    			</a>
 			    			&nbsp;<font color="#FF6600"; style="font-weight: bold;">|</font>
 
 		    			 	<%-- ------------------- --%>
 			    			<%-- Maintenance  MENU    --%>
 			    			<%-- -------------------- --%>
-			    			<a tabindex=-1 href="logoutTestersuites.do">
+			    			<a tabindex=-1 href="logoutRunnersuites.do">
 			    				&nbsp;<font class="headerMenuMaintenance">
-		                   		&nbsp;&nbsp;<spring:message code="systema.testersuite.returnTo.label"/>&nbsp;&nbsp;</font>
+		                   		&nbsp;&nbsp;<spring:message code="systema.altinnrunnersuite.returnTo.label"/>&nbsp;&nbsp;</font>
 			    			</a>
 	      				</td>		      				
 	      				<td class="text12" width="50%" align="right" valign="middle">
