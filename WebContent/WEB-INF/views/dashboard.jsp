@@ -184,6 +184,17 @@
 		 										 <tr>
 		 										</c:if> 
 											</c:if>
+											<c:if test="${fn:contains(record.prog,'-TPMMONITOR') }">
+												<td id="dashItem_Tpmmonitor" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="tpm module">
+				 									<br/>
+				 									<font class="text18">${record.prTxt}</font>
+												</td>
+												<c:if test="${counterTOMCATAPPS%5==0}">
+		 										 </tr>
+		 										 <tr>
+		 										</c:if> 
+											</c:if>
 											<c:if test="${fn:contains(record.prog,'-ALTINNRUNNER') }">
 												<td id="dashItem_AltinnRunnersuites" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
 							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">

@@ -60,6 +60,12 @@
     		setBlockUI();
     		
 	    });
+    	jq("td#dashItem_Tpmmonitor").bind("click",function() {
+    		window.location = "aespedsgtpmmonitor.do?lang=" + jq("#usrLang").val();
+    		setBlockUI();
+    		
+	    });
+    	
     	
     	jq("td#dashItem_AltinnRunnersuites").bind("click",function() {
     		window.location = "altinnrunnersuite.do?lang=" + jq("#usrLang").val();
