@@ -571,6 +571,7 @@ public class DashboardController {
 			logger.info("infoImg:" + record.getInfoImg());
 			*/
 		}
+		
 		//model.put(Constants.DOMAIN_LIST, list);
 		session.setAttribute(AppConstants.DOMAIN_LIST, list);
 

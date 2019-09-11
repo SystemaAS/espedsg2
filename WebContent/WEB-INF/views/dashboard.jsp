@@ -459,89 +459,69 @@
 		 										 <tr>
 		 										</c:if> 
 											</c:if>
-										
-
 										</c:if>
 										
 						 			</c:forEach>
 	
-	<!-- 					 		
-						 			<tr >
-							 			<c:if test="${user.user == 'OSCAR'}">
-							 				<td id="dashItem_roadmap" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-							 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
-				 								<br/>
-				 								<font class="text18">eSpedsg Roadmap</font>
-							 				</td>
-	 										<%--	
-											<td id="dashItem_Kostf" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="Kostnadsføring module">
-			 									<br/>
-			 									<font class="text18">Kostnadsføring</font>
-			 									<form id="dashForm_Kostf" method="post" action="/espedsgkostf/logonDashboard.do" >
-												    <input type="hidden" name="user" value="${user.user}" />
-												    <input type="hidden" name="password" value="${user.encryptedPassword}" />
-												    <input type="hidden" name="lang" value="${user.usrLang}" />
-												</form>
-											</td>
-											--%>
-							 			</c:if>
-						 			</tr>
-	-->					 			    
-								 		<tr >
+									<tr class="text" height="15"><td></td></tr>
+								    
+								 		<%-- LEGACY APPLICATIONS SECTION 
+								 		<tr>
+								 		<td colspan="5">
+								 		<table align="center" style="width:100%; border-spacing:5px; border-collapse:separate; background-color: #CCCCCC; border-radius: 5px;">
+						 				--%>
+						 				<tr >
+								 			<c:set var="counterLEGACYAPPS" value="0" scope="page" />
 								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
-											 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
-								    		
-								    			<c:choose>
-						 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
-						 							<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
-										    			<a class="text14" style="display:block; width: 100%; text-align: center;" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
-											    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
-							 								<br/>
-							 								<font class="text18">
-								 								<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
-				 												<font class="text18SlateGray">${record.prTxt}</font>
-				 											</font>
-			 											</a>
-			 										</td>		
-			 										
-						 							</c:when>
-						 							<c:otherwise>
+								 			 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
+								    				<c:if test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
+					 							<c:set var="counterLEGACYAPPS" value="${counterLEGACYAPPS + 1}" scope="page"/> 
+					 					 		
+					 					 		<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
+									    			<a class="text14" style="display:block; width: 100%; text-align: center;" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
+										    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
+						 								<br/>
+						 								<font class="text18">
+							 								<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
+			 												<font class="text18SlateGray">${record.prTxt}</font>
+			 											</font>
+		 											</a>
+		 										</td>
+		 										<c:if test="${counterLEGACYAPPS%5==0}">
+		 										 </tr>
+		 										 <tr>
+		 										</c:if> 
+			 								</c:if>
+						 					</c:if>
+					 						</c:forEach>
+				 						</tr>
+				 						
+				 						<tr >
+								 			<c:set var="counterLEGACYAPPS_2" value="0" scope="page" />
+								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
+								 			 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
+								    					<c:if test="${not empty record.prog && !fn:contains(record.prog,'UsrSpcName') }">
+					 									<c:set var="counterLEGACYAPPS_2" value="${counterLEGACYAPPS_2 + 1}" scope="page"/> 
+						 					 		
 						 								<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
 										    				<img src="${imgSrcNoneTomcat}" width="10px" height="10px" border="0">&nbsp;
 			 												<font class="text14GrayInactiveLinkOnDashbord">${record.prTxt}</font>
 			 											</td>
-						 							</c:otherwise>
-					 							</c:choose>
+			 											<c:if test="${counterLEGACYAPPS_2%5==0}">
+				 										 </tr>
+				 										 <tr>
+				 										</c:if> 
+							 						
+					 								</c:if>
 					 						</c:if>
 					 						</c:forEach>
 				 						</tr>
-				 						<%-- ORIGINAL
-				 						<tr >
-								 			<c:forEach items="${list}" var="record" varStatus="counter"> 
-											 <c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
-								    		<td class=dashboardElementsFrameE2_OldApps align="center" width="250px" height="150px">
-								    			<img class="dashboardElementsImgCircleE2" src="resources/images/leaf3.png" height="20px" width="20px" border="0" alt="test module">
-				 								<br/>
-				 								<font class="text18">
-								    			<c:choose>
-						 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
-							 							<a class="text14" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
-															<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
-			 												<font class="text18SlateGray">${record.prTxt}</font>
-			 											</a>	
-						 							</c:when>
-						 							<c:otherwise>
-							 							<img src="${imgSrcNoneTomcat}" width="10px" height="10px" border="0">&nbsp;
-			 											<font class="text14GrayInactiveLinkOnDashbord">${record.prTxt}</font>
-						 							</c:otherwise>
-					 							</c:choose>
-					 							</font>
-					 						</td>
-					 						</c:if>
-					 						</c:forEach>
-				 						</tr>	
-				 						 --%>
+				 						<%--
+				 						</table>
+				 						</td>
+				 						</tr>
+								 		 --%>
+				 						
 					 					<tr class="text" height="50"><td></td></tr>
 								    
 						 			</table>
@@ -553,57 +533,7 @@
 	      				</table>
 	      				</td>
 			        </tr>
-			        <%--
-			        <tr class="text" height="50"><td></td></tr>
-			        <tr>
-			 			<td class="text12" align="center" >		
-			 				<table width="98%" align="center" class="dashboardFrameHeader" border="0" cellspacing="0" cellpadding="0">
-						 		<tr height="20">
-						 			<td class="text14White">
-						 				<b>&nbsp;Andre moduler&nbsp;</b>
-					 				</td>
-				 				</tr>
-			 				</table>
-			 			</td>
-			 		</tr>
-			 		<tr >
-			    		<td class="text12" align="center" >
-			    			<table width="99%" align="center" class="dashboardFrame" border="0" cellspacing="0" cellpadding="0">
-						 		<tr >
-						 			<td align="left" height="60px" class="text14">
-						 			<ul>
-					 				<c:forEach items="${list}" var="record" varStatus="counter"> 
-						 				<c:if test="${ !fn:contains(record.prog, 'TOMCAT') }">
-						 					<c:set var="imgSrcNoneTomcat" scope="session" value="resources/images/bulletGrey.png"/>	
-						 					<li style="line-height:20px; list-style-type: none;">
-						 					<font class="text14">
-											<c:choose>
-					 							<c:when test="${not empty record.prog && fn:contains(record.prog,'UsrSpcName') }">
-						 							<a class="text14" target="_blank" href="${record.progChunksUrl}" onclick="window.open(${record.progChunks}); return false" >
-														<img src="${imgSrcNoneTomcat}"  width="10px" height="10px" border="0">&nbsp;
-		 												<font class="text14SlateGray">${record.prTxt}</font>
-		 											</a>	
-					 							</c:when>
-					 							<c:otherwise>
-						 							<img src="${imgSrcNoneTomcat}" width="10px" height="10px" border="0">&nbsp;
-		 											<font class="text14GrayInactiveLinkOnDashbord">${record.prTxt}</font>
-					 							</c:otherwise>
-				 							</c:choose>
-				 							</font>
-				 							</li>
-			 							</c:if> 
-		 							</c:forEach>	 
-						 			</ul>	
-					 				</td>
-				 				</tr>
-			 				</table>
-	      				</td>
-			        </tr>
-			        <tr class="text" height="100"><td></td></tr>
-			     </table> 
-			</td>
-			 --%>
-			
+			        
 		<%-- Pop-up window --%>
 		<tr>
 			<td>
