@@ -180,7 +180,7 @@ public class JsonEspedsgTestersuiteController {
 			
 			logger.info(Calendar.getInstance().getTime() +  " CGI-start timestamp < " + BASE_URL);
 			String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL,"user=" + appUser.getUser());
-			logger.info(jsonPayload);
+			//debug --> logger.info(jsonPayload);
 			//get container
 			JsonTestersuiteObjectContainer container = this.testersuiteService.getContainer(jsonPayload);
 			logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp");
