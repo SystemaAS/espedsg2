@@ -102,7 +102,7 @@ public class JsonEspedsgTestersuiteController {
 		
 		ModelAndView successView = new ModelAndView("aespedsgtestersuite");
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
-		logger.info("appUser:" + appUser.getMenuList());
+		//logger.info("appUser:" + appUser.getMenuList());
 		//check user (should be in session already)
 		if(appUser==null){
 			return loginView;
