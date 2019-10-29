@@ -12,7 +12,7 @@ C113;Dachser SE-JKG - A22@http://10.13.3.22:9393/espedsg2@<b>8.0</b> / 8.0 / <b>
 C114;Dachser SE-MMX - A23@http://10.13.3.22:9494/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9494/espedsg2
 C115;Dachser SE-STO - A20@http://10.13.3.22:9191/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9191/espedsg2
 C200;DSV@http://10.47.16.52:8080/espedsg@7.0 / 6.0 / old OS@
-C201;DSV@http://145.218.199.121:8080/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
+C201;DSV@http://145.218.199.121:8080/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
 C240;Holger Fischer@http://10.241.23.250:8181/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C250;ISOLA AS - A50@http://10.13.3.22:8888/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a50sg.systema.no
 C300;Kingsrød DK@http://10.20.4.2:8383/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
