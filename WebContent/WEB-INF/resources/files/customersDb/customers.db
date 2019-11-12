@@ -1,5 +1,6 @@
 META;ID;NAME
 C25;Accelerator@http://192.168.70.16:8080/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
+C2500;Alpi Norway - A33@http://10.13.3.22:9092/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a33sg.systema.no
 C26;Atlas Spedisjon - A49@http://10.13.3.22:8686/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@http://a49sg.systema.no
 C30;Bring@http://139.114.151.52:8080/espedsg2@<b>8.0</b> / 8.0 / V11@
 C35;Collicare@http://217.65.230.10:8080/espedsg@<b>8.0</b> / 8.0 / V11@
