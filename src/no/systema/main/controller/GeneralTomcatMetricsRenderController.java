@@ -49,7 +49,7 @@ public class GeneralTomcatMetricsRenderController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="renderTomcatMetrics.do_OBSOLETE", method={ RequestMethod.GET })
+	@RequestMapping(value="renderTomcatMetrics.do", method={ RequestMethod.GET })
 	public ModelAndView doRenderTomcatMetrics(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		logger.info("Inside doRenderTomcatMetrics...");
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
