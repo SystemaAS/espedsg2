@@ -94,7 +94,7 @@ public class JsonEspedsgTestersuiteController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="aespedsgtestersuite.do", method={RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value="aespedsgtestersuite.do_OBSOLETE", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doList( HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		List list = new ArrayList();
 		
@@ -131,7 +131,7 @@ public class JsonEspedsgTestersuiteController {
 	 * @param response
 	 * @return
 	 */
-	@RequestMapping(value="aespedsgtestersuite_detail.do", method={RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value="aespedsgtestersuite_detail.do_OBSOLETE", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doTest( HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		Collection<JsonTestersuiteObjectRecord> list = new ArrayList<JsonTestersuiteObjectRecord>();
 		

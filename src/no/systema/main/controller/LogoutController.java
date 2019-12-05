@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //application imports
 import no.systema.main.util.AppConstants;
+import no.systema.z.main.maintenance.util.manager.Log4jMgr;
 
 
 @Controller
@@ -21,6 +22,9 @@ public class LogoutController {
 	public void logout(HttpSession session, HttpServletResponse response){
 		
 		if (session!=null){ 
+			Log4jMgr log4jMgr = new Log4jMgr();
+			log4jMgr.doLogoutLogger();
+			
             session.removeAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
             session.invalidate();
             logger.info("Session invalidated..." + Calendar.getInstance().getTime());       

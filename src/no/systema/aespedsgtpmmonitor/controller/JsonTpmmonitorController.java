@@ -69,7 +69,7 @@ public class JsonTpmmonitorController {
 	 * @param request
 	 * @return
 	 */
-	@RequestMapping(value="aespedsgtpmmonitor.do", method={RequestMethod.GET, RequestMethod.POST} )
+	@RequestMapping(value="aespedsgtpmmonitor.do_OBSOLETE", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doList( HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		List<CustomerApplicationObject> list = new ArrayList<CustomerApplicationObject>();
 		
