@@ -64,7 +64,8 @@
 					<tr>
 					<td colspan="5" class="textError">					
 			            <ul>
-			            	<li>${model.errorMessage}</li>
+			            <%--	 <li>${model.errorMessage}</li>  --%>
+			            <li>...</li>
 			            </ul>
 			        </td>
 			        </tr>

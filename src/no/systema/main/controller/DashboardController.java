@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Required;
 import org.springframework.context.annotation.Scope;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -51,6 +52,7 @@ import no.systema.main.service.FirmLoginService;
 import no.systema.main.util.StringManager;
 import no.systema.main.url.store.MainUrlDataStore;
 import no.systema.main.util.AppConstants;
+import no.systema.main.util.SessionCookieManager;
 import no.systema.jservices.common.util.AesEncryptionDecryptionManager;
 
 
@@ -70,6 +72,7 @@ public class DashboardController {
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	private StringManager strMgr = new StringManager();
 	private ModelAndView loginView = new ModelAndView("login");
+	private SessionCookieManager cookieMgr = new SessionCookieManager();
 	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -95,6 +98,7 @@ public class DashboardController {
 		ModelAndView successView = new ModelAndView("dashboard");
 		Map model = new HashMap();
 		logger.info("Inside logon...");
+		
 		
 		if(appUser==null){
 			return this.loginView;
@@ -136,12 +140,12 @@ public class DashboardController {
 				
 				logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
 			    	logger.info("URL: " + BASE_URL);
-			    	logger.info("symn0J.pgm_primary_login");
+			    	logger.warn("symn0J.pgm_primary_login");
 			    	//don't show the pwd
 			    	//int pwd = urlRequestParamsKeys.indexOf("&pwd");
 			    	//String credentailsPwd = urlRequestParamsKeys.substring(pwd + 5);
 			    	//logger.info("URL PARAMS: " + urlRequestParamsKeys.substring(0,pwd)+"&md5");
-			    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
+			    	logger.debug("URL PARAMS: " + urlRequestParamsKeys);
 			    	
 			    	//--------------------------------------
 			    	//EXECUTE the FETCH (RPG program) here
@@ -158,7 +162,7 @@ public class DashboardController {
 				    		//check for errors
 				    		if(jsonSystemaUserContainer!=null){
 				    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
-				    				logger.info("[ERROR Fatal] User not valid (user/password) Check your credentials...");
+				    				logger.error("[ERROR Fatal] User not valid. Check your credentials...");
 				    				this.setFatalAS400LoginError(model, jsonSystemaUserContainer.getErrMsg());
 				    				this.loginView.addObject("model", model);
 				    				return this.loginView;
@@ -166,19 +170,26 @@ public class DashboardController {
 				    				this.setDashboardMenuObjectsInSession(session, jsonSystemaUserContainer);
 				    				//hand-over to appUser from JsonUser
 				    				this.doHandOverToSystemaWebUser(request, appUser, jsonSystemaUserContainer, companyCode);
-				    				logger.info("symn0J.pgm_ok_login");
+				    				logger.warn("symn0J.pgm_ok_login");
 				    			}
 				    		}
 				    	}else{
 				    		String msg = "NO CONTENT on jsonPayload";
-				    		logger.info("[ERROR Fatal] " + msg);
+				    		logger.error("[ERROR Fatal] " + msg);
 				    		this.setFatalAS400LoginError(model, msg);
 	    					this.loginView.addObject("model", model);
 						
 	    					return loginView;
 				    	}
-				    	//Encrypt the password so late as possible
+				    	//Encrypt user credentials as late as possible
+				    	appUser.setEncryptedUser(this.aesManager.encrypt(appUser.getUser()));
 				    	appUser.setEncryptedPassword(this.aesManager.encrypt(appUser.getPassword()));
+				    	appUser.setEncryptedToken(this.aesManager.encrypt(request.getSession().getId() + "&" + appUser.getUser()));
+				    	//init
+				    	
+				    	//create cookie for security token (will be available across all espedsg-modules)
+				    	cookieMgr.addGlobalCookieToken(cookieMgr.getTokenId1(), appUser.getEncryptedToken(), response);
+				    	
 				    	session.setAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUser);
 			    	
 			    	}catch(Exception e){
@@ -199,11 +210,14 @@ public class DashboardController {
 			    	if(appUser.getTomcatPort()!=null && !"".equals(appUser.getTomcatPort())){
 				    	String urlRedirectTomcatToSubsidiaryCompany = this.getTomcatServerRedirectionUrl(appUser, request);
 				    	RedirectView rw = new RedirectView();
-				    	logger.info("Redirecting to:" + urlRedirectTomcatToSubsidiaryCompany);
+				    	logger.warn("Redirecting to logonWRedDashboard");
+				    	logger.debug("Redirecting to:" + urlRedirectTomcatToSubsidiaryCompany);
 				    	rw.setUrl(urlRedirectTomcatToSubsidiaryCompany);
-				    	successView = new ModelAndView(rw);
+				    	successView.setView(rw); 
 			    	}	
-
+			    	
+			    	
+			    	
 			    	return successView;
 		    }
 		}
@@ -214,24 +228,34 @@ public class DashboardController {
 	 * Toten being the trigger company of this functionality (to allow for automatic logon into a subsidiary firm.
 	 * 
 	 * @param appUser
-	 * @param bindingResult
 	 * @param session
 	 * @param request
 	 * @param response
 	 * @return
 	 */
 	@RequestMapping(value="logonWRedDashboard.do", method= { RequestMethod.POST, RequestMethod.GET})
-	public ModelAndView logonRedirected(RedirectAttributes redirectAttrs, Model modelX, @ModelAttribute (AppConstants.SYSTEMA_WEB_USER_KEY) SystemaWebUser appUser, HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		ModelAndView successView = new ModelAndView("dashboard");
+	public ModelAndView logonRedirected( @ModelAttribute (AppConstants.SYSTEMA_WEB_USER_KEY) SystemaWebUser appUser, HttpSession session, HttpServletRequest request, HttpServletResponse response){
+		//ModelAndView successView = new ModelAndView("dashboard");
+		
 		Map model = new HashMap();
 		
 		String user = request.getParameter("ru");
 		String pwd = request.getParameter("dp");
+		String token = request.getParameter("tk");
+		
 		//set attributes since the method call do not uses those fields' names
-		appUser.setUser(user);
+		appUser.setEncryptedUser(user);
+		appUser.setUser(this.aesManager.decrypt(user));
 		appUser.setEncryptedPassword(pwd);
 		appUser.setPassword(this.aesManager.decrypt(pwd));
-				
+		logger.debug(appUser.getPassword());
+		//token
+		appUser.setEncryptedToken(token);
+		logger.info(appUser.getEncryptedToken());
+		appUser.setToken(this.aesManager.decrypt(appUser.getEncryptedToken()));
+		logger.debug(appUser.getToken());
+		
+		
 		if(appUser==null){
 			return this.loginView;
 		
@@ -259,7 +283,7 @@ public class DashboardController {
 		    	//int pwd = urlRequestParamsKeys.indexOf("&pwd");
 		    	//String credentailsPwd = urlRequestParamsKeys.substring(pwd + 5);
 		    	//logger.info("URL PARAMS: " + urlRequestParamsKeys.substring(0,pwd)+"&md5");
-		    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
+		    	logger.debug("URL PARAMS: " + urlRequestParamsKeys);
 		    	
 		    	//--------------------------------------
 		    	//EXECUTE the FETCH (RPG program) here
@@ -305,8 +329,11 @@ public class DashboardController {
 					return loginView;
 		    		
 		    	}
-		    
-		    	return successView;
+		    	//only way to hide url parameters in this delicate UC
+		    	RedirectView view = new RedirectView("dashboard.do", true);
+		    	view.setExposeModelAttributes(false);
+		    	
+		    	return new ModelAndView(view); 
 			   
 			}
 	}
@@ -383,7 +410,8 @@ public class DashboardController {
 		
 		//We must user GET until we get Spring 4 (in order to send params on POST)
 		try{
-			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "lang=" + appUser.getUsrLang() + "&ru=" + appUser.getUser() + "&dp=" + URLEncoder.encode(appUser.getEncryptedPassword(), "UTF-8");
+			retval = hostRaw + request.getContextPath() + "/logonWRedDashboard.do?" + "lang=" + appUser.getUsrLang() + "&ru=" + URLEncoder.encode(appUser.getEncryptedUser(), "UTF-8") + 
+					"&dp=" + URLEncoder.encode(appUser.getEncryptedPassword(), "UTF-8") + "&tk=" + URLEncoder.encode(appUser.getEncryptedToken(), "UTF-8") ;
 		}catch(Exception e){
 			//logger.info("XXXXX:" + request.getContextPath());
 		}

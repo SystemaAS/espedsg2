@@ -3,6 +3,7 @@ package no.systema.main.controller;
 import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 //application imports
 import no.systema.main.util.AppConstants;
+import no.systema.main.util.SessionCookieManager;
 import no.systema.z.main.maintenance.util.manager.Log4jMgr;
 
 
@@ -24,6 +26,9 @@ public class LogoutController {
 		if (session!=null){ 
 			Log4jMgr log4jMgr = new Log4jMgr();
 			log4jMgr.doLogoutLogger();
+			//remove token cookie
+			SessionCookieManager cookieMgr = new SessionCookieManager();
+			cookieMgr.removeGlobalCookie(cookieMgr.getTokenId1(), response);
 			
             session.removeAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
             session.invalidate();

@@ -60,7 +60,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_StatsFortolling" method="post" action="/espedsgstats/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 		 										</td>
@@ -76,7 +76,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 									<form id="dashForm_StatsTrafikk" method="post" action="/espedsgstats/logonDashboard.do?trafikk=1" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 													</font>
@@ -103,7 +103,7 @@
 							 									<br/>
 							 									<font class="text18">${record.prTxt}</font>
 									 							<form id="dashForm_Transpdisp" method="post" action="/espedsgtranspdisp/logonDashboard.do" >
-																    <input type="hidden" name="user" value="${user.user}" />
+																    <input type="hidden" name="user" value="${user.encryptedUser}" />
 																    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 																    <input type="hidden" name="lang" value="${user.usrLang}" />
 																</form>
@@ -144,7 +144,7 @@
 			 											</span>
 			 										</c:if>
 								 					<form id="dashForm_Ebooking" method="post" action="/espedsgebook/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -162,7 +162,7 @@
 				 									<%-- <font class="text18">${record.prTxt}</font> --%>
 				 									<font class="text18"><spring:message code="login.user.label.tror.dashboard"/></font>
 								 					<form id="dashForm_Tror" method="post" action="/espedsgtror/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -212,7 +212,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 									<form id="dashForm_GodsReg" method="post" action="/espedsggodsno/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													    
@@ -230,7 +230,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Efaktura" method="post" action="/espedsgefaktura/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -254,7 +254,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Sporroppdrag" method="post" action="/espedsgtranspdisp/logonDashboard_sporroppd.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -271,7 +271,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Priskalk" method="post" action="/espedsgpkalk/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -294,7 +294,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Vedlikehold" method="post" action="/espedsgmmaint/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
@@ -311,7 +311,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinnavgg" method="post" action="/espedsgtvinnavgg/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    
 													</form>
@@ -339,7 +339,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinn"  method="post" action="/espedsgtvinnsad/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 												</td>
@@ -357,7 +357,7 @@
 				 									<font class="text18"><spring:message code="login.user.label.skat.dashboard"/></font>
 				 									
 								 					<form id="dashForm_Skat" method="post" action="/espedsgskat/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    
 													</form>
@@ -375,7 +375,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tds" method="post" action="/espedsgtds/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 																	
@@ -392,7 +392,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Ufortollede" method="post" action="/espedsgoverview/logonDashboard.do?uopp=1" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 												</td>
@@ -408,7 +408,7 @@
 				 									<font class="text18">${record.prTxt}</font>
 													<%-- Use a form disguised as a-link --%>
 													<form id="dashForm_Kvalitet"  method="post" action="/espedsgoverview/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 												</td>
@@ -423,7 +423,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 		 										</td>
@@ -438,7 +438,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Kostf" method="post" action="/espedsgkostf/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.user}" />
+													    <input type="hidden" name="user" value="${user.encryptedUser}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													    <input type="hidden" name="lang" value="${user.usrLang}" />
 													</form>
