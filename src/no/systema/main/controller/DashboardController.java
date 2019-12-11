@@ -98,6 +98,8 @@ public class DashboardController {
 		Map model = new HashMap();
 		logger.info("Inside logon...");
 		
+		//Init cookie token since this page is excluded in the interceptor
+		cookieMgr.removeAllCookies(request,response);		
 		
 		
 		if(appUser==null){
@@ -346,7 +348,7 @@ public class DashboardController {
 		ModelAndView successView = new ModelAndView("dashboard");
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
 		SessionCookieManager cookieMgr = new SessionCookieManager();
-		cookieMgr.listAllCookies(request);
+		//cookieMgr.listAllCookies(request);
 		
 		if(appUser==null){
 			return this.loginView;

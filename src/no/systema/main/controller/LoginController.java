@@ -19,8 +19,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
+
+import no.systema.jservices.common.util.AesEncryptionDecryptionManager;
+import no.systema.main.cookie.SessionCookieManager;
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.service.login.SystemaWebLoginService;
@@ -38,15 +43,17 @@ import no.systema.main.model.jsonjackson.JsonSystemaUserContainer;
 @Scope("session")*/
 public class LoginController {
 	private static final Logger logger = Logger.getLogger(LoginController.class.getName());
-	
+	private SessionCookieManager cookieMgr = new SessionCookieManager();
 	private ModelAndView loginView = new ModelAndView("login");
-
+	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
+	
 	//The [*.do] suffix is just an arbitrary suffix that could be something else. 
 	//If you change it here then it MUST be the same that is used
 	//in the JSP or other view (href or other redirect) that is calling this Controller
 	@RequestMapping("login.do")
-	public ModelAndView login(Model model, HttpServletRequest request ){
+	public ModelAndView login(Model model, HttpServletRequest request, HttpServletResponse response ){
 		logger.info("Before login controller execution");
+		
 		//if there was an error when changing the password...
 		String errorChgPwd= request.getParameter("epw");
 		
@@ -76,13 +83,12 @@ public class LoginController {
 	
 	/**
 	 * 
-	 * @param model
-	 * @return
 	 */
 	@RequestMapping(value="doChgPwd.do", method= { RequestMethod.POST, RequestMethod.GET })
-	public ModelAndView doChgPwd(HttpServletRequest request){
+	public ModelAndView doChgPwd(HttpSession session, HttpServletRequest request){
 		
 		Map model = new HashMap();
+		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
 		
 		logger.info("Before login controller execution");
 		ModelAndView successView = null;
@@ -91,46 +97,55 @@ public class LoginController {
 		
 		String user = request.getParameter("validUser");
 		String pwd = request.getParameter("passwordNew");
-						
-		String BASE_URL = MainUrlDataStore.SYSTEMA_WEB_LOGIN_CHANGE_PWD_URL;
-		String urlRequestParamsKeys = "user=" + user.toUpperCase() + "&dp=" + pwd.toUpperCase() + "&mode=U";
 		
-		logger.info("URL: " + BASE_URL);
-    	logger.info("URL PARAMS: " + urlRequestParamsKeys);
-    	
-    	//--------------------------------------
-    	//EXECUTE the FETCH (RPG program) here
-    	//--------------------------------------
-    	try{
-	    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
-	    	//Debug --> 
-	    	//System.out.println(jsonPayload);
-	    	logger.info(jsonPayload);
-	    	if(jsonPayload!=null){
-	    		JsonSystemaUserContainer jsonSystemaUserContainer = this.systemaWebLoginService.getSystemaUserContainerForPassword(jsonPayload);
-	    		logger.info("A");
-	    		//check for errors
-	    		if(jsonSystemaUserContainer!=null){
-	    			logger.info("B");
-	    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
-	    				successView = errorView;
-	    			}else{
-	    				logger.info("OK");
-	    				successView = localLoginView;
-	    			}
-	    		}else{
-	    			logger.info("C");
-	    			successView = errorView;
-	    		}
-	    	}else{
-	    		logger.info("D");
+		
+		if(appUser==null){
+			return this.loginView;
+			
+		}else if(!cookieMgr.isAuthorized(aesManager.decrypt(user), request))	{	
+			return this.loginView;
+			
+		}else{
+					
+			String BASE_URL = MainUrlDataStore.SYSTEMA_WEB_LOGIN_CHANGE_PWD_URL;
+			String urlRequestParamsKeys = "user=" + user.toUpperCase() + "&dp=" + pwd.toUpperCase() + "&mode=U";
+			
+			logger.debug("URL: " + BASE_URL);
+	    	logger.debug("URL PARAMS: " + urlRequestParamsKeys);
+	    	
+	    	//--------------------------------------
+	    	//EXECUTE the FETCH (RPG program) here
+	    	//--------------------------------------
+	    	try{
+		    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+		    	//Debug --> 
+		    	//System.out.println(jsonPayload);
+		    	logger.info(jsonPayload);
+		    	if(jsonPayload!=null){
+		    		JsonSystemaUserContainer jsonSystemaUserContainer = this.systemaWebLoginService.getSystemaUserContainerForPassword(jsonPayload);
+		    		logger.info("A");
+		    		//check for errors
+		    		if(jsonSystemaUserContainer!=null){
+		    			logger.info("B");
+		    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
+		    				successView = errorView;
+		    			}else{
+		    				logger.info("OK");
+		    				successView = localLoginView;
+		    			}
+		    		}else{
+		    			logger.info("C");
+		    			successView = errorView;
+		    		}
+		    	}else{
+		    		logger.info("D");
+		    		successView = errorView;
+		    	}
+	    	}catch(Exception e){
+	    		logger.info("F");
 	    		successView = errorView;
 	    	}
-    	}catch(Exception e){
-    		logger.info("F");
-    		successView = errorView;
-    	}
-		
+		}
 		return successView;
 	}
 	
