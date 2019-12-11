@@ -95,14 +95,15 @@ public class LoginController {
 		ModelAndView errorView = new ModelAndView("redirect:login.do?epw=1");
 		ModelAndView localLoginView = new ModelAndView("redirect:login.do");
 		
-		String user = request.getParameter("validUser");
+		
+		String user = this.aesManager.decrypt(request.getParameter("validUser"));
 		String pwd = request.getParameter("passwordNew");
 		
 		
 		if(appUser==null){
 			return this.loginView;
 			
-		}else if(!cookieMgr.isAuthorized(aesManager.decrypt(user), request))	{	
+		}else if(!cookieMgr.isAuthorized(user, request))	{	
 			return this.loginView;
 			
 		}else{
