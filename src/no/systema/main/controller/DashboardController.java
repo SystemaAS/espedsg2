@@ -36,7 +36,7 @@ import org.springframework.validation.BindingResult;
 
 //import no.systema.tds.service.MainHdTopicService;
 import no.systema.main.validator.UserValidator;
-
+import no.systema.main.cookie.SessionCookieManager;
 //application imports
 import no.systema.main.model.SystemaWebUser;
 import no.systema.main.model.jsonjackson.JsonSystemaUserContainer;
@@ -52,7 +52,6 @@ import no.systema.main.service.FirmLoginService;
 import no.systema.main.util.StringManager;
 import no.systema.main.url.store.MainUrlDataStore;
 import no.systema.main.util.AppConstants;
-import no.systema.main.util.SessionCookieManager;
 import no.systema.jservices.common.util.AesEncryptionDecryptionManager;
 
 
@@ -98,6 +97,7 @@ public class DashboardController {
 		ModelAndView successView = new ModelAndView("dashboard");
 		Map model = new HashMap();
 		logger.info("Inside logon...");
+		
 		
 		
 		if(appUser==null){
@@ -162,7 +162,7 @@ public class DashboardController {
 				    		//check for errors
 				    		if(jsonSystemaUserContainer!=null){
 				    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
-				    				logger.error("[ERROR Fatal] User not valid. Check your credentials...");
+				    				logger.error("[ERROR Fatal] Unauthorized ...");
 				    				this.setFatalAS400LoginError(model, jsonSystemaUserContainer.getErrMsg());
 				    				this.loginView.addObject("model", model);
 				    				return this.loginView;
@@ -181,15 +181,14 @@ public class DashboardController {
 						
 	    					return loginView;
 				    	}
+				    	
 				    	//Encrypt user credentials as late as possible
 				    	appUser.setEncryptedUser(this.aesManager.encrypt(appUser.getUser()));
 				    	appUser.setEncryptedPassword(this.aesManager.encrypt(appUser.getPassword()));
 				    	appUser.setEncryptedToken(this.aesManager.encrypt(request.getSession().getId() + "&" + appUser.getUser()));
-				    	//init
 				    	
-				    	//create cookie for security token (will be available across all espedsg-modules)
-				    	cookieMgr.addGlobalCookieToken(cookieMgr.getTokenId1(), appUser.getEncryptedToken(), response);
-				    	
+						//create cookie for security token
+				    	cookieMgr.addGlobalCookieToken( appUser.getEncryptedToken(), response);
 				    	session.setAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUser);
 			    	
 			    	}catch(Exception e){
@@ -235,30 +234,23 @@ public class DashboardController {
 	 */
 	@RequestMapping(value="logonWRedDashboard.do", method= { RequestMethod.POST, RequestMethod.GET})
 	public ModelAndView logonRedirected( @ModelAttribute (AppConstants.SYSTEMA_WEB_USER_KEY) SystemaWebUser appUser, HttpSession session, HttpServletRequest request, HttpServletResponse response){
-		//ModelAndView successView = new ModelAndView("dashboard");
+		ModelAndView successView = new ModelAndView("dashboard");
 		
 		Map model = new HashMap();
 		
 		String user = request.getParameter("ru");
 		String pwd = request.getParameter("dp");
-		String token = request.getParameter("tk");
 		
 		//set attributes since the method call do not uses those fields' names
 		appUser.setEncryptedUser(user);
 		appUser.setUser(this.aesManager.decrypt(user));
 		appUser.setEncryptedPassword(pwd);
 		appUser.setPassword(this.aesManager.decrypt(pwd));
-		logger.debug(appUser.getPassword());
-		//token
-		appUser.setEncryptedToken(token);
-		logger.info(appUser.getEncryptedToken());
-		appUser.setToken(this.aesManager.decrypt(appUser.getEncryptedToken()));
-		logger.debug(appUser.getToken());
 		
 		
 		if(appUser==null){
 			return this.loginView;
-		
+			
 		}else{
 			/*NOT with change och port: cust.toten.as:8080 to cust.toten.as:8083
 			SystemaWebUser appUserX = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
@@ -329,12 +321,14 @@ public class DashboardController {
 					return loginView;
 		    		
 		    	}
+		    	
 		    	//only way to hide url parameters in this delicate UC
 		    	RedirectView view = new RedirectView("dashboard.do", true);
 		    	view.setExposeModelAttributes(false);
 		    	
-		    	return new ModelAndView(view); 
-			   
+		    	return new ModelAndView(view);
+		    	
+		    	
 			}
 	}
 	
@@ -351,6 +345,9 @@ public class DashboardController {
 	public ModelAndView backToDashboard(HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		ModelAndView successView = new ModelAndView("dashboard");
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
+		SessionCookieManager cookieMgr = new SessionCookieManager();
+		cookieMgr.listAllCookies(request);
+		
 		if(appUser==null){
 			return this.loginView;
 		

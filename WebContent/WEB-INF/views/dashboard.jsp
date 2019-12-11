@@ -554,7 +554,7 @@
 		<td>
 			<div id="dialogChangePwd" title="Dialog">
 					<form name="loginFormChgPwd" id="loginFormChgPwd" action="doChgPwd.do" method="POST" >
-					<input type="hidden" name="validUser" id="validUser" value="${user.user}">
+					<input type="hidden" name="validUser" id="validUser" value="${user.encryptedUser}">
 				 	<table>
 							<tr>
 								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.new"/>&nbsp;</td>
