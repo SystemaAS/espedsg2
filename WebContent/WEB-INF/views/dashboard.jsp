@@ -423,7 +423,7 @@
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.encryptedUser}" />
+													    <input type="hidden" name="user" value="${user.user}" />
 													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
 													</form>
 		 										</td>

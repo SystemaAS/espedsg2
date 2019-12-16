@@ -71,7 +71,6 @@ public class DashboardController {
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	private StringManager strMgr = new StringManager();
 	private ModelAndView loginView = new ModelAndView("login");
-	private SessionCookieManager cookieMgr = new SessionCookieManager();
 	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -97,6 +96,7 @@ public class DashboardController {
 		ModelAndView successView = new ModelAndView("dashboard");
 		Map model = new HashMap();
 		logger.info("Inside logon...");
+		SessionCookieManager cookieMgr = new SessionCookieManager();
 		
 		//Init cookie token since this page is excluded in the interceptor
 		cookieMgr.removeAllCookies(request,response);		
