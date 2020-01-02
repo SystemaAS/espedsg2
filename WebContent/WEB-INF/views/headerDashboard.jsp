@@ -22,6 +22,11 @@
 				<link rel="SHORTCUT ICON" type="image/png" href="resources/images/systema_logo.png"></link>
 			</c:otherwise>
 		</c:choose>
+		<%-- for dialog popup --%>
+		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+		<style type = "text/css">
+			.ui-dialog{font-size:10pt;}
+		</style>
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
@@ -110,20 +115,34 @@
 			    		<td class="text14" width="50%" align="left" >&nbsp;&nbsp;</td>
 	      				<td class="text14" width="50%" align="right" valign="middle">
 	      					<c:if test="${ empty user.usrLang || user.usrLang == 'NO'}">
-			               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country">
+			               		<img src="resources/images/countryFlags/Flag_NO.gif" height="12" border="0" alt="country" onClick="showPop('versionInfo');">
 			               	</c:if>
 			               	<c:if test="${ user.usrLang == 'DA'}">
-			               		<img src="resources/images/countryFlags/Flag_DK.gif" height="12" border="0" alt="country">
+			               		<img src="resources/images/countryFlags/Flag_DK.gif" height="12" border="0" alt="country" onClick="showPop('versionInfo');">
 			               	</c:if>
 			               	<c:if test="${ user.usrLang == 'SV'}">
-			               		<img src="resources/images/countryFlags/Flag_SE.gif" height="12" border="0" alt="country">
+			               		<img src="resources/images/countryFlags/Flag_SE.gif" height="12" border="0" alt="country" onClick="showPop('versionInfo');">
 			               	</c:if>
 			               	<c:if test="${ user.usrLang == 'EN'}">
-			               		<img src="resources/images/countryFlags/Flag_UK.gif" height="12" border="0" alt="country">
+			               		<img src="resources/images/countryFlags/Flag_UK.gif" height="12" border="0" alt="country" onClick="showPop('versionInfo');">
 			               	</c:if>
-		      				&nbsp;
+		      				<div class="text12" style="position: relative;display: inline;" align="left">
+								<span style="position:absolute; left:-150px; top:3px;" id="versionInfo" class="popupWithInputText"  >
+					           		<div class="text12" align="left">
+					           			<b>${user.versionEspedsg}</b>
+					           			<p>
+					           				&nbsp;<a id="alinkLog4jLogger" ><font class="text14LightGreen" style="cursor:pointer;">log4j</font></a><br/>
+					           			</p>
+					           			<button name="versionInformationButtonClose" class="buttonGrayInsideDivPopup" type="button" onClick="hidePop('versionInfo');">Close</button> 
+					           		</div>
+					           	</span>
+				           	</div>
 		      				
-	      					<font id="changePwdButton" class="headerMenuGreen">
+		      				
+		      				
+		      				
+		      				&nbsp;
+		      				<font id="changePwdButton" class="headerMenuGreen">
 		    					<img src="resources/images/bulletGreen.png" width="8px" height="8px" border="0">
 		    					<font class="text14" onMouseOver="style='color:lemonchiffon;'" onMouseOut="style='color:black;'" ><spring:message code="dashboard.menu.change.password"/></font>
 		    				</font>
@@ -192,4 +211,39 @@
 	 	
 		
 	    
+		<%-- ------------------------- --%>
+		<%-- DIALOG render log4j.log   --%>
+		<%-- ------------------------- --%>
+		<tr>
+		<td>
+			<div id="dialogLogger" title="Dialog" style="display:none">
+				<form>
+			 	<table>
+			 		<tr>
+						<td colspan="3" class="text14" align="left" >Password</td>
+  						</tr>
+					<tr >
+						<td>
+							<input type="password" class="inputText" id="pwd" name="pwd" size="15" maxlength="15" value=''>
+						</td>
+					</tr>
+					
+					<tr height="5"><td></td></tr>
+  					<tr >
+						<td>
+							<input type="text" class="inputText" id="logLevel" name="logLevel" size="8" maxlength="8" value=''>
+						</td>
+					</tr>
+  					<tr height="10"><td></td></tr>
+					<tr>
+						<td colspan="3" class="text14MediumBlue" align="left">
+							<label id="loggerStatus"></label>
+						</td>
+					</tr>
+				</table>
+				</form>
+			</div>
+		</td>
+		</tr>
 		
+	    

@@ -33,7 +33,12 @@ public class LogoutCustomerApplicationController {
 		ModelAndView view = null;
 		
 		if(appUser==null){
-			 view = this.loginView;
+			try{
+				//issue a redirect for a fresh start
+				response.sendRedirect("login.do");
+			}catch (Exception e){
+				e.printStackTrace();
+			}
 		}else{
 			logger.info("Logging out from Systema Customer/Application module...");
 			session.removeAttribute(AppConstants.ASPECT_ERROR_MESSAGE);
