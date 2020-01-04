@@ -99,6 +99,7 @@ public class DashboardController {
 		SessionCookieManager cookieMgr = new SessionCookieManager();
 		
 		//Init cookie token since this page is excluded in the interceptor
+		cookieMgr.removeGlobalCookie(response);
 		cookieMgr.removeAllCookies(request,response);		
 		
 		
