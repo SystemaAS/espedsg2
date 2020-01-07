@@ -15,10 +15,19 @@ public class GeneralTester {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		GeneralTester tester = new GeneralTester();
+		
+		String value = "/espedsg2/todo.do";
+		int index = value.indexOf("/", 1);
+		System.out.println(index);
+		value = value.substring(1, index);
+		System.out.println(value);
+		/*GeneralTester tester = new GeneralTester();
 		String str = "FW_ NC-327966-2019? Freight Documents  - Transocean Arctic_No Well_ Sampleboxer til cmt-lab.msg";
 		String cleanStr = tester.replaceInvalidChars(str);
 		System.out.println(cleanStr);
+		*/
+		
+		
 		
 		/*
 		if(tester.isValidStringForFilename(str)){
