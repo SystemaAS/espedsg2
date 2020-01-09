@@ -119,10 +119,11 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 		    <mvc:exclude-mapping path="/logout.do/**"/>
 		    <mvc:exclude-mapping path="/logonDashboard.do/**"/>
 		    <mvc:exclude-mapping path="/dashboard.do/**"/>
-		    <!-- <mvc:exclude-mapping path="/logonWRedDashboard.do/**"/>  -->
+		    <!-- <mvc:exclude-mapping path="/logonWRedDashboard.do/**"/> -->
 		    <mvc:exclude-mapping path="/resources/**"/>  
 		    <bean class="no.systema.main.cookie.CookieAuthorizationInterceptor" />
 		</mvc:interceptor>
+		
 		
 		
 	</mvc:interceptors>

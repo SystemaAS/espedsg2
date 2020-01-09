@@ -4,6 +4,7 @@ import java.util.Calendar;
 
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
@@ -21,13 +22,13 @@ public class LogoutController {
 	private static final Logger logger = Logger.getLogger(LogoutController.class.getName());
 	
 	@RequestMapping("logout.do")
-	public void logout(HttpSession session, HttpServletResponse response){
+	public void logout(HttpSession session, HttpServletResponse response, HttpServletRequest request){
 		
 		if (session!=null){ 
 			Log4jMgr log4jMgr = new Log4jMgr();
 			log4jMgr.doLogoutLogger();
 			//remove token cookie (init)
-			SessionCookieManager cookieMgr = new SessionCookieManager();
+			SessionCookieManager cookieMgr = new SessionCookieManager(request);
 			cookieMgr.removeGlobalCookie(response);
 			
             session.removeAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);

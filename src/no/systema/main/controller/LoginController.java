@@ -43,7 +43,6 @@ import no.systema.main.model.jsonjackson.JsonSystemaUserContainer;
 @Scope("session")*/
 public class LoginController {
 	private static final Logger logger = Logger.getLogger(LoginController.class.getName());
-	private SessionCookieManager cookieMgr = new SessionCookieManager();
 	private ModelAndView loginView = new ModelAndView("login");
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	
@@ -86,6 +85,7 @@ public class LoginController {
 	 */
 	@RequestMapping(value="doChgPwd.do", method= { RequestMethod.POST, RequestMethod.GET })
 	public ModelAndView doChgPwd(HttpSession session, HttpServletRequest request){
+		SessionCookieManager cookieMgr = new SessionCookieManager(request);
 		
 		Map model = new HashMap();
 		SystemaWebUser appUser = (SystemaWebUser)session.getAttribute(AppConstants.SYSTEMA_WEB_USER_KEY);
