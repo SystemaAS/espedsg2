@@ -558,7 +558,9 @@
 				 	<table>
 							<tr>
 								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.new"/>&nbsp;</td>
-								<td><input type="password"  class="inputTextMediumBlue"  name="passwordNew" id="passwordNew" size="11" maxlength="10" /></td>
+								<td>
+									<input type="password"  class="inputTextMediumBlue"  name="passwordNew" id="passwordNew" size="11" maxlength="10" />
+								</td>
 							</tr>
 							<tr>
 								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.confirm"/>&nbsp;</td>

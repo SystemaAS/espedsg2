@@ -228,15 +228,37 @@
 	  });
 
 	  jq(function() {
+		  //call model dialog
 		  jq("#changePwdButton").click(function() {
 			  presentChangePwdDialog();
 		  });
 	  });
+	  
+	  //init jquery plugin on password strength meter
+	  function initPasswordStrength(){
+		  //Config the password strength meter with the following options.
+		  jq('#passwordNew').passtrength({
+			  minChars: 4,
+			  passwordToggle:true,
+			  eyeImg :"resources/images/eye.svg", // toggle icon
+			  tooltip:true,
+			  textWeak:"Weak",
+			  textMedium:"Medium",
+			  textStrong:"Strong",
+			  textVeryStrong:"Very Strong",
+		  });
+	  }
 
 	  //------------------------------
 	  //PRESENT CHANGE PASSWORD DIALOG
 	  //------------------------------
 	  function presentChangePwdDialog(){
+		  
+		  //init password strength plugin
+		  initPasswordStrength();
+		  //password strength
+		  jq('#passwordNew').passtrength();
+		  
 		//setters (add more if needed)
 		  jq('#dialogChangePwd').dialog( "option", "title", "Endre Passord" );
 		  //deal with buttons for this modal window
@@ -272,6 +294,9 @@
 			 	 id: "dialogCancelTU",
 			 	 text: "Lukk", 
 				 click: function(){
+					 		//init password strength plugin
+					  		initPasswordStrength();
+					  		
 					 		//back to initial state of form elements on modal dialog
 					 		jq("#validationLabelMessage").text("");
 					 		jq("#passwordNew").val("");

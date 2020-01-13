@@ -3,17 +3,12 @@
 <%@ include file="/WEB-INF/views/include.jsp" %> <!-- generally you will include this in a header.jsp -->
 <html>
 	<head>
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-		<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js""></script>
-		<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
-		<script type="text/javascript" src="resources/js/dashboard.js?ver=${user.versionEspedsg}"></script>
-		<%-- include som javascript functions --%>
- 		<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
- 	
 		<link href="resources/${user.cssEspedsg}?ver=${user.versionEspedsg}" rel="stylesheet" type="text/css"/>
 		<%-- for dialog popup --%>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-	
+		<%-- for zxcvbn password strength --%>
+		<link rel="stylesheet" href="resources/passtrength.css">
+		
 		<c:choose>
 			<c:when test="${ fn:contains(user.cssEspedsg, 'Toten') }"> 
 				<link rel="SHORTCUT ICON" type="image/ico" href="resources/images/toten_ico.ico"></link>
@@ -24,17 +19,27 @@
 		</c:choose>
 		<%-- for dialog popup --%>
 		<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
-		<style type = "text/css">
-			.ui-dialog{font-size:10pt;}
-		</style>
+		
+		
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
 		<title>${user.custName} eSpedsg</title>
+		<style type = "text/css">
+			.ui-dialog{font-size:10pt;}
+		</style>
+		
 	</head>
 
 	<body>
-	
+	<%-- include som javascript functions --%>
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 		
+	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js""></script>
+	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="resources/js/dashboard.js?ver=${user.versionEspedsg}"></script>
+	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
+	<%-- for zxcvbn password strength --%>
+	<script src="resources/js/jquery.passtrength.js"></script>
  
 	<table width="100%" border="0" cellspacing="0" cellpadding="0"> <!-- width="1200"  -->
 		<%--Banner --%>
