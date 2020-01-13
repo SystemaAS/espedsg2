@@ -256,7 +256,7 @@
 		  
 		  //init password strength plugin
 		  initPasswordStrength();
-		  //password strength
+		  //password strength plugin
 		  jq('#passwordNew').passtrength();
 		  
 		//setters (add more if needed)
