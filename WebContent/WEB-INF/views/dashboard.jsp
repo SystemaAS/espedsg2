@@ -9,9 +9,9 @@
 	/* this is in order to customize a SPECIFIC ui dialog in the .js file ...dialog() */
 	.main-dialog-class .ui-widget-header{ background-image: none; background-color:#CCCCCC } 
 	.main-dialog-class .ui-widget-content{ background-image:none;background-color:lemonchiffon }
-
 	</style>
-
+	
+	
 		<%-- Applications' menu --%>
 		<tr height="400" >
 			<td width="100%" align="center" valign="top" > <%-- height="300" width="500" --%>
@@ -566,6 +566,8 @@
 								<td align="right" class="text16"><font class="text14RedBold" >*</font><spring:message code="login.user.label.password.confirm"/>&nbsp;</td>
 								<td><input type="password"  class="inputTextMediumBlue"  name="passwordConfirm" id="passwordConfirm" size="11" maxlength="10" /></td>
 							</tr>
+							
+							<div class="captcha"></div>
 							
 							<tr>
 								<td align="right" class="text14">&nbsp;</td>

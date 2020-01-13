@@ -40,7 +40,8 @@
 	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
 	<%-- for zxcvbn password strength --%>
 	<script src="resources/js/jquery.passtrength.js"></script>
- 
+	
+	
 	<table width="100%" border="0" cellspacing="0" cellpadding="0"> <!-- width="1200"  -->
 		<%--Banner --%>
 		<tr class="text" height="10">

@@ -247,6 +247,7 @@
 			  textStrong:"Strong",
 			  textVeryStrong:"Very Strong",
 		  });
+		 
 	  }
 
 	  //------------------------------
@@ -259,7 +260,7 @@
 		  //password strength plugin
 		  jq('#passwordNew').passtrength();
 		  
-		//setters (add more if needed)
+		  //setters (add more if needed)
 		  jq('#dialogChangePwd').dialog( "option", "title", "Endre Passord" );
 		  //deal with buttons for this modal window
 		  jq('#dialogChangePwd').dialog({
@@ -268,6 +269,7 @@
 				 id: "dialogSaveTU",	
 				 text: "Endre",
 					 click: function(){
+						  
 						  if(jq('#passwordNew').val()!='' && jq('#passwordConfirm').val()!='' ){
 							  if(jq('#passwordNew').val() == jq('#passwordConfirm').val()){
 								  jq("#validationLabelMessage").text("");
@@ -382,5 +384,6 @@
 		  });
 		  jq('#dialogLogger').dialog('open');
 	  }
-		  
+	  
+	  
 	  
