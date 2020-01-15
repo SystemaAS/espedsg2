@@ -535,6 +535,24 @@ public class DashboardController {
 		appUser.setCssEspedsg(AppConstants.CSS_ESPEDSG);
 		appUser.setCssEspedsgMaintenance(AppConstants.CSS_ESPEDSG_MAINTENANCE);
 		
+		//CSS - exceptions for dashboard pretty buttons depending on customer
+		if(appUser.getCssEspedsg()!=null){
+			//override defaults if applicable
+			if(appUser.getCssEspedsg().toUpperCase().contains("NORTRAIL")){
+				appUser.setCssLeafImg("Nortrail.png");
+				appUser.setCssLeafImgHeight("18");
+				appUser.setCssLeafImgWidth("70");
+				
+			}else if(appUser.getCssEspedsg().toUpperCase().contains("TOTEN")){
+				appUser.setCssLeafImg("Toten.png");
+				appUser.setCssLeafImgHeight("15");
+				appUser.setCssLeafImgWidth("60");
+				
+			}else if("other customer".contains("go on with new customers")){
+				//TODO
+			}
+		}
+		
 	}
 	
 	/**

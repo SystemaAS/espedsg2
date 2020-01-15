@@ -32,16 +32,18 @@
     		setBlockUI();
     		
 	    });
-    	/*
-    	jq("td#dashItem_Vedlikehold").bind("click",function() {
-    		window.location = "mainmaintenancegate.do?lang=" + jq("#usrLang").val();
-    		setBlockUI();
-	    });
-	    */
+    	//Vedlikehold - Administrator
     	jq("td#dashItem_Vedlikehold").bind("click",function() {
     		jq("#dashForm_Vedlikehold").submit();
     		setBlockUI();
 	    });
+    	//Vedlikehold - User (only kundevedlikehold)
+    	jq("td#dashItem_Vedlikehold_Restricted_kundevedlikehold").bind("click",function() {
+    		jq("#dashForm_Vedlikehold_Restricted_kundevedlikehold").submit();
+    		setBlockUI();
+	    });
+    	
+    	
     	
     	
     	/*

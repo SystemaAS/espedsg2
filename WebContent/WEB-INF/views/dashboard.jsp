@@ -12,6 +12,7 @@
 	</style>
 	
 	
+	
 		<%-- Applications' menu --%>
 		<tr height="400" >
 			<td width="100%" align="center" valign="top" > <%-- height="300" width="500" --%>
@@ -48,7 +49,7 @@
 						 		 	<c:set var="counterTOMCATAPPS" value="0" scope="page" />
 			 						<c:forEach items="${list}" var="record" varStatus="counter"> 
 			 							
-						 				<c:if test="${ fn:contains(record.prog, 'TOMCAT') }">
+						 				<c:if test="${ fn:contains(record.prog, 'TOMCAT') }" >
 						 					<c:set var="counterTOMCATAPPS" value="${counterTOMCATAPPS + 1}" scope="page"/> 
 						 					
 						 					<c:set var="imgSrcTomcat" scope="session" value="resources/images/bulletGreen.png"/>
@@ -56,7 +57,7 @@
 						 					
 						 					<c:if test="${fn:contains(record.prog,'-RAPPORTER') }">
 					 							<td id="dashItem_StatsFortolling" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="reports">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_StatsFortolling" method="post" action="/espedsgstats/logonDashboard.do" >
@@ -72,7 +73,7 @@
  
 					 						<c:if test="${fn:contains(record.prog,'-TRAFIKKREGNSKAP') }">
 					 							<td id="dashItem_StatsTrafikk" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+					 								<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 									<form id="dashForm_StatsTrafikk" method="post" action="/espedsgstats/logonDashboard.do?trafikk=1" >
@@ -92,14 +93,14 @@
 							 							<c:when test="${not empty user.userAS400}">
 							 								<%--
 							 								<td id="dashItem_Transpdisp" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-							 									<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+							 									<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 							 									<br/>
 							 									<font class="text18">${record.prTxt}</font>
 															</td>
 															 --%>
 															 
 															<td id="dashItem_Transpdisp" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-									 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+									 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 							 									<br/>
 							 									<font class="text18">${record.prTxt}</font>
 									 							<form id="dashForm_Transpdisp" method="post" action="/espedsgtranspdisp/logonDashboard.do" >
@@ -112,7 +113,7 @@
 														<c:otherwise>
 															<%-- userAS400 = ASUSR parameter i AS400 is mandatory in order to use -WRKTRIPS --%>
 															<td class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-																<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+																<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 												<br/>
 				 												<font class="text14SlateGray" onMouseOver="showPop('wrktrips_info');" onMouseOut="hidePop('wrktrips_info');">
 											 						${record.prTxt}
@@ -133,7 +134,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-EBOOKING') }">
 												<td id="dashItem_Ebooking" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 									<c:if test="${not empty record.veiledning}">
@@ -157,7 +158,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-TROR') }">
 												<td id="dashItem_Tror" class="dashboardElementsFrameE2" align="center" width="250px" height="150px" >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<%-- <font class="text18">${record.prTxt}</font> --%>
 				 									<font class="text18"><spring:message code="login.user.label.tror.dashboard"/></font>
@@ -175,7 +176,7 @@
 
 											<c:if test="${fn:contains(record.prog,'-TESTSUITES') }">
 												<td id="dashItem_Testsuites" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 												</td>
@@ -186,7 +187,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-TPMMONITOR') }">
 												<td id="dashItem_Tpmmonitor" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="tpm module">
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 												</td>
@@ -197,7 +198,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-ALTINNRUNNER') }">
 												<td id="dashItem_AltinnRunnersuites" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 												</td>
@@ -208,7 +209,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-GODSREGNO') }">
 												<td id="dashItem_GodsReg" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="Godsreg. module">
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 									<form id="dashForm_GodsReg" method="post" action="/espedsggodsno/logonDashboard.do" >
@@ -226,7 +227,7 @@
 											
 											<c:if test="${fn:contains(record.prog,'-eFaktura') }">
 												<td id="dashItem_Efaktura" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Efaktura" method="post" action="/espedsgefaktura/logonDashboard.do" >
@@ -243,14 +244,14 @@
 						 					<c:if test="${fn:contains(record.prog,'-SPORROPP') }">
 						 						<%--
 						 						<td id="dashItem_Sporroppdrag" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+							 						<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 												</td>
 												 --%>
 												 
 												<td id="dashItem_Sporroppdrag" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+						 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Sporroppdrag" method="post" action="/espedsgtranspdisp/logonDashboard_sporroppd.do" >
@@ -267,7 +268,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-PRISKALK') }">
 												<td id="dashItem_Priskalk" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+						 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="priskalk">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 						 							<form id="dashForm_Priskalk" method="post" action="/espedsgpkalk/logonDashboard.do" >
@@ -282,23 +283,34 @@
 		 										</c:if> 
 						 					</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-VEDLIKEHOLD') }">
-						 						<%--old version
-						 						<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-							 						<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
-				 									<br/>
-				 									<font class="text18"><spring:message code="login.user.label.maintenance.dashboard"/></font>
-												</td>
-												--%>
-												<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
-				 									<br/>
-				 									<font class="text18">${record.prTxt}</font>
-						 							<form id="dashForm_Vedlikehold" method="post" action="/espedsgmmaint/logonDashboard.do" >
-													    <input type="hidden" name="user" value="${user.encryptedUser}" />
-													    <input type="hidden" name="password" value="${user.encryptedPassword}" />
-													    <input type="hidden" name="lang" value="${user.usrLang}" />
-													</form>
-												</td>
+						 						<c:choose>
+						 						<c:when test="${fn:contains(record.prog,'-RESTRICTED') }">
+							 						
+													<td id="dashItem_Vedlikehold_Restricted_kundevedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+							 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="vedlikehold">
+							 							<br/>
+					 									<font class="text18">${record.prTxt}</font>
+							 							<form id="dashForm_Vedlikehold_Restricted_kundevedlikehold" method="post" action="/espedsgmmaint/logonDashboard.do" >
+														    <input type="hidden" name="user" value="${user.encryptedUser}" />
+														    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+														    <input type="hidden" name="lang" value="${user.usrLang}" />
+														</form>
+													</td>
+													</c:when>
+													<c:otherwise>
+														<td id="dashItem_Vedlikehold" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
+							 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="vedlikehold">
+							 							
+					 									<br/>
+					 									<font class="text18">${record.prTxt}</font>
+							 							<form id="dashForm_Vedlikehold" method="post" action="/espedsgmmaint/logonDashboard.do" >
+														    <input type="hidden" name="user" value="${user.encryptedUser}" />
+														    <input type="hidden" name="password" value="${user.encryptedPassword}" />
+														    <input type="hidden" name="lang" value="${user.usrLang}" />
+														</form>
+													</td>
+													</c:otherwise>
+												</c:choose>
 												<c:if test="${counterTOMCATAPPS%5==0}">
 		 										 </tr>
 		 										 <tr>
@@ -307,7 +319,7 @@
 											<%-- ONLY for external customers --%>
 								 			<c:if test="${fn:contains(record.prog,'-TAVGG') }">
 								 				<td id="dashItem_Tvinnavgg" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-								 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+								 					<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinnavgg" method="post" action="/espedsgtvinnavgg/logonDashboard.do" >
@@ -324,7 +336,7 @@
 								 			</c:if>
 								 			<c:if test="${fn:contains(record.prog,'-TBRREG') }">
 								 				<td id="dialogRunKundedatakontrollLink" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-								 					<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+								 					<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 				 								</td>
@@ -335,7 +347,7 @@
 								 			</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-TVINN') }">
 						 						<td id="dashItem_Tvinn" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+						 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tvinn"  method="post" action="/espedsgtvinnsad/logonDashboard.do" >
@@ -351,7 +363,7 @@
 											</c:if>
 						 					<c:if test="${fn:contains(record.prog,'-SKAT') }">
 						 						<td id="dashItem_Skat" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-						 							<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+						 							<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<%-- <font class="text18">${record.prTxt}</font> --%>
 				 									<font class="text18"><spring:message code="login.user.label.skat.dashboard"/></font>
@@ -371,7 +383,7 @@
 											</c:if>
 				 							<c:if test="${fn:contains(record.prog,'-TDS') }">
 				 								<td id="dashItem_Tds" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-				 									<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+				 									<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Tds" method="post" action="/espedsgtds/logonDashboard.do" >
@@ -388,7 +400,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-UFORTOPPD') }">
 												<td id="dashItem_Ufortollede" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Ufortollede" method="post" action="/espedsgoverview/logonDashboard.do?uopp=1" >
@@ -403,7 +415,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-KVALITET') }">
 												<td id="dashItem_Kvalitet" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 													<%-- Use a form disguised as a-link --%>
@@ -419,7 +431,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-VISMA-INT') }">
 					 							<td id="dashItem_VismaInt" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_VismaInt" method="post" action="/visma-net-proxy/logonDashboard.do" >
@@ -434,7 +446,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-KOSTF') }">
 					 							<td id="dashItem_Kostf" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-													<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+													<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 								 					<form id="dashForm_Kostf" method="post" action="/espedsgkostf/logonDashboard.do" >
@@ -450,7 +462,7 @@
 											</c:if>
 											<c:if test="${fn:contains(record.prog,'-CUST_APP') }">
 												<td id="dashItem_custMatrix" class="dashboardElementsFrameE2" align="center" width="250px" height="150px"  >
-					 								<img class="dashboardElementsImgCircleE2" src="resources/images/leaf.png" height="30px" width="30px" border="0" alt="test module">
+					 								<img class="dashboardElementsImgCircleE2" src="resources/images/${user.cssLeafImg}" height="${user.cssLeafImgHeight}" width="${user.cssLeafImgWidth}" border="0" alt="pic">
 				 									<br/>
 				 									<font class="text18">${record.prTxt}</font>
 												</td>
@@ -464,8 +476,7 @@
 						 			</c:forEach>
 	
 									<tr class="text" height="15"><td></td></tr>
-								    
-								 		<%-- LEGACY APPLICATIONS SECTION 
+								    		<%-- LEGACY APPLICATIONS SECTION 
 								 		<tr>
 								 		<td colspan="5">
 								 		<table align="center" style="width:100%; border-spacing:5px; border-collapse:separate; background-color: #CCCCCC; border-radius: 5px;">
