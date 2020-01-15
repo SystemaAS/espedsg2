@@ -90,4 +90,15 @@ var jq = jQuery.noConflict();
     function refreshCustomValidity(element){
   	  element.setCustomValidity('');
     }
+    //password eye fontawesome.css
+    function viewPassword(){
+  	  if (password.type == 'password'){
+  		  password.type='text';
+  	    passStatus.className='fa fa-eye-slash';
+  	  }
+  	  else{
+  		password.type='password';
+  	    passStatus.className='fa fa-eye';
+  	  }
+    }
   

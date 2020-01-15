@@ -4,6 +4,11 @@
 <jsp:include page="/WEB-INF/views/headerLogin.jsp" />
 <!-- =====================end header ==========================-->
 <SCRIPT type="text/javascript" src="resources/js/login.js?ver=<%= new java.util.Date().getTime()/1000 %>"></SCRIPT>	
+ <%-- reCaptcha test keys from google
+ 	Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
+    Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe --%>
+ <script src="//www.google.com/recaptcha/api.js?hl=EN" async defer></script>
+ 
  
 	<div style="height: 100px;">
 	 	<h3 class="text18">&nbsp;</h3>
@@ -15,7 +20,7 @@
 		<td class="loginFrameE2" width="100%">
 			
 	 		<table align="center" border="0" cellpadding="1" cellspacing="1" >
-	 			<form name="loginForm" id="loginForm" action="logonDashboard.do" method="POST" >
+	 			<form name="loginForm" id="loginForm" method="POST" >
 	 				
 				<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
@@ -28,13 +33,20 @@
 				</tr>
 				<tr>
 					<td align="right" class="text18"><spring:message code="login.user.label.password"/>&nbsp;</td>
-					<td><input type="password"  class="inputText16" name="password" id="password" size="18"/></td>
+					<td>
+						<input type="password"  class="inputText16" name="password" id="password" size="18"/>
+						<i id="passStatus" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
+					</td>
 				</tr>
-				
+				<tr>
+				<td colspan="2">
+				<div class="g-recaptcha" data-sitekey="${user.recaptchaSiteKey}"></div>
+				</td>
+				</tr>
 				<tr>
 					<td>&nbsp;</td>
 					<td align="right">
-					<input onClick="setBlockUI(this);" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
+					<input onclick="checkRecaptcha();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
 				</tr>
 				</form>
 				<tr height="1"><td>&nbsp;</td></tr>

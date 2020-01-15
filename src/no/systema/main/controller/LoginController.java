@@ -58,18 +58,25 @@ public class LoginController {
 		
 		String message = "Welcome till Systema eSped";
 		model.addAttribute("messageTag", message);
-		//This SystemaWebUser instance is just to comply to the dynamic css property that MUST be in place in the JSP-Login window BEFORE the login
+		//This SystemaWebUser instance is just to comply to the dynamic css, reCaptcha - property that MUST be in place in the JSP-Login window BEFORE the login
 		//NOTE: The real SystemaWebUser is set in the Dashboard controller after the approval of the login
-		SystemaWebUser userForCssPurposes = new SystemaWebUser();
+		SystemaWebUser appUserPreLogin = new SystemaWebUser();
 		
 		//Override default
-		userForCssPurposes.setCssEspedsg(AppConstants.CSS_ESPEDSG);
-		if(userForCssPurposes.getCssEspedsg().toLowerCase().contains("toten")){
+		appUserPreLogin.setCssEspedsg(AppConstants.CSS_ESPEDSG);
+		if(appUserPreLogin.getCssEspedsg().toLowerCase().contains("toten")){
 			//Override default
-			userForCssPurposes.setEspedsgLoginTitle("Toten Transport AS – EspedSG");
+			appUserPreLogin.setEspedsgLoginTitle("Toten Transport AS – EspedSG");
+		}else if(appUserPreLogin.getCssEspedsg().toLowerCase().contains("nortrail")){
+			//Override default
+			appUserPreLogin.setEspedsgLoginTitle("Nortrail AS – EspedSG");
 		}
+		//reCaptcha
+		appUserPreLogin.setRecaptchaSiteKey(AppConstants.LOGIN_RECAPTCHA_SITE_KEY);
+		appUserPreLogin.setRecaptchaSecretKey(AppConstants.LOGIN_RECAPTCHA_SECRET_KEY);
 		
-		model.addAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, userForCssPurposes);
+		
+		model.addAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUserPreLogin);
 		if("1".equalsIgnoreCase(errorChgPwd)){
 			model.addAttribute(AppConstants.ASPECT_ERROR_MESSAGE, "There was an error when changing your password...");
 		}

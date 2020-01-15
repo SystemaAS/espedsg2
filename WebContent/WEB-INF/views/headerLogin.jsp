@@ -22,6 +22,9 @@
 				<link rel="SHORTCUT ICON" type="image/png" href="resources/images/systema_logo.png"></link>
 			</c:otherwise>
 		</c:choose>
+		<%--<link href="resources/fontawesome/css/fontawesome.min.css" rel="stylesheet" type="text/css"/> --%>
+		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
+		
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
@@ -32,4 +35,5 @@
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 	<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 	<script type="text/javascript" src="resources/js/jquery.blockUI.js"></script>
+	<script type="text/javascript" src="resources/js/systemaWebGlobal.js?ver=${user.versionEspedsg}"></script>
 	
