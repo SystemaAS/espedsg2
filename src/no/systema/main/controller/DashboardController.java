@@ -70,7 +70,7 @@ public class DashboardController {
 	private final String COMPANY_CODE_REQUIRED_FLAG_VALUE = "1";
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	private StringManager strMgr = new StringManager();
-	private ModelAndView loginView = new ModelAndView("login");
+	private ModelAndView loginView = new ModelAndView("redirect:login.do");
 	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
