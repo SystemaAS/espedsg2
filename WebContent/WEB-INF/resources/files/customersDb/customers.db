@@ -8,8 +8,8 @@ C100;DHL@http://165.72.19.220:8443/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C101;DHL(external)@http://198.141.241.224:8443/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
 C110;Dachser NO - A24@http://10.13.3.22:8181/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a24sg.systema.no
 C111;Dachser DK - A25@http://gw.systema.no:8383/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a25sg.systema.no
-C112;Dachser SE-GOT - A21@http://10.13.3.22:9292/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9292/espedsg2
-C113;Dachser SE-JKG - A22@http://10.13.3.22:9393/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9393/espedsg2
+C112;Dachser SE-GOT - A21@http://10.13.3.22:9292/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a21sg.systema.no
+C113;Dachser SE-JKG - A22@http://10.13.3.22:9393/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a22sg.systema.no
 C114;Dachser SE-MMX - A23@http://10.13.3.22:9494/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9494/espedsg2
 C115;Dachser SE-STO - A20@http://10.13.3.22:9191/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://172.20.77.1:9191/espedsg2
 C200;DSV@http://10.47.16.52:8080/espedsg@7.0 / 6.0 / old OS@
