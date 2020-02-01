@@ -7,8 +7,9 @@
  <%-- reCaptcha test keys from google
  	Site key: 6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI
     Secret key: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe --%>
- <script src="//www.google.com/recaptcha/api.js?hl=EN" async defer></script>
- 
+ <c:if test="${not empty user.recaptchaSiteKey}">   
+ 	<script src="//www.google.com/recaptcha/api.js?hl=EN" async defer></script>
+ </c:if>
  
 	<div style="height: 100px;">
 	 	<h3 class="text18">&nbsp;</h3>
@@ -38,16 +39,31 @@
 						<i id="passStatus" class="fa fa-eye" aria-hidden="true" onClick="viewPassword()"></i>
 					</td>
 				</tr>
-				<tr>
-				<td colspan="2">
-				<div class="g-recaptcha" data-sitekey="${user.recaptchaSiteKey}"></div>
-				</td>
-				</tr>
-				<tr>
-					<td>&nbsp;</td>
-					<td align="right">
-					<input onclick="checkRecaptcha();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
-				</tr>
+				
+				<c:choose>
+					<%-- put recaptchaSiteKey empty (application.properties) if you want to disable recaptcha-plugin  --%>
+					<c:when test="${not empty user.recaptchaSiteKey}"> 
+						<tr>
+						<td colspan="2">
+						<div class="g-recaptcha" data-sitekey="${user.recaptchaSiteKey}"></div>
+						</td>
+						</tr>
+						 
+						<tr>
+							<td>&nbsp;</td>
+							<td align="right">
+							<input onclick="checkRecaptcha();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
+						</tr>
+					</c:when>
+					<c:otherwise>
+						<tr>
+							<td>&nbsp;</td>
+							<td align="right">
+							<input onclick="submitLoginForm();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
+						</tr> 
+					</c:otherwise>
+				</c:choose>
+				
 				</form>
 				<tr height="1"><td>&nbsp;</td></tr>
 
