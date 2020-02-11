@@ -11,6 +11,7 @@
  	<script src="//www.google.com/recaptcha/api.js?hl=EN" async defer></script>
  </c:if>
  
+ 
 	<div style="height: 100px;">
 	 	<h3 class="text18">&nbsp;</h3>
 	 	<%-- <h4></h1><a href="?lang=en">en</a>|<a href="?lang=no">no</a></h4> --%>
@@ -50,16 +51,17 @@
 						</tr>
 						 
 						<tr>
-							<td>&nbsp;</td>
+							<td>&nbsp;<input type="text" name="alwaysEmptyAndInvisible" id="alwaysEmptyAndInvisible" style="display: none;"></td>
 							<td align="right">
 							<input onclick="checkRecaptcha();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
 						</tr>
 					</c:when>
 					<c:otherwise>
 						<tr>
-							<td>&nbsp;</td>
+							<td>&nbsp;<input type="text" name="alwaysEmptyAndInvisible" id="alwaysEmptyAndInvisible" style="display: none;"></td>
 							<td align="right">
-							<input onclick="submitLoginForm();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' ></td>
+								<input onclick="submitLoginForm();" type="submit" name="submit" id="submit" class="inputFormLoginSubmitGreen" value='<spring:message code="login.user.submit"/>' >
+							</td>
 						</tr> 
 					</c:otherwise>
 				</c:choose>

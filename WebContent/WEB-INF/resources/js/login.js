@@ -43,6 +43,8 @@
   });
   
   
+  
+  
   //----------------
   //FORM SUBMISSION
   //----------------
@@ -59,12 +61,15 @@
 	    submitLoginForm();
 	  }
 	}
+  
+  //html form can not have the action attribute in the html ... Has to be here to let reCaptcha work first
   function submitLoginForm() {
-	  //html form can not have the action attribute in the html ... Has to be here to let reCaptcha work first
-	  jq('#loginForm').attr('action', 'logonDashboard.do');
-	  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-	  jq('#loginForm').submit();
-
+	  //this is to prevent most of the bots - attacks
+	  if(jq('#alwaysEmptyAndInvisible').val() === ''){
+		  jq('#loginForm').attr('action', 'logonDashboard.do');
+		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		  jq('#loginForm').submit();
+	  }
 	};
 	//----------------
 	//END-FORM SUBMISSION
