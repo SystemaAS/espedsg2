@@ -167,7 +167,6 @@ public class DashboardController {
 				    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
 				    				logger.error("[ERROR Fatal] Unauthorized ...");
 				    				this.setFatalAS400LoginError(model, jsonSystemaUserContainer.getErrMsg());
-				    				this.loginView.addObject("model", model);
 				    				return this.loginView;
 				    			}else{
 				    				this.setDashboardMenuObjectsInSession(session, jsonSystemaUserContainer);
