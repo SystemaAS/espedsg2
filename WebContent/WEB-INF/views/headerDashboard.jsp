@@ -77,7 +77,7 @@
 											</c:when>
 											<c:otherwise>
 												<c:if test="${fn:contains(user.logo, 'logo')}">
-													<img src="resources/images/${user.logo}" border="0" >
+													<img src="resources/images/${user.logo}" border="0" style="width: 80%" >
 												</c:if>
 											</c:otherwise>
 										</c:choose>
