@@ -64,11 +64,18 @@
   
   //html form can not have the action attribute in the html ... Has to be here to let reCaptcha work first
   function submitLoginForm() {
+	  let PASS_MINIMUM_LENGTH = 5;
 	  //this is to prevent most of the bots - attacks
-	  if(jq('#alwaysEmptyAndInvisible').val() === ''){
-		  jq('#loginForm').attr('action', 'logonDashboard.do');
-		  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
-		  jq('#loginForm').submit();
+	  if(jq('#password').val() != '' && jq('#password').val().length >= PASS_MINIMUM_LENGTH){
+		  jq('#password').removeClass('isa_error');
+		  
+		  if(jq('#alwaysEmptyAndInvisible').val() === ''){
+			  jq('#loginForm').attr('action', 'logonDashboard.do');
+			  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+			  jq('#loginForm').submit();
+		  }
+	  }else{
+		  jq('#password').addClass('isa_error');
 	  }
 	};
 	//----------------
