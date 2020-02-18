@@ -240,7 +240,7 @@
 	  function initPasswordStrength(){
 		  //Config the password strength meter with the following options.
 		  jq('#passwordNew').passtrength({
-			  minChars: 4,
+			  minChars: 5,
 			  passwordToggle:true,
 			  eyeImg :"resources/images/eye.svg", // toggle icon
 			  tooltip:true,
@@ -256,7 +256,7 @@
 	  //PRESENT CHANGE PASSWORD DIALOG
 	  //------------------------------
 	  function presentChangePwdDialog(){
-		  
+		  let PASS_MINIMUM_LENGTH = 5;
 		  //init password strength plugin
 		  initPasswordStrength();
 		  //password strength plugin
@@ -273,19 +273,25 @@
 					 click: function(){
 						  
 						  if(jq('#passwordNew').val()!='' && jq('#passwordConfirm').val()!='' ){
-							  if(jq('#passwordNew').val() == jq('#passwordConfirm').val()){
-								  jq("#validationLabelMessage").text("");
-								  //cosmetics
-								  jq('#passwordNew').removeClass('isa_error');
-				 				  jq('#passwordConfirm').removeClass('isa_error');
-								  //Submit
-				 				  setBlockUI();
-				 				  jq("#loginFormChgPwd").submit();
-				 				  
+							  if(jq('#passwordNew').val() .length >= PASS_MINIMUM_LENGTH && jq('#passwordConfirm').val().length >= PASS_MINIMUM_LENGTH){
+								  jq('#password').removeClass('isa_error');
+								  if(jq('#passwordNew').val() == jq('#passwordConfirm').val()){
+									  jq("#validationLabelMessage").text("");
+									  //cosmetics
+									  jq('#passwordNew').removeClass('isa_error');
+					 				  jq('#passwordConfirm').removeClass('isa_error');
+									  //Submit
+					 				  setBlockUI();
+					 				  jq("#loginFormChgPwd").submit();
+					 				  
+								  }else{
+									  jq("#validationLabelMessage").text("Passordene er forskjellige");
+									  jq('#passwordNew').addClass('isa_error');
+					 				  jq('#passwordConfirm').addClass('isa_error');
+								  }
 							  }else{
-								  jq("#validationLabelMessage").text("Passordene er forskjellige");
-								  jq('#passwordNew').addClass('isa_error');
-				 				  jq('#passwordConfirm').addClass('isa_error');
+								  jq('#password').addClass('isa_error');
+								  jq("#validationLabelMessage").text("Passordene er for korte");
 							  }
 						  }else{
 			 				  jq("#validationLabelMessage").text("Alla felt må fylles ut");
