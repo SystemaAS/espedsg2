@@ -23,7 +23,7 @@ C350;Martin Bencher - A52@http://10.13.3.22:9090/espedsg2@<b>8.0</b> / 9.0 / <b>
 C360;MBP Solutions - A32@http://10.13.3.22:9394/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://a32sg.systema.no
 C400;Nortrail@https://esped.nortrail.no:8443/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@https://esped.nortrail.no:8443/espedsg2
 C420;Panalpina - A40 (sagt opp)@http://10.13.3.22:8585/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
-C501;Postnord - A53@http://10.13.3.22:9091/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@@http://a53sg.systema.no
+C501;Postnord - A53@http://10.13.3.22:9091/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@@http://a53sg.systema.no
 C510;Schenker NO@http://193.182.220.117:8080/espedsg@7.0 / 8.0 / V12@
 C520;Speditøren - A12@http://10.13.3.22:8484/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://a12sg.systema.no
 C530;Systema AS - ASS@http://10.13.3.22:8787/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://asssg.systema.no
@@ -34,4 +34,4 @@ C603;Toten Trans. FK@http://cust.toten.as:8083/espedsg2@<b>8.0</b> / 8.0 / <b>V1
 C604;Toten Trans. TR@http://cust.toten.as:8084/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
 C605;Toten Trans. DK@http://cust.toten.as:8085/espedsg@<b>8.0</b> / 8.0 / <b>V12</b>@
 C610;Tyrholm@http://10.241.23.250:8080/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@
-C615;WML - A38@http://10.13.3.22:9595/espedsg2@<b>8.0</b> / 8.0 / <b>V12</b>@http://a38sg.systema.no
+C615;WML - A38@http://10.13.3.22:9595/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://a38sg.systema.no
