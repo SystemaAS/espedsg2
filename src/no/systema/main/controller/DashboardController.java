@@ -70,7 +70,8 @@ public class DashboardController {
 	private final String COMPANY_CODE_REQUIRED_FLAG_VALUE = "1";
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	private StringManager strMgr = new StringManager();
-	private ModelAndView loginView = new ModelAndView("redirect:login.do");
+	//private ModelAndView loginView = new ModelAndView("redirect:login.do");
+	private ModelAndView loginView = new ModelAndView("login");
 	
 	@InitBinder
     protected void initBinder(WebDataBinder binder) {
@@ -167,6 +168,7 @@ public class DashboardController {
 				    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
 				    				logger.error("[ERROR Fatal] Unauthorized ...");
 				    				this.setFatalAS400LoginError(model, jsonSystemaUserContainer.getErrMsg());
+				    				this.loginView.addObject("model", model);
 				    				return this.loginView;
 				    			}else{
 				    				this.setDashboardMenuObjectsInSession(session, jsonSystemaUserContainer);
@@ -628,8 +630,9 @@ public class DashboardController {
 	 * @param errorMessage
 	 */
 	private void setFatalAS400LoginError(Map model, String errorMessage){
-		String errorAS400Suffix = " [AS400 error]";
+		String errorAS400Suffix = " ...";
 		model.put(AppConstants.ASPECT_ERROR_MESSAGE, errorMessage + errorAS400Suffix);
+		logger.info(errorMessage + errorAS400Suffix);
 	}
 	
 	
