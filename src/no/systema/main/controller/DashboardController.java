@@ -104,6 +104,7 @@ public class DashboardController {
 		cookieMgr.removeAllCookies(request,response);		
 		
 		
+		
 		if(appUser==null){
 			return this.loginView;
 		
@@ -191,6 +192,7 @@ public class DashboardController {
 				    	appUser.setEncryptedPassword(this.aesManager.encrypt(appUser.getPassword()));
 				    	appUser.setEncryptedToken(this.aesManager.encrypt(request.getSession().getId() + "&" + appUser.getUser()));
 				    	
+				    
 						//create cookie for security token
 				    	cookieMgr.addGlobalCookieToken( appUser.getEncryptedToken(), response);
 				    	session.setAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUser);
