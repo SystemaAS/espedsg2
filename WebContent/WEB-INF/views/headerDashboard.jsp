@@ -64,47 +64,47 @@
     			 
     			 		<tr height="5"><td></td></tr>
 				 		<tr>
-				 		<td style="min-width: 300px; max-width: 300px;" class="text22Bold" align=left valign="middle" >
-				 			<c:if test="${not empty user.logo}">
+				 			<c:choose>
+				 			<c:when test="${not empty user.logo}">
 				 				<c:choose>
 					 				<c:when test="${fn:contains(user.logo, '/')}">
-										<img src="${user.logo}" border="0" >
-									</c:when>
+					 					<td class="text14" width="10%" align="center" valign="middle" >
+											<img src="${user.logo}" border="0" >
+										</td>
+									</c:when>	
 									<c:otherwise>
 										<c:choose>
 											<c:when test="${fn:contains(user.logo, 'systema')}">
-												<img src="resources/images/${user.logo}" border="0" width=80px height=50px>
+												<td class="text14white" width="10%" align=left valign="bottom" >&nbsp;
+												<img src="resources/images/${user.logo}" border="0" width=60px height=40px>
+												</td>
 											</c:when>
 											<c:otherwise>
 												<c:if test="${fn:contains(user.logo, 'logo')}">
-													<img src="resources/images/${user.logo}" border="0" style="width: 80%" >
+													<td class="text14white" width="10%" align=left valign="bottom" >&nbsp;
+													<img src="resources/images/${user.logo}" border="0" >
+													</td>
 												</c:if>
 											</c:otherwise>
 										</c:choose>
 									</c:otherwise>
 								</c:choose>
-   			 				</c:if>
-						</td>
+   			 				</c:when>
+							<c:otherwise>
+						 		<td class="text14white" width="10%" align=left valign="bottom" >&nbsp;</td>
+						 		<%-- <td class="text14white" width="10%" align=right valign="bottom" >&nbsp;</td>--%>
+					 		</c:otherwise>
+							</c:choose>
 						
-						
-						<td class="text32Bold" width="40%" align="center" valign="middle" 
-								<c:choose>
-			 					<c:when test="${ not empty user.banner }">
-				 					style="font-style:italic; color:#555555;" <%-- gray --%>
-				 				</c:when>
-				 				<c:otherwise>
-				 					style="font-style:italic; color:#778899;" <%-- special metal gray --%>
-				 				</c:otherwise>
-				 				</c:choose>
-						>
+						<td class="text32Bold" width="90%" align="center" valign="middle" style="color:#778899;" >
 				 			eSped<font style="color:#003300;">sg</font>
 				 		</td>
-		    			<td width="30%" align="right" valign="middle">
-						<c:if test="${not empty user.systemaLogo && (user.systemaLogo=='Y')}">
-		    				<img src="resources/images/systema_logo.png" border="0" width=75px height=45px>
-							&nbsp; 
-						</c:if>		
-	    				</td>
+			    			<td width="30%" align="right" valign="middle">
+							<c:if test="${not empty user.systemaLogo && (user.systemaLogo=='Y')}">
+			    				<img src="resources/images/systema_logo.png" border="0" width=75px height=45px>
+								&nbsp; 
+							</c:if>		
+		    				</td>
 			      		
 			        </tr>
    			 		<tr height="5"><td></td></tr>

@@ -216,7 +216,7 @@ public class DashboardController {
 				    	String urlRedirectTomcatToSubsidiaryCompany = this.getTomcatServerRedirectionUrl(appUser, request);
 				    	RedirectView rw = new RedirectView();
 				    	logger.warn("Redirecting to logonWRedDashboard");
-				    	logger.debug("Redirecting to:" + urlRedirectTomcatToSubsidiaryCompany);
+				    	logger.warn("Redirecting to:" + urlRedirectTomcatToSubsidiaryCompany);
 				    	rw.setUrl(urlRedirectTomcatToSubsidiaryCompany);
 				    	successView.setView(rw); 
 			    	}	
@@ -384,12 +384,12 @@ public class DashboardController {
 			//default
 			if(indexHttp >= 0){
 				hostRaw = hostRaw.replace(HTTP_PREFIX, "");
-				logger.info("HTTP hostRaw: " + hostRaw);
+				logger.warn("HTTP hostRaw: " + hostRaw);
 			}else if(indexHttps >= 0){
 				//https (if applicable)
 				hostRaw = hostRaw.replace(HTTPS_PREFIX, "");
 				protocol = HTTPS_PREFIX;
-				logger.info("HTTPs hostRaw: " + hostRaw);
+				logger.warn("HTTPs hostRaw: " + hostRaw);
 			}
 			
 			//now to the issue
@@ -398,14 +398,14 @@ public class DashboardController {
 				String host = hostRaw.substring(0, indx + 1);
 				//default
 				String port = appUser.getTomcatPort();
-				if(protocol.contains(HTTPS_PREFIX)){
+				if(protocol.contains(HTTPS_PREFIX) && !hostRaw.contains("cust.toten")){
 					//take the port from the url and not from the json-return on ...symn0J.pgm
 					Integer indxPort = hostRaw.lastIndexOf(":");
 					String portTmp = hostRaw.substring(indxPort + 1);
 					port = portTmp;
 				}
 				hostRaw = protocol + host + port;
-				logger.info("HTTP host with protocol and port: " + hostRaw);
+				logger.warn("HTTP host with protocol and port: " + hostRaw);
 			}
 		}
 		
