@@ -39,8 +39,8 @@
 		<table width="85%" height="80%" class="popupFloatingWithRoundCorners3D" cellspacing="0" border="0" cellpadding="0">
 			<tr>
 			<td valign="top">
-			<form action="TODOtvinnsadmanifest_childwindow_uploadFile.do?action=doSave" name="uploadFileForm" id="uploadFileForm" method="post" enctype="multipart/form-data">
-				<input type="hidden" name="user" id="user" value='${model.user}'>
+			<form action="uxternal_uploadfile.do?action=doSave" name="uploadFileForm" id="uploadFileForm" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="applicationUser" id="applicationUser" value='${model.user}'>
 				<input type="hidden" name="wsavd" id="wsavd" value='${model.wsavd}'>
 				<input type="hidden" name="wsopd" id="wsopd" value='${model.wsopd}'>
 					<table id="containerdatatableTable" cellspacing="2" align="left">

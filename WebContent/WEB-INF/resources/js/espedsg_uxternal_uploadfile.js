@@ -11,7 +11,9 @@
   		showDialogDraggable();
   	});
   	
-    //draggable window
+  	//------------------
+    //START Upload file
+    //------------------
     function showDialogDraggable(){
   	  //jq( "#dialogDraggableMatrix" ).removeClass("popup");
   	  jq( "#dialogDraggable" ).dialog({
@@ -23,5 +25,23 @@
   	  jq( "#dialogDraggable" ).focus();
     }
   	
+    //drag enter/leave
+	function myFileUploadDragEnter(event, element){
+		jq("#file").addClass( "isa_blue" );
+	}
+	function myFileUploadDragLeave(event, element){
+		jq("#file").removeClass( "isa_blue" );
+	}
+	
+	jq(function() {
+  		//Triggers on drag-and-drop to upload
+		jq('#file').change(function(){
+			jq('#uploadFileForm').submit();
+			
+		});
+  	});
   	
+	//------------------
+    //END - Upload file
+    //------------------
   	

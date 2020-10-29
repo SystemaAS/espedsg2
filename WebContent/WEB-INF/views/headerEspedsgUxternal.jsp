@@ -16,7 +16,7 @@
 		<%-- <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"> --%>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE" />
-		<title>Systema - eSpedsg Admin</title>
+		<title>Systema - eSpedsg Uxternal </title>
 	</head>
 	<body>
 	<%-- include som javascript functions --%>
