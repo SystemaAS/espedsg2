@@ -7,6 +7,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
@@ -89,12 +91,28 @@ public class JsonRunnersuiteController {
 				inner: for(String module : record.getApplicationList() ){
 					//logger.info("app:" + module);
 					if(module.contains("ALTINN-PROXY")){
-						String tmp = record.getUrl();
+						String tmp = record.getUrlHttps();
+						if(StringUtils.isEmpty(tmp)){
+							tmp = record.getUrl();
+						}
 						int i = tmp.indexOf("espedsg");
-						tmp = tmp.substring(0,i);
-						record.setUrl(tmp);
-						list.add(record);
-						break inner;
+						if(i > -1){
+							tmp = tmp.substring(0,i);
+							record.setUrl(tmp);
+							list.add(record);
+							break inner;
+						}else{
+							//Saas:ar special https
+							i = tmp.indexOf("systema.no");
+							if(i > -1){
+								String httpTmp = record.getUrl();
+								int j = httpTmp.indexOf("espedsg");
+								httpTmp = httpTmp.substring(0,j);
+								record.setUrl(httpTmp);
+								list.add(record);
+								break inner;
+							}
+						}
 					}
 				}
 			}
