@@ -23,8 +23,8 @@
 			
 	 		<table align="center" border="0" cellpadding="1" cellspacing="1" >
 	 			<form name="loginForm" id="loginForm" method="POST" >
-	 				
-				<tr height="1"><td>&nbsp;</td></tr>
+	 			<input type="hidden" name="host" id="host" value="${model.user.servletHostWithoutHttpPrefix}" />
+	 			<tr height="1"><td>&nbsp;</td></tr>
 				<tr>
 					<td align="center" colspan="2" class="text28Bold">eSpedsg</td>
 				</tr>

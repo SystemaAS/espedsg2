@@ -51,8 +51,15 @@ public class LoginController {
 	//in the JSP or other view (href or other redirect) that is calling this Controller
 	@RequestMapping("login.do")
 	public ModelAndView login(Model model, HttpServletRequest request, HttpServletResponse response ){
-		logger.info("Before login controller execution");
+		//this is done as a security measure for future upgrades 
+		SessionCookieManager cookieMgr = new SessionCookieManager(request);
 		
+		//Init cookie token since this page is excluded in the interceptor
+		cookieMgr.removeGlobalCookie(response);
+		cookieMgr.removeAllCookies(request,response);
+		
+		
+		logger.info("Before login controller execution");
 		//if there was an error when changing the password...
 		String errorChgPwd= request.getParameter("epw");
 		
@@ -74,7 +81,8 @@ public class LoginController {
 		//reCaptcha
 		appUserPreLogin.setRecaptchaSiteKey(AppConstants.LOGIN_RECAPTCHA_SITE_KEY);
 		appUserPreLogin.setRecaptchaSecretKey(AppConstants.LOGIN_RECAPTCHA_SECRET_KEY);
-		
+		//for 2FactorAuth. (when needed)
+		appUserPreLogin.setServletHostWithoutHttpPrefix(request.getServerName());
 		
 		model.addAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUserPreLogin);
 		if("1".equalsIgnoreCase(errorChgPwd)){
@@ -159,22 +167,22 @@ public class LoginController {
 	
 	
 	
-		//SERVICES
-		@Qualifier ("urlCgiProxyService")
-		private UrlCgiProxyService urlCgiProxyService;
-		@Autowired
-		@Required
-		public void setUrlCgiProxyService (UrlCgiProxyService value){ this.urlCgiProxyService = value; }
-		public UrlCgiProxyService getUrlCgiProxyService(){ return this.urlCgiProxyService; }
-		
-		@Qualifier ("systemaWebLoginService")
-		private SystemaWebLoginService systemaWebLoginService;
-		@Autowired
-		@Required
-		public void setSystemaWebLoginService (SystemaWebLoginService value){ this.systemaWebLoginService = value; }
-		public SystemaWebLoginService getSystemaWebLoginService(){ return this.systemaWebLoginService; }
-		
-		
+	//SERVICES
+	@Qualifier ("urlCgiProxyService")
+	private UrlCgiProxyService urlCgiProxyService;
+	@Autowired
+	@Required
+	public void setUrlCgiProxyService (UrlCgiProxyService value){ this.urlCgiProxyService = value; }
+	public UrlCgiProxyService getUrlCgiProxyService(){ return this.urlCgiProxyService; }
+	
+	@Qualifier ("systemaWebLoginService")
+	private SystemaWebLoginService systemaWebLoginService;
+	@Autowired
+	@Required
+	public void setSystemaWebLoginService (SystemaWebLoginService value){ this.systemaWebLoginService = value; }
+	public SystemaWebLoginService getSystemaWebLoginService(){ return this.systemaWebLoginService; }
+	
+	
     
 }
 

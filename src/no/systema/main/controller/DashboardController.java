@@ -4,6 +4,7 @@ package no.systema.main.controller;
 import java.net.URLEncoder;
 import java.util.*;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
@@ -78,6 +79,147 @@ public class DashboardController {
         binder.setValidator(new UserValidator());
     }
 	
+	/**
+	 * This method is used to redirect to the 2FactorAuthentication(2FA) method (Google Authenticator or Cisco Duo)
+	 * If the user gets to this method it means that the user has been granted access in SYSPED but not yet to the 2FA confirmation.
+	 * 
+	 * When this method is executed the end-user will be prompted with a confirmation login in order to
+	 * input the authentication code enable him/her to continue to the dashboard OR getting him/her back to the initial login (if the 2FA does not grant the access)
+	 *
+	 * @param appUser
+	 * @param bindingResult
+	 * @param session
+	 * @param request
+	 * @param response
+	 * @param redirectAttr
+	 * @return
+	 */
+	@RequestMapping(value="loginconfirm.do", method= { RequestMethod.POST, RequestMethod.GET })
+	public ModelAndView confirm2FA(@ModelAttribute (AppConstants.SYSTEMA_WEB_USER_KEY) SystemaWebUser appUser, BindingResult bindingResult, HttpSession session, HttpServletRequest request, HttpServletResponse response, RedirectAttributes redirectAttr){
+		ModelAndView successView = new ModelAndView("loginconfirm");
+		Map model = new HashMap();
+		logger.info("Inside login confirm...");
+		
+		
+		
+		if(appUser==null){
+			return this.loginView;
+		
+		}else{
+			
+			//TEST from {catalina.home}..context.xml => logger.info(request.getServletContext().getInitParameter("xxx"));
+			//TEST from {catalina.home}..application.properties => logger.info(ApplicationPropertiesUtil.getProperty("http.as400.root.cgi"));
+			UserValidator validator = new UserValidator();
+			//logger.info("Host via HttpServletRequest.getHeader('Host'): " + request.getHeader("Host"));
+			
+		    validator.validate(appUser, bindingResult);
+		    if(bindingResult.hasErrors()){
+			    	logger.info("[ERROR Fatal] User not valid (user/password ?)");
+			    	//
+			    	SystemaWebUser userForCssPurposes = new SystemaWebUser();
+			    	userForCssPurposes.setCssEspedsg(AppConstants.CSS_ESPEDSG);
+					model.put(AppConstants.SYSTEMA_WEB_USER_KEY, userForCssPurposes);
+					this.loginView.addObject("model",model);
+					
+			    	//this.loginView.addObject("model", null);
+			    	return loginView;
+	
+		    }else{
+		    	//get the company code for the coming user
+		    	//this routine was triggered by Totens upgrade (Jan-2017 V12). Ref. JOVOs requirement
+		    	String companyCode = null;
+		    	if(COMPANY_CODE_REQUIRED_FLAG_VALUE.equals(AppConstants.LOGIN_FIRMA_CODE_REQUIRED)){
+		    		companyCode = this.getCompanyCodeForLogin();
+		    	}
+		    	
+		    	//---------------------------
+				//get BASE URL = RPG-PROGRAM
+	            //---------------------------
+				String BASE_URL = MainUrlDataStore.SYSTEMA_WEB_LOGIN_URL;
+				
+				//url params
+				String urlRequestParamsKeys = this.getRequestUrlKeyParameters(appUser, companyCode);
+				
+				logger.info(Calendar.getInstance().getTime() + " CGI-start timestamp");
+		    	logger.info("URL: " + BASE_URL);
+		    	logger.warn("confirm 2FA");
+		    	//don't show the pwd
+		    	//int pwd = urlRequestParamsKeys.indexOf("&pwd");
+		    	//String credentailsPwd = urlRequestParamsKeys.substring(pwd + 5);
+		    	//logger.info("URL PARAMS: " + urlRequestParamsKeys.substring(0,pwd)+"&md5");
+		    	logger.debug("URL PARAMS: " + urlRequestParamsKeys);
+		    	
+		    	//--------------------------------------
+		    	//EXECUTE the FETCH (RPG program) here
+		    	//--------------------------------------
+		    	try{
+			    	String jsonPayload = this.urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParamsKeys);
+			    	//Debug --> 
+			    	//System.out.println(jsonPayload);
+			    	logger.info(jsonPayload);
+			    	//logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp " + new StringBuilder(credentailsPwd).reverse().toString() + "carebum");
+			    	logger.info(Calendar.getInstance().getTime() +  " CGI-end timestamp ");
+			    	if(jsonPayload!=null){ 
+			    		JsonSystemaUserContainer jsonSystemaUserContainer = this.systemaWebLoginService.getSystemaUserContainer(jsonPayload);
+			    		//check for errors
+			    		if(jsonSystemaUserContainer!=null){
+			    			if(jsonSystemaUserContainer.getErrMsg()!=null && !"".equals(jsonSystemaUserContainer.getErrMsg())){
+			    				logger.error("[ERROR Fatal] Unauthorized ...");
+			    				this.setFatalAS400LoginError(model, jsonSystemaUserContainer.getErrMsg());
+			    				this.loginView.addObject("model", model);
+			    				return this.loginView;
+			    			}else{
+			    				//format things
+			    				String message = "Welcome till Systema eSped";
+			    				model.put("messageTag", message);
+			    				//This SystemaWebUser instance is just to comply to the dynamic css, reCaptcha - property that MUST be in place in the JSP-Login window BEFORE the login
+			    				//NOTE: The real SystemaWebUser is set in the Dashboard controller after the approval of the login
+			    				SystemaWebUser appUserPreLogin = new SystemaWebUser();
+			    				//Override default
+			    				appUserPreLogin.setCssEspedsg(AppConstants.CSS_ESPEDSG);
+			    				if(appUserPreLogin.getCssEspedsg().toLowerCase().contains("toten")){
+			    					//Override default
+			    					appUserPreLogin.setEspedsgLoginTitle("Toten Transport AS – EspedSG");
+			    				}else if(appUserPreLogin.getCssEspedsg().toLowerCase().contains("nortrail")){
+			    					//Override default
+			    					appUserPreLogin.setEspedsgLoginTitle("Nortrail AS – EspedSG");
+			    				}
+			    				//we must put the password somewhere since we are going to login again after the confirmation
+			    				
+			    				appUserPreLogin.setUser(request.getParameter("user"));
+			    				session.setAttribute("tempPass", request.getParameter("password"));
+			    				logger.warn((String)session.getAttribute("tempPass"));
+			    				model.put(AppConstants.SYSTEMA_WEB_USER_KEY, appUserPreLogin);
+			    				
+			    				logger.warn("confirm ok...");
+			    				successView.addObject("model", model);
+			    			}
+			    		}
+			    	}else{
+			    		String msg = "NO CONTENT on jsonPayload";
+			    		logger.error("[ERROR Fatal] " + msg);
+			    		this.setFatalAS400LoginError(model, msg);
+    					this.loginView.addObject("model", model);
+					
+    					return loginView;
+			    	}
+			    	
+			    	
+		    	
+		    	}catch(Exception e){
+		    		String msg = "NO CONNECTION:" + e.toString();
+		    		logger.info("[ERROR Fatal] NO CONNECTION ");
+		    		this.setFatalAS400LoginError(model, msg);
+					this.loginView.addObject("model", model);
+				
+					return loginView;
+		    		
+		    	}
+		    }
+		}
+		return successView;
+	}
+
 	
 	/**
 	 * This method is the point of entry for the whole Systema Web esped domain.
@@ -103,19 +245,20 @@ public class DashboardController {
 		cookieMgr.removeGlobalCookie(response);
 		cookieMgr.removeAllCookies(request,response);		
 		
-		
-		
 		if(appUser==null){
 			return this.loginView;
-		
+			
 		}else{
+			//this snippet is used when the call is coming from the 2FA-loginconfirm since we do not send the password as a form-parameter
+			if(StringUtils.isEmpty(appUser.getPassword())){
+				//this was saved as session variable ONLY TEMPORARY in the loginconfirm.do
+		    	String tempPass = (String)session.getAttribute("tempPass");
+		    	appUser.setPassword(tempPass);
+		    	session.removeAttribute("tempPass");
+		    }
 			
-			//TEST from {catalina.home}..context.xml => logger.info(request.getServletContext().getInitParameter("xxx"));
-			//TEST from {catalina.home}..application.properties => logger.info(ApplicationPropertiesUtil.getProperty("http.as400.root.cgi"));
 			UserValidator validator = new UserValidator();
-			//logger.info("Host via HttpServletRequest.getHeader('Host'): " + request.getHeader("Host"));
-			
-		    validator.validate(appUser, bindingResult);
+			validator.validate(appUser, bindingResult);
 		    if(bindingResult.hasErrors()){
 			    	logger.info("[ERROR Fatal] User not valid (user/password ?)");
 			    	//

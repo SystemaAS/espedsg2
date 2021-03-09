@@ -42,9 +42,7 @@
 	  console.log("language",getLanguage());
   });
   
-  
-  
-  
+
   //----------------
   //FORM SUBMISSION
   //----------------
@@ -70,7 +68,14 @@
 		  jq('#password').removeClass('isa_error');
 		  
 		  if(jq('#alwaysEmptyAndInvisible').val() === ''){
-			  jq('#loginForm').attr('action', 'logonDashboard.do');
+			  let host = jq('#host').val();
+			  //only SaaS customers should use the 2FA-solution (Google Authenticator or Duo or other). localhost is for development purposes
+			  if(host.indexOf("systema.no") != -1 || host.indexOf("localhost") != -1){
+				  jq('#loginForm').attr('action', 'loginconfirm.do');
+			  }else{
+				  //this is the normal none-2FA solution. Usually all external customers
+				  jq('#loginForm').attr('action', 'logonDashboard.do');
+			  }
 			  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 			  jq('#loginForm').submit();
 		  }
@@ -78,6 +83,70 @@
 		  jq('#password').addClass('isa_error');
 	  }
 	};
-	//----------------
+	//--------------------
 	//END-FORM SUBMISSION
-	//----------------	
+	//--------------------	
+	
+	
+	//------------------------------------------------
+	//FORM SUBMISSION - CONFIRM 2FactorAuthentication
+	//------------------------------------------------
+	function submitLoginConfirmForm(){
+		jq.ajax({
+		  type: 'GET',
+		  url: 'getAuthenticator2FAResponse.do',
+		  data: { code : jq('#code').val() },
+		  dataType: 'json',
+		  cache: false,
+		  contentType: 'application/json',
+		  success: function(data) {
+		  	var len = data.length;
+		  	if(len>0){
+				for ( var i = 0; i < len; i++) {
+					if(data[i].user=='OK'){
+						jq('#code').removeClass('isa_error');
+						jq('#code').addClass('isa_success');
+						redirectFormAfter2FAConfirm();
+					}else{
+						jq('#code').val('');jq('#code').focus();
+						jq('#code').addClass('isa_error');
+					}					
+				}
+		  	}else{
+		  		jq('#code').val('');jq('#code').focus();
+		  		jq('#code').addClass('isa_error');
+		  	}
+		  }, 
+		  error: function() {
+	  		  alert('Error loading ...');
+	  		  jq('#code').addClass('isa_error');
+	  		  jq('#code').val('');jq('#code').focus();
+		  }
+		});
+	}
+	function redirectFormAfter2FAConfirm(){
+		jq('#loginConfirmForm').attr('action', 'logonDashboard.do');
+		jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
+		jq('#loginConfirmForm').submit();
+	}
+	//----------------------------------------------------
+	//END FORM SUBMISSION - CONFIRM 2FactorAuthentication
+	//----------------------------------------------------
+	
+	jq(function() {
+		  jq("#qrcode").click(function() {
+			  window.open('renderLocalQRcode.do?fn=QRcode.png', "qrcode", "top=300px,left=500px,height=400px,width=500px,scrollbars=no,status=no,location=no");
+		  });
+	  });
+	
+	
+	
+	jq(document).ready(function(){
+	    jq('#code').keypress(function(e){
+	      if(e.keyCode==13)
+	      jq('#btnConfirm').click();
+	    });
+	});
+	
+	
+	

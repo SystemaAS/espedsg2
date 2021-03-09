@@ -29,6 +29,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import no.systema.main.service.FirmLoginService;
+import no.systema.main.service.GoogleAuthenticatorService;
 //
 import no.systema.main.service.UrlCgiProxyService;
 import no.systema.main.service.general.UploadFileToArchiveService;
@@ -206,48 +207,48 @@ public class ApplicationAjaxHandlerController {
             //if valid
             if(uploadValidationContainer!=null && "".equals(uploadValidationContainer.getErrMsg())){
                 // TEST String rootPath = System.getProperty("catalina.home");
-            		String rootPath	= uploadValidationContainer.getTmpdir();
-            	    File dir = new File(rootPath);
-            	    
-	        	    try {
-		                byte[] bytes = file.getBytes();
-		                // Create the file on server
-		                File serverFile = new File(dir.getAbsolutePath() + File.separator +  fileName);
-		                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
-		                stream.write(bytes);
-		                stream.close();
-		                logger.info("Server File Location=" + serverFile.getAbsolutePath());
-		                //catch parameters
-		                uploadValidationContainer.setWsavd(avd);
-        	    		uploadValidationContainer.setWsopd(opd);
-        	    		uploadValidationContainer.setWstype(type);
-        	    		//this will check if either the wstur or wsavd/wsopd will save the upload
-        	    		uploadValidationContainer = this.saveFileUpload(uploadValidationContainer, fileName, applicationUser, userDate, userTime);
-		                if(uploadValidationContainer!=null && uploadValidationContainer.getErrMsg()==""){
-	                		String suffixMsg = "";
-	                		if(uploadValidationContainer.getWstur()!=null && !"".equals(uploadValidationContainer.getWstur())){
-	                			suffixMsg = "  -->Tur:" + "["+ uploadValidationContainer.getWstur() + "]";
-	                		}else{
-	                			suffixMsg = "  -->Avd/Opd:" + "["+ uploadValidationContainer.getWsavd() + "/" + uploadValidationContainer.getWsopd() + "]";
-	                		}
-	                		return "[OK] You successfully uploaded file:" + fileName +  suffixMsg;
-		                }else{
-	                		return ERROR_TAG + "You failed to upload [on MOVE] =" + fileName;
-		                }
-	        	    } catch (Exception e) {
-	            		//run time upload error
-	            		String absoluteFileName = rootPath + File.separator + fileName;
-	            		return ERROR_TAG + "You failed to upload to:" + fileName + " runtime error:" + e.getMessage();
-	        	    }
+        		String rootPath	= uploadValidationContainer.getTmpdir();
+        	    File dir = new File(rootPath);
+        	    
+        	    try {
+	                byte[] bytes = file.getBytes();
+	                // Create the file on server
+	                File serverFile = new File(dir.getAbsolutePath() + File.separator +  fileName);
+	                BufferedOutputStream stream = new BufferedOutputStream(new FileOutputStream(serverFile));
+	                stream.write(bytes);
+	                stream.close();
+	                logger.info("Server File Location=" + serverFile.getAbsolutePath());
+	                //catch parameters
+	                uploadValidationContainer.setWsavd(avd);
+    	    		uploadValidationContainer.setWsopd(opd);
+    	    		uploadValidationContainer.setWstype(type);
+    	    		//this will check if either the wstur or wsavd/wsopd will save the upload
+    	    		uploadValidationContainer = this.saveFileUpload(uploadValidationContainer, fileName, applicationUser, userDate, userTime);
+	                if(uploadValidationContainer!=null && uploadValidationContainer.getErrMsg()==""){
+                		String suffixMsg = "";
+                		if(uploadValidationContainer.getWstur()!=null && !"".equals(uploadValidationContainer.getWstur())){
+                			suffixMsg = "  -->Tur:" + "["+ uploadValidationContainer.getWstur() + "]";
+                		}else{
+                			suffixMsg = "  -->Avd/Opd:" + "["+ uploadValidationContainer.getWsavd() + "/" + uploadValidationContainer.getWsopd() + "]";
+                		}
+                		return "[OK] You successfully uploaded file:" + fileName +  suffixMsg;
+	                }else{
+                		return ERROR_TAG + "You failed to upload [on MOVE] =" + fileName;
+	                }
+        	    } catch (Exception e) {
+            		//run time upload error
+            		String absoluteFileName = rootPath + File.separator + fileName;
+            		return ERROR_TAG + "You failed to upload to:" + fileName + " runtime error:" + e.getMessage();
+        	    }
 
             }else{
-	        		if(uploadValidationContainer!=null){
-	        			logger.info(uploadValidationContainer.getErrMsg());
-	        			//Back-end error message output upon validation
-	        			return ERROR_TAG + uploadValidationContainer.getErrMsg();
-	        		}else{
-	        			return ERROR_TAG + "NULL on upload file validation Object??";
-	        		}
+        		if(uploadValidationContainer!=null){
+        			logger.info(uploadValidationContainer.getErrMsg());
+        			//Back-end error message output upon validation
+        			return ERROR_TAG + uploadValidationContainer.getErrMsg();
+        		}else{
+        			return ERROR_TAG + "NULL on upload file validation Object??";
+        		}
         	}
         } else {
         	logger.info("FILE NAME empty!");
@@ -255,6 +256,35 @@ public class ApplicationAjaxHandlerController {
         }
 	    
 	}
+	
+	/**
+	 * confirm 2FA login
+	 * 
+	 * @param code
+	 * @return
+	 */
+	@RequestMapping(value = "getAuthenticator2FAResponse.do", method = RequestMethod.GET)
+	public @ResponseBody Set<JsonNotisblockContainer> getAuthenticatorResponse
+	  						(@RequestParam String code ) {
+		 
+		 final String METHOD = "getAuthenticator2FAResponse ";
+		 logger.info(METHOD + "Inside");
+		 Set<JsonNotisblockContainer> result = new HashSet<JsonNotisblockContainer>();
+		 //prepare the access CGI with RPG back-end
+		 if (code.equals(GoogleAuthenticatorService.getTOTPCode(GoogleAuthenticatorService.SECRET_KEY))) {
+			    logger.warn("2FA-confirm-login successfully done!");
+			    //just as a place-holder 
+			    JsonNotisblockContainer container = new JsonNotisblockContainer();
+			    container.setUser("OK");
+			    result.add(container);
+			} else {
+				logger.warn("Invalid 2FA Code");
+			}
+		 return result;
+	 }	 
+
+	
+	
 	/**
 	 * 
 	 * @param fileName
@@ -388,6 +418,9 @@ public class ApplicationAjaxHandlerController {
 		
 	    	return companyCode;
 		}
+	  
+	  
+	  
 
 	  //SERVICES
 	  @Qualifier ("urlCgiProxyService")
