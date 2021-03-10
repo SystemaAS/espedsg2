@@ -21,10 +21,8 @@
 		 			<input type="hidden" name="user" id="user" value="${model.user.user}" />
 		 			<tr height="1"><td>&nbsp;</td></tr>
 					<tr>
-						<td align="center" colspan="3" class="text28Bold">eSpedsg
-						<%-- moved out to a manual routine
-						<span title="Creates SYSTEMA-account in Mobile App-Google Authenticator" id="qrcode" name="qrcode" class="text12BlueGreen" style="cursor:pointer">QR</span>
-						 --%>
+						<td align="center" colspan="3" class="text28Bold">
+						<span id="qrcode" name="qrcode" >e</span>Spedsg
 						</td>
 					</tr>
 					<tr height="3"><td>&nbsp;</td></tr>
