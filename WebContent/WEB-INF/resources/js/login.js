@@ -142,6 +142,8 @@
 	
 	
 	jq(document).ready(function(){
+		jq('#code').focus();
+		
 	    jq('#code').keypress(function(e){
 	      if(e.keyCode==13)
 	      jq('#btnConfirm').click();
