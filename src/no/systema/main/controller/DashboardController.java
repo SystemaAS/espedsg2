@@ -619,6 +619,8 @@ public class DashboardController {
 		appUser.setKundeL1(jsonSystemaUserContainer.getKundeL1());
 		appUser.setCompanyCode(companyCode);//fifirm in firm
 		appUser.setFallbackCompanyCode(this.getCompanyCodeForLogin()); //as a fallback needed in espedsg use cases
+		logger.warn("companyCode:" + appUser.getCompanyCode());
+		logger.warn("fallback companyCode:" + appUser.getFallbackCompanyCode());
 		appUser.setTradevisionFlag(this.getTradevisionFlagForLogin());
 		//If empty, the default is NO. Check the SystemaWebUser.usrLang for that
 		if(strMgr.isNotNull(jsonSystemaUserContainer.getUsrLang())){
