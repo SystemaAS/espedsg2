@@ -49,6 +49,7 @@ import no.systema.aespedsgroadmap.model.RoadmapObject;
  * 
  */
 
+
 @Controller
 @SessionAttributes(AppConstants.SYSTEMA_WEB_USER_KEY)
 @Scope("session")
