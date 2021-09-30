@@ -24,7 +24,6 @@ C400;Nortrail@https://esped.nortrail.no:8443/espedsg2@<b>8.0</b> / 9.0 / <b>V12<
 C501;Postnord - A53@http://10.13.3.22:9091/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://a53sg.systema.no
 C502;Ramberg@http://217.8.136.78:8080/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@https://todo.ramberg.no:8443/espedsg2
 C510;Schenker NO@http://193.182.220.117:8080/espedsg@7.0 / 8.0 / V12@
-C520;Speditøren - A12@http://10.13.3.22:8484/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://a12sg.systema.no
 C530;Systema AS - ASS@http://10.13.3.22:8787/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@http://asssg.systema.no
 C600;Toten Trans.@http://cust.toten.as:8080/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@https://cust.toten.as:8443/espedsg2
 C601;Toten Trans. MS@http://cust.toten.as:8081/espedsg2@<b>8.0</b> / 9.0 / <b>V12</b>@https://cust.toten.as:8444/espedsg2
