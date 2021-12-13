@@ -2,7 +2,7 @@ package no.systema.z.main.maintenance.controller.avd;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,7 +37,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 
 @Controller
 public class MainMaintenanceAvdGateController {
-	private static final Logger logger = Logger.getLogger(MainMaintenanceAvdGateController.class.getName());
+	private static final Logger logger = LogManager.getLogger(MainMaintenanceAvdGateController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	

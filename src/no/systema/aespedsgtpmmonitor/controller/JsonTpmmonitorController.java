@@ -7,8 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +46,7 @@ import no.systema.espedsgadmin.service.FileDatabaseService;
 @Scope("session")
 
 public class JsonTpmmonitorController {
-	private static Logger logger = Logger.getLogger(JsonTpmmonitorController.class.getName());
+	private static Logger logger = LogManager.getLogger(JsonTpmmonitorController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	//
@@ -57,9 +56,7 @@ public class JsonTpmmonitorController {
 
 	@PostConstruct
 	public void initIt() throws Exception {
-		if("DEBUG".equals(AppConstants.LOG4J_LOGGER_LEVEL)){
-			logger.setLevel(Level.DEBUG);
-		}
+		
 	}
 	
 		

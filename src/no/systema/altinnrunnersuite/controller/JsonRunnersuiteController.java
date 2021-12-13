@@ -9,8 +9,7 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,7 +46,7 @@ import no.systema.espedsgadmin.service.FileDatabaseService;
 @Scope("session")
 
 public class JsonRunnersuiteController {
-	private static Logger logger = Logger.getLogger(JsonRunnersuiteController.class.getName());
+	private static Logger logger = LogManager.getLogger(JsonRunnersuiteController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	//
@@ -57,9 +56,7 @@ public class JsonRunnersuiteController {
 
 	@PostConstruct
 	public void initIt() throws Exception {
-		if("DEBUG".equals(AppConstants.LOG4J_LOGGER_LEVEL)){
-			logger.setLevel(Level.DEBUG);
-		}
+		
 	}
 	
 		

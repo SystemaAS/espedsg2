@@ -7,7 +7,7 @@ package no.systema.altinnrunnersuite.mapper;
 import java.util.Collection;
 
 //jackson library
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +22,7 @@ import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectRecord;
  * 
  */
 public class JsonRunnersuiteMapper {
-	private static final Logger logger = Logger.getLogger(JsonRunnersuiteMapper.class.getName());
+	private static final Logger logger = LogManager.getLogger(JsonRunnersuiteMapper.class.getName());
 	
 	public JsonTestersuiteObjectContainer getContainer(String utfPayload) throws Exception{
 		ObjectMapper mapper = new ObjectMapper();  

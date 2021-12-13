@@ -1,6 +1,6 @@
 package no.systema.z.main.maintenance.validator;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
@@ -15,7 +15,7 @@ import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainCund
  *
  */
 public class MaintMainCundfValidator implements Validator {
-	private static final Logger logger = Logger.getLogger(MaintMainCundfValidator.class.getName());
+	private static final Logger logger = LogManager.getLogger(MaintMainCundfValidator.class.getName());
 
 	@SuppressWarnings("rawtypes")
 	public boolean supports(Class clazz) {

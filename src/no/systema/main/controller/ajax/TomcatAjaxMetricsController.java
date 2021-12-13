@@ -17,7 +17,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -53,7 +53,7 @@ import no.systema.main.model.TomcatMetrics;
 public class TomcatAjaxMetricsController {
 	//OBSOLETE:  static final ResourceBundle resources = AppResources.getBundle();
 	
-	private static final Logger logger = Logger.getLogger(TomcatAjaxMetricsController.class.getName());
+	private static final Logger logger = LogManager.getLogger(TomcatAjaxMetricsController.class.getName());
 	
 	private final String RELATIVE_LOGFILE_PATH = "logs/" + ApplicationPropertiesUtil.getProperty("log4j.logger.file");   
 	private final String SERVLET_CONTEXT_WEBAPPS_ROOT = "webapps";

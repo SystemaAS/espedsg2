@@ -2,7 +2,7 @@ package no.systema.z.main.maintenance.controller.webuser;
 
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
@@ -54,7 +54,7 @@ import no.systema.z.main.maintenance.validator.MaintMainSyparf2Validator;
 
 @Controller
 public class MainMaintenancePwdWebUserController {
-	private static final Logger logger = Logger.getLogger(MainMaintenancePwdWebUserController.class.getName());
+	private static final Logger logger = LogManager.getLogger(MainMaintenancePwdWebUserController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();

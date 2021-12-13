@@ -3,7 +3,7 @@ package no.systema.espedsgadmin.controller;
 import java.lang.reflect.Field;
 import java.util.*;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
@@ -45,7 +45,7 @@ import no.systema.espedsgadmin.service.FileDatabaseService;
 @Scope("session")
 public class CustomerApplicationController {
 	
-	private static final Logger logger = Logger.getLogger(CustomerApplicationController.class.getName());
+	private static final Logger logger = LogManager.getLogger(CustomerApplicationController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private ApplicationContext context;
 	private LoginValidator loginValidator = new LoginValidator();

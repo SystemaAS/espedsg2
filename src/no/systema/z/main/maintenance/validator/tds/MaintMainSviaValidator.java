@@ -1,6 +1,6 @@
 package no.systema.z.main.maintenance.validator.tds;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -17,7 +17,7 @@ import no.systema.z.main.maintenance.model.jsonjackson.dbtable.tds.JsonMaintMain
  *
  */
 public class MaintMainSviaValidator implements Validator {
-	private static final Logger logger = Logger.getLogger(MaintMainSviaValidator.class.getName());
+	private static final Logger logger = LogManager.getLogger(MaintMainSviaValidator.class.getName());
 	private NumberFormatterLocaleAware numberFormatter = new NumberFormatterLocaleAware();
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(800);
 	

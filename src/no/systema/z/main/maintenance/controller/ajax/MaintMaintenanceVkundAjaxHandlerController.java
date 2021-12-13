@@ -6,7 +6,7 @@ import java.util.Collection;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -52,7 +52,7 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 @Scope("session")
 public class MaintMaintenanceVkundAjaxHandlerController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
-	private static final Logger logger = Logger.getLogger(MaintMaintenanceVkundAjaxHandlerController.class.getName());
+	private static final Logger logger = LogManager.getLogger(MaintMaintenanceVkundAjaxHandlerController.class.getName());
 
 	@Autowired
 	VkundControllerUtil vkundControllerUtil;

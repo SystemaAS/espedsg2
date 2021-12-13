@@ -5,8 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -60,7 +59,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 @Scope("session")
 public class MainMaintenanceAvdGeneralSyfa14ControllerChildWindow {
 	
-	private static final Logger logger = Logger.getLogger(MainMaintenanceAvdGeneralSyfa14ControllerChildWindow.class.getName());
+	private static final Logger logger = LogManager.getLogger(MainMaintenanceAvdGeneralSyfa14ControllerChildWindow.class.getName());
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(200);
 	private ModelAndView loginView = new ModelAndView("login");
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
@@ -69,9 +68,7 @@ public class MainMaintenanceAvdGeneralSyfa14ControllerChildWindow {
 	
 	@PostConstruct
 	public void initIt() throws Exception {
-		if("DEBUG".equals(AppConstants.LOG4J_LOGGER_LEVEL)){
-			logger.setLevel(Level.DEBUG);
-		}
+		
 	}
 	
 	

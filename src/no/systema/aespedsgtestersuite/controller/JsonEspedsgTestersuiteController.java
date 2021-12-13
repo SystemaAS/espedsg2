@@ -4,8 +4,7 @@ package no.systema.aespedsgtestersuite.controller;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -49,7 +48,7 @@ import no.systema.aespedsgtestersuite.service.TestersuiteService;
 
 public class JsonEspedsgTestersuiteController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(3000);
-	private static Logger logger = Logger.getLogger(JsonEspedsgTestersuiteController.class.getName());
+	private static Logger logger = LogManager.getLogger(JsonEspedsgTestersuiteController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	private LoginValidator loginValidator = new LoginValidator();
@@ -82,9 +81,7 @@ public class JsonEspedsgTestersuiteController {
 
 	@PostConstruct
 	public void initIt() throws Exception {
-		if("DEBUG".equals(AppConstants.LOG4J_LOGGER_LEVEL)){
-			logger.setLevel(Level.DEBUG);
-		}
+		
 	}
 	
 		
