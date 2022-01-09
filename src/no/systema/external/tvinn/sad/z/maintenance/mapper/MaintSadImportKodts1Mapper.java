@@ -4,7 +4,7 @@
 package no.systema.external.tvinn.sad.z.maintenance.mapper;
 
 //jackson library
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodts1Container;
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintSadImportKodts1Record;
@@ -19,7 +19,7 @@ import java.util.*;
  * 
  */
 public class MaintSadImportKodts1Mapper extends ObjectMapperAbstractGrandFather {
-	private static final Logger logger = LogManager.getLogger(MaintSadImportKodts1Mapper.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MaintSadImportKodts1Mapper.class.getName());
 	
 	public JsonMaintSadImportKodts1Container getContainer(String utfPayload) throws Exception{
 		

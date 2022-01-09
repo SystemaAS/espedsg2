@@ -2,7 +2,7 @@ package no.systema.z.main.maintenance.controller.ajax;
 
 import java.util.*;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
@@ -63,7 +63,7 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 @Scope("session")
 public class MainMaintenanceAvdAjaxHandlerController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceAvdAjaxHandlerController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceAvdAjaxHandlerController.class.getName());
 	
 	/**
 	 * 

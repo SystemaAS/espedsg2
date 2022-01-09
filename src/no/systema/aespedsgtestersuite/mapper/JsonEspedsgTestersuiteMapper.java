@@ -7,7 +7,7 @@ package no.systema.aespedsgtestersuite.mapper;
 import java.util.Collection;
 
 //jackson library
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -22,7 +22,7 @@ import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectRecord;
  * 
  */
 public class JsonEspedsgTestersuiteMapper {
-	private static final Logger logger = LogManager.getLogger(JsonEspedsgTestersuiteMapper.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(JsonEspedsgTestersuiteMapper.class.getName());
 	
 	public JsonTestersuiteObjectContainer getContainer(String utfPayload) throws Exception{
 		ObjectMapper mapper = new ObjectMapper();  

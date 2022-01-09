@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -94,7 +94,7 @@ import no.systema.z.main.maintenance.util.manager.CodeDropDownMgr;
  */
 @Controller
 public class MainMaintenanceCundfVkundController {
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceCundfVkundController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceCundfVkundController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private boolean KOFAST_NO_ID = true; 
@@ -1074,7 +1074,7 @@ public class MainMaintenanceCundfVkundController {
 		urlRequestParams.append("user=" + appUser.getUser());
 		urlRequestParams.append("&kftyp=" + FasteKoder.SYPAR.toString());
 		logger.info(BASE_URL);
-		logger.info(urlRequestParams);
+		logger.info(urlRequestParams.toString());
 		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		JsonMaintMainChildWindowKofastContainer container = null;
 		List <ChildWindowKode> kodeList = new ArrayList<ChildWindowKode>();
@@ -1101,7 +1101,7 @@ public class MainMaintenanceCundfVkundController {
 		urlRequestParams.append("user=" + appUser.getUser());
 		urlRequestParams.append("&kftyp=" + FasteKoder.FUNKSJON.toString());
 		logger.info(BASE_URL);
-		logger.info(urlRequestParams);
+		logger.info(urlRequestParams.toString());
 
 		UrlCgiProxyService urlCgiProxyService = new UrlCgiProxyServiceImpl();
 		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -23,7 +23,7 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
  *
  */
 public class MaintMainSvnstdValidator implements Validator {
-	private static final Logger logger = LogManager.getLogger(MaintMainSvnstdValidator.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MaintMainSvnstdValidator.class.getName());
 	private NumberFormatterLocaleAware numberFormatter = new NumberFormatterLocaleAware();
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(800);
 	

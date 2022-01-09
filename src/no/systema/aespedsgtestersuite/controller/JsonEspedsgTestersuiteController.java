@@ -4,7 +4,7 @@ package no.systema.aespedsgtestersuite.controller;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +48,7 @@ import no.systema.aespedsgtestersuite.service.TestersuiteService;
 
 public class JsonEspedsgTestersuiteController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(3000);
-	private static Logger logger = LogManager.getLogger(JsonEspedsgTestersuiteController.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(JsonEspedsgTestersuiteController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	private LoginValidator loginValidator = new LoginValidator();

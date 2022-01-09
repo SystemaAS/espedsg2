@@ -1,6 +1,6 @@
 package no.systema.z.main.maintenance.validator;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.validation.Validator;
 import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
@@ -16,7 +16,7 @@ import no.systema.z.main.maintenance.model.jsonjackson.dbtable.JsonMaintMainKodt
  *
  */
 public class MaintMainKodtvKodtwValidator implements Validator {
-	private static final Logger logger = LogManager.getLogger(MaintMainKodtvKodtwValidator.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MaintMainKodtvKodtwValidator.class.getName());
 	private NumberFormatterLocaleAware numberFormatter = new NumberFormatterLocaleAware();
 	/**
 	 * 

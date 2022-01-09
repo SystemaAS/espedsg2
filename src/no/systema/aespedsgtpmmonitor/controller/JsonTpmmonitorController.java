@@ -7,7 +7,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 import javax.annotation.PostConstruct;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +46,7 @@ import no.systema.espedsgadmin.service.FileDatabaseService;
 @Scope("session")
 
 public class JsonTpmmonitorController {
-	private static Logger logger = LogManager.getLogger(JsonTpmmonitorController.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(JsonTpmmonitorController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	//

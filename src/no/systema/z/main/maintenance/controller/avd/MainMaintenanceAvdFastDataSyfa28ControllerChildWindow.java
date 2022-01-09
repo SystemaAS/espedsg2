@@ -5,7 +5,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.*;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -58,7 +58,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 @Scope("session")
 public class MainMaintenanceAvdFastDataSyfa28ControllerChildWindow {
 	
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceAvdFastDataSyfa28ControllerChildWindow.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceAvdFastDataSyfa28ControllerChildWindow.class.getName());
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(2000);
 	private ModelAndView loginView = new ModelAndView("login");
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();

@@ -7,7 +7,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,7 +19,7 @@ import no.systema.z.main.maintenance.util.manager.Log4jMgr;
 
 @Controller
 public class LogoutController {
-	private static final Logger logger = LogManager.getLogger(LogoutController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(LogoutController.class.getName());
 	
 	@RequestMapping("logout.do")
 	public void logout(HttpSession session, HttpServletResponse response, HttpServletRequest request){

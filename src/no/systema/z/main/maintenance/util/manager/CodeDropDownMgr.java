@@ -5,7 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintKodtvaContainer;
 import no.systema.external.tvinn.sad.z.maintenance.model.JsonMaintKodtvaRecord;
@@ -48,7 +48,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
  * 
  */
 public class CodeDropDownMgr {
-	private static final Logger logger = LogManager.getLogger(CodeDropDownMgr.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(CodeDropDownMgr.class.getName());
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 
 	/**

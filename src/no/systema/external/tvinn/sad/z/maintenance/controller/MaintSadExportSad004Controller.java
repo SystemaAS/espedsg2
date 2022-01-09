@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.SerializationUtils;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -52,7 +52,7 @@ import no.systema.z.main.maintenance.controller.kund.MainMaintenanceCundfVareExp
 @Scope("session")
 public class MaintSadExportSad004Controller {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
-	private static final Logger logger = LogManager.getLogger(MaintSadExportSad004Controller.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MaintSadExportSad004Controller.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();
 	private TvinnCodeDropDownMgr codeDropDownMgr = new TvinnCodeDropDownMgr();

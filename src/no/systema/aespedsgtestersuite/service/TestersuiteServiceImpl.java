@@ -3,7 +3,7 @@
  */
 package no.systema.aespedsgtestersuite.service;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import no.systema.aespedsgtestersuite.mapper.JsonEspedsgTestersuiteMapper;
 import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectContainer;
@@ -15,7 +15,7 @@ import no.systema.aespedsgtestersuite.model.JsonTestersuiteObjectContainer;
  * 
  */
 public class TestersuiteServiceImpl implements TestersuiteService{
-	private static final Logger logger = LogManager.getLogger(TestersuiteServiceImpl.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(TestersuiteServiceImpl.class.getName());
 	
 	public JsonTestersuiteObjectContainer getContainer(String utfPayload) {
 		JsonTestersuiteObjectContainer container = null;

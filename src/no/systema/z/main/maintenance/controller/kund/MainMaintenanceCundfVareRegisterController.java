@@ -3,7 +3,7 @@ package no.systema.z.main.maintenance.controller.kund;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,7 +25,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 
 @Controller
 public class MainMaintenanceCundfVareRegisterController {
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceCundfVareRegisterController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceCundfVareRegisterController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 
 	@RequestMapping(value = "mainmaintenancecundf_vareregister.do", method = { RequestMethod.GET, RequestMethod.POST })

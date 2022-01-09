@@ -3,7 +3,7 @@ package no.systema.z.main.maintenance.controller.kund;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -36,7 +36,7 @@ import no.systema.z.main.maintenance.util.MainMaintenanceConstants;
 
 @Controller
 public class MainMaintenanceCundfVareExportNoController {
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceCundfVareExportNoController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceCundfVareExportNoController.class.getName());
 
 	@RequestMapping(value = "mainmaintenancecundf_vareexp_no.do", method = { RequestMethod.GET, RequestMethod.POST })
 	public ModelAndView doVareRegisterExpNo(HttpSession session, HttpServletRequest request) {

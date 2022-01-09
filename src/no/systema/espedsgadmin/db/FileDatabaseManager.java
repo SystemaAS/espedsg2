@@ -4,7 +4,7 @@
 package no.systema.espedsgadmin.db;
 import java.util.*;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import no.systema.main.context.TdsServletContext;
 import no.systema.main.util.io.TextFileReaderService;
@@ -20,7 +20,7 @@ import no.systema.espedsgadmin.model.TomcatAspApplicationObject;
  * 
  */
 public class FileDatabaseManager {
-	private static final Logger logger = LogManager.getLogger(FileDatabaseManager.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(FileDatabaseManager.class.getName());
 	
 	static final String RESOURCE_FILES_PATH_DEFAULT = "/WEB-INF/resources/files/customersDb/";
 	static final String UTF_8 = "UTF-8";

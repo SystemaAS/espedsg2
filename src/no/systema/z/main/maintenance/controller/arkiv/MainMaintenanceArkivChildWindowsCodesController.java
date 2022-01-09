@@ -9,7 +9,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -46,7 +46,7 @@ import no.systema.z.main.maintenance.url.store.MaintenanceMainUrlDataStore;
 
 @Controller
 public class MainMaintenanceArkivChildWindowsCodesController {
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceArkivChildWindowsCodesController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceArkivChildWindowsCodesController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 
@@ -137,7 +137,7 @@ public class MainMaintenanceArkivChildWindowsCodesController {
 		urlRequestParams.append("user=" + appUser.getUser());
 		urlRequestParams.append("&kftyp=" + FasteKoder.ARKIVU.toString());
 		logger.info(BASE_URL);
-		logger.info(urlRequestParams);
+		logger.info(urlRequestParams.toString());
 
 		String jsonPayload = urlCgiProxyService.getJsonContent(BASE_URL, urlRequestParams.toString());
 		JsonMaintMainChildWindowKofastContainer container = null;

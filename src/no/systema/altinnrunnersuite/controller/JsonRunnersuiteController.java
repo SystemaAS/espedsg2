@@ -9,7 +9,7 @@ import java.util.*;
 import javax.annotation.PostConstruct;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +46,7 @@ import no.systema.espedsgadmin.service.FileDatabaseService;
 @Scope("session")
 
 public class JsonRunnersuiteController {
-	private static Logger logger = LogManager.getLogger(JsonRunnersuiteController.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(JsonRunnersuiteController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	
 	//

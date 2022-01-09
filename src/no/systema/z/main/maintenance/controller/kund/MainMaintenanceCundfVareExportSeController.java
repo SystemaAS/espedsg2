@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang3.builder.ReflectionToStringBuilder;
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Required;
@@ -49,7 +49,7 @@ import no.systema.z.main.maintenance.validator.MaintMainSvewValidator;
 
 @Controller
 public class MainMaintenanceCundfVareExportSeController {
-	private static final Logger logger = LogManager.getLogger(MainMaintenanceCundfVareExportSeController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(MainMaintenanceCundfVareExportSeController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private static final JsonDebugger jsonDebugger = new JsonDebugger();
 	private UrlRequestParameterMapper urlRequestParameterMapper = new UrlRequestParameterMapper();

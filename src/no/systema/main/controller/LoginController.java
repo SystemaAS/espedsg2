@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 
 import no.systema.jservices.common.util.AesEncryptionDecryptionManager;
 import no.systema.main.cookie.SessionCookieManager;
@@ -42,7 +42,7 @@ import no.systema.main.model.jsonjackson.JsonSystemaUserContainer;
 /*@SessionAttributes(Constants.APP_USER_KEY)
 @Scope("session")*/
 public class LoginController {
-	private static final Logger logger = LogManager.getLogger(LoginController.class.getName());
+	private static final Logger logger = LoggerFactory.getLogger(LoginController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private AesEncryptionDecryptionManager aesManager = new AesEncryptionDecryptionManager();
 	

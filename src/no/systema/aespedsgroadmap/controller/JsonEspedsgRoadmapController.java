@@ -8,7 +8,7 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 
 
-import org.apache.logging.log4j.*;
+import org.slf4j.*;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.servlet.ModelAndView;
@@ -56,7 +56,7 @@ import no.systema.aespedsgroadmap.model.RoadmapObject;
 
 public class JsonEspedsgRoadmapController {
 	private static final JsonDebugger jsonDebugger = new JsonDebugger(3000);
-	private static Logger logger = LogManager.getLogger(JsonEspedsgRoadmapController.class.getName());
+	private static Logger logger = LoggerFactory.getLogger(JsonEspedsgRoadmapController.class.getName());
 	private ModelAndView loginView = new ModelAndView("login");
 	private ApplicationContext context;
 	private LoginValidator loginValidator = new LoginValidator();
