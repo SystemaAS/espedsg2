@@ -37,7 +37,7 @@ public class JUnitGoogleAuthTester {
 	public void testGoogleNumberFromAuthenticator(){
 		//Scanner scanner = new Scanner(System.in);
 		//String code = scanner.nextLine();
-		String code = "915425";
+		String code = "441847";
 		if (code.equals(GoogleAuthenticatorService.getTOTPCode(secretKey))) {
 		    System.out.println("Logged in successfully");
 		} else {

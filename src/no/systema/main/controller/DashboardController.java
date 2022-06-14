@@ -293,7 +293,8 @@ public class DashboardController {
 			    	//int pwd = urlRequestParamsKeys.indexOf("&pwd");
 			    	//String credentailsPwd = urlRequestParamsKeys.substring(pwd + 5);
 			    	//logger.info("URL PARAMS: " + urlRequestParamsKeys.substring(0,pwd)+"&md5");
-			    	logger.debug("URL PARAMS: " + urlRequestParamsKeys);
+			    	logger.warn("BASE_URL: " + BASE_URL);
+			    	logger.warn("URL PARAMS: " + urlRequestParamsKeys);
 			    	
 			    	//--------------------------------------
 			    	//EXECUTE the FETCH (RPG program) here
