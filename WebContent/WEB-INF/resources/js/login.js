@@ -69,13 +69,16 @@
 		  
 		  if(jq('#alwaysEmptyAndInvisible').val() === ''){
 			  let host = jq('#host').val();
-			  //only SaaS customers should use the 2FA-solution (Google Authenticator or Duo or other). localhost is for development purposes
+			  //only SaaS customers should use the 2FA-solution (Google Authenticator or Duo or other).
+
+			  //removed since Roger moved to new machine on 14.Jun.2022	
 			  if(host.indexOf("systema.no") != -1 || host.indexOf("localhost") != -1){
 				  jq('#loginForm').attr('action', 'loginconfirm.do');
 			  }else{
 				  //this is the normal none-2FA solution. Usually all external customers
 				  jq('#loginForm').attr('action', 'logonDashboard.do');
 			  }
+			  
 			  jq.blockUI({ css: { fontSize: '22px' }, message: BLOCKUI_OVERLAY_MESSAGE_DEFAULT});
 			  jq('#loginForm').submit();
 		  }
