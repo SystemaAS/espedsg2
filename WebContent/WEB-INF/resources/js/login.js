@@ -73,7 +73,13 @@
 
 			  //removed since Roger moved to new machine on 14.Jun.2022	
 			  if(host.indexOf("systema.no") != -1 || host.indexOf("localhost") != -1){
-				  jq('#loginForm').attr('action', 'loginconfirm.do');
+					//check saas flag (disabled or enabled 2FA)
+					if(jq('#saas_2fa').val() != ''){	
+					  	jq('#loginForm').attr('action', 'loginconfirm.do');
+					}else{
+						//bypass the 2FA in a panic situation. Blank in properties file
+						jq('#loginForm').attr('action', 'logonDashboard.do');
+					}
 			  }else{
 				  //this is the normal none-2FA solution. Usually all external customers
 				  jq('#loginForm').attr('action', 'logonDashboard.do');

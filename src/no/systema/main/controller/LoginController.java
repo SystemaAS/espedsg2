@@ -81,8 +81,10 @@ public class LoginController {
 		//reCaptcha
 		appUserPreLogin.setRecaptchaSiteKey(AppConstants.LOGIN_RECAPTCHA_SITE_KEY);
 		appUserPreLogin.setRecaptchaSecretKey(AppConstants.LOGIN_RECAPTCHA_SECRET_KEY);
-		//for 2FactorAuth. (when needed)
+		//for 2FactorAuth. (when needed SAAS)
 		appUserPreLogin.setServletHostWithoutHttpPrefix(request.getServerName());
+		//extra 2FactorAuth flag for disabling Saas in panic situations
+		appUserPreLogin.setKey2FA(AppConstants.LOGIN_2FA_FLAG);
 		
 		model.addAttribute(AppConstants.SYSTEMA_WEB_USER_KEY, appUserPreLogin);
 		if("1".equalsIgnoreCase(errorChgPwd)){
