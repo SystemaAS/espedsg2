@@ -69,6 +69,9 @@ public class JsonRunnersuiteController {
 	@RequestMapping(value="altinnrunnersuite.do", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doList( HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		List<CustomerApplicationObject> list = new ArrayList<CustomerApplicationObject>();
+		String SYSTEMAS_IP = "10.13.3.22";
+		String A49_INTERNAL_PORT = "8686";
+		String A53_INTERNAL_PORT = "9091";
 		
 		Map model = new HashMap();
 		
@@ -83,6 +86,7 @@ public class JsonRunnersuiteController {
 			appUser.setActiveMenu(SystemaWebUser.ACTIVE_MENU_ALTINN_RUNNER_SUITES);
 			//list = this.initTesterSuiteSpecificationStrict(appUser);
 			List<CustomerApplicationObject> dbObjectList = this.fileDatabaseService.getCustomerApplicationList();
+			logger.warn("HEEEELLLLLOOOOOO!");
 			for (CustomerApplicationObject record : dbObjectList){
 				logger.info(record.getName());
 				inner: for(String module : record.getApplicationList() ){
@@ -105,6 +109,17 @@ public class JsonRunnersuiteController {
 								String httpTmp = record.getUrl();
 								int j = httpTmp.indexOf("espedsg");
 								httpTmp = httpTmp.substring(0,j);
+								if(httpTmp.contains(SYSTEMAS_IP)) {
+									if(httpTmp.contains(A49_INTERNAL_PORT)) {
+										httpTmp = httpTmp.replace("http", "https");
+										httpTmp = httpTmp.replace(SYSTEMAS_IP + ":" + A49_INTERNAL_PORT, "gw.systema.no:8449");
+									}else if (httpTmp.contains(A53_INTERNAL_PORT)) {
+										httpTmp = httpTmp.replace("http", "https");
+										httpTmp = httpTmp.replace(SYSTEMAS_IP + ":" + A53_INTERNAL_PORT, "gw.systema.no:8453");
+									}
+								}
+								logger.warn("######## httpTmp:" + httpTmp);
+								
 								record.setUrl(httpTmp);
 								list.add(record);
 								break inner;
