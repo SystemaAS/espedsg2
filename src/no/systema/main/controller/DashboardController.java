@@ -249,14 +249,16 @@ public class DashboardController {
 			return this.loginView;
 			
 		}else{
+			logger.info("Step A ");
 			//this snippet is used when the call is coming from the 2FA-loginconfirm since we do not send the password as a form-parameter
 			if(StringUtils.isEmpty(appUser.getPassword())){
+				logger.info("Step A.1 ");
 				//this was saved as session variable ONLY TEMPORARY in the loginconfirm.do
 		    	String tempPass = (String)session.getAttribute("tempPass");
 		    	appUser.setPassword(tempPass);
 		    	session.removeAttribute("tempPass");
 		    }
-			
+			logger.info("Step B ");
 			UserValidator validator = new UserValidator();
 			validator.validate(appUser, bindingResult);
 		    if(bindingResult.hasErrors()){
@@ -275,6 +277,7 @@ public class DashboardController {
 		    	//this routine was triggered by Totens upgrade (Jan-2017 V12). Ref. JOVOs requirement
 		    	String companyCode = null;
 		    	if(COMPANY_CODE_REQUIRED_FLAG_VALUE.equals(AppConstants.LOGIN_FIRMA_CODE_REQUIRED)){
+		    		logger.info("About to get CompanyCodeForLogin...");
 		    		companyCode = this.getCompanyCodeForLogin();
 		    	}
 		    	
@@ -282,7 +285,7 @@ public class DashboardController {
 				//get BASE URL = RPG-PROGRAM
 	            //---------------------------
 				String BASE_URL = MainUrlDataStore.SYSTEMA_WEB_LOGIN_URL;
-				
+				logger.info("About to login: " + BASE_URL);
 				//url params
 				String urlRequestParamsKeys = this.getRequestUrlKeyParameters(appUser, companyCode);
 				

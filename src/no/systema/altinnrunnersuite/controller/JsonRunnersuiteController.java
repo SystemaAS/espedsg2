@@ -69,7 +69,7 @@ public class JsonRunnersuiteController {
 	@RequestMapping(value="altinnrunnersuite.do", method={RequestMethod.GET, RequestMethod.POST} )
 	public ModelAndView doList( HttpSession session, HttpServletRequest request, HttpServletResponse response){
 		List<CustomerApplicationObject> list = new ArrayList<CustomerApplicationObject>();
-		String SYSTEMAS_IP = "10.13.3.22";
+		String SYSTEMAS_IP = "10.11.47.61";
 		String A49_INTERNAL_PORT = "8686";
 		String A53_INTERNAL_PORT = "9091";
 		
