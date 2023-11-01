@@ -579,8 +579,10 @@ public class DashboardController {
     	logger.info(FIRM_URL);
     	logger.info(jsonFirmPayload);
     	JsonFirmLoginContainer firmContainer = this.firmLoginService.getContainer(jsonFirmPayload);
-    	for(JsonFirmLoginRecord record : firmContainer.getList()){
-    		companyCode = record.getFifirm();
+    	if(firmContainer!=null && !firmContainer.getList().isEmpty()) {
+	    	for(JsonFirmLoginRecord record : firmContainer.getList()){
+	    		companyCode = record.getFifirm();
+	    	}
     	}
     	logger.info("Company-code(FIRM):" + companyCode);
 	
