@@ -83,6 +83,11 @@ public class LoginController {
 		appUserPreLogin.setRecaptchaSecretKey(AppConstants.LOGIN_RECAPTCHA_SECRET_KEY);
 		//for 2FactorAuth. (when needed SAAS)
 		appUserPreLogin.setServletHostWithoutHttpPrefix(request.getServerName());
+		appUserPreLogin.setServletHost(request.getServerName());
+		Integer tcPort = request.getServerPort();
+		if(tcPort!=null) {
+			appUserPreLogin.setTomcatPort(tcPort.toString());
+		}
 		//extra 2FactorAuth flag for disabling Saas in panic situations
 		appUserPreLogin.setKey2FA(AppConstants.LOGIN_2FA_FLAG);
 		

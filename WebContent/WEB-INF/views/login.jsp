@@ -23,9 +23,46 @@
 			
 	 		<table align="center" border="0" cellpadding="1" cellspacing="1" >
 	 			<form name="loginForm" id="loginForm" method="POST" >
+	 			<input type="hidden" name="p" id="p" value="${model.user.tomcatPort}" />
 	 			<input type="hidden" name="host" id="host" value="${model.user.servletHostWithoutHttpPrefix}" />
 	 			<input type="hidden" name="saas_2fa" id="saas_2fa" value="${model.user.key2FA}" />
 	 			<tr height="1"><td>&nbsp;</td></tr>
+	 			<c:choose>
+	 				<%-- cust.toten.as --%>
+		 			<c:when test="${model.user.servletHostWithoutHttpPrefix == 'cust.toten.as' || model.user.servletHostWithoutHttpPrefix == 'cust.multisped.no' }">
+		 				<tr>
+							<td align="left" colspan="2" class="text16">
+								<a title="eService" id="alinkMainMaintGate" tabindex=-1 style="display:block;" href="https://booking.toten-transport.no/totprod_a4web/ui/eservice">
+									Ny eService ved booking av transport fra og med 02/01-2025
+								</a>
+			 				</td>
+		 				</tr>
+		 				<tr>
+							<td title="Brukerveiledning - eService" align="left" colspan="2" class="text12">
+								<c:if test="${model.user.tomcatPort != '8444'}">
+									<a tabindex=-1 href="renderLocalPdfTotenLogin.do?fn=Brukerveiledning_eService_NO.pdf" target="_blank">
+										<font class="text14" style="color:black;">
+										Brukerveiledning eService&nbsp;
+										</font>
+										<img style="vertical-align:top;" width="18px" height="18px" src="resources/images/pdf2.png" border="0" alt="pdf">
+									</a>
+								</c:if>
+								<c:if test="${model.user.tomcatPort == '8444'}">
+									<a tabindex=-1 href="renderLocalPdfTotenLogin.do?fn=Brukerveiledning_eService_MS_NO.pdf" target="_blank">
+										<font class="text14" style="color:black;">
+										Brukerveiledning eService&nbsp;
+										</font>
+										<img style="vertical-align:top;" width="18px" height="18px" src="resources/images/pdf2.png" border="0" alt="pdf">
+									</a>
+								</c:if>
+			 				</td>
+		 				</tr>
+		 				<tr height="1"><td>&nbsp;</td></tr>
+		 			</c:when>
+		 			<c:otherwise>
+		 				<%--nothing --%>
+		 			</c:otherwise>
+	 			</c:choose>
 				<tr>
 					<td align="center" colspan="2" class="text28Bold">eSpedsg</td>
 				</tr>
